@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPATIAL FLOW — A Journal of Rooms, Rituals & Quiet Objects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f1eb;
+    --bg-2: #ede7df;
+    --bg-3: #f0e8d8;
+    --ink: #1f1916;
+    --ink-soft: rgba(31,25,22,.62);
+    --ink-faint: rgba(31,25,22,.35);
+    --border: rgba(31,25,22,.12);
+    --border-soft: rgba(31,25,22,.08);
+    --clay: #a8745c;
+    --clay-dark: #8a5c47;
+    --stone: #4a5d5a;
+    --paper: #faf7f3;
+
+    --display: "Cormorant Garamond", "Noto Serif SC", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+    --cn: "Noto Serif SC", var(--display);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; font-weight: 400; line-height: 1.55; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* Back to directions bar */
+  .backbar { background: var(--ink); color: var(--bg); padding: 10px 32px; font-family: var(--mono); font-size: 11px; display: flex; justify-content: space-between; letter-spacing: 0.08em; text-transform: uppercase; }
+  .backbar a { color: var(--clay); border-bottom: 1px dashed var(--clay); padding-bottom: 1px; }
+
+  /* Masthead strip */
+  .masthead-strip {
+    padding: 12px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .masthead-strip .vol b { color: var(--clay); font-weight: 500; }
+  .masthead-strip .center { letter-spacing: 0.2em; }
+  .masthead-strip .right span { display: inline-block; width: 6px; height: 6px; background: var(--clay); border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+  /* Header — publication masthead style */
+  header.site-header {
+    padding: 32px 48px 28px;
+    border-bottom: 1px solid var(--ink);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: baseline;
+    gap: 32px;
+  }
+  header.site-header nav.primary { justify-self: start; }
+  header.site-header nav.primary ul { list-style: none; display: flex; gap: 36px; }
+  header.site-header nav.primary a {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color .25s;
+  }
+  header.site-header nav.primary a:hover { color: var(--clay); }
+  header.site-header nav.primary a.current { border-bottom: 1px solid var(--ink); }
+
+  .wordmark {
+    font-family: var(--display);
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-align: center;
+    line-height: 1;
+  }
+  .wordmark .sub {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 10px;
+    font-weight: 400;
+  }
+
+  header.site-header .utilities { justify-self: end; display: flex; gap: 24px; align-items: baseline; font-size: 13px; }
+  header.site-header .utilities a { letter-spacing: 0.05em; transition: color .25s; }
+  header.site-header .utilities a:hover { color: var(--clay); }
+  header.site-header .utilities .bag { font-weight: 500; }
+  header.site-header .utilities .bag sup { color: var(--clay); font-weight: 600; }
+
+  /* Issue / table of contents strip */
+  .toc-strip {
+    padding: 18px 48px;
+    border-bottom: 1px solid var(--ink);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .toc-strip > div { display: flex; gap: 10px; align-items: baseline; }
+  .toc-strip b { font-weight: 500; color: var(--ink); letter-spacing: 0.05em; }
+  .toc-strip .num { color: var(--clay); font-weight: 500; }
+
+  /* Cover story / hero */
+  .cover {
+    padding: 80px 48px 100px;
+    border-bottom: 1px solid var(--ink);
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+  }
+  .cover .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cover .kicker::before { content: ""; display: inline-block; width: 40px; height: 1px; background: var(--clay); }
+  .cover .kicker b { color: var(--clay); font-weight: 500; }
+  .cover h1 {
+    font-family: var(--display);
+    font-size: clamp(56px, 7.5vw, 108px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 36px;
+  }
+  .cover h1 em {
+    font-style: italic;
+    color: var(--clay);
+    font-weight: 400;
+  }
+  .cover h1 .zh {
+    font-family: var(--cn);
+    font-weight: 400;
+    font-size: 0.8em;
+    letter-spacing: 0.05em;
+    color: var(--stone);
+    padding: 0 0.1em;
+  }
+  .cover .lead {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .cover .lead::first-letter {
+    font-size: 72px;
+    float: left;
+    line-height: 0.9;
+    padding: 6px 14px 0 0;
+    color: var(--clay);
+    font-weight: 500;
+    font-style: normal;
+  }
+  .cover .byline {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+  }
+  .cover .byline b { color: var(--ink); font-weight: 500; letter-spacing: 0.05em; text-transform: none; font-family: var(--display); font-style: italic; font-size: 14px; }
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 36px;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all .3s;
+    border: 1px solid var(--ink);
+  }
+  .btn:hover { background: var(--clay); border-color: var(--clay); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: var(--bg); }
+  .btn .arrow { font-family: var(--display); font-style: italic; font-size: 16px; letter-spacing: 0; text-transform: none; }
+
+  /* Cover image — stacked with captions like a print magazine photo */
+  .cover-art {
+    position: relative;
+  }
+  .cover-art .frame {
+    aspect-ratio: 4/5;
+    background: linear-gradient(165deg, #d8c4a8 0%, #9b7555 55%, #5a4a3c 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-art .frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 40%, rgba(255,255,255,0.12), transparent 50%), radial-gradient(ellipse at 70% 70%, rgba(0,0,0,0.2), transparent 40%);
+  }
+  .cover-art .frame::after {
+    content: "氣";
+    position: absolute;
+    right: 8%;
+    bottom: 10%;
+    font-family: var(--cn);
+    font-size: 180px;
+    color: rgba(255, 250, 240, 0.12);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .cover-art .caption {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border-soft);
+    padding-top: 12px;
+  }
+  .cover-art .caption b { color: var(--clay); font-weight: 500; }
+  .cover-art .issue-stamp {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 14px 18px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+  .cover-art .issue-stamp b { display: block; font-family: var(--display); font-size: 24px; letter-spacing: 0.02em; color: var(--clay); margin-top: 4px; font-weight: 500; }
+
+  /* Section wrapper */
+  section { padding: 120px 48px; border-bottom: 1px solid var(--border); position: relative; }
+  .section-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 48px;
+    align-items: end;
+    margin-bottom: 72px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .section-head .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .section-head .num b {
+    display: block;
+    font-family: var(--display);
+    font-size: 42px;
+    font-weight: 500;
+    color: var(--clay);
+    letter-spacing: -0.01em;
+    margin-top: 4px;
+    text-transform: none;
+  }
+  .section-head h2 {
+    font-family: var(--display);
+    font-size: clamp(44px, 5vw, 72px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .section-head h2 em { font-style: italic; color: var(--clay); }
+  .section-head .view-all {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 2px;
+    transition: all .25s;
+  }
+  .section-head .view-all:hover { color: var(--clay); border-color: var(--clay); }
+
+  /* Journal / In This Issue — editorial article cards */
+  .journal-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 48px;
+  }
+  .article-card { cursor: pointer; transition: opacity .3s; }
+  .article-card:hover { opacity: .8; }
+  .article-card .art {
+    aspect-ratio: 4/5;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+  .article-card:first-child .art { aspect-ratio: 4/5; }
+  .article-card .art.a1 { background: linear-gradient(160deg, #b8a38a 0%, #6b5544 100%); }
+  .article-card .art.a2 { background: linear-gradient(160deg, #9ba89e 0%, #5c6a60 100%); }
+  .article-card .art.a3 { background: linear-gradient(160deg, #d4c2a8 0%, #8a725a 100%); }
+  .article-card .art::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 40% 50%, rgba(255,255,255,0.1), transparent 60%);
+  }
+  .article-card .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 10px;
+  }
+  .article-card .tag::before { content: "— "; color: var(--ink-faint); }
+  .article-card h3 {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+    margin-bottom: 10px;
+  }
+  .article-card:first-child h3 { font-size: 36px; }
+  .article-card h3 em { font-style: italic; color: var(--clay); font-weight: 400; }
+  .article-card p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .article-card .meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* Manifesto spread — the "about" pulled into homepage */
+  .spread {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    min-height: 620px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .spread-img {
+    background: linear-gradient(160deg, #3a4438 0%, #1a211f 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .spread-img::before {
+    content: "";
+    position: absolute;
+    inset: 15% 20%;
+    border: 1px solid rgba(255, 250, 240, 0.15);
+  }
+  .spread-img::after {
+    content: "安";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--cn);
+    font-size: 280px;
+    color: rgba(255, 250, 240, 0.15);
+    font-weight: 400;
+    line-height: 1;
+  }
+  .spread-text {
+    background: var(--bg-3);
+    padding: 100px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid var(--ink);
+  }
+  .spread-text .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .spread-text .kicker::before { content: ""; width: 32px; height: 1px; background: var(--clay); }
+  .spread-text blockquote {
+    font-family: var(--display);
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 36px;
+    color: var(--ink);
+  }
+  .spread-text blockquote em { font-style: italic; color: var(--clay); }
+  .spread-text p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin-bottom: 36px;
+  }
+  .spread-text p + p { margin-bottom: 28px; }
+  .spread-text .signature {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 36px;
+  }
+  .spread-text .signature::before { content: "— "; color: var(--ink-soft); }
+
+  /* The Index — product grid, presented as catalog */
+  .index-preamble {
+    max-width: 720px;
+    margin-bottom: 60px;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 56px 40px;
+  }
+  .product {
+    cursor: pointer;
+    transition: opacity .3s;
+  }
+  .product:hover { opacity: .9; }
+  .product .img-wrap {
+    aspect-ratio: 4/5;
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .product .img-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--border-soft);
+    pointer-events: none;
+  }
+  .product .img-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 30%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 35% 35%, rgba(255,255,255,0.6), transparent 60%);
+  }
+  .product .p1 { background: radial-gradient(ellipse at 30% 35%, #d4b8a0 0%, #8b6548 60%, #2a1a12 100%); }
+  .product .p2 { background: radial-gradient(ellipse at 30% 35%, #c4b5a8 0%, #8a7968 60%, #3a3028 100%); }
+  .product .p3 { background: radial-gradient(ellipse at 30% 35%, #c8a5b4 0%, #8a5c75 60%, #3a1f28 100%); }
+  .product .p4 { background: radial-gradient(ellipse at 30% 35%, #b8a8c4 0%, #6a5578 60%, #201828 100%); }
+  .product .sku {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .product .sku b { color: var(--clay); font-weight: 500; }
+  .product h4 {
+    font-family: var(--display);
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    margin-bottom: 6px;
+  }
+  .product h4 em { font-style: italic; color: var(--clay); font-weight: 400; }
+  .product .note {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .product .note::before { content: "Placement · "; font-style: normal; font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 4px; }
+  .product .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .product .price {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .product .price .currency { font-size: 12px; color: var(--ink-soft); margin-right: 2px; }
+  .product .add {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--ink-soft);
+    padding-bottom: 2px;
+    transition: all .2s;
+  }
+  .product:hover .add { color: var(--clay); border-color: var(--clay); }
+
+  /* Where they live — curated rooms */
+  .rooms {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .room { cursor: pointer; transition: opacity .3s; }
+  .room:hover { opacity: .9; }
+  .room .img {
+    aspect-ratio: 5/6;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .room .img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3));
+  }
+  .room .img.r1 { background: linear-gradient(160deg, #c4b5a0 0%, #8a7565 100%); }
+  .room .img.r2 { background: linear-gradient(160deg, #a8a59a 0%, #6b685e 100%); }
+  .room .img.r3 { background: linear-gradient(160deg, #b8a895 0%, #7a6855 100%); }
+  .room .img-label {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+    color: var(--bg);
+    z-index: 2;
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1;
+  }
+  .room .img-label .zh {
+    display: block;
+    font-family: var(--cn);
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .room .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 10px;
+  }
+  .room h4 {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .room h4 em { font-style: italic; color: var(--clay); }
+  .room p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+
+  /* Dispatch — newsletter, framed as subscription to a publication */
+  .dispatch {
+    padding: 120px 48px;
+    background: var(--ink);
+    color: var(--bg);
+    border-bottom: 1px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .dispatch::before {
+    content: "寄";
+    position: absolute;
+    right: -40px;
+    bottom: -120px;
+    font-family: var(--cn);
+    font-size: 500px;
+    color: rgba(255, 250, 240, 0.04);
+    font-weight: 400;
+    line-height: 1;
+  }
+  .dispatch-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .dispatch .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 32px;
+  }
+  .dispatch h3 {
+    font-family: var(--display);
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+  }
+  .dispatch h3 em { font-style: italic; color: var(--clay); }
+  .dispatch p {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(246,241,235,0.8);
+    max-width: 520px;
+    margin: 0 auto 40px;
+  }
+  .dispatch form {
+    display: flex;
+    max-width: 520px;
+    margin: 0 auto;
+    border: 1px solid rgba(246,241,235,0.3);
+  }
+  .dispatch input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--bg);
+    padding: 18px 20px;
+    font-family: var(--sans);
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    outline: none;
+  }
+  .dispatch input::placeholder { color: rgba(246,241,235,0.5); }
+  .dispatch button {
+    background: var(--clay);
+    color: var(--bg);
+    border: none;
+    padding: 18px 28px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .25s;
+  }
+  .dispatch button:hover { background: var(--clay-dark); }
+  .dispatch .fineprint {
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(246,241,235,0.4);
+  }
+
+  /* Footer — publication colophon */
+  footer {
+    background: var(--bg);
+    color: var(--ink);
+    padding: 80px 48px 24px;
+  }
+  footer .brand-mark {
+    font-family: var(--display);
+    font-size: clamp(64px, 12vw, 180px);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+    margin-bottom: 60px;
+    text-align: center;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--ink);
+  }
+  footer .brand-mark em { font-style: italic; color: var(--clay); }
+  footer .brand-mark .sub {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 16px;
+    font-weight: 400;
+  }
+  footer .cols {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  footer h5 {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  footer p.mission {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 340px;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer a { font-size: 14px; color: var(--ink-soft); transition: color .25s; }
+  footer a:hover { color: var(--clay); }
+  footer .colophon {
+    padding-top: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ============================================
+     IMAGE OVERLAYS — layered over existing gradients
+     (gradient shows through if image fails to load)
+     ============================================ */
+  .cover-art .frame {
+    background:
+      linear-gradient(165deg, rgba(40,28,20,0) 0%, rgba(30,20,14,0.35) 100%),
+      url('https://images.unsplash.com/photo-1615529182904-14819c35db37?w=1200&auto=format&fit=crop') center/cover no-repeat,
+      linear-gradient(165deg, #d8c4a8 0%, #9b7555 55%, #5a4a3c 100%);
+  }
+
+  .article-card .art.a1 {
+    background:
+      linear-gradient(180deg, rgba(30,22,18,0) 60%, rgba(30,22,18,0.2) 100%),
+      url('https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1000&auto=format&fit=crop') center/cover no-repeat,
+      linear-gradient(160deg, #b8a38a 0%, #6b5544 100%);
+  }
+  .article-card .art.a2 {
+    background:
+      linear-gradient(180deg, rgba(30,22,18,0) 60%, rgba(30,22,18,0.2) 100%),
+      url('https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=1000&auto=format&fit=crop') center/cover no-repeat,
+      linear-gradient(160deg, #9ba89e 0%, #5c6a60 100%);
+  }
+  .article-card .art.a3 {
+    background:
+      linear-gradient(180deg, rgba(30,22,18,0) 60%, rgba(30,22,18,0.2) 100%),
+      url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1000&auto=format&fit=crop') center/cover no-repeat,
+      linear-gradient(160deg, #d4c2a8 0%, #8a725a 100%);
+  }
+
+  .spread-img {
+    background:
+      linear-gradient(165deg, rgba(20,24,22,0.65) 0%, rgba(10,14,12,0.85) 100%),
+      url('https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1400&auto=format&fit=crop') center/cover no-repeat,
+      linear-gradient(160deg, #3a4438 0%, #1a211f 100%);
+  }
+
+  .product .img-wrap.p1 {
+    background:
+      url('https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&auto=format&fit=crop') center/cover no-repeat,
+      radial-gradient(ellipse at 30% 35%, #d4b8a0 0%, #8b6548 60%, #2a1a12 100%);
+  }
+  .product .img-wrap.p2 {
+    background:
+      url('https://images.unsplash.com/photo-1589782182703-2aaa69037b5b?w=800&auto=format&fit=crop') center/cover no-repeat,
+      radial-gradient(ellipse at 30% 35%, #c4b5a8 0%, #8a7968 60%, #3a3028 100%);
+  }
+  .product .img-wrap.p3 {
+    background:
+      url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&auto=format&fit=crop') center/cover no-repeat,
+      radial-gradient(ellipse at 30% 35%, #c8a5b4 0%, #8a5c75 60%, #3a1f28 100%);
+  }
+  .product .img-wrap.p4 {
+    background:
+      url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&auto=format&fit=crop') center/cover no-repeat,
+      radial-gradient(ellipse at 30% 35%, #b8a8c4 0%, #6a5578 60%, #201828 100%);
+  }
+  /* remove the white "shine" pseudo-element when real image is present */
+  .product .img-wrap::after { display: none; }
+
+  .room .img.r1 {
+    background:
+      url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1000&auto=format&fit=crop') center/cover no-repeat,
+      linear-gradient(160deg, #c4b5a0 0%, #8a7565 100%);
+  }
+  .room .img.r2 {
+    background:
+      url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000&auto=format&fit=crop') center/cover no-repeat,
+      linear-gradient(160deg, #a8a59a 0%, #6b685e 100%);
+  }
+  .room .img.r3 {
+    background:
+      url('https://images.unsplash.com/photo-1558211583-d26f610c1eb1?w=1000&auto=format&fit=crop') center/cover no-repeat,
+      linear-gradient(160deg, #b8a895 0%, #7a6855 100%);
+  }
+
+  @media (max-width: 1100px) {
+    .journal-grid { grid-template-columns: 1fr 1fr; }
+    .journal-grid .article-card:first-child { grid-column: 1 / -1; }
+    .products { grid-template-columns: repeat(2, 1fr); gap: 48px 28px; }
+  }
+
+  @media (max-width: 720px) {
+    .backbar { padding: 8px 16px; font-size: 10px; }
+    .masthead-strip { padding: 10px 16px; grid-template-columns: 1fr; gap: 4px; text-align: center; font-size: 10px; }
+    .masthead-strip .center, .masthead-strip .right { display: none; }
+    header.site-header { grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px; }
+    header.site-header nav.primary { display: none; }
+    header.site-header .wordmark { justify-self: start; font-size: 22px; letter-spacing: 0.1em; }
+    header.site-header .wordmark .sub { display: none; }
+    header.site-header .utilities { gap: 14px; font-size: 12px; }
+    .toc-strip { grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 16px; font-size: 10px; }
+    .toc-strip > div:nth-child(4), .toc-strip > div:nth-child(5) { display: none; }
+    .cover { grid-template-columns: 1fr; padding: 48px 20px 60px; gap: 40px; }
+    section { padding: 60px 20px; }
+    .section-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; }
+    .section-head .view-all { justify-self: start; }
+    .journal-grid { grid-template-columns: 1fr; gap: 48px; }
+    .journal-grid .article-card:first-child { grid-column: auto; }
+    .spread { grid-template-columns: 1fr; min-height: auto; }
+    .spread-img { min-height: 320px; }
+    .spread-text { padding: 48px 24px; border-left: none; border-top: 1px solid var(--ink); }
+    .products { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+    .product h4 { font-size: 17px; }
+    .product .note { font-size: 13px; }
+    .rooms { grid-template-columns: 1fr; gap: 32px; }
+    .dispatch { padding: 60px 20px; }
+    .dispatch form { flex-direction: column; border: none; }
+    .dispatch input { border: 1px solid rgba(246,241,235,0.3); margin-bottom: 8px; }
+    footer { padding: 48px 20px 20px; }
+    footer .brand-mark { font-size: 48px; }
+    footer .cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+    footer .cols > *:first-child { grid-column: 1 / -1; }
+    footer .colophon { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="backbar"><a href="./index.html">← back to directions</a><span>SPATIAL FLOW · PROPOSED DIRECTION V1</span></div>
+
+<!-- MASTHEAD STRIP -->
+<div class="masthead-strip">
+  <div class="vol">Volume <b>I</b> · Issue <b>03</b> · Spring 2026</div>
+  <div class="center">A Journal of Rooms, Rituals &amp; Quiet Objects</div>
+  <div class="right"><span></span>Free shipping over $80 worldwide</div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <nav class="primary">
+    <ul>
+      <li><a href="spatial-flow-shop-v1.html" class="current">The Index</a></li>
+      <li><a href="spatial-flow-journal-v1.html">The Journal</a></li>
+      <li><a href="#">Consult</a></li>
+      <li><a href="#">Our Pages</a></li>
+    </ul>
+  </nav>
+  <a href="spatial-flow-v1.html" class="wordmark">
+    SPATIAL FLOW
+    <span class="sub">Est. 2026 · Est. in quiet rooms</span>
+  </a>
+  <div class="utilities">
+    <a href="#">Search</a>
+    <a href="#">Account</a>
+    <a href="spatial-flow-cart-v1.html" class="bag">Bag <sup>(3)</sup></a>
+  </div>
+</header>
+
+<!-- TABLE OF CONTENTS STRIP -->
+<div class="toc-strip">
+  <div><span class="num">01</span><b>Cover Story</b></div>
+  <div><span class="num">02</span><b>In This Issue</b></div>
+  <div><span class="num">03</span><b>Manifesto</b></div>
+  <div><span class="num">04</span><b>The Index</b></div>
+  <div><span class="num">05</span><b>Where They Live</b></div>
+</div>
+
+<!-- COVER STORY / HERO -->
+<section class="cover">
+  <div>
+    <div class="kicker"><b>Section 01</b> · Cover Story · Spring 2026</div>
+    <h1>
+      Objects for <em>calmer</em><br>
+      rooms and more<br>
+      <em>intentional</em> <span class="zh">日常</span><br>
+      rituals.
+    </h1>
+    <p class="lead">We believe a bracelet, a stone, a small ordered corner can quietly rearrange the weight of a room — and the person who lives in it.</p>
+    <div class="byline">
+      Photographed for the Journal · By <b>S. F.</b> &nbsp;·&nbsp; Published 13 May, 2026
+    </div>
+    <div class="cta-row">
+      <a href="spatial-flow-journal-v1.html" class="btn">Read the essay <span class="arrow">→</span></a>
+      <a href="spatial-flow-shop-v1.html" class="btn ghost">Browse The Index</a>
+    </div>
+  </div>
+  <div class="cover-art">
+    <div class="frame">
+      <div class="issue-stamp">Issue<b>N°03</b></div>
+    </div>
+    <div class="caption">
+      <span>Plate 01 · Amethyst on oak shelf</span>
+      <span><b>Spring 2026</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- IN THIS ISSUE -->
+<section>
+  <div class="section-head">
+    <div class="num">Section<b>02</b></div>
+    <h2>In this <em>issue</em>.</h2>
+    <a href="spatial-flow-journal-v1.html" class="view-all">All journal entries →</a>
+  </div>
+  <div class="journal-grid">
+    <article class="article-card">
+      <div class="art a1"></div>
+      <div class="tag">Space &amp; Energy</div>
+      <h3>A <em>quieter</em> corner for the first hour of the day.</h3>
+      <p>Why the first meter you walk into matters more than the rest of your home — and how a single object can reset the tone of a morning.</p>
+      <div class="meta">6 MIN READ · SPATIAL FLOW JOURNAL</div>
+    </article>
+    <article class="article-card">
+      <div class="art a2"></div>
+      <div class="tag">Mind &amp; Emotion</div>
+      <h3>On placing <em>stones</em> near where you sleep.</h3>
+      <p>A brief, unsuperstitious look at why crystals end up on bedside tables — and what happens when you stop moving them.</p>
+      <div class="meta">4 MIN READ · SPATIAL FLOW JOURNAL</div>
+    </article>
+    <article class="article-card">
+      <div class="art a3"></div>
+      <div class="tag">Philosophy &amp; Insights</div>
+      <h3>The <em>participant</em>, not the backdrop.</h3>
+      <p>Rooms are not neutral. On the small, quiet argument between a space and the person trying to live in it.</p>
+      <div class="meta">8 MIN READ · SPATIAL FLOW JOURNAL</div>
+    </article>
+  </div>
+</section>
+
+<!-- MANIFESTO SPREAD -->
+<section class="spread">
+  <div class="spread-img"></div>
+  <div class="spread-text">
+    <div class="kicker">Section 03 · Manifesto</div>
+    <blockquote>Space is not a backdrop — <em>it is a participant</em>.</blockquote>
+    <p>What truly matters to us is how objects shape a space — and how that space, in turn, shapes the people within it. We don't curate for taste. We curate for the quiet, daily effect a room has on a life.</p>
+    <p>Every piece we sell has been argued over at a small wooden table. None of it is urgent. All of it is considered.</p>
+    <div class="signature">Spatial Flow, the editors</div>
+    <div><a href="#" class="btn">Read our pages <span class="arrow">→</span></a></div>
+  </div>
+</section>
+
+<!-- THE INDEX / PRODUCTS -->
+<section>
+  <div class="section-head">
+    <div class="num">Section<b>04</b></div>
+    <h2>The <em>index</em>.</h2>
+    <a href="spatial-flow-shop-v1.html" class="view-all">All 93 objects →</a>
+  </div>
+  <p class="index-preamble">Ninety-three objects, selected across bracelets, necklaces and small decorative pieces — each one chosen for how it behaves in a room, not for how it photographs.</p>
+  <div class="products">
+    <a href="spatial-flow-product-v1.html" class="product" style="text-decoration:none;color:inherit;">
+      <div class="img-wrap p4"></div>
+      <div class="sku">SF · <b>027-01</b> · Bracelet · Amethyst</div>
+      <h4>Natural Amethyst <em>Square Bead</em> Bracelet</h4>
+      <p class="note">Bedside, left side. Or the inner edge of a desk.</p>
+      <div class="meta-row">
+        <span class="price"><span class="currency">$</span>36</span>
+        <span class="add">View piece →</span>
+      </div>
+    </a>
+    <a href="spatial-flow-product-v1.html" class="product" style="text-decoration:none;color:inherit;">
+      <div class="img-wrap p1"></div>
+      <div class="sku">SF · <b>027-02</b> · Bracelet · Citrine</div>
+      <h4>Natural <em>Citrine</em> Bracelet</h4>
+      <p class="note">Where light enters — a window ledge, a south wall.</p>
+      <div class="meta-row">
+        <span class="price"><span class="currency">$</span>46</span>
+        <span class="add">View piece →</span>
+      </div>
+    </a>
+    <a href="spatial-flow-product-v1.html" class="product" style="text-decoration:none;color:inherit;">
+      <div class="img-wrap p3"></div>
+      <div class="sku">SF · <b>027-03</b> · Bracelet · Moonstone</div>
+      <h4>Natural Blue <em>Moonstone</em> Chip Bracelet</h4>
+      <p class="note">Anywhere you want the air to feel slower.</p>
+      <div class="meta-row">
+        <span class="price"><span class="currency">$</span>26</span>
+        <span class="add">View piece →</span>
+      </div>
+    </a>
+    <a href="spatial-flow-product-v1.html" class="product" style="text-decoration:none;color:inherit;">
+      <div class="img-wrap p2"></div>
+      <div class="sku">SF · <b>027-04</b> · Bracelet · Obsidian</div>
+      <h4>Silver <em>Obsidian</em> — Wukong Edition</h4>
+      <p class="note">A study desk, or a threshold between rooms.</p>
+      <div class="meta-row">
+        <span class="price"><span class="currency">$</span>33</span>
+        <span class="add">View piece →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- WHERE THEY LIVE / CURATED ROOMS -->
+<section>
+  <div class="section-head">
+    <div class="num">Section<b>05</b></div>
+    <h2>Where they <em>live</em>.</h2>
+    <a href="spatial-flow-shop-v1.html" class="view-all">All placements →</a>
+  </div>
+  <div class="rooms">
+    <article class="room">
+      <div class="img r1">
+        <div class="img-label"><span class="zh">卧　室</span>The Bedroom</div>
+      </div>
+      <div class="tag">Section 05 · 01</div>
+      <h4>The <em>first</em> meter of the morning.</h4>
+      <p>A short edit of what sits near a bed — moonstone, a low ceramic vessel, a single candle. Objects chosen to meet you before the day does.</p>
+    </article>
+    <article class="room">
+      <div class="img r2">
+        <div class="img-label"><span class="zh">書　桌</span>The Desk</div>
+      </div>
+      <div class="tag">Section 05 · 02</div>
+      <h4>A desk that <em>holds</em> its thought.</h4>
+      <p>Citrine at the edge. A small stone at the weight of a thought. For hours when the inbox is loud and the work is quiet.</p>
+    </article>
+    <article class="room">
+      <div class="img r3">
+        <div class="img-label"><span class="zh">玄　關</span>The Entrance</div>
+      </div>
+      <div class="tag">Section 05 · 03</div>
+      <h4>A <em>threshold</em>, properly kept.</h4>
+      <p>Obsidian near the door. The idea: a small pause between the street and yourself, set with objects you chose on purpose.</p>
+    </article>
+  </div>
+</section>
+
+<!-- DISPATCH / NEWSLETTER -->
+<section class="dispatch">
+  <div class="dispatch-inner">
+    <div class="kicker">— The Dispatch —</div>
+    <h3>One letter, <em>each new moon</em>.</h3>
+    <p>Essays on rooms and rituals, early access to new issues of the Journal, and the occasional small object, posted before it reaches The Index. About 900 readers. Never more than once a month.</p>
+    <form onsubmit="event.preventDefault();">
+      <input type="email" placeholder="your email" aria-label="email">
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="fineprint">No spam. Unsubscribe in one click, forever.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="brand-mark">
+    SPATIAL <em>FLOW</em>
+    <span class="sub">A Journal of Rooms, Rituals &amp; Quiet Objects · Est. 2026</span>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h5>— The Publisher</h5>
+      <p class="mission">An independent journal and shop about the rooms we live in, the objects that hold them together, and the quiet rituals that make them ours.</p>
+    </div>
+    <div>
+      <h5>— The Index</h5>
+      <ul>
+        <li><a href="spatial-flow-shop-v1.html">Bracelets</a></li>
+        <li><a href="spatial-flow-shop-v1.html">Necklaces</a></li>
+        <li><a href="spatial-flow-shop-v1.html">Decorative pieces</a></li>
+        <li><a href="spatial-flow-shop-v1.html">All pieces</a></li>
+        <li><a href="#">Consult &amp; Customize</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>— The Journal</h5>
+      <ul>
+        <li><a href="spatial-flow-journal-v1.html">Space &amp; Energy</a></li>
+        <li><a href="spatial-flow-journal-v1.html">Mind &amp; Emotion</a></li>
+        <li><a href="spatial-flow-journal-v1.html">Philosophy &amp; Insights</a></li>
+        <li><a href="spatial-flow-journal-v1.html">Lifestyle Guide</a></li>
+        <li><a href="spatial-flow-journal-v1.html">Crystals &amp; Botanicals</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>— Care</h5>
+      <ul>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns &amp; Refunds</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>— Our Pages</h5>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Consult</a></li>
+        <li><a href="spatial-flow-cart-v1.html">Your Bag</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <span>© 2026 Spatial Flow · Published slowly, from a small wooden table.</span>
+    <span>Set in Cormorant Garamond &amp; Inter · ISSN — 2026.03</span>
+  </div>
+</footer>
+
+</body>
+</html>

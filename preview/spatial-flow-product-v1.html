@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ash Quartz · No. 07 — Spatial Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* —— Spatial Flow design tokens —— */
+    --paper:        #f6f1eb;
+    --paper-deep:   #ede7df;
+    --paper-line:   #d9d1c4;
+    --ink:          #1f1916;
+    --ink-soft:     #4a423d;
+    --ink-mute:     #8a807a;
+    --ink-faint:    rgba(31,25,22,0.62);
+    --terracotta:   #a8745c;
+    --bluestone:    #4a5d5a;
+
+    --serif:        "Cormorant Garamond", "Noto Serif SC", "Songti SC", serif;
+    --sans:         "Inter", "PingFang SC", system-ui, sans-serif;
+    --mono:         "JetBrains Mono", ui-monospace, monospace;
+    --cn-serif:     "Noto Serif SC", "Songti SC", serif;
+
+    --gutter:       56px;
+    --gutter-md:    40px;
+    --gutter-sm:    24px;
+    --max:          1440px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* ───────── Top bar ───────── */
+  .site-header {
+    border-bottom: 1px solid var(--paper-line);
+    background: rgba(246, 241, 235, 0.92);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .site-header .inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 22px var(--gutter);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 32px;
+  }
+  .site-brand {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .site-brand small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-style: normal;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .site-nav {
+    display: flex;
+    gap: 36px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .site-nav a:hover, .site-nav a.active { color: var(--terracotta); }
+  .site-utils {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .site-utils span { cursor: pointer; }
+  .site-utils .bag::after {
+    content: "(2)";
+    margin-left: 4px;
+    color: var(--terracotta);
+  }
+
+  /* ───────── Breadcrumb ───────── */
+  .woocommerce-breadcrumb {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 28px var(--gutter) 0;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .woocommerce-breadcrumb a:hover { color: var(--terracotta); }
+  .woocommerce-breadcrumb .sep { margin: 0 10px; color: var(--paper-line); }
+  .woocommerce-breadcrumb .here { color: var(--ink); }
+
+  /* ───────── Product main (.product) ───────── */
+  .product {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 56px var(--gutter) 96px;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 80px;
+    border-bottom: 1px solid var(--paper-line);
+  }
+
+  /* —— Gallery (pure CSS radio carousel) —— */
+  .product-gallery { position: relative; }
+  .product-gallery input[type=radio] { position: absolute; opacity: 0; pointer-events: none; }
+
+  .gallery-main {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: var(--paper-deep);
+    overflow: hidden;
+  }
+  .gallery-main .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+  /* show slide N when radio N is checked */
+  #g1:checked ~ .gallery-main .slide-1,
+  #g2:checked ~ .gallery-main .slide-2,
+  #g3:checked ~ .gallery-main .slide-3,
+  #g4:checked ~ .gallery-main .slide-4 { opacity: 1; z-index: 2; }
+
+  .gallery-main .slide-1 { background: linear-gradient(160deg, #d2c7b8, #8a807a 70%, #4a423d); }
+  .gallery-main .slide-1::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 56%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 30%, rgba(255,255,255,0.5), transparent 25%),
+      conic-gradient(from 0deg,
+        #6b6258 0deg, #8a7e6f 30deg, #b3a085 70deg, #786c5e 110deg,
+        #524940 150deg, #6b6258 200deg, #8e8273 240deg, #4a423d 280deg, #6b6258 360deg);
+    box-shadow:
+      inset -10px -10px 30px rgba(0,0,0,0.3),
+      inset 10px 10px 30px rgba(255,255,255,0.12);
+  }
+  .gallery-main .slide-1::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 28%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, var(--paper-deep), var(--paper));
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.15);
+  }
+
+  .gallery-main .slide-2 { background: linear-gradient(180deg, #b3a085 0%, #6b6258 60%, #2f2a26 100%); }
+  .gallery-main .slide-2::before {
+    content: "";
+    position: absolute;
+    left: 14%; right: 14%;
+    top: 38%;
+    height: 30%;
+    background:
+      radial-gradient(circle 28px at 8% 50%, #6b6258, transparent 40%),
+      radial-gradient(circle 28px at 22% 50%, #8a7e6f, transparent 40%),
+      radial-gradient(circle 28px at 36% 50%, #b3a085, transparent 40%),
+      radial-gradient(circle 28px at 50% 50%, #786c5e, transparent 40%),
+      radial-gradient(circle 28px at 64% 50%, #524940, transparent 40%),
+      radial-gradient(circle 28px at 78% 50%, #6b6258, transparent 40%),
+      radial-gradient(circle 28px at 92% 50%, #8e8273, transparent 40%);
+  }
+
+  .gallery-main .slide-3 { background: linear-gradient(160deg, #ede7df, #c8bca6 80%); }
+  .gallery-main .slide-3::before {
+    content: "";
+    position: absolute;
+    left: 25%; top: 18%;
+    width: 50%; height: 64%;
+    background: linear-gradient(180deg, #f6f1eb 0%, #d9d1c4 80%);
+    box-shadow: inset 0 -20px 40px rgba(0,0,0,0.06);
+  }
+  .gallery-main .slide-3::after {
+    content: "";
+    position: absolute;
+    left: 35%; top: 32%;
+    width: 30%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 30%, rgba(255,255,255,0.45), transparent 30%),
+      radial-gradient(circle, #786c5e 0%, #4a423d 70%);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+  }
+
+  .gallery-main .slide-4 { background: linear-gradient(170deg, #2a2520, #1f1916); }
+  .gallery-main .slide-4::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%; height: 1px;
+    background: linear-gradient(90deg, transparent, #b3a085 20%, #d2c7b8 50%, #b3a085 80%, transparent);
+  }
+  .gallery-main .slide-4::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; height: 28%;
+    background:
+      repeating-linear-gradient(90deg, transparent 0, transparent 8%, rgba(178,160,133,0.3) 8%, rgba(178,160,133,0.3) 9%),
+      radial-gradient(ellipse 60% 30% at center, rgba(178,160,133,0.4), transparent);
+  }
+
+  .gallery-main .badge {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 4;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 8px 12px;
+  }
+  .gallery-main .zoom-hint {
+    position: absolute;
+    bottom: 18px;
+    right: 18px;
+    z-index: 4;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: rgba(31, 25, 22, 0.6);
+    padding: 8px 12px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* —— Thumbnails —— */
+  .gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .gallery-thumbs label {
+    aspect-ratio: 1;
+    background: var(--paper-deep);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: outline-color .2s;
+    outline: 1px solid transparent;
+    outline-offset: -1px;
+  }
+  .gallery-thumbs label:hover { outline-color: var(--ink-mute); }
+  .gallery-thumbs label[for=g1] { background: linear-gradient(160deg, #d2c7b8, #8a807a 70%, #4a423d); }
+  .gallery-thumbs label[for=g2] { background: linear-gradient(180deg, #b3a085, #2f2a26); }
+  .gallery-thumbs label[for=g3] { background: linear-gradient(160deg, #ede7df, #c8bca6 80%); }
+  .gallery-thumbs label[for=g4] { background: linear-gradient(170deg, #2a2520, #1f1916); }
+
+  #g1:checked ~ .gallery-thumbs label[for=g1],
+  #g2:checked ~ .gallery-thumbs label[for=g2],
+  #g3:checked ~ .gallery-thumbs label[for=g3],
+  #g4:checked ~ .gallery-thumbs label[for=g4] { outline: 1px solid var(--ink); outline-offset: 2px; }
+
+  .gallery-thumbs label::after {
+    position: absolute;
+    bottom: 6px;
+    left: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: rgba(246,241,235,0.85);
+  }
+  .gallery-thumbs label[for=g1]::after { content: "01"; }
+  .gallery-thumbs label[for=g2]::after { content: "02"; }
+  .gallery-thumbs label[for=g3]::after { content: "03"; }
+  .gallery-thumbs label[for=g4]::after { content: "04"; }
+
+  /* ───────── Summary (.entry-summary) ───────── */
+  .entry-summary { padding-top: 8px; display: flex; flex-direction: column; }
+
+  .product-meta-top {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .product-meta-top .sku { color: var(--terracotta); }
+  .product-meta-top .dot { color: var(--paper-line); }
+
+  .product_title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(48px, 5vw, 76px);
+    line-height: 1;
+    letter-spacing: -0.015em;
+    margin-bottom: 12px;
+  }
+  .product_title em { font-style: italic; color: var(--bluestone); font-weight: 300; }
+
+  .product-subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink-mute);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .price {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--paper-line);
+    margin-bottom: 24px;
+  }
+  .price .currency {
+    font-size: 18px;
+    color: var(--ink-mute);
+    margin-right: 6px;
+    vertical-align: 4px;
+  }
+  .price del {
+    color: var(--ink-mute);
+    font-size: 22px;
+    margin-right: 14px;
+    vertical-align: 4px;
+  }
+  .price .ship-note {
+    display: block;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-top: 8px;
+  }
+
+  /* —— Placement note (signature element) —— */
+  .placement-note {
+    background: var(--paper-deep);
+    border-left: 2px solid var(--bluestone);
+    padding: 22px 26px;
+    margin-bottom: 28px;
+  }
+  .placement-note .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--bluestone);
+    margin-bottom: 10px;
+  }
+  .placement-note p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+
+  .short-description {
+    font-size: 15px;
+    line-height: 1.78;
+    color: var(--ink-soft);
+    margin-bottom: 32px;
+    max-width: 48ch;
+  }
+
+  /* —— Variation pills (CSS-only) —— */
+  .variations { margin-bottom: 28px; }
+  .variations .var-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 12px;
+  }
+  .variations input[type=radio] { position: absolute; opacity: 0; pointer-events: none; }
+  .var-options { display: flex; gap: 10px; flex-wrap: wrap; }
+  .var-options label {
+    border: 1px solid var(--paper-line);
+    padding: 12px 18px;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: all .2s;
+    background: var(--paper);
+  }
+  .var-options label:hover { border-color: var(--ink); }
+  .var-options input:checked + label {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  /* —— Cart row —— */
+  .cart {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+    margin-bottom: 20px;
+  }
+  .quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+  }
+  .quantity button {
+    width: 48px;
+    height: 56px;
+    font-size: 18px;
+    color: var(--ink);
+    transition: background .2s;
+  }
+  .quantity button:hover { background: var(--paper-deep); }
+  .quantity input {
+    width: 48px;
+    height: 56px;
+    border: none;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 14px;
+    background: transparent;
+    color: var(--ink);
+    -moz-appearance: textfield;
+  }
+  .quantity input::-webkit-outer-spin-button,
+  .quantity input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .single_add_to_cart_button {
+    flex: 1;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0 32px;
+    height: 56px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    transition: background .2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .single_add_to_cart_button:hover { background: var(--terracotta); }
+  .single_add_to_cart_button .arrow { font-size: 14px; }
+
+  .secondary-actions {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 36px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .secondary-actions button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color .2s;
+  }
+  .secondary-actions button:hover { color: var(--terracotta); }
+  .secondary-actions .icon {
+    width: 14px; height: 14px;
+    border: 1px solid currentColor;
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+  }
+  .secondary-actions .icon-heart::after {
+    content: "♡";
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    line-height: 12px;
+    font-size: 10px;
+    border: none;
+  }
+  .secondary-actions .icon-share { border-radius: 0; }
+
+  /* —— Trust strip —— */
+  .trust-strip {
+    border-top: 1px solid var(--paper-line);
+    padding-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .trust-strip > div {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .trust-strip strong {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 4px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* —— Product attributes —— */
+  .product-attributes {
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--paper-line);
+    padding-top: 40px;
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .product-attributes > div .lbl {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+  .product-attributes > div .val {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .product-attributes > div .val small {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    font-weight: 300;
+  }
+
+  /* ───────── Long sections ───────── */
+  .long-section {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 96px var(--gutter);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .long-section.alt { background: var(--paper-deep); border-bottom: none; }
+
+  .section-no {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 18px;
+  }
+  .section-h {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 4.4vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 48px;
+    max-width: 18ch;
+  }
+  .section-h em { font-style: italic; color: var(--bluestone); }
+
+  /* —— "The piece" — long copy with drop cap & bilingual —— */
+  .copy-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .copy-aside {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    line-height: 2;
+    border-top: 1px solid var(--paper-line);
+    padding-top: 24px;
+  }
+  .copy-aside b {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--ink);
+    margin: 4px 0 18px;
+    line-height: 1.3;
+  }
+
+  .copy-body p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .copy-body p.lede::first-letter {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 88px;
+    line-height: 0.85;
+    float: left;
+    color: var(--terracotta);
+    margin: 6px 14px -4px 0;
+  }
+  .copy-body .pull {
+    font-family: var(--cn-serif);
+    font-size: 22px;
+    line-height: 1.7;
+    color: var(--ink);
+    text-align: center;
+    margin: 36px 0;
+    padding: 18px 0;
+    border-top: 1px solid var(--paper-line);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .copy-body .pull em {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-mute);
+    margin-top: 8px;
+    font-weight: 300;
+  }
+
+  /* —— "The story behind" maker block —— */
+  .maker-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 80px;
+    align-items: stretch;
+  }
+  .maker-photo {
+    aspect-ratio: 4/5;
+    background: linear-gradient(160deg, #b3a085, #6b6258 70%, #2f2a26);
+    position: relative;
+    overflow: hidden;
+  }
+  .maker-photo::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 38%;
+    transform: translateX(-50%);
+    width: 26%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #d2c7b8, #786c5e 60%, #4a423d);
+  }
+  .maker-photo::after {
+    content: "";
+    position: absolute;
+    left: 32%;
+    top: 56%;
+    width: 36%;
+    height: 32%;
+    background: linear-gradient(180deg, rgba(74,66,61,0.85), rgba(31,25,22,0.95));
+    clip-path: polygon(15% 0, 85% 0, 100% 100%, 0 100%);
+  }
+  .maker-photo .stamp {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--paper);
+    padding: 8px 12px;
+    background: rgba(31, 25, 22, 0.55);
+    backdrop-filter: blur(6px);
+  }
+
+  .maker-text { display: flex; flex-direction: column; justify-content: center; }
+  .maker-name {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 300;
+    margin-bottom: 4px;
+  }
+  .maker-where {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--terracotta);
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+  .maker-text p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    max-width: 56ch;
+  }
+  .maker-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--paper-line);
+  }
+  .maker-meta div .l {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .maker-meta div .v {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+  }
+
+  /* —— "Care & ritual" three columns —— */
+  .care-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 56px;
+    margin-top: 8px;
+  }
+  .care-grid article .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--terracotta);
+    margin-bottom: 12px;
+  }
+  .care-grid article h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.005em;
+  }
+  .care-grid article h4 em { font-style: italic; color: var(--bluestone); }
+  .care-grid article p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .care-grid article p + p { margin-top: 12px; }
+
+  /* —— Reviews (editorial style) —— */
+  .reviews-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .reviews-head .agg {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-soft);
+  }
+  .reviews-head .agg b {
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--ink);
+    margin-right: 6px;
+  }
+  .reviews-head .agg span { color: var(--terracotta); letter-spacing: 0.1em; }
+
+  .reviews-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px;
+  }
+  .review {
+    border-top: 1px solid var(--paper-line);
+    padding-top: 24px;
+  }
+  .review .qmark {
+    font-family: var(--serif);
+    font-size: 56px;
+    line-height: 0.6;
+    color: var(--terracotta);
+    font-style: italic;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .review p {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+  .review p em { font-style: italic; color: var(--bluestone); }
+  .review .by {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    line-height: 1.7;
+  }
+  .review .by b {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .reviews-foot {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--paper-line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .reviews-foot p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 50ch;
+  }
+  .btn-ghost {
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    padding: 14px 24px;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    transition: all .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+  /* —— Related —— */
+  .related {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 96px var(--gutter);
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .related-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .related-head h3 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 40px;
+  }
+  .related-head h3 em { font-style: italic; color: var(--bluestone); }
+  .related-head a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: color .2s;
+  }
+  .related-head a:hover { color: var(--terracotta); }
+
+  .related .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    list-style: none;
+  }
+  .product-card {
+    cursor: pointer;
+    transition: transform .35s;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-card:hover { transform: translateY(-4px); }
+  .product-card .product-image {
+    aspect-ratio: 4/5;
+    background: var(--paper-deep);
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card .product-image::after {
+    content: "View piece →";
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    background: var(--paper);
+    color: var(--ink);
+    text-align: center;
+    padding: 12px;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all .3s ease;
+  }
+  .product-card:hover .product-image::after { opacity: 1; transform: translateY(0); }
+  .pc-1 { background: linear-gradient(160deg, #c8b59a, #6b6258 70%, #2f2a26); }
+  .pc-2 { background: linear-gradient(170deg, #d2c7b8, #786c5e); }
+  .pc-3 { background: linear-gradient(160deg, #b89880, #6e4a39); }
+  .pc-4 { background: linear-gradient(170deg, #4a5d5a, #2f3d3b); }
+
+  .product-card h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 4px;
+    letter-spacing: -0.005em;
+  }
+  .product-card .sku {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin-bottom: 10px;
+  }
+  .product-card .price-line {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .product-card .place {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--bluestone);
+    border-top: 1px solid var(--paper-line);
+    padding-top: 10px;
+  }
+  .product-card .place::before { content: "↳ "; color: var(--ink-mute); font-style: normal; }
+
+  /* ───────── Closing editor's note ───────── */
+  .closing-note {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 96px var(--gutter);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    border-bottom: 1px solid var(--paper-line);
+  }
+  .closing-note .left {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.25;
+    font-weight: 300;
+    letter-spacing: -0.005em;
+  }
+  .closing-note .left em { font-style: italic; color: var(--bluestone); }
+  .closing-note .right p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 48ch;
+  }
+  .closing-note .right .btn-dark {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 24px;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: background .2s;
+  }
+  .closing-note .right .btn-dark:hover { background: var(--terracotta); }
+
+  /* ───────── Footer ───────── */
+  .site-footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px var(--gutter) 40px;
+  }
+  .site-footer .grid {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(246, 241, 235, 0.15);
+  }
+  .site-footer h5 {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 20px;
+  }
+  .site-footer .brand-block .site-brand {
+    color: var(--paper);
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  .site-footer .brand-block p {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(246, 241, 235, 0.7);
+    line-height: 1.5;
+    max-width: 36ch;
+  }
+  .site-footer ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .site-footer a {
+    font-size: 13px;
+    color: rgba(246, 241, 235, 0.75);
+    transition: color .2s;
+  }
+  .site-footer a:hover { color: var(--terracotta); }
+  .site-footer .bot {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(246, 241, 235, 0.5);
+  }
+
+  /* ───────── Responsive ───────── */
+  @media (max-width: 1100px) {
+    .product { grid-template-columns: 1fr; gap: 56px; padding: 40px var(--gutter-md) 80px; }
+    .product-attributes { grid-template-columns: repeat(2, 1fr); }
+    .copy-grid, .maker-grid { grid-template-columns: 1fr; gap: 48px; }
+    .care-grid { grid-template-columns: 1fr; gap: 40px; }
+    .reviews-list { grid-template-columns: 1fr; gap: 40px; }
+    .related .products { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .closing-note { grid-template-columns: 1fr; gap: 36px; }
+    .site-footer .grid { grid-template-columns: 1fr 1fr; }
+    .site-header .inner, .woocommerce-breadcrumb, .long-section, .related, .closing-note, .site-footer { padding-left: var(--gutter-md); padding-right: var(--gutter-md); }
+  }
+  @media (max-width: 720px) {
+    .site-header .inner { grid-template-columns: 1fr auto; }
+    .site-nav { display: none; }
+    .product-attributes { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .related .products { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .trust-strip { grid-template-columns: 1fr; gap: 12px; }
+    .site-footer .grid { grid-template-columns: 1fr; gap: 40px; }
+    .site-header .inner, .woocommerce-breadcrumb, .product, .long-section, .related, .closing-note, .site-footer { padding-left: var(--gutter-sm); padding-right: var(--gutter-sm); }
+  }
+  @media (max-width: 480px) {
+    .product { padding: 24px var(--gutter-sm) 56px; }
+    .long-section { padding: 56px var(--gutter-sm); }
+    .related { padding: 56px var(--gutter-sm); }
+    .related .products { grid-template-columns: 1fr; }
+    .product_title { font-size: 44px; }
+    .gallery-thumbs { grid-template-columns: repeat(4, 1fr); }
+    .cart { flex-wrap: wrap; }
+    .single_add_to_cart_button { width: 100%; flex: none; }
+  }
+
+  /* ───── V1-aligned global shell (overrides) ───── */
+  .masthead-strip-v1 {
+    padding: 12px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(31,25,22,.62);
+    border-bottom: 1px solid rgba(31,25,22,.08);
+    background: var(--paper, #f6f1eb);
+  }
+  .masthead-strip-v1 .vol b { color: var(--terracotta, #a8745c); font-weight: 500; }
+  .masthead-strip-v1 .center { letter-spacing: 0.2em; color: var(--ink, #1f1916); }
+  .masthead-strip-v1 .right span { display: inline-block; width: 6px; height: 6px; background: var(--terracotta, #a8745c); border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+  .site-header-v1 {
+    padding: 32px 56px 28px;
+    border-bottom: 1px solid var(--ink, #1f1916);
+    background: var(--paper, #f6f1eb);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: baseline;
+    gap: 32px;
+  }
+  .site-header-v1 .primary { justify-self: start; }
+  .site-header-v1 .primary ul { list-style: none; display: flex; gap: 36px; padding: 0; margin: 0; }
+  .site-header-v1 .primary a {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--ink, #1f1916);
+    padding-bottom: 4px;
+    text-decoration: none;
+    transition: color .25s;
+  }
+  .site-header-v1 .primary a:hover { color: var(--terracotta, #a8745c); }
+  .site-header-v1 .primary a.current { border-bottom: 1px solid var(--ink, #1f1916); }
+  .site-header-v1 .wordmark {
+    font-family: "Cormorant Garamond", "Noto Serif SC", Georgia, serif;
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-align: center;
+    line-height: 1;
+    color: var(--ink, #1f1916);
+    text-decoration: none;
+  }
+  .site-header-v1 .wordmark em { font-style: italic; }
+  .site-header-v1 .wordmark .sub {
+    display: block;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(31,25,22,.62);
+    margin-top: 10px;
+    font-weight: 400;
+  }
+  .site-header-v1 .utilities { justify-self: end; display: flex; gap: 24px; align-items: baseline; font-size: 13px; }
+  .site-header-v1 .utilities a { letter-spacing: 0.05em; color: var(--ink, #1f1916); text-decoration: none; transition: color .25s; }
+  .site-header-v1 .utilities a:hover { color: var(--terracotta, #a8745c); }
+  .site-header-v1 .utilities .bag { font-weight: 500; }
+  .site-header-v1 .utilities .bag sup { color: var(--terracotta, #a8745c); font-weight: 600; }
+
+  .site-footer-v1 {
+    background: var(--ink, #1f1916);
+    color: var(--paper, #f6f1eb);
+    padding: 80px 56px 40px;
+    margin-top: 0;
+  }
+  .site-footer-v1 .brand-mark {
+    font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 56px;
+    color: var(--paper, #f6f1eb);
+  }
+  .site-footer-v1 .brand-mark em { font-style: italic; }
+  .site-footer-v1 .brand-mark .sub {
+    display: block;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-weight: 400;
+    color: rgba(246,241,235,.55);
+  }
+  .site-footer-v1 .cols {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 56px;
+    border-bottom: 1px solid rgba(246,241,235,.12);
+  }
+  .site-footer-v1 .cols h5 {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--terracotta, #a8745c);
+    margin-bottom: 18px;
+  }
+  .site-footer-v1 .cols .mission {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.5;
+    color: rgba(246,241,235,.7);
+    max-width: 36ch;
+  }
+  .site-footer-v1 .cols ul { list-style: none; display: flex; flex-direction: column; gap: 10px; padding: 0; margin: 0; }
+  .site-footer-v1 .cols a { font-size: 13px; color: rgba(246,241,235,.7); text-decoration: none; transition: color .2s; }
+  .site-footer-v1 .cols a:hover { color: var(--terracotta, #a8745c); }
+  .site-footer-v1 .colophon {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(246,241,235,.4);
+  }
+  @media (max-width: 1100px) {
+    .masthead-strip-v1 { padding: 10px 40px; }
+    .site-header-v1 { padding: 24px 40px 20px; }
+    .site-footer-v1 { padding: 60px 40px 32px; }
+    .site-footer-v1 .cols { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  @media (max-width: 720px) {
+    .masthead-strip-v1 { padding: 10px 24px; flex-wrap: wrap; gap: 8px; font-size: 10px; }
+    .masthead-strip-v1 .center { display: none; }
+    .site-header-v1 { padding: 20px 24px; grid-template-columns: 1fr auto; }
+    .site-header-v1 .primary { display: none; }
+    .site-footer-v1 { padding: 48px 24px 32px; }
+    .site-footer-v1 .cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .site-footer-v1 .colophon { flex-direction: column; gap: 8px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body class="single-product">
+
+<!-- ─── Masthead strip ─── -->
+<div class="masthead-strip-v1">
+  <div class="vol">Volume <b>I</b> · Issue <b>03</b> · Spring 2026</div>
+  <div class="center">A Journal of Rooms, Rituals &amp; Quiet Objects</div>
+  <div class="right"><span></span>Free shipping over $80 worldwide</div>
+</div>
+
+<!-- ─── Site header ─── -->
+<header class="site-header-v1">
+  <nav class="primary">
+    <ul>
+      <li><a href="spatial-flow-shop-v1.html" class="current">The Index</a></li>
+      <li><a href="spatial-flow-journal-v1.html">The Journal</a></li>
+      <li><a href="#">Consult</a></li>
+      <li><a href="#">Our Pages</a></li>
+    </ul>
+  </nav>
+  <a href="spatial-flow-v1.html" class="wordmark">
+    SPATIAL <em>FLOW</em>
+    <span class="sub">Est. 2026 · Est. in quiet rooms</span>
+  </a>
+  <div class="utilities">
+    <a href="#">Search</a>
+    <a href="#">Account</a>
+    <a href="spatial-flow-cart-v1.html" class="bag">Bag <sup>(3)</sup></a>
+  </div>
+</header>
+
+<!-- ─── Breadcrumb ─── -->
+<nav class="woocommerce-breadcrumb">
+  <a href="spatial-flow-v1.html">Home</a><span class="sep">/</span>
+  <a href="spatial-flow-shop-v1.html">Shop</a><span class="sep">/</span>
+  <a href="spatial-flow-shop-v1.html">Bracelets</a><span class="sep">/</span>
+  <span class="here">Ash Quartz · No. 07</span>
+</nav>
+
+<!-- ─── Product main ─── -->
+<article class="product type-product">
+
+  <!-- Gallery -->
+  <div class="product-gallery woocommerce-product-gallery">
+    <input type="radio" name="gallery" id="g1" checked />
+    <input type="radio" name="gallery" id="g2" />
+    <input type="radio" name="gallery" id="g3" />
+    <input type="radio" name="gallery" id="g4" />
+
+    <div class="gallery-main">
+      <span class="badge">No. 07 · One of one</span>
+      <div class="slide slide-1"></div>
+      <div class="slide slide-2"></div>
+      <div class="slide slide-3"></div>
+      <div class="slide slide-4"></div>
+      <span class="zoom-hint">Click thumb to view</span>
+    </div>
+
+    <div class="gallery-thumbs">
+      <label for="g1" aria-label="Image 1"></label>
+      <label for="g2" aria-label="Image 2"></label>
+      <label for="g3" aria-label="Image 3"></label>
+      <label for="g4" aria-label="Image 4"></label>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="entry-summary product-summary">
+
+    <div class="product-meta-top">
+      <span class="sku">SKU · SF-AQ-007</span>
+      <span class="dot">·</span>
+      <span>Bracelets</span>
+      <span class="dot">·</span>
+      <span>Edition of 9</span>
+    </div>
+
+    <h1 class="product_title entry-title">Ash <em>Quartz</em><br />No. 07</h1>
+    <p class="product-subtitle">A bracelet of weathered smoke and quiet weight.</p>
+
+    <p class="price">
+      <span class="currency">$</span>42<span class="ship-note">Free shipping over $80 · Ships in 3 days from Lisbon</span>
+    </p>
+
+    <div class="placement-note">
+      <div class="label">Placement Note</div>
+      <p>Worn on the left wrist when the room you're walking into needs less of you, not more.</p>
+    </div>
+
+    <p class="short-description">A 12-bead strand of smoky quartz, hand-cut and tumbled by Hayato in his Okayama studio. Each bead carries a different shade of ash &mdash; this is not a defect, it is the stone telling you which part of the mountain it came from.</p>
+
+    <!-- Variations -->
+    <div class="variations">
+      <div class="var-row">
+        <div class="var-label">Wrist size</div>
+        <div class="var-options">
+          <input type="radio" name="size" id="sz-s" /><label for="sz-s">S · 14cm</label>
+          <input type="radio" name="size" id="sz-m" checked /><label for="sz-m">M · 16cm</label>
+          <input type="radio" name="size" id="sz-l" /><label for="sz-l">L · 18cm</label>
+          <input type="radio" name="size" id="sz-c" /><label for="sz-c">Made to size</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart -->
+    <form class="cart" action="spatial-flow-cart-v1.html" method="get">
+      <div class="quantity">
+        <button type="button" aria-label="Decrease">−</button>
+        <input type="number" value="1" min="1" max="9" />
+        <button type="button" aria-label="Increase">+</button>
+      </div>
+      <button type="submit" class="single_add_to_cart_button">
+        Add to bag <span class="arrow">→</span>
+      </button>
+    </form>
+
+    <div class="secondary-actions">
+      <button><span class="icon icon-heart"></span> Save to wishlist</button>
+      <button><span class="icon icon-share"></span> Share with a friend</button>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="trust-strip">
+      <div><strong>Hand-packed</strong>in Lisbon, with a written note</div>
+      <div><strong>30-day return</strong>no questions, even worn</div>
+      <div><strong>Lifetime restring</strong>send it back when the cord tires</div>
+    </div>
+  </div>
+
+  <!-- Product attributes -->
+  <div class="product-attributes">
+    <div>
+      <div class="lbl">Material</div>
+      <div class="val">Smoky Quartz<small>Mountain-cut, ash-grade</small></div>
+    </div>
+    <div>
+      <div class="lbl">Origin</div>
+      <div class="val">Okayama, JP<small>Hayato Mori Studio</small></div>
+    </div>
+    <div>
+      <div class="lbl">Bead</div>
+      <div class="val">10 mm × 12<small>Hand-strung on linen cord</small></div>
+    </div>
+    <div>
+      <div class="lbl">Care</div>
+      <div class="val">Soft cloth<small>Moonlight charge once a season</small></div>
+    </div>
+  </div>
+</article>
+
+<!-- ─── Section 01 · The piece ─── -->
+<section class="long-section">
+  <div class="copy-grid">
+    <aside class="copy-aside">
+      Section · 01
+      <b>The piece, slowly.</b>
+      Material · Smoky quartz<br />
+      Edition · 9 of one<br />
+      Made · Spring, 2026<br />
+      Studio · Mori, Okayama
+    </aside>
+    <div class="copy-body">
+      <p class="lede">Smoky quartz is, in a sense, the patient stone. It does not draw attention to itself. It absorbs &mdash; light, attention, the small static of a difficult morning &mdash; and it holds. This particular strand was cut in March from a single block Hayato had been keeping under his bench for three years, waiting for the right form to ask for it.</p>
+
+      <p>Each of the twelve beads has been individually shaped, then tumbled for nine days in river water mixed with fine grit. The surface is matte, almost dry to the touch &mdash; closer to a polished stone you'd find on a Welsh beach than to the glassy quartz you might know from a jewellery counter. We asked Hayato not to seal it. He preferred not to anyway.</p>
+
+      <div class="pull">
+        山有靜氣，石承之。
+        <em>The mountain holds a quiet air; the stone receives it.</em>
+      </div>
+
+      <p>The strand is held on a 1.2 mm waxed Belgian linen cord, knotted between every two beads in the old way &mdash; so if it ever breaks (which it will, in years, with use), only one or two beads can travel before the next knot stops them. Send it back to us when that day comes; we'll restring it for the cost of the cord.</p>
+
+      <p>This piece is the seventh of an edition of nine. Numbers are stamped into a small pewter disc at the clasp; ours reads <em>VII / IX</em>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Section 02 · The story behind ─── -->
+<section class="long-section alt">
+  <div class="section-no">Section · 02</div>
+  <h2 class="section-h">The story <em>behind</em><br />the strand.</h2>
+
+  <div class="maker-grid">
+    <div class="maker-photo">
+      <span class="stamp">Hayato Mori · Okayama, JP</span>
+    </div>
+    <div class="maker-text">
+      <div class="maker-name">Hayato Mori</div>
+      <div class="maker-where">Stonecutter, fourth generation · Okayama, Japan</div>
+      <p>Hayato grew up in a town built on Bizen pottery, but his grandfather worked stone &mdash; tomb markers, mostly, for the small temples that line the prefecture. When the temples stopped commissioning, the workshop was left to Hayato and a small set of carbide chisels.</p>
+      <p>He works alone, in a converted rice store overlooking a bend in the Asahi river. He cuts no more than thirty-six pieces a year, in three editions of twelve, and he refuses to take orders out of season. We have worked with him since 2022; this is our fourth strand.</p>
+      <p>If you'd like to read the long form &mdash; how we found him, the year he stopped working entirely, what he carries in his apron pocket &mdash; we've published the studio visit in our journal.</p>
+
+      <div class="maker-meta">
+        <div><div class="l">In the studio</div><div class="v">since 1998</div></div>
+        <div><div class="l">Pieces / year</div><div class="v">36, total</div></div>
+        <div><div class="l">Reads</div><div class="v"><a href="spatial-flow-journal-v1.html" style="color:var(--terracotta)">Studio visit →</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Section 03 · Care & ritual ─── -->
+<section class="long-section">
+  <div class="section-no">Section · 03</div>
+  <h2 class="section-h">Care, and a little <em>ritual</em>.</h2>
+
+  <div class="care-grid">
+    <article>
+      <div class="num">i.</div>
+      <h4>The <em>everyday</em>.</h4>
+      <p>Wear it. Smoky quartz darkens, very slightly, with skin oils &mdash; this is welcome. If it feels dusty, breathe on it and wipe it with a dry cotton cloth. Avoid scented oils on the cord; the linen will hold the smell.</p>
+      <p>Don't sleep with it on. The stone wakes earlier than you do.</p>
+    </article>
+    <article>
+      <div class="num">ii.</div>
+      <h4>The <em>seasonal</em>.</h4>
+      <p>Once a season &mdash; on the first cold morning, the first warm one &mdash; rinse the strand in cool, unsoaped water and let it dry on a stone or wooden surface, never in direct sun.</p>
+      <p>If you keep an altar, or a still corner, leave it there overnight. A windowsill catching the moon is enough.</p>
+    </article>
+    <article>
+      <div class="num">iii.</div>
+      <h4>The <em>repair</em>.</h4>
+      <p>The cord is meant to wear; the stone is not. When the linen begins to soften or fray (typically after two to three years of daily wear), send the strand back to our Lisbon studio in the original cloth pouch.</p>
+      <p>We restring it in our hand. Cost of cord only; no labour. This is a promise.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ─── Section 04 · Reviews ─── -->
+<section class="long-section alt">
+  <div class="section-no">Section · 04</div>
+  <h2 class="section-h">Quiet <em>notes</em><br />from people wearing it.</h2>
+
+  <div class="reviews-head">
+    <div class="agg">
+      <b>4.9</b> · seven measured letters from owners of this edition <span>· · · · ·</span>
+    </div>
+    <a href="#" class="btn-ghost">Read all seven →</a>
+  </div>
+
+  <div class="reviews-list">
+    <article class="review">
+      <span class="qmark">"</span>
+      <p>I bought this to mark the end of a hard year. I expected it to be heavier than it is &mdash; in the best way, I mean. <em>It does not announce itself</em>, which is exactly what I needed.</p>
+      <div class="by"><b>Ines V.</b><br />Porto, PT · April 2026</div>
+    </article>
+    <article class="review">
+      <span class="qmark">"</span>
+      <p>The pewter disc reads VII / IX. I wear it on my left wrist, working hand. It has darkened a little around the third bead. I did not know stones did this. <em>I am quite attached to this fact.</em></p>
+      <div class="by"><b>Daniel K.</b><br />Copenhagen, DK · March 2026</div>
+    </article>
+    <article class="review">
+      <span class="qmark">"</span>
+      <p>The cord broke in month fourteen, exactly as you said it would. I sent it back. It came back restrung, with a folded note. <em>This is what I am paying for, I think.</em></p>
+      <div class="by"><b>Mei L.</b><br />Brooklyn, US · February 2026</div>
+    </article>
+  </div>
+
+  <div class="reviews-foot">
+    <p>Reviews on Spatial Flow are written, not rated. We publish what owners send us, lightly edited for length, never for sentiment.</p>
+    <a href="#" class="btn-ghost">Write a letter about yours →</a>
+  </div>
+</section>
+
+<!-- ─── Section 05 · Related products ─── -->
+<section class="related products">
+  <div class="related-head">
+    <h3>Pieces of a similar <em>weight</em>.</h3>
+    <a href="spatial-flow-shop-v1.html">View the full edit →</a>
+  </div>
+
+  <ul class="products">
+    <li class="product-card" onclick="window.location='spatial-flow-product-v1.html'" style="cursor:pointer;">
+      <div class="product-image pc-1"></div>
+      <h4>River Quartz · No. 03</h4>
+      <div class="sku">SF-RQ-003 · Edition of 12</div>
+      <div class="price-line"><span style="color:var(--ink-mute)">$</span>38</div>
+      <div class="place">A bedside table, in the half-dark, before the light goes on.</div>
+    </li>
+    <li class="product-card" onclick="window.location='spatial-flow-product-v1.html'" style="cursor:pointer;">
+      <div class="product-image pc-2"></div>
+      <h4>Field Stone Strand</h4>
+      <div class="sku">SF-FS-014 · One of one</div>
+      <div class="price-line"><span style="color:var(--ink-mute)">$</span>46</div>
+      <div class="place">Worn on the right wrist, the writing one, when the words are slow.</div>
+    </li>
+    <li class="product-card" onclick="window.location='spatial-flow-product-v1.html'" style="cursor:pointer;">
+      <div class="product-image pc-3"></div>
+      <h4>Earth Bead · Long</h4>
+      <div class="sku">SF-EB-021 · Edition of 6</div>
+      <div class="price-line"><span style="color:var(--ink-mute)">$</span>49</div>
+      <div class="place">A long necklace, doubled, on a linen shirt.</div>
+    </li>
+    <li class="product-card" onclick="window.location='spatial-flow-product-v1.html'" style="cursor:pointer;">
+      <div class="product-image pc-4"></div>
+      <h4>Bluestone Mala</h4>
+      <div class="sku">SF-BM-008 · Edition of 9</div>
+      <div class="price-line"><span style="color:var(--ink-mute)">$</span>42</div>
+      <div class="place">Held during the first quiet ten minutes of the morning.</div>
+    </li>
+  </ul>
+</section>
+
+<!-- ─── Closing note ─── -->
+<section class="closing-note">
+  <div class="left">
+    Thinking of giving this piece <em>away</em>? We can hand-letter the receiver's name on a small linen tag, and pack it the way we'd pack our own.
+  </div>
+  <div class="right">
+    <p>Every Spatial Flow piece is wrapped in unbleached cotton, tied with the same waxed linen we string our strands with, and packed into a stamped paper box made by a small studio outside Lisbon. We include a card. You can write what it should say at checkout.</p>
+    <a class="btn-dark" href="#">Make it a gift <span>→</span></a>
+  </div>
+</section>
+
+<!-- ─── Footer (V1-aligned) ─── -->
+<footer class="site-footer-v1">
+  <div class="brand-mark">
+    SPATIAL <em>FLOW</em>
+    <span class="sub">A Journal of Rooms, Rituals &amp; Quiet Objects · Est. 2026</span>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h5>— The Publisher</h5>
+      <p class="mission">An independent journal and shop about the rooms we live in, the objects that hold them together, and the quiet rituals that make them ours.</p>
+    </div>
+    <div>
+      <h5>— The Index</h5>
+      <ul>
+        <li><a href="spatial-flow-shop-v1.html">Bracelets</a></li>
+        <li><a href="spatial-flow-shop-v1.html">Necklaces</a></li>
+        <li><a href="spatial-flow-shop-v1.html">Decorative pieces</a></li>
+        <li><a href="spatial-flow-shop-v1.html">All pieces</a></li>
+        <li><a href="#">Consult &amp; Customize</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>— The Journal</h5>
+      <ul>
+        <li><a href="spatial-flow-journal-v1.html">Space &amp; Energy</a></li>
+        <li><a href="spatial-flow-journal-v1.html">Mind &amp; Emotion</a></li>
+        <li><a href="spatial-flow-journal-v1.html">Philosophy &amp; Insights</a></li>
+        <li><a href="spatial-flow-journal-v1.html">Lifestyle Guide</a></li>
+        <li><a href="spatial-flow-journal-v1.html">Crystals &amp; Botanicals</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>— Care</h5>
+      <ul>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns &amp; Refunds</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>— Our Pages</h5>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Consult</a></li>
+        <li><a href="spatial-flow-cart-v1.html">Your Bag</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <span>© 2026 Spatial Flow · Published slowly, from a small wooden table.</span>
+    <span>Set in Cormorant Garamond &amp; Inter · ISSN — 2026.03</span>
+  </div>
+</footer>
+
+</body>
+</html>

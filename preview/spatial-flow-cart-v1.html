@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Your Bag — Spatial Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #f6f1eb;
+  --bg-2: #ede7df;
+  --bg-3: #f0e8d8;
+  --ink: #1f1916;
+  --ink-soft: rgba(31,25,22,.62);
+  --ink-faint: rgba(31,25,22,.35);
+  --border: rgba(31,25,22,.12);
+  --border-soft: rgba(31,25,22,.08);
+  --clay: #a8745c;
+  --clay-dark: #8a5c47;
+  --stone: #4a5d5a;
+  --paper: #faf7f3;
+  --display: "Cormorant Garamond", "Noto Serif SC", Georgia, serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+  --cn: "Noto Serif SC", var(--display);
+  --gutter: 48px;
+  --max: 1440px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-weight: 400; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+/* ───────── Masthead strip (V1 aligned) ───────── */
+.masthead-strip {
+  padding: 12px var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--border-soft);
+}
+.masthead-strip .vol b { color: var(--clay); font-weight: 500; }
+.masthead-strip .center { letter-spacing: 0.2em; }
+.masthead-strip .right span { display: inline-block; width: 6px; height: 6px; background: var(--clay); border-radius: 50%; margin-right: 8px; vertical-align: middle; }
+
+/* ───────── Site header ───────── */
+header.site-header {
+  padding: 32px var(--gutter) 28px;
+  border-bottom: 1px solid var(--ink);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  gap: 32px;
+}
+header.site-header nav.primary { justify-self: start; }
+header.site-header nav.primary ul { list-style: none; display: flex; gap: 36px; }
+header.site-header nav.primary a {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding-bottom: 4px;
+  transition: color .25s;
+}
+header.site-header nav.primary a:hover { color: var(--clay); }
+header.site-header nav.primary a.current { border-bottom: 1px solid var(--ink); }
+.wordmark {
+  font-family: var(--display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-align: center;
+  line-height: 1;
+}
+.wordmark .sub {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 10px;
+  font-weight: 400;
+}
+header.site-header .utilities { justify-self: end; display: flex; gap: 24px; align-items: baseline; font-size: 13px; }
+header.site-header .utilities a { letter-spacing: 0.05em; transition: color .25s; }
+header.site-header .utilities a:hover { color: var(--clay); }
+header.site-header .utilities .bag { font-weight: 500; }
+header.site-header .utilities .bag sup { color: var(--clay); font-weight: 600; }
+
+/* ───────── Breadcrumb ───────── */
+.woocommerce-breadcrumb {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 28px var(--gutter) 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.woocommerce-breadcrumb a:hover { color: var(--clay); }
+.woocommerce-breadcrumb .sep { margin: 0 10px; color: var(--border); }
+.woocommerce-breadcrumb .here { color: var(--ink); }
+
+/* ───────── Cart page layout ───────── */
+.cart-page {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 56px var(--gutter) 96px;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.cart-title {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+  grid-column: 1 / -1;
+}
+.cart-title em { font-style: italic; color: var(--stone); }
+.cart-count {
+  grid-column: 1 / -1;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ───────── Cart items ───────── */
+.cart-items { display: flex; flex-direction: column; gap: 0; }
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 28px;
+  align-items: start;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border-soft);
+  position: relative;
+}
+.cart-item:first-child { padding-top: 0; }
+
+.cart-item-image {
+  aspect-ratio: 1;
+  background: var(--bg-2);
+  position: relative;
+  overflow: hidden;
+}
+.ci-1 { background: linear-gradient(160deg, #d2c7b8, #8a807a 70%, #4a423d); }
+.ci-1::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 56%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #6b6258 0deg, #8a7e6f 30deg, #b3a085 70deg, #786c5e 110deg, #524940 150deg, #6b6258 200deg, #8e8273 240deg, #4a423d 280deg, #6b6258 360deg);
+  box-shadow: inset -6px -4px 14px rgba(0,0,0,0.3);
+}
+.ci-2 { background: linear-gradient(170deg, #4a5d5a, #2f3d3b); }
+.ci-2::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #6b8985, #4a5d5a 60%, #2f3d3b);
+  box-shadow: inset -6px -4px 14px rgba(0,0,0,0.3), inset 4px 4px 10px rgba(255,255,255,0.12);
+}
+.ci-3 { background: linear-gradient(160deg, #b89880, #6e4a39); }
+.ci-3::before {
+  content: "";
+  position: absolute;
+  inset: 22% 18%;
+  background: repeating-linear-gradient(45deg, rgba(0,0,0,0.06) 0 6px, transparent 6px 12px), linear-gradient(160deg, #c39378, #8a5d3b);
+}
+
+.cart-item-details h4 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 22px;
+  margin-bottom: 4px;
+  letter-spacing: -0.005em;
+}
+.cart-item-details .sku {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.cart-item-details .variant {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.cart-item-details .place-note {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--stone);
+  line-height: 1.5;
+  padding-left: 14px;
+  border-left: 1px solid var(--stone);
+  margin-bottom: 16px;
+}
+
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--ink);
+  height: 36px;
+  width: fit-content;
+}
+.cart-item-qty button {
+  width: 36px;
+  height: 36px;
+  font-size: 14px;
+  transition: background .2s;
+}
+.cart-item-qty button:hover { background: var(--bg-2); }
+.cart-item-qty input {
+  width: 36px;
+  height: 36px;
+  border: none;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  background: transparent;
+  color: var(--ink);
+  -moz-appearance: textfield;
+}
+.cart-item-qty input::-webkit-outer-spin-button,
+.cart-item-qty input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.cart-item-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.cart-item-actions button:hover { color: var(--clay); }
+
+.cart-item-price {
+  text-align: right;
+}
+.cart-item-price .amount {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 300;
+}
+.cart-item-price .each {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* ───────── Cart sidebar ───────── */
+.cart-sidebar {
+  position: sticky;
+  top: 120px;
+  background: var(--bg-2);
+  padding: 40px 36px;
+}
+.cart-sidebar h3 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 28px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.cart-totals { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+.cart-totals .row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.cart-totals .row .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; }
+.cart-totals .row .val { font-family: var(--display); font-size: 18px; font-weight: 400; color: var(--ink); }
+.cart-totals .row.total {
+  border-top: 1px solid var(--ink);
+  padding-top: 18px;
+  margin-top: 8px;
+}
+.cart-totals .row.total .val {
+  font-size: 28px;
+  font-weight: 300;
+}
+.cart-totals .shipping-note {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--stone);
+  margin-top: 4px;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 18px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: background .2s;
+  margin-bottom: 12px;
+}
+.btn-primary:hover { background: var(--clay); }
+.btn-secondary {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 16px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: all .2s;
+  background: transparent;
+}
+.btn-secondary:hover { background: var(--ink); color: var(--bg); }
+
+.trust-badges {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.trust-badges div {
+  font-size: 12px;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.trust-badges div::before {
+  content: "✓";
+  color: var(--stone);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ───────── "Add one more" recommendation ───────── */
+.add-more {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 80px var(--gutter);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.add-more-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.add-more-head h3 {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 36px;
+}
+.add-more-head h3 em { font-style: italic; color: var(--stone); }
+.add-more-head a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: color .2s;
+}
+.add-more-head a:hover { color: var(--clay); }
+
+.add-more-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.mini-card { cursor: pointer; transition: transform .3s; }
+.mini-card:hover { transform: translateY(-3px); }
+.mini-card-img {
+  aspect-ratio: 1;
+  background: var(--bg-2);
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.mini-card-img::after {
+  content: "Add to bag →";
+  position: absolute;
+  bottom: 10px; left: 10px; right: 10px;
+  background: var(--bg);
+  color: var(--ink);
+  text-align: center;
+  padding: 10px;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: all .3s;
+}
+.mini-card:hover .mini-card-img::after { opacity: 1; transform: translateY(0); }
+.mc-1 { background: linear-gradient(160deg, #c8b59a, #6b6258 70%); }
+.mc-2 { background: linear-gradient(170deg, #d2c7b8, #786c5e); }
+.mc-3 { background: linear-gradient(160deg, #ede7df, #c8bca6); }
+.mc-4 { background: linear-gradient(170deg, #b89880, #6e4a39); }
+
+.mini-card h4 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.mini-card .price {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* ───────── Footer (V1 aligned — 5 cols + colophon) ───────── */
+footer {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 80px var(--gutter) 40px;
+}
+footer .brand-mark {
+  font-family: var(--display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-bottom: 56px;
+}
+footer .brand-mark em { font-style: italic; }
+footer .brand-mark .sub {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 10px;
+  font-weight: 400;
+  color: rgba(246,241,235,.55);
+}
+
+footer .cols {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(246,241,235,.12);
+}
+footer .cols h5 {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: 18px;
+}
+footer .cols .mission {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(246,241,235,.7);
+  max-width: 36ch;
+}
+footer .cols ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+footer .cols a { font-size: 13px; color: rgba(246,241,235,.7); transition: color .2s; }
+footer .cols a:hover { color: var(--clay); }
+
+footer .colophon {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(246,241,235,.4);
+}
+
+/* ───────── Responsive ───────── */
+@media (max-width: 1100px) {
+  .cart-page { grid-template-columns: 1fr; gap: 48px; }
+  .cart-title, .cart-count { grid-column: 1; }
+  .cart-sidebar { position: static; }
+  .add-more-grid { grid-template-columns: repeat(3, 1fr); }
+  footer .cols { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  header.site-header { grid-template-columns: 1fr auto; padding: 24px 24px 20px; }
+  header.site-header nav.primary { display: none; }
+  .masthead-strip { padding: 10px 24px; }
+  .cart-page { padding: 32px 24px 64px; }
+  .cart-item { grid-template-columns: 80px 1fr; gap: 16px; }
+  .cart-item-price { grid-column: 2; text-align: left; }
+  .add-more { padding: 48px 24px; }
+  .add-more-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  footer { padding: 48px 24px 32px; }
+  footer .cols { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+@media (max-width: 480px) {
+  .cart-item { grid-template-columns: 1fr; }
+  .cart-item-image { max-width: 100px; }
+  .add-more-grid { grid-template-columns: 1fr; }
+  footer .cols { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body class="woocommerce-cart">
+
+<!-- Masthead strip -->
+<div class="masthead-strip">
+  <div class="vol">Spring <b>2026</b> · Objects for the Quiet Room</div>
+  <div class="center">Spatial Flow</div>
+  <div class="right"><span></span> Lisbon · Tokyo · Copenhagen</div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <nav class="primary">
+    <ul>
+      <li><a href="spatial-flow-v1.html">Home</a></li>
+      <li><a href="spatial-flow-shop-v1.html" class="current">Shop</a></li>
+      <li><a href="spatial-flow-journal-v1.html">Journal</a></li>
+      <li><a href="#">Studios</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+  <a href="spatial-flow-v1.html" class="wordmark">
+    SPATIAL <em>FLOW</em>
+    <span class="sub">Objects · Spaces · Slow Living</span>
+  </a>
+  <div class="utilities">
+    <a href="#">Search</a>
+    <a href="#">Account</a>
+    <a href="#" class="bag">Bag<sup>3</sup></a>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<nav class="woocommerce-breadcrumb">
+  <a href="spatial-flow-v1.html">Home</a><span class="sep">/</span>
+  <span class="here">Your Bag</span>
+</nav>
+
+<!-- Cart page -->
+<section class="cart-page">
+
+  <h1 class="cart-title">Your <em>bag</em>.</h1>
+  <div class="cart-count">3 pieces · ready to go</div>
+
+  <!-- Items column -->
+  <div class="cart-items">
+
+    <article class="cart-item">
+      <div class="cart-item-image ci-1"></div>
+      <div class="cart-item-details">
+        <h4>Ash Quartz · No. 07</h4>
+        <div class="sku">SF-AQ-007 · Bracelet</div>
+        <div class="variant">Size: M · 16cm</div>
+        <div class="place-note">Worn on the left wrist when the room needs less of you, not more.</div>
+        <div class="cart-item-qty">
+          <button type="button">−</button>
+          <input type="number" value="1" min="1" />
+          <button type="button">+</button>
+        </div>
+        <div class="cart-item-actions">
+          <button>Remove</button>
+          <button>Save for later</button>
+        </div>
+      </div>
+      <div class="cart-item-price">
+        <div class="amount">$42</div>
+        <div class="each">each · $42</div>
+      </div>
+    </article>
+
+    <article class="cart-item">
+      <div class="cart-item-image ci-2"></div>
+      <div class="cart-item-details">
+        <h4>Bluestone Mala</h4>
+        <div class="sku">SF-BM-008 · Bracelet</div>
+        <div class="variant">Size: S · 14cm</div>
+        <div class="place-note">Held during the first quiet ten minutes of the morning.</div>
+        <div class="cart-item-qty">
+          <button type="button">−</button>
+          <input type="number" value="1" min="1" />
+          <button type="button">+</button>
+        </div>
+        <div class="cart-item-actions">
+          <button>Remove</button>
+          <button>Save for later</button>
+        </div>
+      </div>
+      <div class="cart-item-price">
+        <div class="amount">$42</div>
+        <div class="each">each · $42</div>
+      </div>
+    </article>
+
+    <article class="cart-item">
+      <div class="cart-item-image ci-3"></div>
+      <div class="cart-item-details">
+        <h4>Tussore Throw — Clay</h4>
+        <div class="sku">SF-TT-011 · Textile</div>
+        <div class="variant">One size · 130 × 180 cm</div>
+        <div class="place-note">Folded over the arm of a reading chair you actually use.</div>
+        <div class="cart-item-qty">
+          <button type="button">−</button>
+          <input type="number" value="1" min="1" />
+          <button type="button">+</button>
+        </div>
+        <div class="cart-item-actions">
+          <button>Remove</button>
+          <button>Save for later</button>
+        </div>
+      </div>
+      <div class="cart-item-price">
+        <div class="amount">$245</div>
+        <div class="each">each · $245</div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="cart-sidebar">
+    <h3>Order summary</h3>
+    <div class="cart-totals">
+      <div class="row">
+        <span class="label">Subtotal</span>
+        <span class="val">$329</span>
+      </div>
+      <div class="row">
+        <span class="label">Shipping</span>
+        <span class="val" style="font-size:14px; font-family:var(--sans); color:var(--stone);">Free</span>
+      </div>
+      <div class="shipping-note">Free worldwide shipping on orders over $80.</div>
+      <div class="row">
+        <span class="label">Tax</span>
+        <span class="val" style="font-size:14px; font-family:var(--sans); color:var(--ink-soft);">Calculated at checkout</span>
+      </div>
+      <div class="row total">
+        <span class="label">Estimated total</span>
+        <span class="val">$329</span>
+      </div>
+    </div>
+    <a href="spatial-flow-checkout-v1.html" class="btn-primary">Go to checkout →</a>
+    <a href="spatial-flow-shop-v1.html" class="btn-secondary">Continue shopping</a>
+
+    <div class="trust-badges">
+      <div>Free shipping worldwide</div>
+      <div>30-day return, no questions</div>
+      <div>Secure checkout · Stripe</div>
+      <div>Hand-packed in Lisbon, with a note</div>
+    </div>
+  </aside>
+
+</section>
+
+<!-- Add one more -->
+<section class="add-more">
+  <div class="add-more-head">
+    <h3>Perhaps <em>one more</em>.</h3>
+    <a href="spatial-flow-shop-v1.html">View the full edit →</a>
+  </div>
+  <div class="add-more-grid">
+    <article class="mini-card" onclick="window.location='spatial-flow-product-v1.html'" style="cursor:pointer;">
+      <div class="mini-card-img mc-1"></div>
+      <h4>River Quartz · No. 03</h4>
+      <div class="price">$38</div>
+    </article>
+    <article class="mini-card" onclick="window.location='spatial-flow-product-v1.html'" style="cursor:pointer;">
+      <div class="mini-card-img mc-2"></div>
+      <h4>Field Stone Strand</h4>
+      <div class="price">$46</div>
+    </article>
+    <article class="mini-card" onclick="window.location='spatial-flow-product-v1.html'" style="cursor:pointer;">
+      <div class="mini-card-img mc-3"></div>
+      <h4>Linen Floor Cushion</h4>
+      <div class="price">$165</div>
+    </article>
+    <article class="mini-card" onclick="window.location='spatial-flow-product-v1.html'" style="cursor:pointer;">
+      <div class="mini-card-img mc-4"></div>
+      <h4>Earth Bead · Long</h4>
+      <div class="price">$49</div>
+    </article>
+  </div>
+</section>
+
+<!-- Footer (V1 aligned) -->
+<footer>
+  <div class="brand-mark">
+    SPATIAL <em>FLOW</em>
+    <span class="sub">A Journal of Rooms, Rituals &amp; Quiet Objects · Est. 2026</span>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h5>— The Publisher</h5>
+      <p class="mission">An independent journal and shop about the rooms we live in, the objects that hold them together, and the quiet rituals that make them ours.</p>
+    </div>
+    <div>
+      <h5>— The Index</h5>
+      <ul>
+        <li><a href="#">Bracelets</a></li>
+        <li><a href="#">Necklaces</a></li>
+        <li><a href="#">Decorative pieces</a></li>
+        <li><a href="#">Consult &amp; Customize</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>— The Journal</h5>
+      <ul>
+        <li><a href="#">Space &amp; Energy</a></li>
+        <li><a href="#">Mind &amp; Emotion</a></li>
+        <li><a href="#">Philosophy &amp; Insights</a></li>
+        <li><a href="#">Lifestyle Guide</a></li>
+        <li><a href="#">Crystals &amp; Botanicals</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>— Care</h5>
+      <ul>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns &amp; Refunds</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>— Our Pages</h5>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Consult</a></li>
+        <li><a href="#">The Dispatch</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <span>© 2026 Spatial Flow · Published slowly, from a small wooden table.</span>
+    <span>Set in Cormorant Garamond &amp; Inter · ISSN — 2026.03</span>
+  </div>
+</footer>
+
+</body>
+</html>
+
