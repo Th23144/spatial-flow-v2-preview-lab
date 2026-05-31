@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue 001 — Wu Wei is not laziness · Ink & East</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f4ede0;--paper-light:#faf5e9;--paper-dark:#e8dfce;--ink:#1a1611;--ink-soft:#4a4036;--ink-faint:#8a7f70;--seal:#a02d23;--seal-deep:#7a1f1a;--rule:rgba(26,22,17,.28);--rule-soft:rgba(26,22,17,.12);--serif-en:"EB Garamond","Noto Serif SC",Georgia,serif;--serif-cn:"Noto Serif SC","EB Garamond",serif;--sans:"Inter",-apple-system,"PingFang SC",sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}html{font-size:16px}body{font-family:var(--serif-en);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.55}a{color:inherit;text-decoration:none}::selection{background:var(--seal);color:var(--paper-light)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.4;mix-blend-mode:multiply;background-image:radial-gradient(circle at 25% 30%,rgba(26,22,17,.02) 0%,transparent 40%),radial-gradient(circle at 75% 60%,rgba(26,22,17,.015) 0%,transparent 35%)}
+
+.backbar{background:var(--ink);color:var(--paper-light);padding:8px 28px;font-family:var(--mono);font-size:10px;display:flex;justify-content:space-between;letter-spacing:.1em;text-transform:uppercase}.backbar a{color:var(--seal);border-bottom:1px dashed var(--seal);padding-bottom:1px}
+
+/* ISSUE HERO */
+.issue-hero{padding:80px 56px 100px;border-bottom:2px solid var(--ink);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative}
+.issue-hero::before{content:"";position:absolute;top:60px;bottom:60px;left:50%;width:1px;background:var(--rule-soft);transform:translateX(-50%)}
+.issue-left{position:relative;z-index:2}
+.issue-right{position:relative;z-index:2;display:flex;flex-direction:column;gap:32px;align-items:center}
+.issue-num{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--seal);margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.issue-num::before,.issue-num::after{content:"";flex:1;height:1px;background:var(--seal);opacity:.4}.issue-num::before{max-width:32px}
+.issue-title-en{font-family:var(--serif-en);font-style:italic;font-size:clamp(42px,5vw,72px);font-weight:400;line-height:1.05;letter-spacing:-.01em;margin-bottom:16px}
+.issue-title-cn{font-family:var(--serif-cn);font-size:clamp(18px,2vw,24px);font-weight:400;color:var(--ink-soft);letter-spacing:.15em;margin-bottom:40px}
+.issue-dek{font-family:var(--serif-en);font-style:italic;font-size:19px;line-height:1.7;color:var(--ink-soft);max-width:520px;margin-bottom:40px}
+.issue-meta{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);display:flex;gap:20px;flex-wrap:wrap}
+.issue-meta b{color:var(--seal);font-weight:500}
+
+/* Issue glyph — smaller, on right */
+.issue-glyph{font-family:var(--serif-cn);font-size:clamp(180px,22vw,300px);font-weight:500;line-height:.8;color:var(--ink);text-shadow:0 0 1px rgba(26,22,17,.3);letter-spacing:0}
+.issue-glyph-label{font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-faint);text-align:center}
+.issue-glyph-label b{color:var(--seal);font-weight:500}
+.seal-small{width:48px;height:48px;background:var(--seal);color:var(--paper-light);font-family:var(--serif-cn);font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;transform:rotate(-2deg);line-height:1;box-shadow:inset 0 0 0 1.5px rgba(244,237,224,.3)}
+
+/* EDITOR NOTE (compact) */
+.editor-compact{padding:80px 56px;border-bottom:1px solid var(--rule);max-width:860px;margin:0 auto}
+.editor-compact .label{font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--seal);margin-bottom:20px}
+.editor-compact .label .cn{font-family:var(--serif-cn);color:var(--ink-faint);margin-left:10px;letter-spacing:.3em}
+.editor-compact .body{font-family:var(--serif-en);font-size:20px;line-height:1.75;color:var(--ink)}
+.editor-compact .body p{margin-bottom:20px}
+.editor-compact .body em{font-style:italic;color:var(--seal)}
+.editor-compact .body p:first-child::first-letter{font-family:var(--serif-cn);font-size:72px;float:left;line-height:.85;padding:6px 14px 0 0;color:var(--seal);font-weight:500}
+.editor-compact .sign{margin-top:32px;padding-top:16px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft)}
+.editor-compact .sign b{font-family:var(--serif-en);font-style:italic;font-size:16px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:500}
+
+/* TOC — table of contents */
+section.toc{padding:100px 56px;border-bottom:1px solid var(--rule)}
+.toc-head{display:grid;grid-template-columns:80px 1fr auto;gap:40px;align-items:end;margin-bottom:56px;padding-bottom:20px;border-bottom:1px solid var(--ink)}
+.toc-num{font-family:var(--serif-cn);font-size:48px;line-height:1;color:var(--seal);font-weight:500}
+.toc-head h2{font-family:var(--serif-en);font-size:clamp(36px,4vw,56px);font-weight:400;line-height:1;letter-spacing:-.01em}
+.toc-head h2 em{font-style:italic;color:var(--ink-soft)}
+.toc-head h2 .cn{display:block;font-family:var(--serif-cn);font-size:.32em;letter-spacing:.4em;color:var(--ink-soft);margin-top:10px;font-weight:400}
+.toc-link{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--ink-soft);padding-bottom:2px;transition:all .2s}
+.toc-link:hover{color:var(--seal);border-color:var(--seal)}
+
+.toc-list{border-top:1px solid var(--ink)}
+.toc-row{display:grid;grid-template-columns:48px 1fr 120px 50px;gap:20px;padding:24px 0;border-bottom:1px solid var(--rule-soft);align-items:baseline;cursor:pointer;transition:background .2s}
+.toc-row:hover{background:var(--paper-light);padding-left:10px;padding-right:10px}
+.toc-row .n{font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.1em}
+.toc-row .n b{color:var(--seal);font-weight:500}
+.toc-row .t{font-family:var(--serif-en);font-size:20px;line-height:1.25;font-weight:500;color:var(--ink)}
+.toc-row .t em{font-style:italic;font-weight:400}
+.toc-row .t .cn{display:block;font-family:var(--serif-cn);font-size:13px;color:var(--ink-soft);letter-spacing:.18em;margin-top:5px;font-weight:400}
+.toc-row .k{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);text-align:right}
+.toc-row .k.vip{color:var(--seal)}
+.toc-row .p{font-family:var(--serif-en);font-style:italic;font-size:18px;color:var(--ink);text-align:right}
+
+/* DISCUSSION STRIP */
+.discuss-strip{padding:56px;border-bottom:1px solid var(--rule);text-align:center}
+.discuss-strip .label{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--seal);margin-bottom:16px}
+.discuss-strip h3{font-family:var(--serif-en);font-style:italic;font-size:28px;font-weight:400;color:var(--ink);margin-bottom:12px}
+.discuss-strip p{font-family:var(--serif-en);font-style:italic;font-size:16px;color:var(--ink-soft);max-width:540px;margin:0 auto 24px}
+.discuss-strip .btn{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);border:1px solid var(--ink);padding:14px 28px;transition:all .25s}
+.discuss-strip .btn:hover{background:var(--ink);color:var(--paper-light)}
+
+/* FOOTER (full colophon) */
+footer{padding:90px 40px 28px;text-align:left}
+.foot-mark{text-align:center;padding-bottom:48px;border-bottom:1px solid var(--ink);margin-bottom:56px}
+.foot-mark .ampers{font-family:var(--serif-en);font-size:clamp(80px,12vw,200px);font-weight:400;line-height:.85;letter-spacing:-.01em}
+.foot-mark .ampers em{font-style:italic;color:var(--seal)}
+.foot-mark .cn{display:block;font-family:var(--serif-cn);font-size:18px;letter-spacing:.5em;color:var(--ink-soft);margin-top:18px}
+.foot-mark .sub{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-faint);margin-top:16px}
+.foot-cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:56px;padding-bottom:40px;border-bottom:1px solid var(--rule)}
+footer h5{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--seal);margin-bottom:22px;font-weight:500}
+footer h5 .cn{font-family:var(--serif-cn);color:var(--ink-faint);margin-left:10px;letter-spacing:.3em}
+footer p.mission{font-family:var(--serif-en);font-style:italic;font-size:17px;line-height:1.7;color:var(--ink-soft);max-width:380px;margin-bottom:22px}
+.also-by{font-family:var(--serif-en);font-size:13px;color:var(--ink-faint);line-height:1.7}
+.also-by a{font-style:italic;color:var(--ink);border-bottom:1px solid var(--rule);padding-bottom:1px;transition:all .2s}
+.also-by a:hover{color:var(--seal);border-color:var(--seal)}
+footer ul{list-style:none}
+footer li{margin-bottom:11px}
+footer a{font-family:var(--serif-en);font-size:15px;color:var(--ink-soft);transition:color .2s}
+footer a:hover{color:var(--seal)}
+.colophon-final{padding-top:24px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+
+@media(max-width:900px){
+.issue-hero{grid-template-columns:1fr;padding:48px 20px 60px;gap:40px}
+.issue-hero::before{display:none}
+.issue-glyph{font-size:160px}
+.toc-row{grid-template-columns:36px 1fr 50px;gap:12px}
+.toc-row .k{display:none}
+section.toc{padding:60px 20px}
+.editor-compact{padding:48px 20px}
+.foot-cols{grid-template-columns:1fr 1fr;gap:40px}
+.discuss-strip{padding:40px 20px}
+footer{padding:60px 20px 20px}
+.foot-mark .ampers{font-size:56px}
+.foot-cols{grid-template-columns:1fr;gap:36px}
+.colophon-final{flex-direction:column;gap:6px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="backbar">
+  <a href="./ink-east-v1.html">← Back to Issue 001 cover</a>
+  <span>INK & EAST · ISSUE 001 · TABLE OF CONTENTS</span>
+</div>
+
+<!-- ISSUE HERO -->
+<section class="issue-hero">
+  <div class="issue-left">
+    <div class="issue-num">Issue No. 001 · Vol I · Spring 2026</div>
+    <h1 class="issue-title-en">Wu Wei is not laziness.</h1>
+    <div class="issue-title-cn">無為，非懶</div>
+    <p class="issue-dek">An issue on the unease of doing nothing — read through Laozi, Zhuangzi, and the long tradition of Chinese thinkers who treated rest not as failure, but as a kind of intelligence.</p>
+    <div class="issue-meta">
+      <span>8 pieces</span>
+      <span>·</span>
+      <span>≈ 40 min total</span>
+      <span>·</span>
+      <span>Published <b>2026.04.20</b></span>
+    </div>
+  </div>
+  <div class="issue-right">
+    <div class="issue-glyph">無</div>
+    <div class="issue-glyph-label">This issue's character · <b>Wú</b> · not-forcing</div>
+    <div class="seal-small">墨東</div>
+  </div>
+</section>
+
+<!-- EDITOR'S NOTE (compact) -->
+<div class="editor-compact">
+  <div class="label">Editor's Note <span class="cn">編 者 按</span></div>
+  <div class="body">
+    <p>This issue began with a sentence I did not write. A reader, in a letter we received last winter, asked: <em>"Why do I feel guilty when I rest?"</em> I read the letter four times. I made tea. I read it again. Around it, slowly, an issue began to form.</p>
+    <p>The Chinese tradition has a long argument with this question. Not a sermon — an argument. Laozi said the empty space inside the bowl is what makes the bowl useful. Zhuangzi said the cook who never sharpens his blade is the cook who has stopped fighting the meat. We have, in eight pieces, tried to listen to that argument <em>plainly, in English</em>, without dressing it up.</p>
+    <p>You will not find advice here. You will find ways of seeing. That is, I think, what an old book is for.</p>
+  </div>
+  <div class="sign"><b>— The Editors</b> · Spring 2026 · Beijing</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<section class="toc">
+  <div class="toc-head">
+    <div class="toc-num">壹</div>
+    <h2>Contents. <span class="cn">目 錄</span></h2>
+    <a href="#" class="toc-link">Read in order →</a>
+  </div>
+
+  <div class="toc-list">
+    <div class="toc-row"><span class="n">No. <b>01</b></span><div class="t"><em>Wu Wei</em> is not laziness.<span class="cn">無為，非懶</span></div><span class="k">Editor's Note</span><span class="p">p. 04</span></div>
+    <div class="toc-row"><span class="n">No. <b>02</b></span><div class="t">The man who could not stop <em>rearranging</em> his room.<span class="cn">不停整理房間的人</span></div><span class="k">Original Story</span><span class="p">p. 12</span></div>
+    <div class="toc-row"><span class="n">No. <b>03</b></span><div class="t"><a href="./ink-east-article-001-v1.html">Why doing nothing is sometimes the <em>hardest</em> practice.</a><span class="cn">為什麼休息最難</span></div><span class="k">Modern Essay</span><span class="p">p. 24</span></div>
+    <div class="toc-row"><span class="n">No. <b>04</b></span><div class="t">Three passages from Laozi for <em>people who feel stuck</em>.<span class="cn">老子 · 三章選</span></div><span class="k">Classical Reading</span><span class="p">p. 38</span></div>
+    <div class="toc-row"><span class="n">No. <b>05</b></span><div class="t">"I rest, but I still feel <em>guilty</em>. Why?"<span class="cn">為何休息會愧疚</span></div><span class="k">Reader's Letter</span><span class="p">p. 48</span></div>
+    <div class="toc-row"><span class="n">No. <b>06</b></span><div class="t">On the discipline of <em>letting alone</em>.<span class="cn">不擾之道</span></div><span class="k">Long Read</span><span class="p">p. 62</span></div>
+    <div class="toc-row"><span class="n">No. <b>07</b></span><div class="t">A field note from <em>Wudang</em>: walking with monks who do not hurry.<span class="cn">武當紀行</span></div><span class="k">Field Note</span><span class="p">p. 78</span></div>
+    <div class="toc-row"><span class="n">No. <b>08</b></span><div class="t">Archive: <em>three rest poems</em> from Tao Yuanming.<span class="cn">陶淵明 · 三首</span></div><span class="k">Archive Note</span><span class="p">p. 92</span></div>
+  </div>
+</section>
+
+<!-- DISCUSSION STRIP -->
+<div class="discuss-strip">
+  <div class="label">— Issue Discussion —</div>
+  <h3>What did you think of this issue?</h3>
+  <p>Reader Notes are open for this issue. Share what stayed with you, what confused you, or what you'd like us to write about next.</p>
+  <a href="#" class="btn">Open discussion →</a>
+</div>
+
+<!-- FOOTER (full colophon — consistent across all Ink & East pages) -->
+<footer>
+  <div class="foot-mark">
+    <div class="ampers">Ink <em>&amp;</em> East</div>
+    <span class="cn">墨 與 東</span>
+    <span class="sub">An independent digital journal · Published when ready · Est. 2026</span>
+  </div>
+
+  <div class="foot-cols">
+    <div>
+      <h5>The Journal <span class="cn">關 於</span></h5>
+      <p class="mission">Ink &amp; East publishes a single issue when a single issue is ready. Each one answers, in plain English, a modern question — through Chinese classical thought, original stories, and reader letters.</p>
+      <p class="also-by">Also kept by the editors —<br>a small shop of objects, <a href="./spatial-flow-v1.html">Spatial Flow →</a></p>
+    </div>
+    <div>
+      <h5>Read <span class="cn">讀</span></h5>
+      <ul>
+        <li><a href="./ink-east-issue-001-v1.html">This Issue · 001</a></li>
+        <li><a href="./ink-east-v1.html">Home</a></li>
+        <li><a href="./ink-east-reading-room-v1.html">Reading Room</a></li>
+        <li><a href="#">Field Notes</a></li>
+        <li><a href="#">Editor's Letters</a></li>
+        <li><a href="./ink-east-membership-v1.html">Become a member</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Speak <span class="cn">問</span></h5>
+      <ul>
+        <li><a href="./ink-east-letters-form-v1.html">Ask the Ancient Text</a></li>
+        <li><a href="#">Suggest an Issue Theme</a></li>
+        <li><a href="#">Vote · Patrons only</a></li>
+        <li><a href="./ink-east-reader-notes-component-v1.html">Reader Notes</a></li>
+        <li><a href="./ink-east-community-v1.html">Community</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Studio <span class="cn">寫</span></h5>
+      <ul>
+        <li><a href="./ink-east-custom-ebook-v1.html">Custom Ebook Studio</a></li>
+        <li><a href="./ink-east-custom-ebook-v1.html#process">Process &amp; Pricing</a></li>
+        <!-- TODO · sample manuscripts not in v1, link comes later -->
+        <li><a href="#">Past Manuscripts</a></li>
+        <li><a href="./ink-east-custom-ebook-v1.html#submit-brief">Submit a brief</a></li>
+        <li><a href="#">Editorial standards</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="colophon-final">
+    <span>© 2026 Ink &amp; East · Published quietly</span>
+    <span>Set in EB Garamond, Inter &amp; Noto Serif SC</span>
+    <span>ISSN — 2026.001</span>
+  </div>
+</footer>
+
+</body>
+</html>
