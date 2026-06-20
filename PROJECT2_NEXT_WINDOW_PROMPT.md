@@ -27,6 +27,9 @@
 - PHP：保留 WordPress / WooCommerce 功能，把功能代码嵌入 V2 视觉结构。
 - CSS：优先替换旧选择器块、合并重复补丁、删除无效旧块，必要时才追加。
 - 目标是逐页 1:1 迁移，不是差不多像。
+- 后台可编辑性是硬边界：用户当前成品站已经做到几乎所有后期运营内容都可在后台编辑，后续换皮不能破坏这个能力。
+- 能用现有动态函数、theme_mod、option、菜单、shortcode、template-part、自定义字段，就不要写死静态文案。
+- 如果静态稿里有固定文案，迁移到真实站时应优先映射到已有后台可编辑来源；确实没有来源时，必须明确标注“这里暂时硬编码”，并建议后续补后台字段。
 
 标准输出格式：
 
@@ -47,29 +50,26 @@
 把这一段删除，替换成：
 ...
 
-【保留功能】
-说明保留了哪些 WordPress / WooCommerce / Wishlist / Cart / Search / Mobile Menu 功能。
+【保留功能 / 后台可编辑性】
+说明保留了哪些 WordPress / WooCommerce / Wishlist / Cart / Search / Mobile Menu 功能，以及哪些后台可编辑来源被保留。
 
 【视觉来源】
 说明对应 V2 静态稿哪一块。
 
 【风险】
-说明可能影响哪里。
+说明可能影响哪里，尤其是否会损失后台可编辑能力。
 
 【回滚】
 说明恢复哪一段或恢复哪个备份文件。
 
-当前下一步：
-等待用户重新上传服务器当前源文件，建议先上传：
+当前状态：
+- 用户已执行 Step 4B-R1 · Header 精确替换，并反馈检查没有问题。
+- 新增硬要求：后台可编辑能力不可丢。
 
-- `header.php`
-- `footer.php`
-- `assets/css/spatial-flow.css`
+当前下一步建议：
+`Step 4B-R2 · Header 可编辑性回补 / Footer 精确合并前审计`
 
-然后执行：
-`Step 4B-R1 · Header 精确替换方案`
-
-先只做 Header，不碰 Footer。Header 通过后再做 Footer，之后再回到 Shop body。
+先审计 Header 替换后是否丢失后台菜单可编辑性；如果丢失，应把桌面 Header 左侧栏目改回后台菜单优先、静态 fallback 备用。然后再进入 Footer。
 ```
 
 ## 对助手的额外提醒
