@@ -73,6 +73,13 @@
 - Step 4C-B-FIX1 采用替换版完成：Shop hover 动态 Mega Menu 已恢复，手机端 Shop Hero 已压缩并通过。注意：没有新增 `Project2 Step 4C-B-FIX1` 两个临时 CSS 块。
 - Step 4C-C The full edit 区块标题 + 商品网格上方编辑感增强：前台视觉通过。
 - Step 4C-C-BACKEND1 Shop V2 Customizer 字段补齐：通过。后台 `外观 → 自定义 → Spatial Flow Shop V2` 已能编辑 Shop Hero / Product section 相关字段。
+- Step 4C-D Editor’s Pick 独立区块可行性审计：通过，结论为可做，但不能硬编码商品。
+- Step 4C-D-B Editor’s Pick 动态区块接入：通过。后台可开启 Editor’s Pick、选择真实 WooCommerce 商品、编辑推荐文案；前台图片/价格/链接来自真实商品；手机端暂时隐藏 Editor’s Pick，避免继续挤压首屏商品露出。
+
+当前文案状态：
+- Product section title 当前被用户改为：`The Quirt Archive`。
+- 这个词看起来可能是拼写笔误；如果用户本意是“安静档案”，建议改成 `The Quiet Archive`。
+- 修改路径：`外观 → 自定义 → Spatial Flow Shop V2 → Product section title`。
 
 当前保留问题：
 - Shop 手机端首屏商品露出不足：手机端 /shop/ 第一屏主要看到 Hero / 文案 / meta 信息，不是商品。当前不炸版，但转化体验不够好。
@@ -88,7 +95,7 @@
 - CLEAN1 执行前必须让用户重新上传当前服务器最新 `spatial-flow.css`，再输出“删除哪段 / 替换哪段”的精确清理教程。
 
 当前下一步建议：
-`Step 4C-D · Editor’s Pick 独立区块可行性审计`
+`Step 4C-E · Shop Closing Editorial Note / 底部编辑说明区审计`
 
 继续 Shop Body 时必须保留：
 - `woocommerce_product_loop()`
@@ -99,11 +106,7 @@
 - YITH Wishlist shortcode
 - taxonomy / attribute 筛选链接
 - 后台可编辑的 Shop hero / filter / category / contact-band 文案来源
-
-Editor’s Pick 注意：
-- 不能硬编码商品。
-- 必须先判断真实站是否已有 featured / highlighted / product category / tag / customizer / shortcode 等可编辑来源。
-- 没有动态来源时，不要直接做静态 Editor’s Pick 商品区。
+- Editor’s Pick 真实 WooCommerce 商品来源和后台字段
 
 Cart / Checkout / Thank You 最后做，不要提前碰。
 ```
