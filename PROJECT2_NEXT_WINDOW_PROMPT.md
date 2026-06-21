@@ -63,13 +63,37 @@
 说明恢复哪一段或恢复哪个备份文件。
 
 当前状态：
-- 用户已执行 Step 4B-R1 · Header 精确替换，并反馈检查没有问题。
-- 新增硬要求：后台可编辑能力不可丢。
+- Step 4B-R1 Header 精确替换：已通过。
+- Step 4B-R1.1 Header 桌面导航可编辑性回补：已通过，Header 左侧导航已经回到后台菜单优先。
+- WordPress 后台已截图确认菜单位置存在：`Spatial Flow Primary Menu（当前设置为：Main Header Menu）`。
+- Step 4B-R2-A Footer 顶部品牌区：前台通过。
+- Step 4B-R2-B Main Footer 深色 editorial 化：前台通过，用户选择深色 Footer，文字清楚。
+- Step 4C-A Shop Body V2 结构审计：已完成，核心 WooCommerce loop / sorting / pagination / wishlist / taxonomy filters 均保留。
+- Step 4C-B Shop Hero Editorial 结构补齐：已完成。
+- Step 4C-B-FIX1 采用替换版完成：Shop hover 动态 Mega Menu 已恢复，手机端 Shop Hero 已压缩并通过。注意：没有新增 `Project2 Step 4C-B-FIX1` 两个临时 CSS 块。
+
+当前重要待办提醒：
+- 用户特别提醒不要忘记后续清理/合并这两个已经新增的受控 CSS 块：
+  1. `/* === Project2 Step 4B-R2-B — Main Footer Dark Editorial START === */`
+  2. `/* === Project2 Step 4C-B — Shop Hero Editorial START === */`
+- 不要现在为了整洁强行清理，因为 Header / Footer / Shop Hero 刚通过。
+- 后续应单独做：`Step 4C-CLEAN1 · CSS 新增块合并整理`。
+- CLEAN1 执行前必须让用户重新上传当前服务器最新 `spatial-flow.css`，再输出“删除哪段 / 替换哪段”的精确清理教程。
 
 当前下一步建议：
-`Step 4B-R2 · Header 可编辑性回补 / Footer 精确合并前审计`
+`Step 4C-C · The full edit 区块标题 + 商品网格上方编辑感增强`
 
-先审计 Header 替换后是否丢失后台菜单可编辑性；如果丢失，应把桌面 Header 左侧栏目改回后台菜单优先、静态 fallback 备用。然后再进入 Footer。
+继续 Shop Body 时必须保留：
+- `woocommerce_product_loop()`
+- `woocommerce_catalog_ordering()`
+- `woocommerce_pagination()`
+- `wc_get_template_part('content', 'product')`
+- 商品链接、商品图、标题、价格
+- YITH Wishlist shortcode
+- taxonomy / attribute 筛选链接
+- 后台可编辑的 Shop hero / filter / category / contact-band 文案来源
+
+Cart / Checkout / Thank You 最后做，不要提前碰。
 ```
 
 ## 对助手的额外提醒
