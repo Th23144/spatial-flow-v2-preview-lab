@@ -71,6 +71,13 @@
 - Step 4C-A Shop Body V2 结构审计：已完成，核心 WooCommerce loop / sorting / pagination / wishlist / taxonomy filters 均保留。
 - Step 4C-B Shop Hero Editorial 结构补齐：已完成。
 - Step 4C-B-FIX1 采用替换版完成：Shop hover 动态 Mega Menu 已恢复，手机端 Shop Hero 已压缩并通过。注意：没有新增 `Project2 Step 4C-B-FIX1` 两个临时 CSS 块。
+- Step 4C-C The full edit 区块标题 + 商品网格上方编辑感增强：前台视觉通过。
+- Step 4C-C-BACKEND1 Shop V2 Customizer 字段补齐：通过。后台 `外观 → 自定义 → Spatial Flow Shop V2` 已能编辑 Shop Hero / Product section 相关字段。
+
+当前保留问题：
+- Shop 手机端首屏商品露出不足：手机端 /shop/ 第一屏主要看到 Hero / 文案 / meta 信息，不是商品。当前不炸版，但转化体验不够好。
+- 用户明确：这是 V2 静态视觉稿未做手机端优化导致，当前先不修，保留问题即可。
+- 后续建议单独做：`Step 4C-MOBILE1 · Shop Mobile First Screen 商品露出优化`。
 
 当前重要待办提醒：
 - 用户特别提醒不要忘记后续清理/合并这两个已经新增的受控 CSS 块：
@@ -81,7 +88,7 @@
 - CLEAN1 执行前必须让用户重新上传当前服务器最新 `spatial-flow.css`，再输出“删除哪段 / 替换哪段”的精确清理教程。
 
 当前下一步建议：
-`Step 4C-C · The full edit 区块标题 + 商品网格上方编辑感增强`
+`Step 4C-D · Editor’s Pick 独立区块可行性审计`
 
 继续 Shop Body 时必须保留：
 - `woocommerce_product_loop()`
@@ -92,6 +99,11 @@
 - YITH Wishlist shortcode
 - taxonomy / attribute 筛选链接
 - 后台可编辑的 Shop hero / filter / category / contact-band 文案来源
+
+Editor’s Pick 注意：
+- 不能硬编码商品。
+- 必须先判断真实站是否已有 featured / highlighted / product category / tag / customizer / shortcode 等可编辑来源。
+- 没有动态来源时，不要直接做静态 Editor’s Pick 商品区。
 
 Cart / Checkout / Thank You 最后做，不要提前碰。
 ```
