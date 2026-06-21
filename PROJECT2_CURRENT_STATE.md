@@ -1,6 +1,6 @@
 # Project 2 · Spatial Flow V2 换皮工程 · Current State
 
-Last updated: 2026-06-20
+Last updated: 2026-06-21
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## 0. 当前最高优先级结论
@@ -80,8 +80,6 @@ preview/spatial-flow-blog-article-v1.html
 
 ### 3.1 后台可编辑性保护原则
 
-用户新增要求：当前成品站已经做到几乎所有后期运营内容都可在后台编辑，后续换皮不能破坏这个能力。
-
 执行时必须主动检查：
 
 ```text
@@ -126,9 +124,14 @@ project2-step-4b-r1-editorial-header-precise-*
 
 ## 5. 当前已完成
 
-用户已按 Step 4B-R1 执行 Header 精确替换，并反馈检查没有问题。
+### 5.1 Header / Footer 外壳
 
-已检查通过范围：
+- Step 4B-R1 · Header 精确替换：用户已执行并检查通过。
+- Step 4B-R1.1 · Header 桌面导航可编辑性回补：已完成。Header 桌面左侧导航已改成 `wp_nav_menu` / 后台菜单优先，静态 fallback 备用。
+- 后台菜单位置截图已确认存在：`Spatial Flow Primary Menu（当前设置为：Main Header Menu）`。
+- Header hover Shop 动态 Mega Menu 曾因 V2 Header 使用 `.sf-v2-primary-menu` 而失效，后续通过**替换旧 CSS 选择器**恢复，没有新增 `Project2 Step 4C-B-FIX1` 临时块。
+
+Header 已检查通过范围：
 
 ```text
 首页 Header
@@ -139,36 +142,67 @@ Bag 是否跳 Cart
 手机端 Menu 是否能打开
 Blog 子站是否明显炸版
 Cart / Checkout 是否能打开
+电脑端鼠标 hover Shop 后动态分类弹窗是否恢复
 ```
 
-注意：该 Header 版本里部分桌面导航文字采用 editorial 固定链接/文案方式。后续如需进一步提升后台可编辑性，应优先把桌面 Header 左侧栏目映射回 `wp_nav_menu` 或现有后台菜单位置，而不是长期硬编码。
+- Step 4B-R2-A · Footer 顶部品牌区精确合并：前台通过，后台未单独检查，但未删除 footer 菜单位置。
+- Step 4B-R2-B · Main Footer 深色 editorial 化：前台通过。用户选择 B：改成深色 Footer。检查结果：文字清楚，页面正常。
 
-## 6. 推荐下一步
+### 5.2 Shop Body / Hero
+
+- Step 4C-A · Shop Body V2 结构审计：已完成。
+  - `archive-product.php` 和 `content-product.php` 功能结构正常。
+  - `woocommerce_product_loop()`、`woocommerce_catalog_ordering()`、`wc_get_template_part( 'content', 'product' )`、`woocommerce_pagination()`、YITH Wishlist shortcode、taxonomy filters 均需保留。
+- Step 4C-B · Shop Hero Editorial 结构补齐：已完成。
+  - `archive-product.php` 顶部 Hero 已改成更接近静态稿的 Breadcrumb + Hero copy + Meta + Editorial body。
+  - Hero 文案改成 `get_theme_mod()` 优先：`sf_shop_v2_kicker`、`sf_shop_v2_pieces_meta`、`sf_shop_v2_makers_meta`、`sf_shop_v2_origin_meta`、`sf_shop_v2_lede`、`sf_shop_v2_body`、`sf_shop_v2_signoff`。
+- Step 4C-B 后用户反馈手机端不炸版但不够合理：Hero 首屏过长，Pieces / Makers / Origin 信息过散。
+- Step 4C-B-FIX1 已采用**替换版**执行：
+  - 没有新增 `/* === Project2 Step 4C-B-FIX1 — V2 Header Dynamic Shop Mega Restore START === */`。
+  - 没有新增 `/* === Project2 Step 4C-B-FIX1 — Mobile Shop Hero Density START === */`。
+  - 已通过替换原有 selector / 替换 Step 4C-B 内部手机端 media block 的方式完成。
+  - 用户反馈：Shop hover 弹窗恢复，手机端 Hero 修复后都没问题。
+
+## 6. 当前必须记住的后续清理任务
+
+用户特别提醒：之前对话中曾新增以下两个受控 CSS 块，后续不要忘记评估是否可以替换/合并，而不是长期堆叠：
+
+```text
+/* === Project2 Step 4B-R2-B — Main Footer Dark Editorial START === */
+/* === Project2 Step 4C-B — Shop Hero Editorial START === */
+```
+
+处理原则：
+
+- `Step 4B-R2-B Footer Dark Editorial`：理论上可以后续合并回 Footer V2 主样式区，删除/替换浅色主站 footer 样式。
+- `Step 4C-B Shop Hero Editorial`：这是配合 `archive-product.php` 新增结构的组件样式，不一定能简单替换旧块；可以后续整理进 Shop V2 主样式区或 Product Archive Visual Scope Fix 区。
+- 当前不要马上清理，因为 Header / Footer / Shop Hero 刚通过。应后续单独做：
+
+```text
+Step 4C-CLEAN1 · CSS 新增块合并整理
+```
+
+执行 CLEAN1 前必须让用户重新上传当前服务器最新 `spatial-flow.css`，并输出“删除哪一段、替换哪一段”的清理版教程。
+
+## 7. 推荐下一步
 
 下一步建议执行：
 
 ```text
-Step 4B-R2 · Header 可编辑性回补 / Footer 精确合并前审计
+Step 4C-C · The full edit 区块标题 + 商品网格上方编辑感增强
 ```
 
-建议先让用户上传或确认当前最新：
+目标：继续贴近 `preview/spatial-flow-shop-v1.html` 的 Shop Body，但仍然不碰 WooCommerce loop 逻辑。
+
+执行前建议让用户上传当前最新：
 
 ```text
-wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/header.php
-wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/footer.php
+wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/woocommerce/archive-product.php
+wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/woocommerce/content-product.php
 wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/assets/css/spatial-flow.css
 ```
 
-执行顺序建议：
-
-1. 先审计 Header 替换后是否丢失后台菜单可编辑性。
-2. 如丢失，应把桌面 Header 左侧栏目改回后台菜单优先、静态 fallback 备用。
-3. Header 可编辑性确认后，再做 Footer 精确合并。
-4. Header/Footer 外壳通过后，再回头修 Shop body。
-5. Shop 完成后，再进入 Product。
-6. Cart / Checkout / Thank You 最后单独走高风险安全流程。
-
-## 7. Header 迁移方向
+## 8. Header 迁移方向
 
 目标视觉来源主要来自 `preview/spatial-flow-shop-v1.html` 的 top nav / brand / utilities / masthead 风格。
 
@@ -193,11 +227,12 @@ Cart / Bag 链接
 移动端 drawer
 博客子站分支逻辑
 可后台编辑的 topbar / header 文案来源
+Shop hover 动态 Mega Menu
 ```
 
-## 8. Footer 迁移方向
+## 9. Footer 迁移方向
 
-Footer 不要一开始推倒重写。用户当前主题 Footer 可能已包含 V2 footer 菜单、trust card、legal section、博客子站分支、后台可编辑文案函数。应先检查当前服务器文件。
+Footer 不要推倒重写。用户当前主题 Footer 已包含 V2 footer 菜单、trust card、legal section、博客子站分支、后台可编辑文案函数。
 
 原则：
 
@@ -206,12 +241,11 @@ Footer 不要一开始推倒重写。用户当前主题 Footer 可能已包含 V
 - 不要删除已有后台可编辑菜单位置。
 - 不要删除 `spatial_flow_footer_v2_text` / `spatial_flow_footer_v2_mod` 等后台可编辑来源。
 - 不要影响博客子站 footer 分支。
+- 主站 Footer 已深色化，Blog Footer 是否深色化后续另行判断，不要默认误伤 Blog Footer。
 
-## 9. Shop 迁移方向
+## 10. Shop 迁移方向
 
-此前截图反馈显示：Shop 功能能打开，但视觉与目标差距大。关键原因不是单个小块，而是整体气质：Header/Footer 未对齐、Hero 文案不对、商品图素材差异、商品卡层级未完全贴近 V2。
-
-后续 Shop 应以 `preview/spatial-flow-shop-v1.html` 为主结构，把真实 WooCommerce 功能嵌入，而不是在旧 WooCommerce 结构上不断加 CSS。
+Shop 应以 `preview/spatial-flow-shop-v1.html` 为主结构，把真实 WooCommerce 功能嵌入，而不是在旧 WooCommerce 结构上不断加 CSS。
 
 必须保留：
 
@@ -229,7 +263,16 @@ YITH Wishlist shortcode
 后台可编辑的 Shop hero / filter / category / contact-band 文案来源，如当前主题已有
 ```
 
-## 10. 高风险边界
+下一步 Shop Body 可以继续补：
+
+```text
+The full edit 区块标题
+商品网格上方 editorial count / section head
+Editor's Pick 是否要做：需要谨慎，因为要保留真实商品来源，不要硬编码商品
+Closing editorial note 是否要做：可优先映射到现有 product-contact-band 或后台可编辑文案
+```
+
+## 11. 高风险边界
 
 Cart / Checkout / Thank You 最后做，不要提前碰。
 
@@ -247,7 +290,7 @@ Woo notices
 updated_checkout / checkout_error
 ```
 
-## 11. 新窗口接续方式
+## 12. 新窗口接续方式
 
 新窗口启动时，用户只需说：
 
