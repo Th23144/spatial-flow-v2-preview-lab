@@ -3,10 +3,11 @@
 复制下面这段给新窗口，用于完整继承 Project 2：
 
 ```text
-请先读取 GitHub 仓库 `Th23144/spatial-flow-v2-preview-lab` 中的两个文件：
+请先读取 GitHub 仓库 `Th23144/spatial-flow-v2-preview-lab` 中的三个文件：
 
 1. `PROJECT2_CURRENT_STATE.md`
 2. `PROJECT2_NEXT_WINDOW_PROMPT.md`
+3. `PROJECT2_CSS_MAINTENANCE_POLICY.md`
 
 读取后再继续 Project 2 · Spatial Flow V2 换皮工程。
 
@@ -19,6 +20,9 @@
 执行原则：
 - 不再优先整文件覆盖。
 - 不再优先 CSS 末尾无限追加。
+- CSS 后续必须优先：替换旧选择器块、合并重复补丁、删除无效旧块；必要时才追加。
+- 旧的已追加 CSS 块不要在普通功能步骤里随手大清理；应在选定的专项清理期统一替换、合并、删除。
+- 当前已新增仓库说明：`PROJECT2_CSS_MAINTENANCE_POLICY.md`。继续项目前必须读取。
 - 每次先读取用户上传的当前源文件。
 - 先检查文件大小、行数、关键结构。
 - 再对照 GitHub 静态视觉稿源码。
@@ -76,6 +80,24 @@
 - Step 4C-D Editor’s Pick 独立区块可行性审计：通过，结论为可做，但不能硬编码商品。
 - Step 4C-D-B Editor’s Pick 动态区块接入：通过。后台可开启 Editor’s Pick、选择真实 WooCommerce 商品、编辑推荐文案；前台图片/价格/链接来自真实商品；手机端暂时隐藏 Editor’s Pick，避免继续挤压首屏商品露出。
 
+当前新增 4D 状态：
+- 当前阶段：`Step 4D · 商品详情页 1:1 换皮进行中`。
+- 中途插入：`Step 4D-Interrupt · Add-to-cart 成功反馈修复：Passed`。
+- 已完成 Add-to-cart D · Lift & Settle 成功反馈：flyer / seal / cart-pop / cart bump 通过；简单商品、变量商品、Cart、Checkout 回归通过；不接管 WooCommerce 加购逻辑；不强制回顶。
+- Step 4D-1-A · 商品详情页桌面 Hero 框架校正：Passed。
+- Step 4D-1-B · 右侧 Summary 字体层级与间距 1:1：Passed。
+- Step 4D-Control-A · 商品详情页后台字段映射审计：Passed。
+- Step 4D-Control-B · 清理 Product Story 残留 + 修复 Product Attributes 字段来源：Passed。
+- Step 4D-Control-C · Product Attributes 标题后台字段化：Passed。
+- 商品详情页后台字段映射现在应保持：Placement Suggestion 标题在 Customizer；Placement 内容在单个商品后台；Trust Strip 三项标题/正文在 Customizer；Product Attributes 大标题和四个小标题在 Customizer；Product Attributes 四个内容在单个商品后台；标题改名不能影响内容读取。
+
+当前 CSS 维护要求：
+- 用户明确不接受后续继续无限追加 CSS。
+- 后续 CSS 默认方式：优先替换旧选择器块、合并重复补丁、删除无效旧块，必要时才追加。
+- 之前已经追加过的历史代码暂时不要现在随手大清理；应选定专项时期统一处理。
+- 已创建说明文件：`PROJECT2_CSS_MAINTENANCE_POLICY.md`。
+- 当前下一步 `Step 4D-1-C · 左侧 Gallery 细节 1:1` 应在当前 `assets/css/spatial-flow.css` 的 `Single Product Visual 1` / Gallery 相关规则里原位替换，不要再追加新的 Gallery polish 块。
+
 当前文案状态：
 - Product section title 当前被用户改为：`The Quirt Archive`。
 - 这个词看起来可能是拼写笔误；如果用户本意是“安静档案”，建议改成 `The Quiet Archive`。
@@ -92,28 +114,25 @@
   2. `/* === Project2 Step 4C-B — Shop Hero Editorial START === */`
 - 不要现在为了整洁强行清理，因为 Header / Footer / Shop Hero 刚通过。
 - 后续应单独做：`Step 4C-CLEAN1 · CSS 新增块合并整理`。
-- CLEAN1 执行前必须让用户重新上传当前服务器最新 `spatial-flow.css`，再输出“删除哪段 / 替换哪段”的精确清理教程。
+- 新增 CSS 清理提醒：商品详情页完成后，应单独做 `Step 4D-CLEAN1 · Single Product CSS consolidation`。
+- 更大范围清理期可命名为：`Project2-CLEAN-CSS · Global CSS consolidation pass`。
+- CLEAN 类任务执行前必须让用户重新上传当前服务器最新 `spatial-flow.css`，再输出“删除哪段 / 替换哪段”的精确清理教程。
 
 当前下一步建议：
-`Step 4C-E · Shop Closing Editorial Note / 底部编辑说明区审计`
+`Step 4D-1-C · 左侧 Gallery 细节 1:1`
 
-继续 Shop Body 时必须保留：
-- `woocommerce_product_loop()`
-- `woocommerce_catalog_ordering()`
-- `woocommerce_pagination()`
-- `wc_get_template_part('content', 'product')`
-- 商品链接、商品图、标题、价格
-- YITH Wishlist shortcode
-- taxonomy / attribute 筛选链接
-- 后台可编辑的 Shop hero / filter / category / contact-band 文案来源
-- Editor’s Pick 真实 WooCommerce 商品来源和后台字段
+继续商品详情页时必须保留：
+- WooCommerce 商品标题、价格、图库、短描述、变量、库存、加购、Cart / Checkout 主链路。
+- 商品后台 Spatial Flow product detail fields。
+- Customizer 里的 Placement title、Trust Strip 字段、Product Attributes 标题字段。
+- Add-to-cart D 成功反馈，不要回退到旧弹窗，不要接管加购逻辑。
 
 Cart / Checkout / Thank You 最后做，不要提前碰。
 ```
 
 ## 对助手的额外提醒
 
-如果用户说“继续项目二 / 继承项目二 / 读取 handoff”，必须先读取 `PROJECT2_CURRENT_STATE.md`，不要凭长期记忆直接继续。
+如果用户说“继续项目二 / 继承项目二 / 读取 handoff”，必须先读取 `PROJECT2_CURRENT_STATE.md`、`PROJECT2_NEXT_WINDOW_PROMPT.md`、`PROJECT2_CSS_MAINTENANCE_POLICY.md`，不要凭长期记忆直接继续。
 
 如果用户重新上传文件，必须以新上传文件为唯一基准。
 
