@@ -9,12 +9,14 @@ Use this as the top-level entry point when resuming Project 2 from a new ChatGPT
 
 ```text
 PROJECT2_RESUME_INDEX.md
+PROJECT2_DOCS_INDEX.md
 project2-progress/README.md
 project2-progress/PROGRESS_LOG.md
 project2-progress/DEFERRED_PLANS.md
 PROJECT2_CURRENT_STATE.md
 PROJECT2_NEXT_WINDOW_PROMPT.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+PROJECT2_LOCAL_SYNC_MANIFEST.md
 ```
 
 ## Current next step
@@ -40,6 +42,16 @@ The deferred long sections are not abandoned. They are recorded in:
 ```text
 project2-progress/DEFERRED_PLANS.md
 ```
+
+## Documentation index
+
+A synchronized map of all Markdown documentation files now exists:
+
+```text
+PROJECT2_DOCS_INDEX.md
+```
+
+Use it to understand which documentation files are current, partially stale, historical, or deferred/backlog-oriented.
 
 ## Progress memory folder
 
