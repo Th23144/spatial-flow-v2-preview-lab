@@ -9,10 +9,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 ```
 
-## Current next step
+## Current active step
 
 ```text
-Step 4D-1-F · The Piece 商品正文 editorial 区接入
+Step 4D-1-F · The Piece 商品正文 editorial 区接入：In progress
 ```
 
 Decision:
@@ -95,9 +95,15 @@ See:
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
-## Current planned implementation
+## Current implementation
 
 ### Step 4D-1-F · The Piece
+
+Status:
+
+```text
+In progress. Do not mark Passed until the user confirms desktop/mobile screenshots and product editing behavior.
+```
 
 Purpose:
 
@@ -117,12 +123,14 @@ Reason:
 This is the most operationally realistic long editorial section. It can function as a high-quality product detail introduction without forcing the user to invent a full fictional product story for every SKU.
 ```
 
-Do not implement now:
+Implementation boundary:
 
 ```text
-- Story Behind
-- Care Ritual
-- Quiet Notes / Reviews
+- Do not add Story Behind.
+- Do not add Care Ritual.
+- Do not add Quiet Notes / Reviews.
+- Do not hardcode fake makers, fake origin stories, fake customer notes, or fake product background stories.
+- If the WooCommerce long description is empty, The Piece section should not render.
 ```
 
-These are deferred and documented in `project2-progress/DEFERRED_PLANS.md`.
+Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
