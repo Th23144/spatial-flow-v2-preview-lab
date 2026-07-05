@@ -10,12 +10,15 @@ The purpose is to make the project resumable across ChatGPT windows. When contin
 ## Required files to read when resuming
 
 ```text
+PROJECT2_RESUME_INDEX.md
+PROJECT2_DOCS_INDEX.md
 project2-progress/README.md
 project2-progress/PROGRESS_LOG.md
 project2-progress/DEFERRED_PLANS.md
 PROJECT2_CURRENT_STATE.md
 PROJECT2_NEXT_WINDOW_PROMPT.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+PROJECT2_LOCAL_SYNC_MANIFEST.md
 ```
 
 ## Operating rule
@@ -41,3 +44,13 @@ Current next step: Step 4D-1-F · The Piece 商品正文 editorial 区接入
 - CSS work is not append-only by default. Prefer replacing old selector blocks, merging duplicates, and deleting obsolete blocks only in controlled cleanup passes.
 - Use the latest user-uploaded server source files as the only current implementation baseline.
 ```
+
+## Documentation map
+
+The synchronized Markdown documentation map is:
+
+```text
+PROJECT2_DOCS_INDEX.md
+```
+
+Read it to understand which `.md` files are current, which are historical, and which contain deferred plans or sync information.
