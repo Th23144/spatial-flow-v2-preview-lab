@@ -13,6 +13,7 @@ Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 
 ```text
 Step 4D-1-F · The Piece 商品正文 editorial 区接入：In progress
+Step 4D-1-F-FIX1 · The Piece edited description drop-cap restore：In progress
 ```
 
 Decision:
@@ -131,6 +132,14 @@ Implementation boundary:
 - Do not add Quiet Notes / Reviews.
 - Do not hardcode fake makers, fake origin stories, fake customer notes, or fake product background stories.
 - If the WooCommerce long description is empty, The Piece section should not render.
+```
+
+Current issue:
+
+```text
+Step 4D-1-F-FIX1 · The Piece edited description drop-cap restore
+The first implementation used a CSS selector that was too strict for edited WooCommerce long descriptions. Some edited descriptions do not match `.sf-product-v2-piece__body > p:first-child::first-letter`, so the drop cap disappears after editing product description content.
+Fix direction: replace the selector with a more tolerant first-paragraph selector.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
