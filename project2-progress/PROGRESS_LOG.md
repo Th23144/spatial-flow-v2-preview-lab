@@ -13,7 +13,7 @@ Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 
 ```text
 Step 4D-1-F · The Piece 商品正文 editorial 区接入：In progress
-Step 4D-1-F-FIX3 · The Piece bold first paragraph drop-cap：In progress
+Step 4D-1-F-FIX4 · The Piece duplicate drop-cap selector cleanup：In progress
 ```
 
 Decision:
@@ -137,9 +137,9 @@ Implementation boundary:
 Current issue and fix direction:
 
 ```text
-Step 4D-1-F-FIX3 · The Piece bold first paragraph drop-cap
-The edited WooCommerce long description may begin with inline formatting such as `<strong>` or `<b>` inside the first paragraph. In that case both `p::first-letter` and direct `<p>Text` PHP regex wrapping can fail.
-Fix direction: add tolerant CSS for first paragraph inline children such as strong/b/em/span/a and keep the explicit `.sf-product-v2-piece__dropcap` rule as a fallback.
+Step 4D-1-F-FIX4 · The Piece duplicate drop-cap selector cleanup
+The page now shows both `T` and `h` enlarged. This means the explicit PHP-wrapped `.sf-product-v2-piece__dropcap` is working, but old CSS pseudo-element selectors are still also applying to the first paragraph / first inline child.
+Fix direction: remove every `::first-letter` drop-cap selector from The Piece CSS and keep only the explicit `.sf-product-v2-piece__dropcap` style.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
