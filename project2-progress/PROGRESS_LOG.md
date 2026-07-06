@@ -13,7 +13,7 @@ Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 
 ```text
 Step 4D-1-F · The Piece 商品正文 editorial 区接入：In progress
-Step 4D-1-F-FIX2 · The Piece PHP-wrapped drop-cap：In progress
+Step 4D-1-F-FIX3 · The Piece bold first paragraph drop-cap：In progress
 ```
 
 Decision:
@@ -137,10 +137,9 @@ Implementation boundary:
 Current issue and fix direction:
 
 ```text
-Step 4D-1-F-FIX2 · The Piece PHP-wrapped drop-cap
-A CSS-only first-letter selector did not reliably affect user-edited WooCommerce long descriptions.
-Use PHP to wrap the first visible letter of the rendered long description with `.sf-product-v2-piece__dropcap`, then style that explicit span.
-This is more stable than relying on `p:first-child::first-letter` or `p:first-of-type::first-letter` against variable WordPress editor output.
+Step 4D-1-F-FIX3 · The Piece bold first paragraph drop-cap
+The edited WooCommerce long description may begin with inline formatting such as `<strong>` or `<b>` inside the first paragraph. In that case both `p::first-letter` and direct `<p>Text` PHP regex wrapping can fail.
+Fix direction: add tolerant CSS for first paragraph inline children such as strong/b/em/span/a and keep the explicit `.sf-product-v2-piece__dropcap` rule as a fallback.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
