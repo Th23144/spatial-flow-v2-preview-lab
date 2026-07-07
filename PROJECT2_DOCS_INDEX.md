@@ -122,7 +122,7 @@ PROJECT2_NEXT_WINDOW_PROMPT.md
 Status:
 
 ```text
-Current active area.
+Step 4D-1 single product body is passed after full-page regression.
 ```
 
 Passed items:
@@ -139,6 +139,18 @@ Step 4D-1-C-MOBILE1 · Mobile Gallery 主图填充修复：Passed
 Step 4D-1-D · Product Attributes 区视觉 1:1 细修：Passed
 Step 4D-1-D-FIX1 · Quantity 小空缺 + Attributes 双分隔线修复：Passed
 Step 4D-1-E · Related Products / Complete The Room 区视觉 1:1 细修：Passed
+Step 4D-1-F · The Piece 商品正文 editorial 区接入：Passed
+Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap：Passed
+Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
+Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查：Passed
+```
+
+Regression note:
+
+```text
+The only issue found during Step 4D-1-G was the WooCommerce add-to-cart success notice carried into SAFE5 Checkout when entering Checkout directly from the product-page add-to-cart mini window.
+It was fixed in `checkout-safe5.css`, not global `spatial-flow.css`.
+Do not hide SAFE5 validation notices, coupon messages, payment errors, required-field errors, or other blocking checkout notices.
 ```
 
 Primary file:
@@ -150,30 +162,22 @@ project2-progress/PROGRESS_LOG.md
 ## 5. Current next step
 
 ```text
-Step 4D-1-F · The Piece 商品正文 editorial 区接入
+Step 4D-2 · Single Product handoff / sync manifest update
 ```
 
-Decision:
+Purpose:
 
 ```text
-Only The Piece will be implemented now.
-It should use WooCommerce product long description / the_content.
-It should act like a richer product detail introduction.
-It should not force fabricated background stories.
+Record the final Step 4D modified file set, sync responsibilities, and server-path mapping before moving to the next visual page/module.
 ```
 
-Do not implement now:
+Expected files to account for:
 
 ```text
-- Story Behind
-- Care Ritual
-- Quiet Notes / Reviews
-```
-
-These deferred modules are documented in:
-
-```text
-project2-progress/DEFERRED_PLANS.md
+- woocommerce/single-product.php
+- assets/css/spatial-flow.css
+- functions.php
+- checkout-safe5.css
 ```
 
 ## 6. Deferred / unfinished work currently recorded
@@ -241,7 +245,7 @@ Shop mobile is not broken, but first-screen product exposure is not ideal.
 Status:
 
 ```text
-Needed later.
+Needed next.
 ```
 
 Reason:
@@ -250,48 +254,38 @@ Reason:
 PROJECT2_LOCAL_SYNC_MANIFEST.md currently records earlier 4B/4C file changes and server paths, but it has not yet been fully synchronized with all Step 4D single-product changes.
 ```
 
-Recommended later step:
+Recommended next step:
 
 ```text
-Step DOCS-SYNC1 · Update local/server sync manifest for Step 4D
+Step 4D-2 · Single Product handoff / sync manifest update
 ```
 
 ## 7. Current documentation classification
 
 ```text
-Entry / resume:
+Current / authoritative for next-window resume:
 - PROJECT2_RESUME_INDEX.md
 - PROJECT2_DOCS_INDEX.md
-
-Live progress:
 - project2-progress/README.md
 - project2-progress/PROGRESS_LOG.md
-
-Deferred plans:
 - project2-progress/DEFERRED_PLANS.md
-
-Policy:
 - PROJECT2_CSS_MAINTENANCE_POLICY.md
 
-Historical / broad handoff:
+Useful but partially stale:
 - PROJECT2_CURRENT_STATE.md
 - PROJECT2_NEXT_WINDOW_PROMPT.md
-
-Sync / deployment tracking:
 - PROJECT2_LOCAL_SYNC_MANIFEST.md
 
-Repository placeholder:
+Not a memory source:
 - README.md
 ```
 
-## 8. Documentation maintenance rule
-
-Going forward:
+## 8. Maintenance rule going forward
 
 ```text
-- Update `project2-progress/PROGRESS_LOG.md` after each accepted step.
-- Update `project2-progress/DEFERRED_PLANS.md` whenever a task is deferred.
-- Update `PROJECT2_DOCS_INDEX.md` when a new Markdown planning/status file is created.
-- Update `PROJECT2_LOCAL_SYNC_MANIFEST.md` when a file must be synchronized to server or when a sync status changes.
+- Update project2-progress/PROGRESS_LOG.md after each accepted step.
+- Update project2-progress/DEFERRED_PLANS.md whenever a task is deferred.
+- Update PROJECT2_DOCS_INDEX.md when a new Markdown planning/status file is created or when a major Step status changes.
+- Update PROJECT2_LOCAL_SYNC_MANIFEST.md when a file must be synchronized to server or when a sync status changes.
 - Do not delete old Markdown files unless the user explicitly asks.
 ```
