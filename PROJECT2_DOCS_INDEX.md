@@ -7,17 +7,19 @@ This file consolidates the repository Markdown notes for Project 2 so future win
 
 ## 1. Current Markdown files
 
-There are currently 9 Markdown files visible in the repository search UI:
+There are currently 10 Markdown files visible in the repository search UI:
 
 ```text
 README.md
 PROJECT2_RESUME_INDEX.md
+PROJECT2_DOCS_INDEX.md
 PROJECT2_CURRENT_STATE.md
-project2-progress/README.md
 PROJECT2_NEXT_WINDOW_PROMPT.md
 PROJECT2_LOCAL_SYNC_MANIFEST.md
-project2-progress/PROGRESS_LOG.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/README.md
+project2-progress/PROGRESS_LOG.md
+project2-progress/STEP_4D_SYNC_MANIFEST.md
 project2-progress/DEFERRED_PLANS.md
 ```
 
@@ -28,18 +30,19 @@ project2-progress/DEFERRED_PLANS.md
 2. PROJECT2_DOCS_INDEX.md
 3. project2-progress/README.md
 4. project2-progress/PROGRESS_LOG.md
-5. project2-progress/DEFERRED_PLANS.md
-6. PROJECT2_CSS_MAINTENANCE_POLICY.md
-7. PROJECT2_LOCAL_SYNC_MANIFEST.md
-8. PROJECT2_NEXT_WINDOW_PROMPT.md
-9. PROJECT2_CURRENT_STATE.md
+5. project2-progress/STEP_4D_SYNC_MANIFEST.md
+6. project2-progress/DEFERRED_PLANS.md
+7. PROJECT2_CSS_MAINTENANCE_POLICY.md
+8. PROJECT2_LOCAL_SYNC_MANIFEST.md
+9. PROJECT2_NEXT_WINDOW_PROMPT.md
+10. PROJECT2_CURRENT_STATE.md
 ```
 
 Reason:
 
 ```text
 The newer progress files reflect the current Step 4D state more accurately than the older root handoff files.
-Older files are still useful for background and sync paths, but some of their next-step lines are stale.
+Older files are still useful for background and historical sync paths, but some of their next-step lines are stale.
 ```
 
 ## 3. File-by-file status
@@ -49,12 +52,13 @@ Older files are still useful for background and sync paths, but some of their ne
 | `README.md` | Repository basic readme | Only contains the repository title. | Very light / not a project memory source. |
 | `PROJECT2_RESUME_INDEX.md` | Resume entry point | Top-level entry point for new ChatGPT windows. | Current. Read first. |
 | `PROJECT2_DOCS_INDEX.md` | Documentation index | This synchronized map of all Markdown files. | Current. |
-| `PROJECT2_CURRENT_STATE.md` | Historical/current-state handoff | Records project scope, static references, backend-editability rules, and earlier 4B/4C state. | Partially stale. Keep for background; do not trust its old “next step” without checking progress log. |
-| `PROJECT2_NEXT_WINDOW_PROMPT.md` | New-window prompt | Copyable prompt for continuing Project 2. | Mostly current after recent update; still broad. |
-| `PROJECT2_LOCAL_SYNC_MANIFEST.md` | Local/server sync manifest | Tracks modified files and server paths that eventually need synchronization. | Useful but stale after 4D; needs a 4D sync update later. |
+| `PROJECT2_CURRENT_STATE.md` | Historical/current-state handoff | Records project scope, static references, backend-editability rules, and earlier 4B/4C state. | Partially stale. Keep for background; do not trust old “next step” without checking progress log. |
+| `PROJECT2_NEXT_WINDOW_PROMPT.md` | New-window prompt | Copyable prompt for continuing Project 2. | Mostly current but broad. |
+| `PROJECT2_LOCAL_SYNC_MANIFEST.md` | Local/server sync manifest | Tracks modified files and server paths from older phases. | Useful historical baseline; Step 4D has a dedicated supplemental manifest. |
 | `PROJECT2_CSS_MAINTENANCE_POLICY.md` | CSS policy | Records the non-append-only CSS rule. | Current and active. |
 | `project2-progress/README.md` | Progress memory hub | Defines `project2-progress/` as the dedicated memory folder. | Current. |
 | `project2-progress/PROGRESS_LOG.md` | Live progress log | Records current Step 4D status and passed steps. | Current. Update after every important step. |
+| `project2-progress/STEP_4D_SYNC_MANIFEST.md` | Step 4D handoff / sync manifest | Records final Step 4D file set, server paths, and sync responsibilities. | Current. |
 | `project2-progress/DEFERRED_PLANS.md` | Deferred plans / backlog | Records postponed ideas, cleanup tasks, and later modules. | Current. Update whenever a plan is deferred. |
 
 ## 4. Completed work currently synchronized in the docs
@@ -77,14 +81,6 @@ Key points:
 - Static HTML files are visual references, not direct production code.
 ```
 
-Primary files:
-
-```text
-PROJECT2_CURRENT_STATE.md
-PROJECT2_NEXT_WINDOW_PROMPT.md
-PROJECT2_RESUME_INDEX.md
-```
-
 ### 4.2 Header / Footer / Shop earlier work
 
 Status:
@@ -96,33 +92,25 @@ Mostly passed, but older docs are spread across root files.
 Known completed items:
 
 ```text
-- Step 4B-R1 Header 精确替换：Passed
-- Step 4B-R1.1 Header 桌面导航可编辑性回补：Passed
-- Step 4B-R2-A Footer 顶部品牌区：Passed
-- Step 4B-R2-B Main Footer 深色 editorial 化：Passed
-- Step 4C-A Shop Body V2 结构审计：Passed
-- Step 4C-B Shop Hero Editorial：Passed
-- Step 4C-B-FIX1 Header Shop hover / Mobile Shop Hero density：Passed
-- Step 4C-C Product section title / The Quiet Archive：Passed
-- Step 4C-C-BACKEND1 Shop V2 Customizer 字段补齐：Passed
-- Step 4C-D Editor’s Pick 可行性审计：Passed
-- Step 4C-D-B Editor’s Pick 动态区块接入：Passed
+Step 4B-R1 Header 精确替换：Passed
+Step 4B-R1.1 Header 桌面导航可编辑性回补：Passed
+Step 4B-R2-A Footer 顶部品牌区：Passed
+Step 4B-R2-B Main Footer 深色 editorial 化：Passed
+Step 4C-A Shop Body V2 结构审计：Passed
+Step 4C-B Shop Hero Editorial：Passed
+Step 4C-B-FIX1 Header Shop hover / Mobile Shop Hero density：Passed
+Step 4C-C Product section title / The Quiet Archive：Passed
+Step 4C-C-BACKEND1 Shop V2 Customizer 字段补齐：Passed
+Step 4C-D Editor’s Pick 可行性审计：Passed
+Step 4C-D-B Editor’s Pick 动态区块接入：Passed
 ```
 
-Primary files:
-
-```text
-PROJECT2_CURRENT_STATE.md
-PROJECT2_LOCAL_SYNC_MANIFEST.md
-PROJECT2_NEXT_WINDOW_PROMPT.md
-```
-
-### 4.3 Single Product / Step 4D current work
+### 4.3 Single Product / Step 4D
 
 Status:
 
 ```text
-Step 4D-1 single product body is passed after full-page regression.
+Step 4D single product body is passed and handed off.
 ```
 
 Passed items:
@@ -143,6 +131,7 @@ Step 4D-1-F · The Piece 商品正文 editorial 区接入：Passed
 Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap：Passed
 Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
 Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查：Passed
+Step 4D-2 · Single Product handoff / sync manifest update：Passed
 ```
 
 Regression note:
@@ -153,31 +142,27 @@ It was fixed in `checkout-safe5.css`, not global `spatial-flow.css`.
 Do not hide SAFE5 validation notices, coupon messages, payment errors, required-field errors, or other blocking checkout notices.
 ```
 
-Primary file:
+Step 4D sync file:
 
 ```text
-project2-progress/PROGRESS_LOG.md
+project2-progress/STEP_4D_SYNC_MANIFEST.md
+```
+
+Step 4D server sync file set:
+
+```text
+woocommerce/single-product.php
+assets/css/spatial-flow.css
+functions.php
+assets/css/checkout-safe5.css
 ```
 
 ## 5. Current next step
 
 ```text
-Step 4D-2 · Single Product handoff / sync manifest update
-```
-
-Purpose:
-
-```text
-Record the final Step 4D modified file set, sync responsibilities, and server-path mapping before moving to the next visual page/module.
-```
-
-Expected files to account for:
-
-```text
-- woocommerce/single-product.php
-- assets/css/spatial-flow.css
-- functions.php
-- checkout-safe5.css
+User decision needed:
+- Continue to the next visual page/module, or
+- Run controlled CSS cleanup: Step 4D-CLEAN1 / Project2-CLEAN-CSS.
 ```
 
 ## 6. Deferred / unfinished work currently recorded
@@ -240,26 +225,6 @@ Reason:
 Shop mobile is not broken, but first-screen product exposure is not ideal.
 ```
 
-### 6.4 Local/server sync manifest update
-
-Status:
-
-```text
-Needed next.
-```
-
-Reason:
-
-```text
-PROJECT2_LOCAL_SYNC_MANIFEST.md currently records earlier 4B/4C file changes and server paths, but it has not yet been fully synchronized with all Step 4D single-product changes.
-```
-
-Recommended next step:
-
-```text
-Step 4D-2 · Single Product handoff / sync manifest update
-```
-
 ## 7. Current documentation classification
 
 ```text
@@ -268,10 +233,11 @@ Current / authoritative for next-window resume:
 - PROJECT2_DOCS_INDEX.md
 - project2-progress/README.md
 - project2-progress/PROGRESS_LOG.md
+- project2-progress/STEP_4D_SYNC_MANIFEST.md
 - project2-progress/DEFERRED_PLANS.md
 - PROJECT2_CSS_MAINTENANCE_POLICY.md
 
-Useful but partially stale:
+Useful but partially stale / historical:
 - PROJECT2_CURRENT_STATE.md
 - PROJECT2_NEXT_WINDOW_PROMPT.md
 - PROJECT2_LOCAL_SYNC_MANIFEST.md
@@ -286,6 +252,6 @@ Not a memory source:
 - Update project2-progress/PROGRESS_LOG.md after each accepted step.
 - Update project2-progress/DEFERRED_PLANS.md whenever a task is deferred.
 - Update PROJECT2_DOCS_INDEX.md when a new Markdown planning/status file is created or when a major Step status changes.
-- Update PROJECT2_LOCAL_SYNC_MANIFEST.md when a file must be synchronized to server or when a sync status changes.
+- Use dedicated project2-progress handoff files when a root manifest is too stale to safely replace wholesale.
 - Do not delete old Markdown files unless the user explicitly asks.
 ```
