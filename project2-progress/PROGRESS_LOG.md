@@ -13,7 +13,7 @@ Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 
 ```text
 Step 4D-1-F · The Piece 商品正文 editorial 区接入：In progress
-Step 4D-1-F-FIX4 · The Piece duplicate drop-cap selector cleanup：In progress
+Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap：In progress
 ```
 
 Decision:
@@ -137,9 +137,11 @@ Implementation boundary:
 Current issue and fix direction:
 
 ```text
-Step 4D-1-F-FIX4 · The Piece duplicate drop-cap selector cleanup
-The page now shows both `T` and `h` enlarged. This means the explicit PHP-wrapped `.sf-product-v2-piece__dropcap` is working, but old CSS pseudo-element selectors are still also applying to the first paragraph / first inline child.
-Fix direction: remove every `::first-letter` drop-cap selector from The Piece CSS and keep only the explicit `.sf-product-v2-piece__dropcap` style.
+Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap
+After removing duplicate CSS pseudo-element selectors, unedited product descriptions recover, but edited descriptions still lack the drop cap.
+This means the explicit `.sf-product-v2-piece__dropcap` PHP wrapper is not being inserted for edited descriptions.
+Likely cause: edited content begins with nested inline markup inside the first paragraph, such as `<p><strong>This...</strong></p>`, so the previous PHP regex only matching text directly after `<p>` misses it.
+Fix direction: replace the PHP wrapper logic with a nested-markup tolerant first-paragraph wrapper that can insert the dropcap span inside the first visible text node after opening inline tags.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
