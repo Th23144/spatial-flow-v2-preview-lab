@@ -9,10 +9,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 ```
 
-## Current next step
+## Current active step
 
 ```text
-Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查
+Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查：In progress
 ```
 
 Decision:
@@ -141,6 +141,40 @@ Drop-cap implementation note:
 The drop cap uses an explicit PHP-inserted `.sf-product-v2-piece__dropcap` span instead of CSS `::first-letter`.
 This fixed edited WooCommerce descriptions where the first visible text may be wrapped in nested inline markup such as `<strong>` or `<span>`.
 The duplicate CSS `::first-letter` selectors must not be restored.
+```
+
+## Current regression step
+
+### Step 4D-1-G · Single Product full-page regression
+
+Status:
+
+```text
+In progress.
+```
+
+Purpose:
+
+```text
+Confirm the full single product page after Hero, Gallery, Summary, Options, Product Attributes, The Piece, and Related Products changes.
+```
+
+Regression must cover:
+
+```text
+- Desktop layout
+- Mobile layout
+- Simple product
+- Variable product
+- Gallery / thumbnails / arrows / counter
+- Quantity stepper
+- Add to Cart success feedback
+- Header Bag count
+- The Piece display when long description exists
+- The Piece hidden state when long description is empty
+- Product Attributes backend fields
+- Related Products layout
+- Cart and Checkout entry from the product page
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
