@@ -13,7 +13,6 @@ Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 
 ```text
 Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查：In progress
-Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：In progress
 ```
 
 Decision:
@@ -39,6 +38,7 @@ Step 4D-1-D-FIX1 · Quantity 小空缺 + Attributes 双分隔线修复：Passed
 Step 4D-1-E · Related Products / Complete The Room 区视觉 1:1 细修：Passed
 Step 4D-1-F · The Piece 商品正文 editorial 区接入：Passed
 Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap：Passed
+Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
 ```
 
 ## Important implementation notes
@@ -178,14 +178,13 @@ Regression must cover:
 - Cart and Checkout entry from the product page
 ```
 
-Current issue:
+Passed regression fix:
 
 ```text
-Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice
-When entering Checkout directly from the product-page add-to-cart success mini window, WooCommerce carries the standard "has been added to your cart / View cart" success notice into `/checkout-2-2/`.
-This notice appears inside the Checkout contact/billing area and should be hidden on Checkout only.
-Do not hide validation errors, payment errors, coupon errors, or other checkout blocking notices.
-Preferred fix: target only checkout `.woocommerce-message` notices that contain the cart-forward button/link.
+Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
+The carried WooCommerce "has been added to your cart / View cart" success message was hidden on SAFE5 Checkout after entering Checkout from the product-page add-to-cart success mini window.
+Correct implementation location: `checkout-safe5.css`, not the global `spatial-flow.css`.
+The fix must not hide SAFE5 validation notices, coupon messages, payment errors, required-field errors, or other blocking checkout notices.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
