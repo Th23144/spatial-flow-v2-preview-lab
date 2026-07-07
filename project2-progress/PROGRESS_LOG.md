@@ -9,10 +9,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 ```
 
-## Current active step
+## Current next step
 
 ```text
-Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查：In progress
+Step 4D-2 · Single Product handoff / sync manifest update
 ```
 
 Decision:
@@ -39,6 +39,7 @@ Step 4D-1-E · Related Products / Complete The Room 区视觉 1:1 细修：Passe
 Step 4D-1-F · The Piece 商品正文 editorial 区接入：Passed
 Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap：Passed
 Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
+Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查：Passed
 ```
 
 ## Important implementation notes
@@ -144,23 +145,17 @@ This fixed edited WooCommerce descriptions where the first visible text may be w
 The duplicate CSS `::first-letter` selectors must not be restored.
 ```
 
-## Current regression step
+## Regression summary
 
 ### Step 4D-1-G · Single Product full-page regression
 
 Status:
 
 ```text
-In progress.
+Passed.
 ```
 
-Purpose:
-
-```text
-Confirm the full single product page after Hero, Gallery, Summary, Options, Product Attributes, The Piece, and Related Products changes.
-```
-
-Regression must cover:
+Regression covered:
 
 ```text
 - Desktop layout
@@ -178,7 +173,7 @@ Regression must cover:
 - Cart and Checkout entry from the product page
 ```
 
-Passed regression fix:
+Only issue found during regression:
 
 ```text
 Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
