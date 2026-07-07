@@ -9,18 +9,17 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 ```
 
-## Current active step
+## Current next step
 
 ```text
-Step 4D-1-F · The Piece 商品正文 editorial 区接入：In progress
-Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap：In progress
+Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查
 ```
 
 Decision:
 
 ```text
-Only The Piece will be implemented now.
-Story Behind, Care Ritual, and Reviews are deferred plans, not current required blocks.
+Only The Piece has been implemented now.
+Story Behind, Care Ritual, and Reviews remain deferred plans, not current required blocks.
 ```
 
 ## Passed / accepted steps in current Single Product phase
@@ -37,6 +36,8 @@ Step 4D-1-C-MOBILE1 · Mobile Gallery 主图填充修复：Passed
 Step 4D-1-D · Product Attributes 区视觉 1:1 细修：Passed
 Step 4D-1-D-FIX1 · Quantity 小空缺 + Attributes 双分隔线修复：Passed
 Step 4D-1-E · Related Products / Complete The Room 区视觉 1:1 细修：Passed
+Step 4D-1-F · The Piece 商品正文 editorial 区接入：Passed
+Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap：Passed
 ```
 
 ## Important implementation notes
@@ -96,14 +97,14 @@ See:
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
-## Current implementation
+## Current implementation summary
 
 ### Step 4D-1-F · The Piece
 
 Status:
 
 ```text
-In progress. Do not mark Passed until the user confirms desktop/mobile screenshots and product editing behavior.
+Passed.
 ```
 
 Purpose:
@@ -112,7 +113,7 @@ Purpose:
 Add one editorial long-description block between Product Attributes and Related Products / Complete The Room.
 ```
 
-Recommended data source:
+Data source:
 
 ```text
 WooCommerce product long description / the_content
@@ -121,27 +122,25 @@ WooCommerce product long description / the_content
 Reason:
 
 ```text
-This is the most operationally realistic long editorial section. It can function as a high-quality product detail introduction without forcing the user to invent a full fictional product story for every SKU.
+This is the most operationally realistic long editorial section. It functions as a high-quality product detail introduction without forcing the user to invent a full fictional product story for every SKU.
 ```
 
 Implementation boundary:
 
 ```text
-- Do not add Story Behind.
-- Do not add Care Ritual.
-- Do not add Quiet Notes / Reviews.
-- Do not hardcode fake makers, fake origin stories, fake customer notes, or fake product background stories.
+- Story Behind was not added.
+- Care Ritual was not added.
+- Quiet Notes / Reviews were not added.
+- No fake makers, fake origin stories, fake customer notes, or fake product background stories were hardcoded.
 - If the WooCommerce long description is empty, The Piece section should not render.
 ```
 
-Current issue and fix direction:
+Drop-cap implementation note:
 
 ```text
-Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap
-After removing duplicate CSS pseudo-element selectors, unedited product descriptions recover, but edited descriptions still lack the drop cap.
-This means the explicit `.sf-product-v2-piece__dropcap` PHP wrapper is not being inserted for edited descriptions.
-Likely cause: edited content begins with nested inline markup inside the first paragraph, such as `<p><strong>This...</strong></p>`, so the previous PHP regex only matching text directly after `<p>` misses it.
-Fix direction: replace the PHP wrapper logic with a nested-markup tolerant first-paragraph wrapper that can insert the dropcap span inside the first visible text node after opening inline tags.
+The drop cap uses an explicit PHP-inserted `.sf-product-v2-piece__dropcap` span instead of CSS `::first-letter`.
+This fixed edited WooCommerce descriptions where the first visible text may be wrapped in nested inline markup such as `<strong>` or `<span>`.
+The duplicate CSS `::first-letter` selectors must not be restored.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
