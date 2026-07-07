@@ -6,13 +6,13 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ## Current phase
 
 ```text
-Step 4D · Single Product / 商品详情页 1:1 换皮进行中
+Step 4D · Single Product / 商品详情页 1:1 换皮主体已完成
 ```
 
 ## Current next step
 
 ```text
-Step 4D-2 · Single Product handoff / sync manifest update
+User decision needed: continue to next visual page/module, or run controlled CSS cleanup.
 ```
 
 Decision:
@@ -40,6 +40,7 @@ Step 4D-1-F · The Piece 商品正文 editorial 区接入：Passed
 Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap：Passed
 Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
 Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查：Passed
+Step 4D-2 · Single Product handoff / sync manifest update：Passed
 ```
 
 ## Important implementation notes
@@ -180,6 +181,29 @@ Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
 The carried WooCommerce "has been added to your cart / View cart" success message was hidden on SAFE5 Checkout after entering Checkout from the product-page add-to-cart success mini window.
 Correct implementation location: `checkout-safe5.css`, not the global `spatial-flow.css`.
 The fix must not hide SAFE5 validation notices, coupon messages, payment errors, required-field errors, or other blocking checkout notices.
+```
+
+## Step 4D handoff / sync manifest
+
+Status:
+
+```text
+Passed.
+```
+
+Dedicated handoff file:
+
+```text
+project2-progress/STEP_4D_SYNC_MANIFEST.md
+```
+
+Step 4D server sync file set:
+
+```text
+woocommerce/single-product.php
+assets/css/spatial-flow.css
+functions.php
+assets/css/checkout-safe5.css
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
