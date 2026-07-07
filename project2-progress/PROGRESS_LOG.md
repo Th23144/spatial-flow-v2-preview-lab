@@ -13,6 +13,7 @@ Step 4D · Single Product / 商品详情页 1:1 换皮进行中
 
 ```text
 Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查：In progress
+Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：In progress
 ```
 
 Decision:
@@ -175,6 +176,16 @@ Regression must cover:
 - Product Attributes backend fields
 - Related Products layout
 - Cart and Checkout entry from the product page
+```
+
+Current issue:
+
+```text
+Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice
+When entering Checkout directly from the product-page add-to-cart success mini window, WooCommerce carries the standard "has been added to your cart / View cart" success notice into `/checkout-2-2/`.
+This notice appears inside the Checkout contact/billing area and should be hidden on Checkout only.
+Do not hide validation errors, payment errors, coupon errors, or other checkout blocking notices.
+Preferred fix: target only checkout `.woocommerce-message` notices that contain the cart-forward button/link.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
