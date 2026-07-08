@@ -9,6 +9,12 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 Step 4D-CLEAN1 · Single Product CSS consolidation / 商品详情页 CSS 受控清理
 ```
 
+Status:
+
+```text
+Passed.
+```
+
 This audit is based on the user-uploaded current latest local file:
 
 ```text
@@ -23,17 +29,17 @@ Original line count: 26,858 lines
 Original SHA256: e2de6c7ebe19c3fc063df3d8957e9fb1b6de3ade21b99f68623e3effc2f72cea
 ```
 
-## Cleanup candidate prepared
+## Cleanup candidate accepted
 
-A cleaned candidate was generated locally for user testing, not committed as production CSS.
+A cleaned candidate was generated locally, tested by the user, and accepted.
 
 ```text
-Candidate file name: spatial-flow-step4d-clean1.css
-Candidate line count: 26,633 lines
-Candidate SHA256: e6ea57cab4d1cf2342929f1fd74d78c41eff10141d434010b8106d7ed395cb58
+Accepted candidate file name: spatial-flow-step4d-clean1.css
+Accepted candidate line count: 26,633 lines
+Accepted candidate SHA256: e6ea57cab4d1cf2342929f1fd74d78c41eff10141d434010b8106d7ed395cb58
 ```
 
-## Changes in the candidate
+## Changes accepted
 
 ### 1. Removed legacy Product Story CSS
 
@@ -65,14 +71,14 @@ Reason: preserve cascade while keeping single-product CSS grouped together inste
 ### 4. Did not restore `::first-letter`
 
 ```text
-The candidate still contains zero `::first-letter` occurrences.
+The accepted candidate contains zero `::first-letter` occurrences.
 The Piece drop cap must remain `.sf-product-v2-piece__dropcap` only.
 ```
 
 ### 5. Did not touch SAFE5 Checkout CSS
 
 ```text
-SAFE5 Checkout CSS is intentionally out of scope for this cleanup.
+SAFE5 Checkout CSS was intentionally out of scope for this cleanup.
 Checkout-specific fixes belong in `checkout-safe5.css`, not `spatial-flow.css`.
 ```
 
@@ -86,9 +92,11 @@ Reason:
 Those selectors are not scoped to `.single-product`. They may affect non-single-product contexts or older related-product cards. Leave them for a broader Project2-CLEAN-CSS pass, not Step 4D-CLEAN1.
 ```
 
-## Validation checks before accepting
+## Validation result
 
-The user should replace local `assets/css/spatial-flow.css` with the candidate and test:
+The user replaced local `assets/css/spatial-flow.css` with the cleanup candidate and confirmed it passed.
+
+Validation covered:
 
 ```text
 1. Single Product desktop layout
@@ -103,7 +111,7 @@ The user should replace local `assets/css/spatial-flow.css` with the candidate a
 10. Product page → mini cart pop → Cart / Checkout path
 ```
 
-If all pass, mark:
+Final result:
 
 ```text
 Step 4D-CLEAN1 · Single Product CSS consolidation：Passed
