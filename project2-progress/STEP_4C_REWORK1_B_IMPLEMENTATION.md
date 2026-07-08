@@ -7,6 +7,7 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 In progress. Candidate prepared for local testing; not accepted yet.
+User requested manual replacement instructions instead of a full replacement-file workflow.
 ```
 
 ## Goal
@@ -25,6 +26,12 @@ This is a local candidate derived from the user-uploaded current latest:
 
 ```text
 assets/css/spatial-flow.css
+```
+
+The candidate file is only for review / fallback. The preferred workflow now is:
+
+```text
+Provide precise manual replacement instructions for the Shop CSS range instead of asking the user to overwrite the whole CSS file blindly.
 ```
 
 ## Baseline stats
@@ -93,6 +100,14 @@ It replaces them with one controlled block:
 Step 4C-REWORK1-B · Shop Static 1:1 Controlled Rebase
 ```
 
+Manual replacement rule:
+
+```text
+Do not append this block to the end of `spatial-flow.css`.
+Do not overwrite the whole file unless the user explicitly chooses that workflow.
+Preferred: find the existing Shop visual CSS range and replace only that range with the new controlled Shop block.
+```
+
 ## Intended visual changes
 
 ### Desktop
@@ -146,12 +161,21 @@ Step 4C-REWORK1-B · Shop Static 1:1 Controlled Rebase
 
 ## Local test instructions
 
+Preferred manual workflow:
+
 ```text
-1. Download `spatial-flow-step4c-rework1-b.css`.
-2. Rename it to `spatial-flow.css`.
-3. Replace local `wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/assets/css/spatial-flow.css`.
-4. Bump the theme asset version in `functions.php` if needed, for example 2.7.9 → 2.8.0.
-5. Hard refresh `/shop/` on desktop and mobile.
+1. Keep the current local `spatial-flow.css` open.
+2. Find the existing Shop visual CSS range.
+3. Replace only that Shop range with the controlled Step 4C-REWORK1-B Shop block.
+4. Do not touch unrelated Header, Footer, Single Product, Cart, Checkout, Blog, Wishlist, or utility CSS.
+5. Bump the theme asset version in `functions.php` if needed, for example 2.7.9 → 2.8.0.
+6. Hard refresh `/shop/` on desktop and mobile.
+```
+
+Fallback whole-file workflow:
+
+```text
+Only use `spatial-flow-step4c-rework1-b.css` as a full replacement file if the user explicitly chooses the full-file replacement workflow.
 ```
 
 ## Required validation
