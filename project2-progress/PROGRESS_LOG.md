@@ -12,7 +12,7 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ## Current active step
 
 ```text
-Step 4C-REWORK1 · Shop desktop + mobile 1:1 rework audit：In progress
+Step 4C-REWORK1-A · Shop mismatch list + replacement plan：In progress
 ```
 
 Decision:
@@ -21,6 +21,7 @@ Decision:
 Step 4D Single Product is completed and cleaned.
 The user corrected the Shop status: Shop desktop is also far from 1:1 and earlier documentation should not be treated as final visual acceptance.
 The previous mobile-only step is superseded by a full Shop desktop + mobile rework audit.
+A mismatch list and replacement plan has been prepared; production file changes are not started yet.
 ```
 
 ## Passed / accepted steps in Single Product phase
@@ -112,25 +113,26 @@ assets/css/checkout-safe5.css
 
 ## Current active module
 
-### Step 4C-REWORK1 · Shop desktop + mobile 1:1 rework audit
+### Step 4C-REWORK1-A · Shop mismatch list + replacement plan
 
 Status:
 
 ```text
-In progress.
+In progress. Plan prepared; waiting for user acceptance before production file edits.
 ```
 
-Audit file:
+Audit files:
 
 ```text
 project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+project2-progress/STEP_4C_REWORK1_A_MISMATCH_PLAN.md
 ```
 
 Correction:
 
 ```text
 Earlier Shop records are now treated as partial structure / layout passes, not final 1:1 visual acceptance.
-The Shop page needs a full desktop + mobile re-audit and controlled rework.
+The Shop page needs a full desktop + mobile rework against `preview/spatial-flow-shop-v1.html`.
 ```
 
 Current findings:
@@ -139,14 +141,14 @@ Current findings:
 - Current `archive-product.php` uses a functional V2 Shop archive shell: hero, meta, controls, optional editor pick, products, closing note, and contact band.
 - Current `spatial-flow.css` still contains layered Shop visual passes: Phase Shop Visual 1, Phase Shop Visual 2, and Phase Shop Visual 2.1 FIX.
 - Mobile screenshot shows the first screen consumed by header, breadcrumb, hero/meta/copy, and filters before product cards appear.
-- User states desktop Shop is also far from 1:1.
+- Desktop screenshot confirms the page is functional but compressed and not the static 1:1 target.
 ```
 
 Scope:
 
 ```text
-- Re-audit Shop desktop against the static reference.
-- Re-audit Shop mobile against product exposure and static-reference constraints.
+- Rework Shop desktop against the static reference.
+- Rework Shop mobile against product exposure and static-reference constraints.
 - Preserve WooCommerce product loop, filters, sorting, pagination, product links, wishlist, add-to-cart behavior, cart, checkout, payment, and orders.
 - No plugin changes.
 - No hardcoded product data.
@@ -160,11 +162,10 @@ assets/css/spatial-flow.css
 functions.php only if Customizer field/version bump is needed
 ```
 
-Next required input:
+Next action after acceptance:
 
 ```text
-Need current desktop Shop screenshot(s), especially top/hero area and product grid area, before giving replacement instructions.
-Also need to confirm the static Shop reference target, likely `preview/spatial-flow-shop-v1.html`.
+Step 4C-REWORK1-B · Prepare implementation instructions / candidate for archive-product.php and spatial-flow.css.
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
