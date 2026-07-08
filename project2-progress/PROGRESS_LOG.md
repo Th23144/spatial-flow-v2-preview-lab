@@ -12,7 +12,7 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ## Current active step
 
 ```text
-Step 4C-REWORK1-B · Shop rework CSS candidate：In progress
+Step 4C-REWORK1-B · Shop manual CSS range replacement：In progress
 ```
 
 Decision:
@@ -22,7 +22,7 @@ Step 4D Single Product is completed and cleaned.
 The user corrected the Shop status: Shop desktop is also far from 1:1 and earlier documentation should not be treated as final visual acceptance.
 The previous mobile-only step is superseded by a full Shop desktop + mobile rework audit.
 A mismatch list and replacement plan has been prepared.
-A first CSS-only implementation candidate has been prepared for local testing.
+A first CSS-only candidate was generated as a safety artifact, but the user clarified the preferred workflow is manual range replacement, not whole-file replacement.
 ```
 
 ## Passed / accepted steps in Single Product phase
@@ -114,12 +114,12 @@ assets/css/checkout-safe5.css
 
 ## Current active module
 
-### Step 4C-REWORK1-B · Shop rework CSS candidate
+### Step 4C-REWORK1-B · Shop manual CSS range replacement
 
 Status:
 
 ```text
-In progress. Candidate prepared; waiting for user local test confirmation.
+In progress. Candidate artifacts exist, but they are reference/fallback only. The active workflow is manual replacement of the Shop CSS range.
 ```
 
 Audit / plan / implementation files:
@@ -137,19 +137,13 @@ Earlier Shop records are now treated as partial structure / layout passes, not f
 The Shop page needs a full desktop + mobile rework against `preview/spatial-flow-shop-v1.html`.
 ```
 
-Candidate file strategy:
+Artifact clarification:
 
 ```text
-- No PHP change in this first candidate.
-- `archive-product.php` already exposes enough stable hooks/classes for the first pass.
-- Replace old layered Shop CSS blocks with one controlled `Step 4C-REWORK1-B` block instead of appending another tiny patch.
-```
-
-Candidate output:
-
-```text
-spatial-flow-step4c-rework1-b.css
-step4c-rework1-b-css-rebase.patch
+- `spatial-flow-step4c-rework1-b.css` is a full-file candidate generated only to verify the final combined result.
+- `step4c-rework1-b-css-rebase.patch` is a diff/safety record showing what changed.
+- Neither artifact should be treated as the preferred workflow.
+- Preferred workflow: provide search markers and replacement text so the user manually replaces only the Shop CSS range in the current local `spatial-flow.css`.
 ```
 
 Scope:
@@ -165,7 +159,7 @@ Scope:
 Next action:
 
 ```text
-User should replace local `assets/css/spatial-flow.css` with `spatial-flow-step4c-rework1-b.css`, bump asset version if needed, and test desktop/mobile Shop.
+Provide manual replacement instructions: search markers, delete range, paste controlled Shop CSS block, version bump, and validation checklist.
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
