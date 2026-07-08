@@ -214,7 +214,7 @@ assets/css/checkout-safe5.css
 Status:
 
 ```text
-In progress.
+In progress. Cleanup audit and candidate prepared; waiting for user local test confirmation before marking Passed.
 ```
 
 Scope:
@@ -226,10 +226,20 @@ Scope:
 - Do not change `single-product.php`, `functions.php`, cart logic, checkout logic, payment logic, or WooCommerce order logic.
 ```
 
-Required input before editing:
+Audit file:
 
 ```text
-User should upload the current latest local `assets/css/spatial-flow.css` after all Step 4D fixes.
+project2-progress/STEP_4D_CLEAN1_AUDIT.md
+```
+
+Cleanup candidate summary:
+
+```text
+- Remove legacy `.sf-product-story-*` CSS.
+- Keep one `.sf-product-spatial-grid--summary` hiding guard.
+- Move Step 4D-1-A / Step 4D-1-B desktop override blocks into the Single Product Visual 1 area instead of leaving them at the very end of the CSS file.
+- Keep The Piece drop cap on `.sf-product-v2-piece__dropcap`; do not restore `::first-letter`.
+- Do not touch SAFE5 Checkout CSS.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
