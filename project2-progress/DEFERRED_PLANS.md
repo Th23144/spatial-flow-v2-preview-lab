@@ -188,17 +188,29 @@ Known historical blocks to revisit include:
 
 ---
 
-## 3. Shop deferred plans
+## 3. Shop work status correction
 
-### 3.1 Shop mobile first-screen product exposure — moved to active
+### 3.1 Shop full desktop + mobile 1:1 rework — active
 
 Current active step:
 
 ```text
-Step 4C-MOBILE1 · Shop Mobile First Screen 商品露出优化：In progress
+Step 4C-REWORK1 · Shop desktop + mobile 1:1 rework audit：In progress
 ```
 
-Reason originally deferred:
+Correction:
+
+```text
+The earlier Shop work should not be treated as final 1:1 acceptance. The user clarified that desktop Shop is also far from 1:1 and was only lightly reformatted.
+```
+
+Audit file:
+
+```text
+project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+```
+
+Original mobile concern:
 
 ```text
 Shop mobile currently does not break, but first-screen product exposure is not ideal because the V2 static visual was not mobile-optimized.
@@ -207,7 +219,7 @@ Shop mobile currently does not break, but first-screen product exposure is not i
 Current status:
 
 ```text
-Moved from deferred backlog into active work after Step 4D and Step 4D-CLEAN1 passed.
+The mobile concern is now part of the full Shop desktop + mobile rework instead of a standalone mobile-only cleanup.
 ```
 
 ---
