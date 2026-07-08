@@ -9,10 +9,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 Step 4D · Single Product / 商品详情页 1:1 换皮主体已完成
 ```
 
-## Current active step
+## Current next step
 
 ```text
-Step 4D-CLEAN1 · Single Product CSS consolidation / 商品详情页 CSS 受控清理：In progress
+User decision needed: continue to next visual page/module, or run broader Project2-CLEAN-CSS later.
 ```
 
 Decision:
@@ -20,7 +20,8 @@ Decision:
 ```text
 Only The Piece has been implemented now.
 Story Behind, Care Ritual, and Reviews remain deferred plans, not current required blocks.
-The user chose controlled CSS cleanup before continuing to the next visual page/module.
+The user chose controlled Single Product CSS cleanup before continuing to the next visual page/module.
+Step 4D-CLEAN1 has passed.
 ```
 
 ## Passed / accepted steps in current Single Product phase
@@ -42,6 +43,7 @@ Step 4D-1-F-FIX5 · The Piece nested editor markup drop-cap：Passed
 Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
 Step 4D-1-G · Single Product full-page regression / 商品详情页全页回归检查：Passed
 Step 4D-2 · Single Product handoff / sync manifest update：Passed
+Step 4D-CLEAN1 · Single Product CSS consolidation / 商品详情页 CSS 受控清理：Passed
 ```
 
 ## Important implementation notes
@@ -207,23 +209,14 @@ functions.php
 assets/css/checkout-safe5.css
 ```
 
-## Current cleanup step
+## Step 4D CSS cleanup
 
 ### Step 4D-CLEAN1 · Single Product CSS consolidation
 
 Status:
 
 ```text
-In progress. Cleanup audit and candidate prepared; waiting for user local test confirmation before marking Passed.
-```
-
-Scope:
-
-```text
-- Inspect current latest `assets/css/spatial-flow.css`.
-- Only clean / consolidate Single Product related CSS blocks.
-- Do not clean SAFE5 Checkout CSS in this step.
-- Do not change `single-product.php`, `functions.php`, cart logic, checkout logic, payment logic, or WooCommerce order logic.
+Passed.
 ```
 
 Audit file:
@@ -232,14 +225,14 @@ Audit file:
 project2-progress/STEP_4D_CLEAN1_AUDIT.md
 ```
 
-Cleanup candidate summary:
+Accepted cleanup summary:
 
 ```text
-- Remove legacy `.sf-product-story-*` CSS.
-- Keep one `.sf-product-spatial-grid--summary` hiding guard.
-- Move Step 4D-1-A / Step 4D-1-B desktop override blocks into the Single Product Visual 1 area instead of leaving them at the very end of the CSS file.
-- Keep The Piece drop cap on `.sf-product-v2-piece__dropcap`; do not restore `::first-letter`.
-- Do not touch SAFE5 Checkout CSS.
+- Removed legacy `.sf-product-story-*` CSS.
+- Kept one `.sf-product-spatial-grid--summary` hiding guard.
+- Moved Step 4D-1-A / Step 4D-1-B desktop override blocks into the Single Product Visual 1 area instead of leaving them at the very end of the CSS file.
+- Kept The Piece drop cap on `.sf-product-v2-piece__dropcap`; did not restore `::first-letter`.
+- Did not touch SAFE5 Checkout CSS.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
