@@ -22,20 +22,14 @@ The static product page contains several long editorial sections between Product
 Current decision:
 
 ```text
-Only The Piece will be implemented now.
-Other long editorial sections are deferred because they require real content operations and should not force fabricated stories.
+Only The Piece was implemented now.
+Other long editorial sections remain deferred because they require real content operations and should not force fabricated stories.
 ```
 
-### 1.1 The Piece — active next step, not deferred
+### 1.1 The Piece — implemented, not deferred
 
 ```text
-Step 4D-1-F · The Piece 商品正文 editorial 区接入
-```
-
-Status:
-
-```text
-Planned next.
+Step 4D-1-F · The Piece 商品正文 editorial 区接入：Passed
 ```
 
 Operational model:
@@ -146,30 +140,29 @@ After order completion, ask buyers questions such as:
 
 ## 2. CSS cleanup plans
 
-### 2.1 Single Product CSS consolidation
-
-Potential future step:
+### 2.1 Single Product CSS consolidation — completed
 
 ```text
-Step 4D-CLEAN1 · Single Product CSS consolidation
+Step 4D-CLEAN1 · Single Product CSS consolidation：Passed
 ```
 
-Purpose:
+Result:
 
 ```text
-After the single product page is visually accepted, consolidate overlapping historical single-product CSS blocks.
+- Removed legacy `.sf-product-story-*` CSS.
+- Kept one `.sf-product-spatial-grid--summary` hiding guard.
+- Moved Step 4D-1-A / Step 4D-1-B desktop override blocks into the Single Product Visual 1 area.
+- Did not restore The Piece `::first-letter`.
+- Did not touch SAFE5 Checkout CSS.
 ```
 
-Rules:
+Audit file:
 
 ```text
-- Do not randomly delete old appended blocks during normal feature work.
-- Ask the user to upload the latest server `assets/css/spatial-flow.css` first.
-- Search for duplicate single-product selectors.
-- Replace, merge, and delete only with precise instructions.
+project2-progress/STEP_4D_CLEAN1_AUDIT.md
 ```
 
-### 2.2 Global CSS consolidation pass
+### 2.2 Global CSS consolidation pass — deferred
 
 Potential future step:
 
@@ -190,25 +183,31 @@ Known historical blocks to revisit include:
 - Step 4C-B Shop Hero Editorial
 - Product Archive Visual Scope Fix
 - Phase Shop Visual 1 / 2 / 2.1 overlap
-- Single Product Visual 1 plus old Phase 3.x single-product patches
+- Remaining unscoped related-products repair blocks
 ```
 
 ---
 
 ## 3. Shop deferred plans
 
-### 3.1 Shop mobile first-screen product exposure
+### 3.1 Shop mobile first-screen product exposure — moved to active
 
-Potential future step:
+Current active step:
 
 ```text
-Step 4C-MOBILE1 · Shop Mobile First Screen 商品露出优化
+Step 4C-MOBILE1 · Shop Mobile First Screen 商品露出优化：In progress
 ```
 
-Reason for deferral:
+Reason originally deferred:
 
 ```text
 Shop mobile currently does not break, but first-screen product exposure is not ideal because the V2 static visual was not mobile-optimized.
+```
+
+Current status:
+
+```text
+Moved from deferred backlog into active work after Step 4D and Step 4D-CLEAN1 passed.
 ```
 
 ---
