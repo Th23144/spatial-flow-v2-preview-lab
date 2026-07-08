@@ -1,4 +1,4 @@
-# Step 4C-REWORK1-B · Shop Rework Implementation Candidate
+# Step 4C-REWORK1-B · Shop Implementation Candidate
 
 Last updated: 2026-07-04
 Repository: `Th23144/spatial-flow-v2-preview-lab`
@@ -6,149 +6,193 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ## Status
 
 ```text
-Candidate prepared; waiting for user local test confirmation.
+In progress. Candidate prepared for local testing; not accepted yet.
 ```
 
-## Baseline files audited
+## Goal
 
 ```text
-archive-product.php
-- Size: 14,932 bytes
-- Lines: 320
-- SHA256: 2fb0c980b39f8bf7c80b5ca3adabfed29ac78a786047c9bfe57db81d4985be1b
-
-spatial-flow.css
-- Size: 791,785 bytes
-- Lines: 26,632
-- SHA256: e6ea57cab4d1cf2342929f1fd74d78c41eff10141d434010b8106d7ed395cb58
+Move Shop desktop + mobile closer to `preview/spatial-flow-shop-v1.html` without touching WooCommerce product loop, filters, sorting, pagination, wishlist, cart, checkout, payment, or order logic.
 ```
 
-## Candidate output
+## Candidate file
 
 ```text
-Candidate CSS file: spatial-flow-step4c-rework1-b.css
-- Size: 799,796 bytes
-- Lines: 26,902
-- SHA256: 7584afe14119608a72fe843d60b83fd255f08ae7f6503b2873ca945289a35416
-
-Diff file: step4c-rework1-b-spatial-flow.diff
-- Size: 60,127 bytes
-- SHA256: fe9305498da6680b8e7641d21eb36b02ae9e00b83dbede3e7f23149acca75b55
+spatial-flow-step4c-rework1-b.css
 ```
 
-## File strategy
-
-### `archive-product.php`
+This is a local candidate derived from the user-uploaded current latest:
 
 ```text
-No PHP change in this first implementation candidate.
+assets/css/spatial-flow.css
 ```
+
+## Baseline stats
+
+```text
+Original file: spatial-flow.css
+Original size: 791,785 bytes
+Original lines: 26,632
+Original SHA256: e6ea57cab4d1cf2342929f1fd74d78c41eff10141d434010b8106d7ed395cb58
+```
+
+## Candidate stats
+
+```text
+Candidate file: spatial-flow-step4c-rework1-b.css
+Candidate size: 766,431 bytes
+Candidate lines: 25,735
+Candidate SHA256: e12fb6cb282f7b53916e73760804216cdc89215abe7ad6d8a7d7a1cbc0cc7008
+```
+
+Patch file:
+
+```text
+step4c-rework1-b-css-rebase.patch
+Patch size: 116,159 bytes
+Patch SHA256: 3cc80e3266431c9c9fd55e72f62df8401f58a18c26d89ec03b3804852c1ea916
+```
+
+CSS brace sanity check:
+
+```text
+Opening braces: 3917
+Closing braces: 3917
+```
+
+## Files changed in the candidate
+
+```text
+assets/css/spatial-flow.css only
+```
+
+No PHP candidate was generated in this step.
 
 Reason:
 
 ```text
-The current archive template already exposes enough stable hooks/classes for this pass:
-- `.sf-shop-v2-hero`
-- `.sf-shop-v2-hero-meta`
-- `.sf-shop-v2-controls`
-- `.sf-shop-v2-editor-pick`
-- `.sf-shop-v2-products`
-- `.sf-shop-v2-section-head`
-- `.sf-shop-v2-closing-note`
-
-Changing PHP now would add risk before proving the controlled CSS rebase.
+The current `woocommerce/archive-product.php` already exposes the required dynamic structure and class hooks: hero, meta, filterbar, sort, optional editor pick, product section head, WooCommerce product loop, pagination, closing note, and contact band.
+The first rework candidate can therefore be CSS-only.
 ```
 
-### `assets/css/spatial-flow.css`
+## CSS cleanup / replacement performed
+
+The candidate removes these older layered Shop visual systems from `spatial-flow.css`:
 
 ```text
-Replace the old layered Shop visual block range:
-- `/* === Phase Shop Visual 1 START === */`
-through
-- `/* === Phase Shop Visual 2.1 FIX END === */`
-
-with the new controlled block:
-- `/* === Step 4C-REWORK1-B Shop Desktop + Mobile 1:1 Rebase START === */`
-through
-- `/* === Step 4C-REWORK1-B Shop Desktop + Mobile 1:1 Rebase END === */`
+- Phase Shop Visual 1
+- Phase Shop Visual 2
+- Phase Shop Visual 2.1 FIX
+- Product Archive Visual Scope Fix / re-scoped Phase Shop Visual 2 and 2.1 rules
+- Project2 Step 4C-B — Shop Hero Editorial
 ```
 
-## Candidate behavior
+It replaces them with one controlled block:
+
+```text
+Step 4C-REWORK1-B · Shop Static 1:1 Controlled Rebase
+```
+
+## Intended visual changes
 
 ### Desktop
 
 ```text
-- Re-expands Shop width to the static-reference 1440px rhythm.
-- Converts Hero into an open editorial 1.1fr / 1fr grid with border-bottom rhythm.
-- Converts boxed meta cards into open metadata row.
-- Converts controls from rounded panel into open editorial toolbar.
-- Converts Editor’s Pick from rounded card into open 5fr / 7fr editorial spread.
-- Converts product cards from rounded shadow cards into open editorial product cards.
-- Keeps product images at 4/5 aspect ratio.
-- Adds CSS-only hover quick action over product image link.
-- Aligns pagination and closing note closer to the static reference.
+- Wider 1440px reference width.
+- Open hero with 1.1fr / 1fr grid and 96px gap.
+- Open metadata row instead of boxed meta cards.
+- Open toolbar with text-like filters instead of rounded control panel.
+- Editor’s Pick becomes an open editorial section instead of a rounded feature card.
+- Product grid becomes open editorial cards instead of rounded shadow tiles.
+- Product image ratio becomes 4/5.
+- Product title uses serif typography.
+- Pagination gets more generous editorial spacing.
+- Closing note becomes a wider open two-column note.
 ```
 
 ### Mobile
 
 ```text
-- Reduces hero vertical load.
-- Keeps metadata compact.
-- Hides the secondary hero paragraph on mobile to reduce first-screen density.
-- Keeps filters usable but less tall.
-- Hides Editor’s Pick on mobile so product cards appear sooner.
-- Keeps two-column product grid on mobile for product exposure.
+- Hero is shortened.
+- Secondary body paragraph is hidden on mobile to bring products up earlier.
+- Meta and filters are reduced in height.
+- Editor’s Pick is hidden on mobile for first-screen product exposure.
+- Product grid stays two columns above very narrow width, then falls to one column under 360px.
 ```
 
-## Preserved boundaries
+## Explicitly not changed
 
 ```text
-- No WooCommerce product loop rewrite.
-- No taxonomy/filter URL logic change.
-- No sorting logic change.
-- No pagination logic change.
-- No wishlist engine rewrite.
-- No add-to-cart/cart/checkout/payment/order logic change.
-- No plugin changes.
-- No hardcoded product data.
-- No Checkout SAFE5 CSS changes.
-- No Single Product CSS changes.
+- woocommerce/archive-product.php
+- functions.php
+- content-product.php
+- checkout-safe5.css
+- WooCommerce loop
+- Taxonomy filter URLs
+- Sorting dropdown
+- Pagination logic
+- Wishlist plugin behavior
+- Add-to-cart behavior
+- Cart / Checkout / Payment / Orders
 ```
 
-## Known limitation
+## Known limitations
 
 ```text
-Product image quality and placeholder coverage still affect visual match.
-CSS can align spacing and structure, but missing/placeholder product imagery remains a content/data issue.
+- Product cards cannot fully match the static reference's editorial place-note unless `content-product.php` is later extended to output a real per-product meta field such as `_sf_placement`.
+- Missing / placeholder product images will still weaken visual fidelity. This is a content/data quality issue, not only CSS.
+- The candidate should be tested locally before being marked Passed.
 ```
 
-## Required local test
-
-After replacing local `assets/css/spatial-flow.css` with the candidate and bumping the asset version if needed, test:
+## Local test instructions
 
 ```text
-1. Desktop Shop top / Hero
-2. Desktop toolbar filters and sort
-3. Desktop Editor’s Pick
-4. Desktop product grid and first 20 products
-5. Desktop pagination
-6. Desktop closing note + contact band + footer
-7. Mobile first screen
-8. Mobile filters/details panels
-9. Mobile product grid
-10. Wishlist heart state
-11. Product card click-through
-12. Sorting dropdown
-13. Taxonomy filter links
-14. Pagination links
-15. Cart and Checkout remain unaffected
+1. Download `spatial-flow-step4c-rework1-b.css`.
+2. Rename it to `spatial-flow.css`.
+3. Replace local `wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/assets/css/spatial-flow.css`.
+4. Bump the theme asset version in `functions.php` if needed, for example 2.7.9 → 2.8.0.
+5. Hard refresh `/shop/` on desktop and mobile.
+```
+
+## Required validation
+
+```text
+Desktop:
+- Header remains normal.
+- Shop hero matches the open static reference rhythm more closely.
+- Filter dropdowns still open and links work.
+- Sorting dropdown still works.
+- Editor’s Pick still links to the selected product.
+- Product grid links work.
+- Wishlist heart still works.
+- Pagination works.
+- Closing note/contact/footer flow remains normal.
+
+Mobile:
+- Products appear earlier than before.
+- Filter controls do not break horizontal layout.
+- Filter details panels remain usable.
+- Two-column product grid remains readable.
+- Wishlist heart still works.
+- Product links work.
+- No horizontal overflow.
+
+Regression:
+- Product detail page unaffected.
+- Cart unaffected.
+- SAFE5 Checkout unaffected.
 ```
 
 ## Next status rule
 
-```text
-If the candidate passes local test, mark:
-Step 4C-REWORK1-B · Shop rework CSS candidate：Passed
+If local test passes:
 
-If visual mismatch remains, collect screenshots and revise the candidate before marking Passed.
+```text
+Step 4C-REWORK1-B · Shop CSS controlled rebase candidate：Passed
+```
+
+If local test finds visual issues:
+
+```text
+Record precise screenshot issue and continue with Step 4C-REWORK1-B-FIX1.
 ```
