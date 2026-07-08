@@ -6,25 +6,23 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ## Current phase
 
 ```text
-Step 4D · Single Product / 商品详情页 1:1 换皮主体已完成
+Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ```
 
-## Current next step
+## Current active step
 
 ```text
-User decision needed: continue to next visual page/module, or run broader Project2-CLEAN-CSS later.
+Step 4C-MOBILE1 · Shop Mobile First Screen 商品露出优化：In progress
 ```
 
 Decision:
 
 ```text
-Only The Piece has been implemented now.
-Story Behind, Care Ritual, and Reviews remain deferred plans, not current required blocks.
-The user chose controlled Single Product CSS cleanup before continuing to the next visual page/module.
-Step 4D-CLEAN1 has passed.
+Step 4D Single Product is completed and cleaned.
+The deferred Shop mobile first-screen product exposure issue has now been pulled forward as the next active module.
 ```
 
-## Passed / accepted steps in current Single Product phase
+## Passed / accepted steps in Single Product phase
 
 ```text
 Step 4D-Interrupt · Add-to-cart 成功反馈修复：Passed
@@ -57,34 +55,20 @@ Step 4D-CLEAN1 · Single Product CSS consolidation / 商品详情页 CSS 受控�
 - Passed states included flyer, seal, cart-pop, cart bump, simple product, variable product, cart, checkout, and mobile regression.
 ```
 
-### Product backend editability cleanup
+### Single Product / The Piece
 
 ```text
-- Product Story eyebrow / heading / fallback text were legacy leftovers and have been removed from the Customizer surface.
-- Product Attributes content now comes from per-product fields.
-- Product Attributes heading and card labels are Customizer-editable.
-- Trust Strip remains Customizer-editable.
-- Placement Suggestion title is Customizer-editable.
-- Placement Suggestion content is per-product editable.
+- The Piece data source is WooCommerce product long description / the_content.
+- The Piece is hidden when the product long description is empty.
+- The Piece drop cap uses an explicit PHP-inserted `.sf-product-v2-piece__dropcap` span, not CSS `::first-letter`.
+- Story Behind, Care Ritual, and Reviews remain deferred and must not be faked.
 ```
 
-### Product Attributes field mapping
+### Checkout SAFE5 note
 
 ```text
-Customizer:
-- Product Attributes eyebrow
-- Product Attributes section heading
-- Product Attributes Material card title
-- Product Attributes Suitable Space card title
-- Product Attributes Care & Maintenance card title
-- Product Attributes Gift Service card title
-
-Per product:
-- Summary · Placement Suggestion
-- Product Attributes · Material
-- Product Attributes · Suitable Space
-- Product Attributes · Care & Maintenance
-- Product Attributes · Gift Service
+- The checkout add-to-cart carried success notice fix belongs in `checkout-safe5.css`, not global `spatial-flow.css`.
+- Do not hide SAFE5 validation notices, coupon messages, payment errors, required-field errors, or other blocking checkout notices.
 ```
 
 ### CSS policy now active
@@ -103,101 +87,18 @@ See:
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
-## Current implementation summary
-
-### Step 4D-1-F · The Piece
-
-Status:
-
-```text
-Passed.
-```
-
-Purpose:
-
-```text
-Add one editorial long-description block between Product Attributes and Related Products / Complete The Room.
-```
-
-Data source:
-
-```text
-WooCommerce product long description / the_content
-```
-
-Reason:
-
-```text
-This is the most operationally realistic long editorial section. It functions as a high-quality product detail introduction without forcing the user to invent a full fictional product story for every SKU.
-```
-
-Implementation boundary:
-
-```text
-- Story Behind was not added.
-- Care Ritual was not added.
-- Quiet Notes / Reviews were not added.
-- No fake makers, fake origin stories, fake customer notes, or fake product background stories were hardcoded.
-- If the WooCommerce long description is empty, The Piece section should not render.
-```
-
-Drop-cap implementation note:
-
-```text
-The drop cap uses an explicit PHP-inserted `.sf-product-v2-piece__dropcap` span instead of CSS `::first-letter`.
-This fixed edited WooCommerce descriptions where the first visible text may be wrapped in nested inline markup such as `<strong>` or `<span>`.
-The duplicate CSS `::first-letter` selectors must not be restored.
-```
-
-## Regression summary
-
-### Step 4D-1-G · Single Product full-page regression
-
-Status:
-
-```text
-Passed.
-```
-
-Regression covered:
-
-```text
-- Desktop layout
-- Mobile layout
-- Simple product
-- Variable product
-- Gallery / thumbnails / arrows / counter
-- Quantity stepper
-- Add to Cart success feedback
-- Header Bag count
-- The Piece display when long description exists
-- The Piece hidden state when long description is empty
-- Product Attributes backend fields
-- Related Products layout
-- Cart and Checkout entry from the product page
-```
-
-Only issue found during regression:
-
-```text
-Step 4D-1-G-FIX1 · Hide checkout add-to-cart success notice：Passed
-The carried WooCommerce "has been added to your cart / View cart" success message was hidden on SAFE5 Checkout after entering Checkout from the product-page add-to-cart success mini window.
-Correct implementation location: `checkout-safe5.css`, not the global `spatial-flow.css`.
-The fix must not hide SAFE5 validation notices, coupon messages, payment errors, required-field errors, or other blocking checkout notices.
-```
-
-## Step 4D handoff / sync manifest
-
-Status:
-
-```text
-Passed.
-```
+## Step 4D references
 
 Dedicated handoff file:
 
 ```text
 project2-progress/STEP_4D_SYNC_MANIFEST.md
+```
+
+Step 4D cleanup audit:
+
+```text
+project2-progress/STEP_4D_CLEAN1_AUDIT.md
 ```
 
 Step 4D server sync file set:
@@ -209,30 +110,44 @@ functions.php
 assets/css/checkout-safe5.css
 ```
 
-## Step 4D CSS cleanup
+## Current active module
 
-### Step 4D-CLEAN1 · Single Product CSS consolidation
+### Step 4C-MOBILE1 · Shop Mobile First Screen 商品露出优化
 
 Status:
 
 ```text
-Passed.
+In progress.
 ```
 
-Audit file:
+Reason:
 
 ```text
-project2-progress/STEP_4D_CLEAN1_AUDIT.md
+Shop mobile currently does not break, but the first screen exposes mostly Hero / editorial copy / meta controls instead of products. This was deferred earlier because the V2 static visual was desktop-editorial-heavy and not fully mobile-conversion-optimized.
 ```
 
-Accepted cleanup summary:
+Scope:
 
 ```text
-- Removed legacy `.sf-product-story-*` CSS.
-- Kept one `.sf-product-spatial-grid--summary` hiding guard.
-- Moved Step 4D-1-A / Step 4D-1-B desktop override blocks into the Single Product Visual 1 area instead of leaving them at the very end of the CSS file.
-- Kept The Piece drop cap on `.sf-product-v2-piece__dropcap`; did not restore `::first-letter`.
-- Did not touch SAFE5 Checkout CSS.
+- Mobile Shop first screen only.
+- Improve first-screen product exposure and reduce excessive hero/filter density on mobile.
+- Preserve WooCommerce product loop, filters, sorting, pagination, product links, product cards, wishlist, add-to-cart behavior, cart, checkout, payment, and orders.
+- No plugin changes.
+- No hardcoded product data.
 ```
 
-Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
+Likely files:
+
+```text
+woocommerce/archive-product.php
+assets/css/spatial-flow.css
+functions.php only if Customizer field/version bump is needed
+```
+
+First action:
+
+```text
+Audit current Shop mobile layout and current local files before editing.
+```
+
+Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
