@@ -142,14 +142,14 @@ Candidate file strategy:
 ```text
 - No PHP change in this first candidate.
 - `archive-product.php` already exposes enough stable hooks/classes for the first pass.
-- Replace the old Shop CSS range from `Phase Shop Visual 1 START` through `Phase Shop Visual 2.1 FIX END` with one controlled `Step 4C-REWORK1-B` block.
+- Replace old layered Shop CSS blocks with one controlled `Step 4C-REWORK1-B` block instead of appending another tiny patch.
 ```
 
 Candidate output:
 
 ```text
 spatial-flow-step4c-rework1-b.css
-step4c-rework1-b-spatial-flow.diff
+step4c-rework1-b-css-rebase.patch
 ```
 
 Scope:
