@@ -12,14 +12,15 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ## Current active step
 
 ```text
-Step 4C-MOBILE1 · Shop Mobile First Screen 商品露出优化：In progress
+Step 4C-REWORK1 · Shop desktop + mobile 1:1 rework audit：In progress
 ```
 
 Decision:
 
 ```text
 Step 4D Single Product is completed and cleaned.
-The deferred Shop mobile first-screen product exposure issue has now been pulled forward as the next active module.
+The user corrected the Shop status: Shop desktop is also far from 1:1 and earlier documentation should not be treated as final visual acceptance.
+The previous mobile-only step is superseded by a full Shop desktop + mobile rework audit.
 ```
 
 ## Passed / accepted steps in Single Product phase
@@ -52,7 +53,6 @@ Step 4D-CLEAN1 · Single Product CSS consolidation / 商品详情页 CSS 受控�
 - The add-to-cart success feedback is visual only.
 - WooCommerce remains responsible for add-to-cart behavior.
 - Do not intercept, replace, or manually reimplement WooCommerce cart logic.
-- Passed states included flyer, seal, cart-pop, cart bump, simple product, variable product, cart, checkout, and mobile regression.
 ```
 
 ### Single Product / The Piece
@@ -112,7 +112,7 @@ assets/css/checkout-safe5.css
 
 ## Current active module
 
-### Step 4C-MOBILE1 · Shop Mobile First Screen 商品露出优化
+### Step 4C-REWORK1 · Shop desktop + mobile 1:1 rework audit
 
 Status:
 
@@ -120,18 +120,34 @@ Status:
 In progress.
 ```
 
-Reason:
+Audit file:
 
 ```text
-Shop mobile currently does not break, but the first screen exposes mostly Hero / editorial copy / meta controls instead of products. This was deferred earlier because the V2 static visual was desktop-editorial-heavy and not fully mobile-conversion-optimized.
+project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+```
+
+Correction:
+
+```text
+Earlier Shop records are now treated as partial structure / layout passes, not final 1:1 visual acceptance.
+The Shop page needs a full desktop + mobile re-audit and controlled rework.
+```
+
+Current findings:
+
+```text
+- Current `archive-product.php` uses a functional V2 Shop archive shell: hero, meta, controls, optional editor pick, products, closing note, and contact band.
+- Current `spatial-flow.css` still contains layered Shop visual passes: Phase Shop Visual 1, Phase Shop Visual 2, and Phase Shop Visual 2.1 FIX.
+- Mobile screenshot shows the first screen consumed by header, breadcrumb, hero/meta/copy, and filters before product cards appear.
+- User states desktop Shop is also far from 1:1.
 ```
 
 Scope:
 
 ```text
-- Mobile Shop first screen only.
-- Improve first-screen product exposure and reduce excessive hero/filter density on mobile.
-- Preserve WooCommerce product loop, filters, sorting, pagination, product links, product cards, wishlist, add-to-cart behavior, cart, checkout, payment, and orders.
+- Re-audit Shop desktop against the static reference.
+- Re-audit Shop mobile against product exposure and static-reference constraints.
+- Preserve WooCommerce product loop, filters, sorting, pagination, product links, wishlist, add-to-cart behavior, cart, checkout, payment, and orders.
 - No plugin changes.
 - No hardcoded product data.
 ```
@@ -144,10 +160,11 @@ assets/css/spatial-flow.css
 functions.php only if Customizer field/version bump is needed
 ```
 
-First action:
+Next required input:
 
 ```text
-Audit current Shop mobile layout and current local files before editing.
+Need current desktop Shop screenshot(s), especially top/hero area and product grid area, before giving replacement instructions.
+Also need to confirm the static Shop reference target, likely `preview/spatial-flow-shop-v1.html`.
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
