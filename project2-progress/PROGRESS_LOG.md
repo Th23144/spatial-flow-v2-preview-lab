@@ -9,10 +9,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 Step 4D · Single Product / 商品详情页 1:1 换皮主体已完成
 ```
 
-## Current next step
+## Current active step
 
 ```text
-User decision needed: continue to next visual page/module, or run controlled CSS cleanup.
+Step 4D-CLEAN1 · Single Product CSS consolidation / 商品详情页 CSS 受控清理：In progress
 ```
 
 Decision:
@@ -20,6 +20,7 @@ Decision:
 ```text
 Only The Piece has been implemented now.
 Story Behind, Care Ritual, and Reviews remain deferred plans, not current required blocks.
+The user chose controlled CSS cleanup before continuing to the next visual page/module.
 ```
 
 ## Passed / accepted steps in current Single Product phase
@@ -204,6 +205,31 @@ woocommerce/single-product.php
 assets/css/spatial-flow.css
 functions.php
 assets/css/checkout-safe5.css
+```
+
+## Current cleanup step
+
+### Step 4D-CLEAN1 · Single Product CSS consolidation
+
+Status:
+
+```text
+In progress.
+```
+
+Scope:
+
+```text
+- Inspect current latest `assets/css/spatial-flow.css`.
+- Only clean / consolidate Single Product related CSS blocks.
+- Do not clean SAFE5 Checkout CSS in this step.
+- Do not change `single-product.php`, `functions.php`, cart logic, checkout logic, payment logic, or WooCommerce order logic.
+```
+
+Required input before editing:
+
+```text
+User should upload the current latest local `assets/css/spatial-flow.css` after all Step 4D fixes.
 ```
 
 Deferred long sections are documented in `project2-progress/DEFERRED_PLANS.md`.
