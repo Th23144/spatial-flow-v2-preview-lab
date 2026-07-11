@@ -11,38 +11,48 @@ This file maps the current Project 2 documentation and identifies the authoritat
 1. PROJECT2_RESUME_INDEX.md
 2. PROJECT2_DOCS_INDEX.md
 3. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
-4. project2-progress/PROGRESS_LOG.md
-5. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-6. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
-7. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-8. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-9. project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md
-10. project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
-11. project2-progress/STEP_4D_SYNC_MANIFEST.md
-12. project2-progress/STEP_4D_CLEAN1_AUDIT.md
-13. project2-progress/DEFERRED_PLANS.md
-14. PROJECT2_CSS_MAINTENANCE_POLICY.md
-15. PROJECT2_LOCAL_SYNC_MANIFEST.md
-16. PROJECT2_NEXT_WINDOW_PROMPT.md
-17. PROJECT2_CURRENT_STATE.md
+4. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
+5. project2-progress/PROGRESS_LOG.md
+6. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+7. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+8. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+9. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+10. project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md
+11. project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
+12. project2-progress/STEP_4D_SYNC_MANIFEST.md
+13. project2-progress/STEP_4D_CLEAN1_AUDIT.md
+14. project2-progress/DEFERRED_PLANS.md
+15. PROJECT2_CSS_MAINTENANCE_POLICY.md
+16. PROJECT2_LOCAL_SYNC_MANIFEST.md
+17. PROJECT2_NEXT_WINDOW_PROMPT.md
+18. PROJECT2_CURRENT_STATE.md
 ```
+
+Important current override:
+
+```text
+project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
+```
+
+This file supersedes any earlier instruction to apply the generated Step 4E-B ZIP or overwrite the complete `functions.php` / `spatial-flow.css` files.
 
 ## 2. Current authoritative status files
 
 | File | Role | Status |
 |---|---|---|
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Authoritative page-by-page status map using only `Completed 1:1` or `Not done`. | Current. |
-| `project2-progress/PROGRESS_LOG.md` | Live active-step log. | Current. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current Cart implementation protocol: manual, staged, exact-range replacements only. | Current / authoritative execution override. |
+| `project2-progress/PROGRESS_LOG.md` | Historical/live step log. Any line telling the user to apply the withdrawn whole-file candidate is superseded by the manual protocol. | Current with Step 4E-B delivery correction. |
 | `project2-progress/STEP_4E_CART_REWORK_AUDIT.md` | Cart static/current-state audit, screenshots, CSS/JS baseline, and mismatch matrix. | Current / audit baseline. |
 | `project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md` | Cart functions.php ownership, hooks, backend-editability, hardcoded-data findings, and controlled implementation plan. | Current / Step 4E-A3 passed. |
-| `project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md` | Cart PHP/CSS controlled rebase candidate, exact file hashes, static validation, replacement boundary, and Step 4E-B3 checklist. | Current / candidate generated; local validation pending. |
+| `project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md` | Record of the withdrawn full-file candidate, its metrics, why it must not be applied, and the corrected staged path. | Historical candidate / Do not apply. |
 | `project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md` | Shop full desktop/mobile rework record. | Completed. |
 | `project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md` | Shop controlled CSS insertion and browser validation record. | Completed after pagination follow-up. |
 | `project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md` | Shop pagination regression root cause and fix. | Completed. |
 | `project2-progress/STEP_4D_SYNC_MANIFEST.md` | Single Product handoff and server-sync file set. | Current. |
 | `project2-progress/STEP_4D_CLEAN1_AUDIT.md` | Accepted Single Product CSS cleanup. | Current. |
 | `project2-progress/DEFERRED_PLANS.md` | Deferred modules, cleanup, and backlog. | Current. |
-| `PROJECT2_CSS_MAINTENANCE_POLICY.md` | Precise-replacement / non-append-only CSS policy. | Current and active. |
+| `PROJECT2_CSS_MAINTENANCE_POLICY.md` | Precise-replacement, non-append-only, and no-blind-whole-file-replacement policy. | Current and active. |
 
 ## 3. Page-status rule
 
@@ -111,11 +121,23 @@ Historical work on any of these pages may still be useful as implementation back
 
 ```text
 Step 4E-A · Cart desktop + mobile 1:1 current-state audit：Complete
-Step 4E-B1/B2 · Controlled Cart PHP/CSS rebase candidate：Generated / static validation passed
-Step 4E-B3 · Local browser + functional validation：Next
+Whole-file Step 4E-B candidate：Withdrawn / Do not apply
+Step 4E-B0 · Manual exact-range execution map：Next
 ```
 
-The Cart audit is complete, but Cart remains officially:
+Current implementation mode:
+
+```text
+- no ZIP/full-file replacement
+- no blind overwrite of functions.php or spatial-flow.css
+- small named substeps
+- exact anchors and replacement ranges
+- expected size/line delta before editing
+- revalidation after every manual operation
+- independent rollback for every substep
+```
+
+The Cart remains officially:
 
 ```text
 Not done
@@ -138,7 +160,7 @@ Rules:
 ```text
 - Do not delete them.
 - Do not use their old “completed”, “passed”, or next-step lines as authoritative page status.
-- Check `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` and `project2-progress/PROGRESS_LOG.md` first.
+- Check `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` and the current Cart manual execution protocol first.
 - Current uploaded local files remain the only code baseline.
 ```
 
@@ -151,4 +173,5 @@ Rules:
 - Update PROJECT2_DOCS_INDEX.md when a major status file is added or superseded.
 - Preserve backend editability and dynamic WordPress/WooCommerce sources on every page.
 - Prefer precise range replacement over whole-file replacement or append-only CSS.
+- Never make a large downloadable replacement package the default implementation method unless the user explicitly approves it.
 ```
