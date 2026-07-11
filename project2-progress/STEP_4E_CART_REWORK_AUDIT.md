@@ -9,6 +9,7 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 Step 4E-A · In progress.
 Step 4E-A1 · Static reference decomposition：Passed.
 Step 4E-A2 · Current screenshots + CSS/JS baseline audit：Passed.
+Step 4E-A2.1 · Main Cart template ownership confirmation：Passed.
 Step 4E-A3 · PHP source ownership / hook audit：Pending current functions.php.
 Real Cart implementation changes：None.
 ```
@@ -191,6 +192,7 @@ Status:
 
 ```text
 Current screenshots + CSS/JS baseline audit：Passed.
+Main Cart template ownership confirmation：Passed.
 PHP source ownership / backend-editability audit：Pending.
 ```
 
@@ -203,7 +205,7 @@ PHP source ownership / backend-editability audit：Pending.
 4. Mobile Cart full-page screenshot.
 5. Current local assets/css/spatial-flow.css.
 6. Current local assets/js/spatial-flow.js.
-7. No Cart-specific PHP/template file supplied because the user is not aware of a Cart override.
+7. User confirmed the child theme has no main Cart template override files.
 ```
 
 ### 2. Current local file baseline
@@ -231,16 +233,17 @@ JavaScript syntax check: Passed
 
 ### 3. Cart template-override determination
 
-Current evidence strongly indicates:
+Final determination:
 
 ```text
-The real Cart page is using native WooCommerce Cart markup plus theme CSS and PHP hook output.
-There is currently no evidence of a child-theme Cart template override.
+The real Cart page uses native WooCommerce Cart markup plus child-theme CSS and PHP hook/filter output.
+The child theme does not override the main WooCommerce Cart templates.
 ```
 
 Grounding:
 
 ```text
+- The user checked the local child-theme filesystem and confirmed that no main Cart override files exist.
 - The CSS contains the explicit historical comment:
   “WooCommerce cart / checkout structural polish without adding template overrides”.
 - Cart selectors target native WooCommerce markup such as:
@@ -255,31 +258,16 @@ Grounding:
 - Repository search found no tracked `woocommerce/cart/cart.php`, `cart-totals.php`, or `cross-sells.php` implementation file.
 ```
 
-Important limitation:
+Confirmed handling rule:
 
 ```text
-Absence cannot be proven from CSS/JS/screenshots alone.
-A definitive filesystem check is still:
-wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/woocommerce/cart/
+- Do not request or create a Cart template override as the default implementation path.
+- Preserve native WooCommerce Cart templates.
+- Implement the visual replacement through controlled CSS plus existing hooks/filters where markup additions are genuinely required.
+- A new template override would require a separate, explicit necessity finding and user approval.
 ```
 
-Main Cart override files, if present, would normally include:
-
-```text
-cart.php
-cart-totals.php
-cross-sells.php
-proceed-to-checkout-button.php
-shipping-calculator.php
-```
-
-`mini-cart.php` affects the mini-cart/header surface and is not evidence that the main Cart page itself is overridden.
-
-Current action:
-
-```text
-Do not require a Cart template PHP upload at this stage unless the local `woocommerce/cart/` folder actually exists.
-```
+`mini-cart.php`, if present elsewhere, affects the mini-cart/header surface and is not evidence that the main Cart page is overridden.
 
 ### 4. PHP source ownership that still must be audited
 
@@ -391,11 +379,11 @@ Horizontal overflow          None observed                                      
 Footer                       Accepted accordion Footer renders normally          Preserve
 ```
 
-### 8. Functional observations requiring follow-up
+### 8. Functional observations
 
 #### Header Bag count
 
-The screenshots show:
+Initial screenshot state:
 
 ```text
 Header: BAG (4)
@@ -404,16 +392,20 @@ Visible quantities: 1 + 1 + 1
 Subtotal: $96.00 = $48.00 + $36.00 + $12.00
 ```
 
-This is a likely Cart-count synchronization mismatch, but it is not yet confirmed as a persistent bug.
-
-Required verification:
+User verification result:
 
 ```text
-1. Hard refresh the Cart page.
-2. Confirm whether BAG remains 4 or changes to 3.
-3. Change one quantity and update Cart.
-4. Remove one item.
-5. Confirm Header Bag count, visible rows, quantity total, and Cart subtotal remain synchronized.
+After refresh, Header Bag count changed to BAG (3).
+Header count now matches the three visible Cart items.
+The original BAG (4) state was transient/stale and is not currently a confirmed persistent Cart bug.
+```
+
+Handling:
+
+```text
+- Do not treat Header Bag count as an implementation blocker at this stage.
+- Keep count synchronization in the later Cart functional regression checklist.
+- Re-test after quantity updates, item removal, coupon actions, and the final Cart visual rebase.
 ```
 
 #### Cart notice state
@@ -454,6 +446,6 @@ Visual replacement must not convert an existing editable/dynamic source into har
    - Cart heading/count
 3. Determine which content is backend-editable and which is hardcoded.
 4. Follow any included template-part path only when it actually exists.
-5. Verify the Header Bag-count ownership.
-6. Produce the final controlled replacement plan before any implementation change.
+5. Produce the final controlled replacement plan before any implementation change.
+6. Keep Header Bag-count synchronization in the later regression checklist; the transient BAG (4) state is resolved for now.
 ```
