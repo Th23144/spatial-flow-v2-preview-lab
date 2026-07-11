@@ -12,17 +12,15 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ## Current active step
 
 ```text
-Step 4C-REWORK1 · Shop desktop + mobile controlled 1:1 rework：Passed
-Next step: Pending user instruction
+Step 4C-REWORK1-B3-FIX1 · Shop pagination horizontal layout：In progress
 ```
 
 Decision:
 
 ```text
 Step 4D Single Product is completed and cleaned.
-The user corrected the old Shop status and required a true desktop + mobile rework instead of treating earlier lightweight layout work as final acceptance.
-The old layered Shop CSS was removed and replaced through a manual, controlled CSS-range workflow.
-The final CSS structure, desktop screenshots, mobile screenshots, and functional regression checks all passed.
+The Shop desktop + mobile rework main structure is accepted, but the overall Shop rework was reopened after the user identified a desktop pagination layout bug.
+The previous state `Next step: Pending user instruction` was incorrect. The assistant should continue the documented Project 2 sequence and only ask the user to choose at genuine visual/product decision points.
 ```
 
 ## Passed / accepted steps in Single Product phase
@@ -89,7 +87,7 @@ See:
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
-## Shop rework result
+## Shop rework status
 
 ### Step 4C-REWORK1-B1 · Delete old Shop CSS ranges
 
@@ -121,10 +119,10 @@ Project2 Step 4C-B — Shop Hero Editorial: 0
 ### Step 4C-REWORK1-B2 · Insert controlled Shop CSS block
 
 ```text
-Passed
+File-level validation: Passed
 ```
 
-Validated final CSS:
+Validated CSS:
 
 ```text
 File: assets/css/spatial-flow.css
@@ -151,45 +149,50 @@ Version confirmed by user:
 SPATIAL_FLOW_CHILD_VERSION = 2.7.6
 ```
 
-### Step 4C-REWORK1-B3 · Desktop/mobile browser and regression validation
+### Step 4C-REWORK1-B3 · Desktop/mobile browser validation
 
 ```text
-Passed
+Main structure: Passed
+Pagination layout: Failed / reopened
 ```
 
-Screenshot evidence supplied by user:
+Accepted main visual result:
 
 ```text
-1. Desktop Shop top area
-2. Desktop Shop full page
-3. Mobile Shop first screen
-4. Mobile Shop full page
-```
-
-Accepted result:
-
-```text
-- Desktop Hero, metadata, toolbar, Editor’s Pick, product grid, pagination, closing note, contact band, and footer render normally.
+- Desktop Hero, metadata, toolbar, Editor’s Pick, product grid, closing note, contact band, and footer render normally.
 - Mobile density is reduced and products appear earlier.
 - Mobile two-column product grid remains readable.
 - No horizontal overflow.
-- Filters, sorting, Editor’s Pick link, product links, wishlist, and pagination work.
+- Filters, sorting, Editor’s Pick link, product links, wishlist, and pagination links work.
 - Single Product, Cart, and SAFE5 Checkout regression checks show no issue.
 ```
 
-Validation record:
+Open bug:
 
 ```text
-project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md
+Desktop pagination page numbers render vertically in a tall left-aligned column instead of as one centered horizontal row.
+```
+
+Root cause:
+
+```text
+The selector `nav.woocommerce-pagination .page-numbers` matches both the parent `<ul class="page-numbers">` and child `<a>/<span>` controls.
+The parent list therefore receives item-only 44px sizing and inline-flex styling.
+```
+
+Fix record:
+
+```text
+project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
 ```
 
 ## Backend editability result
 
 ```text
-Passed.
+Passed and unchanged by the pagination fix.
 ```
 
-The Shop rework remains visual-only and preserves backend-editable content sources:
+The Shop rework preserves backend-editable content sources:
 
 ```text
 sf_shop_v2_kicker
@@ -212,8 +215,14 @@ sf_shop_v2_editor_pick_note_text
 sf_shop_v2_editor_pick_note_url
 ```
 
-No product names, prices, product IDs, Hero copy, Editor’s Pick copy, business links, image URLs, or taxonomy values were hardcoded into the new CSS.
+No product names, prices, product IDs, Hero copy, Editor’s Pick copy, business links, image URLs, or taxonomy values are hardcoded into the new CSS.
 
 The static reference's editorial per-product place note remains intentionally unimplemented rather than fabricated. If added later, it must use a real backend-editable per-product field rendered dynamically by `content-product.php`.
+
+## Next action
+
+```text
+Apply the narrow pagination selector correction, bump the asset version, and recheck desktop + mobile pagination. After it passes, continue automatically to the next documented Project 2 step rather than waiting for a generic user instruction.
+```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
