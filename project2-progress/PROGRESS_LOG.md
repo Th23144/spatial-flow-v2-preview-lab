@@ -1,6 +1,6 @@
 # Project 2 · Progress Log
 
-Last updated: 2026-07-10
+Last updated: 2026-07-11
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Current phase
@@ -12,11 +12,12 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ## Current active step
 
 ```text
-Step 4E-A · Cart desktop + mobile 1:1 current-state audit：In progress
+Step 4E-A · Cart desktop + mobile 1:1 current-state audit：Complete
 Step 4E-A1 · Cart static reference decomposition：Passed
 Step 4E-A2 · Current screenshots + CSS/JS baseline audit：Passed
 Step 4E-A2.1 · Main Cart template ownership confirmation：Passed
-Step 4E-A3 · PHP source ownership / hook audit：Pending current functions.php
+Step 4E-A3 · PHP source ownership / hook audit：Passed
+Next：Step 4E-B · Controlled Cart PHP/CSS rebase
 ```
 
 Decision:
@@ -222,10 +223,11 @@ The static reference's editorial per-product place note remains intentionally un
 
 ## Current Cart audit
 
-Audit file:
+Audit files:
 
 ```text
 project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
 ```
 
 Static reference:
@@ -311,6 +313,44 @@ Confirmed result:
 - Preserve native WooCommerce Cart templates.
 ```
 
+### Step 4E-A3 · PHP source ownership / hook audit
+
+```text
+Passed.
+```
+
+Reviewed baseline:
+
+```text
+functions.php
+SPATIAL_FLOW_CHILD_VERSION: 2.7.7
+Size: 547,386 bytes
+Lines: 10,162
+SHA256: 4a0e6d7ee048398afb782c576626543f0ee67d44f37523ec3db9bd75c7ce12b2
+PHP syntax check: Passed
+```
+
+Confirmed result:
+
+```text
+- All visible non-native Cart blocks are generated directly by functions.php hooks.
+- No Cart-specific include/template part is called.
+- Intro, service cards, trust cards, recommendation copy, URLs, enable flags, icons, and fallback product selectors are registered in the Spatial Flow Cart Page Customizer section.
+- Product subtitle/context is editable per product through _sf_cart_item_meta, with real category/variation/attribute fallback.
+- The product-name filter is shared with SAFE5 Checkout and must not be broadly rewritten during Cart work.
+- Recommendations use real WooCommerce products: cross-sells, same-category products, backend-selected fallbacks, then latest products.
+- Dead legacy manual sample-product defaults remain in PHP but are not rendered; they are scheduled for controlled cleanup.
+- The current recommendation renderer has generic label/description fallbacks that should be omitted when no real product-authored source exists.
+- Current Cart recommendation output is 3 products; the static desktop target is 4.
+- No Cart-specific JavaScript implementation is required at this stage.
+```
+
+Detailed record:
+
+```text
+project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+```
+
 ### Functional follow-up correction
 
 ```text
@@ -326,14 +366,21 @@ Confirmed result:
 ```text
 - The stylesheet contains a large layered historical Cart patch stack.
 - Do not append another Cart polish block.
-- After the PHP source audit, use a controlled Cart CSS rebase/consolidation.
+- Use a controlled Cart CSS rebase/consolidation.
 - Keep dynamic notice support intact.
 ```
 
 ### Current next action
 
 ```text
-Step 4E-A3 · Read the current local functions.php and audit all Cart hooks, output sources, hardcoded content, backend-editable sources, and any included template parts before producing the controlled replacement plan.
+Step 4E-B · Controlled Cart PHP/CSS rebase.
+
+Expected files:
+- functions.php
+- assets/css/spatial-flow.css
+
+Do not add a WooCommerce Cart template override.
+Do not change Cart operations, SAFE5 Checkout, payment, order, or email logic.
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
