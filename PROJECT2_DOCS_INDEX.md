@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-10
+Last updated: 2026-07-11
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 This file maps the current Project 2 documentation and identifies the authoritative sources for page-level status, active work, handoff, cleanup, and deferred plans.
@@ -13,16 +13,17 @@ This file maps the current Project 2 documentation and identifies the authoritat
 3. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 4. project2-progress/PROGRESS_LOG.md
 5. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-6. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-7. project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md
-8. project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
-9. project2-progress/STEP_4D_SYNC_MANIFEST.md
-10. project2-progress/STEP_4D_CLEAN1_AUDIT.md
-11. project2-progress/DEFERRED_PLANS.md
-12. PROJECT2_CSS_MAINTENANCE_POLICY.md
-13. PROJECT2_LOCAL_SYNC_MANIFEST.md
-14. PROJECT2_NEXT_WINDOW_PROMPT.md
-15. PROJECT2_CURRENT_STATE.md
+6. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+7. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+8. project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md
+9. project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
+10. project2-progress/STEP_4D_SYNC_MANIFEST.md
+11. project2-progress/STEP_4D_CLEAN1_AUDIT.md
+12. project2-progress/DEFERRED_PLANS.md
+13. PROJECT2_CSS_MAINTENANCE_POLICY.md
+14. PROJECT2_LOCAL_SYNC_MANIFEST.md
+15. PROJECT2_NEXT_WINDOW_PROMPT.md
+16. PROJECT2_CURRENT_STATE.md
 ```
 
 ## 2. Current authoritative status files
@@ -31,7 +32,8 @@ This file maps the current Project 2 documentation and identifies the authoritat
 |---|---|---|
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Authoritative page-by-page status map using only `Completed 1:1` or `Not done`. | Current. |
 | `project2-progress/PROGRESS_LOG.md` | Live active-step log. | Current. |
-| `project2-progress/STEP_4E_CART_REWORK_AUDIT.md` | Current Cart audit scope and required inputs. | Current / active. |
+| `project2-progress/STEP_4E_CART_REWORK_AUDIT.md` | Cart static/current-state audit, screenshots, CSS/JS baseline, and mismatch matrix. | Current / audit baseline. |
+| `project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md` | Cart functions.php ownership, hooks, backend-editability, hardcoded-data findings, and controlled implementation plan. | Current / Step 4E-A3 passed. |
 | `project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md` | Shop full desktop/mobile rework record. | Completed. |
 | `project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md` | Shop controlled CSS insertion and browser validation record. | Completed after pagination follow-up. |
 | `project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md` | Shop pagination regression root cause and fix. | Completed. |
@@ -106,16 +108,17 @@ Historical work on any of these pages may still be useful as implementation back
 ## 5. Current active step
 
 ```text
-Step 4E-A · Cart desktop + mobile 1:1 current-state audit：In progress
+Step 4E-A · Cart desktop + mobile 1:1 current-state audit：Complete
+Step 4E-B · Controlled Cart PHP/CSS rebase：Next
 ```
 
-This is an audit step only. Cart remains officially:
+The Cart audit is complete, but Cart remains officially:
 
 ```text
 Not done
 ```
 
-until its controlled implementation and full acceptance are completed.
+until its controlled implementation and full desktop/mobile, functional, and backend-editability acceptance are completed.
 
 ## 6. Historical root documents
 
