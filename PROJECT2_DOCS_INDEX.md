@@ -29,7 +29,7 @@ This file maps the current Project 2 documentation and identifies the authoritat
 
 | File | Role | Status |
 |---|---|---|
-| `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Authoritative page-by-page status map. Separates current-pass 1:1 completion from historical implementation and static-reference-only pages. | Current. |
+| `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Authoritative page-by-page status map using only `Completed 1:1` or `Not done`. | Current. |
 | `project2-progress/PROGRESS_LOG.md` | Live active-step log. | Current. |
 | `project2-progress/STEP_4E_CART_REWORK_AUDIT.md` | Current Cart audit scope and required inputs. | Current / active. |
 | `project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md` | Shop full desktop/mobile rework record. | Completed. |
@@ -40,36 +40,36 @@ This file maps the current Project 2 documentation and identifies the authoritat
 | `project2-progress/DEFERRED_PLANS.md` | Deferred modules, cleanup, and backlog. | Current. |
 | `PROJECT2_CSS_MAINTENANCE_POLICY.md` | Precise-replacement / non-append-only CSS policy. | Current and active. |
 
-## 3. Important status correction
+## 3. Page-status rule
 
-Older documentation sometimes used “completed” to mean one of several different things:
-
-```text
-- static visual reference completed
-- historical WordPress implementation completed
-- functional regression passed
-- current-pass exact 1:1 rework passed
-```
-
-These are not equivalent.
-
-The authoritative page matrix now uses:
+Only two page statuses are valid:
 
 ```text
-A. Current-pass 1:1 Passed
-B. Historical implementation completed / current-pass revalidation still needed
-C. Static reference only / implementation not active or not confirmed
+Completed 1:1
+Not done
 ```
 
-See:
+A page is `Completed 1:1` only after the real WordPress/WooCommerce implementation has completed:
 
 ```text
-project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
+- current-file exact replacement against the V2 reference
+- desktop browser validation
+- mobile browser validation
+- functional regression
+- backend-editability validation
 ```
+
+Anything less is:
+
+```text
+Not done
+```
+
+Historical implementation, functional fixes, accepted static HTML, or partial redesign must not be represented as page completion.
 
 ## 4. Current page-level summary
 
-### Current-pass 1:1 Passed
+### Completed 1:1
 
 ```text
 - Main-site Header
@@ -78,30 +78,30 @@ project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 - Single Product, including backend mapping, The Piece, full regression, and CSS cleanup
 ```
 
-### Historically completed or functional, but current-pass revalidation still needed
+### Not done
 
 ```text
+- Blog Header/Footer branch
 - Home
 - Cart
-- SAFE5 Checkout
+- Checkout
 - Thank You
 - Wishlist
 - Track Order
+- Account
 - Search
+- 404
 - About Us
 - Services
 - FAQ / Help
-- Contact/forms
-- Utility/policy pages
-- Blog home / issue / article live integration
+- Contact
+- Utility / policy pages
+- Blog home
+- Blog issue
+- Blog article
 ```
 
-### Static reference only / intentionally inactive / not confirmed
-
-```text
-- Account: intentionally inactive because the current model uses guest checkout and no full registration/login rollout
-- 404: static reference exists; real-page current-pass status not confirmed
-```
+Historical work on any of these pages may still be useful as implementation background, but their official page status remains `Not done` until full current 1:1 acceptance passes.
 
 ## 5. Current active step
 
@@ -109,7 +109,13 @@ project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 Step 4E-A · Cart desktop + mobile 1:1 current-state audit：In progress
 ```
 
-This is an audit step only. It does not mean Cart production files have already been changed in the current pass.
+This is an audit step only. Cart remains officially:
+
+```text
+Not done
+```
+
+until its controlled implementation and full acceptance are completed.
 
 ## 6. Historical root documents
 
@@ -125,7 +131,8 @@ Rules:
 
 ```text
 - Do not delete them.
-- Do not use their old “next step” or old Shop status without checking the page matrix and progress log.
+- Do not use their old “completed”, “passed”, or next-step lines as authoritative page status.
+- Check `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` and `project2-progress/PROGRESS_LOG.md` first.
 - Current uploaded local files remain the only code baseline.
 ```
 
@@ -133,7 +140,7 @@ Rules:
 
 ```text
 - Update project2-progress/PROGRESS_LOG.md after every accepted or reopened step.
-- Update project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md whenever a page changes status category.
+- Update project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md only when a page changes between `Not done` and `Completed 1:1`.
 - Update project2-progress/DEFERRED_PLANS.md when work is deferred or pulled into active scope.
 - Update PROJECT2_DOCS_INDEX.md when a major status file is added or superseded.
 - Preserve backend editability and dynamic WordPress/WooCommerce sources on every page.
