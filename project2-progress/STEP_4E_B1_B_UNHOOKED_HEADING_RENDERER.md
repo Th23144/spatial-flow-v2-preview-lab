@@ -7,10 +7,11 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 Step 4E-B1-A：Passed.
-Step 4E-B1-B instructions：Issued.
-User manual edit：Pending.
-Frontend output change expected：None.
-Next after validation：Step 4E-B1-C · Hook switch.
+Step 4E-B1-B manual edit：Reported complete.
+Cart frontend unchanged：Passed by user check.
+SAFE5 Checkout unchanged：Passed by user check.
+Uploaded file validation：Pending.
+Next after file validation：Step 4E-B1-C · Hook switch.
 Cart page status：Not done.
 ```
 
@@ -134,13 +135,14 @@ An editor may change byte size/hash by changing line endings. In that case, uplo
 - It is not attached to any hook in B1-B, so it cannot change the frontend yet.
 ```
 
-## 6. What should visibly change
+## 6. Browser validation received
 
 ```text
-Nothing.
+Cart frontend unchanged：Passed.
+SAFE5 Checkout unchanged：Passed.
 ```
 
-The old intro remains hooked at priority 6. The new function exists only as dormant code.
+This matches the expected dormant-renderer behavior.
 
 ## 7. Rollback
 
@@ -158,14 +160,15 @@ and:
 
 Do not change the existing intro hook.
 
-## 8. Required validation before B1-C
+## 8. Required file validation before B1-C
 
 ```text
-1. Save functions.php only.
-2. Keep version 2.7.8.
-3. Confirm Cart frontend is unchanged.
-4. Confirm SAFE5 Checkout is unchanged.
-5. Upload the edited functions.php for exact syntax/content validation.
+1. Upload the edited functions.php.
+2. Verify version remains 2.7.8.
+3. Verify exact START/END block content.
+4. Verify no new add_action() was introduced for spatial_flow_cart_v2_heading().
+5. Verify PHP syntax and brace balance.
+6. Verify file size/line count/hash or content-equivalent result.
 ```
 
-After validation, proceed directly to B1-C without another decision pause.
+After file validation, proceed directly to B1-C without another decision pause.
