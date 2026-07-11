@@ -19,7 +19,8 @@ Step 4E-A2.1 · Main Cart template ownership confirmation：Passed
 Step 4E-A3 · PHP source ownership / hook audit：Passed
 Whole-file Step 4E-B candidate：Withdrawn / Do not apply
 Step 4E-B0 · Manual exact-range execution map：Complete
-Current：Step 4E-B1-A · PHP settings only
+Step 4E-B1-A · PHP settings-only manual instructions：Issued
+Current：Awaiting user manual edit + functions.php validation
 ```
 
 Decision:
@@ -372,52 +373,43 @@ project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
 - Keep dynamic notice support intact.
 ```
 
-### Whole-file candidate withdrawal
-
-```text
-- The generated ZIP and complete replacement files were not used.
-- The complete-file delivery method is withdrawn and prohibited for this Cart implementation.
-- Current local files remain unchanged at the audited 2.7.7 / CSS / JS baselines.
-- The withdrawn candidate remains only as a historical comparison artifact.
-```
-
-Authoritative correction:
-
-```text
-project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-```
-
 ### Step 4E-B0 · Manual exact-range execution map
 
 ```text
 Complete.
-Code changes：None.
 ```
 
-Detailed record:
+Authoritative manual map:
 
 ```text
 project2-progress/STEP_4E_B0_MANUAL_MAP.md
 ```
 
-B0 established:
+### Step 4E-B1-A · PHP settings only
 
 ```text
-- PHP work split into B1-A through B1-I.
-- Historical Cart CSS deletion split into five independently validated batches.
-- New Cart CSS insertion split into core, recommendation/empty, and responsive blocks.
-- The separate Step 4E Cart Notice Toast block must remain untouched.
-- Every substep has exact anchors, an independent rollback path, and a validation gate.
+Instructions issued.
+Manual edit pending.
 ```
 
-### Current next action
+Instruction record:
 
 ```text
-Step 4E-B1-A · PHP settings only.
+project2-progress/STEP_4E_B1_A_PHP_SETTINGS.md
+```
 
-Do not begin B1-B or any CSS work until B1-A is manually applied and revalidated.
-Do not add a WooCommerce Cart template override.
-Do not change Cart operations, SAFE5 Checkout, payment, order, or email logic.
+Required result before B1-B:
+
+```text
+- functions.php remains version 2.7.7
+- expected size 548,377 bytes when original line endings are preserved
+- expected lines 10,175
+- expected SHA256 4675fb8336fa34d72d8be3280facb3c5a88a60f5e829f414f7406c96cb629678
+- PHP syntax passes
+- six new Customizer controls appear
+- Cart frontend unchanged
+- SAFE5 Checkout unchanged
+- edited functions.php is re-read and validated
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
