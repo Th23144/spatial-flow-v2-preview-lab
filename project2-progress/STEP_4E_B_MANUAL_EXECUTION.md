@@ -10,38 +10,22 @@ Step 4E-A audit：Complete.
 Whole-file Cart candidate：Withdrawn / Do not apply.
 Step 4E-B0 exact manual map：Complete.
 Step 4E-B1-A PHP settings only：Passed.
-Step 4E-B1-B unhooked heading/count renderer：Instructions issued / user edit pending.
+Step 4E-B1-B unhooked heading/count renderer：Passed.
+Step 4E-B1-C heading hook switch：Instructions issued / user edit pending.
 Current local source of truth：Validated uploaded functions.php version 2.7.8.
 Cart page status：Not done.
 ```
 
-Authoritative exact-range map:
+## Authoritative records
 
 ```text
 project2-progress/STEP_4E_B0_MANUAL_MAP.md
-```
-
-Current substep records:
-
-```text
 project2-progress/STEP_4E_B1_A_VALIDATION.md
 project2-progress/STEP_4E_B1_B_UNHOOKED_HEADING_RENDERER.md
+project2-progress/STEP_4E_B1_C_HEADING_HOOK_SWITCH.md
 ```
 
-## 1. Why this protocol exists
-
-The withdrawn candidate changed two large files at once:
-
-```text
-functions.php: +1,188 bytes / +46 lines
-spatial-flow.css: -90,402 bytes / -2,759 lines
-```
-
-Static checks passed, but blind whole-file replacement created an unacceptable rollback surface. All Cart work must now use manual, staged, exact-range operations.
-
-## 2. Non-negotiable delivery rule
-
-For Step 4E-B:
+## 1. Non-negotiable delivery rule
 
 ```text
 - no ZIP or complete replacement file as the implementation method
@@ -52,35 +36,18 @@ For Step 4E-B:
 - no Cart-specific JavaScript unless a real native interaction defect is proved
 ```
 
-Every executable instruction must include:
+Every executable instruction must include exact anchors, exact replacement, expected delta, syntax/balance checks, visible expectation, rollback, and required evidence.
 
-```text
-Step name
-Purpose
-File
-Current baseline version/hash
-START anchor
-END anchor
-Exact delete/replace instruction
-Exact inserted content
-Expected size/line delta
-Syntax/balance checks
-Visible expectation
-What must not change
-Independent rollback
-Evidence required before continuing
-```
-
-## 3. Current baselines
+## 2. Current baselines
 
 ```text
 functions.php
 Version: 2.7.8
-Size: 548,377 bytes
-Lines: 10,175
-SHA256: 0b2c1ea9dcad518a949f3a7a26974f0e937e7da8bf3ddd2ac7d924e3111d4c64
+Size: 550,221 bytes
+Lines: 10,215
+SHA256: e6bb2759bb3ac25ef12a2379ba29995243fe8554f2e93b3fd82b3b4c29158578
 PHP syntax: Passed
-Braces: 1,182 / 1,182
+Braces: 1,187 / 1,187
 
 assets/css/spatial-flow.css
 Size: 767,069 bytes
@@ -95,15 +62,7 @@ SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 If any local baseline has changed, the newest file must be supplied before instructions continue.
 
-## 4. Staged implementation
-
-### Step 4E-B0 · Exact manual map
-
-```text
-Status：Complete.
-Code changes：None.
-Record：project2-progress/STEP_4E_B0_MANUAL_MAP.md
-```
+## 3. Staged implementation
 
 ### Step 4E-B1-A · PHP settings only
 
@@ -111,23 +70,40 @@ Record：project2-progress/STEP_4E_B0_MANUAL_MAP.md
 Status：Passed.
 Added editable Cart heading/count/summary fields and the fourth fallback product selector.
 Cart and SAFE5 Checkout remained unchanged.
-Record：project2-progress/STEP_4E_B1_A_VALIDATION.md
 ```
 
 ### Step 4E-B1-B · New heading/count renderer only
 
 ```text
-Status：Instructions issued / user edit pending.
-Add the renderer without hooking it.
-Keep the old intro renderer and frontend output unchanged.
-Record：project2-progress/STEP_4E_B1_B_UNHOOKED_HEADING_RENDERER.md
+Status：Passed.
+Exact uploaded-file SHA matched the prediction.
+The new renderer exists once and remains unhooked.
+Cart and SAFE5 Checkout remained unchanged.
 ```
 
 ### Step 4E-B1-C · Hook switch
 
 ```text
-Unhook only the old intro output.
-Hook only the validated new heading/count renderer.
-Keep the legacy function/settings for rollback.
-Proceed directly after B1-B file validation; no additional decision pause is required.
+Status：Instructions issued / user edit pending.
+Change only the active woocommerce_before_cart callback:
+spatial_flow_cart_visual_2_intro → spatial_flow_cart_v2_heading.
+Keep the legacy function and settings for one-line rollback.
+```
+
+Expected intermediate frontend result:
+
+```text
+- old intro block removed
+- old top Continue Shopping action temporarily removed
+- new backend-editable Your bag. heading shown
+- live total cart quantity shown
+- no final Cart CSS judgment yet
+```
+
+### Step 4E-B1-D · Continue Shopping relocation
+
+```text
+Begin only after B1-C file and browser validation.
+Move Continue Shopping into the correct native checkout-actions area.
+Proceed directly after validation; no additional decision pause is required.
 ```
