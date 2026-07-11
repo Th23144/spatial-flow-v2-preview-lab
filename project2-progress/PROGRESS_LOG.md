@@ -17,9 +17,9 @@ Step 4E-A1 · Cart static reference decomposition：Passed
 Step 4E-A2 · Current screenshots + CSS/JS baseline audit：Passed
 Step 4E-A2.1 · Main Cart template ownership confirmation：Passed
 Step 4E-A3 · PHP source ownership / hook audit：Passed
-Step 4E-B1 · PHP controlled rebase candidate：Generated / static validation passed
-Step 4E-B2 · CSS controlled rebase candidate：Generated / static validation passed
-Current：Apply candidate files locally, then Step 4E-B3 browser + functional validation
+Whole-file Step 4E-B candidate：Withdrawn / Do not apply
+Step 4E-B0 · Manual exact-range execution map：Complete
+Current：Step 4E-B1-A · PHP settings only
 ```
 
 Decision:
@@ -372,73 +372,52 @@ project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
 - Keep dynamic notice support intact.
 ```
 
-### Step 4E-B1/B2 · Controlled rebase candidate
+### Whole-file candidate withdrawal
 
 ```text
-Generated / static validation passed.
-Local replacement：Pending.
-Browser acceptance：Pending.
+- The generated ZIP and complete replacement files were not used.
+- The complete-file delivery method is withdrawn and prohibited for this Cart implementation.
+- Current local files remain unchanged at the audited 2.7.7 / CSS / JS baselines.
+- The withdrawn candidate remains only as a historical comparison artifact.
 ```
 
-Candidate package:
+Authoritative correction:
 
 ```text
-STEP_4E_B_CART_REBASE.zip
-SHA256: 170b70c5eeff02a5d76448bbbda5787b3677167ddb2eee38ed992cb313982ecc
+project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
 ```
 
-Candidate files:
+### Step 4E-B0 · Manual exact-range execution map
 
 ```text
-functions.php
-Version: 2.7.8
-Size: 548,574 bytes
-Lines: 10,208
-SHA256: 8352a16cebdc1fd24728ccf7006b549ff8ec548722254afabeb040a8fc5273e3
-PHP syntax: Passed
-
-assets/css/spatial-flow.css
-Size: 676,667 bytes
-Lines: 22,983
-SHA256: 4e7d1012e449ae9a10fab5c8bbcac40a9e17db53eda504d3f6780532a23a6501
-Braces: 3,600 / 3,600
-Comments: 326 / 326
-CSS parser errors: 0
-```
-
-Controlled implementation result:
-
-```text
-- Replaced the historical Cart CSS stack as one exact range; no append-only Cart patch.
-- Preserved the separate dynamic Cart notice block.
-- Added backend-editable target heading/count/summary fields.
-- Moved Continue Shopping into the native proceed-to-checkout action area.
-- Removed the duplicate service-card frontend hook while retaining rollback code/settings.
-- Preserved one editable summary trust set.
-- Removed dead fake recommendation defaults.
-- Expanded recommendations from 3 to 4 real WooCommerce products.
-- Stopped inventing Cart recommendation label/description claims when real content is absent.
-- Preserved the shared SAFE5 Checkout product-meta path for regression safety.
-- Did not create a WooCommerce Cart template override.
-- Did not modify assets/js/spatial-flow.js.
+Complete.
+Code changes：None.
 ```
 
 Detailed record:
 
 ```text
-project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+project2-progress/STEP_4E_B0_MANUAL_MAP.md
+```
+
+B0 established:
+
+```text
+- PHP work split into B1-A through B1-I.
+- Historical Cart CSS deletion split into five independently validated batches.
+- New Cart CSS insertion split into core, recommendation/empty, and responsive blocks.
+- The separate Step 4E Cart Notice Toast block must remain untouched.
+- Every substep has exact anchors, an independent rollback path, and a validation gate.
 ```
 
 ### Current next action
 
 ```text
-1. Replace the two candidate files in the current local child theme.
-2. Hard-refresh the Cart page.
-3. Provide desktop/mobile first-screen and full-page screenshots.
-4. Run Step 4E-B3 browser and functional validation.
+Step 4E-B1-A · PHP settings only.
 
+Do not begin B1-B or any CSS work until B1-A is manually applied and revalidated.
+Do not add a WooCommerce Cart template override.
 Do not change Cart operations, SAFE5 Checkout, payment, order, or email logic.
-Cart remains Not done until full acceptance passes.
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
