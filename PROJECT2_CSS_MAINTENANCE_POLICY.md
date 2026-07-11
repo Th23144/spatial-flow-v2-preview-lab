@@ -1,6 +1,6 @@
 # Project 2 · CSS Maintenance Policy
 
-Last updated: 2026-07-04
+Last updated: 2026-07-11
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## 1. Core rule
@@ -28,9 +28,9 @@ Do not immediately clean all historical appended blocks during normal feature wo
 
 The existing appended blocks are allowed to remain temporarily because many of them are already tested and may still be stabilizing live visual behavior.
 
-Instead, choose a dedicated future cleanup phase to consolidate them.
+Instead, choose a dedicated cleanup phase to consolidate them.
 
-Recommended cleanup milestone:
+Completed cleanup milestone:
 
 ```text
 Step 4D-CLEAN1 · Single Product CSS consolidation
@@ -42,64 +42,121 @@ Broader future cleanup milestone:
 Project2-CLEAN-CSS · Global CSS consolidation pass
 ```
 
-These cleanup passes should be done only after the relevant page/section is visually accepted.
+These cleanup passes should be done only after the relevant page/section is visually accepted, except when a page-specific historical stack must be removed before a controlled rebase. In that case, deletion and insertion must be separate verified operations.
 
 ## 4. Required workflow for future CSS changes
 
-Before giving CSS changes, the assistant should:
+Before giving CSS changes, the assistant must:
 
 1. Ask for or use the latest uploaded `assets/css/spatial-flow.css` as the only current source of truth.
-2. Locate the existing relevant selector block.
-3. Prefer a precise replacement instruction:
+2. Record file size, line count, hash, brace balance, comment balance, and parser result.
+3. Locate the existing relevant selector block and exact START/END anchors.
+4. Prefer a precise replacement instruction:
    - find this selector/block;
    - replace only this block;
    - do not append a duplicate selector at the bottom.
-4. Only append when no safe existing block exists.
-5. If appending is necessary, label the block as temporary or controlled, and record that it should be merged later.
+5. Only append when no safe existing block exists.
+6. If appending is necessary, label the block as temporary or controlled, and record that it should be merged later.
+7. State the expected size/line delta before the user edits.
+8. Re-read or revalidate the edited file before moving to the next operation.
 
 ## 5. Output format expected for CSS tasks
 
-For CSS tasks, prefer this format:
+For CSS tasks, use this format:
 
 ```text
+Step name:
+Purpose:
 File: assets/css/spatial-flow.css
+Current baseline size / lines / hash:
 
-Find this existing block:
+Find START anchor:
 ...
 
-Replace it with:
+Find END anchor:
 ...
 
-Do not append this as a new bottom block.
+Delete or replace exactly:
+...
+
+Insert exactly:
+...
+
+Expected size / line delta:
+...
+
+Validation:
+- brace balance
+- comment balance
+- CSS parser
+- affected-page browser check
+
+Rollback:
+...
 ```
+
+Do not append the replacement as a new bottom block unless explicitly approved as a temporary test.
 
 If the file is too large or the exact old block is uncertain, first inspect/search the uploaded CSS and then provide precise replacement steps.
 
-## 6. Current page-specific reminder
+## 6. Whole-file delivery prohibition
+
+For large theme files such as `assets/css/spatial-flow.css` and `functions.php`:
+
+```text
+- Do not make a downloadable whole-file replacement package the default implementation method.
+- Do not ask the user to overwrite a large current file blindly.
+- Do not combine a broad deletion and a broad insertion into one unreviewed operation.
+- A generated full-file candidate may exist only as an internal comparison artifact and must be clearly marked “Do not apply” unless the user explicitly approves whole-file replacement.
+```
+
+Required safe sequence for large CSS rebases:
+
+```text
+1. Provide exact deletion-only instructions.
+2. User performs the deletion manually.
+3. Validate intermediate size, lines, braces, comments, and parser result.
+4. Provide exact insertion instructions at one fixed marker.
+5. User performs the insertion manually.
+6. Validate again before browser refinement.
+```
+
+Each operation must have an independent rollback path. “Restore the entire file” must not be the default rollback plan.
+
+## 7. Current page-specific reminder
 
 Current Project 2 stage:
 
 ```text
-Step 4D · Single Product / 商品详情页 1:1 换皮进行中
+Step 4E · Cart / 购物车 1:1 换皮
 ```
 
-Recently completed:
+Current execution rule:
 
 ```text
-Step 4D-Control-A · 商品详情页后台字段映射审计：Passed
-Step 4D-Control-B · 清理 Product Story 残留 + 修复 Product Attributes 字段来源：Passed
-Step 4D-Control-C · Product Attributes 标题后台字段化：Passed
+Step 4E-A：Complete
+Whole-file Step 4E-B candidate：Withdrawn / Do not apply
+Next：Step 4E-B0 manual exact-range execution map
 ```
 
-Current next visual step:
+For Cart:
 
 ```text
-Step 4D-1-C · 左侧 Gallery 细节 1:1
+- Do not use the generated ZIP/full-file candidate.
+- Do not replace the full 767 KB stylesheet blindly.
+- Split PHP and CSS work into small named substeps.
+- Split Cart CSS deletion and insertion into separate verified operations.
+- Preserve the separate WooCommerce notice block.
+- Preserve Header, Footer, Shop, Single Product, and SAFE5 Checkout.
 ```
 
-For this step, do not append a new Gallery polish block. Replace the existing Gallery rules inside the current single-product visual CSS area instead.
+Authoritative Cart manual protocol:
 
-## 7. Hard boundary
+```text
+project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
+```
+
+## 8. Hard boundary
 
 Do not sacrifice backend editability for visual cleanliness.
 
