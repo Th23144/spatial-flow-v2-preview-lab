@@ -7,7 +7,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 File-level validation: Passed
-Desktop/mobile visual and functional browser validation: Pending
+Desktop/mobile visual and functional browser validation: Passed
+Overall Step 4C-REWORK1 controlled Shop rebase: Passed
 ```
 
 ## Validated local file
@@ -63,6 +64,55 @@ Project2 Step 4C-B — Shop Hero Editorial: 0
 ```
 
 No removed legacy Shop block was accidentally restored.
+
+## Browser screenshot validation
+
+User-provided screenshot order:
+
+```text
+1. Desktop Shop top area — 1920 × 1080
+2. Desktop Shop full page — 547 × 2048
+3. Mobile Shop first screen — 417 × 904
+4. Mobile Shop full page — 107 × 2048
+```
+
+Visual result:
+
+```text
+Desktop:
+- Hero is now open and editorial rather than boxed/compressed.
+- Metadata is presented as an open row.
+- Filter/sort toolbar follows the static-reference rhythm.
+- Editor’s Pick is an open two-column editorial spread.
+- Product grid uses open editorial cards with 4/5 imagery and no rounded shadow-tile treatment.
+- Pagination, closing note, contact band, and footer flow render normally.
+
+Mobile:
+- Hero density is reduced.
+- Product section appears materially earlier than before.
+- Filter controls remain usable without horizontal page overflow.
+- Product grid remains readable in two columns.
+- Closing note, contact band, and footer stack correctly.
+```
+
+The user explicitly confirmed that all visual and functional checks passed.
+
+## Functional regression validation
+
+User-confirmed results:
+
+```text
+- Filter details open and links work.
+- Sorting works.
+- Editor’s Pick link works.
+- Product links work.
+- Wishlist works.
+- Pagination works.
+- No horizontal overflow.
+- Single Product regression: no issue.
+- Cart regression: no issue.
+- SAFE5 Checkout regression: no issue.
+```
 
 ## Backend editability boundary
 
@@ -133,25 +183,12 @@ The static reference includes editorial product place notes. The current product
 
 Therefore this CSS rebase does **not** fake or hardcode place-note text. If that layer is later required for closer 1:1 fidelity, it must be implemented through a real backend-editable per-product field such as `_sf_placement`, then rendered dynamically by `content-product.php`.
 
-## Remaining validation
+## Version confirmation
 
-Browser validation is still required before the overall Shop rework is marked Passed:
+The user confirmed:
 
 ```text
-Desktop visual comparison
-Mobile visual comparison
-Filter details open and links work
-Sorting works
-Editor's Pick link works
-Product links work
-Wishlist works
-Pagination works
-No horizontal overflow
-Single Product regression
-Cart regression
-SAFE5 Checkout regression
+SPATIAL_FLOW_CHILD_VERSION = 2.7.6
 ```
 
-## Version note
-
-Only the CSS file was uploaded for this validation. The `SPATIAL_FLOW_CHILD_VERSION` bump in `functions.php` was not independently verified in this pass.
+No further version bump is required for this accepted Shop rework step.
