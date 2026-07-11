@@ -8,8 +8,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 Step 4E-B1-C browser validation：Failed / correction required.
 Hook switch visible result：Partially correct.
-Next executable step：Step 4E-B1-C-FIX1 · Count-format placeholder correction.
-Step 4E-B1-D：Blocked until FIX1 and current functions.php validation pass.
+Step 4E-B1-C-FIX1 count-placeholder correction：Instructions issued.
+Step 4E-B1-D：Blocked until FIX1 browser + file validation pass.
 Cart page status：Not done.
 ```
 
@@ -54,7 +54,7 @@ Expected output for the visible two quantity-1 Cart items is:
 2 pieces · ready to go
 ```
 
-Therefore B1-C cannot be marked Passed.
+Therefore B1-C cannot be marked Passed until FIX1 succeeds.
 
 ## 4. Root cause
 
@@ -71,29 +71,37 @@ The current Cart settings helper passes those strings directly as the default ar
 return get_theme_mod( $key, $defaults[ $key ] ?? '' );
 ```
 
-WordPress treats `%s` placeholders in a `get_theme_mod()` default as theme-directory placeholders. The first `%s` is therefore replaced by the parent theme URI (`.../themes/astra`) before the Cart renderer receives the value.
-
-The renderer itself then has no `%s` token left to replace with the live quantity.
+WordPress treats `%s` placeholders in a `get_theme_mod()` default as theme-directory placeholders. The first `%s` is therefore replaced by the parent theme URI before the Cart renderer receives the value. The renderer then has no `%s` token left to replace with the live quantity.
 
 ## 5. Correction requirements
 
-FIX1 must be a small, independently reversible PHP-only correction that:
+FIX1 is a small independently reversible PHP-only correction that must:
 
 ```text
-- prevents get_theme_mod() from interpreting Cart count-format defaults
-- preserves all saved backend-editable Cart settings
-- repairs an already persisted theme-URI count format if the Customizer saved it
-- keeps SPATIAL_FLOW_CHILD_VERSION at 2.7.8
-- does not modify CSS, JavaScript, WooCommerce templates, totals, coupon logic, shipping, or Checkout
+- prevent get_theme_mod() from interpreting the two Cart count-format defaults
+- preserve saved backend-editable Cart settings
+- repair a persisted count format beginning with the current parent-theme or child-theme URI
+- keep SPATIAL_FLOW_CHILD_VERSION at 2.7.8
+- leave CSS, JavaScript, WooCommerce templates, totals, coupon, shipping, Checkout, payment, orders, and emails unchanged
 ```
 
-## 6. Required evidence before issuing FIX1 instructions
+## 6. Executable FIX1 record
 
 ```text
-- upload the current post-B1-C functions.php
-- verify that the only B1-C code change is the one-line hook switch
-- validate size, line count, SHA256, PHP syntax, and brace balance
-- inspect the exact current Cart setting helper and renderer ranges
+project2-progress/STEP_4E_B1_C_FIX1_COUNT_PLACEHOLDER.md
 ```
 
-Do not proceed to B1-D until FIX1 is applied and the count displays the live quantity correctly.
+The working baseline is derived from the exact validated B1-B upload plus the single B1-C hook-line change shown by the browser result. If the exact helper anchor is not found once, the user must stop and upload the current file instead of improvising.
+
+## 7. Required evidence before B1-D
+
+```text
+- numeric count with no theme URI
+- quantity-change test updates the count
+- singular-count test displays 1 piece · ready to go
+- SAFE5 Checkout unchanged
+- upload of the post-FIX1 functions.php
+- exact size, line, SHA256, PHP syntax, brace, and hook validation
+```
+
+Do not proceed to B1-D until FIX1 is applied and validated.
