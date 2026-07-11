@@ -13,6 +13,7 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 
 ```text
 Step 4E-A · Cart desktop + mobile 1:1 current-state audit：In progress
+Step 4E-A1 · Cart static reference decomposition：Passed
 ```
 
 Decision:
@@ -240,6 +241,24 @@ Scope:
 - Do not affect Checkout, payment, orders, or emails.
 ```
 
+### Step 4E-A1 · Static reference decomposition
+
+```text
+Passed.
+```
+
+Recorded conclusions:
+
+```text
+- The reference uses an open 7fr / 5fr desktop Cart layout with editorial item rows and a sticky summary.
+- Tablet/mobile collapse to one column and the summary returns to normal document flow.
+- Product image/title/SKU/variation/quantity/remove/price/totals/shipping/tax/checkout/cross-sells must remain dynamic.
+- Coupon/update-cart/notices/empty-cart/stock validation are real WooCommerce requirements even though the sample HTML does not model all of them.
+- Fixed products, totals, free-shipping state, Stripe claim, trust copy, place notes, Save for later, and recommendation items must not be copied as production data.
+- Existing Header/Footer remain the accepted shared shell and must not be rebuilt inside the Cart template.
+- No real Cart code was changed in Step 4E-A1.
+```
+
 Required current-state inputs:
 
 ```text
@@ -250,6 +269,20 @@ Required current-state inputs:
 5. Current latest `assets/css/spatial-flow.css` after the pagination fix.
 6. Current latest `assets/js/spatial-flow.js` if Cart interactions depend on it.
 7. Any Cart-specific PHP/template file only if the theme actually overrides one.
+```
+
+Current evidence state:
+
+```text
+- Static reference：Available and decomposed.
+- Current Cart screenshots：Not yet provided in this 4E-A pass.
+- Current local CSS/JS/PHP baseline：Not yet provided in this 4E-A pass.
+```
+
+Next:
+
+```text
+Step 4E-A2 · Inspect the real current Cart screenshots and latest local Cart-related files, then write the desktop/mobile mismatch matrix before implementation.
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
