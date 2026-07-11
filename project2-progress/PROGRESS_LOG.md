@@ -14,15 +14,18 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ```text
 Step 4E-A · Cart desktop + mobile 1:1 current-state audit：In progress
 Step 4E-A1 · Cart static reference decomposition：Passed
+Step 4E-A2 · Current screenshots + CSS/JS baseline audit：Passed
+Step 4E-A2.1 · Main Cart template ownership confirmation：Passed
+Step 4E-A3 · PHP source ownership / hook audit：Pending current functions.php
 ```
 
 Decision:
 
 ```text
 Step 4D Single Product is completed and cleaned.
-Step 4C Shop desktop + mobile controlled rework is now fully passed, including the pagination follow-up fix.
+Step 4C Shop desktop + mobile controlled rework is fully passed, including the pagination follow-up fix.
 The assistant should continue the documented commerce-page sequence automatically and only ask the user to choose at genuine visual/product decision points.
-The next page is Cart.
+The current page is Cart.
 ```
 
 ## Passed / accepted steps in Single Product phase
@@ -259,30 +262,78 @@ Recorded conclusions:
 - No real Cart code was changed in Step 4E-A1.
 ```
 
-Required current-state inputs:
+### Step 4E-A2 · Current real Cart evidence
 
 ```text
-1. Desktop Cart first-screen screenshot.
-2. Desktop Cart full-page screenshot.
-3. Mobile Cart first-screen screenshot.
-4. Mobile Cart full-page screenshot.
-5. Current latest `assets/css/spatial-flow.css` after the pagination fix.
-6. Current latest `assets/js/spatial-flow.js` if Cart interactions depend on it.
-7. Any Cart-specific PHP/template file only if the theme actually overrides one.
+Passed.
 ```
 
-Current evidence state:
+Received and audited:
 
 ```text
-- Static reference：Available and decomposed.
-- Current Cart screenshots：Not yet provided in this 4E-A pass.
-- Current local CSS/JS/PHP baseline：Not yet provided in this 4E-A pass.
+- Desktop Cart first-screen screenshot.
+- Desktop Cart full-page screenshot.
+- Mobile Cart first-screen screenshot.
+- Mobile Cart full-page screenshot.
+- Current local assets/css/spatial-flow.css.
+- Current local assets/js/spatial-flow.js.
 ```
 
-Next:
+File baseline:
 
 ```text
-Step 4E-A2 · Inspect the real current Cart screenshots and latest local Cart-related files, then write the desktop/mobile mismatch matrix before implementation.
+assets/css/spatial-flow.css
+Uploaded name: spatial-flow(2).css
+Size: 767,069 bytes
+Lines: 25,742
+SHA256: a8db33e2cd3e7886a12a455383fe6769cbd262e7e6d6fac8003aa46fe641a10d
+CSS parser errors: 0
+
+assets/js/spatial-flow.js
+Size: 70,828 bytes
+Lines: 1,995
+SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
+JavaScript syntax check: Passed
+```
+
+### Step 4E-A2.1 · Main Cart template ownership
+
+```text
+Passed.
+```
+
+Confirmed result:
+
+```text
+- The user checked the local child theme and confirmed there are no main Cart template override files.
+- The real Cart page uses native WooCommerce Cart templates plus child-theme CSS and PHP hook/filter output.
+- Do not create a Cart template override by default.
+- Preserve native WooCommerce Cart templates.
+```
+
+### Functional follow-up correction
+
+```text
+- Initial screenshot showed BAG (4) with three visible quantity-1 items.
+- After refresh, the Header changed to BAG (3).
+- The Header count now matches the current Cart.
+- The original state is treated as transient/stale, not a confirmed persistent bug.
+- Count synchronization remains in the final regression checklist.
+```
+
+### CSS architecture result
+
+```text
+- The stylesheet contains a large layered historical Cart patch stack.
+- Do not append another Cart polish block.
+- After the PHP source audit, use a controlled Cart CSS rebase/consolidation.
+- Keep dynamic notice support intact.
+```
+
+### Current next action
+
+```text
+Step 4E-A3 · Read the current local functions.php and audit all Cart hooks, output sources, hardcoded content, backend-editable sources, and any included template parts before producing the controlled replacement plan.
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
