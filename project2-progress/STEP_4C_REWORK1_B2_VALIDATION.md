@@ -207,6 +207,7 @@ Therefore this CSS rebase does not fake or hardcode place-note text. If that lay
 ## Version confirmation
 
 ```text
-Initial accepted Shop rebase version: 2.7.6
-Pagination fix version: 2.7.7
+Initial accepted Shop rebase version confirmed by user: 2.7.6
+Pagination fix instructed version: 2.7.7
+The post-fix functions.php file was not independently uploaded/re-read in this pass.
 ```
