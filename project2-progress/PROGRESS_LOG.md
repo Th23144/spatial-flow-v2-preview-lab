@@ -12,15 +12,16 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ## Current active step
 
 ```text
-Step 4C-REWORK1-B3-FIX1 · Shop pagination horizontal layout：In progress
+Step 4E-A · Cart desktop + mobile 1:1 current-state audit：In progress
 ```
 
 Decision:
 
 ```text
 Step 4D Single Product is completed and cleaned.
-The Shop desktop + mobile rework main structure is accepted, but the overall Shop rework was reopened after the user identified a desktop pagination layout bug.
-The previous state `Next step: Pending user instruction` was incorrect. The assistant should continue the documented Project 2 sequence and only ask the user to choose at genuine visual/product decision points.
+Step 4C Shop desktop + mobile controlled rework is now fully passed, including the pagination follow-up fix.
+The assistant should continue the documented commerce-page sequence automatically and only ask the user to choose at genuine visual/product decision points.
+The next page is Cart.
 ```
 
 ## Passed / accepted steps in Single Product phase
@@ -87,7 +88,7 @@ See:
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
-## Shop rework status
+## Shop rework final status
 
 ### Step 4C-REWORK1-B1 · Delete old Shop CSS ranges
 
@@ -119,10 +120,10 @@ Project2 Step 4C-B — Shop Hero Editorial: 0
 ### Step 4C-REWORK1-B2 · Insert controlled Shop CSS block
 
 ```text
-File-level validation: Passed
+Passed
 ```
 
-Validated CSS:
+Validated CSS before pagination follow-up:
 
 ```text
 File: assets/css/spatial-flow.css
@@ -143,20 +144,13 @@ START count: 1
 END count: 1
 ```
 
-Version confirmed by user:
-
-```text
-SPATIAL_FLOW_CHILD_VERSION = 2.7.6
-```
-
 ### Step 4C-REWORK1-B3 · Desktop/mobile browser validation
 
 ```text
-Main structure: Passed
-Pagination layout: Failed / reopened
+Passed after pagination follow-up fix
 ```
 
-Accepted main visual result:
+Accepted result:
 
 ```text
 - Desktop Hero, metadata, toolbar, Editor’s Pick, product grid, closing note, contact band, and footer render normally.
@@ -167,17 +161,20 @@ Accepted main visual result:
 - Single Product, Cart, and SAFE5 Checkout regression checks show no issue.
 ```
 
-Open bug:
+### Step 4C-REWORK1-B3-FIX1 · Shop pagination horizontal layout
 
 ```text
-Desktop pagination page numbers render vertically in a tall left-aligned column instead of as one centered horizontal row.
+Passed
 ```
 
-Root cause:
+Root cause and correction:
 
 ```text
-The selector `nav.woocommerce-pagination .page-numbers` matches both the parent `<ul class="page-numbers">` and child `<a>/<span>` controls.
-The parent list therefore receives item-only 44px sizing and inline-flex styling.
+- Broad `nav.woocommerce-pagination .page-numbers` selector matched both parent `<ul>` and child controls.
+- Item styling was narrowed to `a.page-numbers` / `span.page-numbers`.
+- Parent `ul.page-numbers` was normalized to a full-width horizontal flex row.
+- Pagination `li` items were normalized to auto width with no flex growth.
+- User confirmed the pagination now renders correctly.
 ```
 
 Fix record:
@@ -186,7 +183,7 @@ Fix record:
 project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
 ```
 
-## Backend editability result
+## Backend editability result for Shop
 
 ```text
 Passed and unchanged by the pagination fix.
@@ -219,10 +216,40 @@ No product names, prices, product IDs, Hero copy, Editor’s Pick copy, business
 
 The static reference's editorial per-product place note remains intentionally unimplemented rather than fabricated. If added later, it must use a real backend-editable per-product field rendered dynamically by `content-product.php`.
 
-## Next action
+## Current Cart audit
+
+Audit file:
 
 ```text
-Apply the narrow pagination selector correction, bump the asset version, and recheck desktop + mobile pagination. After it passes, continue automatically to the next documented Project 2 step rather than waiting for a generic user instruction.
+project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+```
+
+Static reference:
+
+```text
+preview/spatial-flow-cart-v1.html
+```
+
+Scope:
+
+```text
+- Audit current desktop and mobile Cart against the static reference before editing.
+- Preserve WooCommerce quantity, remove, coupon, totals, shipping, notices, cross-sells, and checkout behavior.
+- Preserve backend-editable/dynamic sources.
+- Do not hardcode products, prices, totals, coupon values, shipping methods, or checkout URLs.
+- Do not affect Checkout, payment, orders, or emails.
+```
+
+Required current-state inputs:
+
+```text
+1. Desktop Cart first-screen screenshot.
+2. Desktop Cart full-page screenshot.
+3. Mobile Cart first-screen screenshot.
+4. Mobile Cart full-page screenshot.
+5. Current latest `assets/css/spatial-flow.css` after the pagination fix.
+6. Current latest `assets/js/spatial-flow.js` if Cart interactions depend on it.
+7. Any Cart-specific PHP/template file only if the theme actually overrides one.
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
