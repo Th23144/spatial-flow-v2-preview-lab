@@ -7,8 +7,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 File-level validation: Passed
-Desktop/mobile visual and functional browser validation: Passed
-Overall Step 4C-REWORK1 controlled Shop rebase: Passed
+Desktop/mobile main visual structure: Passed
+Pagination layout regression: Failed / reopened
+Overall Step 4C-REWORK1 controlled Shop rebase: In progress
 ```
 
 ## Validated local file
@@ -76,16 +77,16 @@ User-provided screenshot order:
 4. Mobile Shop full page — 107 × 2048
 ```
 
-Visual result:
+Main visual result:
 
 ```text
 Desktop:
-- Hero is now open and editorial rather than boxed/compressed.
+- Hero is open and editorial rather than boxed/compressed.
 - Metadata is presented as an open row.
 - Filter/sort toolbar follows the static-reference rhythm.
 - Editor’s Pick is an open two-column editorial spread.
 - Product grid uses open editorial cards with 4/5 imagery and no rounded shadow-tile treatment.
-- Pagination, closing note, contact band, and footer flow render normally.
+- Closing note, contact band, and footer flow render normally.
 
 Mobile:
 - Hero density is reduced.
@@ -95,11 +96,34 @@ Mobile:
 - Closing note, contact band, and footer stack correctly.
 ```
 
-The user explicitly confirmed that all visual and functional checks passed.
+## Pagination regression found after the initial acceptance
 
-## Functional regression validation
+The user supplied a closer desktop screenshot showing that the pagination numbers are stacked vertically in a tall left-aligned column.
 
-User-confirmed results:
+Root cause:
+
+```text
+The selector `nav.woocommerce-pagination .page-numbers` matches both the parent `<ul class="page-numbers">` and child pagination links/spans.
+The parent `<ul>` therefore receives the 44px item sizing and inline-flex styling intended only for individual page controls.
+```
+
+Fix record:
+
+```text
+project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
+```
+
+Required fix:
+
+```text
+- Narrow the item selector to `a.page-numbers` and `span.page-numbers`.
+- Normalize the parent `ul.page-numbers` as a full-width horizontal flex row.
+- Normalize pagination `li` items to auto width / no flex growth.
+```
+
+## Functional regression status
+
+Confirmed working before pagination layout correction:
 
 ```text
 - Filter details open and links work.
@@ -107,7 +131,7 @@ User-confirmed results:
 - Editor’s Pick link works.
 - Product links work.
 - Wishlist works.
-- Pagination works.
+- Pagination links themselves work, but the pagination visual layout is wrong.
 - No horizontal overflow.
 - Single Product regression: no issue.
 - Cart regression: no issue.
@@ -129,14 +153,6 @@ The controlled block contains:
 - no business links
 - no image URLs
 - no taxonomy values
-```
-
-The only CSS `content` values are visual controls / decorative output:
-
-```text
-+
-−
-empty overlay content
 ```
 
 Existing backend-editable Shop sources remain the source of truth, including:
@@ -181,7 +197,7 @@ Add-to-cart behavior
 
 The static reference includes editorial product place notes. The current product-card template does not yet expose a dedicated real per-product field for every such note.
 
-Therefore this CSS rebase does **not** fake or hardcode place-note text. If that layer is later required for closer 1:1 fidelity, it must be implemented through a real backend-editable per-product field such as `_sf_placement`, then rendered dynamically by `content-product.php`.
+Therefore this CSS rebase does not fake or hardcode place-note text. If that layer is later required for closer 1:1 fidelity, it must be implemented through a real backend-editable per-product field such as `_sf_placement`, then rendered dynamically by `content-product.php`.
 
 ## Version confirmation
 
@@ -191,4 +207,4 @@ The user confirmed:
 SPATIAL_FLOW_CHILD_VERSION = 2.7.6
 ```
 
-No further version bump is required for this accepted Shop rework step.
+The pagination CSS correction should bump the version once more after editing so the browser does not reuse the previous cached stylesheet.
