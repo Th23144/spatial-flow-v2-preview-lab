@@ -8,8 +8,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 File-level validation: Passed
 Desktop/mobile main visual structure: Passed
-Pagination layout regression: Failed / reopened
-Overall Step 4C-REWORK1 controlled Shop rebase: In progress
+Pagination layout regression: Passed after Step 4C-REWORK1-B3-FIX1
+Overall Step 4C-REWORK1 controlled Shop rebase: Passed
 ```
 
 ## Validated local file
@@ -51,7 +51,7 @@ Result:
 
 ```text
 Correct insertion location confirmed.
-The inserted block is an exact content match for STEP_4C_REWORK1_B_SHOP_BLOCK.css.
+The inserted block is an exact content match for STEP_4C_REWORK1_B_SHOP_BLOCK.css before the accepted pagination correction.
 ```
 
 ## Old Shop CSS cleanup re-check
@@ -96,16 +96,15 @@ Mobile:
 - Closing note, contact band, and footer stack correctly.
 ```
 
-## Pagination regression found after the initial acceptance
+## Pagination regression and final fix
 
-The user supplied a closer desktop screenshot showing that the pagination numbers are stacked vertically in a tall left-aligned column.
+The initial full-page screenshot contained a desktop pagination layout bug: page numbers stacked vertically because the broad selector:
 
-Root cause:
-
-```text
-The selector `nav.woocommerce-pagination .page-numbers` matches both the parent `<ul class="page-numbers">` and child pagination links/spans.
-The parent `<ul>` therefore receives the 44px item sizing and inline-flex styling intended only for individual page controls.
+```css
+nav.woocommerce-pagination .page-numbers
 ```
+
+matched both the parent `<ul>` and child page controls.
 
 Fix record:
 
@@ -113,17 +112,23 @@ Fix record:
 project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
 ```
 
-Required fix:
+Accepted correction:
 
 ```text
-- Narrow the item selector to `a.page-numbers` and `span.page-numbers`.
-- Normalize the parent `ul.page-numbers` as a full-width horizontal flex row.
-- Normalize pagination `li` items to auto width / no flex growth.
+- Narrow item styles to `a.page-numbers` and `span.page-numbers`.
+- Keep `ul.page-numbers` as a full-width horizontal flex row.
+- Keep pagination `li` items auto-width with no flex growth.
+```
+
+Final result:
+
+```text
+The user confirmed the pagination now renders correctly as a centered horizontal row.
 ```
 
 ## Functional regression status
 
-Confirmed working before pagination layout correction:
+User-confirmed working result:
 
 ```text
 - Filter details open and links work.
@@ -131,7 +136,7 @@ Confirmed working before pagination layout correction:
 - Editor’s Pick link works.
 - Product links work.
 - Wishlist works.
-- Pagination links themselves work, but the pagination visual layout is wrong.
+- Pagination links and layout work.
 - No horizontal overflow.
 - Single Product regression: no issue.
 - Cart regression: no issue.
@@ -201,10 +206,7 @@ Therefore this CSS rebase does not fake or hardcode place-note text. If that lay
 
 ## Version confirmation
 
-The user confirmed:
-
 ```text
-SPATIAL_FLOW_CHILD_VERSION = 2.7.6
+Initial accepted Shop rebase version: 2.7.6
+Pagination fix version: 2.7.7
 ```
-
-The pagination CSS correction should bump the version once more after editing so the browser does not reuse the previous cached stylesheet.
