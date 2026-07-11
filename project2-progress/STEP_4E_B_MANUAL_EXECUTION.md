@@ -8,227 +8,63 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 Step 4E-A audit：Complete.
 Whole-file Cart candidate：Withdrawn / Do not apply.
-Step 4E-B manual implementation：Not started.
+Step 4E-B0 exact manual map：Complete.
+Step 4E-B manual code implementation：Not started.
+Next executable step：Step 4E-B1-A · PHP settings only.
 Current local source of truth：User's unchanged local files.
 Cart page status：Not done.
 ```
 
+Authoritative exact-range map:
+
+```text
+project2-progress/STEP_4E_B0_MANUAL_MAP.md
+```
+
 ## 1. Why this protocol exists
 
-The previously generated replacement package changed two very large files at once:
+The withdrawn candidate changed two large files at once:
 
 ```text
 functions.php: +1,188 bytes / +46 lines
 spatial-flow.css: -90,402 bytes / -2,759 lines
 ```
 
-Even though syntax and balance checks passed, asking the user to overwrite both files blindly created an unacceptable rollback surface. The project requires precise, reviewable, manually applied replacements instead.
+Static checks passed, but blind whole-file replacement created an unacceptable rollback surface. All Cart work must now use manual, staged, exact-range operations.
 
 ## 2. Non-negotiable delivery rule
 
-For Step 4E-B, the assistant must not provide a ZIP or complete replacement file as the primary implementation method.
-
-Every code operation must use this format:
+For Step 4E-B:
 
 ```text
-Step name:
-Purpose:
-File:
-Current baseline version/hash:
-Find START anchor:
-Find END anchor:
-Delete/replace exactly:
-Insert exactly:
-Expected size/line delta:
-Syntax/balance checks:
-What should visibly change:
-What must not change:
-Rollback:
-Evidence required before continuing:
+- no ZIP or complete replacement file as the implementation method
+- no blind overwrite of functions.php or spatial-flow.css
+- no combined PHP + CSS operation
+- no later substep before the previous file is re-read or exact metrics are verified
+- no Cart template override
+- no Cart-specific JavaScript unless a real native interaction defect is proved
 ```
 
-No later substep begins until the previous edited file has been re-read or its exact output has been verified.
-
-## 3. Staged execution map
-
-### Step 4E-B0 · Exact manual map
+Every executable instruction must include:
 
 ```text
-Code changes：None.
-Goal：re-read exact PHP/CSS ranges and divide them into the smallest safe operations.
-Output：manual instructions only, no downloadable replacement file.
+Step name
+Purpose
+File
+Current baseline version/hash
+START anchor
+END anchor
+Exact delete/replace instruction
+Exact inserted content
+Expected size/line delta
+Syntax/balance checks
+Visible expectation
+What must not change
+Independent rollback
+Evidence required before continuing
 ```
 
-### Step 4E-B1-A · PHP settings only
-
-Expected scope:
-
-```text
-- add only approved backend-editable Cart heading/count/summary fields
-- add fourth fallback product selector only if still required
-- do not change frontend hooks
-- do not change version until a frontend-affecting step is ready
-```
-
-Validation before continuing:
-
-```text
-- PHP syntax
-- exact size and line count
-- Customizer loads
-- existing Cart frontend unchanged
-- SAFE5 Checkout unchanged
-```
-
-### Step 4E-B1-B · New heading/count renderer only
-
-Expected scope:
-
-```text
-- add a new renderer beside existing code
-- use live WooCommerce cart contents count
-- preserve old intro renderer and hook temporarily
-- do not switch frontend output yet
-```
-
-Validation:
-
-```text
-- PHP syntax
-- no duplicate frontend output because new renderer is not hooked yet
-```
-
-### Step 4E-B1-C · Hook switch
-
-Expected scope:
-
-```text
-- remove only the old intro frontend hook
-- add only the verified new heading/count hook
-- keep legacy function/settings for rollback
-```
-
-Browser check immediately after this step.
-
-### Step 4E-B1-D · Continue Shopping move
-
-Expected scope:
-
-```text
-- add a dedicated backend-driven Continue Shopping renderer
-- hook it after native Proceed to Checkout
-- do not alter native checkout URL/button
-```
-
-Browser and link check immediately after this step.
-
-### Step 4E-B1-E · Duplicate service row
-
-Expected scope:
-
-```text
-- unhook only the three-card service row
-- preserve its function and saved settings for rollback
-- keep the summary trust set
-```
-
-Mobile distance-to-totals must be checked before continuing.
-
-### Step 4E-B1-F · Recommendation safety and fourth product
-
-Expected scope:
-
-```text
-- remove dead sample defaults only in their exact PHP range
-- change current real-product output limit from 3 to 4
-- add fourth backend fallback selector if required
-- omit invented category/description fallback copy
-- preserve real cross-sell/category/backend/latest priority
-```
-
-Validate product links, price, stock, and Cart exclusion.
-
-### Step 4E-B2-A · CSS deletion-only pass
-
-Expected scope:
-
-```text
-- identify exact obsolete Cart CSS blocks
-- delete them in a controlled deletion-only operation
-- do not insert the new target CSS in the same operation
-```
-
-Required intermediate validation:
-
-```text
-- exact size and line count
-- brace/comment balance
-- CSS parser
-- Header/Footer/Shop/Single Product/Checkout quick regression
-```
-
-The site may look temporarily unstyled on Cart during this intermediate state; that is acceptable only when the deletion range has been proven and rollback is available.
-
-### Step 4E-B2-B · Controlled CSS insertion
-
-Expected scope:
-
-```text
-- insert one named Cart target block at one fixed marker
-- no bottom-of-file patch
-- preserve the separate WooCommerce notice block
-- no unrelated selector cleanup
-```
-
-Required validation:
-
-```text
-- exact size and line count
-- brace/comment balance
-- CSS parser
-- desktop first screen
-- mobile first screen
-```
-
-### Step 4E-B2-C · Visual refinement
-
-Only small, exact selector replacements are permitted after the main target block is visible. No second broad Cart block.
-
-### Step 4E-B3 · Functional and regression acceptance
-
-Required tests:
-
-```text
-Cart:
-- 3 different products
-- variable-product meta
-- quantity change + Update Cart
-- remove item
-- valid coupon
-- invalid coupon
-- remove coupon
-- shipping destination/rate
-- totals refresh
-- Continue Shopping
-- Proceed to Checkout
-- recommendation links
-- sticky summary
-- empty Cart
-- Header BAG count
-
-Mobile:
-- no horizontal overflow
-- quantity/remove/coupon/shipping/checkout remain usable
-- totals appear in a logical order
-
-Regression:
-- Header/Footer
-- Shop
-- Single Product
-- SAFE5 Checkout product meta and notices
-```
-
-## 4. Current baselines that must be checked before the first edit
+## 3. Current baselines
 
 ```text
 functions.php
@@ -248,16 +84,146 @@ Lines: 1,995
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 ```
 
-If the current local files no longer match these baselines, the user must upload the newest files before any instruction is produced.
+If any local baseline has changed, the newest file must be supplied before instructions continue.
+
+## 4. Staged implementation
+
+### Step 4E-B0 · Exact manual map
+
+```text
+Status：Complete.
+Code changes：None.
+Record：project2-progress/STEP_4E_B0_MANUAL_MAP.md
+```
+
+### Step 4E-B1-A · PHP settings only
+
+```text
+Add only editable Cart heading/count/summary fields and the fourth fallback product selector.
+Do not change frontend hooks or version.
+```
+
+### Step 4E-B1-B · New heading/count renderer only
+
+```text
+Add the renderer without hooking it.
+Keep the old intro renderer and output unchanged.
+```
+
+### Step 4E-B1-C · Hook switch
+
+```text
+Unhook only the old intro output.
+Hook only the validated new heading/count renderer.
+Keep the legacy function/settings for rollback.
+```
+
+### Step 4E-B1-D · Continue Shopping move
+
+```text
+Add a backend-driven Continue Shopping renderer after the native checkout action.
+Do not alter the native checkout button or URL.
+```
+
+### Step 4E-B1-E · Duplicate service row
+
+```text
+Unhook only the three-card service row.
+Preserve its function and saved settings.
+Keep the summary trust set.
+```
+
+### Step 4E-B1-F · Editable summary heading
+
+```text
+Change “Cart totals” only on the Cart page through the approved backend field.
+No global translation or Checkout effect.
+```
+
+### Step 4E-B1-G · Recommendation safety and fourth product
+
+```text
+Remove exact dead sample defaults.
+Use 4 real products.
+Add/use the fourth backend fallback selector.
+Omit invented recommendation label/description fallbacks.
+Preserve real cross-sell/category/backend/latest priority.
+```
+
+### Step 4E-B1-H · Cart-only product-context fallback
+
+```text
+Cart must not fabricate generic product context.
+SAFE5 Checkout retains prior behavior until its regression check passes.
+```
+
+### Step 4E-B2-A1 through B2-A5 · CSS deletion-only batches
+
+```text
+Delete the five exact historical Cart ranges documented in the B0 map.
+Validate after every batch.
+Do not insert new Cart CSS during deletion work.
+Preserve the separate Step 4E Cart Notice Toast block.
+```
+
+### Step 4E-B2-B1 through B2-B3 · Controlled CSS insertion
+
+```text
+Insert three named blocks at the fixed gap between Single Product Visual 1 END and Checkout Visual Final START:
+1. Cart core
+2. Recommendations + empty Cart
+3. Responsive rules
+```
+
+### Step 4E-B1-I · Version bump
+
+```text
+Change 2.7.7 to 2.7.8 only after controlled CSS insertion is ready.
+```
+
+### Step 4E-B2-C · Visual refinement
+
+Only small exact selector replacements are allowed. No second broad Cart patch.
+
+### Step 4E-B3 · Functional and regression acceptance
+
+Required tests:
+
+```text
+Cart:
+- 3 different products
+- variable-product meta
+- quantity change + Update Cart
+- remove item
+- valid/invalid/remove coupon
+- shipping destination/rate
+- totals refresh
+- Continue Shopping
+- Proceed to Checkout
+- recommendation links
+- sticky summary
+- empty Cart
+- Header BAG count
+
+Mobile:
+- no horizontal overflow
+- quantity/remove/coupon/shipping/checkout usable
+- totals in logical order
+
+Regression:
+- Header/Footer
+- Shop
+- Single Product
+- SAFE5 Checkout product meta and notices
+```
 
 ## 5. Rollback rule
 
-Each substep must be independently reversible by restoring only the exact block changed in that substep. A full-file rollback must not be the default recovery plan.
+Each substep must be independently reversible by restoring only its exact changed block or line. Full-file rollback is emergency-only.
 
 ## 6. Current next action
 
 ```text
-Produce Step 4E-B0 exact manual replacement map from the unchanged local files.
-Do not generate or recommend another complete replacement package.
-Do not begin PHP or CSS editing until the map is reviewed.
+Step 4E-B1-A only.
+Do not begin B1-B or any CSS operation until B1-A is manually applied and revalidated.
 ```
