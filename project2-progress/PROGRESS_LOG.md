@@ -1,6 +1,6 @@
 # Project 2 · Progress Log
 
-Last updated: 2026-07-04
+Last updated: 2026-07-10
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Current phase
@@ -12,7 +12,7 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ## Current active step
 
 ```text
-Step 4C-REWORK1-B · Shop manual CSS range replacement：In progress
+Step 4C-REWORK1-B2 · Insert controlled Shop CSS block：In progress
 ```
 
 Decision:
@@ -20,9 +20,9 @@ Decision:
 ```text
 Step 4D Single Product is completed and cleaned.
 The user corrected the Shop status: Shop desktop is also far from 1:1 and earlier documentation should not be treated as final visual acceptance.
-The previous mobile-only step is superseded by a full Shop desktop + mobile rework audit.
-A mismatch list and replacement plan has been prepared.
-A first CSS-only candidate was generated as a safety artifact, but the user clarified the preferred workflow is manual range replacement, not whole-file replacement.
+The previous mobile-only step was superseded by a full Shop desktop + mobile rework.
+The preferred workflow is manual CSS range replacement, not whole-file replacement.
+The three old layered Shop CSS ranges have now been deleted and independently verified.
 ```
 
 ## Passed / accepted steps in Single Product phase
@@ -89,77 +89,80 @@ See:
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
-## Step 4D references
+## Current Shop rework
 
-Dedicated handoff file:
-
-```text
-project2-progress/STEP_4D_SYNC_MANIFEST.md
-```
-
-Step 4D cleanup audit:
-
-```text
-project2-progress/STEP_4D_CLEAN1_AUDIT.md
-```
-
-Step 4D server sync file set:
-
-```text
-woocommerce/single-product.php
-assets/css/spatial-flow.css
-functions.php
-assets/css/checkout-safe5.css
-```
-
-## Current active module
-
-### Step 4C-REWORK1-B · Shop manual CSS range replacement
+### Step 4C-REWORK1-B1 · Delete old Shop CSS ranges
 
 Status:
 
 ```text
-In progress. Candidate artifacts exist, but they are reference/fallback only. The active workflow is manual replacement of the Shop CSS range.
+Passed.
 ```
 
-Audit / plan / implementation files:
+Verified uploaded CSS:
 
 ```text
-project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-project2-progress/STEP_4C_REWORK1_A_MISMATCH_PLAN.md
-project2-progress/STEP_4C_REWORK1_B_IMPLEMENTATION.md
+Size: 719,231 bytes
+Lines: 24,695
+SHA256: e55736867bcd0b70c2c3dd6d6547c3efba6dc6e0d74549cb5b692e6d593a45db
+Opening braces: 3,780
+Closing braces: 3,780
+CSS parse errors: 0
 ```
 
-Correction:
+Old Shop block search result:
 
 ```text
-Earlier Shop records are now treated as partial structure / layout passes, not final 1:1 visual acceptance.
-The Shop page needs a full desktop + mobile rework against `preview/spatial-flow-shop-v1.html`.
+Phase Shop Visual 1: 0
+Phase Shop Visual 2: 0
+Phase Shop Visual 2.1 FIX: 0
+Product Archive Visual Scope Fix: 0
+Project2 Step 4C-B — Shop Hero Editorial: 0
 ```
 
-Artifact clarification:
+### Step 4C-REWORK1-B2 · Insert controlled Shop CSS block
+
+Status:
 
 ```text
-- `spatial-flow-step4c-rework1-b.css` is a full-file candidate generated only to verify the final combined result.
-- `step4c-rework1-b-css-rebase.patch` is a diff/safety record showing what changed.
-- Neither artifact should be treated as the preferred workflow.
-- Preferred workflow: provide search markers and replacement text so the user manually replaces only the Shop CSS range in the current local `spatial-flow.css`.
+In progress.
 ```
 
-Scope:
+Manual guide:
 
 ```text
-- Rework Shop desktop against the static reference.
-- Rework Shop mobile against product exposure and static-reference constraints.
-- Preserve WooCommerce product loop, filters, sorting, pagination, product links, wishlist, add-to-cart behavior, cart, checkout, payment, and orders.
-- No plugin changes.
-- No hardcoded product data.
+project2-progress/STEP_4C_REWORK1_B_MANUAL_GUIDE.md
+```
+
+Block to insert:
+
+```text
+STEP_4C_REWORK1_B_SHOP_BLOCK.css
+Size: 47,184 bytes
+Lines: 1,031
+SHA256: c5cfc6b5c17aa039a8b4fb3edfad7ba1dacc3cbf462e2f6007da3181c88508e9
+```
+
+Exact insertion point:
+
+```text
+Immediately before:
+/* Step 5A-4C-R — Basic Pages Template Rebuild */
+```
+
+Safety checks already completed on the block:
+
+```text
+Opening braces: 137
+Closing braces: 137
+CSS parse errors: 0
+All `.sf-shop-v2-*` class hooks used by the block exist in current `archive-product.php`.
 ```
 
 Next action:
 
 ```text
-Provide manual replacement instructions: search markers, delete range, paste controlled Shop CSS block, version bump, and validation checklist.
+User inserts the complete block once, bumps the theme asset version, then tests desktop/mobile Shop and functional regression.
 ```
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
