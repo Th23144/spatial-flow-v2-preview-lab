@@ -9,9 +9,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 Step 4E-A audit：Complete.
 Whole-file Cart candidate：Withdrawn / Do not apply.
 Step 4E-B0 exact manual map：Complete.
-Step 4E-B manual code implementation：Not started.
-Next executable step：Step 4E-B1-A · PHP settings only.
-Current local source of truth：User's unchanged local files.
+Step 4E-B1-A PHP settings only：Passed.
+Step 4E-B1-B unhooked heading/count renderer：Instructions issued / user edit pending.
+Current local source of truth：Validated uploaded functions.php version 2.7.8.
 Cart page status：Not done.
 ```
 
@@ -19,6 +19,13 @@ Authoritative exact-range map:
 
 ```text
 project2-progress/STEP_4E_B0_MANUAL_MAP.md
+```
+
+Current substep records:
+
+```text
+project2-progress/STEP_4E_B1_A_VALIDATION.md
+project2-progress/STEP_4E_B1_B_UNHOOKED_HEADING_RENDERER.md
 ```
 
 ## 1. Why this protocol exists
@@ -68,10 +75,12 @@ Evidence required before continuing
 
 ```text
 functions.php
-Version: 2.7.7
-Size: 547,386 bytes
-Lines: 10,162
-SHA256: 4a0e6d7ee048398afb782c576626543f0ee67d44f37523ec3db9bd75c7ce12b2
+Version: 2.7.8
+Size: 548,377 bytes
+Lines: 10,175
+SHA256: 0b2c1ea9dcad518a949f3a7a26974f0e937e7da8bf3ddd2ac7d924e3111d4c64
+PHP syntax: Passed
+Braces: 1,182 / 1,182
 
 assets/css/spatial-flow.css
 Size: 767,069 bytes
@@ -99,15 +108,19 @@ Record：project2-progress/STEP_4E_B0_MANUAL_MAP.md
 ### Step 4E-B1-A · PHP settings only
 
 ```text
-Add only editable Cart heading/count/summary fields and the fourth fallback product selector.
-Do not change frontend hooks or version.
+Status：Passed.
+Added editable Cart heading/count/summary fields and the fourth fallback product selector.
+Cart and SAFE5 Checkout remained unchanged.
+Record：project2-progress/STEP_4E_B1_A_VALIDATION.md
 ```
 
 ### Step 4E-B1-B · New heading/count renderer only
 
 ```text
+Status：Instructions issued / user edit pending.
 Add the renderer without hooking it.
-Keep the old intro renderer and output unchanged.
+Keep the old intro renderer and frontend output unchanged.
+Record：project2-progress/STEP_4E_B1_B_UNHOOKED_HEADING_RENDERER.md
 ```
 
 ### Step 4E-B1-C · Hook switch
@@ -116,114 +129,5 @@ Keep the old intro renderer and output unchanged.
 Unhook only the old intro output.
 Hook only the validated new heading/count renderer.
 Keep the legacy function/settings for rollback.
-```
-
-### Step 4E-B1-D · Continue Shopping move
-
-```text
-Add a backend-driven Continue Shopping renderer after the native checkout action.
-Do not alter the native checkout button or URL.
-```
-
-### Step 4E-B1-E · Duplicate service row
-
-```text
-Unhook only the three-card service row.
-Preserve its function and saved settings.
-Keep the summary trust set.
-```
-
-### Step 4E-B1-F · Editable summary heading
-
-```text
-Change “Cart totals” only on the Cart page through the approved backend field.
-No global translation or Checkout effect.
-```
-
-### Step 4E-B1-G · Recommendation safety and fourth product
-
-```text
-Remove exact dead sample defaults.
-Use 4 real products.
-Add/use the fourth backend fallback selector.
-Omit invented recommendation label/description fallbacks.
-Preserve real cross-sell/category/backend/latest priority.
-```
-
-### Step 4E-B1-H · Cart-only product-context fallback
-
-```text
-Cart must not fabricate generic product context.
-SAFE5 Checkout retains prior behavior until its regression check passes.
-```
-
-### Step 4E-B2-A1 through B2-A5 · CSS deletion-only batches
-
-```text
-Delete the five exact historical Cart ranges documented in the B0 map.
-Validate after every batch.
-Do not insert new Cart CSS during deletion work.
-Preserve the separate Step 4E Cart Notice Toast block.
-```
-
-### Step 4E-B2-B1 through B2-B3 · Controlled CSS insertion
-
-```text
-Insert three named blocks at the fixed gap between Single Product Visual 1 END and Checkout Visual Final START:
-1. Cart core
-2. Recommendations + empty Cart
-3. Responsive rules
-```
-
-### Step 4E-B1-I · Version bump
-
-```text
-Change 2.7.7 to 2.7.8 only after controlled CSS insertion is ready.
-```
-
-### Step 4E-B2-C · Visual refinement
-
-Only small exact selector replacements are allowed. No second broad Cart patch.
-
-### Step 4E-B3 · Functional and regression acceptance
-
-Required tests:
-
-```text
-Cart:
-- 3 different products
-- variable-product meta
-- quantity change + Update Cart
-- remove item
-- valid/invalid/remove coupon
-- shipping destination/rate
-- totals refresh
-- Continue Shopping
-- Proceed to Checkout
-- recommendation links
-- sticky summary
-- empty Cart
-- Header BAG count
-
-Mobile:
-- no horizontal overflow
-- quantity/remove/coupon/shipping/checkout usable
-- totals in logical order
-
-Regression:
-- Header/Footer
-- Shop
-- Single Product
-- SAFE5 Checkout product meta and notices
-```
-
-## 5. Rollback rule
-
-Each substep must be independently reversible by restoring only its exact changed block or line. Full-file rollback is emergency-only.
-
-## 6. Current next action
-
-```text
-Step 4E-B1-A only.
-Do not begin B1-B or any CSS operation until B1-A is manually applied and revalidated.
+Proceed directly after B1-B file validation; no additional decision pause is required.
 ```
