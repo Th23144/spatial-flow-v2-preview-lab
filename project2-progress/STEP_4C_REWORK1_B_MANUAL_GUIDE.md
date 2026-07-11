@@ -13,38 +13,36 @@ Do not use the generated full candidate or patch as the normal workflow.
 
 ## Important correction
 
-The old Shop visual CSS is not one single continuous block. It is split into three ranges.
-All three old ranges must be removed before the new controlled Shop block is inserted.
+The old Shop visual CSS was split into three ranges. All three old ranges had to be removed before the new controlled Shop block could be inserted.
 
 ## Stage 1 · Remove old Shop CSS ranges
 
-Open:
+Status:
 
 ```text
-wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/assets/css/spatial-flow.css
+Passed.
 ```
 
-Delete these three complete ranges, including their START and END comments:
+The user uploaded the edited local file for verification.
+
+Verified file:
+
+```text
+assets/css/spatial-flow.css
+Size: 719,231 bytes
+Lines: 24,695
+SHA256: e55736867bcd0b70c2c3dd6d6547c3efba6dc6e0d74549cb5b692e6d593a45db
+Opening braces: 3,780
+Closing braces: 3,780
+```
+
+Removed ranges:
 
 ### Range A
 
 ```text
 START: /* === Phase Shop Visual 1 START === */
 END:   /* === Phase Shop Visual 2.1 FIX END === */
-```
-
-This removes the three adjacent blocks:
-
-```text
-Phase Shop Visual 1
-Phase Shop Visual 2
-Phase Shop Visual 2.1 FIX
-```
-
-Current uploaded file approximate lines:
-
-```text
-2022–2875
 ```
 
 ### Range B
@@ -54,12 +52,6 @@ START: /* === Product Archive Visual Scope Fix START ===
 END:   /* === Product Archive Visual Scope Fix END === */
 ```
 
-Current uploaded file approximate lines:
-
-```text
-4484–4991
-```
-
 ### Range C
 
 ```text
@@ -67,36 +59,90 @@ START: /* === Project2 Step 4C-B — Shop Hero Editorial START ===
 END:   /* === Project2 Step 4C-B — Shop Hero Editorial END === */
 ```
 
-Current uploaded file approximate lines:
+Verification result:
 
 ```text
-15962–16532
+Phase Shop Visual 1: 0 matches
+Phase Shop Visual 2: 0 matches
+Phase Shop Visual 2.1 FIX: 0 matches
+Product Archive Visual Scope Fix: 0 matches
+Project2 Step 4C-B — Shop Hero Editorial: 0 matches
+CSS brace count is balanced.
+Full CSS syntax parse returned no parse errors.
 ```
 
-## Stage 1 validation
+## Stage 2 · Insert the controlled Shop block
 
-After deleting the three ranges, search the file for these terms:
+Status:
 
 ```text
-Phase Shop Visual 1
-Phase Shop Visual 2
-Phase Shop Visual 2.1 FIX
-Product Archive Visual Scope Fix
-Project2 Step 4C-B — Shop Hero Editorial
+Ready for manual insertion.
+```
+
+Block file:
+
+```text
+STEP_4C_REWORK1_B_SHOP_BLOCK.css
+Size: 47,184 bytes
+Lines: 1,031
+SHA256: c5cfc6b5c17aa039a8b4fb3edfad7ba1dacc3cbf462e2f6007da3181c88508e9
+```
+
+The block was checked before delivery:
+
+```text
+Opening braces: 137
+Closing braces: 137
+CSS syntax parse errors: 0
+All `.sf-shop-v2-*` selectors used by the block exist in the current uploaded `archive-product.php`.
+```
+
+Exact insertion point in the edited local CSS:
+
+```text
+Insert immediately before:
+/* Step 5A-4C-R — Basic Pages Template Rebuild */
+```
+
+The nearby structure should become:
+
+```text
+/* === Project2 Step 4B-R2-B — Main Footer Dark Editorial END === */
+
+[PASTE THE COMPLETE STEP_4C_REWORK1_B_SHOP_BLOCK.css CONTENT HERE]
+
+/* Step 5A-4C-R — Basic Pages Template Rebuild */
+```
+
+Rules:
+
+```text
+- Paste the block once only.
+- Do not append it to the end of the file.
+- Do not restore any of the three deleted old Shop ranges.
+- Do not change Header, Footer, Single Product, Cart, Checkout, Blog, Wishlist, PHP, or WooCommerce logic in this stage.
+```
+
+After insertion, search for:
+
+```text
+Step 4C-REWORK1-B · Shop Static 1:1 Controlled Rebase START
+Step 4C-REWORK1-B · Shop Static 1:1 Controlled Rebase END
 ```
 
 Expected result:
 
 ```text
-No matches remain for those old Shop blocks.
+Exactly one START match and exactly one END match.
 ```
 
-Do not save a new production release or test the page yet. The new controlled Shop block must be inserted in Stage 2 first.
+## Stage 3 · Version bump and browser validation
 
-## Stage 2
+After the block is inserted:
 
 ```text
-Insert one new controlled Shop CSS block at the former Range C location.
+1. Save `spatial-flow.css`.
+2. Increase the theme asset version in `functions.php` by one revision.
+3. Hard refresh `/shop/` on desktop and mobile.
+4. Validate filters, sorting, wishlist, product links, pagination, Editor’s Pick, Cart, and SAFE5 Checkout regression.
 ```
-
-The new block must be supplied separately and checked before use. It must not contain selector typos and must not be appended blindly to the end of the file.
