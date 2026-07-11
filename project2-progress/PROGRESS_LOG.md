@@ -12,17 +12,17 @@ Project 2 · Spatial Flow V2 visual replacement / 换皮工程继续推进
 ## Current active step
 
 ```text
-Step 4C-REWORK1-B2 · Insert controlled Shop CSS block：In progress
+Step 4C-REWORK1 · Shop desktop + mobile controlled 1:1 rework：Passed
+Next step: Pending user instruction
 ```
 
 Decision:
 
 ```text
 Step 4D Single Product is completed and cleaned.
-The user corrected the Shop status: Shop desktop is also far from 1:1 and earlier documentation should not be treated as final visual acceptance.
-The previous mobile-only step was superseded by a full Shop desktop + mobile rework.
-The preferred workflow is manual CSS range replacement, not whole-file replacement.
-The three old layered Shop CSS ranges have now been deleted and independently verified.
+The user corrected the old Shop status and required a true desktop + mobile rework instead of treating earlier lightweight layout work as final acceptance.
+The old layered Shop CSS was removed and replaced through a manual, controlled CSS-range workflow.
+The final CSS structure, desktop screenshots, mobile screenshots, and functional regression checks all passed.
 ```
 
 ## Passed / accepted steps in Single Product phase
@@ -89,17 +89,15 @@ See:
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
-## Current Shop rework
+## Shop rework result
 
 ### Step 4C-REWORK1-B1 · Delete old Shop CSS ranges
 
-Status:
-
 ```text
-Passed.
+Passed
 ```
 
-Verified uploaded CSS:
+Verified intermediate CSS:
 
 ```text
 Size: 719,231 bytes
@@ -122,47 +120,100 @@ Project2 Step 4C-B — Shop Hero Editorial: 0
 
 ### Step 4C-REWORK1-B2 · Insert controlled Shop CSS block
 
-Status:
-
 ```text
-In progress.
+Passed
 ```
 
-Manual guide:
+Validated final CSS:
 
 ```text
-project2-progress/STEP_4C_REWORK1_B_MANUAL_GUIDE.md
-```
-
-Block to insert:
-
-```text
-STEP_4C_REWORK1_B_SHOP_BLOCK.css
-Size: 47,184 bytes
-Lines: 1,031
-SHA256: c5cfc6b5c17aa039a8b4fb3edfad7ba1dacc3cbf462e2f6007da3181c88508e9
-```
-
-Exact insertion point:
-
-```text
-Immediately before:
-/* Step 5A-4C-R — Basic Pages Template Rebuild */
-```
-
-Safety checks already completed on the block:
-
-```text
-Opening braces: 137
-Closing braces: 137
+File: assets/css/spatial-flow.css
+Uploaded name: spatial-flow(1).css
+Size: 766,416 bytes
+Lines: 25,727
+SHA256: 4abe753b251319c730b4c66520ae4cc0287fa9f0b3d239f016ba4ca5a7b7baee
+Opening braces: 3,917
+Closing braces: 3,917
 CSS parse errors: 0
-All `.sf-shop-v2-*` class hooks used by the block exist in current `archive-product.php`.
 ```
 
-Next action:
+Controlled block:
 
 ```text
-User inserts the complete block once, bumps the theme asset version, then tests desktop/mobile Shop and functional regression.
+Step 4C-REWORK1-B · Shop Static 1:1 Controlled Rebase
+START count: 1
+END count: 1
 ```
+
+Version confirmed by user:
+
+```text
+SPATIAL_FLOW_CHILD_VERSION = 2.7.6
+```
+
+### Step 4C-REWORK1-B3 · Desktop/mobile browser and regression validation
+
+```text
+Passed
+```
+
+Screenshot evidence supplied by user:
+
+```text
+1. Desktop Shop top area
+2. Desktop Shop full page
+3. Mobile Shop first screen
+4. Mobile Shop full page
+```
+
+Accepted result:
+
+```text
+- Desktop Hero, metadata, toolbar, Editor’s Pick, product grid, pagination, closing note, contact band, and footer render normally.
+- Mobile density is reduced and products appear earlier.
+- Mobile two-column product grid remains readable.
+- No horizontal overflow.
+- Filters, sorting, Editor’s Pick link, product links, wishlist, and pagination work.
+- Single Product, Cart, and SAFE5 Checkout regression checks show no issue.
+```
+
+Validation record:
+
+```text
+project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md
+```
+
+## Backend editability result
+
+```text
+Passed.
+```
+
+The Shop rework remains visual-only and preserves backend-editable content sources:
+
+```text
+sf_shop_v2_kicker
+sf_shop_v2_pieces_meta
+sf_shop_v2_makers_meta
+sf_shop_v2_origin_meta
+sf_shop_v2_lede
+sf_shop_v2_body
+sf_shop_v2_signoff
+sf_shop_v2_section_kicker
+sf_shop_v2_section_title
+sf_shop_v2_editor_pick_enabled
+sf_shop_v2_editor_pick_product
+sf_shop_v2_editor_pick_kicker
+sf_shop_v2_editor_pick_title
+sf_shop_v2_editor_pick_subtitle
+sf_shop_v2_editor_pick_body
+sf_shop_v2_editor_pick_place
+sf_shop_v2_editor_pick_note_text
+sf_shop_v2_editor_pick_note_url
+```
+
+No product names, prices, product IDs, Hero copy, Editor’s Pick copy, business links, image URLs, or taxonomy values were hardcoded into the new CSS.
+
+The static reference's editorial per-product place note remains intentionally unimplemented rather than fabricated. If added later, it must use a real backend-editable per-product field rendered dynamically by `content-product.php`.
 
 Deferred long sections remain documented in `project2-progress/DEFERRED_PLANS.md`.
