@@ -11,11 +11,11 @@ Whole-file Cart candidate：Withdrawn / Do not apply.
 Step 4E-B0 exact manual map：Complete.
 Step 4E-B1-A PHP settings only：Passed.
 Step 4E-B1-B unhooked heading/count renderer：Passed.
-Step 4E-B1-C heading hook switch：Applied; browser validation exposed count-format defects.
+Step 4E-B1-C heading hook switch：Applied.
 Step 4E-B1-C-FIX1：Passed file validation; removed theme URI but left a leading percent sign.
-Step 4E-B1-C-FIX2：Passed exact file validation and current quantity-2 browser output.
-Step 4E-B1-C-FIX3：Instructions issued to put live count below Your Bag.
-Step 4E-B1-D：Blocked until FIX3 browser + file validation passes.
+Step 4E-B1-C-FIX2：Passed exact file and browser validation.
+Step 4E-B1-C-FIX3：Passed exact file and browser validation; V2 order now matched.
+Step 4E-B1-D：Instructions issued / user edit pending.
 Cart page status：Not done.
 ```
 
@@ -32,6 +32,7 @@ project2-progress/STEP_4E_B1_C_FIX1_VALIDATION.md
 project2-progress/STEP_4E_B1_C_FIX2_PERCENT_NORMALIZATION.md
 project2-progress/STEP_4E_B1_C_FIX2_VALIDATION.md
 project2-progress/STEP_4E_B1_C_FIX3_HEADING_COUNT_ORDER.md
+project2-progress/STEP_4E_B1_D_CONTINUE_SHOPPING_RELOCATION.md
 ```
 
 ## 1. Non-negotiable delivery rule
@@ -49,34 +50,31 @@ Every executable instruction must include exact anchors, exact replacement, expe
 
 ## 2. Current authoritative baseline
 
-Uploaded `functions(5).php` after FIX2:
+Uploaded `functions(6).php` after FIX3:
 
 ```text
 Version: 2.7.8
 Size: 550,932 bytes
 Lines: 10,233
-SHA256: ee531433e499b07d58aa79dda50cf6e19cea08d077858db32e353a7bbde421ba
+SHA256: ef3f2e437ebbb9cbdbc1b44da20187e92bc491183ceab3e1267249308e70160c
 PHP syntax: Passed
 Braces: 1,190 / 1,190
-Active heading hook: spatial_flow_cart_v2_heading
-FIX2 normalization occurrences: 1
+Active heading hook: 1
+Old intro hook: 0
+Count-format normalization: 1
+Heading renderer: 1
+Heading markup before count markup: Yes
+Custom woocommerce_proceed_to_checkout hook: 0
 ```
 
 Browser result:
 
 ```text
-2 pieces · ready to go
-Your Bag.
-```
-
-The count value and percent-token handling are now correct, but the approved V2 reference order is the reverse:
-
-```text
 Your Bag.
 2 pieces · ready to go
 ```
 
-This is a PHP markup-order defect, not merely pending CSS spacing.
+The V2 semantic order is now correct. Final type scale, spacing, and alignment remain deferred to the controlled Cart CSS rebase.
 
 Unchanged assets:
 
@@ -92,23 +90,23 @@ Lines: 1,995
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 ```
 
-If the exact FIX3 anchor is missing or duplicated, the newest local file must be supplied before editing.
+If the exact B1-D anchor is missing or duplicated, the newest local file must be supplied before editing.
 
 ## 3. Current executable step
-
-### Step 4E-B1-C-FIX3 · Put live count below heading
-
-```text
-Status：Instructions issued / user edit pending.
-Scope：reorder only the existing h1 and count paragraph blocks in spatial_flow_cart_v2_heading().
-Expected result：550,932 bytes / 10,233 lines / SHA256 ef3f2e437ebbb9cbdbc1b44da20187e92bc491183ceab3e1267249308e70160c.
-Required browser result：Your Bag. first, live count directly below it.
-```
 
 ### Step 4E-B1-D · Continue Shopping relocation
 
 ```text
-Begin only after FIX3 browser and uploaded-file validation pass.
-Move Continue Shopping into the correct native checkout-actions area.
+Status：Instructions issued / user edit pending.
+Scope：add one dedicated renderer and one Cart-only hook after WooCommerce's native checkout button.
+Expected result：551,894 bytes / 10,257 lines / SHA256 213850d5a39b1d7394bae1a6e537961a1ad4c78795b9c5a36bae939d7f75ee18.
+Required browser result：Continue Shopping appears exactly once directly below Proceed to Checkout and opens the real Shop URL.
+```
+
+### Step 4E-B1-E · Duplicate service-row unhook
+
+```text
+Begin only after B1-D browser and uploaded-file validation pass.
+Remove only the duplicate frontend service-row hook while preserving its renderer and all backend settings for rollback/editability.
 Proceed directly after validation; no additional decision pause is required.
 ```
