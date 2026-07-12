@@ -10,21 +10,22 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 2. PROJECT2_DOCS_INDEX.md
 3. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 4. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-5. project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
-6. project2-progress/STEP_4E_B1_G3_VALIDATION.md
-7. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
-8. project2-progress/STEP_4E_B1_G2_VALIDATION.md
-9. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
-10. project2-progress/STEP_4E_B1_G1_VALIDATION.md
-11. project2-progress/STEP_4E_B0_MANUAL_MAP.md
-12. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-13. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
-14. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-15. project2-progress/PROGRESS_LOG.md
-16. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-17. project2-progress/STEP_4D_SYNC_MANIFEST.md
-18. project2-progress/DEFERRED_PLANS.md
-19. PROJECT2_CSS_MAINTENANCE_POLICY.md
+5. project2-progress/STEP_4E_B1_H_VALIDATION.md
+6. project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
+7. project2-progress/STEP_4E_B1_G3_VALIDATION.md
+8. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
+9. project2-progress/STEP_4E_B1_G2_VALIDATION.md
+10. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
+11. project2-progress/STEP_4E_B1_G1_VALIDATION.md
+12. project2-progress/STEP_4E_B0_MANUAL_MAP.md
+13. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+14. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+15. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+16. project2-progress/PROGRESS_LOG.md
+17. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+18. project2-progress/STEP_4D_SYNC_MANIFEST.md
+19. project2-progress/DEFERRED_PLANS.md
+20. PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
 The current Cart manual records supersede every earlier instruction to apply a generated ZIP or overwrite complete `functions.php` / `spatial-flow.css` files.
@@ -34,8 +35,9 @@ The current Cart manual records supersede every earlier instruction to apply a g
 | File | Role | Status |
 |---|---|---|
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / B1-H active. |
-| `project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md` | Exact PHP operation removing fabricated Cart-only context while preserving SAFE5 Checkout fallback. | Instructions issued. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / B1-H SAFE5 gate active. |
+| `project2-progress/STEP_4E_B1_H_VALIDATION.md` | Exact functions.php validation, Cart no-visible-regression record, and remaining SAFE5 gate. | Exact file passed / SAFE5 pending. |
+| `project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md` | Exact PHP operation removing fabricated Cart-only context while preserving SAFE5 Checkout fallback. | Implemented / partially validated. |
 | `project2-progress/STEP_4E_B1_G3_VALIDATION.md` | Exact CSS validation plus user-confirmed desktop/mobile acceptance. | Passed. |
 | `project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md` | Exact in-place CSS replacement for the desktop four-card grid. | Completed. |
 | `project2-progress/STEP_4E_B1_G2_VALIDATION.md` | Exact functions.php and browser validation for four real recommendation products. | Passed. |
@@ -105,8 +107,10 @@ Step 4E-B1-A through B1-F：Passed
 Step 4E-B1-G1 dead sample cleanup：Passed
 Step 4E-B1-G2 four real recommendations：Passed
 Step 4E-B1-G3 desktop four-column layout：Passed exact file validation and user-confirmed browser validation
-Step 4E-B1-H Cart-only product-context fallback safety：Instructions issued
-Awaiting manual functions.php edit and Cart/SAFE5 validation
+Step 4E-B1-H Cart-only product-context fallback safety：Exact PHP validation passed
+Cart page：User confirmed no visible change / no visible regression
+SAFE5 Checkout product-row regression：Pending explicit confirmation
+Next CSS deletion step：Blocked until SAFE5 confirmation
 ```
 
 Current implementation mode:
@@ -127,17 +131,22 @@ The Cart remains officially `Not done` until the complete desktop/mobile, functi
 
 ```text
 functions.php
-Uploaded name: functions(11).php
+Uploaded name: functions(12).php
 Version: 2.7.8
-Size: 550,596 bytes
-Lines: 10,248
-SHA256: 1db56fccbcfaf2a744e631c5da71c14a9be66cec87d99946e906b8f3aa84366f
+Size: 550,884 bytes
+Lines: 10,256
+SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
+PHP syntax: Passed
+Braces: 1,200 / 1,200
 
 assets/css/spatial-flow.css
 Uploaded name: spatial-flow(4).css
 Size: 767,120 bytes
 Lines: 25,744
 SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
+Braces: 3,918 / 3,918
+Comments: 397 / 397
+CSS parse errors: 0
 
 assets/js/spatial-flow.js
 Size: 70,828 bytes
