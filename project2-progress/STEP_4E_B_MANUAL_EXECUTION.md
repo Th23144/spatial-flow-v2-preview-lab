@@ -16,7 +16,7 @@ Step 4E-B2-R1 dependency re-audit：Complete.
 Step 4E-B2-R2 insertion：Present and structurally valid.
 Step 4E-B2-R2-FIX1 exact file：Passed.
 Step 4E-B2-R2-FIX1 desktop structure：Passed.
-Desktop 1:1 detail matching：Pending.
+Step 4E-B2-R2-FIX2 instructions：Issued / user insertion pending.
 Mobile/functional validation on current baseline：Pending.
 Old B2-A2 deletion-first continuation：Withdrawn permanently.
 Cart page status：Not done.
@@ -35,8 +35,10 @@ project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
 project2-progress/STEP_4E_B2_R2_VISUAL_VALIDATION.md
 project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md
 project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md
+project2-progress/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.md
 project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
 project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css
+project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css
 ```
 
 The failure-and-rollback records supersede the prior deletion-first B2 plan.
@@ -118,34 +120,60 @@ FIX1 passed only its narrow structural purpose. It does not complete the Cart pa
 ### Step 4E-B2-R2-FIX2 · Desktop 1:1 detail pass
 
 ```text
-Mode：one bounded desktop-only correction inside the existing R2 ownership range.
+Mode：one bounded desktop-only insertion inside the existing R2 ownership range.
 File：assets/css/spatial-flow.css only.
 Current exact baseline：spatial-flow(8).css.
+Snippet：project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css.
+Instruction：project2-progress/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.md.
+Insertion point：immediately before the existing main B2-R2 END marker.
 Legacy deletion：Forbidden.
 PHP / JS / templates：No changes.
-Mobile rules：Do not change in the same operation.
+Mobile rules：No changes; every FIX2 rule is inside min-width 1101px.
 ```
 
-FIX2 may address only:
+Exact FIX2 snippet:
+
+```text
+Size: 9,328 bytes
+Logical lines: 279
+SHA256: 359a1012bb1c39a402747a429117068ca9af94b9410ad0e3b61b9cb26d929f6a
+Braces: 49 / 49
+Comments: 2 / 2
+CSS parse errors: 0
+```
+
+Expected stylesheet after exact insertion:
+
+```text
+Size: 813,392 bytes
+Logical lines: 27,205
+SHA256: caacee43d3cd938ed19674beae6bb7e570d891963bde410f4f8aa272a397c4b8
+Braces: 4,125 / 4,125
+Comments: 403 / 403
+CSS parse errors: 0
+```
+
+FIX2 addresses only:
 
 ```text
 - desktop Cart spacing and typography
-- product-row columns, padding and alignment
-- metadata/remove placement
+- product-row columns, image scale, padding and alignment
+- metadata/remove placement and duplicate product-price suppression
 - Order Summary title integration and vertical rhythm
 - Coupon/action-row dimensions
-- recommendation media proportion and text/CTA alignment
+- recommendation square media, typography and price/CTA alignment
 ```
 
 Required evidence after FIX2:
 
 ```text
 - edited spatial-flow.css
-- desktop Cart screenshot including the full recommendation section
+- desktop Cart screenshot including heading, all visible rows, complete summary and all four recommendations
 - exact file metrics and parser/balance checks
-- confirmation that no old Cart CSS was deleted
+- confirmation that no native Cart control disappeared
+- confirmation that Header/Footer remained normal
 ```
 
-Mobile and native functional validation follow only after the desktop bounded pass is accepted.
+Mobile and full native functional validation follow only after the desktop bounded pass is accepted.
 
 Do not remove any old Cart CSS until desktop, mobile and native functional validation all pass.
