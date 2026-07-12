@@ -8,38 +8,33 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 1. PROJECT2_RESUME_INDEX.md
 2. PROJECT2_DOCS_INDEX.md
-3. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
-4. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-5. project2-progress/STEP_4E_B2_R3_A_MOBILE_BASELINE_AUDIT.md
-6. project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md
-7. project2-progress/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.md
-8. project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css
-9. project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md
-10. project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md
-11. project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css
-12. project2-progress/STEP_4E_B2_R2_VISUAL_VALIDATION.md
-13. project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
-14. project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
-15. project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
-16. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
-17. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
-18. project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md
-19. project2-progress/STEP_4E_B1_H_VALIDATION.md
-20. project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
-21. project2-progress/STEP_4E_B1_G3_VALIDATION.md
-22. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
-23. project2-progress/STEP_4E_B1_G2_VALIDATION.md
-24. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
-25. project2-progress/STEP_4E_B1_G1_VALIDATION.md
-26. project2-progress/STEP_4E_B0_MANUAL_MAP.md
-27. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-28. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
-29. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-30. project2-progress/PROGRESS_LOG.md
-31. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-32. project2-progress/STEP_4D_SYNC_MANIFEST.md
-33. project2-progress/DEFERRED_PLANS.md
-34. PROJECT2_CSS_MAINTENANCE_POLICY.md
+3. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+4. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
+5. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
+6. project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
+7. project2-progress/STEP_4E_B2_R3_A_MOBILE_BASELINE_AUDIT.md
+8. project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md
+9. project2-progress/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.md
+10. project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css
+11. project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md
+12. project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md
+13. project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css
+14. project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
+15. project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
+16. project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
+17. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
+18. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
+19. project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md
+20. project2-progress/STEP_4E_B1_H_VALIDATION.md
+21. project2-progress/STEP_4E_B0_MANUAL_MAP.md
+22. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+23. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+24. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+25. project2-progress/PROGRESS_LOG.md
+26. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+27. project2-progress/STEP_4D_SYNC_MANIFEST.md
+28. project2-progress/DEFERRED_PLANS.md
+29. PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
 The current Cart manual records supersede earlier ZIP/full-file replacement instructions and the failed B2-A1 deletion-first plan.
@@ -48,15 +43,14 @@ The current Cart manual records supersede earlier ZIP/full-file replacement inst
 
 | File | Role | Status |
 |---|---|---|
+| `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md` | Project-wide rule: mobile quality and usability outrank literal replication of weak static mobile compositions. | Active. |
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / mobile audit active. |
-| `project2-progress/STEP_4E_B2_R3_A_MOBILE_BASELINE_AUDIT.md` | No-code mobile screenshot audit gate. | Active. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / functional regression active. |
+| `project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md` | Plain-language native Cart interaction checklist. | Active. |
+| `project2-progress/STEP_4E_B2_R3_A_MOBILE_BASELINE_AUDIT.md` | Mobile screenshot audit, overflow result and mobile-quality rule. | Passed. |
 | `project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md` | Exact FIX2 file validation and desktop acceptance. | Passed. |
 | `project2-progress/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.md` | Desktop-only FIX2 instructions and rollback. | Executed exactly. |
-| `project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css` | Exact bounded desktop-only FIX2 snippet. | Inserted. |
 | `project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md` | Exact file validation and desktop structure pass. | Passed. |
-| `project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md` | Astra width and recommendation specificity correction. | Executed exactly. |
-| `project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css` | Exact FIX1 insertion snippet. | Inserted. |
 | `project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md` | Main Cart-only consolidation layer. | Inserted. |
 | `project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md` | Maps interacting Cart CSS layers. | Complete. |
 | `project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md` | Exact restored-file metrics and byte comparison. | Passed exactly. |
@@ -75,6 +69,8 @@ Not done
 ```
 
 A page becomes `Completed 1:1` only after current-file implementation, desktop validation, mobile validation, functional regression and backend-editability validation all pass.
+
+For mobile, `Completed 1:1` means faithful to the V2 design language while remaining production-quality on real phone widths. Literal reproduction of a poor static mobile composition is not required.
 
 ## 4. Current page-level summary
 
@@ -110,7 +106,7 @@ A page becomes `Completed 1:1` only after current-file implementation, desktop v
 - Blog article
 ```
 
-Historical partial work does not change these binary statuses.
+A later mobile aesthetic re-audit is required for Shop archive and Single Product. Their current status remains unchanged until a concrete defect is found; a discovered defect reopens the page as `Not done`.
 
 ## 5. Current active step
 
@@ -123,23 +119,11 @@ Step 4E-B2-R1 CSS dependency re-audit：Complete
 Step 4E-B2-R2 consolidation layer：Inserted and structurally valid
 Step 4E-B2-R2-FIX1：Passed exactly for desktop structure
 Step 4E-B2-R2-FIX2：Passed exactly for desktop detail
-Step 4E-B2-R3-A mobile baseline audit：Active
-Native functional validation：Pending
+Step 4E-B2-R3-A mobile baseline audit：Passed
+Horizontal overflow：No
+Mobile FIX3：Not required
+Step 4E-B2-R4 native functional regression：Active
 ```
-
-Desktop FIX2 acceptance includes:
-
-```text
-- centered stable Cart frame
-- improved product-row proportions
-- duplicate desktop product-price suppression
-- stable Coupon action bar
-- integrated Order Summary heading
-- aligned four-product recommendation row
-- intact Header and Footer
-```
-
-Dynamic WooCommerce titles, prices, shipping, totals and the real missing-image placeholder are accepted live-data differences and must not be fabricated.
 
 The Cart remains officially `Not done`.
 
@@ -174,28 +158,43 @@ FIX1 markers: 1 / 1
 FIX2 markers: 1 / 1
 ```
 
-## 7. Current gate
+## 7. Mobile quality rule
 
 ```text
-1. Make no file changes.
-2. Use the exact spatial-flow(9).css baseline.
-3. Open Cart at 430 CSS px or narrower and hard refresh.
-4. Supply one full-page mobile screenshot including Header, Cart rows, action bar, complete summary, recommendations and Footer.
-5. Report horizontal overflow yes/no.
-6. Report missing or unusable native controls yes/no.
+1. preserve native behavior and real dynamic data
+2. prevent overflow, clipping, overlap and unusable controls
+3. preserve Spatial Flow visual language
+4. use professional visual judgment for hierarchy, spacing, density and touch targets
+5. follow V2 static mobile layouts only where they are genuinely well designed
+6. never fabricate product data or imagery to imitate a static sample
 ```
 
-After the mobile audit:
+## 8. Current functional gate
+
+Use the plain-language checklist in:
 
 ```text
-- acceptable mobile result → full native functional regression
-- bounded mobile defects → one small mobile-only correction range
-- severe mobile defect → independently removable mobile correction layer
+project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
+```
+
+It covers:
+
+```text
+- quantity plus/minus and Update Cart
+- remove item and Undo/Restore
+- invalid Coupon error path
+- valid Coupon apply/remove when available
+- Change address and shipping refresh
+- Proceed to Checkout and SAFE5 load
+- Continue Shopping
+- recommendation links
+- mobile Menu and Footer accordions
+- final overflow/warning safety check
 ```
 
 No historical Cart CSS cleanup begins until desktop, mobile and native functional validation all pass.
 
-## 8. Maintenance rule
+## 9. Maintenance rule
 
 ```text
 - update STEP_4E_B_MANUAL_EXECUTION.md after each accepted, failed or rolled-back Cart substep
@@ -203,4 +202,5 @@ No historical Cart CSS cleanup begins until desktop, mobile and native functiona
 - update PROJECT2_DOCS_INDEX.md when a major status file is added or superseded
 - preserve backend editability and dynamic WooCommerce sources
 - prefer precise range replacement over whole-file replacement or indefinite append-only CSS
+- apply the mobile design-quality policy to all remaining pages
 ```
