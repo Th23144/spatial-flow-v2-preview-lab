@@ -1,9 +1,7 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-11
+Last updated: 2026-07-11  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
-
-This file maps the current Project 2 documentation and identifies the authoritative sources for page-level status, active work, handoff, cleanup, and deferred plans.
 
 ## 1. Authoritative read order
 
@@ -12,81 +10,50 @@ This file maps the current Project 2 documentation and identifies the authoritat
 2. PROJECT2_DOCS_INDEX.md
 3. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 4. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-5. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
-6. project2-progress/STEP_4E_B1_G1_VALIDATION.md
-7. project2-progress/STEP_4E_B0_MANUAL_MAP.md
-8. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-9. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
-10. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-11. project2-progress/PROGRESS_LOG.md
-12. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-13. project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md
-14. project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
+5. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
+6. project2-progress/STEP_4E_B1_G2_VALIDATION.md
+7. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
+8. project2-progress/STEP_4E_B1_G1_VALIDATION.md
+9. project2-progress/STEP_4E_B0_MANUAL_MAP.md
+10. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+11. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+12. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+13. project2-progress/PROGRESS_LOG.md
+14. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
 15. project2-progress/STEP_4D_SYNC_MANIFEST.md
-16. project2-progress/STEP_4D_CLEAN1_AUDIT.md
-17. project2-progress/DEFERRED_PLANS.md
-18. PROJECT2_CSS_MAINTENANCE_POLICY.md
-19. PROJECT2_LOCAL_SYNC_MANIFEST.md
-20. PROJECT2_NEXT_WINDOW_PROMPT.md
-21. PROJECT2_CURRENT_STATE.md
+16. project2-progress/DEFERRED_PLANS.md
+17. PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
-Important current execution sources:
+The current Cart manual records supersede every earlier instruction to apply a generated ZIP or overwrite complete `functions.php` / `spatial-flow.css` files.
 
-```text
-project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
-```
-
-They supersede every earlier instruction to apply the generated Step 4E-B ZIP or overwrite complete `functions.php` / `spatial-flow.css` files.
-
-## 2. Current authoritative status files
+## 2. Current authoritative files
 
 | File | Role | Status |
 |---|---|---|
-| `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Authoritative page-by-page status map using only `Completed 1:1` or `Not done`. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Manual, staged, exact-range Cart execution protocol and current code baseline. | Current / authoritative / B1-G2 active. |
-| `project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md` | Exact four-line PHP operation changing real recommendation output from three products to four. | Current / instructions issued. |
-| `project2-progress/STEP_4E_B1_G1_VALIDATION.md` | Exact uploaded-file and no-visible-change validation for dead manual recommendation fallback cleanup. | Passed. |
-| `project2-progress/STEP_4E_B0_MANUAL_MAP.md` | Exact PHP/CSS anchors, staged boundaries, deletion batches, rollback model, and execution order. | Current / B0 complete. |
-| `project2-progress/PROGRESS_LOG.md` | Historical long-form progress log. Its old B1-A active-step lines are superseded by the current manual execution protocol. | Historical snapshot / not current execution source. |
-| `project2-progress/STEP_4E_CART_REWORK_AUDIT.md` | Cart static/current-state audit, screenshots, CSS/JS baseline, and mismatch matrix. | Current / audit baseline. |
-| `project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md` | Cart functions.php ownership, hooks, backend-editability, hardcoded-data findings, and implementation constraints. | Current / Step 4E-A3 passed. |
-| `project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md` | Record of the withdrawn whole-file candidate and why it must not be applied. | Historical / Do not apply. |
-| `project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md` | Shop full desktop/mobile rework record. | Completed. |
-| `project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md` | Shop controlled CSS insertion and browser validation record. | Completed after pagination follow-up. |
-| `project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md` | Shop pagination regression root cause and fix. | Completed. |
-| `project2-progress/STEP_4D_SYNC_MANIFEST.md` | Single Product handoff and server-sync file set. | Current. |
-| `project2-progress/STEP_4D_CLEAN1_AUDIT.md` | Accepted Single Product CSS cleanup. | Current. |
-| `project2-progress/DEFERRED_PLANS.md` | Deferred modules, cleanup, and backlog. | Current. |
-| `PROJECT2_CSS_MAINTENANCE_POLICY.md` | Precise replacement, non-append-only, and no-blind-whole-file-replacement policy. | Current and active. |
+| `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / B1-G3 active. |
+| `project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md` | Exact in-place CSS replacement for the desktop four-card grid. | Instructions issued. |
+| `project2-progress/STEP_4E_B1_G2_VALIDATION.md` | Exact functions.php and browser validation for four real recommendation products. | Passed. |
+| `project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md` | Four-line PHP operation changing recommendation output from three to four. | Completed. |
+| `project2-progress/STEP_4E_B1_G1_VALIDATION.md` | Dead sample fallback cleanup validation. | Passed. |
+| `project2-progress/STEP_4E_B0_MANUAL_MAP.md` | Exact staged PHP/CSS execution map. | Complete. |
+| `project2-progress/STEP_4E_CART_REWORK_AUDIT.md` | Cart static/current-state audit and mismatch matrix. | Audit baseline. |
+| `project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md` | Cart hook, dynamic-source, and backend-editability audit. | Passed. |
+| `project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md` | Withdrawn whole-file candidate record. | Historical / Do not apply. |
+| `project2-progress/PROGRESS_LOG.md` | Historical long-form progress log. | Not the current execution source. |
+| `PROJECT2_CSS_MAINTENANCE_POLICY.md` | Precise replacement and no-blind-overwrite policy. | Active. |
 
 ## 3. Page-status rule
 
-Only two page statuses are valid:
+Only two statuses are valid:
 
 ```text
 Completed 1:1
 Not done
 ```
 
-A page is `Completed 1:1` only after the real WordPress/WooCommerce implementation has completed:
-
-```text
-- current-file exact replacement against the V2 reference
-- desktop browser validation
-- mobile browser validation
-- functional regression
-- backend-editability validation
-```
-
-Anything less is:
-
-```text
-Not done
-```
-
-Historical implementation, functional fixes, accepted static HTML, or partial redesign must not be represented as page completion.
+A page becomes `Completed 1:1` only after current-file implementation, desktop validation, mobile validation, functional regression, and backend-editability validation all pass.
 
 ## 4. Current page-level summary
 
@@ -95,8 +62,8 @@ Historical implementation, functional fixes, accepted static HTML, or partial re
 ```text
 - Main-site Header
 - Main-site Footer
-- Shop archive, including pagination follow-up fix
-- Single Product, including backend mapping, The Piece, full regression, and CSS cleanup
+- Shop archive
+- Single Product
 ```
 
 ### Not done
@@ -122,69 +89,62 @@ Historical implementation, functional fixes, accepted static HTML, or partial re
 - Blog article
 ```
 
-Historical work on these pages may still be useful, but their official status remains `Not done` until full current acceptance passes.
+Historical partial work does not change these binary statuses.
 
 ## 5. Current active step
 
 ```text
-Step 4E-A · Cart desktop + mobile 1:1 current-state audit：Complete
+Step 4E-A Cart audit：Complete
 Whole-file Step 4E-B candidate：Withdrawn / Do not apply
-Step 4E-B0 · Manual exact-range execution map：Complete
+Step 4E-B0 manual map：Complete
 Step 4E-B1-A through B1-F：Passed
-Step 4E-B1-G1 · Dead manual recommendation fallback cleanup：Passed exactly
-Step 4E-B1-G2 · Four real recommendation products：Instructions issued
-Awaiting user manual edit + functions.php validation
+Step 4E-B1-G1 dead sample cleanup：Passed
+Step 4E-B1-G2 four real recommendations：Passed
+Step 4E-B1-G3 desktop four-column layout：Instructions issued
+Awaiting manual spatial-flow.css edit and validation
 ```
 
 Current implementation mode:
 
 ```text
 - no ZIP/full-file replacement
-- no blind overwrite of functions.php or spatial-flow.css
+- no blind overwrite
 - small named substeps
-- exact anchors and replacement ranges
-- expected size/line delta before editing
+- exact anchors and predicted metrics
 - revalidation after every operation
-- independent rollback for every substep
-- PHP and CSS never combined into one operation
+- independent rollback
+- PHP and CSS never combined in one operation
 ```
 
-The Cart remains officially:
+The Cart remains officially `Not done` until the complete desktop/mobile, functional, and backend-editability acceptance passes.
+
+## 6. Current code baselines
 
 ```text
-Not done
-```
+functions.php
+Uploaded name: functions(11).php
+Version: 2.7.8
+Size: 550,596 bytes
+Lines: 10,248
+SHA256: 1db56fccbcfaf2a744e631c5da71c14a9be66cec87d99946e906b8f3aa84366f
 
-until controlled implementation and full desktop/mobile, functional, and backend-editability acceptance are completed.
+assets/css/spatial-flow.css
+Size: 767,069 bytes
+Lines: 25,742
+SHA256: a8db33e2cd3e7886a12a455383fe6769cbd262e7e6d6fac8003aa46fe641a10d
 
-## 6. Historical root documents
-
-The following files remain useful for background but contain stale next-step or page-status lines:
-
-```text
-PROJECT2_CURRENT_STATE.md
-PROJECT2_NEXT_WINDOW_PROMPT.md
-PROJECT2_LOCAL_SYNC_MANIFEST.md
-project2-progress/PROGRESS_LOG.md
-```
-
-Rules:
-
-```text
-- Do not delete them.
-- Do not use their old completed/passed/next-step lines as authoritative.
-- Check the page-status matrix and current Cart manual execution records first.
-- Current uploaded local files remain the only code baseline.
+assets/js/spatial-flow.js
+Size: 70,828 bytes
+Lines: 1,995
+SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 ```
 
 ## 7. Maintenance rule
 
 ```text
-- Update project2-progress/STEP_4E_B_MANUAL_EXECUTION.md after every accepted or reopened Cart substep.
-- Update project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md only when a page changes between Not done and Completed 1:1.
-- Update project2-progress/DEFERRED_PLANS.md when work is deferred or pulled into active scope.
-- Update PROJECT2_DOCS_INDEX.md when a major status file is added or superseded.
-- Preserve backend editability and dynamic WordPress/WooCommerce sources on every page.
-- Prefer precise range replacement over whole-file replacement or append-only CSS.
-- Never make a large downloadable replacement package the default method unless the user explicitly approves it.
+- update STEP_4E_B_MANUAL_EXECUTION.md after each accepted or reopened Cart substep
+- update PROJECT2_PAGE_STATUS_MATRIX.md only when a page changes between Not done and Completed 1:1
+- update PROJECT2_DOCS_INDEX.md when a major status file is added or superseded
+- preserve backend editability and dynamic WooCommerce sources
+- prefer precise range replacement over whole-file replacement or append-only CSS
 ```
