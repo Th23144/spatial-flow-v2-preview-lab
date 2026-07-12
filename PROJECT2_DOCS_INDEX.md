@@ -10,32 +10,34 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 2. PROJECT2_DOCS_INDEX.md
 3. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 4. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-5. project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md
-6. project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md
-7. project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css
-8. project2-progress/STEP_4E_B2_R2_VISUAL_VALIDATION.md
-9. project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
-10. project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
-11. project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
-12. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
-13. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
-14. project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md
-15. project2-progress/STEP_4E_B1_H_VALIDATION.md
-16. project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
-17. project2-progress/STEP_4E_B1_G3_VALIDATION.md
-18. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
-19. project2-progress/STEP_4E_B1_G2_VALIDATION.md
-20. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
-21. project2-progress/STEP_4E_B1_G1_VALIDATION.md
-22. project2-progress/STEP_4E_B0_MANUAL_MAP.md
-23. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-24. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
-25. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-26. project2-progress/PROGRESS_LOG.md
-27. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-28. project2-progress/STEP_4D_SYNC_MANIFEST.md
-29. project2-progress/DEFERRED_PLANS.md
-30. PROJECT2_CSS_MAINTENANCE_POLICY.md
+5. project2-progress/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.md
+6. project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css
+7. project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md
+8. project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md
+9. project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css
+10. project2-progress/STEP_4E_B2_R2_VISUAL_VALIDATION.md
+11. project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
+12. project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
+13. project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
+14. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
+15. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
+16. project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md
+17. project2-progress/STEP_4E_B1_H_VALIDATION.md
+18. project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
+19. project2-progress/STEP_4E_B1_G3_VALIDATION.md
+20. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
+21. project2-progress/STEP_4E_B1_G2_VALIDATION.md
+22. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
+23. project2-progress/STEP_4E_B1_G1_VALIDATION.md
+24. project2-progress/STEP_4E_B0_MANUAL_MAP.md
+25. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+26. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+27. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+28. project2-progress/PROGRESS_LOG.md
+29. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+30. project2-progress/STEP_4D_SYNC_MANIFEST.md
+31. project2-progress/DEFERRED_PLANS.md
+32. PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
 The current Cart manual records supersede earlier ZIP/full-file replacement instructions and the failed B2-A1 deletion-first plan.
@@ -45,8 +47,10 @@ The current Cart manual records supersede earlier ZIP/full-file replacement inst
 | File | Role | Status |
 |---|---|---|
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / FIX2 next. |
-| `project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md` | Exact file validation, desktop structure pass and remaining 1:1 gaps. | Current. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / FIX2 active. |
+| `project2-progress/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.md` | Exact desktop-only detail insertion instructions, metrics, rollback and evidence. | Instructions issued. |
+| `project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css` | Exact bounded desktop-only FIX2 snippet. | Generated and parsed. |
+| `project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md` | Exact file validation, desktop structure pass and remaining 1:1 gaps. | Passed for narrow purpose. |
 | `project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md` | Exact small correction for Astra width and recommendation specificity. | Executed exactly. |
 | `project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css` | Exact FIX1 insertion snippet. | Inserted. |
 | `project2-progress/STEP_4E_B2_R2_VISUAL_VALIDATION.md` | Pre-FIX1 screenshot findings and root-cause analysis. | Historical failure record. |
@@ -117,22 +121,22 @@ Step 4E-B2-R1 CSS dependency re-audit：Complete
 Step 4E-B2-R2 consolidation layer：Inserted and structurally valid
 Step 4E-B2-R2-FIX1 exact file：Passed
 Step 4E-B2-R2-FIX1 desktop structural objective：Passed
-Desktop 1:1 detail matching：Pending
+Step 4E-B2-R2-FIX2 desktop detail insertion：Instructions issued
 Mobile and current-baseline functional validation：Pending
-Next：Step 4E-B2-R2-FIX2 desktop 1:1 detail pass
 ```
 
-Remaining desktop gaps:
+FIX2 desktop scope:
 
 ```text
-- title/count and section vertical rhythm
-- product-row proportions, metadata/remove placement and alignment
+- title/count vertical rhythm
+- product-row proportions, metadata/remove placement and duplicate product-price suppression
+- image, quantity and subtotal alignment
 - Order Summary heading integration and internal spacing
-- Coupon/action-row exact dimensions
-- recommendation media, typography and CTA alignment
+- Coupon/action-row dimensions
+- recommendation square media, typography and price/CTA alignment
 ```
 
-The fourth recommendation currently uses WooCommerce's real missing-image placeholder. It must not be replaced with fabricated CSS content.
+The fourth recommendation may use WooCommerce's real missing-image placeholder. It must not be replaced with fabricated CSS imagery.
 
 Current implementation mode:
 
@@ -144,6 +148,7 @@ Current implementation mode:
 - revalidation after every operation
 - independent rollback
 - PHP and CSS never combined in one operation
+- FIX2 is desktop-only; mobile rules are unchanged
 ```
 
 The Cart remains officially `Not done`.
@@ -178,18 +183,42 @@ R2 markers: 1 / 1
 FIX1 markers: 1 / 1
 ```
 
-This matches the exact expected FIX1 result.
+### FIX2 snippet
+
+```text
+Path: project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css
+Size: 9,328 bytes
+Logical lines: 279
+SHA256: 359a1012bb1c39a402747a429117068ca9af94b9410ad0e3b61b9cb26d929f6a
+Braces: 49 / 49
+Comments: 2 / 2
+CSS parse errors: 0
+```
+
+### Expected CSS after FIX2
+
+```text
+Size: 813,392 bytes
+Logical lines: 27,205
+SHA256: caacee43d3cd938ed19674beae6bb7e570d891963bde410f4f8aa272a397c4b8
+Braces: 4,125 / 4,125
+Comments: 403 / 403
+CSS parse errors: 0
+```
 
 ## 7. Current gate
 
 ```text
-1. Prepare one bounded desktop-only FIX2 range against spatial-flow(8).css.
-2. Do not delete or edit old Cart CSS.
-3. Do not modify PHP, JS, templates or mobile rules in the same operation.
-4. Validate exact file metrics after insertion.
-5. Supply a desktop Cart screenshot including recommendations.
-6. Begin mobile and native functional validation only after desktop detail acceptance.
+1. Copy the exact FIX2 snippet.
+2. Insert it immediately before the main B2-R2 END marker, after FIX1.
+3. Do not delete or edit old Cart CSS, FIX1 or the main R2 range.
+4. Do not modify PHP, JS, templates or mobile rules.
+5. Upload the edited spatial-flow.css.
+6. Supply one desktop Cart screenshot including heading, product rows, action bar, complete summary and all four recommendations.
+7. Confirm no native Cart control disappeared and Header/Footer remained normal.
 ```
+
+Mobile and full native functional validation begin only after desktop FIX2 acceptance.
 
 No historical Cart CSS cleanup begins until desktop, mobile and native functional validation all pass.
 
