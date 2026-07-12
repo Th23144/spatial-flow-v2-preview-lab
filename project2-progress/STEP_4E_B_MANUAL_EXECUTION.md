@@ -12,7 +12,8 @@ Step 4E-B0 exact manual map：Complete.
 Step 4E-B1-A through B1-F：Passed.
 Step 4E-B1-G1：Passed exact file and no-visible-change validation.
 Step 4E-B1-G2：Passed exact file validation and four-card browser evidence.
-Step 4E-B1-G3：Instructions issued / user CSS edit pending.
+Step 4E-B1-G3：Passed exact CSS validation and user-confirmed desktop/mobile validation; screenshots not supplied.
+Step 4E-B1-H：Instructions issued / user PHP edit pending.
 Cart page status：Not done.
 ```
 
@@ -24,6 +25,8 @@ project2-progress/STEP_4E_B1_G1_VALIDATION.md
 project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
 project2-progress/STEP_4E_B1_G2_VALIDATION.md
 project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
+project2-progress/STEP_4E_B1_G3_VALIDATION.md
+project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
 ```
 
 ## Non-negotiable execution rule
@@ -55,32 +58,35 @@ Real backend fallback selectors: 4
 Dead manual sample defaults: 0
 ```
 
-Browser evidence confirms four real product cards render. The unchanged three-column CSS currently produces the expected temporary 3 + 1 wrap.
-
 ## Current CSS baseline
 
 ```text
 File: assets/css/spatial-flow.css
-Size: 767,069 bytes
-Lines: 25,742
-SHA256: a8db33e2cd3e7886a12a455383fe6769cbd262e7e6d6fac8003aa46fe641a10d
-Braces: 3,917 / 3,917
+Uploaded name: spatial-flow(4).css
+Size: 767,120 bytes
+Lines: 25,744
+SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
+Braces: 3,918 / 3,918
 Comments: 397 / 397
 CSS parse errors: 0
+Desktop four-column block: 1
+Old authoritative unwrapped three-column block: 0
 ```
+
+The user confirmed desktop and mobile rendering are normal. No screenshots were supplied; this is recorded as user-confirmed browser validation.
 
 ## Current executable step
 
-### Step 4E-B1-G3 · Four-card recommendation layout
+### Step 4E-B1-H · Cart-only product-context fallback safety
 
 ```text
-Scope：replace the one authoritative desktop grid block with a >=1101px four-column block.
-Expected result：767,120 bytes / 25,744 lines.
-Expected SHA256：675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a.
-Expected braces：3,918 / 3,918.
-Expected comments：397 / 397.
-Expected parser errors：0.
-Visible result：four cards in one desktop row; existing tablet three-column and mobile one-column behavior preserved.
+Scope：change one exact fallback block inside spatial_flow_cart_visual_2_product_meta_text().
+Purpose：Cart must not fabricate “Crystal piece · Modern spatial living” when no real source exists.
+Preserve：_sf_cart_item_meta, category, selected variations, real configured attributes, and the prior SAFE5 Checkout fallback.
+Expected result：550,884 bytes / 10,256 lines.
+Expected SHA256：dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d.
+Expected braces：1,200 / 1,200.
+Expected PHP syntax：Passed.
 ```
 
-Do not begin later Cart CSS cleanup or refinement until the edited CSS and desktop/mobile evidence pass exact validation.
+Do not begin the B2 Cart CSS deletion batches until the edited PHP and Cart/SAFE5 behavior pass validation.
