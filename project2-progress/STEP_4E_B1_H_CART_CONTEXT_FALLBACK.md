@@ -7,8 +7,11 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 Step 4E-B1-G3：Passed exact uploaded-file validation and user-confirmed browser validation.
-Step 4E-B1-H instructions：Issued.
-User manual PHP edit：Pending.
+Step 4E-B1-H manual PHP edit：Completed.
+Exact uploaded-file validation：Passed.
+Cart browser result：User confirmed no visible change.
+SAFE5 Checkout product-row regression：Pending explicit confirmation.
+Step 4E-B1-H overall：Not yet fully passed.
 Cart page status：Not done.
 ```
 
@@ -33,7 +36,7 @@ Preserve all real sources:
 
 Preserve the existing SAFE5 Checkout fallback until Checkout is separately reworked and regressed.
 
-## 2. Authoritative baseline
+## 2. Previous authoritative baseline
 
 ```text
 File: functions.php
@@ -57,9 +60,7 @@ Lines: 25,744
 SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
 ```
 
-If the local `functions.php` does not match the exact baseline above, stop and supply the newest file before editing.
-
-## 3. Exact replacement
+## 3. Exact replacement completed
 
 Inside:
 
@@ -67,17 +68,9 @@ Inside:
 function spatial_flow_cart_visual_2_product_meta_text( $cart_item )
 ```
 
-search for this exact complete block:
+the previous unconditional fallback block was replaced with a Cart/Checkout context guard.
 
-```php
-        if ( empty( $parts ) ) {
-            $parts = [ __( 'Crystal piece', 'spatial-flow' ), __( 'Modern spatial living', 'spatial-flow' ) ];
-        }
-```
-
-This exact block must occur once.
-
-Replace it exactly with:
+Validated current block:
 
 ```php
         if ( empty( $parts ) ) {
@@ -93,14 +86,13 @@ Replace it exactly with:
         }
 ```
 
-Do not change the surrounding category, variation, attribute, deduplication, slice, or separator logic.
+The exact current block occurs once. The previous unconditional fallback block occurs zero times.
 
-## 4. Expected file result
-
-When line endings remain unchanged:
+## 4. Validated file result
 
 ```text
 Version: 2.7.8
+Uploaded name: functions(12).php
 Size: 550,884 bytes
 Lines: 10,256
 SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
@@ -109,8 +101,6 @@ Opening braces: 1,200
 Closing braces: 1,200
 Delta: +288 bytes / +8 lines
 ```
-
-The predicted output has passed `php -l` with no syntax errors.
 
 ## 5. Expected behavior
 
@@ -132,9 +122,9 @@ SAFE5 Checkout:
 - existing checkout product-row behavior is not broadly rewritten
 ```
 
-A Cart containing products with real categories may show no visible change. That is acceptable; the code-state and SAFE5 regression remain required.
+A Cart containing products with real categories may show no visible change. The user reported no page change, which is acceptable and is recorded as no visible Cart regression.
 
-## 6. What must not change
+## 6. What did not change
 
 ```text
 - SPATIAL_FLOW_CHILD_VERSION 2.7.8
@@ -150,17 +140,26 @@ A Cart containing products with real categories may show no visible change. That
 
 ## 7. Independent rollback
 
-Replace only the new checkout-context conditional block with the original three-line fallback block.
+Replace only the new checkout-context conditional block with the original unconditional fallback block.
 
 No CSS, JavaScript, template, or other PHP restoration is required.
 
-## 8. Required evidence before the next step
+## 8. Remaining gate
+
+The exact file and Cart no-visible-regression checks passed.
+
+Before Step 4E-B2-A1 begins, one explicit SAFE5 Checkout product-row confirmation is still required:
 
 ```text
-- upload the edited functions.php
-- exact size, lines, SHA256, brace balance, and PHP syntax validation
-- Cart confirmation that product titles and real context remain normal
-- SAFE5 Checkout product-row confirmation that no regression occurred
+- product names normal
+- product-row context/subtitle normal
+- thumbnails normal
+- quantities and totals normal
+- no PHP warning or checkout layout regression
 ```
 
-Do not begin B2 Cart CSS deletion batches until B1-H passes exact file and Cart/SAFE5 validation.
+No screenshot is required. The detailed validation record is:
+
+```text
+project2-progress/STEP_4E_B1_H_VALIDATION.md
+```
