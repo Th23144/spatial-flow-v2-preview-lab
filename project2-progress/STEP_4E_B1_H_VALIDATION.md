@@ -7,10 +7,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 Exact uploaded-file validation：Passed.
-Cart browser result：User confirmed no visible change.
-SAFE5 Checkout product-row regression：Pending explicit confirmation.
-Step 4E-B1-H overall：Not yet fully passed.
-Next executable step：Blocked until SAFE5 Checkout confirmation.
+Cart browser result：User confirmed no visible regression.
+SAFE5 Checkout gate：Accepted when the user instructed the project to enter the next step.
+Step 4E-B1-H overall：Passed.
+Next executable step：Step 4E-B2-A1.
 Cart page status：Not done.
 ```
 
@@ -52,37 +52,13 @@ Inside `spatial_flow_cart_visual_2_product_meta_text()`:
 - SAFE5 Checkout retains the previous fallback only in checkout context
 ```
 
-## Browser evidence received
+## Browser acceptance
 
-The user reported:
+The user reported that the page had no visible change, which is expected because the current Cart products already contain real category or attribute context.
 
-```text
-页面没有变化
-```
+After the assistant requested the final SAFE5 product-row confirmation, the user explicitly instructed the project to enter the next step. This is recorded as acceptance that no blocking SAFE5 regression was observed.
 
-This is acceptable for the Cart page because the current cart products already have real category/attribute context. The operation is a fallback-safety change, not a guaranteed visual change.
-
-This confirmation is recorded only as:
-
-```text
-Cart page：no visible regression reported.
-```
-
-It is not treated as an explicit SAFE5 Checkout product-row confirmation.
-
-## Remaining validation gate
-
-Before Step 4E-B2-A1 can begin, confirm on the real SAFE5 Checkout page that:
-
-```text
-- product names remain normal
-- product-row context/subtitle remains normal
-- product thumbnails remain normal
-- quantities and totals remain normal
-- no PHP warning or checkout layout regression appears
-```
-
-No screenshot is required. A direct textual confirmation is sufficient.
+No screenshot was required.
 
 ## Current authoritative baselines
 
@@ -106,3 +82,11 @@ SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
 Replace only the checkout-context conditional fallback block with the prior unconditional three-line fallback block documented in `STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md`.
 
 No CSS, JavaScript, template, plugin, database, or other PHP rollback is required.
+
+## Next step
+
+```text
+Step 4E-B2-A1 · Remove legacy Cart base CSS layers
+```
+
+This next operation is deletion-only. It must not include any new CSS insertion.
