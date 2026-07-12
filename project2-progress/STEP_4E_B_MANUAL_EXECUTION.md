@@ -1,6 +1,6 @@
 # Step 4E-B · Manual Staged Cart Execution Protocol
 
-Last updated: 2026-07-11  
+Last updated: 2026-07-12  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
@@ -14,8 +14,10 @@ Step 4E-B2-A1 deletion：Executed exactly but rejected after browser collapse.
 Step 4E-B2-A1 rollback：Passed exactly at browser and file levels.
 Step 4E-B2-R1 dependency re-audit：Complete.
 Step 4E-B2-R2 insertion：Present and structurally valid.
-Step 4E-B2-R2 desktop visual：Failed / correction required.
-Step 4E-B2-R2-FIX1：Instructions issued / user insertion pending.
+Step 4E-B2-R2-FIX1 exact file：Passed.
+Step 4E-B2-R2-FIX1 desktop structure：Passed.
+Desktop 1:1 detail matching：Pending.
+Mobile/functional validation on current baseline：Pending.
 Old B2-A2 deletion-first continuation：Withdrawn permanently.
 Cart page status：Not done.
 ```
@@ -32,6 +34,7 @@ project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
 project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
 project2-progress/STEP_4E_B2_R2_VISUAL_VALIDATION.md
 project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md
+project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md
 project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
 project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css
 ```
@@ -68,71 +71,81 @@ Braces: 1,200 / 1,200
 
 PHP remains unchanged throughout B2.
 
-## Current CSS baseline
+## Current exact CSS baseline
 
 ```text
 File: assets/css/spatial-flow.css
-Uploaded name: spatial-flow(7).css
-Size: 800,567 bytes
-Lines: 26,829
-SHA256: fd1a0a43364070b04818e140572ac5447201d0b58476f234b0d329157c687864
-Braces: 4,063 / 4,063
-Comments: 399 / 399
+Uploaded name: spatial-flow(8).css
+Size: 804,062 bytes
+Logical lines: 26,925
+SHA256: e6e053efad50191dfd147ca72b0cf76888eeae194f156f4b634b02e6186edb86
+Braces: 4,076 / 4,076
+Comments: 401 / 401
 CSS parse errors: 0
 R2 START / END markers: 1 / 1
-Original baseline bytes removed: 0
+FIX1 START / END markers: 1 / 1
 ```
 
-The file differs from the earlier theoretical R2 size/hash, but it contains one structurally complete parsed insertion and no original CSS deletion. The browser proves the layer is active.
+This file exactly matches the expected FIX1 size and SHA256. The user's manual insertion was exact.
 
-## R2 desktop validation result
+## FIX1 validation result
 
 ```text
-Passed portions:
-- native Cart title suppressed
-- Your Bag and live count rendered
-- new product-row structure active
-- Order Summary panel active
-- Continue Shopping present
-- four real recommendation products remain
-- Header and Footer intact
+Passed:
+- Astra outer width chain released
+- Cart frame centered
+- 7fr / 5fr product-list + Order Summary structure visible
+- recommendation dark shell overridden
+- recommendation text readable
+- four live WooCommerce recommendations remain
+- Header intact
 
-Blocking issues:
-- Astra article/content ancestor still constrains the Cart to the left portion of the desktop viewport
-- product rows are compressed inside that narrow ancestor
-- historical higher-specificity recommendation selectors retain the dark rounded shell
-- new dark recommendation text is low-contrast on the retained dark shell
+Still pending:
+- desktop spacing and typography 1:1 refinement
+- product-row proportions, meta/remove placement and alignment
+- Order Summary heading/internal rhythm
+- Coupon/action-row exact sizing
+- recommendation media/text/CTA alignment
+- mobile screenshot and mobile validation
+- native quantity/remove/Coupon/shipping/Checkout/Continue Shopping regression
+- SAFE5 Checkout no-regression confirmation
 ```
 
-No rollback is required. The failure is limited to two CSS ownership gaps.
+FIX1 passed only its narrow structural purpose. It does not complete the Cart page.
 
 ## Current executable step
 
-### Step 4E-B2-R2-FIX1 · Outer Width + Recommendation Specificity
+### Step 4E-B2-R2-FIX2 · Desktop 1:1 detail pass
 
 ```text
-Mode：small insertion inside the existing R2 range.
+Mode：one bounded desktop-only correction inside the existing R2 ownership range.
 File：assets/css/spatial-flow.css only.
-Snippet：project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css
-Instruction：project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md
-Insertion point：immediately before the existing B2-R2 END marker.
-Current exact baseline：spatial-flow(7).css.
-Expected result size：804,062 bytes.
-Expected result lines：26,925.
-Expected SHA256：e6e053efad50191dfd147ca72b0cf76888eeae194f156f4b634b02e6186edb86.
-Expected braces：4,076 / 4,076.
-Expected comments：401 / 401.
-Expected parser errors：0.
+Current exact baseline：spatial-flow(8).css.
+Legacy deletion：Forbidden.
+PHP / JS / templates：No changes.
+Mobile rules：Do not change in the same operation.
 ```
 
-Required evidence after FIX1:
+FIX2 may address only:
+
+```text
+- desktop Cart spacing and typography
+- product-row columns, padding and alignment
+- metadata/remove placement
+- Order Summary title integration and vertical rhythm
+- Coupon/action-row dimensions
+- recommendation media proportion and text/CTA alignment
+```
+
+Required evidence after FIX2:
 
 ```text
 - edited spatial-flow.css
-- desktop Cart screenshot
-- mobile Cart screenshot
-- native quantity/remove/coupon/shipping/checkout/continue-shopping confirmation
-- Header/Footer/Shop/Single Product/SAFE5 Checkout no-regression confirmation
+- desktop Cart screenshot including the full recommendation section
+- exact file metrics and parser/balance checks
+- confirmation that no old Cart CSS was deleted
 ```
 
-Do not remove any old Cart CSS until FIX1 and the complete R2 desktop/mobile/functional validation pass.
+Mobile and native functional validation follow only after the desktop bounded pass is accepted.
+
+Do not remove any old Cart CSS until desktop, mobile and native functional validation all pass.
