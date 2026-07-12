@@ -30,16 +30,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 22. PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
-The current Cart manual records supersede earlier ZIP/full-file replacement instructions and the failed B2-A1 deletion-only acceptance plan.
+The current Cart manual records supersede earlier ZIP/full-file replacement instructions and the failed B2-A1 deletion-first plan.
 
 ## 2. Current authoritative files
 
 | File | Role | Status |
 |---|---|---|
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / rollback active. |
-| `project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md` | Exact evidence that B2-A1 was performed correctly but caused structural collapse; defines rollback. | Active. |
-| `project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md` | Original deletion-only instruction. | Failed / superseded by rollback record. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / rollback file validation gate active. |
+| `project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md` | Evidence of exact deletion, visual failure, successful browser rollback, and revised CSS rule. | Browser rollback passed / file validation pending. |
+| `project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md` | Original deletion-only instruction. | Failed / superseded. |
 | `project2-progress/STEP_4E_B1_H_VALIDATION.md` | Exact functions.php, Cart, and SAFE5 gate validation. | Passed. |
 | `project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md` | Cart-only fallback safety operation. | Completed. |
 | `project2-progress/STEP_4E_B1_G3_VALIDATION.md` | Four-column CSS validation and user acceptance. | Passed. |
@@ -103,8 +103,10 @@ Step 4E-B2-A1 deletion：Executed exactly
 B2-A1 browser result：Failed — Cart desktop structure collapsed
 Cause：Deletion batch removed structural CSS before replacement existed
 User editing error：No
-Current action：Restore only the exact deleted range
-B2-A2：Blocked
+Exact deleted range rollback：User confirmed successful
+Cart browser layout：Restored
+Restored CSS exact file validation：Pending upload
+Old B2-A2 deletion-first continuation：Withdrawn
 ```
 
 Current implementation mode:
@@ -137,7 +139,7 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-### Accepted CSS baseline to restore
+### Accepted CSS baseline to restore and verify
 
 ```text
 assets/css/spatial-flow.css
@@ -163,18 +165,20 @@ CSS parse errors: 0
 Browser result: Failed
 ```
 
-## 7. Required rollback result
+## 7. Current validation gate
+
+Upload the restored `spatial-flow.css` and verify that it matches:
 
 ```text
-Restore bytes: 35,694
-Restore lines: 1,213
-Expected final size: 767,120 bytes
-Expected final lines: 25,744
-Expected SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
-Expected braces: 3,918 / 3,918
-Expected comments: 397 / 397
-Expected CSS parse errors: 0
+Size: 767,120 bytes
+Lines: 25,744
+SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
+Braces: 3,918 / 3,918
+Comments: 397 / 397
+CSS parse errors: 0
 ```
+
+No new Cart CSS operation begins until this exact rollback validation passes.
 
 ## 8. Maintenance rule
 
