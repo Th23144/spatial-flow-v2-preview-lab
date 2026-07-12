@@ -16,8 +16,10 @@ Step 4E-B2-R1 dependency re-audit：Complete.
 Step 4E-B2-R2 insertion：Present and structurally valid.
 Step 4E-B2-R2-FIX1 exact file：Passed.
 Step 4E-B2-R2-FIX1 desktop structure：Passed.
-Step 4E-B2-R2-FIX2 instructions：Issued / user insertion pending.
-Mobile/functional validation on current baseline：Pending.
+Step 4E-B2-R2-FIX2 exact file：Passed exactly.
+Step 4E-B2-R2-FIX2 desktop detail pass：Accepted.
+Step 4E-B2-R3-A mobile baseline audit：Pending.
+Native functional validation on current baseline：Pending.
 Old B2-A2 deletion-first continuation：Withdrawn permanently.
 Cart page status：Not done.
 ```
@@ -36,6 +38,8 @@ project2-progress/STEP_4E_B2_R2_VISUAL_VALIDATION.md
 project2-progress/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.md
 project2-progress/STEP_4E_B2_R2_FIX1_VALIDATION.md
 project2-progress/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.md
+project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md
+project2-progress/STEP_4E_B2_R3_A_MOBILE_BASELINE_AUDIT.md
 project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
 project2-progress/snippets/STEP_4E_B2_R2_FIX1_OUTER_WIDTH_AND_RECOMMENDATIONS.css
 project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css
@@ -77,103 +81,74 @@ PHP remains unchanged throughout B2.
 
 ```text
 File: assets/css/spatial-flow.css
-Uploaded name: spatial-flow(8).css
-Size: 804,062 bytes
-Logical lines: 26,925
-SHA256: e6e053efad50191dfd147ca72b0cf76888eeae194f156f4b634b02e6186edb86
-Braces: 4,076 / 4,076
-Comments: 401 / 401
-CSS parse errors: 0
-R2 START / END markers: 1 / 1
-FIX1 START / END markers: 1 / 1
-```
-
-This file exactly matches the expected FIX1 size and SHA256. The user's manual insertion was exact.
-
-## FIX1 validation result
-
-```text
-Passed:
-- Astra outer width chain released
-- Cart frame centered
-- 7fr / 5fr product-list + Order Summary structure visible
-- recommendation dark shell overridden
-- recommendation text readable
-- four live WooCommerce recommendations remain
-- Header intact
-
-Still pending:
-- desktop spacing and typography 1:1 refinement
-- product-row proportions, meta/remove placement and alignment
-- Order Summary heading/internal rhythm
-- Coupon/action-row exact sizing
-- recommendation media/text/CTA alignment
-- mobile screenshot and mobile validation
-- native quantity/remove/Coupon/shipping/Checkout/Continue Shopping regression
-- SAFE5 Checkout no-regression confirmation
-```
-
-FIX1 passed only its narrow structural purpose. It does not complete the Cart page.
-
-## Current executable step
-
-### Step 4E-B2-R2-FIX2 · Desktop 1:1 detail pass
-
-```text
-Mode：one bounded desktop-only insertion inside the existing R2 ownership range.
-File：assets/css/spatial-flow.css only.
-Current exact baseline：spatial-flow(8).css.
-Snippet：project2-progress/snippets/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.css.
-Instruction：project2-progress/STEP_4E_B2_R2_FIX2_DESKTOP_DETAIL.md.
-Insertion point：immediately before the existing main B2-R2 END marker.
-Legacy deletion：Forbidden.
-PHP / JS / templates：No changes.
-Mobile rules：No changes; every FIX2 rule is inside min-width 1101px.
-```
-
-Exact FIX2 snippet:
-
-```text
-Size: 9,328 bytes
-Logical lines: 279
-SHA256: 359a1012bb1c39a402747a429117068ca9af94b9410ad0e3b61b9cb26d929f6a
-Braces: 49 / 49
-Comments: 2 / 2
-CSS parse errors: 0
-```
-
-Expected stylesheet after exact insertion:
-
-```text
+Uploaded name: spatial-flow(9).css
 Size: 813,392 bytes
 Logical lines: 27,205
 SHA256: caacee43d3cd938ed19674beae6bb7e570d891963bde410f4f8aa272a397c4b8
 Braces: 4,125 / 4,125
 Comments: 403 / 403
 CSS parse errors: 0
+R2 START / END markers: 1 / 1
+FIX1 START / END markers: 1 / 1
+FIX2 START / END markers: 1 / 1
 ```
 
-FIX2 addresses only:
+This file exactly matches the predicted FIX2 result. The user's manual insertion was exact.
+
+## Desktop acceptance result
 
 ```text
-- desktop Cart spacing and typography
-- product-row columns, image scale, padding and alignment
-- metadata/remove placement and duplicate product-price suppression
-- Order Summary title integration and vertical rhythm
-- Coupon/action-row dimensions
-- recommendation square media, typography and price/CTA alignment
+Passed:
+- Astra width chain remains released
+- centered 7fr / 5fr composition remains stable
+- product-row proportions and alignment improved
+- duplicate desktop product-price cells suppressed
+- Coupon action bar stable
+- Order Summary heading integrated
+- recommendation images/cards aligned in one live four-product row
+- Header and Footer intact
+- no desktop overlap or collapse visible
+
+Accepted dynamic differences:
+- live WooCommerce titles, metadata, prices, shipping and totals
+- real WooCommerce missing-image placeholder on the fourth recommendation
 ```
 
-Required evidence after FIX2:
+Desktop FIX2 is accepted for progression. No more desktop changes are authorized unless mobile or functional regression reveals a concrete desktop defect.
+
+## Current executable step
+
+### Step 4E-B2-R3-A · Mobile current-baseline audit
 
 ```text
-- edited spatial-flow.css
-- desktop Cart screenshot including heading, all visible rows, complete summary and all four recommendations
-- exact file metrics and parser/balance checks
-- confirmation that no native Cart control disappeared
-- confirmation that Header/Footer remained normal
+Mode：visual audit only / no file changes.
+Baseline：spatial-flow(9).css.
+Viewport：430 CSS px or narrower.
+Required：one full-page mobile Cart screenshot.
+Also report：horizontal overflow yes/no; missing/unusable native controls yes/no.
 ```
 
-Mobile and full native functional validation follow only after the desktop bounded pass is accepted.
+The screenshot must include:
+
+```text
+- mobile Header
+- Your Bag heading and live count
+- Cart product rows
+- quantity and remove controls
+- Coupon / Apply Coupon / Update Cart
+- complete Order Summary
+- Proceed to Checkout / Continue Shopping
+- four trust rows
+- recommendation heading and cards
+- mobile Footer
+```
+
+After the mobile audit:
+
+```text
+- acceptable mobile result → full native functional regression
+- bounded mobile defects → one mobile-only correction range
+- severe defect → independently removable mobile correction layer
+```
 
 Do not remove any old Cart CSS until desktop, mobile and native functional validation all pass.
