@@ -12,9 +12,10 @@ Step 4E-B0 exact manual map：Complete.
 Step 4E-B1-A PHP settings only：Passed.
 Step 4E-B1-B unhooked heading/count renderer：Passed.
 Step 4E-B1-C heading hook switch：Applied; browser validation exposed count-format defects.
-Step 4E-B1-C-FIX1：Uploaded file matched exactly; browser output remained %2 pieces.
-Step 4E-B1-C-FIX2：Instructions issued / user edit pending.
-Step 4E-B1-D：Blocked until FIX2 browser + file validation passes.
+Step 4E-B1-C-FIX1：Passed file validation; removed theme URI but left a leading percent sign.
+Step 4E-B1-C-FIX2：Passed exact file validation and current quantity-2 browser output.
+Step 4E-B1-C-FIX3：Instructions issued to put live count below Your Bag.
+Step 4E-B1-D：Blocked until FIX3 browser + file validation passes.
 Cart page status：Not done.
 ```
 
@@ -29,6 +30,8 @@ project2-progress/STEP_4E_B1_C_VISUAL_VALIDATION.md
 project2-progress/STEP_4E_B1_C_FIX1_COUNT_PLACEHOLDER.md
 project2-progress/STEP_4E_B1_C_FIX1_VALIDATION.md
 project2-progress/STEP_4E_B1_C_FIX2_PERCENT_NORMALIZATION.md
+project2-progress/STEP_4E_B1_C_FIX2_VALIDATION.md
+project2-progress/STEP_4E_B1_C_FIX3_HEADING_COUNT_ORDER.md
 ```
 
 ## 1. Non-negotiable delivery rule
@@ -46,25 +49,34 @@ Every executable instruction must include exact anchors, exact replacement, expe
 
 ## 2. Current authoritative baseline
 
-Uploaded `functions(4).php` after FIX1:
+Uploaded `functions(5).php` after FIX2:
 
 ```text
 Version: 2.7.8
-Size: 550,874 bytes
-Lines: 10,231
-SHA256: d171d463f4b56f047a1e28cbe5b6d7b02c2fbdf4f5a716c9d5139caa90dae7c4
+Size: 550,932 bytes
+Lines: 10,233
+SHA256: ee531433e499b07d58aa79dda50cf6e19cea08d077858db32e353a7bbde421ba
 PHP syntax: Passed
 Braces: 1,190 / 1,190
 Active heading hook: spatial_flow_cart_v2_heading
+FIX2 normalization occurrences: 1
 ```
 
 Browser result:
 
 ```text
-%2 pieces · ready to go
+2 pieces · ready to go
+Your Bag.
 ```
 
-This proves FIX1 removed the theme URI but a persisted `%%s` token still requires normalization.
+The count value and percent-token handling are now correct, but the approved V2 reference order is the reverse:
+
+```text
+Your Bag.
+2 pieces · ready to go
+```
+
+This is a PHP markup-order defect, not merely pending CSS spacing.
 
 Unchanged assets:
 
@@ -80,23 +92,23 @@ Lines: 1,995
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 ```
 
-If the exact FIX2 anchor is missing or duplicated, the newest local file must be supplied before editing.
+If the exact FIX3 anchor is missing or duplicated, the newest local file must be supplied before editing.
 
 ## 3. Current executable step
 
-### Step 4E-B1-C-FIX2 · Normalize persisted double-percent token
+### Step 4E-B1-C-FIX3 · Put live count below heading
 
 ```text
 Status：Instructions issued / user edit pending.
-Scope：add one str_replace() normalization line inside spatial_flow_cart_visual_2_setting().
-Expected result：550,932 bytes / 10,233 lines / SHA256 ee531433e499b07d58aa79dda50cf6e19cea08d077858db32e353a7bbde421ba.
-Required browser result：2 pieces, 3 pieces, and 1 piece with no theme URI and no leading percent sign.
+Scope：reorder only the existing h1 and count paragraph blocks in spatial_flow_cart_v2_heading().
+Expected result：550,932 bytes / 10,233 lines / SHA256 ef3f2e437ebbb9cbdbc1b44da20187e92bc491183ceab3e1267249308e70160c.
+Required browser result：Your Bag. first, live count directly below it.
 ```
 
 ### Step 4E-B1-D · Continue Shopping relocation
 
 ```text
-Begin only after FIX2 browser and uploaded-file validation pass.
+Begin only after FIX3 browser and uploaded-file validation pass.
 Move Continue Shopping into the correct native checkout-actions area.
 Proceed directly after validation; no additional decision pause is required.
 ```
