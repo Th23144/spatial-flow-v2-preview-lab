@@ -13,7 +13,7 @@ Step 4E-B1-A through B1-F：Passed.
 Step 4E-B1-G1：Passed exact file and no-visible-change validation.
 Step 4E-B1-G2：Passed exact file validation and four-card browser evidence.
 Step 4E-B1-G3：Passed exact CSS validation and user-confirmed desktop/mobile validation; screenshots not supplied.
-Step 4E-B1-H：Instructions issued / user PHP edit pending.
+Step 4E-B1-H：Exact PHP validation passed; Cart no-visible-regression confirmed; SAFE5 Checkout product-row confirmation pending.
 Cart page status：Not done.
 ```
 
@@ -27,6 +27,7 @@ project2-progress/STEP_4E_B1_G2_VALIDATION.md
 project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
 project2-progress/STEP_4E_B1_G3_VALIDATION.md
 project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
+project2-progress/STEP_4E_B1_H_VALIDATION.md
 ```
 
 ## Non-negotiable execution rule
@@ -46,17 +47,20 @@ Every executable operation must include exact anchors, exact replacement, expect
 
 ```text
 File: functions.php
-Uploaded name: functions(11).php
+Uploaded name: functions(12).php
 Version: 2.7.8
-Size: 550,596 bytes
-Lines: 10,248
-SHA256: 1db56fccbcfaf2a744e631c5da71c14a9be66cec87d99946e906b8f3aa84366f
+Size: 550,884 bytes
+Lines: 10,256
+SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
 PHP syntax: Passed
-Braces: 1,199 / 1,199
+Braces: 1,200 / 1,200
 Real recommendation output count: 4
 Real backend fallback selectors: 4
 Dead manual sample defaults: 0
+Cart fabricated context fallback: removed outside Checkout context
 ```
+
+The current Cart products contain real category/attribute context, so the user-reported lack of a visible Cart change is expected and accepted as no visible Cart regression.
 
 ## Current CSS baseline
 
@@ -73,20 +77,38 @@ Desktop four-column block: 1
 Old authoritative unwrapped three-column block: 0
 ```
 
-The user confirmed desktop and mobile rendering are normal. No screenshots were supplied; this is recorded as user-confirmed browser validation.
+## Current validation gate
 
-## Current executable step
-
-### Step 4E-B1-H · Cart-only product-context fallback safety
+### Step 4E-B1-H · SAFE5 Checkout confirmation
 
 ```text
-Scope：change one exact fallback block inside spatial_flow_cart_visual_2_product_meta_text().
-Purpose：Cart must not fabricate “Crystal piece · Modern spatial living” when no real source exists.
-Preserve：_sf_cart_item_meta, category, selected variations, real configured attributes, and the prior SAFE5 Checkout fallback.
-Expected result：550,884 bytes / 10,256 lines.
-Expected SHA256：dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d.
-Expected braces：1,200 / 1,200.
-Expected PHP syntax：Passed.
+Completed:
+- manual PHP replacement
+- exact size, line, SHA256, brace and php -l validation
+- Cart page no-visible-regression confirmation
+
+Still required:
+- explicit SAFE5 Checkout product-row confirmation
 ```
 
-Do not begin the B2 Cart CSS deletion batches until the edited PHP and Cart/SAFE5 behavior pass validation.
+Required SAFE5 check:
+
+```text
+- product names remain normal
+- product-row context/subtitle remains normal
+- thumbnails remain normal
+- quantities and totals remain normal
+- no PHP warning or checkout layout regression appears
+```
+
+No screenshot is required. A direct textual confirmation is sufficient.
+
+Do not begin Step 4E-B2-A1 until this final B1-H gate passes.
+
+## Next planned executable step after the gate
+
+```text
+Step 4E-B2-A1 · Remove legacy Cart base CSS layers
+```
+
+This will be a deletion-only manual operation with exact START/END markers, predicted size/line delta, parser checks, independent rollback, and no simultaneous CSS insertion.
