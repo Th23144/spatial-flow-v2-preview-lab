@@ -7,8 +7,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 Step 4E-B1-G2：Passed exact file validation and four-card browser evidence.
-Step 4E-B1-G3 instructions：Issued.
-User manual CSS edit：Pending.
+Step 4E-B1-G3 uploaded-file validation：Passed exactly.
+Step 4E-B1-G3 browser validation：Passed by user confirmation; screenshots not supplied.
+Next：Step 4E-B1-H · Cart-only product-context fallback safety.
 Cart page status：Not done.
 ```
 
@@ -49,11 +50,9 @@ Lines: 10,248
 SHA256: 1db56fccbcfaf2a744e631c5da71c14a9be66cec87d99946e906b8f3aa84366f
 ```
 
-If the local CSS differs from the exact baseline above, stop and supply the newest CSS before editing.
-
 ## 3. Exact replacement
 
-Search for this exact complete block:
+Original exact block:
 
 ```css
 body.woocommerce-cart .sf-cart-next-steps--products .sf-cart-next-steps__grid {
@@ -68,9 +67,7 @@ body.woocommerce-cart .sf-cart-next-steps--products .sf-cart-next-steps__grid {
 }
 ```
 
-This exact block must occur once.
-
-Replace it exactly with:
+Validated replacement:
 
 ```css
 @media (min-width: 1101px) {
@@ -91,16 +88,15 @@ Why the media wrapper is required:
 
 ```text
 - the earlier historical base block already provides three columns
-- the new final block should override it only on desktop
+- the final block overrides it only on desktop
 - tablet therefore keeps the existing three-column behavior
 - the later <=767px blocks continue to enforce one mobile column
 ```
 
-## 4. Expected file result
-
-When line endings remain unchanged:
+## 4. Validated file result
 
 ```text
+Uploaded name: spatial-flow(4).css
 Size: 767,120 bytes
 Lines: 25,744
 SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
@@ -112,35 +108,26 @@ CSS parse errors: 0
 Delta: +51 bytes / +2 lines
 ```
 
-The predicted output was generated from the authoritative CSS baseline and parsed with zero CSS errors.
+The uploaded file matches the predicted output exactly.
 
-## 5. Expected visible result
+## 5. Accepted visible result
 
-At a viewport width of at least 1101px:
+The user explicitly confirmed that the checked desktop and mobile views are normal and declined to provide screenshots.
+
+Accepted result:
 
 ```text
-- all four real recommendation cards appear in one row
+- all four real recommendation cards appear in one desktop row
 - the cards have equal grid widths
 - the fourth card no longer wraps beneath the first card
 - the Complete Your Space container remains unchanged
+- tablet/mobile behavior remains normal
+- no horizontal overflow or half-card display was observed
 ```
 
-At 768px–1100px:
+This is user-confirmed browser validation rather than screenshot-backed evidence.
 
-```text
-- the existing three-column layout remains
-```
-
-At 767px and below:
-
-```text
-- the existing one-column mobile stack remains
-- no horizontal scrolling or half-card display is introduced
-```
-
-Because `SPATIAL_FLOW_CHILD_VERSION` is intentionally unchanged in this CSS-only step, use a hard refresh after saving.
-
-## 6. What must not change
+## 6. What did not change
 
 ```text
 - functions.php
@@ -157,17 +144,14 @@ Because `SPATIAL_FLOW_CHILD_VERSION` is intentionally unchanged in this CSS-only
 
 ## 7. Independent rollback
 
-Replace only the new media-wrapped block with the original exact three-column block.
+Replace only the media-wrapped four-column block with the original exact unwrapped three-column block.
 
 No other CSS or PHP needs to be restored.
 
-## 8. Required evidence before the next step
+## 8. Validation record
 
 ```text
-- upload of the edited spatial-flow.css
-- exact size, lines, hash, brace/comment balance, and CSS parse validation
-- desktop screenshot showing four cards in one row
-- mobile screenshot confirming the existing one-column stack and no horizontal overflow
+project2-progress/STEP_4E_B1_G3_VALIDATION.md
 ```
 
-Do not begin any later Cart CSS cleanup or visual refinement until this exact replacement is validated.
+B1-G3 is closed. The next executable step is B1-H.
