@@ -7,25 +7,26 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 Desktop FIX2：Passed exactly.
-Current mobile audit：Passed.
+Initial mobile structure audit：Passed.
+Initial mobile detail decision：Incorrectly accepted.
+User-reported defect：Confirmed from submitted screenshot.
 Horizontal overflow：No.
-Severe mobile structural defect：None observed.
-Mobile FIX3 required：No.
-Native functional regression：Next.
+Mobile FIX3 required：Yes.
+Next executable step：Step 4E-B2-R3-FIX3.
 Cart page status：Not done.
 ```
 
 ## Purpose
 
-Inspect the real mobile Cart produced by the accepted `spatial-flow(9).css` baseline before introducing any mobile correction layer.
+Inspect the real mobile Cart produced by the accepted `spatial-flow(9).css` baseline before introducing a bounded mobile correction layer.
 
-This follows the project safety rule established after the rejected deletion-first attempt:
+The project safety rule remains:
 
 ```text
-- inspect current ownership first
-- do not guess mobile defects from desktop evidence
-- do not add a mobile patch before seeing the actual mobile result
+- inspect the actual mobile output first
+- do not guess defects from desktop evidence
 - do not delete old Cart CSS
+- use one independently reversible selector group for one bounded defect
 ```
 
 ## Exact baseline
@@ -74,75 +75,61 @@ The user explicitly reported:
 Horizontal overflow：No.
 ```
 
-The user did not yet understand the phrase “native controls missing or unusable.” This is not recorded as a failure. Control behavior is moved to the next dedicated native functional regression step with plain-language instructions.
+## Corrected visual audit result
 
-## Visual audit result
-
-### Passed
+### Structure passed
 
 ```text
 - one-column mobile Cart flow is stable
 - product cards remain inside the viewport
-- circular remove actions remain visible inside each product card
+- circular remove actions remain visible
 - quantity controls remain visible
 - Coupon controls stack without clipping
 - Order Summary is full-width and non-sticky
-- Proceed to Checkout and Continue Shopping remain visible
-- four trust rows remain visible
 - recommendations are single-column with no half-card exposure
 - Footer remains intact
 - no horizontal page overflow
 ```
 
-### Non-blocking observations
+### Detail defect confirmed
+
+Each mobile Cart item shows two monetary lines beneath the quantity control:
 
 ```text
-- mobile text is intentionally compact because the live products carry long real WooCommerce names and metadata
-- the fourth recommendation uses the real WooCommerce missing-image placeholder
-- the mobile page is long because four real recommendations are shown as a premium single-column sequence
+unit price
+subtotal
 ```
 
-No mobile-only FIX3 is justified from the submitted evidence.
+With quantity 1 the values are identical, so the UI appears to duplicate the price.
 
-## Mobile design-quality rule added by user
+This was visible in the original screenshot and should have been caught during the first audit. The earlier statement that no mobile FIX3 was justified is withdrawn.
 
-The V2 static references are not automatically authoritative on mobile. Several static pages were not fully optimized for phone layouts.
+## Root cause
 
-Therefore mobile validation must use this hierarchy:
+An older mobile Cart rule re-enables `td.product-price` using a selector more specific than the global R2 hide rule. Desktop FIX2 already uses a stronger selector to suppress the same cell, but FIX2 is scoped to desktop only.
+
+The mobile correction must hide only the unit-price cell and retain the subtotal cell.
+
+## Mobile design-quality rule
+
+The V2 static references are guidance, not automatic mobile authority.
 
 ```text
 1. preserve native WooCommerce behavior and real dynamic data
 2. prevent overflow, clipping, overlap and unusable controls
-3. preserve the established Spatial Flow visual language
-4. use professional visual judgment for spacing, readability, hierarchy and touch targets
-5. follow the V2 static mobile reference only where it is actually well designed
-6. never force a poor static mobile composition merely to claim literal 1:1 similarity
+3. preserve the Spatial Flow visual language
+4. use professional judgment for spacing, readability, hierarchy and touch targets
+5. follow the static mobile reference only where it is actually well designed
 ```
 
-This rule applies to Cart and all remaining Project 2 pages.
-
-A later mobile aesthetic re-audit is required for the already completed Shop archive and Single Product pages. Their current binary completion status is not changed solely by scheduling that re-audit; any discovered defect will reopen the relevant page.
+A later focused mobile aesthetic re-audit remains required for Shop archive and Single Product.
 
 ## Next step
 
 ```text
-Step 4E-B2-R4 · Native Cart functional regression
-Mode：no code changes unless a real defect is reproduced.
+Step 4E-B2-R3-FIX3 · Mobile duplicate unit-price removal
+Instruction：project2-progress/STEP_4E_B2_R3_FIX3_MOBILE_DUPLICATE_PRICE.md
+Snippet：project2-progress/snippets/STEP_4E_B2_R3_FIX3_MOBILE_DUPLICATE_PRICE.css
 ```
 
-Plain-language checks will cover:
-
-```text
-- plus/minus quantity buttons
-- Update Cart
-- remove item and Undo/Restore
-- Coupon success, error and removal
-- Change address and shipping refresh
-- Proceed to Checkout
-- Continue Shopping
-- recommendation links
-- mobile Menu and Footer accordions
-- SAFE5 Checkout no-regression
-```
-
-No historical Cart CSS may be deleted before this functional regression passes.
+No historical Cart CSS may be deleted before FIX3 validation and final acceptance.
