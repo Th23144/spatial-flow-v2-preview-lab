@@ -7,8 +7,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 Step 4E-B1-C-FIX3：Passed exactly.
-Step 4E-B1-D instructions：Issued.
-User manual edit：Pending.
+Step 4E-B1-D file validation：Passed exactly.
+Step 4E-B1-D browser validation：Passed.
+Step 4E-B1-E：Ready / instructions issued.
 Cart page status：Not done.
 ```
 
@@ -16,11 +17,11 @@ Cart page status：Not done.
 
 Add one dedicated, backend-editable `Continue Shopping` link immediately after WooCommerce's native `Proceed to Checkout` button in the Cart Totals action area.
 
-The native checkout button, checkout URL, totals calculations, shipping, coupon logic, payment flow, and SAFE5 Checkout must remain untouched.
+The native checkout button, checkout URL, totals calculations, shipping, coupon logic, payment flow, and SAFE5 Checkout remain untouched.
 
 The approved static Cart reference places a full-width secondary action directly below the primary checkout action.
 
-## 2. Authoritative baseline
+## 2. Input baseline
 
 ```text
 File: functions.php
@@ -38,11 +39,9 @@ Count normalization: 1
 Existing woocommerce_proceed_to_checkout custom hook: 0
 ```
 
-If the local file differs from this baseline, stop and supply the newest file.
+## 3. Applied manual insertion
 
-## 3. Exact manual insertion
-
-### Find exactly
+The controlled insertion was made between:
 
 ```php
 add_action( 'woocommerce_after_cart_totals', 'spatial_flow_cart_visual_2_summary_trust', 20 );
@@ -50,13 +49,9 @@ add_action( 'woocommerce_after_cart_totals', 'spatial_flow_cart_visual_2_summary
 if ( ! function_exists( 'spatial_flow_cart_visual_3_cart_product_ids' ) ) {
 ```
 
-This exact boundary must occur once.
-
-### Replace exactly with
+Applied block:
 
 ```php
-add_action( 'woocommerce_after_cart_totals', 'spatial_flow_cart_visual_2_summary_trust', 20 );
-
 /* === Step 4E-B1-D: Continue Shopping Relocation START === */
 if ( ! function_exists( 'spatial_flow_cart_visual_2_continue_shopping' ) ) {
     function spatial_flow_cart_visual_2_continue_shopping() {
@@ -80,11 +75,11 @@ if ( ! function_exists( 'spatial_flow_cart_visual_2_continue_shopping' ) ) {
 }
 add_action( 'woocommerce_proceed_to_checkout', 'spatial_flow_cart_visual_2_continue_shopping', 30 );
 /* === Step 4E-B1-D: Continue Shopping Relocation END === */
-
-if ( ! function_exists( 'spatial_flow_cart_visual_3_cart_product_ids' ) ) {
 ```
 
-## 4. Expected file result
+## 4. Validated output
+
+Authoritative uploaded output: `functions(7).php`
 
 ```text
 Version: 2.7.8
@@ -94,12 +89,12 @@ SHA256: 213850d5a39b1d7394bae1a6e537961a1ad4c78795b9c5a36bae939d7f75ee18
 Opening braces: 1,195
 Closing braces: 1,195
 PHP syntax: Passed
-Delta: +962 bytes / +24 lines
+Delta from input: +962 bytes / +24 lines
 ```
 
-The predicted file was generated from the uploaded baseline and passed `php -l`.
+The uploaded file matches the predicted result exactly.
 
-## 5. Expected visible result
+## 5. Browser result
 
 Inside the Cart Totals action area:
 
@@ -108,19 +103,19 @@ PROCEED TO CHECKOUT
 Continue Shopping
 ```
 
-Required behavior:
+Validated behavior:
 
 ```text
 - Continue Shopping appears exactly once.
 - It appears after the native Proceed to Checkout button.
-- Clicking it returns to the backend-configured sf_cart_continue_url.
-- If that saved URL is empty, it safely falls back to the real Shop URL.
-- The native checkout button and its real WooCommerce checkout URL are unchanged.
+- The user confirmed Continue Shopping opens the configured Shop destination.
+- The user confirmed Proceed to Checkout and the Cart flow remain normal.
+- The native checkout button and WooCommerce checkout URL remain unchanged.
 ```
 
-The new link may still look plain or only partially styled at this intermediate stage. Final full-width secondary-button styling belongs to the later controlled Cart CSS rebase.
+The link remains intentionally only partially styled at this intermediate stage. Final full-width secondary-button styling belongs to the later controlled Cart CSS rebase.
 
-## 6. What must not change
+## 6. Confirmed unchanged scope
 
 ```text
 - SPATIAL_FLOW_CHILD_VERSION remains 2.7.8
@@ -147,17 +142,14 @@ through:
 /* === Step 4E-B1-D: Continue Shopping Relocation END === */
 ```
 
-Do not revert any other Cart work.
+No other Cart work needs to be reverted.
 
-## 8. Required evidence before B1-E
+## 8. Next step
+
+Proceed directly to:
 
 ```text
-- screenshot showing Continue Shopping directly below Proceed to Checkout
-- confirmation that Continue Shopping opens the Shop page
-- confirmation that Proceed to Checkout still opens SAFE5 Checkout
-- confirmation that Cart operations remain normal
-- upload of the post-B1-D functions.php
-- exact size, line, hash, syntax, and brace validation
+Step 4E-B1-E · Duplicate service-row unhook
 ```
 
-After validation, proceed directly to Step 4E-B1-E without another decision pause.
+Remove only the frontend service-card hook while preserving the renderer function and every backend setting.
