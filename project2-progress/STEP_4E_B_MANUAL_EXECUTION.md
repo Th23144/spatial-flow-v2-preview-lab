@@ -16,9 +16,10 @@ Step 4E-B2-R2 consolidation：Present and structurally valid.
 Step 4E-B2-R2-FIX1 desktop structure：Passed.
 Step 4E-B2-R2-FIX2 desktop detail：Passed exactly.
 Step 4E-B2-R3-A mobile structure：Passed.
-Step 4E-B2-R4 native functional regression：Passed by user confirmation.
-Mobile detail audit：Reopened for duplicate unit-price display.
-Current executable step：Step 4E-B2-R3-FIX3.
+Step 4E-B2-R3-FIX3 duplicate unit price：Passed exactly.
+Step 4E-B2-R4 native functional regression：Passed.
+Append-only Cart visual refinement：Frozen.
+Current executable step：Step 4E-B2-R5-A ownership and cleanup audit / no code changes.
 Cart page status：Not done.
 ```
 
@@ -26,11 +27,10 @@ Cart page status：Not done.
 
 ```text
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md
-project2-progress/STEP_4E_B2_R3_A_MOBILE_BASELINE_AUDIT.md
-project2-progress/STEP_4E_B2_R3_FIX3_MOBILE_DUPLICATE_PRICE.md
+PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/STEP_4E_B2_R3_FIX3_VALIDATION.md
 project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
-project2-progress/snippets/STEP_4E_B2_R3_FIX3_MOBILE_DUPLICATE_PRICE.css
+project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
 ```
 
 ## Non-negotiable execution rule
@@ -42,7 +42,8 @@ project2-progress/snippets/STEP_4E_B2_R3_FIX3_MOBILE_DUPLICATE_PRICE.css
 - no Cart template override
 - no Cart JavaScript unless a real native interaction defect is proved
 - no large structural CSS deletion before replacement ownership is validated
-- no claim of mobile completion while a visible defect remains
+- no routine FIX4 or further append-only visual patch
+- no claim of completion before cleanup, backend editability and final acceptance pass
 - V2 mobile static references are guidance, not authority when they produce weak phone UX
 ```
 
@@ -59,38 +60,39 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-PHP remains unchanged throughout this fix.
+PHP remains unchanged throughout B2 cleanup.
 
-## Current CSS baseline
+## Current exact CSS baseline
 
 ```text
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(9).css
-Size: 813,392 bytes
-Logical lines: 27,205
-SHA256: caacee43d3cd938ed19674beae6bb7e570d891963bde410f4f8aa272a397c4b8
-Braces: 4,125 / 4,125
-Comments: 403 / 403
+Uploaded name: spatial-flow(10).css
+Size: 813,887 bytes
+Logical lines: 27,215
+SHA256: 7f55a49bfd82f3c2e9fc5db9b5a37b209ac4bad9f6c0b4f99dcabe23a73643ae
+Braces: 4,127 / 4,127
+Comments: 405 / 405
 CSS parse errors: 0
 R2 markers: 1 / 1
 FIX1 markers: 1 / 1
 FIX2 markers: 1 / 1
+FIX3 markers: 1 / 1
 ```
 
-## Passed gates
+## Passed browser and functional gates
 
 ```text
 Desktop:
 - centered 7fr / 5fr layout
-- product-row alignment
-- Coupon action row
-- integrated Order Summary
-- four-product recommendation row
+- stable product rows and Coupon controls
+- integrated summary structure
+- four real recommendation products
 - Header and Footer intact
 
-Mobile structure:
+Mobile:
 - one-column flow
 - no horizontal overflow
+- one subtotal price per product card
 - visible quantity/remove controls
 - stacked Coupon controls
 - full-width Order Summary
@@ -102,59 +104,53 @@ Native behavior:
 - remove/undo
 - Coupon paths
 - shipping address
-- SAFE5 Checkout link
+- SAFE5 Checkout
 - Continue Shopping
 - recommendation links
 - mobile Menu and Footer accordion
-- no warnings or blank page
+- no warning/fatal/blank page
 ```
 
-## Reopened mobile detail defect
+## Current CSS debt inventory
 
-Each mobile product card currently shows:
+Historical Cart visual stack:
 
 ```text
-unit price
-subtotal
+15 blocks
+117,141 bytes
+3,798 lines
+456 rule/media-query brace pairs
 ```
 
-With quantity 1 both values match and appear duplicated.
+Validated R2/FIX stack:
 
-Root cause: an older, more-specific mobile selector re-enables `td.product-price`; desktop FIX2 suppresses it only at 1101px and wider.
+```text
+46,765 bytes
+1,470 lines
+209 rule/media-query brace pairs
+```
+
+The historical stack was intentionally retained while R2 was being proven because the earlier deletion-first attempt collapsed the page. That temporary exception is now closed.
 
 ## Current executable step
 
-### Step 4E-B2-R3-FIX3 · Mobile Duplicate Unit Price Removal
+### Step 4E-B2-R5-A · Ownership and cleanup audit
 
 ```text
-File：assets/css/spatial-flow.css only.
-Mode：one phone-only selector group.
-Snippet：project2-progress/snippets/STEP_4E_B2_R3_FIX3_MOBILE_DUPLICATE_PRICE.css.
-Instruction：project2-progress/STEP_4E_B2_R3_FIX3_MOBILE_DUPLICATE_PRICE.md.
-Insertion point：immediately before the main B2-R2 END marker, after FIX2.
-Desktop impact：None intended.
-Legacy deletion：Forbidden.
+Mode：no code changes.
+Source of truth：spatial-flow(10).css only.
+Instruction：project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md.
 ```
 
-Expected complete stylesheet:
+Required audit output:
 
 ```text
-Size: 813,887 bytes
-Logical lines: 27,215
-SHA256: 7f55a49bfd82f3c2e9fc5db9b5a37b209ac4bad9f6c0b4f99dcabe23a73643ae
-Braces: 4,127 / 4,127
-Comments: 405 / 405
-CSS parse errors: 0
+- responsibility matrix for each Cart component
+- declarations R2 still inherits from legacy
+- declarations fully superseded by R2
+- exact canonical replacement boundary
+- safe small deletion batches
+- predicted metrics and rollback for each operation
 ```
 
-Validation requirement:
-
-```text
-- one price remains per mobile Cart item
-- remaining value is the subtotal and changes after quantity update
-- no horizontal overflow
-- desktop unchanged
-- exact file metrics pass
-```
-
-Do not begin backend-editability or final Cart acceptance until FIX3 passes.
+No new Cart CSS is authorized during R5-A.
