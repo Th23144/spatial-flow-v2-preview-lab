@@ -15,7 +15,8 @@ Step 4E-B1-C heading hook switch：Applied.
 Step 4E-B1-C-FIX1：Passed file validation; removed theme URI but left a leading percent sign.
 Step 4E-B1-C-FIX2：Passed exact file and browser validation.
 Step 4E-B1-C-FIX3：Passed exact file and browser validation; V2 order now matched.
-Step 4E-B1-D：Instructions issued / user edit pending.
+Step 4E-B1-D：Passed exact file and browser validation.
+Step 4E-B1-E：Instructions issued / user edit pending.
 Cart page status：Not done.
 ```
 
@@ -33,6 +34,8 @@ project2-progress/STEP_4E_B1_C_FIX2_PERCENT_NORMALIZATION.md
 project2-progress/STEP_4E_B1_C_FIX2_VALIDATION.md
 project2-progress/STEP_4E_B1_C_FIX3_HEADING_COUNT_ORDER.md
 project2-progress/STEP_4E_B1_D_CONTINUE_SHOPPING_RELOCATION.md
+project2-progress/STEP_4E_B1_D_VALIDATION.md
+project2-progress/STEP_4E_B1_E_SERVICE_ROW_UNHOOK.md
 ```
 
 ## 1. Non-negotiable delivery rule
@@ -50,21 +53,22 @@ Every executable instruction must include exact anchors, exact replacement, expe
 
 ## 2. Current authoritative baseline
 
-Uploaded `functions(6).php` after FIX3:
+Uploaded `functions(7).php` after B1-D:
 
 ```text
 Version: 2.7.8
-Size: 550,932 bytes
-Lines: 10,233
-SHA256: ef3f2e437ebbb9cbdbc1b44da20187e92bc491183ceab3e1267249308e70160c
+Size: 551,894 bytes
+Lines: 10,257
+SHA256: 213850d5a39b1d7394bae1a6e537961a1ad4c78795b9c5a36bae939d7f75ee18
 PHP syntax: Passed
-Braces: 1,190 / 1,190
+Braces: 1,195 / 1,195
 Active heading hook: 1
 Old intro hook: 0
 Count-format normalization: 1
 Heading renderer: 1
 Heading markup before count markup: Yes
-Custom woocommerce_proceed_to_checkout hook: 0
+Custom woocommerce_proceed_to_checkout hook: 1
+Duplicate service-row frontend hook: 1
 ```
 
 Browser result:
@@ -72,9 +76,12 @@ Browser result:
 ```text
 Your Bag.
 2 pieces · ready to go
+
+PROCEED TO CHECKOUT
+Continue Shopping
 ```
 
-The V2 semantic order is now correct. Final type scale, spacing, and alignment remain deferred to the controlled Cart CSS rebase.
+B1-D is correct: Continue Shopping appears once below the native checkout button, and the user confirmed the Cart and links are normal. Final secondary-button styling remains deferred to the controlled Cart CSS rebase.
 
 Unchanged assets:
 
@@ -90,23 +97,24 @@ Lines: 1,995
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 ```
 
-If the exact B1-D anchor is missing or duplicated, the newest local file must be supplied before editing.
+If the exact B1-E hook line is missing or duplicated, the newest local file must be supplied before editing.
 
 ## 3. Current executable step
-
-### Step 4E-B1-D · Continue Shopping relocation
-
-```text
-Status：Instructions issued / user edit pending.
-Scope：add one dedicated renderer and one Cart-only hook after WooCommerce's native checkout button.
-Expected result：551,894 bytes / 10,257 lines / SHA256 213850d5a39b1d7394bae1a6e537961a1ad4c78795b9c5a36bae939d7f75ee18.
-Required browser result：Continue Shopping appears exactly once directly below Proceed to Checkout and opens the real Shop URL.
-```
 
 ### Step 4E-B1-E · Duplicate service-row unhook
 
 ```text
-Begin only after B1-D browser and uploaded-file validation pass.
-Remove only the duplicate frontend service-row hook while preserving its renderer and all backend settings for rollback/editability.
+Status：Instructions issued / user edit pending.
+Scope：replace only the woocommerce_after_cart_table service-card hook with a rollback comment.
+Expected result：551,914 bytes / 10,257 lines / SHA256 81f7182db06c58788ab6d6409f56e3c433d3d7aff57f2cfda213f877f3ac6749.
+Required browser result：the three service cards below the Cart table disappear; Cart Totals trust cards and all operational controls remain.
+```
+
+### Step 4E-B1-F · Editable summary heading
+
+```text
+Begin only after B1-E browser and uploaded-file validation pass.
+Change only WooCommerce's Cart-page summary heading through the existing sf_cart_summary_title setting.
+No global translation change and no Checkout or Thank You effect.
 Proceed directly after validation; no additional decision pause is required.
 ```
