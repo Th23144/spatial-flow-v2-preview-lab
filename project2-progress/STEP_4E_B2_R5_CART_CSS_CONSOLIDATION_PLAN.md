@@ -1,4 +1,4 @@
-# Step 4E-B2-R5 · Cart CSS Consolidation and Legacy Cleanup Plan
+# Step 4E-B2-R5 · Cart Canonical Replacement and Legacy Cleanup Plan
 
 Last updated: 2026-07-12  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
@@ -6,28 +6,38 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ## Status
 
 ```text
-Desktop visual validation：Passed.
-Mobile visual validation after FIX3：Passed.
+Desktop structural gate：Passed.
+Mobile structural gate：Passed.
+FIX3 duplicate-price correction：Passed exactly.
 Native Cart functional regression：Passed.
+Final strict 1:1 visual acceptance：Reopened / not passed.
 Append-only Cart refinement：Frozen.
-Current executable step：R5-A audit only / no code changes.
+Current executable step：R5-A1 visual-gap and ownership audit / no code changes.
 Cart page status：Not done.
+```
+
+The earlier desktop/mobile pass labels referred to bounded structure and regression gates, not final strict-1:1 acceptance. Focused screenshots supplied after FIX3 reveal remaining blocking defects. Those defects must be closed inside the canonical replacement before legacy deletion begins.
+
+Authoritative defect record:
+
+```text
+project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md
 ```
 
 ## Why this phase exists
 
-The validated Cart result currently depends on two layers:
+The current Cart result depends on two layers:
 
 ```text
 1. a historical Cart stack accumulated before Step 4E
-2. the newer R2 consolidation layer plus FIX1, FIX2 and FIX3
+2. the temporary R2 consolidation layer plus FIX1, FIX2 and FIX3
 ```
 
-R2/FIX1/FIX2/FIX3 were deliberately inserted without deleting the old stack because the earlier deletion-first attempt caused a severe layout collapse. Keeping the old stack during replacement validation was therefore a temporary safety measure.
+R2/FIX1/FIX2/FIX3 were inserted without deleting the old stack because the first deletion-only attempt caused severe layout collapse. That was a temporary replacement-validation strategy, not permission for indefinite append-only CSS.
 
-That temporary measure is now complete. Continuing to append more Cart fragments would violate the project maintenance rule.
+The temporary stack is now frozen. No routine FIX4 is allowed.
 
-## Current exact baseline
+## Exact baseline
 
 ```text
 assets/css/spatial-flow.css
@@ -40,9 +50,19 @@ Comments: 405 / 405
 CSS parser errors: 0
 ```
 
-## Current Cart CSS inventory
+Unchanged PHP:
 
-### Historical Cart visual stack
+```text
+functions.php
+Version: 2.7.8
+Size: 550,884 bytes
+Lines: 10,256
+SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
+```
+
+## Current CSS inventory
+
+### Historical Cart stack
 
 ```text
 Range：Cart Visual 1 START through Cart Visual 3 END
@@ -54,7 +74,7 @@ Rule/media-query brace pairs：456
 Comment starts：73
 ```
 
-Included historical blocks:
+Included blocks:
 
 ```text
 Cart Visual 1
@@ -74,7 +94,7 @@ Cart Visual 2-E
 Cart Visual 3
 ```
 
-### New validated R2 stack
+### Temporary R2/FIX stack
 
 ```text
 Range：Step 4E-B2-R2 START through Step 4E-B2-R2 END
@@ -86,24 +106,35 @@ Rule/media-query brace pairs：209
 Comment starts：8
 ```
 
-The existence of the R2 layer does not by itself prove every historical declaration is redundant. The failed deletion-first attempt proved that ownership must be demonstrated before removal.
+## Confirmed visual blockers
+
+```text
+1. desktop/mobile Order Summary trust-icon shells overflow their columns and intrude into text
+2. mobile remove controls show two × glyphs
+3. desktop/mobile product thumbnails do not visually fill the allocated frame
+4. desktop textual Remove action collides with dynamic metadata
+5. broader strict-1:1 spacing, proportions and typography remain insufficiently audited
+```
+
+These are blocking visual defects, not cleanup-only observations.
 
 ## Hard freeze
 
-Until R5 is complete:
+Until R5-B canonical validation passes:
 
 ```text
 - do not append another Cart visual patch
-- do not add a FIX4 merely to tune spacing or typography
-- do not delete the full historical range in one operation
+- do not add FIX4 for spacing, typography, icons or thumbnail treatment
+- do not delete the complete historical Cart range
 - do not alter PHP, JavaScript or WooCommerce templates for CSS cleanup
 - do not change the separate Cart Notice Toast block
 - do not affect Checkout, Thank You, Header, Footer, Shop or Single Product
+- do not claim final desktop/mobile visual acceptance
 ```
 
-A new bounded correction is allowed only for a newly reproduced functional or accessibility defect.
+A new bounded append is allowed only for a newly reproduced functional or accessibility emergency that cannot wait for canonical replacement.
 
-## R5-A · Ownership and dependency audit
+## R5-A1 · Final visual-gap and ownership audit
 
 Mode:
 
@@ -114,32 +145,59 @@ No code changes.
 Required output:
 
 ```text
-- selector responsibility matrix for desktop frame, item rows, quantity, remove, Coupon, summary, trust rows, recommendations and mobile
+- side-by-side desktop/mobile discrepancy matrix against the Cart V2 reference
+- selector responsibility matrix for frame, item rows, thumbnails, metadata, remove, quantity, Coupon, summary, trust rows, recommendations and mobile
+- declaration-level explanation of every confirmed blocker
 - list of declarations still inherited from the historical stack
 - list of historical declarations fully superseded by R2
-- exact safe deletion batches
-- predicted metrics and independent rollback for each batch
+- exact canonical replacement boundary
+- predicted canonical metrics and independent rollback
+- exact safe historical deletion batches for the later cleanup phase
 ```
 
-R5-A must use the uploaded `spatial-flow(10).css` as the only source of truth.
+R5-A1 must use `spatial-flow(10).css` as the only source of truth.
 
-## R5-B · Canonical R2 replacement
+## R5-B · Canonical Cart block replacement
 
-After R5-A proves ownership:
+After R5-A1 proves ownership:
 
 ```text
 - replace the complete current R2 + FIX1 + FIX2 + FIX3 range in place
 - produce one canonical Step 4E Cart block
-- preserve the accepted browser result
+- resolve every confirmed visual blocker
+- close the wider strict-1:1 discrepancy matrix
+- preserve native WooCommerce behavior and real dynamic data
 - do not append the canonical block elsewhere
-- validate exact file metrics and desktop/mobile behavior
 ```
 
 This is a replacement operation, not an addition.
 
+### Canonical design decisions
+
+```text
+Desktop remove action：one restrained text action on a dedicated reserved line below metadata.
+Mobile remove action：one circular top-right × control.
+Trust icons：separate parent-shell and inner-SVG ownership; no shell/text overlap.
+Thumbnails：one slot size per breakpoint; anchor and image fill the slot; no fabricated imagery.
+Mobile static reference：guidance only where it remains production-quality.
+```
+
+### R5-B validation gate
+
+```text
+- exact file metrics, brace/comment balance and parser pass
+- strict desktop visual comparison
+- production-quality mobile visual comparison
+- all confirmed blockers resolved
+- quantity/remove/Coupon/shipping/checkout/recommendation behavior rechecked
+- Header/Footer/Shop/Single Product/SAFE5 Checkout unchanged
+```
+
+Historical cleanup cannot begin before this gate passes.
+
 ## R5-C · Historical cleanup in small batches
 
-Only after canonical R2 validation:
+Only after canonical visual acceptance:
 
 ```text
 R5-C1：Cart Visual 1 through 1.4.1
@@ -155,7 +213,7 @@ Each batch must be:
 - independently reversible
 - file-validated before browser testing
 - desktop and mobile checked
-- native Cart functions rechecked where the removed group controls visible interaction layout
+- native Cart functions rechecked where the removed group controls interaction layout
 ```
 
 Do not begin the next batch until the previous batch passes.
@@ -166,14 +224,23 @@ After cleanup:
 
 ```text
 - backend-editability validation
-- final desktop and mobile visual check
+- final strict desktop visual review
+- final mobile quality review
 - final native Cart functional regression
 - exact PHP/CSS baseline record
-- page status decision
+- binary page-status decision
 ```
 
 Only then may Cart change from `Not done` to `Completed 1:1`.
 
 ## Decision record
 
-The project is not choosing indefinite append-only CSS. The validated temporary stack is now frozen, and the next phase is controlled replacement plus staged deletion.
+The project is not choosing indefinite append-only CSS, and it is not deleting CSS debt before the final design is actually complete. The sequence is now:
+
+```text
+visual-gap + ownership audit
+→ one canonical in-place replacement
+→ strict visual/functional validation
+→ staged historical deletion
+→ backend-editability and final acceptance
+```
