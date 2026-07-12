@@ -8,12 +8,15 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 FIX3 exact file validation：Passed exactly.
 Mobile duplicate unit price：Resolved.
-Quantity / Update Cart subtotal behavior：Passed by screenshot and user confirmation.
+Quantity / Update Cart subtotal behavior：Passed.
 Horizontal overflow：No.
 Native functional regression：Passed.
+Final desktop/mobile strict visual acceptance：Reopened / not passed.
+Next step：Step 4E-B2-R5-A1 final visual-gap and ownership audit.
 Cart page status：Not done.
-Next step：Step 4E-B2-R5-A CSS ownership and cleanup audit.
 ```
+
+FIX3 is accepted only for its bounded purpose: removing the duplicate mobile unit-price display. It is not a final visual acceptance of the complete Cart page.
 
 ## Exact accepted CSS baseline
 
@@ -42,37 +45,44 @@ Cart Notice START：1
 
 The uploaded file exactly matches the predicted FIX3 result.
 
-## Mobile screenshot result
+## FIX3 screenshot result
 
-The supplied mobile screenshot shows:
+Confirmed:
 
 ```text
 - one monetary value per Cart item card
-- first item quantity is 2 and its remaining line subtotal is $66.00
-- second item subtotal is $36.00
-- third item subtotal is $12.00
+- first item quantity 2 produces a $66.00 line subtotal
+- remaining item subtotals are $36.00 and $12.00
 - Order Summary subtotal is $114.00
 - Shipping is $8.99
 - Total is $122.99
 - Cart updated notice is readable
-- quantity controls and circular remove controls remain visible
+- quantity controls remain visible
 - Coupon controls remain visible
-- Order Summary, buttons and trust rows remain complete
-- recommendation cards remain single-column
 - no horizontal overflow
 ```
 
-This confirms the remaining value is the real line subtotal, not a hidden or duplicated unit-price display.
+This proves the remaining value is the real line subtotal.
 
-## Non-blocking visual observations
+## Final visual acceptance correction
+
+Focused screenshots supplied after FIX3 confirm additional blocking defects:
 
 ```text
-- the mobile Order Summary title still uses a light inset title strip inside the beige panel
-- product name and metadata density remain compact on narrow screens
-- the final spacing between recommendations and Footer is somewhat generous
+1. Order Summary trust-icon shells overlap or intrude into text on desktop and mobile
+2. mobile remove controls display two × glyphs
+3. desktop and mobile product thumbnails do not visually fill their allocated frames
+4. desktop textual Remove action is covered by dynamic metadata
+5. broader strict-1:1 proportions, spacing and typography remain incomplete
 ```
 
-These are not grounds for another append-only patch. They must be considered during the controlled consolidation/replacement phase.
+Therefore the earlier non-blocking classification of trust-icon alignment, item density and spacing is withdrawn.
+
+Authoritative record:
+
+```text
+project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md
+```
 
 ## Unchanged PHP baseline
 
@@ -86,6 +96,11 @@ SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
 
 ## Next rule
 
-No additional Cart CSS snippet may be appended merely for visual refinement.
+```text
+- no additional append-only Cart visual snippet
+- perform R5-A1 audit with no code changes
+- fold all confirmed visual corrections into one canonical in-place R2 replacement
+- validate that canonical block before deleting historical Cart CSS
+```
 
-The next operation is an audit-only step that maps current R2 ownership against the legacy Cart stack before any replacement or deletion is issued.
+No claim of `Completed 1:1` is permitted before canonical replacement, historical cleanup, backend-editability validation and final regression all pass.
