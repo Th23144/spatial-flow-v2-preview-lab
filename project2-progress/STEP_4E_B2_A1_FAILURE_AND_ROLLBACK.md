@@ -7,19 +7,19 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 B2-A1 manual deletion：Executed exactly.
-Uploaded CSS metrics：Matched the predicted deletion output exactly.
-Browser result：Failed — Cart layout collapsed severely.
+Uploaded deletion-state metrics：Matched prediction exactly.
+Deletion browser result：Failed — Cart layout collapsed severely.
 Cause：The deletion batch removed structural Cart CSS still required before replacement CSS existed.
-User error：No.
+User editing error：No.
 B2-A1 acceptance：Rejected.
-B2-A2：Blocked.
-Required action：Restore only the deleted range.
+Exact deleted range reinserted：User confirmed successful rollback.
+Cart browser layout：Restored according to user confirmation.
+Restored CSS file validation：Pending upload.
+B2-A2：Withdrawn / must not continue under the old deletion-first plan.
 Cart page status：Not done.
 ```
 
-## Evidence
-
-Uploaded file:
+## Evidence for the rejected deletion state
 
 ```text
 Name: spatial-flow(5).css
@@ -33,17 +33,17 @@ Closing comments: 368
 CSS parse errors: 0
 ```
 
-These values exactly match the B2-A1 prediction. Therefore the user performed the requested deletion correctly. The visual failure comes from the operation design, not from an incorrect manual edit.
+These values exactly matched the B2-A1 prediction. Therefore the user performed the requested deletion correctly. The visual failure came from the operation design, not from an incorrect manual edit.
 
 ## Failure observed
 
 The Cart product table collapsed into a narrow vertical strip beside Order Summary. Product names, prices, metadata, quantities and row structure no longer retained a usable desktop layout.
 
-This exceeds the acceptable temporary degradation threshold. A staged cleanup must never leave the live local page in a structurally collapsed state between steps.
+This exceeded the acceptable temporary-degradation threshold. A staged cleanup must never leave the live local page in a structurally collapsed state between steps.
 
-## Immediate rollback
+## Rollback performed
 
-Restore only the exact deleted range:
+The user restored only the exact deleted range:
 
 ```text
 Bytes: 35,694
@@ -52,7 +52,7 @@ START: /* === Cart Visual 1 START ===
 END: /* === Cart Visual 1.4.1 ACTION BUTTON OVERLAP FIX END === */
 ```
 
-Insert the range at this exact boundary:
+at the exact boundary:
 
 ```text
 after:
@@ -62,7 +62,15 @@ before:
 /* === Cart Visual 2-D PRODUCT META + COUPON ALIGNMENT + PRODUCT-LIKE COMPLETE CARDS START ===
 ```
 
-Expected restored CSS:
+The user then reported:
+
+```text
+回滚成功了
+```
+
+This is accepted as browser-level rollback confirmation.
+
+## Expected restored CSS
 
 ```text
 Size: 767,120 bytes
@@ -75,11 +83,13 @@ Closing comments: 397
 CSS parse errors: 0
 ```
 
+These file-level values remain to be verified from the uploaded restored CSS.
+
 ## Revised execution rule
 
-The old B2 plan of deleting structural Cart CSS before replacement is withdrawn.
+The old B2 plan of deleting structural Cart CSS before replacement is permanently withdrawn.
 
-Future Cart CSS cleanup must use one of these safer patterns:
+Future Cart CSS work must use one of these safer patterns:
 
 ```text
 1. Replace one small selector group in place and validate immediately; or
@@ -88,13 +98,14 @@ Future Cart CSS cleanup must use one of these safer patterns:
 
 A large structural deletion-only batch is no longer allowed.
 
-## Gate
+## Current gate
 
-Do not begin another Cart CSS operation until:
+Before any new Cart CSS operation:
 
 ```text
-- the exact deleted range is restored
-- the restored CSS file is uploaded
-- file metrics match the accepted baseline
-- the Cart layout is visually restored
+- upload the restored spatial-flow.css
+- verify exact size, lines, SHA256, brace balance, comment balance and parser result
+- confirm the restored file matches the accepted pre-B2-A1 baseline
 ```
+
+No new CSS deletion or insertion begins until that file-level rollback validation passes.
