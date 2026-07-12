@@ -7,23 +7,35 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 Desktop visual structure/detail：Passed.
-Mobile structural layout：Passed.
+Mobile visual structure：Passed.
+Mobile duplicate unit-price defect：Resolved by FIX3.
 Horizontal overflow：No.
 Native functional regression：Passed by user confirmation.
-Remaining blocker：mobile duplicate unit-price visual defect.
-Next executable step：Step 4E-B2-R3-FIX3.
+Current exact CSS baseline：spatial-flow(10).css.
+Next executable step：Step 4E-B2-R5-A CSS ownership and cleanup audit.
 Cart page status：Not done.
 ```
 
-## Exact tested baseline
+## Exact tested code baselines
+
+Native behavior was originally tested on `spatial-flow(9).css`. FIX3 then changed only one phone-only visibility rule and was rechecked with quantity/update behavior.
+
+Current accepted CSS:
 
 ```text
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(9).css
-Size: 813,392 bytes
-Logical lines: 27,205
-SHA256: caacee43d3cd938ed19674beae6bb7e570d891963bde410f4f8aa272a397c4b8
+Uploaded name: spatial-flow(10).css
+Size: 813,887 bytes
+Logical lines: 27,215
+SHA256: 7f55a49bfd82f3c2e9fc5db9b5a37b209ac4bad9f6c0b4f99dcabe23a73643ae
+Braces: 4,127 / 4,127
+Comments: 405 / 405
+CSS parser errors: 0
+```
 
+Unchanged PHP:
+
+```text
 functions.php
 Version: 2.7.8
 Size: 550,884 bytes
@@ -31,9 +43,9 @@ Lines: 10,256
 SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
 ```
 
-## User result
+## User functional result
 
-The user completed the plain-language Cart interaction checklist and reported that all tested functions had no problems.
+The user completed the Cart interaction checklist and reported that all tested functions had no problems.
 
 Accepted as passed:
 
@@ -52,26 +64,27 @@ Accepted as passed:
 
 No native interaction defect was reported.
 
-## Important distinction
+## FIX3 follow-up evidence
 
-Functional regression passing does not override a visible design defect.
-
-The mobile screenshot shows both the native unit-price cell and native subtotal cell inside each product card. With quantity 1 the two values match and appear as a duplicated price.
-
-Therefore:
+The post-FIX3 mobile screenshot shows:
 
 ```text
-Native behavior：Passed.
-Mobile visual acceptance：Reopened for one bounded defect.
-Cart final acceptance：Blocked until FIX3 passes.
+- first item quantity 2
+- first item line subtotal $66.00
+- Order Summary subtotal $114.00
+- Shipping $8.99
+- Total $122.99
+- only one price value per product card
+- no horizontal overflow
 ```
+
+This confirms quantity/update and summary recalculation remain functional after the phone-only duplicate-price correction.
 
 ## Next step
 
 ```text
-Step 4E-B2-R3-FIX3 · Mobile Duplicate Unit Price Removal
+Step 4E-B2-R5-A · Cart CSS ownership and cleanup audit
+Mode：no code changes
 ```
 
-The fix is CSS-only, phone-only, and independently reversible. No PHP, JavaScript, template or checkout behavior change is authorized.
-
-After FIX3 passes, proceed to backend-editability and final Cart acceptance. Do not delete historical Cart CSS before then.
+No more visual Cart snippets may be appended as routine refinement. The next phase is controlled consolidation and staged legacy deletion.
