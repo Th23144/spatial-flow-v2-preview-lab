@@ -12,29 +12,30 @@ This file maps the current Project 2 documentation and identifies the authoritat
 2. PROJECT2_DOCS_INDEX.md
 3. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 4. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-5. project2-progress/STEP_4E_B0_MANUAL_MAP.md
-6. project2-progress/STEP_4E_B1_A_PHP_SETTINGS.md
-7. project2-progress/PROGRESS_LOG.md
+5. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
+6. project2-progress/STEP_4E_B1_G1_VALIDATION.md
+7. project2-progress/STEP_4E_B0_MANUAL_MAP.md
 8. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
 9. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
 10. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-11. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-12. project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md
-13. project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
-14. project2-progress/STEP_4D_SYNC_MANIFEST.md
-15. project2-progress/STEP_4D_CLEAN1_AUDIT.md
-16. project2-progress/DEFERRED_PLANS.md
-17. PROJECT2_CSS_MAINTENANCE_POLICY.md
-18. PROJECT2_LOCAL_SYNC_MANIFEST.md
-19. PROJECT2_NEXT_WINDOW_PROMPT.md
-20. PROJECT2_CURRENT_STATE.md
+11. project2-progress/PROGRESS_LOG.md
+12. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+13. project2-progress/STEP_4C_REWORK1_B2_VALIDATION.md
+14. project2-progress/STEP_4C_REWORK1_B3_FIX1_PAGINATION.md
+15. project2-progress/STEP_4D_SYNC_MANIFEST.md
+16. project2-progress/STEP_4D_CLEAN1_AUDIT.md
+17. project2-progress/DEFERRED_PLANS.md
+18. PROJECT2_CSS_MAINTENANCE_POLICY.md
+19. PROJECT2_LOCAL_SYNC_MANIFEST.md
+20. PROJECT2_NEXT_WINDOW_PROMPT.md
+21. PROJECT2_CURRENT_STATE.md
 ```
 
 Important current execution sources:
 
 ```text
 project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-project2-progress/STEP_4E_B0_MANUAL_MAP.md
+project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
 ```
 
 They supersede every earlier instruction to apply the generated Step 4E-B ZIP or overwrite complete `functions.php` / `spatial-flow.css` files.
@@ -44,10 +45,11 @@ They supersede every earlier instruction to apply the generated Step 4E-B ZIP or
 | File | Role | Status |
 |---|---|---|
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Authoritative page-by-page status map using only `Completed 1:1` or `Not done`. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Manual, staged, exact-range Cart execution protocol. | Current / authoritative. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Manual, staged, exact-range Cart execution protocol and current code baseline. | Current / authoritative / B1-G2 active. |
+| `project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md` | Exact four-line PHP operation changing real recommendation output from three products to four. | Current / instructions issued. |
+| `project2-progress/STEP_4E_B1_G1_VALIDATION.md` | Exact uploaded-file and no-visible-change validation for dead manual recommendation fallback cleanup. | Passed. |
 | `project2-progress/STEP_4E_B0_MANUAL_MAP.md` | Exact PHP/CSS anchors, staged boundaries, deletion batches, rollback model, and execution order. | Current / B0 complete. |
-| `project2-progress/STEP_4E_B1_A_PHP_SETTINGS.md` | Exact four-operation manual edit for backend Cart settings, expected metrics, rollback, and validation checklist. | Current / instructions issued. |
-| `project2-progress/PROGRESS_LOG.md` | Live active-step log. | Current / awaiting B1-A manual edit and validation. |
+| `project2-progress/PROGRESS_LOG.md` | Historical long-form progress log. Its old B1-A active-step lines are superseded by the current manual execution protocol. | Historical snapshot / not current execution source. |
 | `project2-progress/STEP_4E_CART_REWORK_AUDIT.md` | Cart static/current-state audit, screenshots, CSS/JS baseline, and mismatch matrix. | Current / audit baseline. |
 | `project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md` | Cart functions.php ownership, hooks, backend-editability, hardcoded-data findings, and implementation constraints. | Current / Step 4E-A3 passed. |
 | `project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md` | Record of the withdrawn whole-file candidate and why it must not be applied. | Historical / Do not apply. |
@@ -128,8 +130,10 @@ Historical work on these pages may still be useful, but their official status re
 Step 4E-A · Cart desktop + mobile 1:1 current-state audit：Complete
 Whole-file Step 4E-B candidate：Withdrawn / Do not apply
 Step 4E-B0 · Manual exact-range execution map：Complete
-Step 4E-B1-A · PHP settings-only manual instructions：Issued
-Awaiting user edit + functions.php validation
+Step 4E-B1-A through B1-F：Passed
+Step 4E-B1-G1 · Dead manual recommendation fallback cleanup：Passed exactly
+Step 4E-B1-G2 · Four real recommendation products：Instructions issued
+Awaiting user manual edit + functions.php validation
 ```
 
 Current implementation mode:
@@ -161,6 +165,7 @@ The following files remain useful for background but contain stale next-step or 
 PROJECT2_CURRENT_STATE.md
 PROJECT2_NEXT_WINDOW_PROMPT.md
 PROJECT2_LOCAL_SYNC_MANIFEST.md
+project2-progress/PROGRESS_LOG.md
 ```
 
 Rules:
@@ -175,7 +180,7 @@ Rules:
 ## 7. Maintenance rule
 
 ```text
-- Update project2-progress/PROGRESS_LOG.md after every accepted or reopened step.
+- Update project2-progress/STEP_4E_B_MANUAL_EXECUTION.md after every accepted or reopened Cart substep.
 - Update project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md only when a page changes between Not done and Completed 1:1.
 - Update project2-progress/DEFERRED_PLANS.md when work is deferred or pulled into active scope.
 - Update PROJECT2_DOCS_INDEX.md when a major status file is added or superseded.
