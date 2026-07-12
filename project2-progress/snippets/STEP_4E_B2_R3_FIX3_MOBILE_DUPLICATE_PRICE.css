@@ -1,0 +1,10 @@
+/* === Step 4E-B2-R3-FIX3 · Mobile Duplicate Unit Price Removal START ===
+ * Scope: Cart phone layout only (767px and narrower).
+ * Purpose: hide the native unit-price cell that an older, more-specific mobile rule re-exposes.
+ */
+@media (max-width: 767px) {
+  body.woocommerce-cart form.woocommerce-cart-form table.shop_table tr.woocommerce-cart-form__cart-item td.product-price {
+    display: none !important;
+  }
+}
+/* === Step 4E-B2-R3-FIX3 · Mobile Duplicate Unit Price Removal END === */
