@@ -7,8 +7,11 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 Desktop FIX2：Passed exactly.
-Current mobile audit：Pending.
-Code changes in this step：None.
+Current mobile audit：Passed.
+Horizontal overflow：No.
+Severe mobile structural defect：None observed.
+Mobile FIX3 required：No.
+Native functional regression：Next.
 Cart page status：Not done.
 ```
 
@@ -35,7 +38,7 @@ Logical lines: 27,205
 SHA256: caacee43d3cd938ed19674beae6bb7e570d891963bde410f4f8aa272a397c4b8
 Braces: 4,125 / 4,125
 Comments: 403 / 403
-CSS parser errors: 0
+CSS parse errors: 0
 ```
 
 Unchanged PHP:
@@ -48,54 +51,98 @@ Lines: 10,256
 SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
 ```
 
-## Required mobile capture
+## Submitted mobile evidence
 
-Use a mobile viewport at or below 430 CSS pixels. Perform a hard refresh and capture one full-page Cart screenshot containing:
+The user supplied one full mobile Cart screenshot containing:
 
 ```text
-1. mobile Header
-2. Your Bag heading and live count
-3. Cart product rows
-4. quantity and remove controls
-5. Coupon / Apply Coupon / Update Cart
-6. complete Order Summary
-7. Proceed to Checkout and Continue Shopping
-8. four trust rows
-9. recommendation heading and all recommendation cards
-10. bottom spacing and mobile Footer
+- mobile Header
+- Your Bag heading and live count
+- three Cart product cards
+- visible quantity controls and circular remove controls
+- Coupon / Apply Coupon / Update Cart
+- full-width Order Summary
+- Proceed to Checkout and Continue Shopping
+- four trust rows
+- recommendation heading and four recommendation cards
+- complete mobile Footer
 ```
 
-Also report:
+The user explicitly reported:
 
 ```text
-Horizontal overflow：Yes / No
-Native controls missing or unusable：Yes / No
+Horizontal overflow：No.
 ```
 
-## Audit criteria
+The user did not yet understand the phrase “native controls missing or unusable.” This is not recorded as a failure. Control behavior is moved to the next dedicated native functional regression step with plain-language instructions.
 
-The audit will compare the live result against the static responsive intent:
+## Visual audit result
+
+### Passed
 
 ```text
-- one-column main Cart flow
-- compact two-column product-row composition where space allows
-- circular remove action inside each product row
-- quantity/subtotal labels remain understandable
+- one-column mobile Cart flow is stable
+- product cards remain inside the viewport
+- circular remove actions remain visible inside each product card
+- quantity controls remain visible
 - Coupon controls stack without clipping
 - Order Summary is full-width and non-sticky
-- recommendations are single-column at phone width
-- no half cards and no horizontal scrolling
+- Proceed to Checkout and Continue Shopping remain visible
+- four trust rows remain visible
+- recommendations are single-column with no half-card exposure
 - Footer remains intact
+- no horizontal page overflow
 ```
 
-## Next decision
-
-After the screenshot:
+### Non-blocking observations
 
 ```text
-A. If mobile is already acceptable：proceed directly to full native functional regression.
-B. If only bounded defects remain：issue one small mobile-only FIX3 range.
-C. If a severe structural defect appears：stop and prepare an independently removable mobile correction layer; do not alter desktop FIX2.
+- mobile text is intentionally compact because the live products carry long real WooCommerce names and metadata
+- the fourth recommendation uses the real WooCommerce missing-image placeholder
+- the mobile page is long because four real recommendations are shown as a premium single-column sequence
 ```
 
-No file upload is required in this audit-only step because no code changes are made.
+No mobile-only FIX3 is justified from the submitted evidence.
+
+## Mobile design-quality rule added by user
+
+The V2 static references are not automatically authoritative on mobile. Several static pages were not fully optimized for phone layouts.
+
+Therefore mobile validation must use this hierarchy:
+
+```text
+1. preserve native WooCommerce behavior and real dynamic data
+2. prevent overflow, clipping, overlap and unusable controls
+3. preserve the established Spatial Flow visual language
+4. use professional visual judgment for spacing, readability, hierarchy and touch targets
+5. follow the V2 static mobile reference only where it is actually well designed
+6. never force a poor static mobile composition merely to claim literal 1:1 similarity
+```
+
+This rule applies to Cart and all remaining Project 2 pages.
+
+A later mobile aesthetic re-audit is required for the already completed Shop archive and Single Product pages. Their current binary completion status is not changed solely by scheduling that re-audit; any discovered defect will reopen the relevant page.
+
+## Next step
+
+```text
+Step 4E-B2-R4 · Native Cart functional regression
+Mode：no code changes unless a real defect is reproduced.
+```
+
+Plain-language checks will cover:
+
+```text
+- plus/minus quantity buttons
+- Update Cart
+- remove item and Undo/Restore
+- Coupon success, error and removal
+- Change address and shipping refresh
+- Proceed to Checkout
+- Continue Shopping
+- recommendation links
+- mobile Menu and Footer accordions
+- SAFE5 Checkout no-regression
+```
+
+No historical Cart CSS may be deleted before this functional regression passes.
