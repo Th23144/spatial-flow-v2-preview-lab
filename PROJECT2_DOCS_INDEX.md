@@ -10,26 +10,28 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 2. PROJECT2_DOCS_INDEX.md
 3. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 4. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-5. project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
-6. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
-7. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
-8. project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md
-9. project2-progress/STEP_4E_B1_H_VALIDATION.md
-10. project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
-11. project2-progress/STEP_4E_B1_G3_VALIDATION.md
-12. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
-13. project2-progress/STEP_4E_B1_G2_VALIDATION.md
-14. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
-15. project2-progress/STEP_4E_B1_G1_VALIDATION.md
-16. project2-progress/STEP_4E_B0_MANUAL_MAP.md
-17. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-18. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
-19. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-20. project2-progress/PROGRESS_LOG.md
-21. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-22. project2-progress/STEP_4D_SYNC_MANIFEST.md
-23. project2-progress/DEFERRED_PLANS.md
-24. PROJECT2_CSS_MAINTENANCE_POLICY.md
+5. project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
+6. project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
+7. project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
+8. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
+9. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
+10. project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md
+11. project2-progress/STEP_4E_B1_H_VALIDATION.md
+12. project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
+13. project2-progress/STEP_4E_B1_G3_VALIDATION.md
+14. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
+15. project2-progress/STEP_4E_B1_G2_VALIDATION.md
+16. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
+17. project2-progress/STEP_4E_B1_G1_VALIDATION.md
+18. project2-progress/STEP_4E_B0_MANUAL_MAP.md
+19. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+20. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+21. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+22. project2-progress/PROGRESS_LOG.md
+23. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+24. project2-progress/STEP_4D_SYNC_MANIFEST.md
+25. project2-progress/DEFERRED_PLANS.md
+26. PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
 The current Cart manual records supersede earlier ZIP/full-file replacement instructions and the failed B2-A1 deletion-first plan.
@@ -39,7 +41,9 @@ The current Cart manual records supersede earlier ZIP/full-file replacement inst
 | File | Role | Status |
 |---|---|---|
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / B2-R2 design active. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / B2-R2 active. |
+| `project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md` | Exact insertion-only instructions, metrics, validation and rollback. | Instructions issued. |
+| `project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css` | Exact Cart-only consolidation range to insert before the notice block. | Generated and statically validated. |
 | `project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md` | Maps the 15 interacting Cart CSS layers and defines replacement-first strategy. | Complete. |
 | `project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md` | Exact restored-file metrics and byte comparison. | Passed exactly. |
 | `project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md` | Evidence of correct deletion, visual failure, exact rollback and revised CSS rule. | Closed by exact rollback. |
@@ -109,7 +113,7 @@ B2-A1 exact range rollback：Passed at browser and file levels
 Restored spatial-flow(6).css：Byte-identical to accepted spatial-flow(4).css
 Old B2-A2 deletion-first continuation：Withdrawn permanently
 Step 4E-B2-R1 CSS dependency re-audit：Complete
-Next executable code step：Step 4E-B2-R2 scoped replacement layer first
+Step 4E-B2-R2 scoped consolidation layer：Instructions issued / manual insertion pending
 ```
 
 Current implementation mode:
@@ -117,13 +121,13 @@ Current implementation mode:
 ```text
 - no ZIP/full-file replacement
 - no blind overwrite
-- small named substeps
+- exact bounded insertion range
+- no legacy deletion in B2-R2
 - exact anchors and predicted metrics
 - revalidation after every operation
-- independent rollback
+- independent rollback by deleting only the inserted block
 - PHP and CSS never combined in one operation
-- no large structural CSS deletion before a validated replacement owns the same layout
-- replacement insertion and legacy deletion must be separate operations
+- legacy cleanup begins only after replacement ownership passes
 ```
 
 The Cart remains officially `Not done`.
@@ -157,6 +161,30 @@ CSS parse errors: 0
 Byte-identical to spatial-flow(4).css: Yes
 ```
 
+### B2-R2 exact snippet
+
+```text
+Path: project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
+Size: 33,457 bytes
+Lines: 1,083
+SHA256: 42e3135527c5569836841330ae69be7dfe6362c5a55203bdc560864a1634e1b9
+Braces: 145 / 145
+Comments: 2 / 2
+CSS parse errors: 0
+Every selector scoped to body.woocommerce-cart: Yes
+```
+
+### Expected CSS after B2-R2 insertion
+
+```text
+Size: 800,578 bytes
+Lines: 26,828
+SHA256: 4c66fe5b092ced93b198fafe22af6d70e89ffc6064b6cb52b2d7ead8c30f6328
+Braces: 4,063 / 4,063
+Comments: 399 / 399
+CSS parse errors: 0
+```
+
 ### Rejected B2-A1 deletion state
 
 ```text
@@ -170,18 +198,18 @@ CSS parse errors: 0
 Browser result: Failed
 ```
 
-## 7. B2-R1 dependency summary
-
-The accepted CSS contains 15 named Cart visual blocks totaling approximately:
+## 7. B2-R2 gate
 
 ```text
-3,780 lines
-117,124 bytes
-456 rule/media braces
-37 media-query declarations
+1. Insert the exact snippet immediately before the Step 4E Cart Notice Toast marker.
+2. Do not remove or edit any old Cart CSS.
+3. Upload the edited spatial-flow.css.
+4. Supply desktop and mobile Cart screenshots.
+5. Confirm quantity, remove/undo, Coupon, shipping, Checkout and Continue Shopping.
+6. Confirm Header, Footer, Shop, Single Product and SAFE5 Checkout are unchanged.
 ```
 
-The page currently depends on cascade interaction across old and later blocks. The next safe operation must insert a complete `body.woocommerce-cart` scoped replacement layer first and validate it before any old selector is removed.
+No historical Cart CSS cleanup begins until all six requirements pass.
 
 ## 8. Maintenance rule
 
