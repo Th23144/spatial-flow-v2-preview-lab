@@ -1,4 +1,4 @@
-# Step 4E-B2-R2-FIX2 · Exact File + Desktop Detail Validation
+# Step 4E-B2-R2-FIX2 · Exact File + Bounded Desktop Detail Validation
 
 Last updated: 2026-07-12  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
@@ -7,16 +7,15 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 FIX2 exact file result：Passed exactly.
-FIX2 desktop visual objective：Passed.
-Desktop Cart structure/detail pass：Accepted for progression.
-Mobile Cart validation：Pending.
-Native functional regression：Pending.
-Legacy Cart CSS cleanup：Forbidden.
+FIX2 bounded desktop objective：Passed for progression.
+Final strict desktop 1:1 acceptance：Reopened / not passed.
 Cart page status：Not done.
-Next executable step：Step 4E-B2-R3-A mobile baseline audit.
+Current authoritative next step：Step 4E-B2-R5-A1 visual-gap and ownership audit.
 ```
 
-## Uploaded source of truth
+The earlier label `desktop visual objective passed` meant that FIX2 achieved its limited goals—stable frame, usable rows, integrated summary and four-product recommendation layout. It did not constitute a final strict-1:1 review.
+
+## Uploaded source of truth at FIX2
 
 ```text
 File: assets/css/spatial-flow.css
@@ -35,66 +34,54 @@ FIX1 START / END markers: 1 / 1
 FIX2 START / END markers: 1 / 1
 ```
 
-The uploaded file matches the predicted complete FIX2 result exactly. This proves the manual insertion was executed without code drift.
+The uploaded file matched the predicted FIX2 result exactly.
 
-## Desktop screenshot result
-
-### Passed
+## Bounded desktop goals that passed
 
 ```text
-- Cart frame remains centered and stable
-- Your Bag heading and live item count remain present
-- three live Cart rows remain visible
-- product images, names, metadata, quantity controls and subtotals remain visible
-- duplicate desktop product-price cells under images are removed
-- product rows have improved column proportions and alignment
-- Coupon, Apply Coupon and Update Cart form one stable action row
-- Order Summary heading is integrated into the panel instead of a separate white strip
-- Subtotal, Shipping, Total, checkout and continue-shopping controls remain present
-- four summary trust rows remain present
-- recommendations remain an open light section
-- four live WooCommerce recommendation products remain in one row
-- Header and Footer remain intact
-- no horizontal overlap or desktop collapse is visible
+- Cart frame remained centered and stable
+- Your Bag heading and live count remained present
+- live Cart rows remained visible
+- product images, names, metadata, quantities and subtotals remained present
+- duplicate desktop unit-price cells were removed
+- Coupon controls formed one stable row
+- Order Summary heading was integrated into the panel
+- totals, checkout and continue-shopping controls remained present
+- four trust rows remained present
+- four real WooCommerce recommendations remained in one row
+- Header and Footer remained intact
+- no desktop collapse or horizontal overlap occurred
 ```
 
-### Accepted dynamic-data differences
+Accepted dynamic-data differences remain:
 
 ```text
-- product titles and metadata reflect real WooCommerce data rather than static sample copy
-- the fourth recommendation uses WooCommerce's real missing-image placeholder
-- live prices, shipping destination, shipping amount and totals differ from static sample data
+- real product titles and metadata
+- real prices, shipping destination, shipping amount and totals
+- WooCommerce's real missing-image placeholder
 ```
 
-These are not 1:1 defects and must not be replaced with fabricated values or CSS imagery.
+These must not be replaced with fabricated values.
 
-## Desktop decision
+## Final desktop acceptance correction
 
-FIX2 is accepted as the completed bounded desktop detail pass. No additional desktop CSS is authorized before mobile validation unless a later regression exposes a concrete desktop defect.
-
-This does not mark the Cart page `Completed 1:1`, because mobile and native functional validation remain incomplete.
-
-## Next step
+Later focused evidence confirms that strict desktop visual work is incomplete:
 
 ```text
-Step 4E-B2-R3-A · Mobile current-baseline audit
-Mode：visual audit only / no code changes.
-Required evidence：one full mobile Cart screenshot on the exact spatial-flow(9).css baseline.
+- product thumbnails do not visually fill their slots
+- textual Remove collides with metadata
+- Order Summary trust-icon shells intrude into text
+- broader spacing, typography and proportion differences remain
 ```
 
-The screenshot must include:
+Therefore FIX2 remains a passed bounded implementation step, but its previous acceptance cannot be used as final desktop 1:1 approval.
+
+Authoritative defect record:
 
 ```text
-- mobile Header
-- Your Bag heading/count
-- all visible Cart items
-- Coupon / Apply Coupon / Update Cart
-- complete Order Summary
-- Continue Shopping
-- recommendation heading and cards
-- mobile Footer or the bottom of the page
+project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md
 ```
 
-Also report whether horizontal page overflow is present.
+## Current rule
 
-No old Cart CSS may be deleted before mobile and full native functional validation pass.
+No additional desktop patch may be appended. The confirmed corrections must be incorporated into the one canonical in-place Cart block replacement during R5-B.
