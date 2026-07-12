@@ -14,12 +14,13 @@ Step 4E-B2-A1 deletion：Rejected and rolled back exactly.
 Step 4E-B2-R1 dependency re-audit：Complete.
 Step 4E-B2-R2 consolidation：Present and structurally valid.
 Step 4E-B2-R2-FIX1 desktop structure：Passed.
-Step 4E-B2-R2-FIX2 desktop detail：Passed exactly.
+Step 4E-B2-R2-FIX2 bounded desktop objective：Passed exactly.
 Step 4E-B2-R3-A mobile structure：Passed.
 Step 4E-B2-R3-FIX3 duplicate unit price：Passed exactly.
 Step 4E-B2-R4 native functional regression：Passed.
+Final strict desktop/mobile visual acceptance：Reopened / not passed.
 Append-only Cart visual refinement：Frozen.
-Current executable step：Step 4E-B2-R5-A ownership and cleanup audit / no code changes.
+Current executable step：Step 4E-B2-R5-A1 visual-gap and ownership audit / no code changes.
 Cart page status：Not done.
 ```
 
@@ -28,9 +29,11 @@ Cart page status：Not done.
 ```text
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md
+project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
 project2-progress/STEP_4E_B2_R3_FIX3_VALIDATION.md
 project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
-project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
+project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md
 ```
 
 ## Non-negotiable execution rule
@@ -43,8 +46,9 @@ project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
 - no Cart JavaScript unless a real native interaction defect is proved
 - no large structural CSS deletion before replacement ownership is validated
 - no routine FIX4 or further append-only visual patch
-- no claim of completion before cleanup, backend editability and final acceptance pass
-- V2 mobile static references are guidance, not authority when they produce weak phone UX
+- no historical cleanup before the canonical block closes the current visual gaps
+- no claim of final desktop/mobile acceptance while known blockers remain
+- V2 mobile references are guidance, not authority when they produce weak phone UX
 ```
 
 ## Current PHP baseline
@@ -60,7 +64,7 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-PHP remains unchanged throughout B2 cleanup.
+PHP remains unchanged throughout the current CSS audit and cleanup phase.
 
 ## Current exact CSS baseline
 
@@ -79,27 +83,17 @@ FIX2 markers: 1 / 1
 FIX3 markers: 1 / 1
 ```
 
-## Passed browser and functional gates
+## Passed non-final gates
 
 ```text
-Desktop:
-- centered 7fr / 5fr layout
-- stable product rows and Coupon controls
-- integrated summary structure
-- four real recommendation products
-- Header and Footer intact
-
-Mobile:
-- one-column flow
+Structure:
+- centered desktop 7fr / 5fr frame
+- one-column mobile flow
 - no horizontal overflow
-- one subtotal price per product card
-- visible quantity/remove controls
-- stacked Coupon controls
-- full-width Order Summary
-- single-column recommendations
-- Footer intact
+- stable Coupon and Order Summary structure
+- four real recommendation products
 
-Native behavior:
+Function:
 - quantity/update
 - remove/undo
 - Coupon paths
@@ -109,6 +103,27 @@ Native behavior:
 - recommendation links
 - mobile Menu and Footer accordion
 - no warning/fatal/blank page
+
+Bounded correction:
+- one subtotal price per mobile product card
+```
+
+These are necessary gates but do not equal final strict 1:1 approval.
+
+## Confirmed blocking visual gaps
+
+```text
+1. desktop/mobile trust-icon shells overflow and intrude into trust-row text
+2. mobile remove controls show two × glyphs
+3. desktop/mobile thumbnails do not visually fill their allocated frames
+4. desktop textual Remove action collides with dynamic metadata
+5. wider spacing, typography and proportion differences remain against the V2 target
+```
+
+Authoritative analysis:
+
+```text
+project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md
 ```
 
 ## Current CSS debt inventory
@@ -122,7 +137,7 @@ Historical Cart visual stack:
 456 rule/media-query brace pairs
 ```
 
-Validated R2/FIX stack:
+Temporary R2/FIX stack:
 
 ```text
 46,765 bytes
@@ -130,27 +145,41 @@ Validated R2/FIX stack:
 209 rule/media-query brace pairs
 ```
 
-The historical stack was intentionally retained while R2 was being proven because the earlier deletion-first attempt collapsed the page. That temporary exception is now closed.
+The historical stack was retained while replacement ownership was being proved. The temporary exception is frozen, but cleanup cannot start until the canonical replacement also closes the visible defects.
 
 ## Current executable step
 
-### Step 4E-B2-R5-A · Ownership and cleanup audit
+### Step 4E-B2-R5-A1 · Final visual-gap and ownership audit
 
 ```text
 Mode：no code changes.
 Source of truth：spatial-flow(10).css only.
-Instruction：project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md.
+Reference：preview/spatial-flow-cart-v1.html plus current real desktop/mobile screenshots.
+Instruction：project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md.
+Plan：project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md.
 ```
 
-Required audit output:
+Required output:
 
 ```text
-- responsibility matrix for each Cart component
-- declarations R2 still inherits from legacy
+- complete desktop/mobile discrepancy matrix
+- selector/declaration ownership matrix
+- root cause for each confirmed blocker
+- declarations still inherited from legacy
 - declarations fully superseded by R2
-- exact canonical replacement boundary
-- safe small deletion batches
-- predicted metrics and rollback for each operation
+- one canonical in-place replacement specification
+- predicted canonical metrics and independent rollback
+- safe staged historical deletion batches
 ```
 
-No new Cart CSS is authorized during R5-A.
+## Correct sequence from here
+
+```text
+R5-A1 audit only
+→ R5-B replace R2 + FIX1 + FIX2 + FIX3 in place with one canonical block
+→ strict desktop/mobile and native-function validation
+→ R5-C staged historical deletion
+→ R5-D backend editability and final acceptance
+```
+
+No new Cart CSS is authorized during R5-A1.
