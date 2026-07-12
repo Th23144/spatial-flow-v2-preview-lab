@@ -13,8 +13,8 @@ Step 4E-B1-A through B1-H：Passed.
 Step 4E-B2-A1 deletion：Executed exactly but rejected after browser collapse.
 Step 4E-B2-A1 rollback：Passed exactly at browser and file levels.
 Step 4E-B2-R1 dependency re-audit：Complete.
+Step 4E-B2-R2 consolidation instructions：Issued / user insertion pending.
 Old B2-A2 deletion-first continuation：Withdrawn permanently.
-Next executable code step：Step 4E-B2-R2.
 Cart page status：Not done.
 ```
 
@@ -27,6 +27,8 @@ project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md
 project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
 project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
 project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
+project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
+project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
 ```
 
 The failure-and-rollback records supersede the prior deletion-first B2 plan.
@@ -44,7 +46,7 @@ The failure-and-rollback records supersede the prior deletion-first B2 plan.
 - no deletion in the same operation that first introduces the replacement structure
 ```
 
-Every executable operation must include exact anchors, expected delta, parser/balance checks, visible expectation, independent rollback, and required evidence.
+Every executable operation must include exact anchors, expected delta, parser/balance checks, visible expectation, independent rollback and required evidence.
 
 ## Current PHP baseline
 
@@ -59,7 +61,7 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-PHP remained unchanged throughout B2-A1 and its rollback.
+PHP remains unchanged in B2-R2.
 
 ## Current accepted CSS baseline
 
@@ -109,26 +111,47 @@ The accepted CSS contains 15 named Cart visual blocks totaling approximately:
 
 Current desktop/mobile behavior is produced by cascade interaction across those layers. Critical structure is shared across the old and later blocks, so another deletion-first batch is prohibited.
 
-Authoritative map:
-
-```text
-project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
-```
-
-## Current executable phase
+## Current executable step
 
 ### Step 4E-B2-R2 · Complete scoped Cart V2 consolidation layer
 
 ```text
-Mode：replacement layer first; deletion forbidden in this operation.
+Mode：insertion only; deletion forbidden.
 File：assets/css/spatial-flow.css only.
-Scope：body.woocommerce-cart only.
-Required ownership：desktop frame/grid, table columns, action row, totals, mobile cards, recommendation breakpoints.
-Insertion marker：must be fixed and exact.
-Validation：file metrics + CSS parser + desktop/mobile + native Cart controls.
-Legacy cleanup：only after B2-R2 passes.
+Snippet：project2-progress/snippets/STEP_4E_B2_R2_CART_CONSOLIDATION.css
+Instruction：project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
+Scope：body.woocommerce-cart on every selector.
+Insertion point：immediately before /* === Step 4E Cart Notice Toast START ===
+Expected size：800,578 bytes.
+Expected lines：26,828.
+Expected SHA256：4c66fe5b092ced93b198fafe22af6d70e89ffc6064b6cb52b2d7ead8c30f6328.
+Expected braces：4,063 / 4,063.
+Expected comments：399 / 399.
+Expected parser errors：0.
 ```
 
-B2-R2 manual CSS has not yet been issued. It must first be generated and statically validated against the exact `spatial-flow(6).css` baseline.
+Required ownership:
 
-No user edit is required during the B2-R2 design pass.
+```text
+desktop frame/grid
+table product rows and columns
+action row
+Order Summary and shipping
+Continue Shopping
+four trust entries
+mobile rows and controls
+recommendation breakpoints
+empty-cart state
+```
+
+Required evidence after manual insertion:
+
+```text
+- edited spatial-flow.css
+- desktop Cart screenshot
+- mobile Cart screenshot
+- native quantity/remove/coupon/shipping/checkout/continue-shopping confirmation
+- Header/Footer/Shop/Single Product/SAFE5 Checkout no-regression confirmation
+```
+
+Do not remove any old Cart CSS until B2-R2 passes exact file, desktop, mobile and native functional validation.
