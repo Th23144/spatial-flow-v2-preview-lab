@@ -11,8 +11,9 @@ Whole-file Cart candidate：Withdrawn / Do not apply.
 Step 4E-B0 exact manual map：Complete.
 Step 4E-B1-A through B1-H：Passed.
 Step 4E-B2-A1 deletion：Executed exactly but browser validation failed.
-Current required action：Restore only the deleted B2-A1 range.
-B2-A2：Blocked.
+Step 4E-B2-A1 rollback：User confirmed browser restoration succeeded.
+Restored CSS file validation：Pending upload.
+Old B2-A2 deletion-first continuation：Withdrawn / blocked.
 Cart page status：Not done.
 ```
 
@@ -54,9 +55,9 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-PHP remains unchanged by B2-A1.
+PHP remained unchanged throughout B2-A1 and its rollback.
 
-## Accepted CSS baseline before B2-A1
+## Accepted CSS baseline to restore
 
 ```text
 File: assets/css/spatial-flow.css
@@ -83,27 +84,38 @@ CSS parse errors: 0
 
 The uploaded output exactly matched the requested deletion. The user did not make an editing mistake. The operation itself removed structural Cart CSS still required by the current DOM and caused the desktop Cart layout to collapse.
 
-## Current executable step
+## Rollback state
 
-### Step 4E-B2-A1-RB · Restore the exact deleted range
+The exact deleted range was reinserted at the original boundary. The user confirmed that the Cart layout was restored successfully.
 
-```text
-Restore bytes：35,694
-Restore lines：1,213
-Insert after：/* === Single Product Visual 1 END === */
-Insert before：/* === Cart Visual 2-D PRODUCT META + COUPON ALIGNMENT + PRODUCT-LIKE COMPLETE CARDS START ===
-Expected restored size：767,120 bytes
-Expected restored lines：25,744
-Expected restored SHA256：675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
-Expected braces：3,918 / 3,918
-Expected comments：397 / 397
-Expected CSS parser errors：0
-```
-
-Authoritative record:
+Expected restored metrics:
 
 ```text
-project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
+Size: 767,120 bytes
+Lines: 25,744
+SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
+Braces: 3,918 / 3,918
+Comments: 397 / 397
+CSS parse errors: 0
 ```
 
-Do not start a replacement or another deletion until the restored CSS is uploaded and the Cart layout is confirmed normal.
+## Current executable gate
+
+```text
+Upload the restored spatial-flow.css for exact rollback validation.
+```
+
+No new Cart CSS deletion or insertion begins until the restored file matches the accepted baseline.
+
+## Next strategy after file validation
+
+The old deletion-first B2-A2 plan will not resume.
+
+Future work must use:
+
+```text
+- one small selector-group replacement at a time; or
+- one complete scoped replacement layer first, validated before removing only proven redundant old selectors
+```
+
+The exact next CSS operation will be designed only after the restored file is re-read.
