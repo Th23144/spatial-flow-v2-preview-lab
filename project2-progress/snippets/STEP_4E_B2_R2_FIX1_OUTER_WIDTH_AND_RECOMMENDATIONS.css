@@ -1,0 +1,95 @@
+/* === Step 4E-B2-R2-FIX1 · Outer Width + Recommendation Specificity START ===
+   Scope: Cart page only.
+   Purpose: release the remaining Astra content-width constraint and let the R2
+   recommendation design override the older higher-specificity dark-card layer.
+*/
+
+body.woocommerce-cart #primary,
+body.woocommerce-cart .content-area,
+body.woocommerce-cart .site-main,
+body.woocommerce-cart article.ast-article-single,
+body.woocommerce-cart .entry-content {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+body.woocommerce-cart #primary,
+body.woocommerce-cart .content-area {
+  float: none !important;
+}
+
+body.woocommerce-cart article.ast-article-single,
+body.woocommerce-cart .entry-content {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products {
+  border: 0 !important;
+  border-top: 1px solid var(--sf-cart-border) !important;
+  border-bottom: 1px solid var(--sf-cart-border) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #1f1916 !important;
+  box-shadow: none !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-pro-kicker,
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products h2,
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products p {
+  color: inherit !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-view-all {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: rgba(31, 25, 22, .68) !important;
+  box-shadow: none !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card.sf-cart-next-card--product {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #1f1916 !important;
+  box-shadow: none !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card--product .sf-cart-next-card__eyebrow {
+  color: rgba(31, 25, 22, .58) !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card--product > strong {
+  color: #1f1916 !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card--product > em {
+  color: rgba(31, 25, 22, .62) !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card__price,
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card__price .amount,
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card__price .woocommerce-Price-amount,
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card__price ins {
+  color: #1f1916 !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card__price del {
+  color: rgba(31, 25, 22, .42) !important;
+}
+
+body.woocommerce-cart .sf-cart-next-steps.sf-cart-next-steps--products .sf-cart-next-card__cta {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: rgba(31, 25, 22, .62) !important;
+  box-shadow: none !important;
+}
+
+/* === Step 4E-B2-R2-FIX1 · Outer Width + Recommendation Specificity END === */
