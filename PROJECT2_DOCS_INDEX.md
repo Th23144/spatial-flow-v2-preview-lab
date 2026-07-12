@@ -10,24 +10,26 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 2. PROJECT2_DOCS_INDEX.md
 3. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 4. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-5. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
-6. project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md
-7. project2-progress/STEP_4E_B1_H_VALIDATION.md
-8. project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
-9. project2-progress/STEP_4E_B1_G3_VALIDATION.md
-10. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
-11. project2-progress/STEP_4E_B1_G2_VALIDATION.md
-12. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
-13. project2-progress/STEP_4E_B1_G1_VALIDATION.md
-14. project2-progress/STEP_4E_B0_MANUAL_MAP.md
-15. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-16. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
-17. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-18. project2-progress/PROGRESS_LOG.md
-19. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-20. project2-progress/STEP_4D_SYNC_MANIFEST.md
-21. project2-progress/DEFERRED_PLANS.md
-22. PROJECT2_CSS_MAINTENANCE_POLICY.md
+5. project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
+6. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
+7. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
+8. project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md
+9. project2-progress/STEP_4E_B1_H_VALIDATION.md
+10. project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md
+11. project2-progress/STEP_4E_B1_G3_VALIDATION.md
+12. project2-progress/STEP_4E_B1_G3_FOUR_COLUMN_LAYOUT.md
+13. project2-progress/STEP_4E_B1_G2_VALIDATION.md
+14. project2-progress/STEP_4E_B1_G2_FOUR_REAL_RECOMMENDATIONS.md
+15. project2-progress/STEP_4E_B1_G1_VALIDATION.md
+16. project2-progress/STEP_4E_B0_MANUAL_MAP.md
+17. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+18. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+19. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+20. project2-progress/PROGRESS_LOG.md
+21. project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
+22. project2-progress/STEP_4D_SYNC_MANIFEST.md
+23. project2-progress/DEFERRED_PLANS.md
+24. PROJECT2_CSS_MAINTENANCE_POLICY.md
 ```
 
 The current Cart manual records supersede earlier ZIP/full-file replacement instructions and the failed B2-A1 deletion-first plan.
@@ -37,10 +39,12 @@ The current Cart manual records supersede earlier ZIP/full-file replacement inst
 | File | Role | Status |
 |---|---|---|
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / rollback file validation gate active. |
-| `project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md` | Evidence of exact deletion, visual failure, successful browser rollback, and revised CSS rule. | Browser rollback passed / file validation pending. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / B2-R2 design active. |
+| `project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md` | Maps the 15 interacting Cart CSS layers and defines replacement-first strategy. | Complete. |
+| `project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md` | Exact restored-file metrics and byte comparison. | Passed exactly. |
+| `project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md` | Evidence of correct deletion, visual failure, exact rollback and revised CSS rule. | Closed by exact rollback. |
 | `project2-progress/STEP_4E_B2_A1_REMOVE_LEGACY_CART_BASE_CSS.md` | Original deletion-only instruction. | Failed / superseded. |
-| `project2-progress/STEP_4E_B1_H_VALIDATION.md` | Exact functions.php, Cart, and SAFE5 gate validation. | Passed. |
+| `project2-progress/STEP_4E_B1_H_VALIDATION.md` | Exact functions.php, Cart and SAFE5 validation. | Passed. |
 | `project2-progress/STEP_4E_B1_H_CART_CONTEXT_FALLBACK.md` | Cart-only fallback safety operation. | Completed. |
 | `project2-progress/STEP_4E_B1_G3_VALIDATION.md` | Four-column CSS validation and user acceptance. | Passed. |
 | `project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md` | Withdrawn whole-file candidate record. | Historical / Do not apply. |
@@ -55,7 +59,7 @@ Completed 1:1
 Not done
 ```
 
-A page becomes `Completed 1:1` only after current-file implementation, desktop validation, mobile validation, functional regression, and backend-editability validation all pass.
+A page becomes `Completed 1:1` only after current-file implementation, desktop validation, mobile validation, functional regression and backend-editability validation all pass.
 
 ## 4. Current page-level summary
 
@@ -99,14 +103,13 @@ Historical partial work does not change these binary statuses.
 Step 4E-A Cart audit：Complete
 Step 4E-B0 manual map：Complete
 Step 4E-B1-A through B1-H：Passed
-Step 4E-B2-A1 deletion：Executed exactly
-B2-A1 browser result：Failed — Cart desktop structure collapsed
-Cause：Deletion batch removed structural CSS before replacement existed
-User editing error：No
-Exact deleted range rollback：User confirmed successful
-Cart browser layout：Restored
-Restored CSS exact file validation：Pending upload
-Old B2-A2 deletion-first continuation：Withdrawn
+Step 4E-B2-A1 deletion：Executed exactly but rejected after browser collapse
+B2-A1 user editing error：No
+B2-A1 exact range rollback：Passed at browser and file levels
+Restored spatial-flow(6).css：Byte-identical to accepted spatial-flow(4).css
+Old B2-A2 deletion-first continuation：Withdrawn permanently
+Step 4E-B2-R1 CSS dependency re-audit：Complete
+Next executable code step：Step 4E-B2-R2 scoped replacement layer first
 ```
 
 Current implementation mode:
@@ -120,6 +123,7 @@ Current implementation mode:
 - independent rollback
 - PHP and CSS never combined in one operation
 - no large structural CSS deletion before a validated replacement owns the same layout
+- replacement insertion and legacy deletion must be separate operations
 ```
 
 The Cart remains officially `Not done`.
@@ -139,20 +143,21 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-### Accepted CSS baseline to restore and verify
+### Accepted restored CSS baseline
 
 ```text
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(4).css
+Uploaded name: spatial-flow(6).css
 Size: 767,120 bytes
 Lines: 25,744
 SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
 Braces: 3,918 / 3,918
 Comments: 397 / 397
 CSS parse errors: 0
+Byte-identical to spatial-flow(4).css: Yes
 ```
 
-### Rejected B2-A1 CSS state
+### Rejected B2-A1 deletion state
 
 ```text
 Uploaded name: spatial-flow(5).css
@@ -165,27 +170,25 @@ CSS parse errors: 0
 Browser result: Failed
 ```
 
-## 7. Current validation gate
+## 7. B2-R1 dependency summary
 
-Upload the restored `spatial-flow.css` and verify that it matches:
+The accepted CSS contains 15 named Cart visual blocks totaling approximately:
 
 ```text
-Size: 767,120 bytes
-Lines: 25,744
-SHA256: 675ecd3acea94f263ab9ec9b5b02c413ea19f831a0eb18a0ba7e0523d0aab76a
-Braces: 3,918 / 3,918
-Comments: 397 / 397
-CSS parse errors: 0
+3,780 lines
+117,124 bytes
+456 rule/media braces
+37 media-query declarations
 ```
 
-No new Cart CSS operation begins until this exact rollback validation passes.
+The page currently depends on cascade interaction across old and later blocks. The next safe operation must insert a complete `body.woocommerce-cart` scoped replacement layer first and validate it before any old selector is removed.
 
 ## 8. Maintenance rule
 
 ```text
-- update STEP_4E_B_MANUAL_EXECUTION.md after each accepted, failed, or rolled-back Cart substep
+- update STEP_4E_B_MANUAL_EXECUTION.md after each accepted, failed or rolled-back Cart substep
 - update PROJECT2_PAGE_STATUS_MATRIX.md only when a page changes between Not done and Completed 1:1
 - update PROJECT2_DOCS_INDEX.md when a major status file is added or superseded
 - preserve backend editability and dynamic WooCommerce sources
-- prefer precise range replacement over whole-file replacement or append-only CSS
+- prefer precise range replacement over whole-file replacement or indefinite append-only CSS
 ```
