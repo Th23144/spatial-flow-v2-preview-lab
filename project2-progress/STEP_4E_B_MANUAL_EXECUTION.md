@@ -12,16 +12,13 @@ Step 4E-B0 exact manual map：Complete.
 Step 4E-B1-A through B1-H：Passed.
 Step 4E-B2-A1 deletion：Rejected and rolled back exactly.
 Step 4E-B2-R1 dependency re-audit：Complete.
-Step 4E-B2-R2 consolidation：Present and structurally valid.
-Step 4E-B2-R2-FIX1 desktop structure：Passed.
-Step 4E-B2-R2-FIX2 bounded desktop objective：Passed exactly.
-Step 4E-B2-R3-A mobile structure：Passed.
-Step 4E-B2-R3-FIX3 duplicate unit price：Passed exactly.
-Step 4E-B2-R4 native functional regression：Passed.
-Final strict desktop/mobile visual acceptance：Reopened / not passed.
-Append-only Cart visual refinement：Frozen.
+Step 4E-B2-R2 / FIX1 / FIX2 / FIX3：Historical temporary takeover sequence complete.
+Step 4E-B2-R4 native functional regression：Passed before canonical replacement.
 Step 4E-B2-R5-A1 visual-gap and ownership audit：Complete.
-Current executable step：Step 4E-B2-R5-B canonical in-place replacement.
+Step 4E-B2-R5-B canonical in-place replacement：Applied exactly.
+R5-B strict visual gate：Not passed.
+Current executable step：Step 4E-B2-R5-B1 mobile remove-control contrast correction.
+Historical Cart CSS deletion：Blocked.
 Cart page status：Not done.
 ```
 
@@ -30,10 +27,10 @@ Cart page status：Not done.
 ```text
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/STEP_4E_B2_R5_B1_MOBILE_REMOVE_CONTRAST.md
+project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
 project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
-project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md
 project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
-project2-progress/STEP_4E_B2_R3_FIX3_VALIDATION.md
 project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
 ```
 
@@ -44,9 +41,10 @@ project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
 - no blind overwrite of functions.php or spatial-flow.css
 - no combined PHP + CSS operation
 - no Cart template override
-- no Cart JavaScript unless a real native interaction defect is proved
-- no routine FIX4 or further append-only visual patch
-- no historical cleanup before the canonical block closes the current visual gaps
+- no Cart JavaScript unless a reproduced native interaction defect requires it
+- no routine append-only Cart visual patch
+- corrections inside the canonical layer must be in-place replacements
+- no historical cleanup before the complete R5-B visual/function gate passes
 - no claim of final desktop/mobile acceptance while known blockers remain
 - V2 mobile references are guidance, not authority when they produce weak phone UX
 ```
@@ -64,85 +62,101 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-PHP remains unchanged throughout the current CSS replacement and cleanup phase.
+PHP remains unchanged throughout R5-B, R5-B1 and the later CSS cleanup.
 
 ## Current exact CSS baseline
 
 ```text
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(10).css
-Size: 813,887 bytes
-Logical lines: 27,215
-SHA256: 7f55a49bfd82f3c2e9fc5db9b5a37b209ac4bad9f6c0b4f99dcabe23a73643ae
-Braces: 4,127 / 4,127
-Comments: 405 / 405
+Uploaded name: spatial-flow(11).css
+Size: 811,826 bytes
+Logical lines: 27,089
+SHA256: 11e4c7b25cdf4c8beaf420dc4b5da1b0801a611679d4f85019bb1228d17d0b1e
+Braces: 4,074 / 4,074
+Comments: 413 / 413
 CSS parse errors: 0
-R2 markers: 1 / 1
-FIX1 markers: 1 / 1
-FIX2 markers: 1 / 1
-FIX3 markers: 1 / 1
+Canonical START / END: 1 / 1
+Old R2 START / END: 0 / 0
+FIX1 / FIX2 / FIX3 markers: 0
+Cart Notice START: 1
 ```
 
-## Passed non-final gates
+Canonical range:
 
 ```text
-Structure:
-- centered desktop 7fr / 5fr frame
-- one-column mobile flow
-- no horizontal overflow
-- stable Coupon and Order Summary structure
-- four real recommendation products
-
-Function:
-- quantity/update
-- remove/undo
-- Coupon paths
-- shipping address
-- SAFE5 Checkout
-- Continue Shopping
-- recommendation links
-- mobile Menu and Footer accordion
-- no warning/fatal/blank page
-
-Bounded correction:
-- one subtotal price per mobile product card
+Size: 44,703 bytes
+Logical lines: 1,343
+SHA256: 4ea330724a30edfd5801ff7e22d4756ba06955210fe7bc7f325ce9dcec79111b
+Braces: 156 / 156
+Comments: 16 / 16
 ```
 
-These gates do not equal final strict 1:1 approval.
+The uploaded canonical range is byte-identical to the generated artifact. The full-file one-byte difference from the earlier prediction is only final-newline state.
 
-## Confirmed blocking visual gaps
+## R5-B visual result
+
+Resolved or materially improved:
 
 ```text
-1. desktop/mobile trust-icon shells overflow and intrude into trust-row text
-2. mobile remove controls show two × glyphs
-3. desktop/mobile thumbnails do not visually fill their allocated frames
-4. desktop textual Remove action collides with dynamic metadata
-5. wider spacing, typography and proportion differences remain against the V2 target
+- trust icon shells no longer intrude into trust copy
+- duplicate phone × is gone
+- desktop Remove is separated below metadata
+- thumbnails fill their slots more consistently
+- mobile Order Summary title is integrated into the panel
+- desktop / phone structure remains stable
+- four real recommendation products remain
+- no visible phone horizontal overflow
 ```
 
-## R5-A1 completed audit
-
-Authoritative completed audit:
+Current blocker:
 
 ```text
-project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
+The one remaining phone × is too low-contrast because its shell is transparent, its border is only 12% opacity and the glyph uses a light weight against a very light card.
 ```
 
-It records:
+This is not a duplicate-glyph defect. It is a canonical-layer contrast and affordance defect.
+
+## Current executable operation
+
+### Step 4E-B2-R5-B1 · Mobile remove-control contrast correction
 
 ```text
-- complete desktop/mobile discrepancy matrix
-- selector/declaration responsibility matrix
-- root causes for all confirmed blockers
-- historical declarations still inherited by R2
-- historical responsibilities already superseded in purpose
-- exact R5-B replacement boundary and rollback
-- exact R5-C1 through R5-C4 deletion metrics
+Mode：bounded in-place replacement inside the canonical block.
+File：assets/css/spatial-flow.css only.
+Source of truth：spatial-flow(11).css.
+Append elsewhere：forbidden.
+Historical deletion：forbidden.
+PHP / JS / templates / version：unchanged.
 ```
 
-## Current CSS debt inventory
+Authoritative instruction:
 
-Historical Cart visual stack:
+```text
+project2-progress/STEP_4E_B2_R5_B1_MOBILE_REMOVE_CONTRAST.md
+```
+
+Expected corrected CSS:
+
+```text
+Size: 811,839 bytes
+Logical lines: 27,089
+SHA256: 08f399cb3036768a9b00089ddd5be4067432ca37af533ef81148ccf8eb85c709
+Braces: 4,074 / 4,074
+Comments: 413 / 413
+CSS parser errors: 0
+Delta: +13 bytes / 0 lines
+```
+
+Expected corrected canonical range:
+
+```text
+Size: 44,716 bytes
+SHA256: 9a81a3adc2bbdfe2d56d1b6982e6da42ec292671525d7c784fde9de8645e7593
+```
+
+## CSS debt inventory
+
+Historical Cart visual stack remains temporarily present:
 
 ```text
 15 blocks
@@ -151,71 +165,16 @@ Historical Cart visual stack:
 456 rule/media-query brace pairs
 ```
 
-Temporary R2/FIX stack:
+It cannot be deleted before the corrected canonical layer proves full visual and functional ownership.
+
+## Correct sequence
 
 ```text
-46,765 bytes
-1,470 logical lines
-209 rule/media-query brace pairs
-```
-
-The historical stack was retained while replacement ownership was being proved. That temporary exception is frozen. Cleanup cannot start until the canonical replacement closes the visible defects and proves full ownership.
-
-## Current executable step
-
-### Step 4E-B2-R5-B · Canonical Cart block replacement
-
-```text
-Mode：one bounded in-place replacement.
-File：assets/css/spatial-flow.css only.
-Source of truth：spatial-flow(10).css.
-PHP / JS / templates：unchanged.
-Append elsewhere：forbidden.
-Historical deletion in this step：forbidden.
-```
-
-Replace exactly the complete current range:
-
-```text
-START:
-/* === Step 4E-B2-R2 · Cart V2 Consolidation Layer START ===
-
-END:
-/* === Step 4E-B2-R2 · Cart V2 Consolidation Layer END === */
-```
-
-The replacement remains at the same position immediately before:
-
-```text
-/* === Step 4E Cart Notice Toast START ===
-```
-
-The canonical block must:
-
-```text
-- integrate R2 + FIX1 + FIX2 + FIX3 into one formal Cart layer
-- resolve all confirmed visual blockers
-- own desktop and mobile Cart presentation completely
-- preserve native WooCommerce behavior and real dynamic data
-- preserve the separate Cart Notice Toast
-- preserve Header, Footer, Shop, Single Product and SAFE5 Checkout
-```
-
-Independent rollback:
-
-```text
-Save the complete existing 46,765-byte R2/FIX range before replacement.
-If validation fails, restore only that range at the same boundary.
-Do not overwrite the full stylesheet as the default rollback.
-```
-
-R5-B cannot be marked passed until exact file validation, strict desktop review, production-quality mobile review and native Cart regression all pass.
-
-## Correct sequence from here
-
-```text
-R5-B canonical in-place replacement
-→ strict desktop/mobile and native-function validation
-→ R5-C staged historical deletion
+R5-B1 in-place phone remove contrast correction
+→ exact file validation
+→ strict desktop/mobile and native-function validation for the complete R5-B gate
+→ R5-C1 through R5-C4 staged historical deletion
 → R5-D backend editability and final acceptance
 ```
+
+Cart remains `Not done` until all stages pass.
