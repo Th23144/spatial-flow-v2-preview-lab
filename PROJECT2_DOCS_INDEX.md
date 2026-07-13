@@ -12,13 +12,13 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 4. PROJECT2_CSS_MAINTENANCE_POLICY.md
 5. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 6. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-7. project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
-8. project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md
-9. project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
-10. project2-progress/STEP_4E_B2_R3_FIX3_VALIDATION.md
+7. project2-progress/STEP_4E_B2_R5_B1_MOBILE_REMOVE_CONTRAST.md
+8. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
+9. project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
+10. project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
 11. project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
-12. project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md
-13. project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md
+12. project2-progress/STEP_4E_B2_R3_FIX3_VALIDATION.md
+13. project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md
 14. project2-progress/STEP_4E_B2_R1_CART_CSS_DEPENDENCY_REAUDIT.md
 15. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
 16. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
@@ -30,7 +30,7 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 22. project2-progress/PROGRESS_LOG.md
 ```
 
-Current Cart records supersede earlier ZIP/full-file instructions, the failed deletion-first plan, the temporary assumption that R2/FIX fragments could remain indefinitely, and any earlier wording that treated bounded structure gates as final strict-1:1 acceptance.
+Current Cart records supersede earlier ZIP/full-file instructions, the failed deletion-first plan, the temporary R2/FIX stack, and any earlier wording that treated structural gates as final strict-1:1 acceptance.
 
 ## 2. Current authoritative files
 
@@ -39,14 +39,14 @@ Current Cart records supersede earlier ZIP/full-file instructions, the failed de
 | `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md` | Mobile quality/usability outrank literal replication of weak static phone layouts. | Active. |
 | `PROJECT2_CSS_MAINTENANCE_POLICY.md` | Replacement/merge/delete priority and anti-append-only rule. | Active. |
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current staged Cart protocol and exact baselines. | Authoritative / R5-B active. |
-| `project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md` | Completed visual discrepancy and CSS ownership audit with exact cleanup metrics. | Passed as audit. |
-| `project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md` | Focused blocker record and corrected sequence. | Historical input to completed audit. |
-| `project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md` | Canonical replacement, validation and staged legacy deletion plan. | Active / R5-B next. |
-| `project2-progress/STEP_4E_B2_R3_FIX3_VALIDATION.md` | Exact duplicate-price correction validation; final visuals explicitly reopened. | FIX3 passed; page not final. |
-| `project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md` | Native Cart interaction validation. | Passed. |
-| `project2-progress/STEP_4E_B2_R2_CART_CONSOLIDATION.md` | Temporary Cart-only takeover layer. | Present; pending canonical replacement. |
-| `project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md` | Exact restored-file metrics and byte comparison. | Passed exactly. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current Cart protocol, exact baselines and active gate. | Authoritative / R5-B1 active. |
+| `project2-progress/STEP_4E_B2_R5_B1_MOBILE_REMOVE_CONTRAST.md` | Exact in-place correction for the low-contrast single phone ×. | Current executable operation. |
+| `project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md` | Applied canonical replacement and post-application validation record. | Applied exactly / correction required. |
+| `project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md` | Visual discrepancy and CSS ownership audit. | Passed as audit. |
+| `project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md` | Canonical validation and staged legacy deletion plan. | Active. |
+| `project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md` | Native Cart interaction validation before canonical replacement. | Passed; targeted recheck required after R5-B1. |
+| `project2-progress/STEP_4E_B2_R3_FIX3_VALIDATION.md` | Historical duplicate-price correction record. | Superseded by canonical layer. |
+| `project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md` | Exact restored-file metrics after rejected deletion-first attempt. | Passed exactly. |
 
 ## 3. Page-status rule
 
@@ -105,29 +105,21 @@ Step 4E-B0 manual map：Complete
 Step 4E-B1-A through B1-H：Passed
 Step 4E-B2-A1 deletion：Rejected and rolled back exactly
 Step 4E-B2-R1 dependency re-audit：Complete
-Step 4E-B2-R2 consolidation：Inserted
-Step 4E-B2-R2-FIX1 desktop structure：Passed
-Step 4E-B2-R2-FIX2 bounded desktop detail：Passed exactly
-Step 4E-B2-R3-A mobile structure：Passed
-Step 4E-B2-R3-FIX3 duplicate unit price：Passed exactly
-Step 4E-B2-R4 native functional regression：Passed
-Final strict desktop/mobile visual acceptance：Reopened / not passed
-Append-only Cart refinement：Frozen
+Step 4E-B2-R2 / FIX1 / FIX2 / FIX3：Temporary takeover sequence complete
+Step 4E-B2-R4 native functional regression：Passed before canonical replacement
 Step 4E-B2-R5-A1 visual-gap and ownership audit：Complete
-Step 4E-B2-R5-B canonical in-place replacement：Next
+Step 4E-B2-R5-B canonical in-place replacement：Applied exactly
+R5-B strict visual acceptance：Not passed
+Step 4E-B2-R5-B1 mobile remove contrast correction：Next
+Historical Cart CSS cleanup：Blocked
+Cart：Not done
 ```
 
-Confirmed blocking visual gaps:
+R5-B resolved or materially improved the previously confirmed trust-icon, duplicate-glyph, thumbnail, desktop Remove and Summary-heading issues. The current reproduced blocker is narrower:
 
 ```text
-- trust-icon shell/text overlap on desktop and mobile
-- duplicate × inside mobile remove controls
-- product thumbnails not filling their allocated slots
-- desktop Remove action colliding with metadata
-- wider strict-1:1 spacing, proportion and typography gaps
+The phone remove control contains one glyph, but its transparent shell and weak contrast merge into the light product card.
 ```
-
-The Cart remains officially `Not done`.
 
 ## 6. Current code states
 
@@ -148,69 +140,62 @@ Braces: 1,200 / 1,200
 
 ```text
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(10).css
-Size: 813,887 bytes
-Logical lines: 27,215
-SHA256: 7f55a49bfd82f3c2e9fc5db9b5a37b209ac4bad9f6c0b4f99dcabe23a73643ae
-Braces: 4,127 / 4,127
-Comments: 405 / 405
+Uploaded name: spatial-flow(11).css
+Size: 811,826 bytes
+Logical lines: 27,089
+SHA256: 11e4c7b25cdf4c8beaf420dc4b5da1b0801a611679d4f85019bb1228d17d0b1e
+Braces: 4,074 / 4,074
+Comments: 413 / 413
 CSS parse errors: 0
-R2 markers: 1 / 1
-FIX1 markers: 1 / 1
-FIX2 markers: 1 / 1
-FIX3 markers: 1 / 1
+Canonical START / END: 1 / 1
+Old R2 / FIX markers: 0
+Cart Notice START: 1
 ```
 
-## 7. Current CSS inventory
+Canonical range:
 
-Historical Cart visual stack:
+```text
+Size: 44,703 bytes
+Logical lines: 1,343
+SHA256: 4ea330724a30edfd5801ff7e22d4756ba06955210fe7bc7f325ce9dcec79111b
+```
+
+## 7. R5-B1 expected state
+
+```text
+Complete CSS size: 811,839 bytes
+Logical lines: 27,089
+SHA256: 08f399cb3036768a9b00089ddd5be4067432ca37af533ef81148ccf8eb85c709
+Braces: 4,074 / 4,074
+Comments: 413 / 413
+CSS parser errors: 0
+Delta: +13 bytes / 0 lines
+
+Corrected canonical block size: 44,716 bytes
+Corrected canonical block SHA256: 9a81a3adc2bbdfe2d56d1b6982e6da42ec292671525d7c784fde9de8645e7593
+```
+
+## 8. CSS debt inventory
+
+Historical Cart visual stack remains temporarily present:
 
 ```text
 15 blocks
 117,141 bytes
 3,798 logical lines
 456 rule/media-query brace pairs
-SHA256: a30b706fbeec9701b8fedd33471875e89384eeb61e1843a6798f69446880d403
 ```
 
-Temporary R2/FIX stack:
-
-```text
-46,765 bytes
-1,470 logical lines
-209 rule/media-query brace pairs
-SHA256: de89193566e99219e74f34f1c5e3ede018c7c0e81ca1bc35e166fc334fa80414
-```
-
-The historical stack remained temporarily because the first deletion attempt collapsed the page. Cleanup is required, but it cannot begin until one canonical replacement closes the known visual gaps and proves complete ownership.
-
-## 8. Active gate
-
-Use:
-
-```text
-project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
-project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
-```
-
-R5-A1 has completed the required discrepancy matrix, ownership matrix, root-cause map, replacement boundary, rollback boundary and exact deletion-batch metrics.
-
-The next executable operation is R5-B:
-
-```text
-replace the complete current R2 + FIX1 + FIX2 + FIX3 range in place
-→ one canonical Step 4E Cart block
-→ no append elsewhere
-→ no historical deletion during the same operation
-```
+The temporary R2/FIX stack no longer exists; it has been replaced by one canonical block. Historical cleanup remains required but cannot begin until the complete corrected canonical gate passes.
 
 ## 9. Correct execution sequence
 
 ```text
-R5-B one canonical in-place Cart block replacement
-→ strict desktop/mobile + native-function validation
+R5-B1 bounded in-place remove-control contrast replacement
+→ exact file + phone remove/Undo validation
+→ complete strict desktop/mobile and native-function R5-B gate
 → R5-C staged historical deletion
-→ R5-D backend editability + final acceptance
+→ R5-D backend editability and final acceptance
 ```
 
 ## 10. Maintenance rule
@@ -219,8 +204,8 @@ R5-B one canonical in-place Cart block replacement
 - update STEP_4E_B_MANUAL_EXECUTION.md after each accepted, failed or reopened Cart substep
 - update PROJECT2_PAGE_STATUS_MATRIX.md only when a page changes between Not done and Completed 1:1
 - preserve backend editability and dynamic WooCommerce sources
-- prohibit routine append-only Cart visual fixes after FIX3
-- resolve current visual blockers inside the canonical replacement
+- prohibit routine append-only Cart visual fixes
+- make current corrections inside the canonical block by bounded replacement
 - clean historical Cart CSS only after canonical visual ownership is proved
 - apply the mobile design-quality policy to all remaining pages
 ```
