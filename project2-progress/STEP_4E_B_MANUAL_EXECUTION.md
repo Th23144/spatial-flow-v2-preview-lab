@@ -20,7 +20,8 @@ Step 4E-B2-R3-FIX3 duplicate unit price：Passed exactly.
 Step 4E-B2-R4 native functional regression：Passed.
 Final strict desktop/mobile visual acceptance：Reopened / not passed.
 Append-only Cart visual refinement：Frozen.
-Current executable step：Step 4E-B2-R5-A1 visual-gap and ownership audit / no code changes.
+Step 4E-B2-R5-A1 visual-gap and ownership audit：Complete.
+Current executable step：Step 4E-B2-R5-B canonical in-place replacement.
 Cart page status：Not done.
 ```
 
@@ -29,11 +30,11 @@ Cart page status：Not done.
 ```text
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
 project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md
 project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
 project2-progress/STEP_4E_B2_R3_FIX3_VALIDATION.md
 project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
-project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md
 ```
 
 ## Non-negotiable execution rule
@@ -44,7 +45,6 @@ project2-progress/STEP_4E_B2_R2_FIX2_VALIDATION.md
 - no combined PHP + CSS operation
 - no Cart template override
 - no Cart JavaScript unless a real native interaction defect is proved
-- no large structural CSS deletion before replacement ownership is validated
 - no routine FIX4 or further append-only visual patch
 - no historical cleanup before the canonical block closes the current visual gaps
 - no claim of final desktop/mobile acceptance while known blockers remain
@@ -64,7 +64,7 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-PHP remains unchanged throughout the current CSS audit and cleanup phase.
+PHP remains unchanged throughout the current CSS replacement and cleanup phase.
 
 ## Current exact CSS baseline
 
@@ -108,7 +108,7 @@ Bounded correction:
 - one subtotal price per mobile product card
 ```
 
-These are necessary gates but do not equal final strict 1:1 approval.
+These gates do not equal final strict 1:1 approval.
 
 ## Confirmed blocking visual gaps
 
@@ -120,10 +120,24 @@ These are necessary gates but do not equal final strict 1:1 approval.
 5. wider spacing, typography and proportion differences remain against the V2 target
 ```
 
-Authoritative analysis:
+## R5-A1 completed audit
+
+Authoritative completed audit:
 
 ```text
-project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md
+project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
+```
+
+It records:
+
+```text
+- complete desktop/mobile discrepancy matrix
+- selector/declaration responsibility matrix
+- root causes for all confirmed blockers
+- historical declarations still inherited by R2
+- historical responsibilities already superseded in purpose
+- exact R5-B replacement boundary and rollback
+- exact R5-C1 through R5-C4 deletion metrics
 ```
 
 ## Current CSS debt inventory
@@ -133,7 +147,7 @@ Historical Cart visual stack:
 ```text
 15 blocks
 117,141 bytes
-3,798 lines
+3,798 logical lines
 456 rule/media-query brace pairs
 ```
 
@@ -141,45 +155,67 @@ Temporary R2/FIX stack:
 
 ```text
 46,765 bytes
-1,470 lines
+1,470 logical lines
 209 rule/media-query brace pairs
 ```
 
-The historical stack was retained while replacement ownership was being proved. The temporary exception is frozen, but cleanup cannot start until the canonical replacement also closes the visible defects.
+The historical stack was retained while replacement ownership was being proved. That temporary exception is frozen. Cleanup cannot start until the canonical replacement closes the visible defects and proves full ownership.
 
 ## Current executable step
 
-### Step 4E-B2-R5-A1 · Final visual-gap and ownership audit
+### Step 4E-B2-R5-B · Canonical Cart block replacement
 
 ```text
-Mode：no code changes.
-Source of truth：spatial-flow(10).css only.
-Reference：preview/spatial-flow-cart-v1.html plus current real desktop/mobile screenshots.
-Instruction：project2-progress/STEP_4E_B2_R5_A1_FINAL_VISUAL_GAP_AND_OWNERSHIP_AUDIT.md.
-Plan：project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md.
+Mode：one bounded in-place replacement.
+File：assets/css/spatial-flow.css only.
+Source of truth：spatial-flow(10).css.
+PHP / JS / templates：unchanged.
+Append elsewhere：forbidden.
+Historical deletion in this step：forbidden.
 ```
 
-Required output:
+Replace exactly the complete current range:
 
 ```text
-- complete desktop/mobile discrepancy matrix
-- selector/declaration ownership matrix
-- root cause for each confirmed blocker
-- declarations still inherited from legacy
-- declarations fully superseded by R2
-- one canonical in-place replacement specification
-- predicted canonical metrics and independent rollback
-- safe staged historical deletion batches
+START:
+/* === Step 4E-B2-R2 · Cart V2 Consolidation Layer START ===
+
+END:
+/* === Step 4E-B2-R2 · Cart V2 Consolidation Layer END === */
 ```
+
+The replacement remains at the same position immediately before:
+
+```text
+/* === Step 4E Cart Notice Toast START ===
+```
+
+The canonical block must:
+
+```text
+- integrate R2 + FIX1 + FIX2 + FIX3 into one formal Cart layer
+- resolve all confirmed visual blockers
+- own desktop and mobile Cart presentation completely
+- preserve native WooCommerce behavior and real dynamic data
+- preserve the separate Cart Notice Toast
+- preserve Header, Footer, Shop, Single Product and SAFE5 Checkout
+```
+
+Independent rollback:
+
+```text
+Save the complete existing 46,765-byte R2/FIX range before replacement.
+If validation fails, restore only that range at the same boundary.
+Do not overwrite the full stylesheet as the default rollback.
+```
+
+R5-B cannot be marked passed until exact file validation, strict desktop review, production-quality mobile review and native Cart regression all pass.
 
 ## Correct sequence from here
 
 ```text
-R5-A1 audit only
-→ R5-B replace R2 + FIX1 + FIX2 + FIX3 in place with one canonical block
+R5-B canonical in-place replacement
 → strict desktop/mobile and native-function validation
 → R5-C staged historical deletion
 → R5-D backend editability and final acceptance
 ```
-
-No new Cart CSS is authorized during R5-A1.
