@@ -7,33 +7,45 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 R5-A1 visual-gap / ownership audit：Complete.
-R5-B canonical CSS：Generated and parser-validated.
-User manual replacement：Pending.
-Historical Cart CSS deletion in this step：Forbidden.
+R5-B canonical CSS generation：Complete.
+User manual in-place replacement：Applied exactly.
+Exact uploaded-file validation：Passed.
+Desktop structure：Stable.
+Mobile structure：Stable.
+Mobile remove control：one glyph only, but contrast insufficient.
+R5-B final visual acceptance：Not passed.
+Current correction：R5-B1 bounded in-place declaration replacement.
+Historical Cart CSS deletion：Forbidden.
 Cart page status：Not done.
 ```
 
-## 1. Purpose
-
-Replace the complete temporary `R2 + FIX1 + FIX2 + FIX3` Cart layer **in place** with one canonical Cart presentation block.
-
-This is not another append-only patch and it is not a whole-file replacement.
-
-The canonical block is designed to:
+Current correction record:
 
 ```text
-- preserve the accepted desktop 7fr / 5fr frame
-- preserve the production-quality one-column phone flow
-- fix trust-icon shell / text overlap on desktop and mobile
-- fix the double × mobile remove control
-- make thumbnail td / anchor / img own one explicit slot per breakpoint
-- give desktop Remove its own row below dynamic metadata
-- integrate the Order Summary heading into the beige panel on every breakpoint
-- normalize Coupon, totals, buttons, recommendations and responsive spacing
-- preserve real WooCommerce data and all native Cart behavior
+project2-progress/STEP_4E_B2_R5_B1_MOBILE_REMOVE_CONTRAST.md
 ```
 
-## 2. Authoritative baseline
+## Purpose and execution mode
+
+The complete temporary `R2 + FIX1 + FIX2 + FIX3` range was replaced **in place** with one canonical Cart presentation block.
+
+This was not an append-only patch and not a whole-file replacement.
+
+The canonical layer is intended to:
+
+```text
+- preserve the desktop 7fr / 5fr frame
+- preserve the one-column phone flow
+- separate trust icons from their text columns
+- show one controlled phone remove glyph
+- own thumbnail td / anchor / img sizing
+- give desktop Remove a dedicated row below metadata
+- integrate the Order Summary heading into the panel
+- normalize Coupon, totals, buttons and recommendations
+- preserve real WooCommerce data and native behavior
+```
+
+## Source baseline before replacement
 
 ```text
 File: assets/css/spatial-flow.css
@@ -41,12 +53,12 @@ Uploaded baseline: spatial-flow(10).css
 Size: 813,887 bytes
 Logical lines: 27,215
 SHA256: 7f55a49bfd82f3c2e9fc5db9b5a37b209ac4bad9f6c0b4f99dcabe23a73643ae
-Opening / closing braces: 4,127 / 4,127
-Opening / closing comments: 405 / 405
+Braces: 4,127 / 4,127
+Comments: 405 / 405
 CSS parser errors: 0
 ```
 
-Unchanged PHP baseline:
+Unchanged PHP:
 
 ```text
 functions.php
@@ -56,13 +68,17 @@ Lines: 10,256
 SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
 ```
 
-If the local CSS no longer matches this baseline, stop and supply the newest file before replacing anything.
+## Replaced range
 
-## 3. Exact range being replaced
-
-Current range metrics:
+Original temporary range:
 
 ```text
+START:
+/* === Step 4E-B2-R2 · Cart V2 Consolidation Layer START ===
+
+END:
+/* === Step 4E-B2-R2 · Cart V2 Consolidation Layer END === */
+
 Size: 46,765 bytes
 Logical lines: 1,470
 SHA256: de89193566e99219e74f34f1c5e3ede018c7c0e81ca1bc35e166fc334fa80414
@@ -70,57 +86,29 @@ Braces: 209 / 209
 Comments: 8 / 8
 ```
 
-START marker:
-
-```css
-/* === Step 4E-B2-R2 · Cart V2 Consolidation Layer START ===
-```
-
-END marker:
-
-```css
-/* === Step 4E-B2-R2 · Cart V2 Consolidation Layer END === */
-```
-
-Select from the first `/` of the START marker through the final `/` of the END marker.
-
-Do **not** select the blank line after the END marker.
-
-The protected next marker must remain:
+The protected next marker remained:
 
 ```css
 /* === Step 4E Cart Notice Toast START ===
 ```
 
-## 4. Independent rollback first
-
-Before replacing, save the complete selected range as:
+Independent rollback artifact:
 
 ```text
 R5-B-rollback-current-R2-FIX-stack.css
 ```
 
-Exact rollback range metrics:
+Rollback remains bounded to this one range; complete stylesheet overwrite is not the default rollback.
+
+## Applied canonical block
 
 ```text
-Size: 46,765 bytes
-Logical lines: 1,470
-SHA256: de89193566e99219e74f34f1c5e3ede018c7c0e81ca1bc35e166fc334fa80414
-```
+START:
+/* === Step 4E-B2-R5-B · Canonical Cart Presentation START ===
 
-Rollback means restoring only this bounded range at the same location. Do not overwrite the complete stylesheet as the default rollback.
+END:
+/* === Step 4E-B2-R5-B · Canonical Cart Presentation END === */
 
-## 5. Canonical replacement artifact
-
-Use the bounded artifact supplied with these instructions:
-
-```text
-R5-B-canonical-cart-block.css
-```
-
-Exact canonical block metrics:
-
-```text
 Size: 44,703 bytes
 Logical lines: 1,343
 SHA256: 4ea330724a30edfd5801ff7e22d4756ba06955210fe7bc7f325ce9dcec79111b
@@ -129,21 +117,7 @@ Comments: 16 / 16
 CSS parser errors: 0
 ```
 
-Its markers are:
-
-```css
-/* === Step 4E-B2-R5-B · Canonical Cart Presentation START ===
-...
-/* === Step 4E-B2-R5-B · Canonical Cart Presentation END === */
-```
-
-Paste the complete canonical block exactly where the old R2/FIX range was removed.
-
-Do not paste it at the bottom of the file and do not retain the old R2/FIX range beside it.
-
-## 6. Required final boundary
-
-After replacement, the boundary must read:
+Required boundary is present:
 
 ```css
 /* === Step 4E-B2-R5-B · Canonical Cart Presentation END === */
@@ -151,78 +125,70 @@ After replacement, the boundary must read:
 /* === Step 4E Cart Notice Toast START ===
 ```
 
-Expected marker counts:
+## Uploaded result validation
+
+Uploaded file:
 
 ```text
-Canonical START / END：1 / 1
-Old R2 START / END：0 / 0
-FIX1 START / END：0 / 0
-FIX2 START / END：0 / 0
-FIX3 START / END：0 / 0
-Cart Notice START：1
-```
-
-## 7. Expected complete stylesheet result
-
-When the exact baseline and newline state are preserved:
-
-```text
-Size: 811,825 bytes
+Name: spatial-flow(11).css
+Size: 811,826 bytes
 Logical lines: 27,089
-SHA256: 23d8703b13e51f5a61def505431beff97ca9bbcf78abe08d74b5ee9a1de2e1bb
-Opening / closing braces: 4,074 / 4,074
-Opening / closing comments: 413 / 413
+SHA256: 11e4c7b25cdf4c8beaf420dc4b5da1b0801a611679d4f85019bb1228d17d0b1e
+Braces: 4,074 / 4,074
+Comments: 413 / 413
 CSS parser errors: 0
-Delta: -2,062 bytes / -126 logical lines
+Canonical START / END: 1 / 1
+Old R2 START / END: 0 / 0
+FIX1 / FIX2 / FIX3 markers: 0
+Cart Notice START: 1
 ```
 
-No PHP, JavaScript, WooCommerce template, plugin, database or version change is expected.
+The uploaded canonical range is byte-identical to the supplied canonical artifact. The complete-file one-byte difference from the prior prediction is final-newline state, not code drift.
 
-## 8. First browser gate
+## Visual result
 
-After saving, force-refresh the Cart and check desktop and phone before any historical deletion.
-
-Blocking defects that must be resolved:
+Confirmed improvements visible in the supplied screenshots:
 
 ```text
-1. trust icons remain inside a compact 20px desktop / 22px mobile column
-2. trust icons do not overlap headings or body copy
-3. each mobile remove control shows exactly one ×
-4. desktop Remove appears on its own line below metadata
-5. desktop and phone thumbnails fill their allocated slots
-6. mobile Order Summary title has no white inset strip
-```
-
-Structural checks:
-
-```text
-- desktop frame remains centered and uses left items / right summary
-- phone remains one-column with no horizontal overflow
-- Coupon controls remain usable
+- trust icons no longer use the oversized white shells that intruded into copy
+- desktop Remove is separated below metadata
+- thumbnails fill their allocated visual slots more consistently
+- mobile Order Summary heading is integrated into the beige panel
+- desktop and phone structures remain stable
 - four real recommendation products remain present
-- Header and Footer remain unchanged
+- no horizontal phone overflow is visible
 ```
 
-Native checks:
+New blocker:
 
 ```text
-- quantity plus/minus and Update Cart
-- remove and Undo / Restore
-- invalid Coupon path
-- Change address / shipping refresh
-- Proceed to Checkout / SAFE5 Checkout
-- Continue Shopping
-- recommendation links
+The phone remove control now contains only one controlled ×, but its transparent shell, weak border and light glyph weight merge visually into the light product-card background.
 ```
 
-## 9. Required evidence
+This is a contrast/affordance defect, not a return of the former duplicate-× defect.
 
-Upload the edited `spatial-flow.css` for exact validation and provide:
+## Active correction
+
+Use only:
 
 ```text
-1. desktop Cart screenshot containing items, Order Summary and recommendations
-2. phone Cart screenshot containing item remove controls, Summary trust rows and recommendations
-3. text confirmation that native controls remain functional
+project2-progress/STEP_4E_B2_R5_B1_MOBILE_REMOVE_CONTRAST.md
 ```
 
-Do not begin R5-C historical deletion until this canonical replacement passes exact file, desktop, mobile and functional validation.
+R5-B1 replaces the existing phone remove-control declarations inside the canonical block. It does not append a new Cart layer and does not alter desktop CSS.
+
+## Gate before historical cleanup
+
+R5-C remains blocked until:
+
+```text
+- R5-B1 exact CSS validation passes
+- one dark, legible phone × is visible in each 32px control
+- remove and Undo / Restore work
+- strict desktop review passes
+- production-quality phone review passes
+- quantity / Coupon / shipping / checkout / recommendation behavior remains normal
+- Header / Footer / Shop / Single Product / SAFE5 Checkout remain unchanged
+```
+
+Only after the complete R5-B gate passes may staged historical Cart CSS deletion begin.
