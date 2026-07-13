@@ -9,7 +9,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 R5-B4 ownership correction：Passed.
 R5-B5 vector-icon refinement：Passed exactly.
 User visual acceptance：Passed.
-Historical Cart CSS deletion：Still forbidden until the remaining R5-B gate is closed.
+Remove / Undo / Restore interaction recheck：Passed.
+Complete R5-B canonical gate：Closed / Passed.
+Historical Cart CSS deletion：Authorized only through staged R5-C batches.
+Current executable step：R5-C1.
 Cart page status：Not done.
 ```
 
@@ -60,6 +63,18 @@ The supplied phone screenshot confirms:
 - no horizontal overflow introduced by the control
 ```
 
+## Interaction evidence accepted
+
+The user confirmed all three targeted checks are normal:
+
+```text
+1. Remove one Cart item using the refined icon：Passed.
+2. Undo / Restore：Passed.
+3. Restored item and remaining controls retain one refined icon：Passed.
+```
+
+The refined SVG remains presentation-only. The native WooCommerce link, URL, nonce, aria-label and click behavior remain authoritative.
+
 ## Scope integrity
 
 ```text
@@ -69,17 +84,29 @@ JavaScript: unchanged
 WooCommerce templates: unchanged
 Theme version: unchanged
 Cart Notice block: unchanged
-Historical Cart CSS: unchanged
+Historical Cart CSS: unchanged through R5-B5
 ```
 
-## Remaining gate before R5-C
-
-R5-B5 is visually complete, but the final R5-B closeout still requires one direct interaction confirmation after this icon-owner change:
+## R5-B closeout decision
 
 ```text
-1. Remove one Cart item using the refined icon.
-2. Use Undo / Restore.
-3. Confirm the item returns and all remaining controls still render one refined icon.
+Canonical in-place replacement：Passed.
+Desktop structural/visual gate：Passed for cleanup entry.
+Production-quality mobile gate：Passed for cleanup entry.
+Targeted native interaction gate：Passed.
+Known remove-icon blocker：Resolved.
+Routine append-only Cart CSS：Remains forbidden.
 ```
 
-This is the only interaction that needs immediate repetition for R5-B5 because the change was limited to remove-control presentation and pointer ownership. Do not begin R5-C1 until this confirmation is recorded.
+This closes the complete R5-B gate and authorizes the previously audited staged legacy cleanup only:
+
+```text
+R5-C1：Cart Visual 1 through 1.4.1
+R5-C2：Cart Visual 2-D through 2-D.8
+R5-C3：Cart Visual 2-E
+R5-C4：Cart Visual 3
+```
+
+Each deletion must be bounded, independently reversible, file-validated and browser-tested before the next batch.
+
+Cart remains `Not done` until R5-C1 through R5-C4 and R5-D final backend-editability / strict acceptance all pass.
