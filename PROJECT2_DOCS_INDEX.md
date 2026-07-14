@@ -13,28 +13,29 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 5. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 6. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
 7. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-8. project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
-9. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
-10. project2-progress/STEP_4E_B2_R5_C4_LEGACY_CART_VISUAL_3_DELETION.md
-11. project2-progress/STEP_4E_B2_R5_C3_VALIDATION.md
-12. project2-progress/STEP_4E_B2_R5_C3_LEGACY_CART_VISUAL_2E_DELETION.md
-13. project2-progress/STEP_4E_B2_R5_C2_VALIDATION.md
-14. project2-progress/STEP_4E_B2_R5_C2_LEGACY_CART_VISUAL_2D_DELETION.md
-15. project2-progress/STEP_4E_B2_R5_C1_VALIDATION.md
-16. project2-progress/STEP_4E_B2_R5_C1_LEGACY_CART_VISUAL_1_DELETION.md
-17. project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
-18. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
-19. project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
-20. project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
-21. project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
-22. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
-23. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
-24. project2-progress/STEP_4E_B1_H_VALIDATION.md
-25. project2-progress/STEP_4E_B0_MANUAL_MAP.md
-26. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-27. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
-28. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-29. project2-progress/PROGRESS_LOG.md
+8. project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md
+9. project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
+10. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
+11. project2-progress/STEP_4E_B2_R5_C4_LEGACY_CART_VISUAL_3_DELETION.md
+12. project2-progress/STEP_4E_B2_R5_C3_VALIDATION.md
+13. project2-progress/STEP_4E_B2_R5_C3_LEGACY_CART_VISUAL_2E_DELETION.md
+14. project2-progress/STEP_4E_B2_R5_C2_VALIDATION.md
+15. project2-progress/STEP_4E_B2_R5_C2_LEGACY_CART_VISUAL_2D_DELETION.md
+16. project2-progress/STEP_4E_B2_R5_C1_VALIDATION.md
+17. project2-progress/STEP_4E_B2_R5_C1_LEGACY_CART_VISUAL_1_DELETION.md
+18. project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
+19. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
+20. project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
+21. project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
+22. project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
+23. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
+24. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
+25. project2-progress/STEP_4E_B1_H_VALIDATION.md
+26. project2-progress/STEP_4E_B0_MANUAL_MAP.md
+27. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+28. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+29. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+30. project2-progress/PROGRESS_LOG.md
 ```
 
 Current records supersede earlier ZIP/full-file instructions, the failed deletion-first attempt, the temporary R2/FIX stack, blind remove-glyph attempts and earlier active-step statements.
@@ -46,8 +47,9 @@ Current records supersede earlier ZIP/full-file instructions, the failed deletio
 | `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md` | Mobile quality/usability outrank literal replication of weak static phone layouts. | Active. |
 | `PROJECT2_CSS_MAINTENANCE_POLICY.md` | Replacement/merge/delete priority and anti-append-only rule. | Active. |
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current Cart protocol, exact baseline and active gate. | Authoritative / R5-D2-B active. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current Cart protocol, exact baseline and active gate. | Authoritative / R5-D2-C active. |
 | `project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md` | Backend editability, strict visual and final native-function acceptance. | Current executable phase. |
+| `project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md` | Product-level Cart subtitle changed, displayed and restored. | Passed. |
 | `project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md` | Eight live Cart Customizer sources changed, displayed and restored. | Passed. |
 | `project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md` | Exact validation of the final historical Cart CSS deletion. | Passed. |
 | `project2-progress/STEP_4E_B2_R5_C3_VALIDATION.md` | Exact validation of the third cleanup batch. | Passed. |
@@ -126,7 +128,8 @@ R5-C4 Cart Visual 3 deletion：Passed
 R5-C historical cleanup：Closed / Passed
 R5-D1 exact source and ownership gate：Passed
 R5-D2-A active Customizer editability：Passed
-Current：R5-D2-B product-level Cart subtitle editability
+R5-D2-B product-level Cart subtitle editability：Passed
+Current：R5-D2-C dynamic recommendation and fallback ownership
 Routine append-only CSS：Forbidden
 Cart：Not done
 ```
@@ -165,15 +168,14 @@ The accepted CSS is two bytes smaller than the theoretical R5-C4 result only bec
 
 ```text
 R5-D2-A active Customizer text sources：Passed
-R5-D2-B product-level Cart subtitle：Active
-R5-D2-C dynamic recommendation/fallback ownership：Blocked until R5-D2-B passes
+R5-D2-B product-level Cart subtitle：Passed
+R5-D2-C dynamic recommendation/fallback ownership：Active
 ```
 
 ## 8. Correct execution sequence
 
 ```text
-R5-D2-B product-level Cart subtitle editability
-→ R5-D2-C dynamic recommendation ownership
+R5-D2-C dynamic recommendation ownership
 → R5-D3 strict desktop and production-quality mobile visual acceptance
 → R5-D4 final native Cart regression
 → R5-D5 binary Cart page-status decision
