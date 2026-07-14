@@ -25,7 +25,8 @@ R5-C4 Cart Visual 3 deletion：Passed.
 R5-C historical cleanup：Closed / Passed.
 R5-D1 exact source and ownership gate：Passed.
 R5-D2-A active Customizer editability：Passed.
-Current executable step：R5-D2-B product-level Cart subtitle editability.
+R5-D2-B product-level Cart subtitle editability：Passed.
+Current executable step：R5-D2-C dynamic recommendation and fallback ownership.
 Cart page status：Not done.
 ```
 
@@ -35,6 +36,7 @@ Cart page status：Not done.
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C3_VALIDATION.md
@@ -109,14 +111,16 @@ Confirmed:
 - Canonical Cart START / END exists exactly once
 - Cart Notice START / END exists exactly once
 - eight active Customizer text sources were changed, displayed and restored successfully
-- no test Customizer copy remains
+- product-level Cart subtitle was changed, displayed and restored successfully
+- SAFE5 Checkout product row remained structurally normal
+- no Customizer or product-subtitle test text remains
 ```
 
 Routine Cart visual appends remain forbidden.
 
 ## Current executable operation
 
-### Step 4E-B2-R5-D2-B · Product-level Cart subtitle editability
+### Step 4E-B2-R5-D2-C · Dynamic recommendation and fallback ownership
 
 Authoritative instructions:
 
@@ -124,41 +128,36 @@ Authoritative instructions:
 project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
 ```
 
-Source:
+Part 1 — verify the four recommendation cards:
 
 ```text
-WordPress Admin
-→ Products
-→ edit one product currently in Cart
-→ Product data
-→ General
-→ Cart subtitle / product context
+1. Record each visible recommendation title and price.
+2. Open each card in a new tab.
+3. Confirm each destination is a real WooCommerce Single Product page.
+4. Confirm title, live price and product image match.
+5. Confirm none of the four recommended products is already in Cart.
 ```
 
-Procedure:
+Part 2 — verify fallback selector persistence:
 
 ```text
-1. Choose the first product currently shown in Cart.
-2. Search and open that exact product in Products → All Products.
-3. Copy the current Cart subtitle / product context value into a local note.
-4. If the current field is blank, record that the original value is blank.
-5. Change only this field to: R5-D2-B subtitle test
-6. Update the product.
-7. Force-refresh Cart and confirm the unique text appears below the correct product title.
-8. Open SAFE5 Checkout and confirm the product row remains structurally normal.
-9. Restore the exact original field value; restore blank if it was blank.
-10. Update the product again.
-11. Force-refresh Cart and SAFE5 Checkout.
-12. Confirm the test text is gone and the original dynamic context has returned.
+1. Open Appearance → Customize → Spatial Flow Cart Page.
+2. Confirm Fallback recommended product 1–4 all exist.
+3. Record the current value of selector 4.
+4. Temporarily select one published visible product not in Cart.
+5. Publish, reopen the section and confirm the value persisted.
+6. Restore the exact original selector-4 value.
+7. Publish and reopen again to confirm restoration.
 ```
 
-Do not change product title, price, stock, SKU, categories, attributes, variations, descriptions, images, Cart contents, Customizer, PHP, CSS, JavaScript, templates or version 2.7.8.
+The temporary fallback does not need to appear on the frontend because cross-sells and same-category candidates have higher selection priority.
+
+Do not change product content, recommendation copy, selectors 1–3, Cart contents, PHP, CSS, JavaScript, templates or version 2.7.8.
 
 ## Remaining sequence
 
 ```text
-R5-D2-B product-level Cart subtitle editability
-→ R5-D2-C dynamic recommendation ownership
+R5-D2-C dynamic recommendation ownership
 → R5-D3 strict desktop and production-quality mobile visual acceptance
 → R5-D4 final native Cart regression
 → R5-D5 binary Cart status decision
