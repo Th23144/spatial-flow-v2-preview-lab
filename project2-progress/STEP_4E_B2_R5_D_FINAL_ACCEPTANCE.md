@@ -9,7 +9,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 R5-B canonical replacement：Passed.
 R5-C1 through R5-C4 legacy cleanup：Passed / closed.
 R5-D1 exact source and ownership gate：Passed.
-Current executable step：R5-D2-A active Customizer editability test.
+R5-D2-A active Customizer editability：Passed.
+Current executable step：R5-D2-B product-level Cart subtitle editability.
 Cart page status：Not done.
 ```
 
@@ -68,18 +69,13 @@ The gate is divided so every test is small and reversible.
 
 ### R5-D2-A · Active Customizer text sources
 
-Open:
+Status:
 
 ```text
-WordPress Admin
-→ Appearance
-→ Customize
-→ Spatial Flow Cart Page
+Passed.
 ```
 
-Before changing anything, copy the current values of the fields below into a local note.
-
-Temporarily edit only these text fields. Use the exact live Customizer labels shown in the current UI:
+Validated live fields:
 
 ```text
 Cart heading · lead text
@@ -92,60 +88,30 @@ Complete block title
 Complete block view-all text
 ```
 
-Label mapping from the earlier audit wording:
+Accepted evidence:
 
 ```text
-Trust item 1 title        → Trust card 1 title
-Recommendation section title → Complete block title
-View-all button text      → Complete block view-all text
-Payment note              → Payment note
+- all eight temporary values appeared in their corresponding visible areas
+- all eight original values were restored
+- no test text remains after restoration
+- Cart layout and functions remain normal
 ```
 
-Use these temporary values:
+Detailed record:
 
 ```text
-Cart heading · lead text: Test
-Cart count · plural format: %s pieces · editability test
-Order summary heading: Order summary test
-Continue shopping button text: Continue shopping test
-Trust card 1 title: Trust title test
-Payment note: Payment note editability test
-Complete block title: Complete your space test
-Complete block view-all text: View all test
-```
-
-Publish once, force-refresh the Cart and verify that every temporary value appears in its corresponding visible area.
-
-Then restore every original value from the local note, publish again and force-refresh. The final public Cart must contain no test text.
-
-Do not change:
-
-```text
-URLs
-product selectors
-enable/disable switches
-service-card settings
-PHP
-CSS
-JavaScript
-WooCommerce templates
-version 2.7.8
-```
-
-Pass evidence:
-
-```text
-1. all eight temporary values appeared in the correct visible areas
-2. all eight original values were restored
-3. no test text remains after restoration
-4. Cart layout and functions remain normal
+project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
 ```
 
 ### R5-D2-B · Product-level Cart subtitle
 
-Blocked until R5-D2-A passes.
+Status:
 
-Planned source:
+```text
+Active.
+```
+
+Source:
 
 ```text
 WooCommerce Product data → General
@@ -153,7 +119,73 @@ Cart subtitle / product context
 Meta key: _sf_cart_item_meta
 ```
 
-This test will change one Cart product subtitle temporarily, verify the Cart row, then restore the original product value.
+The source priority remains:
+
+```text
+1. variation-level _sf_cart_item_meta
+2. parent-product _sf_cart_item_meta
+3. real product category
+4. selected variation values
+5. real pa_purpose / pa_color / pa_five-elements-energy terms
+6. empty Cart subtitle when no real Cart source exists
+```
+
+#### Exact test procedure
+
+Use one product currently visible in the Cart. Prefer the first current Cart product so the row is easy to identify.
+
+```text
+1. Open WordPress Admin → Products → All Products.
+2. Search for the exact title of the first current Cart product.
+3. Open that product for editing.
+4. Scroll to Product data.
+5. Open the General tab.
+6. Find “Cart subtitle / product context”.
+7. Copy its exact current value into a local note. The original may be blank; blank is a valid original value.
+8. Change only that field to:
+   R5-D2-B subtitle test
+9. Click Update.
+10. Force-refresh the Cart.
+11. Confirm the temporary text appears only below the edited product title, in the product-context line.
+12. Open SAFE5 Checkout and confirm the same edited product row remains structurally normal. The shared source may show the temporary subtitle there as well.
+13. Return to the product editor.
+14. Restore the exact original field value from the local note. If it was blank, restore it to blank.
+15. Click Update again.
+16. Force-refresh Cart and SAFE5 Checkout.
+17. Confirm the temporary text is gone and the original category/attribute/meta output has returned.
+```
+
+Do not change:
+
+```text
+Product title
+Price
+Stock
+SKU
+Categories
+Attributes
+Variations
+Short description
+Long description
+Product image/gallery
+Cart contents
+Customizer settings
+PHP
+CSS
+JavaScript
+WooCommerce templates
+Version 2.7.8
+```
+
+Pass evidence:
+
+```text
+1. the unique temporary subtitle appeared on the correct Cart product row
+2. the edited row remained structurally normal
+3. SAFE5 Checkout product rows remained structurally normal
+4. the exact original field value was restored
+5. no R5-D2-B subtitle test text remains
+```
 
 ### R5-D2-C · Dynamic recommendation and fallback ownership
 
