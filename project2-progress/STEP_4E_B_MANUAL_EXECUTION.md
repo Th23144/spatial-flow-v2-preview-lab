@@ -10,33 +10,36 @@ Step 4E-A audit：Complete.
 Step 4E-B0 manual map：Complete.
 Step 4E-B1-A through B1-H：Passed.
 Step 4E-B2-A1 deletion-first attempt：Rejected / rolled back.
-R5-B canonical implementation：Passed as baseline.
+R5-B canonical implementation：Passed as a cleaned implementation baseline, not final 1:1 acceptance.
 R5-C1 through R5-C4 legacy cleanup：Passed / closed.
 R5-D1 exact source/ownership：Passed.
 R5-D2 backend editability/dynamic ownership：Passed / closed.
 R5-D3 final strict visual acceptance：Failed / reopened.
 R5-D4 final native Cart regression：Failed / reopened.
 R5-D5 binary decision：Blocked.
-Current executable phase：R5-E1 exact source/state re-audit.
+R5-E1 exact source/state audit：Complete.
+Current executable phase：R5-E2 live count synchronization.
 Cart page status：Not done.
 ```
 
 ## Current authoritative records
 
 ```text
+PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/STEP_4E_B2_R5_E1_EXACT_SOURCE_AUDIT.md
+project2-progress/STEP_4E_B2_R5_E2_LIVE_COUNT_SYNC.md
 project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
 project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-project2-progress/STEP_4E_B2_R5_D3_D4_COMBINED_FINAL_CHECKLIST.md
 project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
 ```
 
 ## Non-negotiable rule
 
 ```text
+- strict 1:1 means source-level geometry and spacing, not general resemblance
 - current server files are the only valid modification baseline
 - no ZIP or complete theme-file overwrite
 - no blind overwrite of functions.php or spatial-flow.css
@@ -49,10 +52,11 @@ project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
 - do not change Cart to Completed 1:1 before R5-E6 passes
 ```
 
-## Last exactly validated baselines
+## Exact current server baselines
 
 ```text
 functions.php
+Uploaded name: functions(13).php
 Version: 2.7.8
 Size: 550,884 bytes
 Logical lines: 10,256
@@ -61,71 +65,79 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(18).css
+Uploaded name: spatial-flow(19).css
 Size: 695,346 bytes
 Logical lines: 23,305
 SHA256: 316874b203f8ce4104a1a98751f9b5fd63034fb50b0cbeb9aa0c4d2d5711020e
 Braces: 3,619 / 3,619
 Comments: 340 / 340
-CSS parser errors: 0
+
+assets/js/spatial-flow.js
+Uploaded name: spatial-flow(1).js
+Size: 70,828 bytes
+Logical lines: 1,995
+SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
+Braces: 378 / 378
+
+header.php
+Size: 11,328 bytes
+Logical lines: 172
+SHA256: 84bd757eb6cdfe779065ad739fd6968a297ae612b49d554feecf9032866f3224
+PHP syntax: Passed
+Braces: 13 / 13
 ```
 
-These are reference baselines only. Re-upload current server copies before editing.
-
-## Closed gates that remain valid
+## R5-E1 exact findings
 
 ```text
-- all scheduled legacy Cart visual blocks removed
-- Canonical Cart and Cart Notice each exist once
-- Customizer Cart text sources are editable
-- product-level Cart subtitle is editable
-- recommendations use real WooCommerce products
-- fallback selectors 1–4 exist and save
-- SAFE5 Checkout source sharing remained structurally normal
+1. Header BAG owner: .sf-v2-bag-link sup in header.php.
+2. Your Bag count owner: .sf-cart-v2-heading__count in spatial_flow_cart_v2_heading().
+3. No existing fragment or updated_wc_div owner refreshes either count.
+4. Fresh empty Cart wrapper .wc-empty-cart-message is the grid child; current CSS incorrectly assigns grid span only to nested .cart-empty.
+5. Static Cart uses gap: 80px for both rows and columns.
+6. Current Canonical Cart uses row-gap: 0 and compresses title/count, causing the missing large editorial space.
+7. Current CSS declares 1440px/48px/7fr-5fr, but rendered width still requires computed-geometry verification under identical 100% zoom/viewport conditions.
+8. Cart Notice has one exact bounded owner and can be replaced in place later.
 ```
 
-## Reproduced blockers
+## Current executable operation
 
 ```text
-1. Header BAG and Your Bag count stay stale after quantity/remove/restore until manual refresh.
-2. Direct fresh empty Cart uses a different broken/narrow layout from transition-to-empty Cart.
-3. Desktop Cart body remains materially narrower than the approved 1440px V2 frame direction.
-4. Cart update/remove notice is functional but visually poor and not V2-aligned.
-5. User explicitly rejected final 1:1 acceptance as still a large distance away.
+project2-progress/STEP_4E_B2_R5_E2_LIVE_COUNT_SYNC.md
 ```
 
-## Current executable operation · R5-E1
-
-Required current server files:
+R5-E2 modifies only:
 
 ```text
-1. functions.php
-2. assets/css/spatial-flow.css
-3. assets/js/spatial-flow.js
-4. header.php or the actual current header template-part that renders BAG count
+functions.php
+assets/js/spatial-flow.js
 ```
 
-R5-E1 must identify:
+Expected results after exact R5-E2 edits:
 
 ```text
-- Header BAG markup/function owner
-- Your Bag count markup/function owner
-- WooCommerce update/remove/restore event path
-- direct-empty vs transition-empty DOM/state differences
-- active desktop width/container selectors
-- exact Canonical Cart and Cart Notice replacement boundaries
-```
+functions.php
+Size: 552,215 bytes
+Logical lines: 10,292
+SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
+Braces: 1,208 / 1,208
+PHP syntax: Passed
 
-No code change before R5-E1 finishes.
+spatial-flow.js
+Size: 71,299 bytes
+Logical lines: 2,011
+SHA256: 9b2e04b490ca90344baf1e0ac840c5e04779018dd794d044d9e87520fa95ba4b
+Braces: 381 / 381
+JavaScript syntax: Passed
+```
 
 ## Remaining sequence
 
 ```text
-R5-E1 exact source/state re-audit
-→ R5-E2 synchronized live counts
-→ R5-E3 empty-Cart state parity
-→ R5-E4 desktop width + strict V2 visual rebase
+R5-E2 synchronized live counts
+→ R5-E3 empty-Cart wrapper/state parity
+→ R5-E4 strict static-source geometry, including the missing 80px row rhythm
 → R5-E5 Cart Notice in-place refinement
-→ R5-E6 final full acceptance rerun
+→ R5-E6 final strict full acceptance
 → binary Cart status decision
 ```
