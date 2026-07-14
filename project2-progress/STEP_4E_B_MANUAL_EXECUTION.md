@@ -24,7 +24,8 @@ R5-C3 Cart Visual 2-E deletion：Passed.
 R5-C4 Cart Visual 3 deletion：Passed.
 R5-C historical cleanup：Closed / Passed.
 R5-D1 exact source and ownership gate：Passed.
-Current executable step：R5-D2-A active Customizer editability test.
+R5-D2-A active Customizer editability：Passed.
+Current executable step：R5-D2-B product-level Cart subtitle editability.
 Cart page status：Not done.
 ```
 
@@ -34,8 +35,8 @@ Cart page status：Not done.
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_C4_LEGACY_CART_VISUAL_3_DELETION.md
 project2-progress/STEP_4E_B2_R5_C3_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C2_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C1_VALIDATION.md
@@ -74,7 +75,7 @@ PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-PHP remains unchanged throughout R5-C and at the start of R5-D.
+PHP remains unchanged through the current acceptance tests.
 
 ## Current exactly validated CSS baseline
 
@@ -91,7 +92,7 @@ CSS parser errors: 0
 
 The two-byte difference from the R5-C4 theoretical hash is an accepted removal of two empty newline characters immediately before the Checkout Visual Final marker. No selector, declaration or comment boundary changed.
 
-## Closed R5-B and R5-C gates
+## Closed gates
 
 Confirmed:
 
@@ -104,19 +105,18 @@ Confirmed:
 - trust icons no longer overflow into copy
 - duplicate mobile price removed
 - quantity, Coupon, checkout and navigation functions passed
-- Cart Visual 1 through 1.4.1 no longer exists
-- Cart Visual 2-D through 2-D.8 no longer exists
-- Cart Visual 2-E no longer exists
-- Cart Visual 3 no longer exists
+- all scheduled historical Cart visual blocks removed
 - Canonical Cart START / END exists exactly once
 - Cart Notice START / END exists exactly once
+- eight active Customizer text sources were changed, displayed and restored successfully
+- no test Customizer copy remains
 ```
 
 Routine Cart visual appends remain forbidden.
 
 ## Current executable operation
 
-### Step 4E-B2-R5-D2-A · Active Customizer editability test
+### Step 4E-B2-R5-D2-B · Product-level Cart subtitle editability
 
 Authoritative instructions:
 
@@ -124,50 +124,40 @@ Authoritative instructions:
 project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
 ```
 
-Open:
+Source:
 
 ```text
 WordPress Admin
-→ Appearance
-→ Customize
-→ Spatial Flow Cart Page
+→ Products
+→ edit one product currently in Cart
+→ Product data
+→ General
+→ Cart subtitle / product context
 ```
 
-First copy the current values of these fields into a local note:
+Procedure:
 
 ```text
-Cart heading · lead text
-Cart count · plural format
-Order summary heading
-Continue shopping button text
-Trust item 1 title
-Payment note
-Recommendation section title
-View-all button text
+1. Choose the first product currently shown in Cart.
+2. Search and open that exact product in Products → All Products.
+3. Copy the current Cart subtitle / product context value into a local note.
+4. If the current field is blank, record that the original value is blank.
+5. Change only this field to: R5-D2-B subtitle test
+6. Update the product.
+7. Force-refresh Cart and confirm the unique text appears below the correct product title.
+8. Open SAFE5 Checkout and confirm the product row remains structurally normal.
+9. Restore the exact original field value; restore blank if it was blank.
+10. Update the product again.
+11. Force-refresh Cart and SAFE5 Checkout.
+12. Confirm the test text is gone and the original dynamic context has returned.
 ```
 
-Temporarily use:
-
-```text
-Cart heading · lead text: Test
-Cart count · plural format: %s pieces · editability test
-Order summary heading: Order summary test
-Continue shopping button text: Continue shopping test
-Trust item 1 title: Trust title test
-Payment note: Payment note editability test
-Recommendation section title: Complete your space test
-View-all button text: View all test
-```
-
-Publish once, force-refresh Cart and verify all eight temporary values appear in the correct visible areas. Then restore every original value, publish again and verify no test text remains.
-
-Do not change URLs, product selectors, enable/disable switches, service-card settings, PHP, CSS, JavaScript, templates or version 2.7.8.
+Do not change product title, price, stock, SKU, categories, attributes, variations, descriptions, images, Cart contents, Customizer, PHP, CSS, JavaScript, templates or version 2.7.8.
 
 ## Remaining sequence
 
 ```text
-R5-D2-A active Customizer editability
-→ R5-D2-B product-level Cart subtitle editability
+R5-D2-B product-level Cart subtitle editability
 → R5-D2-C dynamic recommendation ownership
 → R5-D3 strict desktop and production-quality mobile visual acceptance
 → R5-D4 final native Cart regression
