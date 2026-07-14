@@ -11,7 +11,10 @@ R5-C1 through R5-C4 legacy cleanup：Passed / closed.
 R5-D1 exact source and ownership gate：Passed.
 R5-D2-A active Customizer editability：Passed.
 R5-D2-B product-level Cart subtitle editability：Passed.
-Current executable step：R5-D2-C dynamic recommendation and fallback ownership.
+R5-D2-C dynamic recommendation and fallback ownership：Passed.
+R5-D2 backend editability/ownership gate：Closed / Passed.
+Remaining user inspection groups：2.
+Current executable phase：R5-D3 + R5-D4 combined final inspection.
 Cart page status：Not done.
 ```
 
@@ -64,19 +67,15 @@ Passed:
 - functions.php version remains 2.7.8
 ```
 
-## R5-D2 · Backend editability acceptance
-
-The gate is divided so every test is small and reversible.
+## R5-D2 · Backend editability and dynamic ownership
 
 ### R5-D2-A · Active Customizer text sources
 
-Status:
-
 ```text
-Passed.
+Status：Passed
 ```
 
-Validated live fields:
+Validated:
 
 ```text
 Cart heading · lead text
@@ -89,14 +88,7 @@ Complete block title
 Complete block view-all text
 ```
 
-Accepted evidence:
-
-```text
-- all eight temporary values appeared in their corresponding visible areas
-- all eight original values were restored
-- no test text remains after restoration
-- Cart layout and functions remain normal
-```
+All eight temporary values appeared, all originals were restored, and no test copy remained.
 
 Detailed record:
 
@@ -106,10 +98,8 @@ project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
 
 ### R5-D2-B · Product-level Cart subtitle
 
-Status:
-
 ```text
-Passed.
+Status：Passed
 ```
 
 Validated source:
@@ -120,16 +110,7 @@ Cart subtitle / product context
 Meta key: _sf_cart_item_meta
 ```
 
-Accepted evidence:
-
-```text
-- the temporary subtitle appeared below the correct Cart product title
-- the Cart row remained structurally normal
-- SAFE5 Checkout product rows remained structurally normal
-- the exact original value was restored
-- no R5-D2-B subtitle test text remains
-- the original dynamic product context returned
-```
+The unique temporary subtitle appeared on the correct Cart product, Cart and SAFE5 Checkout rows remained structurally normal, and the exact original value was restored.
 
 Detailed record:
 
@@ -139,156 +120,72 @@ project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md
 
 ### R5-D2-C · Dynamic recommendation and fallback ownership
 
-Status:
-
 ```text
-Active.
+Status：Passed
 ```
 
-This gate confirms:
+Accepted:
 
 ```text
-- the current four recommendation cards represent real WooCommerce products
-- image, category, title, description, price and URL remain product-owned and dynamic
-- products already in Cart are excluded
-- all four backend fallback product selectors remain available and saveable
-- no fabricated product identity, fixed sample price or fixed sample URL appears
+- four visible recommendation cards opened real WooCommerce product pages
+- titles, live prices and images matched their real products
+- no current Cart product appeared among recommendations
+- Fallback recommended product 1–4 all existed
+- selector 4 saved a temporary published visible product
+- selector 4 was restored to its exact original value
+- no fabricated product identity, fixed sample price or fixed sample URL was used
 ```
 
-#### Part 1 · Verify the four visible cards
-
-On the current Cart page, scroll to the recommendation section.
-
-For each of the four cards:
+Detailed record:
 
 ```text
-1. Record the visible product title and price.
-2. Open the card in a new tab.
-3. Confirm the destination is a real WooCommerce Single Product page.
-4. Confirm the product-page title matches the Cart recommendation title.
-5. Confirm the displayed price matches the live product price.
-6. Confirm the image belongs to that product.
-7. Return to Cart and repeat for all four cards.
+project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
 ```
 
-Also compare the four recommendation titles with the products currently in Cart.
+R5-D2 is closed as `Passed`.
+
+## R5-D3 + R5-D4 · Remaining combined inspection
+
+Authoritative checklist:
 
 ```text
-No current Cart product may appear in the recommendation section.
+project2-progress/STEP_4E_B2_R5_D3_D4_COMBINED_FINAL_CHECKLIST.md
 ```
 
-A product description may be omitted when the product has no authored short or long description. That is valid and preferable to generated marketing claims.
-
-#### Part 2 · Verify the four fallback selectors
-
-Open:
+Only two user inspection groups remain:
 
 ```text
-WordPress Admin
-→ Appearance
-→ Customize
-→ Spatial Flow Cart Page
+1. R5-D3 final strict desktop and production-quality phone visual acceptance
+2. R5-D4 final native Cart regression
 ```
 
-Confirm these four controls exist:
+Required visual evidence:
 
 ```text
-Fallback recommended product 1
-Fallback recommended product 2
-Fallback recommended product 3
-Fallback recommended product 4
+- one desktop full-page Cart screenshot after final load
+- one phone full-page Cart screenshot after final load
 ```
 
-Test only selector 4:
+Required functional coverage:
 
 ```text
-1. Record its exact current selection in a local note.
-2. Select one published, visible WooCommerce product that is not currently in Cart.
-3. Publish.
-4. Close and reopen the Customizer section.
-5. Confirm the selected product remains saved in Fallback recommended product 4.
-6. Restore the exact original selection.
-7. Publish again.
-8. Reopen the section and confirm the original selection is restored.
+- quantity and Update Cart
+- Remove / Undo at multiple product positions
+- invalid Coupon
+- valid Coupon when available, otherwise explicit N/A
+- shipping and totals update
+- Checkout round trip
+- recommendation navigation
+- Header BAG count synchronization
+- empty-Cart behavior and restoration
+- final SAFE5 Checkout product-row verification
 ```
 
-Do not require the temporary fallback product to appear on the frontend. Cross-sells and same-category products have higher selection priority and may legitimately fill all four recommendation slots before fallback products are used.
-
-Do not change:
-
-```text
-Fallback recommended product 1–3
-Recommendation copy
-Product titles
-Prices
-Stock
-Categories
-Attributes
-Descriptions
-Images
-Cart contents
-PHP
-CSS
-JavaScript
-WooCommerce templates
-Version 2.7.8
-```
-
-Pass evidence:
-
-```text
-1. all four cards opened real product pages
-2. all four titles, prices and images matched their product sources
-3. no current Cart product appeared among the four cards
-4. all four fallback selectors existed
-5. selector 4 saved the temporary real product selection
-6. selector 4 was restored to its exact original value
-7. Cart layout and functions remained normal
-```
-
-## R5-D3 · Final strict visual acceptance
-
-Blocked until R5-D2-C passes.
-
-Required review:
-
-```text
-- desktop full-page Cart against the approved V2 direction
-- production-quality phone Cart review
-- heading/count hierarchy
-- item-row spacing and thumbnail crop
-- desktop Remove and phone SVG remove control
-- quantity/subtotal/coupon alignment
-- integrated Order Summary
-- trust icon and copy alignment
-- four real recommendation cards
-- Header/Footer and no horizontal overflow
-```
-
-The static phone reference is guidance only. Production-quality mobile behavior takes priority over weak or unoptimized static decisions.
-
-## R5-D4 · Final native Cart regression
-
-Blocked until R5-D3 passes.
-
-Required tests:
-
-```text
-1. change quantities and Update Cart
-2. remove each product position and use Undo / Restore
-3. apply a valid Coupon when available
-4. submit INVALID123 and verify standard error handling
-5. verify totals and shipping update
-6. proceed to Checkout and return
-7. open recommendation products and return
-8. verify Header BAG count after Cart changes
-9. verify empty-Cart behavior
-10. verify SAFE5 Checkout product rows remain unchanged
-```
+No PHP, CSS, JavaScript, template, Customizer or product-content edit is authorized during this inspection.
 
 ## R5-D5 · Binary decision
 
-Only after R5-D2, R5-D3 and R5-D4 pass:
+R5-D5 is not another user inspection round. After R5-D3 and R5-D4 pass, the assistant will update the authoritative records and make exactly one binary page-status decision:
 
 ```text
 Completed 1:1
