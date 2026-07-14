@@ -1,31 +1,23 @@
 # Step 4E-B · Manual Staged Cart Execution Protocol
 
-Last updated: 2026-07-13  
+Last updated: 2026-07-14  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
 
 ```text
 Step 4E-A audit：Complete.
-Whole-file Cart candidate：Withdrawn / Do not apply.
-Step 4E-B0 exact manual map：Complete.
+Step 4E-B0 manual map：Complete.
 Step 4E-B1-A through B1-H：Passed.
-Step 4E-B2-A1 deletion-first attempt：Rejected and rolled back exactly.
-Step 4E-B2-R1 dependency re-audit：Complete.
-Step 4E-B2-R2 / FIX1 / FIX2 / FIX3：Historical temporary takeover sequence complete.
-Step 4E-B2-R4 native functional regression：Passed.
-Step 4E-B2-R5-A1 visual-gap and ownership audit：Complete.
-Step 4E-B2-R5-B canonical in-place replacement：Passed.
-R5-B1 through R5-B5 remove-control diagnosis and correction：Passed.
-Complete R5-B gate：Closed / Passed.
-R5-C1 through R5-C4 historical deletion：Passed / closed.
-R5-D1 exact source and ownership gate：Passed.
-R5-D2-A Customizer editability：Passed.
-R5-D2-B product-level Cart subtitle：Passed.
-R5-D2-C recommendation and fallback ownership：Passed.
-R5-D2 backend editability/ownership：Closed / Passed.
-Remaining user inspection groups：2.
-Current executable phase：R5-D3 + R5-D4 combined final inspection.
+Step 4E-B2-A1 deletion-first attempt：Rejected / rolled back.
+R5-B canonical implementation：Passed as baseline.
+R5-C1 through R5-C4 legacy cleanup：Passed / closed.
+R5-D1 exact source/ownership：Passed.
+R5-D2 backend editability/dynamic ownership：Passed / closed.
+R5-D3 final strict visual acceptance：Failed / reopened.
+R5-D4 final native Cart regression：Failed / reopened.
+R5-D5 binary decision：Blocked.
+Current executable phase：R5-E1 exact source/state re-audit.
 Cart page status：Not done.
 ```
 
@@ -34,11 +26,10 @@ Cart page status：Not done.
 ```text
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
 project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
 project2-progress/STEP_4E_B2_R5_D3_D4_COMBINED_FINAL_CHECKLIST.md
 project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
 ```
@@ -46,33 +37,29 @@ project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
 ## Non-negotiable rule
 
 ```text
-- no ZIP or complete replacement theme file
+- current server files are the only valid modification baseline
+- no ZIP or complete theme-file overwrite
 - no blind overwrite of functions.php or spatial-flow.css
 - no Cart template override
+- no hardcoded Cart/BAG count
+- no polling
 - no routine append-only Cart visual patch
-- no code or backend-content edit during R5-D3/R5-D4 inspection
-- do not change Cart to Completed 1:1 before both remaining groups pass
-- V2 mobile references are guidance; production-quality phone UX takes priority
+- no broad Header rewrite
+- every correction must be bounded and independently reversible
+- do not change Cart to Completed 1:1 before R5-E6 passes
 ```
 
-## Exact accepted baselines
-
-### PHP
+## Last exactly validated baselines
 
 ```text
 functions.php
-Uploaded name: functions(12).php
 Version: 2.7.8
 Size: 550,884 bytes
 Logical lines: 10,256
 SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
 PHP syntax: Passed
 Braces: 1,200 / 1,200
-```
 
-### CSS
-
-```text
 assets/css/spatial-flow.css
 Uploaded name: spatial-flow(18).css
 Size: 695,346 bytes
@@ -83,72 +70,62 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## Closed gates
+These are reference baselines only. Re-upload current server copies before editing.
+
+## Closed gates that remain valid
 
 ```text
-- canonical desktop and production-quality phone structure stable
-- product thumbnails fill their slots
-- desktop Remove and phone SVG remove control accepted
-- trust icons no longer overlap copy
-- duplicate mobile price removed
-- all scheduled historical Cart visual blocks removed
+- all scheduled legacy Cart visual blocks removed
 - Canonical Cart and Cart Notice each exist once
-- eight active Customizer text sources changed/displayed/restored
-- product-level Cart subtitle changed/displayed/restored
-- SAFE5 Checkout product row remained structurally normal
-- four recommendation cards confirmed as real WooCommerce products
-- recommendation titles/prices/images/URLs matched live products
-- current Cart products excluded from recommendations
-- fallback selectors 1–4 available; selector 4 saved and restored
-- no test copy or temporary backend value remains
+- Customizer Cart text sources are editable
+- product-level Cart subtitle is editable
+- recommendations use real WooCommerce products
+- fallback selectors 1–4 exist and save
+- SAFE5 Checkout source sharing remained structurally normal
 ```
 
-## Current executable work
-
-Authoritative combined checklist:
+## Reproduced blockers
 
 ```text
-project2-progress/STEP_4E_B2_R5_D3_D4_COMBINED_FINAL_CHECKLIST.md
+1. Header BAG and Your Bag count stay stale after quantity/remove/restore until manual refresh.
+2. Direct fresh empty Cart uses a different broken/narrow layout from transition-to-empty Cart.
+3. Desktop Cart body remains materially narrower than the approved 1440px V2 frame direction.
+4. Cart update/remove notice is functional but visually poor and not V2-aligned.
+5. User explicitly rejected final 1:1 acceptance as still a large distance away.
 ```
 
-### Group 1 — R5-D3 final visual acceptance
+## Current executable operation · R5-E1
+
+Required current server files:
 
 ```text
-- desktop complete-page review and screenshot
-- phone complete-page review and screenshot
-- heading/count hierarchy
-- product spacing and thumbnail crop
-- desktop Remove and phone SVG ×
-- quantity/subtotal/Coupon alignment
-- integrated Order Summary
-- trust icon/copy alignment
-- four recommendation cards
-- Header/Footer and no horizontal overflow
+1. functions.php
+2. assets/css/spatial-flow.css
+3. assets/js/spatial-flow.js
+4. header.php or the actual current header template-part that renders BAG count
 ```
 
-### Group 2 — R5-D4 final native regression
+R5-E1 must identify:
 
 ```text
-- quantity/update and restoration
-- remove/undo at multiple positions
-- invalid Coupon
-- valid Coupon when available or explicit N/A
-- shipping/totals update
-- Checkout round trip
-- recommendation navigation
-- Header BAG count synchronization
-- empty-Cart behavior and restoration
-- final SAFE5 Checkout verification
+- Header BAG markup/function owner
+- Your Bag count markup/function owner
+- WooCommerce update/remove/restore event path
+- direct-empty vs transition-empty DOM/state differences
+- active desktop width/container selectors
+- exact Canonical Cart and Cart Notice replacement boundaries
 ```
+
+No code change before R5-E1 finishes.
 
 ## Remaining sequence
 
 ```text
-R5-D3 visual acceptance
-+ R5-D4 native regression
-→ R5-D5 assistant documentation and binary Cart decision
+R5-E1 exact source/state re-audit
+→ R5-E2 synchronized live counts
+→ R5-E3 empty-Cart state parity
+→ R5-E4 desktop width + strict V2 visual rebase
+→ R5-E5 Cart Notice in-place refinement
+→ R5-E6 final full acceptance rerun
+→ binary Cart status decision
 ```
-
-R5-D5 is not another user inspection round.
-
-Cart remains `Not done` until the complete final report and screenshots are accepted.
