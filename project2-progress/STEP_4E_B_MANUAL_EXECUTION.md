@@ -20,7 +20,8 @@ R5-B1 through R5-B5 remove-control diagnosis and correction：Passed.
 Complete R5-B gate：Closed / Passed.
 R5-C1 Cart Visual 1 through 1.4.1 deletion：Passed.
 R5-C2 Cart Visual 2-D through 2-D.8 deletion：Passed.
-Current executable step：Step 4E-B2-R5-C3 bounded legacy deletion.
+R5-C3 Cart Visual 2-E deletion：Passed.
+Current executable step：Step 4E-B2-R5-C4 bounded legacy deletion.
 Cart page status：Not done.
 ```
 
@@ -29,6 +30,8 @@ Cart page status：Not done.
 ```text
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/STEP_4E_B2_R5_C4_LEGACY_CART_VISUAL_3_DELETION.md
+project2-progress/STEP_4E_B2_R5_C3_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C3_LEGACY_CART_VISUAL_2E_DELETION.md
 project2-progress/STEP_4E_B2_R5_C2_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C2_LEGACY_CART_VISUAL_2D_DELETION.md
@@ -76,20 +79,20 @@ PHP remains unchanged throughout R5-C cleanup.
 
 ```text
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(16).css
-Size: 709,035 bytes
-Logical lines: 23,761
-SHA256: 56513693e37f98021fca4fd71b389e7f83e2f797a9d0746047ebbe915870618a
-Braces: 3,689 / 3,689
-Comments: 351 / 351
+Uploaded name: spatial-flow(17).css
+Size: 697,430 bytes
+Logical lines: 23,366
+SHA256: bd28dc82f300f905103f5388740c82dc07249a581a9030a6d6ccd465f9427341
+Braces: 3,629 / 3,629
+Comments: 342 / 342
 CSS parser errors: 0
 ```
 
-The three-byte difference from the R5-C2 theoretical hash is an accepted removal of three empty newline characters immediately before Cart Visual 2-E. No selector, declaration or comment boundary changed.
+The two-byte difference from the R5-C3 theoretical hash is an accepted removal of two empty newline characters immediately before Cart Visual 3. No selector, declaration or comment boundary changed.
 
 ## Closed gates
 
-Confirmed through R5-C2:
+Confirmed through R5-C3:
 
 ```text
 - canonical desktop structure stable
@@ -102,57 +105,57 @@ Confirmed through R5-C2:
 - quantity, Coupon, checkout and navigation functions passed
 - Cart Visual 1 through 1.4.1 no longer exists
 - Cart Visual 2-D through 2-D.8 no longer exists
+- Cart Visual 2-E no longer exists
 ```
 
 Routine Cart visual appends remain forbidden.
 
 ## Remaining historical CSS debt
 
-After R5-C2:
+After R5-C3:
 
 ```text
-R5-C3：Cart Visual 2-E
 R5-C4：Cart Visual 3
 ```
 
 ## Current executable operation
 
-### Step 4E-B2-R5-C3 · Delete Cart Visual 2-E
+### Step 4E-B2-R5-C4 · Delete Cart Visual 3
 
 Authoritative instructions:
 
 ```text
-project2-progress/STEP_4E_B2_R5_C3_LEGACY_CART_VISUAL_2E_DELETION.md
+project2-progress/STEP_4E_B2_R5_C4_LEGACY_CART_VISUAL_3_DELETION.md
 ```
 
 Exact deletion markers:
 
 ```css
 START:
-/* === Cart Visual 2-E MOBILE COMPACT RHYTHM REFINEMENT START ===
+/* === Cart Visual 3 REAL WOOCOMMERCE RECOMMENDATIONS START ===
 
 END:
-/* === Cart Visual 2-E MOBILE COMPACT RHYTHM REFINEMENT END === */
+/* === Cart Visual 3 REAL WOOCOMMERCE RECOMMENDATIONS END === */
 ```
 
 Deleted range identity:
 
 ```text
-Size: 11,603 bytes
-Logical lines: 394
-SHA256: e6eb3dcca65703598f78b238820e82ff6646fb9ec1c0e9a75e2f82d1cd7bd8ec
-Braces: 60 / 60
-Comments: 9 / 9
+Size: 2,082 bytes
+Logical lines: 60
+SHA256: 117063b63334fbb9ec72cce6ec87a360a49209673bfd3473c931f33c7775c147
+Braces: 10 / 10
+Comments: 2 / 2
 ```
 
-Expected file after exact deletion from the accepted R5-C2 baseline:
+Expected file after exact deletion from the accepted R5-C3 baseline:
 
 ```text
-Size: 697,432 bytes
-Logical lines: 23,368
-SHA256: a929032b92f4ea5b2e29f3d8e9ec9716eee42124a766164c34da3a2b903ed38b
-Braces: 3,629 / 3,629
-Comments: 342 / 342
+Size: 695,348 bytes
+Logical lines: 23,307
+SHA256: 923837d0f271930d164f074e9c30e15a6097436e11fb83daa3c1ac71a437d3d5
+Braces: 3,619 / 3,619
+Comments: 340 / 340
 CSS parser errors: 0
 ```
 
@@ -161,8 +164,7 @@ Create a separate local bounded rollback copy of the selected range before delet
 ## Remaining sequence
 
 ```text
-R5-C3 deletion + exact file / desktop / phone / targeted-function validation
-→ R5-C4 deletion + validation
+R5-C4 deletion + exact file / desktop / phone / targeted-function validation
 → R5-D backend editability + strict desktop/mobile + full native-function acceptance
 → binary Cart status decision
 ```
