@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-13  
+Last updated: 2026-07-14  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative Cart read order
@@ -12,19 +12,20 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 4. PROJECT2_CSS_MAINTENANCE_POLICY.md
 5. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 6. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-7. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-8. project2-progress/STEP_4E_B2_R5_D3_D4_COMBINED_FINAL_CHECKLIST.md
-9. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
-10. project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md
-11. project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
-12. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
-13. project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
-14. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
-15. project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
-16. project2-progress/PROGRESS_LOG.md
+7. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+8. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+9. project2-progress/STEP_4E_B2_R5_D3_D4_COMBINED_FINAL_CHECKLIST.md
+10. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
+11. project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md
+12. project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
+13. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
+14. project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
+15. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
+16. project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
+17. project2-progress/PROGRESS_LOG.md
 ```
 
-Current records supersede earlier full-file instructions, the failed deletion-first attempt, the temporary R2/FIX stack and earlier active-step statements.
+Current records supersede earlier completion assumptions, the failed deletion-first attempt, the temporary R2/FIX stack and the superseded R5-D3/D4 pass path.
 
 ## Page-status rule
 
@@ -70,19 +71,28 @@ Not done
 ## Current Cart status
 
 ```text
-R5-B canonical replacement：Passed
+R5-B canonical implementation：Passed as baseline
 R5-C1 through R5-C4 historical cleanup：Passed / closed
-R5-D1 exact source and ownership：Passed
-R5-D2-A Customizer editability：Passed
-R5-D2-B product-level Cart subtitle：Passed
-R5-D2-C recommendation/fallback ownership：Passed
-R5-D2 backend editability/ownership：Passed / closed
-Remaining user inspection groups：2
-Current：R5-D3 + R5-D4 combined final inspection
+R5-D1 exact source/ownership：Passed
+R5-D2 backend editability/dynamic ownership：Passed / closed
+R5-D3 final strict visual acceptance：Failed / reopened
+R5-D4 final native Cart regression：Failed / reopened
+R5-D5 binary decision：Blocked
+Current：R5-E1 exact source/state re-audit
 Cart：Not done
 ```
 
-## Exact code baselines
+## Reproduced Cart blockers
+
+```text
+1. Header BAG and Your Bag count remain stale until refresh after quantity/remove/restore.
+2. Direct fresh empty Cart uses a broken/narrow layout unlike transition-to-empty Cart.
+3. Desktop Cart frame is materially narrower than the approved V2 1440px direction.
+4. Cart update/remove notice is visually poor and not aligned with the V2 page.
+5. User explicitly reports the current page remains a large distance from 1:1.
+```
+
+## Last exact code baselines
 
 ```text
 functions.php
@@ -103,12 +113,25 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
+Current server copies must be uploaded before new edits.
+
+## Current required file evidence
+
+```text
+1. functions.php
+2. assets/css/spatial-flow.css
+3. assets/js/spatial-flow.js
+4. header.php or the actual header template-part that renders BAG count
+```
+
 ## Remaining sequence
 
 ```text
-R5-D3 final desktop/mobile visual acceptance
-+ R5-D4 final native Cart regression
-→ R5-D5 documentation and binary Cart decision
+R5-E1 exact source/state re-audit
+→ R5-E2 synchronized live counts
+→ R5-E3 empty-Cart state parity
+→ R5-E4 desktop width + strict V2 visual rebase
+→ R5-E5 Cart Notice in-place refinement
+→ R5-E6 final acceptance rerun
+→ binary Cart decision
 ```
-
-R5-D5 is not another user inspection round.
