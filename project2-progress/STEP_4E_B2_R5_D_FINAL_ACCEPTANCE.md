@@ -10,7 +10,8 @@ R5-B canonical replacement：Passed.
 R5-C1 through R5-C4 legacy cleanup：Passed / closed.
 R5-D1 exact source and ownership gate：Passed.
 R5-D2-A active Customizer editability：Passed.
-Current executable step：R5-D2-B product-level Cart subtitle editability.
+R5-D2-B product-level Cart subtitle editability：Passed.
+Current executable step：R5-D2-C dynamic recommendation and fallback ownership.
 Cart page status：Not done.
 ```
 
@@ -108,10 +109,10 @@ project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
 Status:
 
 ```text
-Active.
+Passed.
 ```
 
-Source:
+Validated source:
 
 ```text
 WooCommerce Product data → General
@@ -119,57 +120,113 @@ Cart subtitle / product context
 Meta key: _sf_cart_item_meta
 ```
 
-The source priority remains:
+Accepted evidence:
 
 ```text
-1. variation-level _sf_cart_item_meta
-2. parent-product _sf_cart_item_meta
-3. real product category
-4. selected variation values
-5. real pa_purpose / pa_color / pa_five-elements-energy terms
-6. empty Cart subtitle when no real Cart source exists
+- the temporary subtitle appeared below the correct Cart product title
+- the Cart row remained structurally normal
+- SAFE5 Checkout product rows remained structurally normal
+- the exact original value was restored
+- no R5-D2-B subtitle test text remains
+- the original dynamic product context returned
 ```
 
-#### Exact test procedure
-
-Use one product currently visible in the Cart. Prefer the first current Cart product so the row is easy to identify.
+Detailed record:
 
 ```text
-1. Open WordPress Admin → Products → All Products.
-2. Search for the exact title of the first current Cart product.
-3. Open that product for editing.
-4. Scroll to Product data.
-5. Open the General tab.
-6. Find “Cart subtitle / product context”.
-7. Copy its exact current value into a local note. The original may be blank; blank is a valid original value.
-8. Change only that field to:
-   R5-D2-B subtitle test
-9. Click Update.
-10. Force-refresh the Cart.
-11. Confirm the temporary text appears only below the edited product title, in the product-context line.
-12. Open SAFE5 Checkout and confirm the same edited product row remains structurally normal. The shared source may show the temporary subtitle there as well.
-13. Return to the product editor.
-14. Restore the exact original field value from the local note. If it was blank, restore it to blank.
-15. Click Update again.
-16. Force-refresh Cart and SAFE5 Checkout.
-17. Confirm the temporary text is gone and the original category/attribute/meta output has returned.
+project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md
 ```
+
+### R5-D2-C · Dynamic recommendation and fallback ownership
+
+Status:
+
+```text
+Active.
+```
+
+This gate confirms:
+
+```text
+- the current four recommendation cards represent real WooCommerce products
+- image, category, title, description, price and URL remain product-owned and dynamic
+- products already in Cart are excluded
+- all four backend fallback product selectors remain available and saveable
+- no fabricated product identity, fixed sample price or fixed sample URL appears
+```
+
+#### Part 1 · Verify the four visible cards
+
+On the current Cart page, scroll to the recommendation section.
+
+For each of the four cards:
+
+```text
+1. Record the visible product title and price.
+2. Open the card in a new tab.
+3. Confirm the destination is a real WooCommerce Single Product page.
+4. Confirm the product-page title matches the Cart recommendation title.
+5. Confirm the displayed price matches the live product price.
+6. Confirm the image belongs to that product.
+7. Return to Cart and repeat for all four cards.
+```
+
+Also compare the four recommendation titles with the products currently in Cart.
+
+```text
+No current Cart product may appear in the recommendation section.
+```
+
+A product description may be omitted when the product has no authored short or long description. That is valid and preferable to generated marketing claims.
+
+#### Part 2 · Verify the four fallback selectors
+
+Open:
+
+```text
+WordPress Admin
+→ Appearance
+→ Customize
+→ Spatial Flow Cart Page
+```
+
+Confirm these four controls exist:
+
+```text
+Fallback recommended product 1
+Fallback recommended product 2
+Fallback recommended product 3
+Fallback recommended product 4
+```
+
+Test only selector 4:
+
+```text
+1. Record its exact current selection in a local note.
+2. Select one published, visible WooCommerce product that is not currently in Cart.
+3. Publish.
+4. Close and reopen the Customizer section.
+5. Confirm the selected product remains saved in Fallback recommended product 4.
+6. Restore the exact original selection.
+7. Publish again.
+8. Reopen the section and confirm the original selection is restored.
+```
+
+Do not require the temporary fallback product to appear on the frontend. Cross-sells and same-category products have higher selection priority and may legitimately fill all four recommendation slots before fallback products are used.
 
 Do not change:
 
 ```text
-Product title
-Price
+Fallback recommended product 1–3
+Recommendation copy
+Product titles
+Prices
 Stock
-SKU
 Categories
 Attributes
-Variations
-Short description
-Long description
-Product image/gallery
+Descriptions
+Images
 Cart contents
-Customizer settings
 PHP
 CSS
 JavaScript
@@ -180,30 +237,18 @@ Version 2.7.8
 Pass evidence:
 
 ```text
-1. the unique temporary subtitle appeared on the correct Cart product row
-2. the edited row remained structurally normal
-3. SAFE5 Checkout product rows remained structurally normal
-4. the exact original field value was restored
-5. no R5-D2-B subtitle test text remains
-```
-
-### R5-D2-C · Dynamic recommendation and fallback ownership
-
-Blocked until R5-D2-B passes.
-
-This gate will confirm:
-
-```text
-- current recommendations use real WooCommerce products
-- product image, category, title, description, price and URL remain dynamic
-- Cart products are excluded
-- backend fallback product selectors remain available
-- no fabricated product identity, fixed price or fixed URL appears
+1. all four cards opened real product pages
+2. all four titles, prices and images matched their product sources
+3. no current Cart product appeared among the four cards
+4. all four fallback selectors existed
+5. selector 4 saved the temporary real product selection
+6. selector 4 was restored to its exact original value
+7. Cart layout and functions remained normal
 ```
 
 ## R5-D3 · Final strict visual acceptance
 
-Blocked until R5-D2 passes.
+Blocked until R5-D2-C passes.
 
 Required review:
 
