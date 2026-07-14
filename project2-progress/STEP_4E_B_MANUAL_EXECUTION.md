@@ -21,7 +21,10 @@ Complete R5-B gate：Closed / Passed.
 R5-C1 Cart Visual 1 through 1.4.1 deletion：Passed.
 R5-C2 Cart Visual 2-D through 2-D.8 deletion：Passed.
 R5-C3 Cart Visual 2-E deletion：Passed.
-Current executable step：Step 4E-B2-R5-C4 bounded legacy deletion.
+R5-C4 Cart Visual 3 deletion：Passed.
+R5-C historical cleanup：Closed / Passed.
+R5-D1 exact source and ownership gate：Passed.
+Current executable step：R5-D2-A active Customizer editability test.
 Cart page status：Not done.
 ```
 
@@ -30,13 +33,12 @@ Cart page status：Not done.
 ```text
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C4_LEGACY_CART_VISUAL_3_DELETION.md
 project2-progress/STEP_4E_B2_R5_C3_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_C3_LEGACY_CART_VISUAL_2E_DELETION.md
 project2-progress/STEP_4E_B2_R5_C2_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_C2_LEGACY_CART_VISUAL_2D_DELETION.md
 project2-progress/STEP_4E_B2_R5_C1_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_C1_LEGACY_CART_VISUAL_1_DELETION.md
 project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
 project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
@@ -53,10 +55,9 @@ project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
 - no Cart JavaScript unless a reproduced native interaction defect requires it
 - no routine append-only Cart visual patch
 - use bounded in-place replacement/removal only
-- every deletion batch must be independently reversible
-- validate the edited file before browser acceptance
-- do not begin the next deletion batch before the current batch passes
-- do not change Cart to Completed 1:1 before R5-D
+- every code operation must be independently reversible
+- validate an edited file before browser acceptance
+- do not change Cart to Completed 1:1 before all R5-D gates pass
 - V2 mobile references are guidance; production-quality phone UX takes priority
 ```
 
@@ -67,32 +68,32 @@ functions.php
 Uploaded name: functions(12).php
 Version: 2.7.8
 Size: 550,884 bytes
-Lines: 10,256
+Logical lines: 10,256
 SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
 PHP syntax: Passed
 Braces: 1,200 / 1,200
 ```
 
-PHP remains unchanged throughout R5-C cleanup.
+PHP remains unchanged throughout R5-C and at the start of R5-D.
 
 ## Current exactly validated CSS baseline
 
 ```text
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(17).css
-Size: 697,430 bytes
-Logical lines: 23,366
-SHA256: bd28dc82f300f905103f5388740c82dc07249a581a9030a6d6ccd465f9427341
-Braces: 3,629 / 3,629
-Comments: 342 / 342
+Uploaded name: spatial-flow(18).css
+Size: 695,346 bytes
+Logical lines: 23,305
+SHA256: 316874b203f8ce4104a1a98751f9b5fd63034fb50b0cbeb9aa0c4d2d5711020e
+Braces: 3,619 / 3,619
+Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-The two-byte difference from the R5-C3 theoretical hash is an accepted removal of two empty newline characters immediately before Cart Visual 3. No selector, declaration or comment boundary changed.
+The two-byte difference from the R5-C4 theoretical hash is an accepted removal of two empty newline characters immediately before the Checkout Visual Final marker. No selector, declaration or comment boundary changed.
 
-## Closed gates
+## Closed R5-B and R5-C gates
 
-Confirmed through R5-C3:
+Confirmed:
 
 ```text
 - canonical desktop structure stable
@@ -106,67 +107,71 @@ Confirmed through R5-C3:
 - Cart Visual 1 through 1.4.1 no longer exists
 - Cart Visual 2-D through 2-D.8 no longer exists
 - Cart Visual 2-E no longer exists
+- Cart Visual 3 no longer exists
+- Canonical Cart START / END exists exactly once
+- Cart Notice START / END exists exactly once
 ```
 
 Routine Cart visual appends remain forbidden.
 
-## Remaining historical CSS debt
-
-After R5-C3:
-
-```text
-R5-C4：Cart Visual 3
-```
-
 ## Current executable operation
 
-### Step 4E-B2-R5-C4 · Delete Cart Visual 3
+### Step 4E-B2-R5-D2-A · Active Customizer editability test
 
 Authoritative instructions:
 
 ```text
-project2-progress/STEP_4E_B2_R5_C4_LEGACY_CART_VISUAL_3_DELETION.md
+project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
 ```
 
-Exact deletion markers:
-
-```css
-START:
-/* === Cart Visual 3 REAL WOOCOMMERCE RECOMMENDATIONS START ===
-
-END:
-/* === Cart Visual 3 REAL WOOCOMMERCE RECOMMENDATIONS END === */
-```
-
-Deleted range identity:
+Open:
 
 ```text
-Size: 2,082 bytes
-Logical lines: 60
-SHA256: 117063b63334fbb9ec72cce6ec87a360a49209673bfd3473c931f33c7775c147
-Braces: 10 / 10
-Comments: 2 / 2
+WordPress Admin
+→ Appearance
+→ Customize
+→ Spatial Flow Cart Page
 ```
 
-Expected file after exact deletion from the accepted R5-C3 baseline:
+First copy the current values of these fields into a local note:
 
 ```text
-Size: 695,348 bytes
-Logical lines: 23,307
-SHA256: 923837d0f271930d164f074e9c30e15a6097436e11fb83daa3c1ac71a437d3d5
-Braces: 3,619 / 3,619
-Comments: 340 / 340
-CSS parser errors: 0
+Cart heading · lead text
+Cart count · plural format
+Order summary heading
+Continue shopping button text
+Trust item 1 title
+Payment note
+Recommendation section title
+View-all button text
 ```
 
-Create a separate local bounded rollback copy of the selected range before deleting it.
+Temporarily use:
+
+```text
+Cart heading · lead text: Test
+Cart count · plural format: %s pieces · editability test
+Order summary heading: Order summary test
+Continue shopping button text: Continue shopping test
+Trust item 1 title: Trust title test
+Payment note: Payment note editability test
+Recommendation section title: Complete your space test
+View-all button text: View all test
+```
+
+Publish once, force-refresh Cart and verify all eight temporary values appear in the correct visible areas. Then restore every original value, publish again and verify no test text remains.
+
+Do not change URLs, product selectors, enable/disable switches, service-card settings, PHP, CSS, JavaScript, templates or version 2.7.8.
 
 ## Remaining sequence
 
 ```text
-R5-C4 deletion + exact file / desktop / phone / targeted-function validation
-→ R5-D backend editability + strict desktop/mobile + full native-function acceptance
-→ binary Cart status decision
+R5-D2-A active Customizer editability
+→ R5-D2-B product-level Cart subtitle editability
+→ R5-D2-C dynamic recommendation ownership
+→ R5-D3 strict desktop and production-quality mobile visual acceptance
+→ R5-D4 final native Cart regression
+→ R5-D5 binary Cart status decision
 ```
 
 Cart remains `Not done` until the complete sequence passes.
