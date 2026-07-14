@@ -1,26 +1,28 @@
 # Step 4E-B2-R5-D · Final Cart Acceptance
 
-Last updated: 2026-07-13  
+Last updated: 2026-07-14  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
 
 ```text
-R5-B canonical replacement：Passed.
+R5-B canonical replacement：Passed as implementation baseline.
 R5-C1 through R5-C4 legacy cleanup：Passed / closed.
 R5-D1 exact source and ownership gate：Passed.
-R5-D2-A active Customizer editability：Passed.
+R5-D2-A Customizer editability：Passed.
 R5-D2-B product-level Cart subtitle editability：Passed.
-R5-D2-C dynamic recommendation and fallback ownership：Passed.
-R5-D2 backend editability/ownership gate：Closed / Passed.
-Remaining user inspection groups：2.
-Current executable phase：R5-D3 + R5-D4 combined final inspection.
+R5-D2-C recommendation/fallback ownership：Passed.
+R5-D2 backend editability/ownership：Closed / remains valid.
+R5-D3 final strict visual acceptance：Failed / reopened.
+R5-D4 final native Cart regression：Failed / reopened.
+R5-D5 binary decision：Blocked.
+Current executable phase：R5-E1 exact source/state re-audit.
 Cart page status：Not done.
 ```
 
-R5-D is an acceptance phase. It must not add routine Cart CSS, alter templates, change native WooCommerce behavior or introduce a new patch stack.
+R5-D is no longer an inspection-only phase because reproduced defects require a controlled remediation cycle. Routine append-only Cart CSS and blind JavaScript edits remain forbidden.
 
-## Exact accepted code baselines
+## Exact last accepted code baselines
 
 ### PHP
 
@@ -48,149 +50,113 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-The accepted CSS is two bytes smaller than the theoretical R5-C4 result only because two empty newline characters immediately before the Checkout Visual Final marker were removed. No CSS semantics changed.
+These remain the last validated code baselines, but current server files must be re-uploaded before R5-E changes because the project rule requires the current server source as the only modification baseline.
 
-## R5-D1 · Exact source and ownership gate
+## Closed gates that remain valid
 
-Passed:
+### R5-D1 · Source and ownership
 
 ```text
-- Cart Visual 1 through 1.4.1 absent
-- Cart Visual 2-D through 2-D.8 absent
-- Cart Visual 2-E absent
-- Cart Visual 3 absent
-- Canonical Cart START / END present exactly once
-- Cart Notice START / END present exactly once
-- no Cart template override introduced
-- no Cart-specific JavaScript introduced
-- native quantity, remove, Coupon, shipping, totals, checkout URL, forms and nonces remain WooCommerce-owned
+- scheduled legacy Cart Visual blocks removed
+- Canonical Cart START / END present once
+- Cart Notice START / END present once
+- no Cart template override
+- no broad Cart-specific JavaScript implementation
+- WooCommerce remains owner of quantity, remove, Coupon, shipping, totals, forms, nonces and checkout URL
 - functions.php version remains 2.7.8
 ```
 
-## R5-D2 · Backend editability and dynamic ownership
-
-### R5-D2-A · Active Customizer text sources
+### R5-D2 · Backend editability and dynamic ownership
 
 ```text
-Status：Passed
+- eight active Customizer text fields changed, displayed and restored
+- product-level _sf_cart_item_meta changed, displayed and restored
+- SAFE5 Checkout product row remained structurally normal
+- four visible recommendations confirmed as real WooCommerce products
+- recommendation titles, prices, images and URLs matched live products
+- Cart products excluded from recommendation results
+- fallback selectors 1–4 available; selector 4 saved and restored
+- no fabricated product identity, fixed sample price or fixed sample URL accepted
 ```
 
-Validated:
+R5-D2 does not need to be repeated unless R5-E modifies those source paths.
+
+## Final inspection result
+
+Detailed failure record:
 
 ```text
-Cart heading · lead text
-Cart count · plural format
-Order summary heading
-Continue shopping button text
-Trust card 1 title
-Payment note
-Complete block title
-Complete block view-all text
+project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
 ```
 
-All eight temporary values appeared, all originals were restored, and no test copy remained.
-
-Detailed record:
+### Blocking defect 1 · Stale live counts
 
 ```text
-project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
+After quantity changes or remove/restore:
+- Header BAG count remains stale
+- Your Bag piece count remains stale
+- both correct only after manual refresh
 ```
 
-### R5-D2-B · Product-level Cart subtitle
+### Blocking defect 2 · Empty-Cart state mismatch
 
 ```text
-Status：Passed
+Transition-to-empty Cart：visually coherent full-width empty state.
+Direct fresh empty Cart：left-constrained layout with misplaced Return to Shop and unused right space.
 ```
 
-Validated source:
+### Blocking defect 3 · Desktop frame is materially too narrow
+
+Approved V2 source:
 
 ```text
-WooCommerce Product data → General
-Cart subtitle / product context
-Meta key: _sf_cart_item_meta
+max frame: 1440px
+reference gutter: 48px
+main grid: 7fr / 5fr
+desktop gap: 80px
 ```
 
-The unique temporary subtitle appeared on the correct Cart product, Cart and SAFE5 Checkout rows remained structurally normal, and the exact original value was restored.
+The supplied desktop screenshot remains substantially narrower and visibly closer to the prior legacy frame than the approved V2 composition.
 
-Detailed record:
+### Blocking visual gap 4 · Cart notice / Undo styling
+
+The current update/remove notice is functional but visually inconsistent with the restrained editorial V2 Cart direction.
+
+### User decision
 
 ```text
-project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md
+The Cart remains a large distance from 1:1.
+All unmentioned checks were reported as normal.
+Cart must remain Not done.
 ```
 
-### R5-D2-C · Dynamic recommendation and fallback ownership
+## R5-E controlled remediation
 
 ```text
-Status：Passed
+R5-E1 exact source/state re-audit
+→ R5-E2 synchronized Header BAG + Your Bag counts
+→ R5-E3 direct/transition empty-Cart parity
+→ R5-E4 desktop width and strict V2 visual rebase
+→ R5-E5 Cart Notice in-place refinement
+→ R5-E6 final desktop/mobile/function acceptance rerun
+→ binary Cart page-status decision
 ```
 
-Accepted:
+Required current server sources for R5-E1:
 
 ```text
-- four visible recommendation cards opened real WooCommerce product pages
-- titles, live prices and images matched their real products
-- no current Cart product appeared among recommendations
-- Fallback recommended product 1–4 all existed
-- selector 4 saved a temporary published visible product
-- selector 4 was restored to its exact original value
-- no fabricated product identity, fixed sample price or fixed sample URL was used
+1. functions.php
+2. assets/css/spatial-flow.css
+3. assets/js/spatial-flow.js
+4. header.php or the actual header template-part that renders BAG count
 ```
 
-Detailed record:
+## Freeze
 
 ```text
-project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
+- do not append another general Cart CSS patch
+- do not add polling or hardcoded counts
+- do not change native WooCommerce empty-Cart templates
+- do not alter Header structure broadly
+- do not claim Completed 1:1
 ```
-
-R5-D2 is closed as `Passed`.
-
-## R5-D3 + R5-D4 · Remaining combined inspection
-
-Authoritative checklist:
-
-```text
-project2-progress/STEP_4E_B2_R5_D3_D4_COMBINED_FINAL_CHECKLIST.md
-```
-
-Only two user inspection groups remain:
-
-```text
-1. R5-D3 final strict desktop and production-quality phone visual acceptance
-2. R5-D4 final native Cart regression
-```
-
-Required visual evidence:
-
-```text
-- one desktop full-page Cart screenshot after final load
-- one phone full-page Cart screenshot after final load
-```
-
-Required functional coverage:
-
-```text
-- quantity and Update Cart
-- Remove / Undo at multiple product positions
-- invalid Coupon
-- valid Coupon when available, otherwise explicit N/A
-- shipping and totals update
-- Checkout round trip
-- recommendation navigation
-- Header BAG count synchronization
-- empty-Cart behavior and restoration
-- final SAFE5 Checkout product-row verification
-```
-
-No PHP, CSS, JavaScript, template, Customizer or product-content edit is authorized during this inspection.
-
-## R5-D5 · Binary decision
-
-R5-D5 is not another user inspection round. After R5-D3 and R5-D4 pass, the assistant will update the authoritative records and make exactly one binary page-status decision:
-
-```text
-Completed 1:1
-or
-Not done
-```
-
-No intermediate page status is permitted.
