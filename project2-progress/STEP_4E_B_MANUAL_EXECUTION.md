@@ -16,10 +16,10 @@ Step 4E-B2-R2 / FIX1 / FIX2 / FIX3：Historical temporary takeover sequence comp
 Step 4E-B2-R4 native functional regression：Passed.
 Step 4E-B2-R5-A1 visual-gap and ownership audit：Complete.
 Step 4E-B2-R5-B canonical in-place replacement：Passed.
-R5-B1 / B2 / B3 / B4 / B5 remove-control diagnosis and correction：Complete.
-R5-B5 Remove / Undo / Restore recheck：Passed.
+R5-B1 through R5-B5 remove-control diagnosis and correction：Passed.
 Complete R5-B gate：Closed / Passed.
-Current executable step：Step 4E-B2-R5-C1 bounded legacy deletion.
+R5-C1 Cart Visual 1 through 1.4.1 deletion：Passed.
+Current executable step：Step 4E-B2-R5-C2 bounded legacy deletion.
 Cart page status：Not done.
 ```
 
@@ -28,11 +28,10 @@ Cart page status：Not done.
 ```text
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
+project2-progress/STEP_4E_B2_R5_C2_LEGACY_CART_VISUAL_2D_DELETION.md
+project2-progress/STEP_4E_B2_R5_C1_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_C1_LEGACY_CART_VISUAL_1_DELETION.md
 project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_B5_REMOVE_ICON_REFINEMENT.md
-project2-progress/STEP_4E_B2_R5_B4_REMOVE_ICON_OWNERSHIP.md
-project2-progress/STEP_4E_B2_R5_B3_DIAGNOSIS_RESULT.md
 project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
 project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
 project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
@@ -74,53 +73,40 @@ PHP remains unchanged throughout R5-C cleanup.
 
 ```text
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(14).css
-Size: 812,489 bytes
-Logical lines: 27,104
-SHA256: 53c2efa74e6975912191f0e522f97ce5ec2a8148fc8f808a8c481492d07e5c59
-Braces: 4,075 / 4,075
-Comments: 413 / 413
+Uploaded name: spatial-flow(15).css
+Size: 776,795 bytes
+Logical lines: 25,891
+SHA256: 60cc0237ac69d45dd290bf86584f4a69a0ff672541540e8ba49a18b3c3b270bf
+Braces: 3,921 / 3,921
+Comments: 384 / 384
 CSS parser errors: 0
-Canonical START / END: 1 / 1
-Old R2 / FIX markers: 0
-Cart Notice START: 1
 ```
 
-## Closed R5-B gate
+The two-byte difference from the R5-C1 theoretical hash is an accepted removal of two empty newline characters at the deletion boundary. No selector, declaration or comment boundary changed.
 
-The accepted canonical layer now owns the active Cart presentation.
+## Closed gates
 
-Confirmed:
+Confirmed through R5-C1:
 
 ```text
-- desktop structure stable
+- canonical desktop structure stable
 - production-quality phone structure stable
 - product thumbnails fill their slots
 - desktop Remove has an independent action row
 - phone remove control uses one persistent refined Astra SVG
 - trust icons no longer overflow into copy
 - duplicate mobile price removed
-- quantity, Coupon, address, checkout, recommendation and navigation functions passed
-- final targeted Remove / Undo / Restore recheck passed
+- quantity, Coupon, checkout and navigation functions passed
+- Cart Visual 1 through 1.4.1 no longer exists
 ```
 
 Routine Cart visual appends remain forbidden.
 
-## CSS debt inventory before R5-C1
+## Remaining historical CSS debt
 
-Historical Cart stack still present:
-
-```text
-15 blocks
-117,141 bytes
-3,798 logical lines
-456 rule/media-query brace pairs
-```
-
-Cleanup sequence:
+After R5-C1:
 
 ```text
-R5-C1：Cart Visual 1 through 1.4.1
 R5-C2：Cart Visual 2-D through 2-D.8
 R5-C3：Cart Visual 2-E
 R5-C4：Cart Visual 3
@@ -128,57 +114,54 @@ R5-C4：Cart Visual 3
 
 ## Current executable operation
 
-### Step 4E-B2-R5-C1 · Delete Cart Visual 1 through 1.4.1
+### Step 4E-B2-R5-C2 · Delete Cart Visual 2-D through 2-D.8
 
 Authoritative instructions:
 
 ```text
-project2-progress/STEP_4E_B2_R5_C1_LEGACY_CART_VISUAL_1_DELETION.md
+project2-progress/STEP_4E_B2_R5_C2_LEGACY_CART_VISUAL_2D_DELETION.md
 ```
 
 Exact deletion markers:
 
 ```css
 START:
-/* === Cart Visual 1 START ===
+/* === Cart Visual 2-D PRODUCT META + COUPON ALIGNMENT + PRODUCT-LIKE COMPLETE CARDS START ===
 
 END:
-/* === Cart Visual 1.4.1 ACTION BUTTON OVERLAP FIX END === */
+/* === Cart Visual 2-D.8 STABLE COUPON ROLLBACK + OVAL SUPPRESS END === */
 ```
 
-Deleted range:
+Deleted range identity:
 
 ```text
-35,692 bytes
-1,212 logical lines
-SHA256: 4ca2a01bba053a9e04a509474d27122d2f77d78a50927b932a55520da64253b2
+Size: 67,757 bytes
+Logical lines: 2,128
+SHA256: 0dbddf8801c08d5b73193d5dc2acd3de5d423aaac3dc05f2e9d5ad8df04d7f7c
+Braces: 232 / 232
+Comments: 33 / 33
 ```
 
-Expected file after exact deletion:
+Expected file after exact deletion from the accepted R5-C1 baseline:
 
 ```text
-Size: 776,797 bytes
-Logical lines: 25,893
-SHA256: 73d3cf9a76b9c3f5359254b4612948b735ae2b9157063a359e05f80dc8a9db73
-Braces: 3,921 / 3,921
-Comments: 384 / 384
+Size: 709,038 bytes
+Logical lines: 23,764
+SHA256: 8246c99795fb778ad87e310f63d66d48665fbb7009ba2c2a88f0856de2be79f2
+Braces: 3,689 / 3,689
+Comments: 351 / 351
 CSS parser errors: 0
 ```
 
-Bounded rollback source:
-
-```text
-project2-progress/rollback/STEP_4E_B2_R5_C1_CART_VISUAL_1_TO_1_4_1.css
-```
+Create a separate local bounded rollback copy of the selected range before deleting it.
 
 ## Remaining sequence
 
 ```text
-R5-C1 exact deletion + desktop/phone/targeted-function validation
-→ R5-C2 exact deletion + validation
-→ R5-C3 exact deletion + validation
-→ R5-C4 exact deletion + validation
-→ R5-D backend editability + strict desktop/mobile + full functional acceptance
+R5-C2 deletion + exact file / desktop / phone / targeted-function validation
+→ R5-C3 deletion + validation
+→ R5-C4 deletion + validation
+→ R5-D backend editability + strict desktop/mobile + full native-function acceptance
 → binary Cart status decision
 ```
 
