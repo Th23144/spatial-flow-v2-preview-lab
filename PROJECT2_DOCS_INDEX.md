@@ -12,22 +12,24 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 4. PROJECT2_CSS_MAINTENANCE_POLICY.md
 5. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 6. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-7. project2-progress/STEP_4E_B2_R5_C2_LEGACY_CART_VISUAL_2D_DELETION.md
-8. project2-progress/STEP_4E_B2_R5_C1_VALIDATION.md
-9. project2-progress/STEP_4E_B2_R5_C1_LEGACY_CART_VISUAL_1_DELETION.md
-10. project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
-11. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
-12. project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
-13. project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
-14. project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
-15. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
-16. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
-17. project2-progress/STEP_4E_B1_H_VALIDATION.md
-18. project2-progress/STEP_4E_B0_MANUAL_MAP.md
-19. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
-20. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
-21. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
-22. project2-progress/PROGRESS_LOG.md
+7. project2-progress/STEP_4E_B2_R5_C3_LEGACY_CART_VISUAL_2E_DELETION.md
+8. project2-progress/STEP_4E_B2_R5_C2_VALIDATION.md
+9. project2-progress/STEP_4E_B2_R5_C2_LEGACY_CART_VISUAL_2D_DELETION.md
+10. project2-progress/STEP_4E_B2_R5_C1_VALIDATION.md
+11. project2-progress/STEP_4E_B2_R5_C1_LEGACY_CART_VISUAL_1_DELETION.md
+12. project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
+13. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
+14. project2-progress/STEP_4E_B2_R5_A1_AUDIT_COMPLETE.md
+15. project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
+16. project2-progress/STEP_4E_B2_R4_NATIVE_FUNCTIONAL_REGRESSION.md
+17. project2-progress/STEP_4E_B2_A1_ROLLBACK_VALIDATION.md
+18. project2-progress/STEP_4E_B2_A1_FAILURE_AND_ROLLBACK.md
+19. project2-progress/STEP_4E_B1_H_VALIDATION.md
+20. project2-progress/STEP_4E_B0_MANUAL_MAP.md
+21. project2-progress/STEP_4E_CART_REWORK_AUDIT.md
+22. project2-progress/STEP_4E_A3_PHP_SOURCE_AUDIT.md
+23. project2-progress/STEP_4E_B1_B2_IMPLEMENTATION.md
+24. project2-progress/PROGRESS_LOG.md
 ```
 
 Current records supersede earlier ZIP/full-file instructions, deletion-first instructions, the temporary R2/FIX stack and the blind remove-glyph attempts.
@@ -39,8 +41,9 @@ Current records supersede earlier ZIP/full-file instructions, deletion-first ins
 | `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md` | Mobile quality/usability outrank literal replication of weak static phone layouts. | Active. |
 | `PROJECT2_CSS_MAINTENANCE_POLICY.md` | Replacement/merge/delete priority and anti-append-only rule. | Active. |
 | `project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md` | Binary page status map. | Current. |
-| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current Cart protocol, exact baseline and active gate. | Authoritative / R5-C2 active. |
-| `project2-progress/STEP_4E_B2_R5_C2_LEGACY_CART_VISUAL_2D_DELETION.md` | Exact bounded deletion and rollback procedure for Cart Visual 2-D through 2-D.8. | Current executable operation. |
+| `project2-progress/STEP_4E_B_MANUAL_EXECUTION.md` | Current Cart protocol, exact baseline and active gate. | Authoritative / R5-C3 active. |
+| `project2-progress/STEP_4E_B2_R5_C3_LEGACY_CART_VISUAL_2E_DELETION.md` | Exact bounded deletion and rollback procedure for Cart Visual 2-E. | Current executable operation. |
+| `project2-progress/STEP_4E_B2_R5_C2_VALIDATION.md` | Exact file, visual and functional validation of the second cleanup batch. | Passed. |
 | `project2-progress/STEP_4E_B2_R5_C1_VALIDATION.md` | Exact file, visual and functional validation of the first cleanup batch. | Passed. |
 | `project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md` | R5-B canonical visual and interaction closeout. | Passed. |
 | `project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md` | Staged R5-C cleanup and R5-D acceptance sequence. | Active. |
@@ -109,7 +112,8 @@ Step 4E-B2-R5-B canonical in-place replacement：Passed
 Step 4E-B2-R5-B1 through B5：Passed
 Complete R5-B gate：Closed / Passed
 R5-C1 Cart Visual 1 through 1.4.1 deletion：Passed
-Current：R5-C2 Cart Visual 2-D through 2-D.8 bounded deletion
+R5-C2 Cart Visual 2-D through 2-D.8 deletion：Passed
+Current：R5-C3 Cart Visual 2-E bounded deletion
 Routine append-only CSS：Forbidden
 Cart：Not done
 ```
@@ -133,32 +137,31 @@ Braces: 1,200 / 1,200
 
 ```text
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(15).css
-Size: 776,795 bytes
-Logical lines: 25,891
-SHA256: 60cc0237ac69d45dd290bf86584f4a69a0ff672541540e8ba49a18b3c3b270bf
-Braces: 3,921 / 3,921
-Comments: 384 / 384
+Uploaded name: spatial-flow(16).css
+Size: 709,035 bytes
+Logical lines: 23,761
+SHA256: 56513693e37f98021fca4fd71b389e7f83e2f797a9d0746047ebbe915870618a
+Braces: 3,689 / 3,689
+Comments: 351 / 351
 CSS parser errors: 0
 ```
 
-The R5-C1 theoretical file was 2 bytes larger only because it retained two empty newline characters at the deletion boundary. The accepted uploaded file has identical CSS semantics.
+The R5-C2 theoretical file was 3 bytes larger only because it retained three empty newline characters immediately before Cart Visual 2-E. The accepted uploaded file has identical CSS semantics.
 
-### Expected CSS after R5-C2 exact deletion
+### Expected CSS after R5-C3 exact deletion
 
 ```text
-Size: 709,038 bytes
-Logical lines: 23,764
-SHA256: 8246c99795fb778ad87e310f63d66d48665fbb7009ba2c2a88f0856de2be79f2
-Braces: 3,689 / 3,689
-Comments: 351 / 351
+Size: 697,432 bytes
+Logical lines: 23,368
+SHA256: a929032b92f4ea5b2e29f3d8e9ec9716eee42124a766164c34da3a2b903ed38b
+Braces: 3,629 / 3,629
+Comments: 342 / 342
 CSS parser errors: 0
 ```
 
 ## 7. Remaining CSS debt
 
 ```text
-R5-C2：Cart Visual 2-D through 2-D.8
 R5-C3：Cart Visual 2-E
 R5-C4：Cart Visual 3
 ```
@@ -168,8 +171,7 @@ Each batch is deletion-only, independently reversible and separately validated.
 ## 8. Correct execution sequence
 
 ```text
-R5-C2 deletion + exact file / desktop / phone / targeted-function validation
-→ R5-C3 deletion + validation
+R5-C3 deletion + exact file / desktop / phone / targeted-function validation
 → R5-C4 deletion + validation
 → R5-D backend editability + strict desktop/mobile + full native-function acceptance
 → binary Cart page-status decision
