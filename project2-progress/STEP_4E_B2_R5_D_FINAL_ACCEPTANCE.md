@@ -79,17 +79,26 @@ WordPress Admin
 
 Before changing anything, copy the current values of the fields below into a local note.
 
-Temporarily edit only these text fields:
+Temporarily edit only these text fields. Use the exact live Customizer labels shown in the current UI:
 
 ```text
 Cart heading · lead text
 Cart count · plural format
 Order summary heading
 Continue shopping button text
-Trust item 1 title
+Trust card 1 title
 Payment note
-Recommendation section title
-View-all button text
+Complete block title
+Complete block view-all text
+```
+
+Label mapping from the earlier audit wording:
+
+```text
+Trust item 1 title        → Trust card 1 title
+Recommendation section title → Complete block title
+View-all button text      → Complete block view-all text
+Payment note              → Payment note
 ```
 
 Use these temporary values:
@@ -99,10 +108,10 @@ Cart heading · lead text: Test
 Cart count · plural format: %s pieces · editability test
 Order summary heading: Order summary test
 Continue shopping button text: Continue shopping test
-Trust item 1 title: Trust title test
+Trust card 1 title: Trust title test
 Payment note: Payment note editability test
-Recommendation section title: Complete your space test
-View-all button text: View all test
+Complete block title: Complete your space test
+Complete block view-all text: View all test
 ```
 
 Publish once, force-refresh the Cart and verify that every temporary value appears in its corresponding visible area.
