@@ -1,6 +1,6 @@
 # Step 4E-B · Manual Staged Cart Execution Protocol
 
-Last updated: 2026-07-14  
+Last updated: 2026-07-15  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
@@ -18,7 +18,9 @@ R5-D3 final strict visual acceptance：Failed / reopened.
 R5-D4 final native Cart regression：Failed / reopened.
 R5-D5 binary decision：Blocked.
 R5-E1 exact source/state audit：Complete.
-Current executable phase：R5-E2 live count synchronization.
+R5-E2 PHP edit：Passed pre-deploy review.
+R5-E2 initial JS edit：Rejected before deployment because it duplicates WooCommerce native fragment refresh.
+Current executable phase：remove the two JS additions and exact-validate the restored JS baseline.
 Cart page status：Not done.
 ```
 
@@ -29,6 +31,7 @@ PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
 PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 PROJECT2_CSS_MAINTENANCE_POLICY.md
 project2-progress/STEP_4E_B2_R5_E1_EXACT_SOURCE_AUDIT.md
+project2-progress/STEP_4E_B2_R5_E2_PRE_DEPLOY_CODE_REVIEW.md
 project2-progress/STEP_4E_B2_R5_E2_LIVE_COUNT_SYNC.md
 project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
 project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
@@ -46,13 +49,14 @@ project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
 - no Cart template override
 - no hardcoded Cart/BAG count
 - no polling
+- no duplicate fragments request
 - no routine append-only Cart visual patch
 - no broad Header rewrite
 - every correction must be bounded and independently reversible
 - do not change Cart to Completed 1:1 before R5-E6 passes
 ```
 
-## Exact current server baselines
+## Last accepted server baselines before R5-E2
 
 ```text
 functions.php
@@ -87,56 +91,74 @@ PHP syntax: Passed
 Braces: 13 / 13
 ```
 
-## R5-E1 exact findings
+## R5-E2 pre-deploy review
+
+### Accepted PHP file
 
 ```text
-1. Header BAG owner: .sf-v2-bag-link sup in header.php.
-2. Your Bag count owner: .sf-cart-v2-heading__count in spatial_flow_cart_v2_heading().
-3. No existing fragment or updated_wc_div owner refreshes either count.
-4. Fresh empty Cart wrapper .wc-empty-cart-message is the grid child; current CSS incorrectly assigns grid span only to nested .cart-empty.
-5. Static Cart uses gap: 80px for both rows and columns.
-6. Current Canonical Cart uses row-gap: 0 and compresses title/count, causing the missing large editorial space.
-7. Current CSS declares 1440px/48px/7fr-5fr, but rendered width still requires computed-geometry verification under identical 100% zoom/viewport conditions.
-8. Cart Notice has one exact bounded owner and can be replaced in place later.
-```
-
-## Current executable operation
-
-```text
-project2-progress/STEP_4E_B2_R5_E2_LIVE_COUNT_SYNC.md
-```
-
-R5-E2 modifies only:
-
-```text
-functions.php
-assets/js/spatial-flow.js
-```
-
-Expected results after exact R5-E2 edits:
-
-```text
-functions.php
+functions(14).php
 Size: 552,215 bytes
 Logical lines: 10,292
 SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
 Braces: 1,208 / 1,208
 PHP syntax: Passed
+Version: 2.7.8
+```
 
-spatial-flow.js
+No unrelated PHP change was found.
+
+### Rejected JavaScript file
+
+```text
+spatial-flow(2).js
 Size: 71,299 bytes
-Logical lines: 2,011
-SHA256: 9b2e04b490ca90344baf1e0ac840c5e04779018dd794d044d9e87520fa95ba4b
+Logical lines: 2,009
+SHA256: 13706257345cb5d03a7759bc3abe7285632953103074e53f029e70fa7b80ed96
 Braces: 381 / 381
 JavaScript syntax: Passed
 ```
 
+Syntax is valid, but the added listener is logically redundant and would duplicate the fragment request.
+
+WooCommerce 10.4.3 already listens to:
+
+```text
+wc_fragment_refresh updated_wc_div
+```
+
+The PHP dependency is sufficient to activate that native owner. Therefore custom `setupCartLiveCountRefresh()` must not be deployed.
+
+## Current exact operation
+
+From `spatial-flow(2).js`, remove only:
+
+```text
+1. complete setupCartLiveCountRefresh() function
+2. setupCartLiveCountRefresh(); initializer call
+```
+
+Do not modify `functions(14).php`.
+
+Expected corrected JS:
+
+```text
+Size: 70,828 bytes
+Logical lines: 1,995
+SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
+Braces: 378 / 378
+JavaScript syntax: Passed
+```
+
+Upload the corrected JS for exact validation before applying either file to the server.
+
 ## Remaining sequence
 
 ```text
-R5-E2 synchronized live counts
+R5-E2 corrected JS exact validation
+→ apply accepted PHP + unchanged JS
+→ R5-E2 browser/network validation
 → R5-E3 empty-Cart wrapper/state parity
-→ R5-E4 strict static-source geometry, including the missing 80px row rhythm
+→ R5-E4 strict static-source geometry, including missing 80px row rhythm
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict full acceptance
 → binary Cart status decision
