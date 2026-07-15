@@ -7,13 +7,14 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 functions(14).php：Passed / exact expected PHP result.
-spatial-flow(2).js：Rejected before deployment.
-Reason：the added listener duplicates WooCommerce 10.4.3 native fragment refresh.
-No reviewed file has been authorized for server use as a pair yet.
+spatial-flow(2).js：Rejected before deployment because it duplicated WooCommerce native fragment refresh.
+spatial-flow(3).js：Functionally corrected, but not yet byte-identical to the accepted JS baseline.
+Remaining difference：one missing blank line before setupShopV2FilterDetails().
+Current authorization：Do not deploy the pair until that one blank line is restored and the JS is revalidated.
 Cart page status：Not done.
 ```
 
-## Uploaded files
+## PHP result retained
 
 ### functions(14).php
 
@@ -26,7 +27,7 @@ PHP syntax: Passed
 Version: 2.7.8
 ```
 
-The file is byte-identical to the previously predicted PHP result.
+The file is byte-identical to the predicted PHP result.
 
 Diff against `functions(13).php` contains only the intended changes:
 
@@ -40,6 +41,8 @@ Diff against `functions(13).php` contains only the intended changes:
 
 No unrelated PHP change was found.
 
+## Rejected intermediate JS
+
 ### spatial-flow(2).js
 
 ```text
@@ -50,60 +53,73 @@ Braces: 381 / 381
 JavaScript syntax: Passed
 ```
 
-The only functional additions are:
+The only functional additions were:
 
 ```text
 - setupCartLiveCountRefresh()
 - one setupCartLiveCountRefresh() initializer call
 ```
 
-The file also has two harmless whitespace differences from the originally predicted JS artifact. Those formatting differences are not the rejection reason.
+WooCommerce 10.4.3 already listens to both `wc_fragment_refresh` and `updated_wc_div` and performs the fragment request itself. The custom listener therefore caused a second redundant request and was rejected.
 
-## Blocking review finding
+## Latest corrected JS review
 
-WooCommerce 10.4.3 `cart-fragments.js` already contains the native listener:
-
-```javascript
-$( document.body ).on( 'wc_fragment_refresh updated_wc_div', function() {
-    refresh_cart_fragment();
-});
-```
-
-Therefore, once `wc-cart-fragments` is loaded as the PHP dependency, WooCommerce already performs one refreshed-fragments AJAX request after `updated_wc_div`.
-
-The proposed custom JS also listens to `updated_wc_div` and then triggers `wc_fragment_refresh` 40ms later:
-
-```javascript
-$body.on("updated_wc_div", function () {
-  refreshTimer = window.setTimeout(function () {
-    $body.trigger("wc_fragment_refresh");
-  }, 40);
-});
-```
-
-That produces this request path:
+### spatial-flow(3).js
 
 ```text
-updated_wc_div
-→ WooCommerce native refresh request #1
-→ custom listener triggers wc_fragment_refresh
-→ WooCommerce native refresh request #2
+Size: 70,827 bytes
+Logical lines: 1,994
+SHA256: 8c91c93f4f5cdf90feb95769d07a0e4ba2b79d791a85b60b2d447bbdc8223b66
+Braces: 378 / 378
+JavaScript syntax: Passed
+setupCartLiveCountRefresh occurrences: 0
+custom updated_wc_div occurrences: 0
+custom wc_fragment_refresh occurrences: 0
+initializer sequence restored: Yes
 ```
 
-This violates the project gate requiring no duplicate fragment request loop/request duplication.
-
-## Corrected implementation decision
-
-Keep the reviewed PHP change.
-
-Revert `assets/js/spatial-flow.js` completely to the prior exact baseline by removing only:
+Functional correction is complete:
 
 ```text
-1. the complete setupCartLiveCountRefresh() function
-2. the setupCartLiveCountRefresh(); initializer line
+- complete setupCartLiveCountRefresh() function removed
+- setupCartLiveCountRefresh(); initializer removed
+- no duplicate fragment request owner remains
+- setupShopV2FilterDetails() and surrounding function scope remain valid
 ```
 
-The corrected JS must be byte-identical to the previous accepted file:
+Exact diff against the accepted `spatial-flow(1).js` baseline contains only one line:
+
+```diff
+@@
+   }
+-
+   function setupShopV2FilterDetails() {
+```
+
+Therefore the only remaining difference is one missing empty line between the closing brace of `setupAddToCartDFeedback()` and the declaration of `setupShopV2FilterDetails()`.
+
+This whitespace difference does not change runtime behavior, but the current gate explicitly requires restoration to the exact accepted JS baseline before deployment.
+
+## Required final correction
+
+Locate:
+
+```javascript
+  }
+  function setupShopV2FilterDetails() {
+```
+
+Change it to:
+
+```javascript
+  }
+
+  function setupShopV2FilterDetails() {
+```
+
+Do not change any other JS.
+
+## Expected final JS
 
 ```text
 Size: 70,828 bytes
@@ -115,12 +131,12 @@ JavaScript syntax: Passed
 
 ## Why PHP-only is sufficient
 
-With the new PHP dependency active on Cart:
+With `functions(14).php` active on Cart:
 
 ```text
 - WooCommerce 10.4.3 owns the updated_wc_div listener
 - WooCommerce requests refreshed fragments once
-- the new PHP fragment filter returns the live Header BAG and Your Bag count markup
+- the PHP fragment filter returns Header BAG and Your Bag count markup
 - WooCommerce replaces both selectors
 ```
 
@@ -129,7 +145,8 @@ No custom Cart event listener is needed.
 ## Current executable step
 
 ```text
-Revert the two JS additions only.
+Restore the one missing blank line only.
 Do not change functions(14).php.
-Upload the corrected JS for exact validation before applying either file to the server.
+Upload the corrected JS once more for exact validation.
+Do not deploy either file until the final JS hash matches the accepted baseline.
 ```
