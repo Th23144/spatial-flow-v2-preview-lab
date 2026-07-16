@@ -7,9 +7,15 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 R5-E2 synchronized live counts：Passed / closed.
-R5-E3 instruction：Issued.
-User manual CSS edit：Pending.
+R5-E3 manual CSS edit：Passed exact pre-deploy validation.
+Current executable step：Deploy spatial-flow(20).css and run browser validation.
 Cart page status：Not done.
+```
+
+Pre-deploy record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E3_PRE_DEPLOY_VALIDATION.md
 ```
 
 ## Purpose
@@ -21,17 +27,17 @@ A. Cart becomes empty after removing the final product.
 B. Browser directly opens a Cart that was already empty.
 ```
 
-The current direct-load defect occurs because `.wc-empty-cart-message` is the direct CSS-grid child, while only its nested `.cart-empty` element is assigned full-grid ownership.
+The defect occurred because `.wc-empty-cart-message` is the direct CSS-grid child, while only its nested `.cart-empty` element previously received full-grid ownership.
 
 ## Scope
 
-Modify only:
+Modified only:
 
 ```text
 assets/css/spatial-flow.css
 ```
 
-Do not modify:
+Not modified:
 
 ```text
 functions.php
@@ -41,93 +47,35 @@ WooCommerce templates
 Customizer values
 version 2.7.8
 Cart Notice block
-heading spacing or desktop width in this step
+heading spacing
+desktop width
 ```
 
-## Current exact baseline
+## Accepted artifact
 
 ```text
-Uploaded name: spatial-flow(19).css
-Size: 695,346 bytes
-Logical lines: 23,305
-SHA256: 316874b203f8ce4104a1a98751f9b5fd63034fb50b0cbeb9aa0c4d2d5711020e
-Braces: 3,619 / 3,619
-Comments: 340 / 340
-CSS parser errors: 0
-```
-
-## Exact manual edit
-
-Inside:
-
-```text
-/* === Step 4E-B2-R5-B · Canonical Cart Presentation START === */
-```
-
-find this exact selector list once:
-
-```css
-body.woocommerce-cart .woocommerce-notices-wrapper,
-body.woocommerce-cart .woocommerce-message,
-body.woocommerce-cart .woocommerce-error,
-body.woocommerce-cart .woocommerce-info,
-body.woocommerce-cart .sf-cart-v2-heading,
-body.woocommerce-cart .sf-cart-next-steps,
-body.woocommerce-cart .cart-empty,
-body.woocommerce-cart .return-to-shop {
-  grid-column: 1 / -1 !important;
-}
-```
-
-Replace exactly with:
-
-```css
-body.woocommerce-cart .woocommerce-notices-wrapper,
-body.woocommerce-cart .woocommerce-message,
-body.woocommerce-cart .woocommerce-error,
-body.woocommerce-cart .woocommerce-info,
-body.woocommerce-cart .sf-cart-v2-heading,
-body.woocommerce-cart .sf-cart-next-steps,
-body.woocommerce-cart .wc-empty-cart-message,
-body.woocommerce-cart .cart-empty,
-body.woocommerce-cart .return-to-shop {
-  grid-column: 1 / -1 !important;
-}
-```
-
-This is one added selector line only.
-
-## Expected file result
-
-```text
+Uploaded name: spatial-flow(20).css
 Size: 695,392 bytes
 Logical lines: 23,306
 SHA256: 19701ba3ee9944784939bef50dc94d81ccefba46e4df6be279edabc3c03c22e8
 Braces: 3,619 / 3,619
 Comments: 340 / 340
-CSS parser errors: 0
+Target selector occurrences: 1
 ```
 
-## Why this is sufficient
+This matches the predicted R5-E3 artifact exactly.
 
-WooCommerce empty-Cart output contains:
+## Accepted bounded change
 
-```html
-<div class="wc-empty-cart-message">
-  <div class="cart-empty woocommerce-info">...</div>
-</div>
-<p class="return-to-shop">...</p>
+Inside the existing Canonical Cart full-grid selector list, this one line was added:
+
+```css
+body.woocommerce-cart .wc-empty-cart-message,
 ```
 
-The grid must assign the full-width column span to the direct child `.wc-empty-cart-message`. The nested `.cart-empty` selector can remain for compatibility and does not need to be deleted.
+The resulting selector list now assigns `grid-column: 1 / -1` to the real direct empty-Cart grid child. The nested `.cart-empty` selector remains for compatibility.
 
-No template override, JavaScript state class or duplicate late CSS patch is required.
-
-## Pre-deploy gate
-
-After editing, upload the changed CSS for exact validation before replacing the server file.
-
-Do not use the file unless it matches the expected metrics and contains no other diff.
+No template override, JavaScript state class or late appended patch is used.
 
 ## Browser validation after deployment
 
