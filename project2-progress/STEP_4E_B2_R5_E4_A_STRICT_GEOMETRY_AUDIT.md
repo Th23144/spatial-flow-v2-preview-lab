@@ -7,9 +7,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 R5-E3 empty-Cart parity：Passed / closed.
-R5-E4-A strict rendered-geometry audit：Active.
+R5-E4-A1 first rendered measurement：Complete.
+R5-E4-A2 winning ancestor/container trace：Active.
 Code change in R5-E4-A：None.
 Cart page status：Not done.
+```
+
+A1 result record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E4_A1_MEASUREMENT_RESULT.md
 ```
 
 ## Strict 1:1 reference geometry
@@ -57,7 +64,7 @@ Logical lines: 23,316
 SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
 ```
 
-The current Canonical Cart source already declares:
+The current Canonical Cart source declares:
 
 ```css
 --sf-cart-max: 1440px;
@@ -65,88 +72,96 @@ The current Canonical Cart source already declares:
 width: min(var(--sf-cart-max), calc(100% - 96px));
 grid-template-columns: minmax(0, 7fr) minmax(360px, 5fr);
 column-gap: var(--sf-cart-gap);
-```
-
-Therefore the screenshot-reported narrow desktop frame must be verified from the real computed/rendered width before changing `max-width` or gutters. A browser zoom or a different winning container owner can make the physical screenshot appear narrower even when the source declaration is correct.
-
-The current source has one confirmed strict mismatch:
-
-```css
 row-gap: 0 !important;
 ```
 
-It also compresses title and count into one `.sf-cart-v2-heading` owner:
+## A1 measured result
 
 ```text
-heading padding: 56px 0 32px
-heading margin-bottom: 40px
-title margin-bottom: 8px
-count has no padding-bottom or own border
+viewport_css_px: 1315
+device_pixel_ratio: 1
+wrapper_width: 1164
+left_gutter: 68
+right_gutter: 83
+form_width: 609
+summary_width: 435
+rendered_column_gap: 80
+title_to_count: 8
+count_to_main_row: 93
 ```
 
-This cannot reproduce the static title/count/main-row rhythm.
+## A1 decision
 
-## Measurement gate
+```text
+- rendered 80px column gap matches the static source and must be retained
+- form/summary widths remain compatible with the intended 7fr / 5fr relationship
+- wrapper is narrower than the 1219px expected result at viewport 1315
+- normalized side inset is approximately 68px rather than 48px
+- likely cause is an ancestor content box already inset by about 20px per side
+- title-to-count is short by approximately 80px
+- count-to-main-row is short by approximately 27px
+```
 
-Run only on a non-empty desktop Cart with browser zoom set to 100%. Use a viewport at least 1366 CSS pixels wide.
+The source-confirmed vertical mismatch will be corrected in R5-E4-B. The wrapper owner must be traced before changing width or gutters.
 
-In DevTools Console, run:
+## R5-E4-A2 · Winning ancestor trace
+
+Run on the same non-empty desktop Cart at 100% browser zoom.
+
+Paste this into DevTools Console:
 
 ```javascript
 (() => {
-  const q = (s) => document.querySelector(s);
-  const rect = (el) => el ? el.getBoundingClientRect() : null;
-  const wrap = rect(q('body.woocommerce-cart .entry-content > .woocommerce'));
-  const title = rect(q('.sf-cart-v2-heading__title'));
-  const count = rect(q('.sf-cart-v2-heading__count'));
-  const form = rect(q('form.woocommerce-cart-form'));
-  const totals = rect(q('.cart-collaterals'));
-  const mainTop = Math.min(
-    form ? form.top : Number.POSITIVE_INFINITY,
-    totals ? totals.top : Number.POSITIVE_INFINITY
-  );
+  const target = document.querySelector('body.woocommerce-cart .entry-content > .woocommerce');
+  const rows = [];
+  let el = target;
+  let depth = 0;
 
-  console.table({
-    viewport_css_px: Math.round(window.innerWidth),
-    device_pixel_ratio: window.devicePixelRatio,
-    wrapper_width: wrap ? Math.round(wrap.width) : null,
-    left_gutter: wrap ? Math.round(wrap.left) : null,
-    right_gutter: wrap ? Math.round(window.innerWidth - wrap.right) : null,
-    form_width: form ? Math.round(form.width) : null,
-    summary_width: totals ? Math.round(totals.width) : null,
-    rendered_column_gap: form && totals ? Math.round(totals.left - form.right) : null,
-    title_to_count: title && count ? Math.round(count.top - title.bottom) : null,
-    count_to_main_row: count && Number.isFinite(mainTop) ? Math.round(mainTop - count.bottom) : null
+  while (el && depth < 10) {
+    const r = el.getBoundingClientRect();
+    const s = getComputedStyle(el);
+
+    rows.push({
+      depth,
+      element: `${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''}${el.classList.length ? '.' + [...el.classList].join('.') : ''}`,
+      rect_width: Math.round(r.width),
+      left: Math.round(r.left),
+      right_gap: Math.round(document.documentElement.clientWidth - r.right),
+      css_width: s.width,
+      max_width: s.maxWidth,
+      padding_left: s.paddingLeft,
+      padding_right: s.paddingRight,
+      margin_left: s.marginLeft,
+      margin_right: s.marginRight,
+      display: s.display,
+      box_sizing: s.boxSizing
+    });
+
+    el = el.parentElement;
+    depth += 1;
+  }
+
+  console.log({
+    window_inner_width: window.innerWidth,
+    document_client_width: document.documentElement.clientWidth,
+    scrollbar_width: window.innerWidth - document.documentElement.clientWidth
   });
+  console.table(rows);
 })();
 ```
 
-## Expected width formula
+## Expected diagnostic
 
-At desktop widths above the single-column breakpoint:
-
-```text
-expected wrapper width = min(1440, viewport width - 96)
-expected left/right gutter = (viewport width - wrapper width) / 2
-expected column gap at wide desktop = 80px
-```
-
-Examples:
-
-```text
-viewport 1366 → wrapper 1270px, gutters 48px
-viewport 1440 → wrapper 1344px, gutters 48px
-viewport 1536 → wrapper 1440px, gutters 48px
-viewport 1728 → wrapper 1440px, gutters 144px
-```
+The first ancestor whose content box is approximately 40px narrower than the document client width, or which carries about 20px left/right padding, is the likely owner causing the 68px effective gutters.
 
 ## Decision rule
 
 ```text
-- If computed wrapper width/gutters/column gap match the formula, do not widen the frame blindly.
-- If they do not match, identify the winning runtime owner before editing.
-- The title/count/main-row rhythm is already source-confirmed as wrong and will require an in-place Canonical Cart correction in R5-E4-B.
-- Phone geometry remains protected; the weak static mobile layout is not copied blindly.
+- do not alter --sf-cart-max blindly
+- do not change the 80px column gap
+- do not change PHP, JS, Header or templates
+- identify the exact ancestor owner first
+- then prepare one in-place Canonical Cart geometry correction
 ```
 
-No CSS change is authorized until the measurement result is recorded.
+No CSS change is authorized until the A2 trace is recorded.
