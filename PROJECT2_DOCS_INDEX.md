@@ -17,15 +17,14 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 9. project2-progress/STEP_4E_B2_R5_E2_POST_DEPLOY_VALIDATION.md
 10. project2-progress/STEP_4E_B2_R5_E3_EMPTY_CART_PARITY.md
 11. project2-progress/STEP_4E_B2_R5_E3_FINAL_RUNTIME_VALIDATION.md
-12. project2-progress/STEP_4E_B2_R5_E3_FIX2_FLEX_CENTERING.md
-13. project2-progress/STEP_4E_B2_R5_E3_FIX2_PRE_DEPLOY_VALIDATION.md
-14. project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
-15. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-16. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-17. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
-18. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
-19. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
-20. project2-progress/PROGRESS_LOG.md
+12. project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
+13. project2-progress/STEP_4E_B2_R5_E4_A1_MEASUREMENT_RESULT.md
+14. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+15. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+16. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
+17. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
+18. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
+19. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -84,7 +83,8 @@ R5-D5 binary decision：Blocked
 R5-E1 exact source/state audit：Complete
 R5-E2 synchronized live counts：Passed / closed
 R5-E3 empty-Cart parity：Passed / closed
-Current：R5-E4-A strict geometry measurement audit
+R5-E4-A1 first rendered measurement：Complete
+Current：R5-E4-A2 winning ancestor/container trace
 Cart：Not done
 ```
 
@@ -115,61 +115,53 @@ SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
 Braces: 3,621 / 3,621
 Comments: 340 / 340
 CSS parser errors: 0
-
-header.php
-Size: 11,328 bytes
-Logical lines: 172
-SHA256: 84bd757eb6cdfe779065ad739fd6968a297ae612b49d554feecf9032866f3224
-PHP syntax: Passed
-Braces: 13 / 13
 ```
 
-## Closed R5-E2 result
+## Closed R5-E2 and R5-E3 results
 
 ```text
-- Header BAG and Your Bag update immediately after quantity changes
-- remove and Undo update both counts
-- final-item removal changes BAG to (0)
-- Shop, Single Product and SAFE5 Checkout regressions passed
-- one get_refreshed_fragments request per Cart update
+- live BAG and Your Bag counts passed
+- one fragment request per update passed
+- desktop/phone transition/direct empty parity passed
+- phone empty message centered
+- Return to Shop, Undo, BAG (0), restored non-empty Cart passed
 ```
 
-## Closed R5-E3 result
+## R5-E4-A1 result
+
+Measured:
 
 ```text
-- desktop transition/direct empty parity passed
-- phone transition/direct empty parity passed
-- fake right column removed
-- phone empty-Cart message centered
-- Return to Shop passed
-- Undo passed
-- restored non-empty Cart passed
+viewport: 1315
+wrapper: 1164
+left/right gutters: 68 / 83
+form / summary: 609 / 435
+column gap: 80
+title → count: 8
+count → main row: 93
 ```
 
-## Current R5-E4-A audit
-
-Static reference:
+Decision:
 
 ```text
-maximum frame: 1440px
-side gutters: 48px
-main columns: 7fr / 5fr
-column gap: 80px
-parent row gap: 80px
+- 80px column gap matches the static source
+- wrapper is narrower than the expected 1219px result
+- title → count is short by approximately 80px
+- count → main row is short by approximately 27px
+- identify the ancestor inset owner before changing width
 ```
 
-Current source already declares the maximum frame, side-gutter formula, columns and column gap, but currently declares `row-gap: 0`. The user-reported narrow rendered width must be measured at 100% browser zoom before changing the width owner.
-
-Current operation:
+## Current operation
 
 ```text
 project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
+project2-progress/STEP_4E_B2_R5_E4_A1_MEASUREMENT_RESULT.md
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E4-A rendered geometry measurement
+R5-E4-A2 winning ancestor trace
 → R5-E4-B in-place strict geometry correction
 → R5-E4-C desktop + phone visual validation
 → R5-E5 Cart Notice in-place refinement
