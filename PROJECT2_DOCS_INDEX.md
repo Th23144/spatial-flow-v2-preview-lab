@@ -21,9 +21,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 13. project2-progress/STEP_4E_B2_R5_E4_A2_ANCESTOR_TRACE_RESULT.md
 14. project2-progress/STEP_4E_B2_R5_E4_B_STRICT_GEOMETRY_CORRECTION.md
 15. project2-progress/STEP_4E_B2_R5_E4_B_PRE_DEPLOY_VALIDATION.md
-16. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-17. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-18. project2-progress/PROGRESS_LOG.md
+16. project2-progress/STEP_4E_B2_R5_E4_C1_RUNTIME_PARTIAL_AND_MEASUREMENT_CORRECTION.md
+17. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+18. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+19. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -50,8 +51,9 @@ R5-E2 synchronized live counts：Passed / closed
 R5-E3 empty-Cart parity：Passed / closed
 R5-E4-A1 first geometry measurement：Complete
 R5-E4-A2 ancestor/container trace：Complete
-R5-E4-B exact CSS artifact：Passed / deployment authorized
-Current：R5-E4-C rendered geometry and visual validation
+R5-E4-B exact CSS artifact：Passed / deployed
+R5-E4-C1 partial runtime proof：Complete
+Current：R5-E4-C2 corrected full geometry diagnostic
 Cart：Not done
 ```
 
@@ -68,7 +70,7 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Validated deployment artifact: spatial-flow(23).css
+Deployed artifact: spatial-flow(23).css
 Size: 695,962 bytes
 Logical lines: 23,331
 SHA256: b55c854e959ab42026f93c786e62b0c7e6b56e1cbf5307027b45991d39d90531
@@ -77,49 +79,41 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## R5-E4 audit result
+## R5-E4-C1 evidence
+
+Before deployment:
 
 ```text
-document client width: 1300px
-current wrapper: 1164px
-current outer gutters: 68px / 68px
-current form / gap / summary: 609px / 80px / 435px
+wrapper: 1164px
+outer gutters: 68px / 68px
+entry-content padding: 20px / 20px
+wrapper padding: 20px / 20px
 ```
 
-Exact owners:
+After deployment, based on the supplied ancestor trace:
 
 ```text
-.entry-content padding-left/right: 20px / 20px
-.entry-content > .woocommerce padding-left/right: 20px / 20px
+wrapper: 1200px
+outer gutters: 50px / 50px
+entry-content padding: 0px / 0px
+wrapper padding: 0px / 0px
 ```
 
-Validated correction target:
+Therefore the R5-E4-B CSS is active and both known padding owners are removed. The user used the ancestor trace rather than the full geometry measurement, so final track and vertical-rhythm acceptance is still pending.
 
-```text
-wrapper: 1204px
-outer gutters: 48px / 48px
-internal tracks: approximately 656px / 468px
-column gap: 80px
-title → count: approximately 88px
-count → main row: approximately 120px
-```
-
-## Exact artifact integrity
-
-Removing the one intended R5-E4-B desktop media block from `spatial-flow(23).css` reproduces the accepted `spatial-flow(22).css` SHA256 exactly. No other CSS difference exists.
+The remaining 4px width difference from the provisional 1204px target needs exact border/content-box accounting before any further CSS edit.
 
 ## Current operation
 
 ```text
-Deploy spatial-flow(23).css.
-Rerun the existing geometry measurement on a non-empty desktop Cart at 100% zoom.
-Perform desktop and phone smoke validation.
+project2-progress/STEP_4E_B2_R5_E4_C1_RUNTIME_PARTIAL_AND_MEASUREMENT_CORRECTION.md
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E4-C geometry/visual runtime validation
+R5-E4-C2 corrected geometry diagnostic
+→ R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance
 → binary Cart decision
