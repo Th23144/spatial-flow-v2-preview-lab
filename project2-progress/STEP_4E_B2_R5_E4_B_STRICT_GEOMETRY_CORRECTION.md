@@ -8,29 +8,28 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 R5-E4-A1 measurement：Complete.
 R5-E4-A2 ancestor trace：Complete.
-R5-E4-B manual CSS correction：Ready.
-Deployment：Not authorized before exact artifact validation.
+R5-E4-B manual CSS correction：Complete.
+R5-E4-B exact artifact validation：Passed.
+Deployment：Authorized.
+Current executable phase：R5-E4-C rendered geometry and visual validation.
 Cart page status：Not done.
 ```
 
-## Scope
+Pre-deploy validation:
 
-Modify only:
+```text
+project2-progress/STEP_4E_B2_R5_E4_B_PRE_DEPLOY_VALIDATION.md
+```
+
+## Scope integrity
+
+Modified only:
 
 ```text
 assets/css/spatial-flow.css
 ```
 
-Baseline:
-
-```text
-spatial-flow(22).css
-Size: 695,622 bytes
-Logical lines: 23,316
-SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
-```
-
-Do not modify:
+Not modified:
 
 ```text
 functions.php
@@ -45,36 +44,35 @@ phone/mobile Cart rules
 7fr / 5fr grid declaration
 ```
 
-## Exact insertion anchor
-
-Inside:
+## Baseline
 
 ```text
-/* === Step 4E-B2-R5-B · Canonical Cart Presentation START === */
+spatial-flow(22).css
+Size: 695,622 bytes
+Logical lines: 23,316
+SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
+Braces: 3,621 / 3,621
+Comments: 340 / 340
 ```
 
-Find this complete count block:
+## Accepted artifact
 
-```css
-body.woocommerce-cart .sf-cart-v2-heading__count {
-  margin: 0 !important;
-  color: rgba(31, 25, 22, .62) !important;
-  font-family: "JetBrains Mono", ui-monospace, monospace !important;
-  font-size: 11px !important;
-  line-height: 1.5 !important;
-  letter-spacing: .24em !important;
-  text-transform: uppercase !important;
-}
+```text
+spatial-flow(23).css
+Size: 695,962 bytes
+Logical lines: 23,331
+SHA256: b55c854e959ab42026f93c786e62b0c7e6b56e1cbf5307027b45991d39d90531
+Braces: 3,625 / 3,625
+Comments: 340 / 340
+CSS parser errors: 0
+Line endings: LF
 ```
 
-Immediately after its closing brace and before:
+Removing the intended inserted media block recovers the exact accepted baseline SHA256. No other CSS difference exists.
 
-```css
-body.woocommerce-cart .sf-cart-pro-intro,
-body.woocommerce-cart .sf-cart-service-grid {
-```
+## Exact accepted correction
 
-insert exactly:
+Inside the existing Canonical Cart presentation owner, after the base count rule:
 
 ```css
 @media (min-width: 1101px) {
@@ -91,18 +89,15 @@ insert exactly:
     margin-bottom: 88px !important;
   }
 }
-
 ```
-
-Do not alter the existing base declarations. This bounded desktop-only override is intentionally placed after the base heading declarations so it wins without changing phone behavior.
 
 ## Why these values
 
 ### Width
 
 ```text
-.entry-content padding 20px + 20px：removed at widths above 1100px
-.woocommerce grid padding 20px + 20px：removed at widths above 1100px
+.entry-content padding 20px + 20px：removed above 1100px
+.woocommerce grid padding 20px + 20px：removed above 1100px
 ```
 
 Expected at document client width 1300px:
@@ -130,29 +125,41 @@ title_to_count: approximately 88px
 count_to_main_row: approximately 120px
 ```
 
-The real WooCommerce DOM combines title and count in one wrapper. These values reproduce the approved static rendered distances without changing parent row-gap or copying the static markup.
+The real WooCommerce DOM combines title and count in one wrapper. These values reproduce the approved static rendered distances without changing parent row-gap or copying static markup.
 
-## Predicted text-file metrics
+## Corrected structural count
 
-Assuming the current LF artifact and exact insertion above:
-
-```text
-Size: approximately 695,962 bytes
-Logical lines: approximately 23,331
-Braces: 3,624 / 3,624
-Comments: 340 / 340
-```
-
-The exact SHA256 and exact byte result must be calculated from the uploaded edited artifact before deployment. Approximate metrics are not deployment authorization.
-
-## Pre-deploy gate
-
-After the manual edit:
+The earlier planning estimate listed `3,624 / 3,624` braces. The exact correct count is:
 
 ```text
-1. save the CSS under a new upload name
-2. do not replace the server file yet
-3. upload it for exact full-file diff, structure and hash validation
+3,625 / 3,625
 ```
 
-Only after exact validation may the file be deployed and remeasured.
+The inserted media block adds four balanced rule blocks. This was only a planning-document counting error.
+
+## R5-E4-C runtime gate
+
+Deploy `spatial-flow(23).css` as `assets/css/spatial-flow.css`, clear caches, force refresh, and run the same geometry snippet on a non-empty desktop Cart at 100% zoom.
+
+Expected:
+
+```text
+wrapper_width: 1204
+left_gutter: 48
+right_gutter: 48
+form_width: approximately 656
+summary_width: approximately 468
+rendered_column_gap: 80
+title_to_count: approximately 88
+count_to_main_row: approximately 120
+```
+
+Then confirm:
+
+```text
+- desktop composition visibly matches the approved static large-whitespace rhythm
+- recommendation row uses the wider available frame normally
+- no desktop horizontal overflow
+- phone non-empty Cart remains normal
+- phone direct-empty and transition-to-empty remain centered and identical
+```
