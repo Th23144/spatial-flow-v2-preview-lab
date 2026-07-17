@@ -1,6 +1,6 @@
 # Step 4E-B2-R5-E3-FIX1 · Mobile Empty-Cart Centering
 
-Last updated: 2026-07-15  
+Last updated: 2026-07-16  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
@@ -9,38 +9,39 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 R5-E2 synchronized live counts：Passed / closed.
 R5-E3 desktop transition-to-empty：Passed.
 R5-E3 desktop direct-empty：Passed.
-R5-E3 phone transition-to-empty：Failed only on horizontal text alignment.
-R5-E3 phone direct-empty：Failed only on horizontal text alignment.
-Return to Shop：Passed.
-Undo during transition：Passed.
-Non-empty Cart smoke regression：Passed.
-Current executable step：R5-E3-FIX1 mobile-only centering correction.
+R5-E3 phone wrapper/state parity：Passed.
+R5-E3-FIX1 manual CSS artifact：Passed exact pre-deploy validation.
+Current executable step：Deploy spatial-flow(21).css and run phone runtime validation.
 Cart page status：Not done.
 ```
 
-## User evidence
-
-Two phone screenshots confirm:
+Pre-deploy record:
 
 ```text
-- both empty-Cart states now use the same full-width wrapper
+project2-progress/STEP_4E_B2_R5_E3_FIX1_PRE_DEPLOY_VALIDATION.md
+```
+
+## User evidence before FIX1
+
+Two phone screenshots confirmed:
+
+```text
+- both empty-Cart states use the same full-width wrapper
 - the previous fake right column is gone
 - Return to Shop is centered and usable
 - BAG (0), Undo and Footer remain normal
-- only “Your cart is currently empty.” remains left-aligned on phone
+- only “Your cart is currently empty.” remained left-aligned on phone
 ```
-
-Therefore the R5-E3 wrapper/state fix is structurally successful, but R5-E3 cannot close until the phone message alignment is centered.
 
 ## Scope
 
-Modify only:
+Modified only:
 
 ```text
 assets/css/spatial-flow.css
 ```
 
-Do not modify:
+Not modified:
 
 ```text
 functions.php
@@ -54,69 +55,35 @@ Desktop empty-Cart rules
 R5-E4 geometry/spacing rules
 ```
 
-## Current exact baseline
+## Accepted artifact
 
 ```text
-Uploaded/server artifact: spatial-flow(20).css
-Size: 695,392 bytes
-Logical lines: 23,306
-SHA256: 19701ba3ee9944784939bef50dc94d81ccefba46e4df6be279edabc3c03c22e8
-Braces: 3,619 / 3,619
-Comments: 340 / 340
-CSS parser errors: 0
-```
-
-## Exact in-place edit
-
-Inside the existing Canonical Cart phone block:
-
-```css
-@media (max-width: 767px) {
-```
-
-find this exact sequence once:
-
-```css
-  body.woocommerce-cart .sf-cart-v2-heading__count {
-    font-size: 9px !important;
-    letter-spacing: .18em !important;
-  }
-
-  body.woocommerce-cart form.woocommerce-cart-form tr.woocommerce-cart-form__cart-item,
-```
-
-replace it with:
-
-```css
-  body.woocommerce-cart .sf-cart-v2-heading__count {
-    font-size: 9px !important;
-    letter-spacing: .18em !important;
-  }
-
-  body.woocommerce-cart .cart-empty,
-  body.woocommerce-cart .return-to-shop {
-    text-align: center !important;
-  }
-
-  body.woocommerce-cart form.woocommerce-cart-form tr.woocommerce-cart-form__cart-item,
-```
-
-This is an in-place mobile rule inside the existing Canonical Cart owner. It is not a late appended patch.
-
-## Expected file result
-
-```text
+Uploaded name: spatial-flow(21).css
 Size: 695,511 bytes
 Logical lines: 23,311
 SHA256: d36326b8efac681ad6b9e3d31af63fe60221527fac26dee344803b3cd5fa6aee
 Braces: 3,620 / 3,620
 Comments: 340 / 340
 CSS parser errors: 0
+Target mobile centering block occurrences: 1
 ```
 
-## Why this is the correct fix
+## Exact accepted diff
 
-The wrapper and grid-span problem is already fixed. The remaining defect is only inherited text alignment on phone. Centering the native `.cart-empty` message and its `.return-to-shop` companion inside the existing mobile owner preserves:
+Compared with accepted `spatial-flow(20).css`, only this mobile rule was added inside the existing Canonical Cart phone media query:
+
+```css
+  body.woocommerce-cart .cart-empty,
+  body.woocommerce-cart .return-to-shop {
+    text-align: center !important;
+  }
+```
+
+No other CSS difference is accepted by this gate.
+
+## Why this is bounded
+
+The wrapper and grid-span problem was already fixed. This rule only corrects inherited phone text alignment while preserving:
 
 ```text
 - native WooCommerce markup
@@ -127,7 +94,7 @@ The wrapper and grid-span problem is already fixed. The remaining defect is only
 - non-empty Cart layout
 ```
 
-## Validation after deployment
+## Runtime validation after deployment
 
 Check only phone:
 
@@ -141,4 +108,4 @@ Check only phone:
 7. Re-add the original product and confirm non-empty Cart remains normal.
 ```
 
-Do not begin R5-E4 until R5-E3-FIX1 is explicitly accepted.
+Do not begin R5-E4 until R5-E3-FIX1 runtime validation is explicitly accepted.
