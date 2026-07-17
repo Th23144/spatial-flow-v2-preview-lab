@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-14  
+Last updated: 2026-07-15  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative Cart read order
@@ -14,14 +14,14 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 6. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 7. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
 8. project2-progress/STEP_4E_B2_R5_E1_EXACT_SOURCE_AUDIT.md
-9. project2-progress/STEP_4E_B2_R5_E2_LIVE_COUNT_SYNC.md
-10. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-11. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-12. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
-13. project2-progress/STEP_4E_B2_R5_D2_B_PRODUCT_SUBTITLE_EDITABILITY_VALIDATION.md
-14. project2-progress/STEP_4E_B2_R5_D2_A_CUSTOMIZER_EDITABILITY_VALIDATION.md
-15. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
-16. project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
+9. project2-progress/STEP_4E_B2_R5_E2_POST_DEPLOY_VALIDATION.md
+10. project2-progress/STEP_4E_B2_R5_E3_EMPTY_CART_PARITY.md
+11. project2-progress/STEP_4E_B2_R5_E3_PRE_DEPLOY_VALIDATION.md
+12. project2-progress/STEP_4E_B2_R5_E3_FIX1_MOBILE_EMPTY_CENTERING.md
+13. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+14. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+15. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
+16. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
 17. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
 18. project2-progress/PROGRESS_LOG.md
 ```
@@ -35,7 +35,7 @@ Completed 1:1
 Not done
 ```
 
-`Completed 1:1` now explicitly means strict source-level geometric and spatial fidelity, not a general visual resemblance.
+`Completed 1:1` means strict source-level geometric and spatial fidelity, not general resemblance.
 
 ## Completed 1:1
 
@@ -80,68 +80,88 @@ R5-D3 final strict visual acceptance：Failed / reopened
 R5-D4 final native Cart regression：Failed / reopened
 R5-D5 binary decision：Blocked
 R5-E1 exact source/state audit：Complete
-Current：R5-E2 synchronized live counts
+R5-E2 synchronized live counts：Passed / closed
+R5-E3 desktop and wrapper parity：Passed
+Current：R5-E3-FIX1 mobile empty-Cart centering
 Cart：Not done
 ```
 
-## Exact R5-E1 findings
-
-```text
-1. Header BAG count is PHP-rendered in .sf-v2-bag-link sup.
-2. Your Bag count is PHP-rendered in .sf-cart-v2-heading__count.
-3. WooCommerce non-empty Cart AJAX replaces only the form and totals; neither custom count currently has a fragment/event owner.
-4. Fresh empty Cart uses .wc-empty-cart-message as the actual grid child; current CSS targets only nested .cart-empty.
-5. Approved static Cart uses gap: 80px for rows and columns.
-6. Current Canonical Cart uses row-gap: 0, which removes the large title/count/product vertical rhythm highlighted by the user.
-7. Source declares 1440px/48px/7fr-5fr, but final rendered width still requires same-viewport, 100%-zoom computed verification.
-8. Cart Notice has one bounded owner for later in-place replacement.
-```
-
-## Exact current server baselines
+## Accepted current server baselines
 
 ```text
 functions.php
-Uploaded name: functions(13).php
+Source artifact: functions(14).php
 Version: 2.7.8
-Size: 550,884 bytes
-Logical lines: 10,256
-SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
+Size: 552,215 bytes
+Logical lines: 10,292
+SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
 PHP syntax: Passed
-Braces: 1,200 / 1,200
-
-assets/css/spatial-flow.css
-Uploaded name: spatial-flow(19).css
-Size: 695,346 bytes
-Logical lines: 23,305
-SHA256: 316874b203f8ce4104a1a98751f9b5fd63034fb50b0cbeb9aa0c4d2d5711020e
-Braces: 3,619 / 3,619
-Comments: 340 / 340
+Braces: 1,208 / 1,208
 
 assets/js/spatial-flow.js
-Uploaded name: spatial-flow(1).js
+Decision: unchanged accepted baseline
 Size: 70,828 bytes
 Logical lines: 1,995
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 Braces: 378 / 378
+
+assets/css/spatial-flow.css
+Source artifact: spatial-flow(20).css
+Size: 695,392 bytes
+Logical lines: 23,306
+SHA256: 19701ba3ee9944784939bef50dc94d81ccefba46e4df6be279edabc3c03c22e8
+Braces: 3,619 / 3,619
+Comments: 340 / 340
+CSS parser errors: 0
 
 header.php
 Size: 11,328 bytes
 Logical lines: 172
 SHA256: 84bd757eb6cdfe779065ad739fd6968a297ae612b49d554feecf9032866f3224
 PHP syntax: Passed
+Braces: 13 / 13
+```
+
+## R5-E2 accepted result
+
+```text
+- Header BAG and Your Bag update immediately after quantity changes
+- remove and Undo update both counts
+- final-item removal changes BAG to (0)
+- Shop, Single Product and SAFE5 Checkout regressions passed
+- one get_refreshed_fragments request per Cart update
+```
+
+## R5-E3 current result
+
+Passed:
+
+```text
+- desktop transition-to-empty
+- desktop direct-empty
+- phone full-width wrapper parity
+- fake right column removed
+- Return to Shop
+- Undo
+- non-empty Cart smoke regression
+```
+
+Remaining:
+
+```text
+Phone empty-Cart message is left-aligned in both states and must be centered in R5-E3-FIX1.
 ```
 
 ## Current operation
 
 ```text
-project2-progress/STEP_4E_B2_R5_E2_LIVE_COUNT_SYNC.md
+project2-progress/STEP_4E_B2_R5_E3_FIX1_MOBILE_EMPTY_CENTERING.md
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E2 synchronized live counts
-→ R5-E3 empty-Cart state parity
+R5-E3-FIX1 mobile centering
 → R5-E4 strict static-source geometry and missing 80px row rhythm
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance rerun
