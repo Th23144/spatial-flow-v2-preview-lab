@@ -11,66 +11,24 @@ R5-E3 desktop transition-to-empty：Passed.
 R5-E3 desktop direct-empty：Passed.
 R5-E3 phone wrapper/state parity：Passed.
 R5-E3-FIX1 manual CSS artifact：Passed exact pre-deploy validation.
-Current executable step：Deploy spatial-flow(21).css and run phone runtime validation.
+R5-E3-FIX1 runtime result：Failed — message remained left-aligned.
+Superseded by：R5-E3-FIX2 deterministic flex centering.
 Cart page status：Not done.
 ```
 
-Pre-deploy record:
+## Accepted artifact but failed runtime behavior
 
 ```text
-project2-progress/STEP_4E_B2_R5_E3_FIX1_PRE_DEPLOY_VALIDATION.md
-```
-
-## User evidence before FIX1
-
-Two phone screenshots confirmed:
-
-```text
-- both empty-Cart states use the same full-width wrapper
-- the previous fake right column is gone
-- Return to Shop is centered and usable
-- BAG (0), Undo and Footer remain normal
-- only “Your cart is currently empty.” remained left-aligned on phone
-```
-
-## Scope
-
-Modified only:
-
-```text
-assets/css/spatial-flow.css
-```
-
-Not modified:
-
-```text
-functions.php
-assets/js/spatial-flow.js
-header.php
-WooCommerce templates
-Customizer values
-version 2.7.8
-Cart Notice block
-Desktop empty-Cart rules
-R5-E4 geometry/spacing rules
-```
-
-## Accepted artifact
-
-```text
-Uploaded name: spatial-flow(21).css
+Uploaded/deployed name: spatial-flow(21).css
 Size: 695,511 bytes
 Logical lines: 23,311
 SHA256: d36326b8efac681ad6b9e3d31af63fe60221527fac26dee344803b3cd5fa6aee
 Braces: 3,620 / 3,620
 Comments: 340 / 340
 CSS parser errors: 0
-Target mobile centering block occurrences: 1
 ```
 
-## Exact accepted diff
-
-Compared with accepted `spatial-flow(20).css`, only this mobile rule was added inside the existing Canonical Cart phone media query:
+The file was structurally exact and contained the intended phone rule once:
 
 ```css
   body.woocommerce-cart .cart-empty,
@@ -79,33 +37,18 @@ Compared with accepted `spatial-flow(20).css`, only this mobile rule was added i
   }
 ```
 
-No other CSS difference is accepted by this gate.
+However, the user confirmed that the native phone empty-Cart message still remained visually left-aligned after deployment.
 
-## Why this is bounded
+## Revised diagnosis
 
-The wrapper and grid-span problem was already fixed. This rule only corrects inherited phone text alignment while preserving:
+The uploaded child CSS contains no later `.cart-empty` text-alignment override. Therefore the issue is not a missing edit or a later child-file rule. The text-only correction does not control the real rendered layout's horizontal main-axis placement, most likely because the parent/theme presents the WooCommerce notice as a flex container.
 
-```text
-- native WooCommerce markup
-- desktop behavior
-- transition/direct state parity
-- Undo behavior
-- Return to Shop link
-- non-empty Cart layout
-```
+`text-align` can center inline content inside a normal block but does not move a flex item. FIX2 therefore explicitly sets the empty message to flex and centers its main axis.
 
-## Runtime validation after deployment
-
-Check only phone:
+## Superseding record
 
 ```text
-1. Remove the final item without refreshing.
-2. Confirm the empty message is horizontally centered.
-3. Confirm Undo still works.
-4. Empty the Cart again and open/refresh the already-empty Cart directly.
-5. Confirm the empty message is horizontally centered in the same position.
-6. Confirm Return to Shop remains centered and usable.
-7. Re-add the original product and confirm non-empty Cart remains normal.
+project2-progress/STEP_4E_B2_R5_E3_FIX2_FLEX_CENTERING.md
 ```
 
-Do not begin R5-E4 until R5-E3-FIX1 runtime validation is explicitly accepted.
+Do not reuse FIX1 as a completion gate.
