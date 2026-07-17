@@ -8,160 +8,92 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 R5-E3 empty-Cart parity：Passed / closed.
 R5-E4-A1 first rendered measurement：Complete.
-R5-E4-A2 winning ancestor/container trace：Active.
-Code change in R5-E4-A：None.
+R5-E4-A2 winning ancestor/container trace：Complete.
+R5-E4-A：Complete / closed.
+Current executable phase：R5-E4-B in-place strict geometry correction.
 Cart page status：Not done.
 ```
 
-A1 result record:
+Records:
 
 ```text
 project2-progress/STEP_4E_B2_R5_E4_A1_MEASUREMENT_RESULT.md
+project2-progress/STEP_4E_B2_R5_E4_A2_ANCESTOR_TRACE_RESULT.md
+project2-progress/STEP_4E_B2_R5_E4_B_STRICT_GEOMETRY_CORRECTION.md
 ```
 
-## Strict 1:1 reference geometry
-
-The approved static Cart source defines:
+## Strict reference
 
 ```text
 maximum frame: 1440px
-reference desktop side gutters: 48px
+outer desktop gutters: 48px
 main columns: 7fr / 5fr
-desktop column gap: 80px
-Cart page top padding: 56px
-Cart page bottom padding: 96px
-parent grid row gap: 80px
+wide-desktop column gap: 80px
+title → count: approximately 88px
+count → main row: approximately 120px
 ```
 
-The title and count are separate full-width grid children:
+## Final measured evidence
 
 ```text
-Title margin-bottom: 8px
-parent row gap after title: 80px
-Count margin-bottom: 40px
-Count padding-bottom: 32px
-Count bottom border: 1px
-parent row gap after count: 80px
+window inner width: 1315px
+document client width: 1300px
+scrollbar width: 15px
+wrapper outer width: 1164px
+wrapper outer gutters: 68px / 68px
+internal form / gap / summary: 609px / 80px / 435px
+title → count: 8px
+count → main row: 93px
 ```
 
-Therefore the approximate rendered distances are:
+## Exact width owner
+
+The trace confirmed:
 
 ```text
-title border-box bottom → count border-box top: 88px
-count border-box bottom → main Cart row top: 120px
+.entry-content padding-left/right: 20px / 20px
+.entry-content > .woocommerce padding-left/right: 20px / 20px
+all higher ancestors: full 1300px client width with no horizontal padding
 ```
 
-The real WooCommerce DOM does not use identical elements, so these distances must be reproduced equivalently rather than by adding arbitrary visual padding.
-
-## Current source audit
-
-Current deployed CSS artifact:
+Current calculation:
 
 ```text
-spatial-flow(22).css
-Size: 695,622 bytes
-Logical lines: 23,316
-SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
+1300 - 40 parent padding = 1260
+1260 - 96 Cart width formula = 1164 outer width
+1164 - 40 wrapper padding = 1124 internal grid width
+609 + 80 + 435 = 1124
 ```
 
-The current Canonical Cart source declares:
-
-```css
---sf-cart-max: 1440px;
---sf-cart-gap: 80px;
-width: min(var(--sf-cart-max), calc(100% - 96px));
-grid-template-columns: minmax(0, 7fr) minmax(360px, 5fr);
-column-gap: var(--sf-cart-gap);
-row-gap: 0 !important;
-```
-
-## A1 measured result
+Correct target:
 
 ```text
-viewport_css_px: 1315
-device_pixel_ratio: 1
-wrapper_width: 1164
-left_gutter: 68
-right_gutter: 83
-form_width: 609
-summary_width: 435
-rendered_column_gap: 80
-title_to_count: 8
-count_to_main_row: 93
+1204px Cart outer/internal width
+48px / 48px outer gutters
+approximately 656px / 468px tracks
+80px column gap
 ```
 
-## A1 decision
+The earlier provisional 1219px width based on `window.innerWidth` is superseded; CSS layout percentages use the 1300px document client width.
+
+## Exact vertical finding
 
 ```text
-- rendered 80px column gap matches the static source and must be retained
-- form/summary widths remain compatible with the intended 7fr / 5fr relationship
-- wrapper is narrower than the 1219px expected result at viewport 1315
-- normalized side inset is approximately 68px rather than 48px
-- likely cause is an ancestor content box already inset by about 20px per side
-- title-to-count is short by approximately 80px
-- count-to-main-row is short by approximately 27px
+title → count requires +80px
+count → main row requires approximately +27px
 ```
 
-The source-confirmed vertical mismatch will be corrected in R5-E4-B. The wrapper owner must be traced before changing width or gutters.
+Because the real DOM combines title and count inside one heading wrapper, R5-E4-B uses desktop-only internal spacing rather than setting the parent row-gap to 80px blindly.
 
-## R5-E4-A2 · Winning ancestor trace
-
-Run on the same non-empty desktop Cart at 100% browser zoom.
-
-Paste this into DevTools Console:
-
-```javascript
-(() => {
-  const target = document.querySelector('body.woocommerce-cart .entry-content > .woocommerce');
-  const rows = [];
-  let el = target;
-  let depth = 0;
-
-  while (el && depth < 10) {
-    const r = el.getBoundingClientRect();
-    const s = getComputedStyle(el);
-
-    rows.push({
-      depth,
-      element: `${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''}${el.classList.length ? '.' + [...el.classList].join('.') : ''}`,
-      rect_width: Math.round(r.width),
-      left: Math.round(r.left),
-      right_gap: Math.round(document.documentElement.clientWidth - r.right),
-      css_width: s.width,
-      max_width: s.maxWidth,
-      padding_left: s.paddingLeft,
-      padding_right: s.paddingRight,
-      margin_left: s.marginLeft,
-      margin_right: s.marginRight,
-      display: s.display,
-      box_sizing: s.boxSizing
-    });
-
-    el = el.parentElement;
-    depth += 1;
-  }
-
-  console.log({
-    window_inner_width: window.innerWidth,
-    document_client_width: document.documentElement.clientWidth,
-    scrollbar_width: window.innerWidth - document.documentElement.clientWidth
-  });
-  console.table(rows);
-})();
-```
-
-## Expected diagnostic
-
-The first ancestor whose content box is approximately 40px narrower than the document client width, or which carries about 20px left/right padding, is the likely owner causing the 68px effective gutters.
-
-## Decision rule
+## Decision
 
 ```text
-- do not alter --sf-cart-max blindly
-- do not change the 80px column gap
-- do not change PHP, JS, Header or templates
-- identify the exact ancestor owner first
-- then prepare one in-place Canonical Cart geometry correction
+- retain --sf-cart-max: 1440px
+- retain width calc(100% - 96px)
+- retain 7fr / 5fr
+- retain 80px wide-desktop column gap
+- correct only the two inherited padding owners and the two measured vertical distances
+- protect phone and accepted empty-Cart behavior
 ```
 
-No CSS change is authorized until the A2 trace is recorded.
+R5-E4-A authorizes no PHP, JavaScript, Header or template change.
