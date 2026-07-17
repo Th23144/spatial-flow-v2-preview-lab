@@ -7,15 +7,22 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 R5-E2 synchronized live counts：Passed / closed.
-R5-E3 manual CSS edit：Passed exact pre-deploy validation.
-Current executable step：Deploy spatial-flow(20).css and run browser validation.
+R5-E3 wrapper/grid-span correction：Passed.
+R5-E3 desktop transition-to-empty：Passed.
+R5-E3 desktop direct-empty：Passed.
+R5-E3 phone transition-to-empty：Failed only on horizontal message alignment.
+R5-E3 phone direct-empty：Failed only on horizontal message alignment.
+Return to Shop：Passed.
+Undo during transition：Passed.
+Non-empty Cart smoke regression：Passed.
+Current executable step：R5-E3-FIX1 mobile empty-Cart centering.
 Cart page status：Not done.
 ```
 
-Pre-deploy record:
+Current fix record:
 
 ```text
-project2-progress/STEP_4E_B2_R5_E3_PRE_DEPLOY_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E3_FIX1_MOBILE_EMPTY_CENTERING.md
 ```
 
 ## Purpose
@@ -27,45 +34,19 @@ A. Cart becomes empty after removing the final product.
 B. Browser directly opens a Cart that was already empty.
 ```
 
-The defect occurred because `.wc-empty-cart-message` is the direct CSS-grid child, while only its nested `.cart-empty` element previously received full-grid ownership.
+The original structural defect occurred because `.wc-empty-cart-message` is the direct CSS-grid child, while only its nested `.cart-empty` element previously received full-grid ownership.
 
-## Scope
-
-Modified only:
+## Accepted structural artifact
 
 ```text
-assets/css/spatial-flow.css
-```
-
-Not modified:
-
-```text
-functions.php
-assets/js/spatial-flow.js
-header.php
-WooCommerce templates
-Customizer values
-version 2.7.8
-Cart Notice block
-heading spacing
-desktop width
-```
-
-## Accepted artifact
-
-```text
-Uploaded name: spatial-flow(20).css
+Uploaded/server artifact: spatial-flow(20).css
 Size: 695,392 bytes
 Logical lines: 23,306
 SHA256: 19701ba3ee9944784939bef50dc94d81ccefba46e4df6be279edabc3c03c22e8
 Braces: 3,619 / 3,619
 Comments: 340 / 340
-Target selector occurrences: 1
+CSS parser errors: 0
 ```
-
-This matches the predicted R5-E3 artifact exactly.
-
-## Accepted bounded change
 
 Inside the existing Canonical Cart full-grid selector list, this one line was added:
 
@@ -73,61 +54,74 @@ Inside the existing Canonical Cart full-grid selector list, this one line was ad
 body.woocommerce-cart .wc-empty-cart-message,
 ```
 
-The resulting selector list now assigns `grid-column: 1 / -1` to the real direct empty-Cart grid child. The nested `.cart-empty` selector remains for compatibility.
+That correction successfully removed the direct-load left-column confinement and fake right-side column on desktop and phone.
 
-No template override, JavaScript state class or late appended patch is used.
+## Runtime result
 
-## Browser validation after deployment
+The user confirmed every R5-E3 check passed except phone horizontal alignment.
 
-### State A · transition to empty
-
-```text
-1. Begin with at least one product.
-2. Remove the final product without manually refreshing.
-3. Confirm empty message and Return to Shop form one coherent full-width composition.
-4. Confirm Header BAG remains (0).
-5. Confirm native notice/Undo remains functional while present.
-```
-
-### State B · direct fresh empty load
+Passed:
 
 ```text
-1. Keep Cart empty.
-2. Open the Cart URL in a new tab or force-refresh it.
-3. Confirm the empty message has the same width/alignment as State A.
-4. Confirm Return to Shop has the same placement as State A.
-5. Confirm there is no left-column confinement or unused fake right column.
+- desktop transition-to-empty
+- desktop direct fresh empty load
+- phone full-width wrapper parity
+- Return to Shop
+- native Undo
+- BAG (0)
+- non-empty Cart smoke regression
+- no horizontal overflow reported
 ```
 
-### Required viewports
+Remaining defect:
 
 ```text
-Desktop at 100% browser zoom.
-Phone at the current production test width.
+On both phone empty-Cart states, “Your cart is currently empty.” remains left-aligned instead of centered.
 ```
 
-### Non-empty smoke check
+The two supplied phone screenshots confirm this is now an alignment-only defect, not a grid-span/state-parity defect.
 
-Re-add one original product and confirm:
+## R5-E3-FIX1 exact operation
+
+Modify only:
 
 ```text
-- normal Cart layout remains unchanged
-- quantity and live counts still work
-- Order Summary remains present
-- no horizontal overflow
+assets/css/spatial-flow.css
 ```
 
-## Required report
+Current baseline is `spatial-flow(20).css`.
+
+Inside the existing Canonical Cart `@media (max-width: 767px)` block, add this bounded rule immediately after `.sf-cart-v2-heading__count`:
+
+```css
+  body.woocommerce-cart .cart-empty,
+  body.woocommerce-cart .return-to-shop {
+    text-align: center !important;
+  }
+```
+
+Expected result:
 
 ```text
-R5-E3 transition-to-empty desktop：Passed / Failed
-R5-E3 direct-empty desktop：Passed / Failed
-R5-E3 transition-to-empty phone：Passed / Failed
-R5-E3 direct-empty phone：Passed / Failed
-Return to Shop：Passed / Failed
-Undo during transition：Passed / Failed
-Non-empty Cart smoke check：Passed / Failed
-Original Cart restored：Yes / No
+Size: 695,511 bytes
+Logical lines: 23,311
+SHA256: d36326b8efac681ad6b9e3d31af63fe60221527fac26dee344803b3cd5fa6aee
+Braces: 3,620 / 3,620
+Comments: 340 / 340
+CSS parser errors: 0
 ```
 
-Do not begin R5-E4 until R5-E3 is explicitly accepted.
+No desktop rule, template, PHP, JavaScript, Cart Notice or R5-E4 geometry rule may be changed in FIX1.
+
+## Final R5-E3 validation after FIX1
+
+```text
+1. Phone transition-to-empty message centered.
+2. Phone direct-empty message centered.
+3. Return to Shop remains centered and usable.
+4. Undo remains functional.
+5. BAG remains (0).
+6. Re-added non-empty Cart remains normal.
+```
+
+Do not begin R5-E4 until R5-E3-FIX1 is explicitly accepted.
