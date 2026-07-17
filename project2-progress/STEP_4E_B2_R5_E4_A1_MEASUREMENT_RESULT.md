@@ -7,59 +7,68 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 R5-E4-A1 first rendered measurement：Complete.
-R5-E4-A2 winning ancestor/container trace：Required.
+R5-E4-A2 winning ancestor/container trace：Complete.
+Current executable phase：R5-E4-B in-place strict geometry correction.
 Code change：None.
 Cart page status：Not done.
+```
+
+A2 owner record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E4_A2_ANCESTOR_TRACE_RESULT.md
 ```
 
 ## User-supplied measurement
 
 ```text
-viewport_css_px: 1315
-device_pixel_ratio: 1
-wrapper_width: 1164
-left_gutter: 68
-right_gutter: 83
-form_width: 609
-summary_width: 435
-rendered_column_gap: 80
-title_to_count: 8
-count_to_main_row: 93
+window inner width: 1315
+document client width: 1300
+scrollbar width: 15
+wrapper width: 1164
+left/right wrapper gutters relative to client width: 68 / 68
+form width: 609
+summary width: 435
+rendered column gap: 80
+title to count: 8
+count to main row: 93
 ```
 
-## Evaluation
+## Final evaluation
 
 ### Main columns and column gap
 
 ```text
 Rendered column gap: 80px → matches the approved static source.
-Form + summary sizing remains compatible with an approximately 7fr / 5fr split after subtracting the 80px gap.
+609px + 80px + 435px = 1124px internal grid width.
+The tracks remain compatible with the intended 7fr / 5fr relationship.
 ```
 
-These values do not justify changing the 80px desktop column gap.
+Do not change the 80px wide-desktop column gap.
 
 ### Wrapper width and gutters
 
-At viewport 1315 CSS px, the declared strict formula predicts:
+CSS layout percentages resolve against `document.documentElement.clientWidth`, not `window.innerWidth` including the scrollbar.
+
+At client width 1300px, the strict target is:
 
 ```text
-expected wrapper width = 1315 - 96 = 1219px
-expected nominal side gutters = 48px
+expected wrapper width: 1300 - 96 = 1204px
+expected left/right outer gutters: 48px / 48px
 ```
 
 Measured:
 
 ```text
-wrapper width = 1164px
-left gutter = 68px
-right gutter = 83px
+wrapper width: 1164px
+left/right outer gutters: 68px / 68px
 ```
 
-The right/left difference is consistent with scrollbar or viewport/client-width accounting, but the wrapper remains approximately 40px narrower than the intended width even after normalizing the scrollbar difference.
+The exact 40px deficit is caused by `.entry-content` retaining 20px left/right padding before the child width formula resolves.
 
-This strongly indicates that `width: calc(100% - 96px)` is resolving against a parent content box that is already inset by about 20px on each side, rather than against the full viewport/content canvas.
+The wrapper itself also retains 20px left/right padding, reducing the internal grid by another 40px. Both owners were confirmed by A2.
 
-Do not change `--sf-cart-max` or the 48px formula yet. The winning ancestor/padding owner must be identified first.
+The earlier provisional 1219px target based on `window.innerWidth = 1315px` is superseded.
 
 ### Vertical rhythm
 
@@ -84,28 +93,19 @@ title → count is short by approximately 80px
 count → main row is short by approximately 27px
 ```
 
-This confirms the user-reported missing large title-area whitespace and matches the source audit finding that `row-gap: 0` compresses the heading/count sequence.
-
 ## Decision
 
 ```text
-- 80px desktop column gap：retain.
-- 7fr / 5fr main relationship：retain unless later computed-grid trace disproves it.
-- wrapper width：do not modify blindly; run ancestor/container trace.
-- title/count/main-row vertical rhythm：confirmed blocking strict 1:1 mismatch; correct in R5-E4-B.
+- retain 1440px maximum frame
+- retain 48px outer desktop gutter formula
+- retain 80px column gap
+- retain 7fr / 5fr relationship
+- remove the two inherited 20px horizontal padding owners only above 1100px
+- reproduce 88px / 120px rendered vertical rhythm with desktop-only bounded spacing
 ```
 
-## R5-E4-A2 required trace
-
-The next console trace must record the wrapper and its ancestors with:
+Exact manual correction:
 
 ```text
-- rendered width / left / right
-- computed width and max-width
-- padding-left / padding-right
-- margin-left / margin-right
-- display and box-sizing
-- viewport innerWidth and documentElement.clientWidth
+project2-progress/STEP_4E_B2_R5_E4_B_STRICT_GEOMETRY_CORRECTION.md
 ```
-
-No CSS edit is authorized before the owner trace is recorded.
