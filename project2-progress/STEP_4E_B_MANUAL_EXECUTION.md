@@ -21,7 +21,8 @@ R5-E1 exact source/state audit：Complete.
 R5-E2 synchronized live counts：Passed / closed.
 R5-E3 desktop and wrapper parity：Passed.
 R5-E3-FIX1 text-align-only correction：Failed at runtime.
-Current executable phase：R5-E3-FIX2 deterministic mobile flex centering.
+R5-E3-FIX2 CSS artifact：Passed exact pre-deploy validation.
+Current executable phase：Deploy spatial-flow(22).css and run phone runtime validation.
 Cart page status：Not done.
 ```
 
@@ -38,6 +39,7 @@ project2-progress/STEP_4E_B2_R5_E3_PRE_DEPLOY_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E3_FIX1_MOBILE_EMPTY_CENTERING.md
 project2-progress/STEP_4E_B2_R5_E3_FIX1_PRE_DEPLOY_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E3_FIX2_FLEX_CENTERING.md
+project2-progress/STEP_4E_B2_R5_E3_FIX2_PRE_DEPLOY_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
 project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
 ```
@@ -87,51 +89,20 @@ Runtime validation passed:
 - one get_refreshed_fragments request per Cart update
 ```
 
-## Current CSS baseline
+## Validated CSS artifact for current deployment
 
 ```text
 assets/css/spatial-flow.css
-Deployed artifact: spatial-flow(21).css
-Size: 695,511 bytes
-Logical lines: 23,311
-SHA256: d36326b8efac681ad6b9e3d31af63fe60221527fac26dee344803b3cd5fa6aee
-Braces: 3,620 / 3,620
+Uploaded artifact: spatial-flow(22).css
+Size: 695,622 bytes
+Logical lines: 23,316
+SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
+Braces: 3,621 / 3,621
 Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## R5-E3 runtime state
-
-Passed:
-
-```text
-- desktop transition/direct empty parity
-- phone full-width wrapper parity
-- fake right column removed
-- Return to Shop
-- Undo
-- BAG (0)
-- non-empty Cart smoke check
-```
-
-Failed:
-
-```text
-- FIX1 text-align-only rule did not center the native phone empty-Cart message
-```
-
-## Current exact operation · R5-E3-FIX2
-
-Inside the existing Canonical Cart phone block, replace:
-
-```css
-  body.woocommerce-cart .cart-empty,
-  body.woocommerce-cart .return-to-shop {
-    text-align: center !important;
-  }
-```
-
-with:
+Exact diff from `spatial-flow(21).css` is limited to the intended replacement:
 
 ```css
   body.woocommerce-cart .cart-empty {
@@ -145,25 +116,22 @@ with:
   }
 ```
 
-This is an in-place replacement, not an appended patch.
+## Current runtime operation
 
-Expected result:
+Deploy `spatial-flow(22).css` as `assets/css/spatial-flow.css`, then check only phone:
 
 ```text
-Size: 695,622 bytes
-Logical lines: 23,316
-SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
-Braces: 3,621 / 3,621
-Comments: 340 / 340
-CSS parser errors: 0
+- transition-to-empty message centered
+- direct-empty message centered in same position
+- Undo still works
+- Return to Shop remains centered and usable
+- re-added non-empty Cart remains normal
 ```
-
-Upload the edited CSS for pre-deploy validation.
 
 ## Remaining sequence
 
 ```text
-R5-E3-FIX2 pre-deploy + phone runtime validation
+R5-E3-FIX2 phone runtime validation
 → R5-E4 strict static-source geometry, including missing 80px row rhythm and rendered-width verification
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict full acceptance
