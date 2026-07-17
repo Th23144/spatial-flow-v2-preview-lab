@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-15  
+Last updated: 2026-07-16  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative Cart read order
@@ -18,12 +18,13 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 10. project2-progress/STEP_4E_B2_R5_E3_EMPTY_CART_PARITY.md
 11. project2-progress/STEP_4E_B2_R5_E3_PRE_DEPLOY_VALIDATION.md
 12. project2-progress/STEP_4E_B2_R5_E3_FIX1_MOBILE_EMPTY_CENTERING.md
-13. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-14. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-15. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
-16. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
-17. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
-18. project2-progress/PROGRESS_LOG.md
+13. project2-progress/STEP_4E_B2_R5_E3_FIX1_PRE_DEPLOY_VALIDATION.md
+14. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+15. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+16. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
+17. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
+18. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
+19. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -82,11 +83,12 @@ R5-D5 binary decision：Blocked
 R5-E1 exact source/state audit：Complete
 R5-E2 synchronized live counts：Passed / closed
 R5-E3 desktop and wrapper parity：Passed
-Current：R5-E3-FIX1 mobile empty-Cart centering
+R5-E3-FIX1 CSS artifact：Passed exact pre-deploy validation
+Current：Deploy spatial-flow(21).css and run phone runtime validation
 Cart：Not done
 ```
 
-## Accepted current server baselines
+## Accepted current server/code baselines
 
 ```text
 functions.php
@@ -106,11 +108,12 @@ SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 Braces: 378 / 378
 
 assets/css/spatial-flow.css
-Source artifact: spatial-flow(20).css
-Size: 695,392 bytes
-Logical lines: 23,306
-SHA256: 19701ba3ee9944784939bef50dc94d81ccefba46e4df6be279edabc3c03c22e8
-Braces: 3,619 / 3,619
+Current server artifact before FIX1: spatial-flow(20).css
+Validated deployment artifact: spatial-flow(21).css
+Size: 695,511 bytes
+Logical lines: 23,311
+SHA256: d36326b8efac681ad6b9e3d31af63fe60221527fac26dee344803b3cd5fa6aee
+Braces: 3,620 / 3,620
 Comments: 340 / 340
 CSS parser errors: 0
 
@@ -146,22 +149,23 @@ Passed:
 - non-empty Cart smoke regression
 ```
 
-Remaining:
+Current pending runtime check:
 
 ```text
-Phone empty-Cart message is left-aligned in both states and must be centered in R5-E3-FIX1.
+Use validated spatial-flow(21).css and confirm phone empty-Cart text is centered in both transition and direct states.
 ```
 
 ## Current operation
 
 ```text
 project2-progress/STEP_4E_B2_R5_E3_FIX1_MOBILE_EMPTY_CENTERING.md
+project2-progress/STEP_4E_B2_R5_E3_FIX1_PRE_DEPLOY_VALIDATION.md
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E3-FIX1 mobile centering
+R5-E3-FIX1 phone runtime validation
 → R5-E4 strict static-source geometry and missing 80px row rhythm
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance rerun
