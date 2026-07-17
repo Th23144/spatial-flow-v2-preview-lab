@@ -22,8 +22,9 @@ R5-E2 synchronized live counts：Passed / closed.
 R5-E3 empty-Cart parity：Passed / closed.
 R5-E4-A1 first geometry measurement：Complete.
 R5-E4-A2 ancestor/container trace：Complete.
-R5-E4-B strict geometry artifact：Passed / deployment authorized.
-Current executable phase：R5-E4-C rendered geometry and visual validation.
+R5-E4-B strict geometry artifact：Passed / deployed.
+R5-E4-C1 partial runtime proof：Complete.
+Current executable phase：R5-E4-C2 corrected full geometry diagnostic.
 Cart page status：Not done.
 ```
 
@@ -40,7 +41,7 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Validated deployment artifact: spatial-flow(23).css
+Deployed artifact: spatial-flow(23).css
 Size: 695,962 bytes
 Logical lines: 23,331
 SHA256: b55c854e959ab42026f93c786e62b0c7e6b56e1cbf5307027b45991d39d90531
@@ -49,53 +50,53 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## Exact artifact proof
+## R5-E4-C1 runtime evidence
 
-Removing the one intended R5-E4-B desktop media block from `spatial-flow(23).css` recovers the accepted `spatial-flow(22).css` SHA256 exactly:
+The user supplied the older ancestor trace rather than the full geometry measurement. The prior phrase “rerun the previous measurement code” was ambiguous.
 
-```text
-7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
-```
-
-No other CSS difference exists.
-
-## Current operation
-
-Deploy `spatial-flow(23).css` as:
+The supplied trace still proves the deployed CSS is active:
 
 ```text
-assets/css/spatial-flow.css
+before R5-E4-B:
+wrapper 1164px
+outer gutters 68px / 68px
+entry-content padding 20px / 20px
+wrapper padding 20px / 20px
+
+after R5-E4-B:
+wrapper 1200px
+outer gutters 50px / 50px
+entry-content padding 0px / 0px
+wrapper padding 0px / 0px
 ```
 
-Clear caches and force refresh. On a non-empty desktop Cart at 100% browser zoom, rerun the existing R5-E4 geometry measurement snippet.
+The width increased by 36px and both inherited padding owners were removed.
 
-Expected:
+The supplied trace does not report:
 
 ```text
-wrapper_width: 1204
-left_gutter: 48
-right_gutter: 48
-form_width: approximately 656
-summary_width: approximately 468
-rendered_column_gap: 80
-title_to_count: approximately 88
-count_to_main_row: approximately 120
+form/summary widths
+the final 80px column gap
+title_to_count
+count_to_main_row
+exact border/content-box accounting for the remaining 4px width deficit
 ```
 
-Then check:
+## Current exact operation
+
+Run only the corrected diagnostic in:
 
 ```text
-- desktop large-whitespace rhythm matches the approved static reference
-- recommendation row uses the wider frame normally
-- no desktop horizontal overflow
-- phone non-empty Cart remains normal
-- phone direct-empty and transition-to-empty remain centered and identical
+project2-progress/STEP_4E_B2_R5_E4_C1_RUNTIME_PARTIAL_AND_MEASUREMENT_CORRECTION.md
 ```
+
+No additional CSS change is authorized before that result is recorded.
 
 ## Remaining sequence
 
 ```text
-R5-E4-C geometry/visual runtime validation
+R5-E4-C2 corrected geometry diagnostic
+→ R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict full acceptance
 → binary Cart status decision
