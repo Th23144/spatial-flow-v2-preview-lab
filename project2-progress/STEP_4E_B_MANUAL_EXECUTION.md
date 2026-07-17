@@ -10,69 +10,33 @@ Step 4E-A audit：Complete.
 Step 4E-B0 manual map：Complete.
 Step 4E-B1-A through B1-H：Passed.
 Step 4E-B2-A1 deletion-first attempt：Rejected / rolled back.
-R5-B canonical implementation：Passed as a cleaned implementation baseline, not final 1:1 acceptance.
-R5-C1 through R5-C4 legacy cleanup：Passed / closed.
-R5-D1 exact source/ownership：Passed.
-R5-D2 backend editability/dynamic ownership：Passed / closed.
-R5-D3 final strict visual acceptance：Failed / reopened.
-R5-D4 final native Cart regression：Failed / reopened.
+R5-B canonical implementation：Passed as cleaned baseline, not final 1:1.
+R5-C1 through R5-C4 cleanup：Passed / closed.
+R5-D1 source/ownership：Passed.
+R5-D2 editability/dynamic ownership：Passed / closed.
+R5-D3 strict visual acceptance：Failed / reopened.
+R5-D4 native regression：Failed / reopened.
 R5-D5 binary decision：Blocked.
 R5-E1 exact source/state audit：Complete.
 R5-E2 synchronized live counts：Passed / closed.
 R5-E3 empty-Cart parity：Passed / closed.
-R5-E4-A1 first rendered geometry measurement：Complete.
-Current executable phase：R5-E4-A2 winning ancestor/container trace.
+R5-E4-A1 first geometry measurement：Complete.
+R5-E4-A2 ancestor/container trace：Complete.
+Current executable phase：R5-E4-B strict geometry correction.
 Cart page status：Not done.
 ```
 
-## Current authoritative records
-
-```text
-PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-PROJECT2_CSS_MAINTENANCE_POLICY.md
-project2-progress/STEP_4E_B2_R5_E1_EXACT_SOURCE_AUDIT.md
-project2-progress/STEP_4E_B2_R5_E2_POST_DEPLOY_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_E3_FINAL_RUNTIME_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
-project2-progress/STEP_4E_B2_R5_E4_A1_MEASUREMENT_RESULT.md
-project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-```
-
-## Non-negotiable rule
-
-```text
-- strict 1:1 means source-level geometry and spacing, not general resemblance
-- current server files are the only valid modification baseline
-- no ZIP or blind complete-file overwrite outside an explicitly validated artifact
-- no Cart template override
-- no hardcoded Cart/BAG count
-- no polling
-- no duplicate fragments request
-- no routine append-only Cart visual patch
-- every correction must be bounded and independently reversible
-- do not change Cart to Completed 1:1 before R5-E6 passes
-```
-
-## Accepted current code baselines
+## Accepted current baselines
 
 ```text
 functions.php
-Source artifact: functions(14).php
 Version: 2.7.8
 Size: 552,215 bytes
-Logical lines: 10,292
 SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
-PHP syntax: Passed
-Braces: 1,208 / 1,208
 
 assets/js/spatial-flow.js
-Decision: unchanged accepted baseline; no custom Cart fragment listener
 Size: 70,828 bytes
-Logical lines: 1,995
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
-Braces: 378 / 378
 
 assets/css/spatial-flow.css
 Deployed artifact: spatial-flow(22).css
@@ -81,67 +45,53 @@ Logical lines: 23,316
 SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
 Braces: 3,621 / 3,621
 Comments: 340 / 340
-CSS parser errors: 0
 ```
 
-## Closed R5-E2 result
+## R5-E4 final audit finding
 
 ```text
-- Header BAG and Your Bag update immediately
-- remove and Undo update both counts
-- final-item removal changes BAG to (0)
-- Shop, Single Product and SAFE5 Checkout regressions passed
-- one get_refreshed_fragments request per Cart update
+document client width: 1300px
+current wrapper: 1164px
+current outer gutters: 68px / 68px
+current grid: 609px + 80px + 435px
+
+.entry-content padding: 20px / 20px
+.woocommerce wrapper padding: 20px / 20px
 ```
 
-## Closed R5-E3 result
+Correct target:
 
 ```text
-- desktop and phone transition/direct empty parity passed
-- fake right column removed
-- phone empty message centered
-- Return to Shop, Undo, BAG (0), restored non-empty Cart passed
+wrapper: 1204px
+outer gutters: 48px / 48px
+tracks: approximately 656px / 468px
+column gap: 80px
 ```
 
-## R5-E4-A1 measured result
+Vertical target:
 
 ```text
-viewport: 1315
-wrapper: 1164
-left/right gutters: 68 / 83
-form / summary: 609 / 435
-column gap: 80
-title → count: 8
-count → main row: 93
+title → count: 8px → approximately 88px
+count → main row: 93px → approximately 120px
 ```
 
-Decision:
+## Current exact operation
+
+Follow only:
 
 ```text
-- retain 80px column gap
-- retain current 7fr / 5fr relationship pending trace
-- wrapper is narrower than the expected 1219px result
-- title/count/main-row vertical rhythm is confirmed wrong
+project2-progress/STEP_4E_B2_R5_E4_B_STRICT_GEOMETRY_CORRECTION.md
 ```
 
-## Current exact operation · R5-E4-A2
+The edit is one desktop-only media block inserted inside the existing Canonical Cart owner after the base count rule. It resets the two inherited padding owners and calibrates the two measured vertical distances.
 
-No code change.
-
-Run the ancestor/container trace from:
-
-```text
-project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
-```
-
-The trace must identify the first parent content box or padding owner that reduces the effective canvas before the Cart wrapper applies its own 48px gutters.
+Do not deploy the edited CSS before exact artifact validation.
 
 ## Remaining sequence
 
 ```text
-R5-E4-A2 winning ancestor trace
-→ R5-E4-B in-place strict geometry correction
-→ R5-E4-C desktop + phone visual validation
+R5-E4-B manual edit + pre-deploy validation
+→ R5-E4-C rendered measurement and desktop/phone visual validation
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict full acceptance
 → binary Cart status decision
