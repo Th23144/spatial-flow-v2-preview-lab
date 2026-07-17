@@ -22,7 +22,8 @@ R5-E2 synchronized live counts：Passed / closed.
 R5-E3 empty-Cart parity：Passed / closed.
 R5-E4-A1 first geometry measurement：Complete.
 R5-E4-A2 ancestor/container trace：Complete.
-Current executable phase：R5-E4-B strict geometry correction.
+R5-E4-B strict geometry artifact：Passed / deployment authorized.
+Current executable phase：R5-E4-C rendered geometry and visual validation.
 Cart page status：Not done.
 ```
 
@@ -39,59 +40,62 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Deployed artifact: spatial-flow(22).css
-Size: 695,622 bytes
-Logical lines: 23,316
-SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
-Braces: 3,621 / 3,621
+Validated deployment artifact: spatial-flow(23).css
+Size: 695,962 bytes
+Logical lines: 23,331
+SHA256: b55c854e959ab42026f93c786e62b0c7e6b56e1cbf5307027b45991d39d90531
+Braces: 3,625 / 3,625
 Comments: 340 / 340
+CSS parser errors: 0
 ```
 
-## R5-E4 final audit finding
+## Exact artifact proof
+
+Removing the one intended R5-E4-B desktop media block from `spatial-flow(23).css` recovers the accepted `spatial-flow(22).css` SHA256 exactly:
 
 ```text
-document client width: 1300px
-current wrapper: 1164px
-current outer gutters: 68px / 68px
-current grid: 609px + 80px + 435px
-
-.entry-content padding: 20px / 20px
-.woocommerce wrapper padding: 20px / 20px
+7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
 ```
 
-Correct target:
+No other CSS difference exists.
+
+## Current operation
+
+Deploy `spatial-flow(23).css` as:
 
 ```text
-wrapper: 1204px
-outer gutters: 48px / 48px
-tracks: approximately 656px / 468px
-column gap: 80px
+assets/css/spatial-flow.css
 ```
 
-Vertical target:
+Clear caches and force refresh. On a non-empty desktop Cart at 100% browser zoom, rerun the existing R5-E4 geometry measurement snippet.
+
+Expected:
 
 ```text
-title → count: 8px → approximately 88px
-count → main row: 93px → approximately 120px
+wrapper_width: 1204
+left_gutter: 48
+right_gutter: 48
+form_width: approximately 656
+summary_width: approximately 468
+rendered_column_gap: 80
+title_to_count: approximately 88
+count_to_main_row: approximately 120
 ```
 
-## Current exact operation
-
-Follow only:
+Then check:
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_B_STRICT_GEOMETRY_CORRECTION.md
+- desktop large-whitespace rhythm matches the approved static reference
+- recommendation row uses the wider frame normally
+- no desktop horizontal overflow
+- phone non-empty Cart remains normal
+- phone direct-empty and transition-to-empty remain centered and identical
 ```
-
-The edit is one desktop-only media block inserted inside the existing Canonical Cart owner after the base count rule. It resets the two inherited padding owners and calibrates the two measured vertical distances.
-
-Do not deploy the edited CSS before exact artifact validation.
 
 ## Remaining sequence
 
 ```text
-R5-E4-B manual edit + pre-deploy validation
-→ R5-E4-C rendered measurement and desktop/phone visual validation
+R5-E4-C geometry/visual runtime validation
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict full acceptance
 → binary Cart status decision
