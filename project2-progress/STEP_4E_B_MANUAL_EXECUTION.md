@@ -19,10 +19,8 @@ R5-D4 final native Cart regression：Failed / reopened.
 R5-D5 binary decision：Blocked.
 R5-E1 exact source/state audit：Complete.
 R5-E2 synchronized live counts：Passed / closed.
-R5-E3 desktop and wrapper parity：Passed.
-R5-E3-FIX1 text-align-only correction：Failed at runtime.
-R5-E3-FIX2 CSS artifact：Passed exact pre-deploy validation.
-Current executable phase：Deploy spatial-flow(22).css and run phone runtime validation.
+R5-E3 empty-Cart parity：Passed / closed.
+Current executable phase：R5-E4-A strict geometry measurement audit.
 Cart page status：Not done.
 ```
 
@@ -35,11 +33,9 @@ PROJECT2_CSS_MAINTENANCE_POLICY.md
 project2-progress/STEP_4E_B2_R5_E1_EXACT_SOURCE_AUDIT.md
 project2-progress/STEP_4E_B2_R5_E2_POST_DEPLOY_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E3_EMPTY_CART_PARITY.md
-project2-progress/STEP_4E_B2_R5_E3_PRE_DEPLOY_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_E3_FIX1_MOBILE_EMPTY_CENTERING.md
-project2-progress/STEP_4E_B2_R5_E3_FIX1_PRE_DEPLOY_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E3_FINAL_RUNTIME_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E3_FIX2_FLEX_CENTERING.md
-project2-progress/STEP_4E_B2_R5_E3_FIX2_PRE_DEPLOY_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
 project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
 project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
 ```
@@ -59,7 +55,7 @@ project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
 - do not change Cart to Completed 1:1 before R5-E6 passes
 ```
 
-## Accepted R5-E2 result
+## Accepted current code baselines
 
 ```text
 functions.php
@@ -77,9 +73,18 @@ Size: 70,828 bytes
 Logical lines: 1,995
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 Braces: 378 / 378
+
+assets/css/spatial-flow.css
+Deployed artifact: spatial-flow(22).css
+Size: 695,622 bytes
+Logical lines: 23,316
+SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
+Braces: 3,621 / 3,621
+Comments: 340 / 340
+CSS parser errors: 0
 ```
 
-Runtime validation passed:
+## Closed R5-E2 result
 
 ```text
 - Header BAG and Your Bag update immediately
@@ -89,50 +94,51 @@ Runtime validation passed:
 - one get_refreshed_fragments request per Cart update
 ```
 
-## Validated CSS artifact for current deployment
+## Closed R5-E3 result
 
 ```text
-assets/css/spatial-flow.css
-Uploaded artifact: spatial-flow(22).css
-Size: 695,622 bytes
-Logical lines: 23,316
-SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
-Braces: 3,621 / 3,621
-Comments: 340 / 340
-CSS parser errors: 0
+- desktop transition/direct empty parity passed
+- phone transition/direct empty parity passed
+- fake right column removed
+- phone empty message centered
+- Return to Shop passed
+- native Undo passed
+- BAG (0) passed
+- restored non-empty Cart passed
 ```
 
-Exact diff from `spatial-flow(21).css` is limited to the intended replacement:
+## Current exact operation · R5-E4-A
 
-```css
-  body.woocommerce-cart .cart-empty {
-    display: flex !important;
-    justify-content: center !important;
-    text-align: center !important;
-  }
+No code change in this substep.
 
-  body.woocommerce-cart .return-to-shop {
-    text-align: center !important;
-  }
-```
-
-## Current runtime operation
-
-Deploy `spatial-flow(22).css` as `assets/css/spatial-flow.css`, then check only phone:
+On a non-empty desktop Cart:
 
 ```text
-- transition-to-empty message centered
-- direct-empty message centered in same position
-- Undo still works
-- Return to Shop remains centered and usable
-- re-added non-empty Cart remains normal
+- set browser zoom to 100%
+- use a viewport at least 1366 CSS pixels wide
+- run the exact DevTools measurement snippet in STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
+- report the console table values
 ```
+
+The source audit already confirms:
+
+```text
+- current max-width declaration is 1440px
+- current desktop side-gutter formula is 48px
+- current main columns are 7fr / 5fr
+- current wide-desktop column gap is 80px
+- current parent row-gap is incorrectly 0
+- current combined heading owner cannot reproduce the static title/count/main-row rhythm
+```
+
+Do not widen the frame until rendered measurements prove the width declaration is not winning.
 
 ## Remaining sequence
 
 ```text
-R5-E3-FIX2 phone runtime validation
-→ R5-E4 strict static-source geometry, including missing 80px row rhythm and rendered-width verification
+R5-E4-A rendered geometry measurement
+→ R5-E4-B in-place strict geometry correction
+→ R5-E4-C desktop + phone visual validation
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict full acceptance
 → binary Cart status decision
