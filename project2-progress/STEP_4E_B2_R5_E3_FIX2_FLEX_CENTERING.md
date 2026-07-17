@@ -9,27 +9,32 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 R5-E2 synchronized live counts：Passed / closed.
 R5-E3 desktop and wrapper parity：Passed.
 R5-E3-FIX1 text-align-only correction：Failed at runtime.
-Current executable step：R5-E3-FIX2 deterministic flex centering.
+R5-E3-FIX2 manual CSS artifact：Passed exact pre-deploy validation.
+Current executable step：Deploy spatial-flow(22).css and run phone runtime validation.
 Cart page status：Not done.
 ```
 
-## Runtime finding
+Pre-deploy record:
 
-`spatial-flow(21).css` was an exact expected artifact and loaded successfully, but the native phone empty-Cart message remained visually left-aligned.
+```text
+project2-progress/STEP_4E_B2_R5_E3_FIX2_PRE_DEPLOY_VALIDATION.md
+```
 
-The uploaded child CSS contains the intended `text-align: center !important` rule once and contains no later child-theme `.cart-empty` text-alignment override. Therefore a text-only alignment rule is insufficient in the real rendered layout. The most likely remaining owner is a parent/theme flex presentation that positions the anonymous text item on the main axis; `text-align` does not move a flex item.
+## Runtime finding before FIX2
+
+`spatial-flow(21).css` loaded successfully, but the native phone empty-Cart message remained visually left-aligned. The text-only rule was insufficient in the real rendered layout.
 
 FIX2 makes the mobile `.cart-empty` owner deterministic by explicitly setting its layout mode and main-axis alignment.
 
 ## Scope
 
-Modify only:
+Modified only:
 
 ```text
 assets/css/spatial-flow.css
 ```
 
-Do not modify:
+Not modified:
 
 ```text
 functions.php
@@ -43,30 +48,21 @@ Desktop empty-Cart rules
 R5-E4 geometry/spacing rules
 ```
 
-## Current exact baseline
+## Accepted artifact
 
 ```text
-Uploaded/server artifact: spatial-flow(21).css
-Size: 695,511 bytes
-Logical lines: 23,311
-SHA256: d36326b8efac681ad6b9e3d31af63fe60221527fac26dee344803b3cd5fa6aee
-Braces: 3,620 / 3,620
+Uploaded name: spatial-flow(22).css
+Size: 695,622 bytes
+Logical lines: 23,316
+SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
+Braces: 3,621 / 3,621
 Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## Exact in-place replacement
+## Exact accepted diff
 
-Inside the existing Canonical Cart phone media query, find exactly once:
-
-```css
-  body.woocommerce-cart .cart-empty,
-  body.woocommerce-cart .return-to-shop {
-    text-align: center !important;
-  }
-```
-
-Replace it with:
+Compared with deployed `spatial-flow(21).css`, only the intended in-place replacement exists:
 
 ```css
   body.woocommerce-cart .cart-empty {
@@ -80,33 +76,20 @@ Replace it with:
   }
 ```
 
-This replaces FIX1 in place. Do not retain both blocks and do not append another rule at the end of the file.
+The FIX1 combined selector was removed. No duplicate block or late appended rule remains.
 
-## Expected file result
+## Runtime validation after deployment
 
-```text
-Size: 695,622 bytes
-Logical lines: 23,316
-SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
-Braces: 3,621 / 3,621
-Comments: 340 / 340
-CSS parser errors: 0
-```
-
-## Why this is stronger than FIX1
+Check only phone:
 
 ```text
-text-align: center
-→ centers inline content only inside a normal block formatting context
-
-display: flex + justify-content: center
-→ explicitly centers the actual flex item on the horizontal main axis
+1. Remove the final item without refreshing.
+2. Confirm the empty message is horizontally centered.
+3. Confirm Undo still works.
+4. Empty the Cart again and open/refresh the already-empty Cart directly.
+5. Confirm the empty message is horizontally centered in the same position.
+6. Confirm Return to Shop remains centered and usable.
+7. Re-add the original product and confirm non-empty Cart remains normal.
 ```
-
-The rule remains phone-only and empty-Cart-only, preserving desktop, native WooCommerce markup, Undo, Return to Shop and non-empty Cart behavior.
-
-## Pre-deploy gate
-
-After editing, upload the changed CSS for exact validation before replacing the server file.
 
 Do not begin R5-E4 until FIX2 runtime validation is explicitly accepted.
