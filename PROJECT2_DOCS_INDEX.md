@@ -16,17 +16,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 8. project2-progress/STEP_4E_B2_R5_E1_EXACT_SOURCE_AUDIT.md
 9. project2-progress/STEP_4E_B2_R5_E2_POST_DEPLOY_VALIDATION.md
 10. project2-progress/STEP_4E_B2_R5_E3_EMPTY_CART_PARITY.md
-11. project2-progress/STEP_4E_B2_R5_E3_PRE_DEPLOY_VALIDATION.md
-12. project2-progress/STEP_4E_B2_R5_E3_FIX1_MOBILE_EMPTY_CENTERING.md
-13. project2-progress/STEP_4E_B2_R5_E3_FIX1_PRE_DEPLOY_VALIDATION.md
-14. project2-progress/STEP_4E_B2_R5_E3_FIX2_FLEX_CENTERING.md
-15. project2-progress/STEP_4E_B2_R5_E3_FIX2_PRE_DEPLOY_VALIDATION.md
-16. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-17. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-18. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
-19. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
-20. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
-21. project2-progress/PROGRESS_LOG.md
+11. project2-progress/STEP_4E_B2_R5_E3_FINAL_RUNTIME_VALIDATION.md
+12. project2-progress/STEP_4E_B2_R5_E3_FIX2_FLEX_CENTERING.md
+13. project2-progress/STEP_4E_B2_R5_E3_FIX2_PRE_DEPLOY_VALIDATION.md
+14. project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
+15. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+16. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+17. project2-progress/STEP_4E_B2_R5_D2_C_RECOMMENDATION_OWNERSHIP_VALIDATION.md
+18. project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
+19. project2-progress/STEP_4E_B2_R5_B_CANONICAL_REPLACEMENT.md
+20. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -84,10 +83,8 @@ R5-D4 final native Cart regression：Failed / reopened
 R5-D5 binary decision：Blocked
 R5-E1 exact source/state audit：Complete
 R5-E2 synchronized live counts：Passed / closed
-R5-E3 desktop and wrapper parity：Passed
-R5-E3-FIX1 text-align-only correction：Failed at runtime
-R5-E3-FIX2 CSS artifact：Passed exact pre-deploy validation
-Current：Deploy spatial-flow(22).css and run phone runtime validation
+R5-E3 empty-Cart parity：Passed / closed
+Current：R5-E4-A strict geometry measurement audit
 Cart：Not done
 ```
 
@@ -111,8 +108,7 @@ SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 Braces: 378 / 378
 
 assets/css/spatial-flow.css
-Current deployed artifact before FIX2: spatial-flow(21).css
-Validated deployment artifact: spatial-flow(22).css
+Deployed artifact: spatial-flow(22).css
 Size: 695,622 bytes
 Logical lines: 23,316
 SHA256: 7186d10195843ba30448c898abf04d55b842b57a157ef0a0e2672897ede9b8ed
@@ -128,7 +124,7 @@ PHP syntax: Passed
 Braces: 13 / 13
 ```
 
-## R5-E2 accepted result
+## Closed R5-E2 result
 
 ```text
 - Header BAG and Your Bag update immediately after quantity changes
@@ -138,44 +134,44 @@ Braces: 13 / 13
 - one get_refreshed_fragments request per Cart update
 ```
 
-## R5-E3 current result
-
-Passed:
+## Closed R5-E3 result
 
 ```text
-- desktop transition-to-empty
-- desktop direct-empty
-- phone full-width wrapper parity
+- desktop transition/direct empty parity passed
+- phone transition/direct empty parity passed
 - fake right column removed
-- Return to Shop
-- Undo
-- non-empty Cart smoke regression
+- phone empty-Cart message centered
+- Return to Shop passed
+- Undo passed
+- restored non-empty Cart passed
 ```
 
-Failed:
+## Current R5-E4-A audit
+
+Static reference:
 
 ```text
-- FIX1 text-align-only phone rule did not move the real empty-message content to the center
+maximum frame: 1440px
+side gutters: 48px
+main columns: 7fr / 5fr
+column gap: 80px
+parent row gap: 80px
 ```
 
-Current pending runtime check:
+Current source already declares the maximum frame, side-gutter formula, columns and column gap, but currently declares `row-gap: 0`. The user-reported narrow rendered width must be measured at 100% browser zoom before changing the width owner.
+
+Current operation:
 
 ```text
-Use validated spatial-flow(22).css and confirm phone empty-Cart text is centered in both transition and direct states.
-```
-
-## Current operation
-
-```text
-project2-progress/STEP_4E_B2_R5_E3_FIX2_FLEX_CENTERING.md
-project2-progress/STEP_4E_B2_R5_E3_FIX2_PRE_DEPLOY_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E3-FIX2 phone runtime validation
-→ R5-E4 strict static-source geometry and missing 80px row rhythm
+R5-E4-A rendered geometry measurement
+→ R5-E4-B in-place strict geometry correction
+→ R5-E4-C desktop + phone visual validation
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance rerun
 → binary Cart decision
