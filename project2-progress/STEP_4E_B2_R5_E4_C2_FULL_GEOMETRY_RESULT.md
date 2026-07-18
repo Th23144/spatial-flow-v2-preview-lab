@@ -8,8 +8,15 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 R5-E4-B deployed CSS：Active.
 R5-E4-C2 principal geometry measurement：Passed.
-R5-E4-C2 width-owner confirmation：Pending one wrapper computed-value check.
+R5-E4-C2 wrapper computed-value confirmation：Passed.
+Current executable step：Identify the exact stylesheet rule that supplies max-width: 1200px.
 Cart page status：Not done.
+```
+
+Width-owner record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E4_C2_WIDTH_OWNER_CONFIRMATION.md
 ```
 
 ## User-supplied measurement
@@ -22,6 +29,12 @@ scrollbar_width: 15
 wrapper border-box width: 1200
 wrapper content-box width: 1200
 wrapper left/right outer gutters: 50 / 50
+wrapper css_width: 1200px
+wrapper max_width: 1200px
+wrapper padding-left/right: 0px / 0px
+wrapper border-left/right: 0px / 0px
+wrapper margin-left/right: 50px / 50px
+wrapper box-sizing: border-box
 parent entry-content border/content width: 1300 / 1300
 
 form_width: 653
@@ -33,7 +46,7 @@ count_to_main_row: 120
 
 ## Accepted results
 
-The strict vertical and track geometry now match the approved source targets:
+The strict vertical and track geometry match the approved source targets:
 
 ```text
 form + gap + summary: 653 + 80 + 467 = 1200
@@ -45,40 +58,37 @@ parent inherited padding: removed
 wrapper inherited padding: removed
 ```
 
-Therefore the missing title-area whitespace and compressed main-row rhythm are corrected at rendered level.
+The missing title-area whitespace and compressed main-row rhythm are corrected at rendered level.
 
-## Remaining width question
+## Confirmed remaining width owner
 
-The wrapper is still:
-
-```text
-1200px wide
-50px / 50px gutters
-```
-
-The strict formula based on the 1300px document layout width would otherwise produce:
+The remaining mismatch is exactly:
 
 ```text
-1204px wide
-48px / 48px gutters
+strict formula target at 1300px client width: 1204px
+current computed css_width: 1200px
+current computed max_width: 1200px
+current outer gutters: 50px / 50px
 ```
 
-The supplied table visibly indicates the wrapper `css_width` and/or `max_width` begins with `12…`, but the cells are truncated in the screenshot. Strict acceptance requires the complete computed value before deciding whether:
+This proves that a direct winning `max-width: 1200px` declaration caps the Cart wrapper. The result is not caused by borders, padding, parent width or scrollbar accounting.
+
+## Required final source evidence
+
+Identify the exact matching rule that supplies `max-width: 1200px` to:
 
 ```text
-- a winning 1200px max-width is the remaining owner, or
-- the 1200px result comes from another exact computed-width constraint
+body.woocommerce-cart .entry-content > .woocommerce
 ```
 
-## Required final evidence
-
-No prototype or unrelated object expansion is needed.
-
-Provide only one of these:
+Required output:
 
 ```text
-A. Expand the `wrapper` object one level and show `css_width` and `max_width`.
-B. Horizontally scroll the first console table until the complete `css_width` and `max_width` cells for the wrapper row are visible.
+selector
+max-width value
+!important priority
+stylesheet source
+active media condition
 ```
 
-No additional CSS change is authorized until that one computed-value check is recorded.
+No CSS change is authorized until that one source rule is identified. After identification, correct only that exact owner and retain the accepted 7fr / 5fr, 80px, 88px and 120px geometry.
