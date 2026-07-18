@@ -25,7 +25,8 @@ R5-E4-A2 ancestor/container trace：Complete.
 R5-E4-B strict geometry artifact：Passed / deployed.
 R5-E4-C1 partial runtime proof：Complete.
 R5-E4-C2 principal geometry measurement：Passed.
-Current executable phase：Confirm wrapper computed css_width/max_width only.
+R5-E4-C2 wrapper computed-value confirmation：Passed.
+Current executable phase：Identify exact stylesheet rule supplying max-width: 1200px.
 Cart page status：Not done.
 ```
 
@@ -51,62 +52,80 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## R5-E4-C2 accepted measurement
+## Accepted R5-E4-C2 geometry
 
 ```text
 window inner width: 1315
 document client width: 1300
-scrollbar width: 15
 wrapper border/content width: 1200 / 1200
 wrapper outer gutters: 50 / 50
-parent entry-content border/content width: 1300 / 1300
+parent entry-content width: 1300
 form / gap / summary: 653 / 80 / 467
 title → count: 88
 count → main row: 120
 ```
 
-Accepted:
+Passed:
 
 ```text
-- 7fr / 5fr relationship is correct within rounding
-- 80px desktop column gap is exact
-- title-to-count rhythm is exact
-- count-to-main-row rhythm is exact
-- inherited parent/wrapper padding is removed
+- 7fr / 5fr rendered relationship
+- 80px desktop column gap
+- 88px title-to-count rhythm
+- 120px count-to-main-row rhythm
+- inherited parent/wrapper padding removal
 ```
 
-Pending strict width owner:
+## Confirmed remaining width owner
 
 ```text
-wrapper remains 1200px with 50px gutters
-strict formula target is 1204px with 48px gutters
+wrapper css_width: 1200px
+wrapper max_width: 1200px
+wrapper padding: 0 / 0
+wrapper border: 0 / 0
+parent content width: 1300px
 ```
+
+A direct winning `max-width: 1200px` declaration is the only remaining owner preventing the strict 1204px / 48px-gutter result.
 
 ## Current exact operation
 
-Do not expand prototypes or unrelated objects.
+Do not edit CSS yet.
 
-Show only the complete wrapper computed values using either:
+Identify the exact stylesheet rule matching:
 
 ```text
-- expand `wrapper` one level and reveal `css_width` and `max_width`, or
-- horizontally scroll the first console table so those two wrapper cells are fully visible
+body.woocommerce-cart .entry-content > .woocommerce
+```
+
+that supplies:
+
+```text
+max-width: 1200px
+```
+
+Required evidence:
+
+```text
+selector
+value
+!important priority
+stylesheet source
+active media condition
 ```
 
 Reference:
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_C2_FULL_GEOMETRY_RESULT.md
+project2-progress/STEP_4E_B2_R5_E4_C2_WIDTH_OWNER_CONFIRMATION.md
 ```
-
-No CSS change is authorized before this exact owner value is recorded.
 
 ## Remaining sequence
 
 ```text
-wrapper computed width/max-width confirmation
+identify exact 1200px max-width rule source
+→ bounded width-owner correction
 → R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
-→ R5-E6 final strict full acceptance
+→ R5-E6 final strict acceptance
 → binary Cart status decision
 ```
