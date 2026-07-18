@@ -1,6 +1,6 @@
 # Step 4E-B · Manual Staged Cart Execution Protocol
 
-Last updated: 2026-07-16  
+Last updated: 2026-07-17  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
@@ -24,7 +24,8 @@ R5-E4-A1 first geometry measurement：Complete.
 R5-E4-A2 ancestor/container trace：Complete.
 R5-E4-B strict geometry artifact：Passed / deployed.
 R5-E4-C1 partial runtime proof：Complete.
-Current executable phase：R5-E4-C2 corrected full geometry diagnostic.
+R5-E4-C2 principal geometry measurement：Passed.
+Current executable phase：Confirm wrapper computed css_width/max_width only.
 Cart page status：Not done.
 ```
 
@@ -50,52 +51,60 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## R5-E4-C1 runtime evidence
-
-The user supplied the older ancestor trace rather than the full geometry measurement. The prior phrase “rerun the previous measurement code” was ambiguous.
-
-The supplied trace still proves the deployed CSS is active:
+## R5-E4-C2 accepted measurement
 
 ```text
-before R5-E4-B:
-wrapper 1164px
-outer gutters 68px / 68px
-entry-content padding 20px / 20px
-wrapper padding 20px / 20px
-
-after R5-E4-B:
-wrapper 1200px
-outer gutters 50px / 50px
-entry-content padding 0px / 0px
-wrapper padding 0px / 0px
+window inner width: 1315
+document client width: 1300
+scrollbar width: 15
+wrapper border/content width: 1200 / 1200
+wrapper outer gutters: 50 / 50
+parent entry-content border/content width: 1300 / 1300
+form / gap / summary: 653 / 80 / 467
+title → count: 88
+count → main row: 120
 ```
 
-The width increased by 36px and both inherited padding owners were removed.
-
-The supplied trace does not report:
+Accepted:
 
 ```text
-form/summary widths
-the final 80px column gap
-title_to_count
-count_to_main_row
-exact border/content-box accounting for the remaining 4px width deficit
+- 7fr / 5fr relationship is correct within rounding
+- 80px desktop column gap is exact
+- title-to-count rhythm is exact
+- count-to-main-row rhythm is exact
+- inherited parent/wrapper padding is removed
+```
+
+Pending strict width owner:
+
+```text
+wrapper remains 1200px with 50px gutters
+strict formula target is 1204px with 48px gutters
 ```
 
 ## Current exact operation
 
-Run only the corrected diagnostic in:
+Do not expand prototypes or unrelated objects.
+
+Show only the complete wrapper computed values using either:
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_C1_RUNTIME_PARTIAL_AND_MEASUREMENT_CORRECTION.md
+- expand `wrapper` one level and reveal `css_width` and `max_width`, or
+- horizontally scroll the first console table so those two wrapper cells are fully visible
 ```
 
-No additional CSS change is authorized before that result is recorded.
+Reference:
+
+```text
+project2-progress/STEP_4E_B2_R5_E4_C2_FULL_GEOMETRY_RESULT.md
+```
+
+No CSS change is authorized before this exact owner value is recorded.
 
 ## Remaining sequence
 
 ```text
-R5-E4-C2 corrected geometry diagnostic
+wrapper computed width/max-width confirmation
 → R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict full acceptance
