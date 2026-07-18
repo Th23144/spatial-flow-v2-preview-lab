@@ -26,9 +26,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 18. project2-progress/STEP_4E_B2_R5_E4_C2_MAX_WIDTH_SOURCE_RESULT.md
 19. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_MAX_WIDTH_CORRECTION.md
 20. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_PRE_DEPLOY_VALIDATION.md
-21. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-22. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-23. project2-progress/PROGRESS_LOG.md
+21. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_RUNTIME_ACCEPTANCE.md
+22. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+23. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+24. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -58,12 +59,12 @@ R5-E4-A2 ancestor/container trace：Complete
 R5-E4-B strict geometry artifact：Passed / deployed
 R5-E4-C2 principal geometry measurement：Passed
 R5-E4-C2 wrapper/source owner confirmation：Passed
-R5-E4-B-FIX1 exact CSS artifact：Passed
-Current：Deploy spatial-flow(24).css and confirm strict runtime geometry
+R5-E4-B-FIX1 artifact and runtime width：Passed / closed
+Current：R5-E4-C3 desktop + phone strict visual acceptance
 Cart：Not done
 ```
 
-## Accepted current code baselines
+## Accepted current server/code baselines
 
 ```text
 functions.php
@@ -76,8 +77,7 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Current deployed artifact before FIX1: spatial-flow(23).css
-Validated deployment artifact: spatial-flow(24).css
+Deployed artifact: spatial-flow(24).css
 Size: 696,069 bytes
 Logical lines: 23,335
 SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
@@ -86,55 +86,31 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## Accepted geometry before FIX1 runtime
+## Accepted geometry
 
 ```text
-parent width: 1300px
-wrapper before FIX1: 1200px
-form / gap / summary: 653 / 80 / 467
-title → count: 88px
-count → main row: 120px
+- Cart width now matches the completed Shop page width
+- 7fr / 5fr rendered relationship passed
+- 80px column gap passed
+- 88px title-to-count rhythm passed
+- 120px count-to-main-row rhythm passed
+- inherited parent/wrapper padding removal passed
 ```
 
-Confirmed source owner:
-
-```css
-.woocommerce-cart .woocommerce {
-  max-width: 1200px;
-}
-```
-
-Validated bounded correction:
-
-```css
-body.woocommerce-cart .entry-content > .woocommerce {
-  max-width: var(--sf-cart-max) !important;
-}
-```
-
-Expected runtime result:
-
-```text
-wrapper: 1204px
-left/right gutters: 48px / 48px
-form / summary: approximately 656px / 468px
-column gap: 80px
-title → count: 88px
-count → main row: 120px
-computed max-width: 1440px
-```
+The 1200px inline max-width cap is closed by the bounded Canonical Cart owner in `spatial-flow(24).css`.
 
 ## Current operation
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_B_FIX1_PRE_DEPLOY_VALIDATION.md
+R5-E4-C3 full desktop + phone visual acceptance
 ```
+
+No code change is authorized until the visual review identifies a concrete defect.
 
 ## Remaining sequence
 
 ```text
-R5-E4-B-FIX1 strict runtime measurement
-→ R5-E4-C3 desktop + phone visual acceptance
+R5-E4-C3 desktop + phone strict visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance
 → binary Cart decision
