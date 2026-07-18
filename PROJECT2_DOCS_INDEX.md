@@ -23,9 +23,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 15. project2-progress/STEP_4E_B2_R5_E4_B_PRE_DEPLOY_VALIDATION.md
 16. project2-progress/STEP_4E_B2_R5_E4_C1_RUNTIME_PARTIAL_AND_MEASUREMENT_CORRECTION.md
 17. project2-progress/STEP_4E_B2_R5_E4_C2_FULL_GEOMETRY_RESULT.md
-18. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-19. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-20. project2-progress/PROGRESS_LOG.md
+18. project2-progress/STEP_4E_B2_R5_E4_C2_WIDTH_OWNER_CONFIRMATION.md
+19. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+20. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+21. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -55,7 +56,8 @@ R5-E4-A2 ancestor/container trace：Complete
 R5-E4-B exact CSS artifact：Passed / deployed
 R5-E4-C1 partial runtime proof：Complete
 R5-E4-C2 principal geometry measurement：Passed
-Current：Confirm wrapper computed css_width/max_width only
+R5-E4-C2 wrapper computed-value confirmation：Passed
+Current：Identify exact stylesheet rule supplying max-width: 1200px
 Cart：Not done
 ```
 
@@ -81,12 +83,11 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## R5-E4-C2 measurement
+## Accepted R5-E4-C2 geometry
 
 ```text
 window inner width: 1315
 document client width: 1300
-scrollbar width: 15
 wrapper border/content width: 1200 / 1200
 wrapper outer gutters: 50 / 50
 parent entry-content border/content width: 1300 / 1300
@@ -105,25 +106,31 @@ Passed:
 - inherited horizontal padding removal
 ```
 
-Pending strict width owner:
+## Confirmed final width owner
 
 ```text
-wrapper remains 1200px with 50px gutters
-strict formula target remains 1204px with 48px gutters
+wrapper css_width: 1200px
+wrapper max_width: 1200px
+wrapper padding-left/right: 0px / 0px
+wrapper border-left/right: 0px / 0px
+wrapper margin-left/right: 50px / 50px
 ```
 
-Only the wrapper `css_width` and `max_width` computed values need to be shown. No prototype expansion or additional CSS change is authorized before that check.
+A direct winning `max-width: 1200px` declaration caps the Cart wrapper. It is the remaining reason the result is 1200px / 50px gutters instead of the strict 1204px / 48px gutters.
 
 ## Current operation
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_C2_FULL_GEOMETRY_RESULT.md
+project2-progress/STEP_4E_B2_R5_E4_C2_WIDTH_OWNER_CONFIRMATION.md
 ```
+
+Identify the exact selector and stylesheet source of the 1200px declaration before editing CSS.
 
 ## Remaining sequence
 
 ```text
-wrapper computed width/max-width confirmation
+identify exact 1200px max-width rule source
+→ bounded width-owner correction
 → R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance
