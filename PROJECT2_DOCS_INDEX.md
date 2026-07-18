@@ -24,9 +24,11 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 16. project2-progress/STEP_4E_B2_R5_E4_C1_RUNTIME_PARTIAL_AND_MEASUREMENT_CORRECTION.md
 17. project2-progress/STEP_4E_B2_R5_E4_C2_FULL_GEOMETRY_RESULT.md
 18. project2-progress/STEP_4E_B2_R5_E4_C2_WIDTH_OWNER_CONFIRMATION.md
-19. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-20. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-21. project2-progress/PROGRESS_LOG.md
+19. project2-progress/STEP_4E_B2_R5_E4_C2_MAX_WIDTH_SOURCE_RESULT.md
+20. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_MAX_WIDTH_CORRECTION.md
+21. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+22. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+23. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -54,10 +56,9 @@ R5-E3 empty-Cart parity：Passed / closed
 R5-E4-A1 first geometry measurement：Complete
 R5-E4-A2 ancestor/container trace：Complete
 R5-E4-B exact CSS artifact：Passed / deployed
-R5-E4-C1 partial runtime proof：Complete
 R5-E4-C2 principal geometry measurement：Passed
-R5-E4-C2 wrapper computed-value confirmation：Passed
-Current：Identify exact stylesheet rule supplying max-width: 1200px
+R5-E4-C2 wrapper/source owner confirmation：Passed
+Current：R5-E4-B-FIX1 bounded max-width correction
 Cart：Not done
 ```
 
@@ -80,20 +81,16 @@ Logical lines: 23,331
 SHA256: b55c854e959ab42026f93c786e62b0c7e6b56e1cbf5307027b45991d39d90531
 Braces: 3,625 / 3,625
 Comments: 340 / 340
-CSS parser errors: 0
 ```
 
-## Accepted R5-E4-C2 geometry
+## Accepted R5-E4 geometry
 
 ```text
-window inner width: 1315
-document client width: 1300
+parent width: 1300px
 wrapper border/content width: 1200 / 1200
-wrapper outer gutters: 50 / 50
-parent entry-content border/content width: 1300 / 1300
 form / gap / summary: 653 / 80 / 467
-title → count: 88
-count → main row: 120
+title → count: 88px
+count → main row: 120px
 ```
 
 Passed:
@@ -106,31 +103,38 @@ Passed:
 - inherited horizontal padding removal
 ```
 
-## Confirmed final width owner
+## Exact final width owner
+
+The stylesheet scan confirms Cart-specific inline-style rules with:
 
 ```text
-wrapper css_width: 1200px
-wrapper max_width: 1200px
-wrapper padding-left/right: 0px / 0px
-wrapper border-left/right: 0px / 0px
-wrapper margin-left/right: 50px / 50px
+max-width: 1200px
+priority: no !important
+source: inline <style>
+condition: all
 ```
 
-A direct winning `max-width: 1200px` declaration caps the Cart wrapper. It is the remaining reason the result is 1200px / 50px gutters instead of the strict 1204px / 48px gutters.
+The direct matching selector includes:
+
+```css
+.woocommerce-cart .woocommerce {
+  max-width: 1200px;
+}
+```
+
+This is the remaining reason for 1200px / 50px gutters instead of 1204px / 48px gutters.
 
 ## Current operation
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_C2_WIDTH_OWNER_CONFIRMATION.md
+project2-progress/STEP_4E_B2_R5_E4_B_FIX1_MAX_WIDTH_CORRECTION.md
 ```
-
-Identify the exact selector and stylesheet source of the 1200px declaration before editing CSS.
 
 ## Remaining sequence
 
 ```text
-identify exact 1200px max-width rule source
-→ bounded width-owner correction
+R5-E4-B-FIX1 manual edit + exact artifact validation
+→ runtime 1204px / 48px confirmation
 → R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance
