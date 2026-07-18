@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-16  
+Last updated: 2026-07-17  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative Cart read order
@@ -22,9 +22,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 14. project2-progress/STEP_4E_B2_R5_E4_B_STRICT_GEOMETRY_CORRECTION.md
 15. project2-progress/STEP_4E_B2_R5_E4_B_PRE_DEPLOY_VALIDATION.md
 16. project2-progress/STEP_4E_B2_R5_E4_C1_RUNTIME_PARTIAL_AND_MEASUREMENT_CORRECTION.md
-17. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-18. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-19. project2-progress/PROGRESS_LOG.md
+17. project2-progress/STEP_4E_B2_R5_E4_C2_FULL_GEOMETRY_RESULT.md
+18. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+19. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+20. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -53,7 +54,8 @@ R5-E4-A1 first geometry measurement：Complete
 R5-E4-A2 ancestor/container trace：Complete
 R5-E4-B exact CSS artifact：Passed / deployed
 R5-E4-C1 partial runtime proof：Complete
-Current：R5-E4-C2 corrected full geometry diagnostic
+R5-E4-C2 principal geometry measurement：Passed
+Current：Confirm wrapper computed css_width/max_width only
 Cart：Not done
 ```
 
@@ -79,40 +81,49 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## R5-E4-C1 evidence
-
-Before deployment:
+## R5-E4-C2 measurement
 
 ```text
-wrapper: 1164px
-outer gutters: 68px / 68px
-entry-content padding: 20px / 20px
-wrapper padding: 20px / 20px
+window inner width: 1315
+document client width: 1300
+scrollbar width: 15
+wrapper border/content width: 1200 / 1200
+wrapper outer gutters: 50 / 50
+parent entry-content border/content width: 1300 / 1300
+form / gap / summary: 653 / 80 / 467
+title → count: 88
+count → main row: 120
 ```
 
-After deployment, based on the supplied ancestor trace:
+Passed:
 
 ```text
-wrapper: 1200px
-outer gutters: 50px / 50px
-entry-content padding: 0px / 0px
-wrapper padding: 0px / 0px
+- 7fr / 5fr rendered relationship
+- exact 80px column gap
+- exact 88px title-to-count rhythm
+- exact 120px count-to-main-row rhythm
+- inherited horizontal padding removal
 ```
 
-Therefore the R5-E4-B CSS is active and both known padding owners are removed. The user used the ancestor trace rather than the full geometry measurement, so final track and vertical-rhythm acceptance is still pending.
+Pending strict width owner:
 
-The remaining 4px width difference from the provisional 1204px target needs exact border/content-box accounting before any further CSS edit.
+```text
+wrapper remains 1200px with 50px gutters
+strict formula target remains 1204px with 48px gutters
+```
+
+Only the wrapper `css_width` and `max_width` computed values need to be shown. No prototype expansion or additional CSS change is authorized before that check.
 
 ## Current operation
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_C1_RUNTIME_PARTIAL_AND_MEASUREMENT_CORRECTION.md
+project2-progress/STEP_4E_B2_R5_E4_C2_FULL_GEOMETRY_RESULT.md
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E4-C2 corrected geometry diagnostic
+wrapper computed width/max-width confirmation
 → R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance
