@@ -1,18 +1,24 @@
 # Step 4E-B2-R5-E4-B-FIX1 · Cart Max-Width Correction
 
-Last updated: 2026-07-17  
+Last updated: 2026-07-18  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
 
 ```text
 Max-width source locator：Passed.
-Manual CSS correction：Ready.
-Deployment：Not authorized before exact artifact validation.
+Manual CSS artifact：Passed exact pre-deploy validation.
+Deployment：Authorized for strict runtime measurement.
 Cart page status：Not done.
 ```
 
-## Baseline
+Validation record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E4_B_FIX1_PRE_DEPLOY_VALIDATION.md
+```
+
+## Previous deployed baseline
 
 ```text
 spatial-flow(23).css
@@ -23,80 +29,35 @@ Braces: 3,625 / 3,625
 Comments: 340 / 340
 ```
 
-## Scope
-
-Modify only:
+## Validated deployment artifact
 
 ```text
-assets/css/spatial-flow.css
+spatial-flow(24).css
+Size: 696,069 bytes
+Logical lines: 23,335
+SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
+Braces: 3,626 / 3,626
+Comments: 340 / 340
+CSS parser errors: 0
+Line endings: LF
+Final newline: present
 ```
 
-Do not modify:
+## Exact accepted change
 
-```text
-functions.php
-assets/js/spatial-flow.js
-header.php
-WooCommerce templates
-Customizer values
-version 2.7.8
-phone/mobile rules
-empty-Cart rules
-Cart Notice block
-7fr / 5fr declaration
-80px column gap
-88px / 120px vertical rhythm
-```
-
-## Exact manual edit
-
-Inside the existing R5-E4-B desktop media block, find:
+Inside the existing R5-E4-B desktop media block, the following bounded owner was added in place:
 
 ```css
-@media (min-width: 1101px) {
-  body.woocommerce-cart .entry-content,
-  body.woocommerce-cart .entry-content > .woocommerce {
-    padding: 0 !important;
-  }
-
-  body.woocommerce-cart .sf-cart-v2-heading {
-    margin-bottom: 67px !important;
-  }
-
-  body.woocommerce-cart .sf-cart-v2-heading__title {
-    margin-bottom: 88px !important;
-  }
+body.woocommerce-cart .entry-content > .woocommerce {
+  max-width: var(--sf-cart-max) !important;
 }
 ```
 
-Replace the entire block with:
+The full-file diff was validated. Removing exactly this 107-byte / four-line addition restores `spatial-flow(23).css` byte-for-byte, including its accepted SHA256.
 
-```css
-@media (min-width: 1101px) {
-  body.woocommerce-cart .entry-content,
-  body.woocommerce-cart .entry-content > .woocommerce {
-    padding: 0 !important;
-  }
+## Why this correction is exact
 
-  body.woocommerce-cart .entry-content > .woocommerce {
-    max-width: var(--sf-cart-max) !important;
-  }
-
-  body.woocommerce-cart .sf-cart-v2-heading {
-    margin-bottom: 67px !important;
-  }
-
-  body.woocommerce-cart .sf-cart-v2-heading__title {
-    margin-bottom: 88px !important;
-  }
-}
-```
-
-Do not append this correction at the end of the CSS file. Replace the existing R5-E4-B block in place.
-
-## Why this is exact
-
-The source scan proved that active Cart-specific inline-style rules apply:
+The browser source scan proved active Cart-specific inline-style ownership:
 
 ```css
 .woocommerce-cart .woocommerce {
@@ -104,31 +65,33 @@ The source scan proved that active Cart-specific inline-style rules apply:
 }
 ```
 
-Those rules have no `!important`. The bounded Canonical Cart rule restores the approved 1440px ceiling and allows the existing width formula to resolve correctly:
+That rule has no `!important`. The bounded Canonical Cart rule restores the approved ceiling:
 
 ```css
 --sf-cart-max: 1440px;
+```
+
+while preserving the existing responsive width formula:
+
+```css
 width: min(var(--sf-cart-max), calc(100% - 96px));
 ```
 
-Expected at document client width 1300px:
+## Runtime gate
+
+Deploy `spatial-flow(24).css`, clear cache, and remeasure the same non-empty desktop Cart at 100% zoom.
+
+Expected at `document_client_width = 1300`:
 
 ```text
 wrapper: 1204px
 left/right gutters: 48px / 48px
+form: approximately 656px
+summary: approximately 468px
 column gap: 80px
 title → count: 88px
 count → main row: 120px
+computed max-width: 1440px
 ```
 
-## Pre-deploy gate
-
-After the manual replacement:
-
-```text
-1. save under a new upload name
-2. do not replace the server file yet
-3. upload it for full-file diff, braces, comments, parser and SHA256 validation
-```
-
-No runtime deployment is authorized before that file-level validation.
+Do not start final visual acceptance until these runtime values are confirmed.
