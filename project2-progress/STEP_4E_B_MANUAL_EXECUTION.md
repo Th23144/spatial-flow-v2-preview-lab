@@ -1,6 +1,6 @@
 # Step 4E-B · Manual Staged Cart Execution Protocol
 
-Last updated: 2026-07-17  
+Last updated: 2026-07-18  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
@@ -25,11 +25,12 @@ R5-E4-A2 ancestor/container trace：Complete.
 R5-E4-B strict geometry artifact：Passed / deployed.
 R5-E4-C2 principal geometry measurement：Passed.
 R5-E4-C2 wrapper/source ownership：Passed.
-Current executable phase：R5-E4-B-FIX1 bounded max-width correction.
+R5-E4-B-FIX1 exact CSS artifact：Passed.
+Current executable phase：Deploy spatial-flow(24).css and confirm strict runtime geometry.
 Cart page status：Not done.
 ```
 
-## Accepted current baselines
+## Accepted code baselines
 
 ```text
 functions.php
@@ -42,19 +43,21 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Deployed artifact: spatial-flow(23).css
-Size: 695,962 bytes
-Logical lines: 23,331
-SHA256: b55c854e959ab42026f93c786e62b0c7e6b56e1cbf5307027b45991d39d90531
-Braces: 3,625 / 3,625
+Current deployed artifact before FIX1: spatial-flow(23).css
+Validated deployment artifact: spatial-flow(24).css
+Size: 696,069 bytes
+Logical lines: 23,335
+SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
+Braces: 3,626 / 3,626
 Comments: 340 / 340
+CSS parser errors: 0
 ```
 
-## Accepted geometry
+## Accepted geometry retained
 
 ```text
 parent width: 1300px
-wrapper: 1200px
+current wrapper before FIX1: 1200px
 form / gap / summary: 653 / 80 / 467
 title → count: 88px
 count → main row: 120px
@@ -70,36 +73,9 @@ Passed:
 - inherited parent/wrapper padding removal
 ```
 
-## Exact remaining source owner
+## Exact FIX1 artifact proof
 
-The browser stylesheet scan confirms active Cart-specific inline-style rules:
-
-```text
-max-width: 1200px
-priority: no !important
-source: inline <style>
-condition: all
-```
-
-A direct matching selector is:
-
-```css
-.woocommerce-cart .woocommerce {
-  max-width: 1200px;
-}
-```
-
-This caps the wrapper at 1200px / 50px gutters instead of the strict 1204px / 48px result.
-
-## Current exact operation
-
-Follow only:
-
-```text
-project2-progress/STEP_4E_B2_R5_E4_B_FIX1_MAX_WIDTH_CORRECTION.md
-```
-
-Replace the existing R5-E4-B desktop media block in place by adding:
+Only this four-line rule was added inside the existing desktop geometry block:
 
 ```css
 body.woocommerce-cart .entry-content > .woocommerce {
@@ -107,13 +83,31 @@ body.woocommerce-cart .entry-content > .woocommerce {
 }
 ```
 
-Do not append at file end. Do not deploy before exact artifact validation.
+Removing it restores the accepted `spatial-flow(23).css` SHA256 exactly. No unrelated CSS changed.
+
+## Current operation
+
+Deploy `spatial-flow(24).css` as `assets/css/spatial-flow.css`, clear cache, and remeasure the same non-empty desktop Cart at 100% zoom.
+
+Expected:
+
+```text
+wrapper border/content width: 1204 / 1204
+left/right gutters: 48 / 48
+form: approximately 656
+summary: approximately 468
+column gap: 80
+title → count: 88
+count → main row: 120
+computed max-width: 1440px
+```
+
+Also smoke-check phone non-empty Cart and both accepted empty-Cart states for regression.
 
 ## Remaining sequence
 
 ```text
-R5-E4-B-FIX1 manual edit + exact artifact validation
-→ runtime 1204px / 48px confirmation
+R5-E4-B-FIX1 strict runtime measurement
 → R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance
