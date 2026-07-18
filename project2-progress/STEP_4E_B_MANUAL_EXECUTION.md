@@ -23,10 +23,9 @@ R5-E3 empty-Cart parity：Passed / closed.
 R5-E4-A1 first geometry measurement：Complete.
 R5-E4-A2 ancestor/container trace：Complete.
 R5-E4-B strict geometry artifact：Passed / deployed.
-R5-E4-C1 partial runtime proof：Complete.
 R5-E4-C2 principal geometry measurement：Passed.
-R5-E4-C2 wrapper computed-value confirmation：Passed.
-Current executable phase：Identify exact stylesheet rule supplying max-width: 1200px.
+R5-E4-C2 wrapper/source ownership：Passed.
+Current executable phase：R5-E4-B-FIX1 bounded max-width correction.
 Cart page status：Not done.
 ```
 
@@ -49,20 +48,16 @@ Logical lines: 23,331
 SHA256: b55c854e959ab42026f93c786e62b0c7e6b56e1cbf5307027b45991d39d90531
 Braces: 3,625 / 3,625
 Comments: 340 / 340
-CSS parser errors: 0
 ```
 
-## Accepted R5-E4-C2 geometry
+## Accepted geometry
 
 ```text
-window inner width: 1315
-document client width: 1300
-wrapper border/content width: 1200 / 1200
-wrapper outer gutters: 50 / 50
-parent entry-content width: 1300
+parent width: 1300px
+wrapper: 1200px
 form / gap / summary: 653 / 80 / 467
-title → count: 88
-count → main row: 120
+title → count: 88px
+count → main row: 120px
 ```
 
 Passed:
@@ -75,55 +70,50 @@ Passed:
 - inherited parent/wrapper padding removal
 ```
 
-## Confirmed remaining width owner
+## Exact remaining source owner
 
-```text
-wrapper css_width: 1200px
-wrapper max_width: 1200px
-wrapper padding: 0 / 0
-wrapper border: 0 / 0
-parent content width: 1300px
-```
-
-A direct winning `max-width: 1200px` declaration is the only remaining owner preventing the strict 1204px / 48px-gutter result.
-
-## Current exact operation
-
-Do not edit CSS yet.
-
-Identify the exact stylesheet rule matching:
-
-```text
-body.woocommerce-cart .entry-content > .woocommerce
-```
-
-that supplies:
+The browser stylesheet scan confirms active Cart-specific inline-style rules:
 
 ```text
 max-width: 1200px
+priority: no !important
+source: inline <style>
+condition: all
 ```
 
-Required evidence:
+A direct matching selector is:
+
+```css
+.woocommerce-cart .woocommerce {
+  max-width: 1200px;
+}
+```
+
+This caps the wrapper at 1200px / 50px gutters instead of the strict 1204px / 48px result.
+
+## Current exact operation
+
+Follow only:
 
 ```text
-selector
-value
-!important priority
-stylesheet source
-active media condition
+project2-progress/STEP_4E_B2_R5_E4_B_FIX1_MAX_WIDTH_CORRECTION.md
 ```
 
-Reference:
+Replace the existing R5-E4-B desktop media block in place by adding:
 
-```text
-project2-progress/STEP_4E_B2_R5_E4_C2_WIDTH_OWNER_CONFIRMATION.md
+```css
+body.woocommerce-cart .entry-content > .woocommerce {
+  max-width: var(--sf-cart-max) !important;
+}
 ```
+
+Do not append at file end. Do not deploy before exact artifact validation.
 
 ## Remaining sequence
 
 ```text
-identify exact 1200px max-width rule source
-→ bounded width-owner correction
+R5-E4-B-FIX1 manual edit + exact artifact validation
+→ runtime 1204px / 48px confirmation
 → R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance
