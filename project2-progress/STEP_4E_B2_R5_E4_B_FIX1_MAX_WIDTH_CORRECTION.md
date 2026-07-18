@@ -3,19 +3,22 @@
 Last updated: 2026-07-18  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
-## Status
+## Final status
 
 ```text
 Max-width source locator：Passed.
 Manual CSS artifact：Passed exact pre-deploy validation.
-Deployment：Authorized for strict runtime measurement.
+Deployment：Passed.
+Runtime width acceptance：Passed.
+Current executable phase：R5-E4-C3 desktop + phone strict visual acceptance.
 Cart page status：Not done.
 ```
 
-Validation record:
+Records:
 
 ```text
 project2-progress/STEP_4E_B2_R5_E4_B_FIX1_PRE_DEPLOY_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E4_B_FIX1_RUNTIME_ACCEPTANCE.md
 ```
 
 ## Previous deployed baseline
@@ -29,7 +32,7 @@ Braces: 3,625 / 3,625
 Comments: 340 / 340
 ```
 
-## Validated deployment artifact
+## Accepted deployed artifact
 
 ```text
 spatial-flow(24).css
@@ -55,7 +58,7 @@ body.woocommerce-cart .entry-content > .woocommerce {
 
 The full-file diff was validated. Removing exactly this 107-byte / four-line addition restores `spatial-flow(23).css` byte-for-byte, including its accepted SHA256.
 
-## Why this correction is exact
+## Source defect closed
 
 The browser source scan proved active Cart-specific inline-style ownership:
 
@@ -65,33 +68,35 @@ The browser source scan proved active Cart-specific inline-style ownership:
 }
 ```
 
-That rule has no `!important`. The bounded Canonical Cart rule restores the approved ceiling:
+That rule had no `!important`. The bounded Canonical Cart rule restores the approved ceiling:
 
 ```css
 --sf-cart-max: 1440px;
 ```
 
-while preserving the existing responsive width formula:
+while preserving:
 
 ```css
 width: min(var(--sf-cart-max), calc(100% - 96px));
 ```
 
-## Runtime gate
+## Runtime result
 
-Deploy `spatial-flow(24).css`, clear cache, and remeasure the same non-empty desktop Cart at 100% zoom.
-
-Expected at `document_client_width = 1300`:
+After deployment, the user explicitly confirmed:
 
 ```text
-wrapper: 1204px
-left/right gutters: 48px / 48px
-form: approximately 656px
-summary: approximately 468px
-column gap: 80px
-title → count: 88px
-count → main row: 120px
-computed max-width: 1440px
+- Cart width now matches the completed Shop page width
+- the width result is acceptable
 ```
 
-Do not start final visual acceptance until these runtime values are confirmed.
+The remaining geometry had already passed:
+
+```text
+- 7fr / 5fr rendered relationship
+- 80px desktop column gap
+- 88px title-to-count rhythm
+- 120px count-to-main-row rhythm
+- inherited parent/wrapper padding removal
+```
+
+R5-E4-B-FIX1 is closed. No further console inspection is required unless a later visual change causes regression.
