@@ -25,8 +25,8 @@ R5-E4-A2 ancestor/container trace：Complete.
 R5-E4-B strict geometry artifact：Passed / deployed.
 R5-E4-C2 principal geometry measurement：Passed.
 R5-E4-C2 wrapper/source ownership：Passed.
-R5-E4-B-FIX1 exact CSS artifact：Passed.
-Current executable phase：Deploy spatial-flow(24).css and confirm strict runtime geometry.
+R5-E4-B-FIX1 exact artifact and runtime width：Passed / closed.
+Current executable phase：R5-E4-C3 desktop + phone strict visual acceptance.
 Cart page status：Not done.
 ```
 
@@ -43,8 +43,7 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Current deployed artifact before FIX1: spatial-flow(23).css
-Validated deployment artifact: spatial-flow(24).css
+Deployed artifact: spatial-flow(24).css
 Size: 696,069 bytes
 Logical lines: 23,335
 SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
@@ -53,63 +52,53 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## Accepted geometry retained
+## Accepted geometry
 
 ```text
-parent width: 1300px
-current wrapper before FIX1: 1200px
-form / gap / summary: 653 / 80 / 467
-title → count: 88px
-count → main row: 120px
+- Cart width now matches the completed Shop page width
+- 7fr / 5fr rendered relationship passed
+- 80px desktop column gap passed
+- 88px title-to-count rhythm passed
+- 120px count-to-main-row rhythm passed
+- inherited parent/wrapper padding removal passed
 ```
 
-Passed:
+Runtime record:
 
 ```text
-- 7fr / 5fr rendered relationship
-- 80px desktop column gap
-- 88px title-to-count rhythm
-- 120px count-to-main-row rhythm
-- inherited parent/wrapper padding removal
+project2-progress/STEP_4E_B2_R5_E4_B_FIX1_RUNTIME_ACCEPTANCE.md
 ```
 
-## Exact FIX1 artifact proof
+## Current exact operation · R5-E4-C3
 
-Only this four-line rule was added inside the existing desktop geometry block:
+No code change in this substep.
 
-```css
-body.woocommerce-cart .entry-content > .woocommerce {
-  max-width: var(--sf-cart-max) !important;
-}
-```
-
-Removing it restores the accepted `spatial-flow(23).css` SHA256 exactly. No unrelated CSS changed.
-
-## Current operation
-
-Deploy `spatial-flow(24).css` as `assets/css/spatial-flow.css`, clear cache, and remeasure the same non-empty desktop Cart at 100% zoom.
-
-Expected:
+Validate the full Cart visually against the approved static direction:
 
 ```text
-wrapper border/content width: 1204 / 1204
-left/right gutters: 48 / 48
-form: approximately 656
-summary: approximately 468
-column gap: 80
-title → count: 88
-count → main row: 120
-computed max-width: 1440px
+Desktop
+- full-page width and 48px visual gutters align with Shop
+- Your Bag title/count whitespace matches the static composition
+- product rows, image crop, title/meta/quantity/price alignment are coherent
+- Order Summary starts at the correct main-row top and uses the right visual weight
+- coupon/update controls align cleanly
+- recommendation section uses the full available width and four real products
+- Header and Footer remain unchanged
+
+Phone
+- non-empty Cart remains production-quality with no horizontal overflow
+- remove, quantity, coupon, summary and recommendations remain usable
+- both empty-Cart states remain centered
+- Footer accordion and Header remain normal
 ```
 
-Also smoke-check phone non-empty Cart and both accepted empty-Cart states for regression.
+The static phone preview is guidance only; production-quality mobile behavior takes priority.
 
 ## Remaining sequence
 
 ```text
-R5-E4-B-FIX1 strict runtime measurement
-→ R5-E4-C3 desktop + phone visual acceptance
+R5-E4-C3 desktop + phone strict visual acceptance
 → R5-E5 Cart Notice in-place refinement
-→ R5-E6 final strict acceptance
+→ R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
 ```
