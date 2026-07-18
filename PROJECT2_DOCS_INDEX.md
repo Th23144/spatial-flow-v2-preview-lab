@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-17  
+Last updated: 2026-07-18  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative Cart read order
@@ -21,11 +21,11 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 13. project2-progress/STEP_4E_B2_R5_E4_A2_ANCESTOR_TRACE_RESULT.md
 14. project2-progress/STEP_4E_B2_R5_E4_B_STRICT_GEOMETRY_CORRECTION.md
 15. project2-progress/STEP_4E_B2_R5_E4_B_PRE_DEPLOY_VALIDATION.md
-16. project2-progress/STEP_4E_B2_R5_E4_C1_RUNTIME_PARTIAL_AND_MEASUREMENT_CORRECTION.md
-17. project2-progress/STEP_4E_B2_R5_E4_C2_FULL_GEOMETRY_RESULT.md
-18. project2-progress/STEP_4E_B2_R5_E4_C2_WIDTH_OWNER_CONFIRMATION.md
-19. project2-progress/STEP_4E_B2_R5_E4_C2_MAX_WIDTH_SOURCE_RESULT.md
-20. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_MAX_WIDTH_CORRECTION.md
+16. project2-progress/STEP_4E_B2_R5_E4_C2_FULL_GEOMETRY_RESULT.md
+17. project2-progress/STEP_4E_B2_R5_E4_C2_WIDTH_OWNER_CONFIRMATION.md
+18. project2-progress/STEP_4E_B2_R5_E4_C2_MAX_WIDTH_SOURCE_RESULT.md
+19. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_MAX_WIDTH_CORRECTION.md
+20. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_PRE_DEPLOY_VALIDATION.md
 21. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
 22. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
 23. project2-progress/PROGRESS_LOG.md
@@ -55,14 +55,15 @@ R5-E2 synchronized live counts：Passed / closed
 R5-E3 empty-Cart parity：Passed / closed
 R5-E4-A1 first geometry measurement：Complete
 R5-E4-A2 ancestor/container trace：Complete
-R5-E4-B exact CSS artifact：Passed / deployed
+R5-E4-B strict geometry artifact：Passed / deployed
 R5-E4-C2 principal geometry measurement：Passed
 R5-E4-C2 wrapper/source owner confirmation：Passed
-Current：R5-E4-B-FIX1 bounded max-width correction
+R5-E4-B-FIX1 exact CSS artifact：Passed
+Current：Deploy spatial-flow(24).css and confirm strict runtime geometry
 Cart：Not done
 ```
 
-## Accepted current server/code baselines
+## Accepted current code baselines
 
 ```text
 functions.php
@@ -75,46 +76,27 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Deployed artifact: spatial-flow(23).css
-Size: 695,962 bytes
-Logical lines: 23,331
-SHA256: b55c854e959ab42026f93c786e62b0c7e6b56e1cbf5307027b45991d39d90531
-Braces: 3,625 / 3,625
+Current deployed artifact before FIX1: spatial-flow(23).css
+Validated deployment artifact: spatial-flow(24).css
+Size: 696,069 bytes
+Logical lines: 23,335
+SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
+Braces: 3,626 / 3,626
 Comments: 340 / 340
+CSS parser errors: 0
 ```
 
-## Accepted R5-E4 geometry
+## Accepted geometry before FIX1 runtime
 
 ```text
 parent width: 1300px
-wrapper border/content width: 1200 / 1200
+wrapper before FIX1: 1200px
 form / gap / summary: 653 / 80 / 467
 title → count: 88px
 count → main row: 120px
 ```
 
-Passed:
-
-```text
-- 7fr / 5fr rendered relationship
-- exact 80px column gap
-- exact 88px title-to-count rhythm
-- exact 120px count-to-main-row rhythm
-- inherited horizontal padding removal
-```
-
-## Exact final width owner
-
-The stylesheet scan confirms Cart-specific inline-style rules with:
-
-```text
-max-width: 1200px
-priority: no !important
-source: inline <style>
-condition: all
-```
-
-The direct matching selector includes:
+Confirmed source owner:
 
 ```css
 .woocommerce-cart .woocommerce {
@@ -122,19 +104,36 @@ The direct matching selector includes:
 }
 ```
 
-This is the remaining reason for 1200px / 50px gutters instead of 1204px / 48px gutters.
+Validated bounded correction:
+
+```css
+body.woocommerce-cart .entry-content > .woocommerce {
+  max-width: var(--sf-cart-max) !important;
+}
+```
+
+Expected runtime result:
+
+```text
+wrapper: 1204px
+left/right gutters: 48px / 48px
+form / summary: approximately 656px / 468px
+column gap: 80px
+title → count: 88px
+count → main row: 120px
+computed max-width: 1440px
+```
 
 ## Current operation
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_B_FIX1_MAX_WIDTH_CORRECTION.md
+project2-progress/STEP_4E_B2_R5_E4_B_FIX1_PRE_DEPLOY_VALIDATION.md
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E4-B-FIX1 manual edit + exact artifact validation
-→ runtime 1204px / 48px confirmation
+R5-E4-B-FIX1 strict runtime measurement
 → R5-E4-C3 desktop + phone visual acceptance
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict acceptance
