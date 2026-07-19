@@ -27,9 +27,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 19. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_MAX_WIDTH_CORRECTION.md
 20. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_PRE_DEPLOY_VALIDATION.md
 21. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_RUNTIME_ACCEPTANCE.md
-22. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-23. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-24. project2-progress/PROGRESS_LOG.md
+22. project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
+23. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+24. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+25. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -60,7 +61,8 @@ R5-E4-B strict geometry artifact：Passed / deployed
 R5-E4-C2 principal geometry measurement：Passed
 R5-E4-C2 wrapper/source owner confirmation：Passed
 R5-E4-B-FIX1 artifact and runtime width：Passed / closed
-Current：R5-E4-C3 desktop + phone strict visual acceptance
+R5-E4-C3 full-page visual review：Failed / residuals reopened
+Current：R5-E4-D residual strict-visual corrections
 Cart：Not done
 ```
 
@@ -68,6 +70,7 @@ Cart：Not done
 
 ```text
 functions.php
+Deployed source artifact: functions(14).php
 Version: 2.7.8
 Size: 552,215 bytes
 SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
@@ -86,32 +89,49 @@ Comments: 340 / 340
 CSS parser errors: 0
 ```
 
-## Accepted geometry
+## Accepted Cart geometry
 
 ```text
-- Cart width now matches the completed Shop page width
-- 7fr / 5fr rendered relationship passed
-- 80px column gap passed
+- Cart width matches completed Shop frame
+- 7fr / 5fr relationship passed
+- 80px desktop column gap passed
 - 88px title-to-count rhythm passed
 - 120px count-to-main-row rhythm passed
-- inherited parent/wrapper padding removal passed
+- inherited padding and 1200px cap defects are closed
 ```
 
-The 1200px inline max-width cap is closed by the bounded Canonical Cart owner in `spatial-flow(24).css`.
+## R5-E4-C3 residuals
+
+```text
+1. Cart main canvas remains white instead of the approved warm #f6f1eb surface.
+2. Approved HOME / YOUR BAG breadcrumb is absent.
+3. Dynamic recommendation imagery is not presentation-ready:
+   - Natural Silver Obsidian Bracelet contains a visible white label/arrow fragment
+   - Natural Malachite Mixed Bead Bracelet uses the WooCommerce cube placeholder
+```
+
+The recommendation structure remains dynamic and must not be repaired with fake/hardcoded imagery.
 
 ## Current operation
 
 ```text
-R5-E4-C3 full desktop + phone visual acceptance
+project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
 ```
 
-No code change is authorized until the visual review identifies a concrete defect.
+Required before a bounded R5-E4-D edit:
+
+```text
+- current deployed spatial-flow(24).css
+- current deployed functions(14).php
+- backend product-image correction for the two identified recommendation products
+```
 
 ## Remaining sequence
 
 ```text
-R5-E4-C3 desktop + phone strict visual acceptance
-→ R5-E5 Cart Notice in-place refinement
-→ R5-E6 final strict acceptance
-→ binary Cart decision
+R5-E4-D residual corrections
+→ R5-E4-C4 strict desktop + phone visual rerun
+→ R5-E5 Cart Notice refinement
+→ R5-E6 final acceptance
+→ binary Cart status decision
 ```
