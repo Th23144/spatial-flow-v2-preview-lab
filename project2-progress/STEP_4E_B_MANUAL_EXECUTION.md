@@ -25,7 +25,8 @@ R5-E5 notice source audit and first CSS artifact：Passed technically / failed v
 R5-E5-FIX1 source and exact CSS validation：Passed.
 R5-E5-FIX1 runtime frame removal：Failed / warm rectangular wash still perceptible.
 R5-E5-FIX2 static-reference comparison：Complete.
-Current executable phase：Apply the static-aligned transparent BlockUI correction and validate the exact artifact.
+R5-E5-FIX2 exact CSS artifact validation：Passed.
+Current executable phase：Deploy spatial-flow(32).css and run loading / notice / Undo runtime acceptance.
 Cart page status：Not done.
 ```
 
@@ -82,45 +83,10 @@ The reference uses one uninterrupted warm page canvas. The left Cart owner has n
 
 The current Canonical Cart desktop form and item rows already follow that structure. Therefore do not rebuild the form, table, item rows, width, 7fr / 5fr tracks, 80px gap or coupon behavior. Remove only the BlockUI wash.
 
-Detailed record:
+## R5-E5-FIX2 validated candidate
 
 ```text
-project2-progress/STEP_4E_B2_R5_E5_FIX1_RUNTIME_REJECTION_AND_FIX2.md
-```
-
-## R5-E5-FIX2 exact operation
-
-Start from `spatial-flow(31).css`.
-
-Inside `Native Cart loading state`, replace only:
-
-```css
-background: rgba(246, 241, 235, .78) !important;
-```
-
-with:
-
-```css
-background: transparent !important;
-```
-
-and replace only:
-
-```css
-background: rgba(237, 231, 223, .78) !important;
-```
-
-with:
-
-```css
-background: transparent !important;
-```
-
-Do not alter `opacity: 1`, the overlay elements, loader, notice block or any other CSS.
-
-Predicted exact artifact:
-
-```text
+spatial-flow(32).css
 Size: 697,616 bytes
 Logical lines: 23,387
 SHA256: 2fa292d96e7e35a3d633dbe5bd8334e73fdb2432bbd6c8e6576a1424e170f55d
@@ -131,11 +97,42 @@ Line endings: LF
 Final newline: present
 ```
 
+Exact validation record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E5_FIX2_PRE_DEPLOY_VALIDATION.md
+```
+
+Both BlockUI surface backgrounds are transparent. The previous two warm rgba declarations are absent. `opacity: 1`, native blocking, the 18px loader, editorial notice and native Undo remain unchanged.
+
+## Deployment operation
+
+Replace only:
+
+```text
+assets/css/spatial-flow.css
+← spatial-flow(32).css
+```
+
+Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
+
+## Runtime acceptance gate
+
+```text
+1. no rectangular wash appears over the Cart form during quantity update
+2. no rectangular wash appears over Order Summary during refresh
+3. only the restrained 18px loader remains visible
+4. native update blocking remains functional
+5. editorial notice and native Undo remain functional
+6. live BAG / Your Bag counts remain synchronized
+7. Cart geometry, breadcrumb, recommendations, Header and Footer remain unchanged
+8. phone loading state has no overflow or flash panel
+```
+
 ## Remaining sequence
 
 ```text
-R5-E5-FIX2 exact artifact validation
-→ R5-E5 runtime loading / notice / Undo acceptance
+R5-E5-FIX2 runtime loading / notice / Undo acceptance
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
 ```
