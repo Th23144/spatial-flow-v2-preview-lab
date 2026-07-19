@@ -1,6 +1,6 @@
 # Step 4E-B · Manual Staged Cart Execution Protocol
 
-Last updated: 2026-07-18  
+Last updated: 2026-07-19  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
@@ -28,14 +28,14 @@ R5-E4-C2 wrapper/source ownership：Passed.
 R5-E4-B-FIX1 artifact and runtime width：Passed / closed.
 R5-E4-C3 full-page visual review：Failed / residuals reopened.
 R5-E4-D current server-source validation：Passed.
-R5-E4-D A1 breadcrumb defaults：Passed.
-R5-E4-D A2 breadcrumb Customizer controls：Passed.
-R5-E4-D A3 recommendation exclusion field/save logic：Passed.
-Current executable phase：Complete A4 + A5 + CSS B1–B4, then upload both edited files.
+R5-E4-D A1–A5 PHP correction：Passed.
+R5-E4-D CSS B1–B4 correction：Passed.
+R5-E4-D complete pre-deploy validation：Passed.
+Current executable phase：Deploy only functions(17).php and spatial-flow(26).css, perform backend product action, then run R5-E4-C4.
 Cart page status：Not done.
 ```
 
-## Accepted deployed baselines
+## Accepted currently deployed baselines
 
 ```text
 functions.php
@@ -54,39 +54,66 @@ Size: 696,069 bytes
 SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
 ```
 
-## Current manually edited PHP artifact
+These remain the deployed baseline until the user completes the authorized replacement.
+
+## Validated deployment artifacts
+
+### functions(17).php
 
 ```text
-functions(16).php
 Version: 2.7.8
-Size: 553,377 bytes
-Logical lines: 10,319
-SHA256: ee759dcff385708f5cbec341fcea52b9803fa85489579b81c9b586ee96b54c26
-Braces: 1,209 / 1,209
+Size: 555,130 bytes
+Logical lines: 10,366
+SHA256: ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
+Braces: 1,215 / 1,215
 PHP syntax: Passed
 Line endings: LF
 Final newline: absent
 ```
 
-Full-file comparison with `functions(15).php` confirms only A1–A3 were applied. No unrelated code changed.
+Full-file comparison with `functions(16).php` confirms only A4 and A5 were added. A1–A3 had already passed in the partial artifact.
+
+### spatial-flow(26).css
+
+```text
+Size: 697,699 bytes
+Logical lines: 23,389
+SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
+Braces: 3,633 / 3,633
+Comments: 341 / 341
+CSS parser errors: 0
+Line endings: LF
+Final newline: present
+```
+
+Full-file comparison with `spatial-flow(25).css` confirms only B1–B4 were added.
 
 Validation record:
 
 ```text
 project2-progress/STEP_4E_B2_R5_E4_D_A1_A3_PARTIAL_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E4_D_PRE_DEPLOY_VALIDATION.md
 ```
 
-## Remaining R5-E4-D operation
+## Corrected PHP metric note
+
+The earlier predicted PHP gate of `555,129 bytes / 10,365 lines / b101...` omitted one blank line that was present in the issued A5 replacement. `functions(17).php` matches the issued code exactly. The corrected accepted artifact is:
 
 ```text
-A4 add Cart breadcrumb renderer at woocommerce_before_cart priority 5
-A5 require image-ready and non-excluded recommendation products
-A5 remove the generated fallback marketing sentence
-A5 enlarge both dynamic candidate pools
-B1 assign #f6f1eb to Cart-scoped Astra/page wrappers
-B2 give breadcrumb full-grid ownership
-B3 add desktop breadcrumb styling inside Canonical Cart
-B4 add phone breadcrumb calibration inside Canonical Cart
+555,130 bytes
+10,366 logical lines
+ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
+```
+
+No further PHP edit is required.
+
+## Authorized replacement
+
+Replace only:
+
+```text
+functions.php <- functions(17).php
+assets/css/spatial-flow.css <- spatial-flow(26).css
 ```
 
 Do not modify:
@@ -102,50 +129,35 @@ Header/Footer
 version 2.7.8
 ```
 
-## Corrected completed-file gate
-
-A3 was implemented through the safer whole-block replacement. Therefore the earlier provisional PHP metrics are superseded.
-
-Expected completed PHP:
-
-```text
-Size: 555,129 bytes
-Logical lines: 10,365
-SHA256: b101b33f6a327c53a2714855ec212bc6b973b3ea815acf619f832d2f407de458
-Braces: 1,215 / 1,215
-PHP syntax: Passed
-Version: 2.7.8
-```
-
-Expected completed CSS:
-
-```text
-Size: 697,699 bytes
-Logical lines: 23,389
-SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
-Braces: 3,633 / 3,633
-Comments: 341 / 341
-CSS parser errors: 0
-```
-
-Do not deploy before exact uploaded-file validation.
-
 ## Backend action after deployment
 
 ```text
 Natural Silver Obsidian Bracelet:
-- replace/crop the featured image, or enable Exclude from Cart recommendations
+- enable Exclude from Cart recommendations and save, or replace/crop its featured image
 
 Natural Malachite Mixed Bead Bracelet:
-- image-less products will be excluded automatically
-- a real featured image can later restore eligibility
+- remains automatically excluded while no valid featured image exists
+```
+
+## R5-E4-C4 runtime gate
+
+```text
+- warm Cart canvas on desktop and phone
+- HOME / YOUR BAG breadcrumb and working HOME link
+- strict accepted width / 7fr-5fr / 80px gap / 88px / 120px geometry preserved
+- four real image-ready recommendation cards when inventory permits
+- no cube/package placeholder
+- excluded products absent
+- no generated description for unauthored products
+- quantity / remove / Undo / coupon / totals / shipping / checkout navigation pass
+- both empty-Cart paths pass
+- Shop / Single Product / SAFE5 Checkout show no regression
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E4-D complete manual edit + exact pre-deploy validation
-→ deployment + backend product-image/exclusion action
+Authorized deployment + backend product action
 → R5-E4-C4 strict desktop + phone visual rerun
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict functional + visual acceptance
