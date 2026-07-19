@@ -28,9 +28,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 20. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_PRE_DEPLOY_VALIDATION.md
 21. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_RUNTIME_ACCEPTANCE.md
 22. project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
-23. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-24. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-25. project2-progress/PROGRESS_LOG.md
+23. project2-progress/STEP_4E_B2_R5_E4_D_SOURCE_AUDIT_AND_MANUAL_FIX.md
+24. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+25. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+26. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -62,25 +63,32 @@ R5-E4-C2 principal geometry measurement：Passed
 R5-E4-C2 wrapper/source owner confirmation：Passed
 R5-E4-B-FIX1 artifact and runtime width：Passed / closed
 R5-E4-C3 full-page visual review：Failed / residuals reopened
-Current：R5-E4-D residual strict-visual corrections
+R5-E4-D current source validation：Passed
+R5-E4-D source diagnosis/manual guide：Complete / ready
+Current：Perform exact R5-E4-D manual edits and upload both edited files for pre-deploy validation
 Cart：Not done
 ```
 
-## Accepted current server/code baselines
+## Accepted current server-source baselines
 
 ```text
 functions.php
-Deployed source artifact: functions(14).php
+Uploaded name: functions(15).php
+Exact match to accepted functions(14).php baseline: Yes
 Version: 2.7.8
 Size: 552,215 bytes
+Logical lines: 10,292
 SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
+Braces: 1,208 / 1,208
+PHP syntax: Passed
 
 assets/js/spatial-flow.js
 Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Deployed artifact: spatial-flow(24).css
+Uploaded name: spatial-flow(25).css
+Exact match to accepted spatial-flow(24).css baseline: Yes
 Size: 696,069 bytes
 Logical lines: 23,335
 SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
@@ -100,36 +108,42 @@ CSS parser errors: 0
 - inherited padding and 1200px cap defects are closed
 ```
 
-## R5-E4-C3 residuals
+## R5-E4-D source findings
 
 ```text
-1. Cart main canvas remains white instead of the approved warm #f6f1eb surface.
-2. Approved HOME / YOUR BAG breadcrumb is absent.
-3. Dynamic recommendation imagery is not presentation-ready:
-   - Natural Silver Obsidian Bracelet contains a visible white label/arrow fragment
-   - Natural Malachite Mixed Bead Bracelet uses the WooCommerce cube placeholder
+- warm #f6f1eb variable exists, but Cart page wrappers lack an explicit scoped background owner
+- no Cart breadcrumb renderer exists
+- recommendation eligibility allows products without a real image
+- no product-level recommendation exclusion control exists
+- image-less cards intentionally show the package/cube icon
+- unauthored recommendation descriptions still receive a generated fallback sentence
+- the Natural Silver Obsidian white label/arrow fragment belongs to the product image/crop, not Cart CSS
 ```
-
-The recommendation structure remains dynamic and must not be repaired with fake/hardcoded imagery.
 
 ## Current operation
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
+project2-progress/STEP_4E_B2_R5_E4_D_SOURCE_AUDIT_AND_MANUAL_FIX.md
 ```
 
-Required before a bounded R5-E4-D edit:
+The guide defines exact bounded edits for:
 
 ```text
-- current deployed spatial-flow(24).css
-- current deployed functions(14).php
-- backend product-image correction for the two identified recommendation products
+- warm Cart canvas ownership
+- backend-editable HOME / YOUR BAG breadcrumb
+- image-ready recommendation eligibility
+- backend product exclusion checkbox
+- larger dynamic candidate pools
+- removal of generated recommendation claims
 ```
+
+Do not deploy edited files before exact pre-deploy validation.
 
 ## Remaining sequence
 
 ```text
-R5-E4-D residual corrections
+R5-E4-D manual edit + pre-deploy validation
+→ deployment + backend product-image/exclusion action
 → R5-E4-C4 strict desktop + phone visual rerun
 → R5-E5 Cart Notice refinement
 → R5-E6 final acceptance
