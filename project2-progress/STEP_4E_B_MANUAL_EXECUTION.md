@@ -21,11 +21,12 @@ R5-E1 exact source/state audit：Complete.
 R5-E2 synchronized live counts：Passed / closed.
 R5-E3 empty-Cart parity：Passed / closed.
 R5-E4 strict geometry, canvas, breadcrumb and recommendation visual rebase：Passed / closed.
-Current executable phase：R5-E5 Cart Notice in-place refinement.
+R5-E5 notice source audit and bounded CSS artifact：Passed.
+Current executable phase：Deploy spatial-flow(28).css and run R5-E5 runtime notice/Undo validation.
 Cart page status：Not done.
 ```
 
-## Accepted deployed baselines
+## Accepted deployed baselines before R5-E5 deployment
 
 ```text
 functions.php
@@ -38,7 +39,7 @@ PHP syntax: Passed
 Braces: 1,215 / 1,215
 
 assets/css/spatial-flow.css
-Deployed artifact: spatial-flow(26).css
+Currently deployed artifact: spatial-flow(26).css
 Size: 697,699 bytes
 Logical lines: 23,389
 SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
@@ -50,6 +51,26 @@ assets/js/spatial-flow.js
 Unchanged accepted baseline
 Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
+```
+
+## Authorized R5-E5 CSS artifact
+
+```text
+spatial-flow(28).css
+Size: 697,513 bytes
+Logical lines: 23,384
+SHA256: 2120e5639f780a2eb370b5776fb78dcc470f3049d5a921badf2aef1d23261015
+Braces: 3,633 / 3,633
+Comments: 339 / 339
+CSS parser errors: 0
+Line endings: LF
+Final newline: present
+```
+
+Validation record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E5_PRE_DEPLOY_VALIDATION.md
 ```
 
 ## Closed R5-E4 result
@@ -70,37 +91,33 @@ SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 - Shop, Single Product and SAFE5 Checkout regressions passed
 ```
 
-Runtime record:
+## Current operation · R5-E5 runtime
+
+Replace only:
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_C4_RUNTIME_ACCEPTANCE.md
+assets/css/spatial-flow.css
+← spatial-flow(28).css
 ```
 
-## Current operation · R5-E5
-
-Modify only the existing bounded range:
+Then validate:
 
 ```text
-/* === Step 4E Cart Notice Toast START === */
-...
-/* === Step 4E Cart Notice Toast END === */
+1. desktop quantity update notice is a full-width editorial status row
+2. removed-item notice uses the restrained restore mark and native Undo text link
+3. Undo restores the exact product and live BAG / Your Bag counts stay synchronized
+4. phone notice has no horizontal overflow and Undo stacks safely
+5. transition-to-empty and direct-empty Cart states remain normal
+6. Cart width, warm canvas, breadcrumb, recommendations, Header and Footer remain unchanged
+7. Shop, Single Product and SAFE5 Checkout pass quick regression checks
 ```
-
-Follow exactly:
-
-```text
-project2-progress/STEP_4E_B2_R5_E5_CART_NOTICE_REFINEMENT.md
-```
-
-The edit replaces the rounded floating-pill visual with a full-width editorial status row while preserving native WooCommerce Restore / Undo behavior.
 
 Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
 
 ## Remaining sequence
 
 ```text
-R5-E5 manual CSS replacement + exact pre-deploy validation
-→ R5-E5 runtime notice/Undo validation
+R5-E5 deployment + runtime notice/Undo validation
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
 ```
