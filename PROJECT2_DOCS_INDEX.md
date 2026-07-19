@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-18  
+Last updated: 2026-07-19  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative Cart read order
@@ -30,9 +30,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 22. project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
 23. project2-progress/STEP_4E_B2_R5_E4_D_SOURCE_AUDIT_AND_MANUAL_FIX.md
 24. project2-progress/STEP_4E_B2_R5_E4_D_A1_A3_PARTIAL_VALIDATION.md
-25. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-26. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-27. project2-progress/PROGRESS_LOG.md
+25. project2-progress/STEP_4E_B2_R5_E4_D_PRE_DEPLOY_VALIDATION.md
+26. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+27. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+28. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -65,14 +66,14 @@ R5-E4-C2 wrapper/source owner confirmation：Passed
 R5-E4-B-FIX1 artifact and runtime width：Passed / closed
 R5-E4-C3 full-page visual review：Failed / residuals reopened
 R5-E4-D current source validation：Passed
-R5-E4-D A1 breadcrumb defaults：Passed
-R5-E4-D A2 breadcrumb Customizer controls：Passed
-R5-E4-D A3 recommendation exclusion field/save logic：Passed
-Current：Complete A4 + A5 + CSS B1–B4 and upload both edited files
+R5-E4-D A1–A5 PHP correction：Passed
+R5-E4-D CSS B1–B4 correction：Passed
+R5-E4-D complete pre-deploy validation：Passed
+Current：Deploy only functions(17).php and spatial-flow(26).css, perform backend product action, then run R5-E4-C4
 Cart：Not done
 ```
 
-## Accepted deployed baselines
+## Accepted currently deployed baselines
 
 ```text
 functions.php
@@ -89,41 +90,20 @@ Size: 696,069 bytes
 SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
 ```
 
-## Current manually edited PHP artifact
+These remain the deployed sources until the authorized replacement is completed.
+
+## Validated deployment artifacts
 
 ```text
-functions(16).php
+functions(17).php
 Version: 2.7.8
-Size: 553,377 bytes
-Logical lines: 10,319
-SHA256: ee759dcff385708f5cbec341fcea52b9803fa85489579b81c9b586ee96b54c26
-Braces: 1,209 / 1,209
-PHP syntax: Passed
-```
-
-Only A1–A3 differ from the accepted source baseline.
-
-## R5-E4-D residual findings
-
-```text
-- Cart page wrappers still need the warm #f6f1eb canvas owner
-- Cart breadcrumb output/styling still needs A4 and CSS B2–B4
-- recommendation eligibility still needs image-ready/non-excluded filtering
-- generated unauthored recommendation copy still needs removal
-- candidate pools still need enlargement
-```
-
-## Corrected final artifact targets
-
-```text
-functions.php after A4 + A5
-Size: 555,129 bytes
-Logical lines: 10,365
-SHA256: b101b33f6a327c53a2714855ec212bc6b973b3ea815acf619f832d2f407de458
+Size: 555,130 bytes
+Logical lines: 10,366
+SHA256: ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
 Braces: 1,215 / 1,215
 PHP syntax: Passed
 
-spatial-flow.css after B1–B4
+spatial-flow(26).css
 Size: 697,699 bytes
 Logical lines: 23,389
 SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
@@ -132,13 +112,35 @@ Comments: 341 / 341
 CSS parser errors: 0
 ```
 
-Do not deploy before exact pre-deploy validation.
+## R5-E4-D implemented ownership
+
+```text
+- warm #f6f1eb Cart canvas assigned to Cart-scoped Astra/page wrappers
+- backend-editable HOME / YOUR BAG breadcrumb rendered before the Cart heading
+- image-less products rejected from Cart recommendations
+- product-level Exclude from Cart recommendations control added
+- same-category and latest-product candidate pools enlarged
+- generated unauthored recommendation marketing sentence removed
+- Cart geometry, JS, templates, Checkout SAFE5 and version 2.7.8 preserved
+```
+
+## Corrected PHP target note
+
+The previous `555,129 bytes / 10,365 lines / b101...` prediction omitted one blank line contained in the issued A5 replacement. The uploaded `functions(17).php` matches the issued code exactly and is the accepted target. No corrective edit is required.
+
+## Authorized deployment
+
+```text
+functions.php <- functions(17).php
+assets/css/spatial-flow.css <- spatial-flow(26).css
+```
+
+Do not modify `assets/js/spatial-flow.js` during this deployment.
 
 ## Remaining sequence
 
 ```text
-R5-E4-D complete manual edit + pre-deploy validation
-→ deployment + backend image/exclusion action
+Authorized deployment + backend product action
 → R5-E4-C4 strict desktop + phone visual rerun
 → R5-E5 Cart Notice refinement
 → R5-E6 final acceptance
