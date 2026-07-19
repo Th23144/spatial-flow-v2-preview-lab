@@ -6,61 +6,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ## Status
 
 ```text
-Uploaded artifact: spatial-flow(27).css
+Uploaded artifact: spatial-flow(28).css
 Notice replacement content：Passed exactly.
 Full-file syntax/structure：Passed.
-Exact artifact gate：Failed by one extra blank line only.
-Deployment：Not authorized until the blank line is removed and the corrected artifact is re-uploaded.
+Exact artifact gate：Passed.
+Deployment：Authorized.
+Current executable phase：R5-E5 runtime notice/Undo validation.
 Cart page status：Not done.
 ```
 
-## Uploaded artifact metrics
-
-```text
-Size: 697,514 bytes
-Logical lines: 23,385
-SHA256: f964507606c156895ed8bdcaca721e1b3fc902731ba75c3a8fb90ac2fa11fe19
-Braces: 3,633 / 3,633
-Comments: 339 / 339
-CSS parser errors: 0
-Line endings: LF
-Final newline: present
-```
-
-## Exact comparison result
-
-The complete `Step 4E Cart Notice Toast` replacement block matches the issued R5-E5 block byte-for-byte. No selector, declaration, media rule, comment, icon, Undo/Restore rule, or Cart-scoped behavior is missing or altered.
-
-The only full-file difference from the predicted accepted artifact is one extra empty line immediately after:
-
-```css
-/* === Step 4E Cart Notice Toast END === */
-```
-
-and immediately before:
-
-```css
-/* === Step 4E-7-D · Add-to-cart D Lift & Settle Visual START ===
-```
-
-Current sequence:
-
-```text
-/* === Step 4E Cart Notice Toast END === */
-
-/* === Step 4E-7-D · Add-to-cart D Lift & Settle Visual START ===
-```
-
-Required exact sequence:
-
-```text
-/* === Step 4E Cart Notice Toast END === */
-/* === Step 4E-7-D · Add-to-cart D Lift & Settle Visual START ===
-```
-
-## Corrected accepted target
-
-Removing exactly that one blank line produces:
+## Accepted artifact metrics
 
 ```text
 Size: 697,513 bytes
@@ -73,4 +28,48 @@ Line endings: LF
 Final newline: present
 ```
 
-No other edit is required.
+## Exact comparison result
+
+The complete `Step 4E Cart Notice Toast` replacement block matches the issued R5-E5 block byte-for-byte.
+
+The one extra blank line found in `spatial-flow(27).css` has been removed. The corrected uploaded artifact now matches the predicted accepted artifact exactly, including byte size, logical line count and SHA256.
+
+No selector, declaration, media rule, comment, icon, Undo/Restore rule, or non-Cart source scope was altered.
+
+## Authorized deployment
+
+Replace only:
+
+```text
+assets/css/spatial-flow.css
+← spatial-flow(28).css
+```
+
+Do not modify:
+
+```text
+functions.php
+assets/js/spatial-flow.js
+header.php
+WooCommerce templates
+Checkout SAFE5
+Cart geometry
+Cart breadcrumb
+recommendation logic
+Header/Footer
+version 2.7.8
+```
+
+## Runtime gate after deployment
+
+```text
+1. desktop quantity update notice renders as a full-width editorial status row
+2. desktop removed-item notice renders the restrained restore icon and native Undo link
+3. Undo restores the exact item and live BAG / Your Bag counts remain synchronized
+4. phone notice has no horizontal overflow and Undo stacks safely beneath the message
+5. transition-to-empty and direct-empty Cart states remain normal
+6. Cart width, warm canvas, breadcrumb, recommendation area, Header and Footer remain unchanged
+7. Shop, Single Product and SAFE5 Checkout receive a quick regression check
+```
+
+R5-E5 remains open until runtime validation passes.
