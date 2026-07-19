@@ -12,6 +12,8 @@ Cart form normal-state surface: transparent / borderless in the Canonical Cart o
 Loading-state white rectangle: native WooCommerce BlockUI overlay, currently unowned by Cart CSS.
 R5-E5 notice artifact spatial-flow(28).css: visually rejected.
 Current source baseline for FIX1: spatial-flow(26).css.
+Latest edited artifact spatial-flow(30).css: failed exact validation.
+Reason: Part A is correct, but Part B still contains the rejected spatial-flow(28).css notice block.
 Cart page status: Not done.
 ```
 
@@ -241,6 +243,36 @@ body.woocommerce-cart .entry-content > .woocommerce:has(.cart-empty) .woocommerc
 }
 /* === Step 4E Cart Notice Toast END === */
 ```
+
+## Latest edited-file validation · spatial-flow(30).css
+
+```text
+Result: Failed / do not deploy
+Size: 698,744 bytes
+Logical lines: 23,422
+SHA256: 46ef934107ba04789f4d89dee92afbc213fbf1bd6f2490bc87c254d63143da0c
+Braces: 3,638 / 3,638
+Comments: 340 / 340
+CSS parser errors: 0
+Line endings: LF
+Final newline: present
+```
+
+Exact diagnosis:
+
+```text
+Part A loading-state block: correct and in the correct location.
+Canonical Cart END marker: restored correctly.
+Part B editorial notice replacement: not applied.
+Current Part B is still the rejected spatial-flow(28).css status-row block with:
+- full border rectangle
+- clay left accent line
+- circular icon
+- panel background
+- grid-based Undo action
+```
+
+The only required correction is to replace the complete Cart Notice Toast START-to-END range with the Part B block above. Do not touch Part A or any other CSS.
 
 ## Predicted exact artifact
 
