@@ -29,9 +29,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 21. project2-progress/STEP_4E_B2_R5_E4_B_FIX1_RUNTIME_ACCEPTANCE.md
 22. project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
 23. project2-progress/STEP_4E_B2_R5_E4_D_SOURCE_AUDIT_AND_MANUAL_FIX.md
-24. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
-25. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-26. project2-progress/PROGRESS_LOG.md
+24. project2-progress/STEP_4E_B2_R5_E4_D_A1_A3_PARTIAL_VALIDATION.md
+25. project2-progress/STEP_4E_B2_R5_D3_D4_FAILURE_AND_R5_E_REOPEN.md
+26. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+27. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -64,86 +65,80 @@ R5-E4-C2 wrapper/source owner confirmation：Passed
 R5-E4-B-FIX1 artifact and runtime width：Passed / closed
 R5-E4-C3 full-page visual review：Failed / residuals reopened
 R5-E4-D current source validation：Passed
-R5-E4-D source diagnosis/manual guide：Complete / ready
-Current：Perform exact R5-E4-D manual edits and upload both edited files for pre-deploy validation
+R5-E4-D A1 breadcrumb defaults：Passed
+R5-E4-D A2 breadcrumb Customizer controls：Passed
+R5-E4-D A3 recommendation exclusion field/save logic：Passed
+Current：Complete A4 + A5 + CSS B1–B4 and upload both edited files
 Cart：Not done
 ```
 
-## Accepted current server-source baselines
+## Accepted deployed baselines
 
 ```text
 functions.php
-Uploaded name: functions(15).php
-Exact match to accepted functions(14).php baseline: Yes
 Version: 2.7.8
 Size: 552,215 bytes
-Logical lines: 10,292
 SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
-Braces: 1,208 / 1,208
-PHP syntax: Passed
 
 assets/js/spatial-flow.js
 Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Uploaded name: spatial-flow(25).css
-Exact match to accepted spatial-flow(24).css baseline: Yes
 Size: 696,069 bytes
-Logical lines: 23,335
 SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
-Braces: 3,626 / 3,626
-Comments: 340 / 340
+```
+
+## Current manually edited PHP artifact
+
+```text
+functions(16).php
+Version: 2.7.8
+Size: 553,377 bytes
+Logical lines: 10,319
+SHA256: ee759dcff385708f5cbec341fcea52b9803fa85489579b81c9b586ee96b54c26
+Braces: 1,209 / 1,209
+PHP syntax: Passed
+```
+
+Only A1–A3 differ from the accepted source baseline.
+
+## R5-E4-D residual findings
+
+```text
+- Cart page wrappers still need the warm #f6f1eb canvas owner
+- Cart breadcrumb output/styling still needs A4 and CSS B2–B4
+- recommendation eligibility still needs image-ready/non-excluded filtering
+- generated unauthored recommendation copy still needs removal
+- candidate pools still need enlargement
+```
+
+## Corrected final artifact targets
+
+```text
+functions.php after A4 + A5
+Size: 555,129 bytes
+Logical lines: 10,365
+SHA256: b101b33f6a327c53a2714855ec212bc6b973b3ea815acf619f832d2f407de458
+Braces: 1,215 / 1,215
+PHP syntax: Passed
+
+spatial-flow.css after B1–B4
+Size: 697,699 bytes
+Logical lines: 23,389
+SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
+Braces: 3,633 / 3,633
+Comments: 341 / 341
 CSS parser errors: 0
 ```
 
-## Accepted Cart geometry
-
-```text
-- Cart width matches completed Shop frame
-- 7fr / 5fr relationship passed
-- 80px desktop column gap passed
-- 88px title-to-count rhythm passed
-- 120px count-to-main-row rhythm passed
-- inherited padding and 1200px cap defects are closed
-```
-
-## R5-E4-D source findings
-
-```text
-- warm #f6f1eb variable exists, but Cart page wrappers lack an explicit scoped background owner
-- no Cart breadcrumb renderer exists
-- recommendation eligibility allows products without a real image
-- no product-level recommendation exclusion control exists
-- image-less cards intentionally show the package/cube icon
-- unauthored recommendation descriptions still receive a generated fallback sentence
-- the Natural Silver Obsidian white label/arrow fragment belongs to the product image/crop, not Cart CSS
-```
-
-## Current operation
-
-```text
-project2-progress/STEP_4E_B2_R5_E4_D_SOURCE_AUDIT_AND_MANUAL_FIX.md
-```
-
-The guide defines exact bounded edits for:
-
-```text
-- warm Cart canvas ownership
-- backend-editable HOME / YOUR BAG breadcrumb
-- image-ready recommendation eligibility
-- backend product exclusion checkbox
-- larger dynamic candidate pools
-- removal of generated recommendation claims
-```
-
-Do not deploy edited files before exact pre-deploy validation.
+Do not deploy before exact pre-deploy validation.
 
 ## Remaining sequence
 
 ```text
-R5-E4-D manual edit + pre-deploy validation
-→ deployment + backend product-image/exclusion action
+R5-E4-D complete manual edit + pre-deploy validation
+→ deployment + backend image/exclusion action
 → R5-E4-C4 strict desktop + phone visual rerun
 → R5-E5 Cart Notice refinement
 → R5-E6 final acceptance
