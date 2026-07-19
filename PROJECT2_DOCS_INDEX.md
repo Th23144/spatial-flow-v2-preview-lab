@@ -28,8 +28,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 20. project2-progress/STEP_4E_B2_R5_E5_FIX1_LOADING_FRAME_AUDIT_AND_MANUAL_FIX.md
 21. project2-progress/STEP_4E_B2_R5_E5_FIX1_PRE_DEPLOY_VALIDATION.md
 22. project2-progress/STEP_4E_B2_R5_E5_FIX1_RUNTIME_REJECTION_AND_FIX2.md
-23. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-24. project2-progress/PROGRESS_LOG.md
+23. project2-progress/STEP_4E_B2_R5_E5_FIX2_PRE_DEPLOY_VALIDATION.md
+24. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+25. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -59,7 +60,8 @@ R5-E5 first notice artifact：Passed technically / failed visually
 R5-E5-FIX1 exact CSS validation：Passed
 R5-E5-FIX1 runtime frame removal：Failed / warm rectangular wash remains perceptible
 R5-E5-FIX2 static-reference comparison：Complete
-Current：Apply transparent BlockUI correction and validate the exact artifact
+R5-E5-FIX2 exact CSS artifact validation：Passed
+Current：Deploy spatial-flow(32).css and run loading / notice / Undo runtime acceptance
 Cart：Not done
 ```
 
@@ -98,26 +100,37 @@ preview/spatial-flow-cart-v1.html
 
 The approved static Cart uses one uninterrupted warm page canvas. The left Cart items owner has no background, border, padding, radius or shadow; rows are transparent and separated only by bottom dividers. The right Order Summary is the only intentionally filled Cart surface. No loading card or full-form wash exists.
 
-The current Canonical Cart desktop form and rows already match that ownership model. The remaining mismatch is the visible BlockUI wash, not the accepted width or form structure.
+The current Canonical Cart desktop form and rows already match that ownership model. The remaining mismatch was the visible BlockUI wash, not the accepted width or form structure.
 
-## R5-E5-FIX2 target
-
-Replace only the two loading-overlay background declarations with transparent backgrounds while retaining native blocking, `opacity: 1`, and the restrained spinner.
+## Validated R5-E5-FIX2 candidate
 
 ```text
-Predicted size: 697,616 bytes
+spatial-flow(32).css
+Size: 697,616 bytes
 Logical lines: 23,387
 SHA256: 2fa292d96e7e35a3d633dbe5bd8334e73fdb2432bbd6c8e6576a1424e170f55d
 Braces: 3,636 / 3,636
 Comments: 337 / 337
 CSS parser errors: 0
+Line endings: LF
+Final newline: present
 ```
+
+Both loading-overlay backgrounds are transparent. Native blocking, `opacity: 1`, the restrained loader, editorial notice and native Undo remain intact.
+
+## Deployment scope
+
+```text
+assets/css/spatial-flow.css
+← spatial-flow(32).css
+```
+
+Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX2 exact artifact validation
-→ R5-E5 runtime loading / notice / Undo acceptance
+R5-E5-FIX2 runtime loading / notice / Undo acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
 ```
