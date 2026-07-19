@@ -28,86 +28,65 @@ R5-E4-C2 wrapper/source ownership：Passed.
 R5-E4-B-FIX1 artifact and runtime width：Passed / closed.
 R5-E4-C3 full-page visual review：Failed / residuals reopened.
 R5-E4-D current server-source validation：Passed.
-R5-E4-D source diagnosis and manual correction guide：Complete / ready.
-Current executable phase：Perform exact manual R5-E4-D edits and upload both edited files for pre-deploy validation.
+R5-E4-D A1 breadcrumb defaults：Passed.
+R5-E4-D A2 breadcrumb Customizer controls：Passed.
+R5-E4-D A3 recommendation exclusion field/save logic：Passed.
+Current executable phase：Complete A4 + A5 + CSS B1–B4, then upload both edited files.
 Cart page status：Not done.
 ```
 
-## Accepted current uploaded/deployed baselines
+## Accepted deployed baselines
 
 ```text
 functions.php
-Uploaded source name: functions(15).php
-Exact match to functions(14).php accepted baseline: Yes
+Accepted deployed source: functions(14).php / functions(15).php
 Version: 2.7.8
 Size: 552,215 bytes
-Logical lines: 10,292
 SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
-Braces: 1,208 / 1,208
-PHP syntax: Passed
 
 assets/js/spatial-flow.js
 Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Uploaded source name: spatial-flow(25).css
-Exact match to spatial-flow(24).css accepted baseline: Yes
+Accepted deployed source: spatial-flow(24).css / spatial-flow(25).css
 Size: 696,069 bytes
-Logical lines: 23,335
 SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
-Braces: 3,626 / 3,626
-Comments: 340 / 340
-CSS parser errors: 0
 ```
 
-The uploaded names changed, but the source bytes did not. These are safe current-server modification baselines.
-
-## Accepted geometry
+## Current manually edited PHP artifact
 
 ```text
-- Cart width matches the completed Shop frame
-- 7fr / 5fr rendered relationship passed
-- 80px desktop column gap passed
-- 88px title-to-count rhythm passed
-- 120px count-to-main-row rhythm passed
-- inherited parent/wrapper padding removal passed
+functions(16).php
+Version: 2.7.8
+Size: 553,377 bytes
+Logical lines: 10,319
+SHA256: ee759dcff385708f5cbec341fcea52b9803fa85489579b81c9b586ee96b54c26
+Braces: 1,209 / 1,209
+PHP syntax: Passed
+Line endings: LF
+Final newline: absent
 ```
 
-## R5-E4-D exact source diagnosis
+Full-file comparison with `functions(15).php` confirms only A1–A3 were applied. No unrelated code changed.
+
+Validation record:
 
 ```text
-1. Warm canvas variable exists, but Astra/page wrappers do not receive a Cart-scoped background owner.
-2. No Cart breadcrumb renderer exists; the existing Cart heading begins at woocommerce_before_cart priority 6.
-3. Recommendation eligibility does not require a real image and has no product-level exclusion control.
-4. Image-less recommendations intentionally render the package/cube icon.
-5. A generated fallback marketing sentence still appears when a product has no authored description.
-6. The Natural Silver Obsidian white label/arrow fragment is part of its current product image/crop, not Cart CSS.
+project2-progress/STEP_4E_B2_R5_E4_D_A1_A3_PARTIAL_VALIDATION.md
 ```
 
-## Current exact operation
-
-Follow only:
+## Remaining R5-E4-D operation
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_D_SOURCE_AUDIT_AND_MANUAL_FIX.md
-```
-
-Manual changes are limited to:
-
-```text
-functions.php
-- backend-editable HOME / YOUR BAG breadcrumb labels
-- Cart breadcrumb renderer at priority 5
-- product-level Exclude from Cart recommendations checkbox
-- require a valid product image for recommendation eligibility
-- enlarge candidate pools to keep four image-ready dynamic cards
-- omit unauthored recommendation description instead of generating a claim
-
-assets/css/spatial-flow.css
-- assign #f6f1eb to Cart-scoped Astra/page wrappers
-- give breadcrumb full-grid ownership
-- add desktop/phone breadcrumb styling inside Canonical Cart
+A4 add Cart breadcrumb renderer at woocommerce_before_cart priority 5
+A5 require image-ready and non-excluded recommendation products
+A5 remove the generated fallback marketing sentence
+A5 enlarge both dynamic candidate pools
+B1 assign #f6f1eb to Cart-scoped Astra/page wrappers
+B2 give breadcrumb full-grid ownership
+B3 add desktop breadcrumb styling inside Canonical Cart
+B4 add phone breadcrumb calibration inside Canonical Cart
 ```
 
 Do not modify:
@@ -123,17 +102,24 @@ Header/Footer
 version 2.7.8
 ```
 
-## Predicted edited-file gate
+## Corrected completed-file gate
+
+A3 was implemented through the safer whole-block replacement. Therefore the earlier provisional PHP metrics are superseded.
+
+Expected completed PHP:
 
 ```text
-functions.php
-Size: 555,041 bytes
-Logical lines: 10,351
-SHA256: dfded9e0d3d0c4a2cc8c2ac7898953ee43b77d487c700bdbe5ae616c07f73d0a
+Size: 555,129 bytes
+Logical lines: 10,365
+SHA256: b101b33f6a327c53a2714855ec212bc6b973b3ea815acf619f832d2f407de458
 Braces: 1,215 / 1,215
 PHP syntax: Passed
+Version: 2.7.8
+```
 
-assets/css/spatial-flow.css
+Expected completed CSS:
+
+```text
 Size: 697,699 bytes
 Logical lines: 23,389
 SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
@@ -158,8 +144,8 @@ Natural Malachite Mixed Bead Bracelet:
 ## Remaining sequence
 
 ```text
-R5-E4-D manual edit + exact pre-deploy validation
-→ R5-E4-D deployment + backend image/exclusion action
+R5-E4-D complete manual edit + exact pre-deploy validation
+→ deployment + backend product-image/exclusion action
 → R5-E4-C4 strict desktop + phone visual rerun
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict functional + visual acceptance
