@@ -14,6 +14,35 @@ Current executable phase: R5-E5-FIX2 remove the BlockUI wash completely while pr
 Cart page status: Not done.
 ```
 
+## Authoritative static reference comparison
+
+Reference:
+
+```text
+preview/spatial-flow-cart-v1.html
+```
+
+The static Cart establishes the following visual ownership:
+
+```text
+- one uninterrupted #f6f1eb page canvas
+- 7fr / 5fr Cart columns with an 80px gap
+- the left .cart-items owner has no background, border, padding, radius or shadow
+- each .cart-item is transparent and uses only a bottom divider
+- the right .cart-sidebar is the only intentionally filled Cart surface
+- no loading panel, wash, card or full-form rectangle exists in the reference
+```
+
+The current Canonical Cart desktop owner already matches the static left-column structure:
+
+```text
+form.woocommerce-cart-form: transparent / borderless / zero padding / zero radius / no shadow
+shop_table: transparent / borderless
+cart item rows: transparent with only a bottom divider
+```
+
+Therefore the normal Cart form, accepted 7fr / 5fr geometry, 80px gap, product-row rules and coupon behavior must not be rebuilt. The remaining mismatch is the visible BlockUI surface during refresh.
+
 ## Exact reason
 
 The FIX1 source still explicitly paints the complete rectangular BlockUI bounds:
@@ -36,7 +65,7 @@ FIX1 changed the native white wash to warm colors, but did not eliminate the rec
 
 This is not a width defect and does not justify rolling back the accepted 7fr / 5fr geometry.
 
-## FIX2 bounded correction
+## Static-aligned FIX2 correction
 
 Start from the exact validated `spatial-flow(31).css` artifact.
 
@@ -65,6 +94,8 @@ background: transparent !important;
 ```
 
 Keep the overlay elements, `opacity: 1`, pointer blocking, restrained 18px spinner and all notice rules unchanged.
+
+This is the closest production-safe translation of the static reference: WooCommerce still blocks duplicate input while updating, but it no longer paints a surface that does not exist in the approved static Cart.
 
 ## Predicted exact artifact
 
