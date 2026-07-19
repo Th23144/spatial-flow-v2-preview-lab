@@ -25,8 +25,9 @@ R5-E4-A2 ancestor/container trace：Complete.
 R5-E4-B strict geometry artifact：Passed / deployed.
 R5-E4-C2 principal geometry measurement：Passed.
 R5-E4-C2 wrapper/source ownership：Passed.
-R5-E4-B-FIX1 exact artifact and runtime width：Passed / closed.
-Current executable phase：R5-E4-C3 desktop + phone strict visual acceptance.
+R5-E4-B-FIX1 artifact and runtime width：Passed / closed.
+R5-E4-C3 full-page visual review：Failed / residuals reopened.
+Current executable phase：R5-E4-D residual strict-visual corrections.
 Cart page status：Not done.
 ```
 
@@ -34,6 +35,7 @@ Cart page status：Not done.
 
 ```text
 functions.php
+Deployed source artifact: functions(14).php
 Version: 2.7.8
 Size: 552,215 bytes
 SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
@@ -55,7 +57,7 @@ CSS parser errors: 0
 ## Accepted geometry
 
 ```text
-- Cart width now matches the completed Shop page width
+- Cart width matches the completed Shop frame
 - 7fr / 5fr rendered relationship passed
 - 80px desktop column gap passed
 - 88px title-to-count rhythm passed
@@ -63,41 +65,59 @@ CSS parser errors: 0
 - inherited parent/wrapper padding removal passed
 ```
 
-Runtime record:
+## R5-E4-C3 visual result
+
+Passed:
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_B_FIX1_RUNTIME_ACCEPTANCE.md
+- desktop frame, main columns and title rhythm
+- desktop product row / Summary / Coupon basic alignment
+- four-column desktop recommendation structure
+- phone non-empty usability and no visible horizontal overflow
+- Header and Footer regression
 ```
 
-## Current exact operation · R5-E4-C3
-
-No code change in this substep.
-
-Validate the full Cart visually against the approved static direction:
+Blocking residuals:
 
 ```text
-Desktop
-- full-page width and 48px visual gutters align with Shop
-- Your Bag title/count whitespace matches the static composition
-- product rows, image crop, title/meta/quantity/price alignment are coherent
-- Order Summary starts at the correct main-row top and uses the right visual weight
-- coupon/update controls align cleanly
-- recommendation section uses the full available width and four real products
-- Header and Footer remain unchanged
-
-Phone
-- non-empty Cart remains production-quality with no horizontal overflow
-- remove, quantity, coupon, summary and recommendations remain usable
-- both empty-Cart states remain centered
-- Footer accordion and Header remain normal
+1. Real Cart canvas renders white; approved static Cart canvas is warm #f6f1eb.
+2. Approved HOME / YOUR BAG breadcrumb is absent on desktop and phone.
+3. Recommendation imagery is not presentation-ready:
+   - Natural Silver Obsidian Bracelet shows a white label/arrow fragment
+   - Natural Malachite Mixed Bead Bracelet shows the WooCommerce cube placeholder
 ```
 
-The static phone preview is guidance only; production-quality mobile behavior takes priority.
+Detailed record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
+```
+
+## Current exact operation · R5-E4-D
+
+No blind code change is authorized yet.
+
+Required current server inputs:
+
+```text
+- current spatial-flow(24).css / assets/css/spatial-flow.css
+- current functions(14).php / functions.php
+```
+
+Required backend content action:
+
+```text
+- replace/crop the Natural Silver Obsidian Bracelet image
+- provide a real image for Natural Malachite Mixed Bead Bracelet or remove it from eligible recommendation output
+```
+
+R5-E4-D must use bounded, in-place corrections. Do not alter the completed Header broadly, do not fabricate product imagery, and do not advance to R5-E5 before the visual residuals pass.
 
 ## Remaining sequence
 
 ```text
-R5-E4-C3 desktop + phone strict visual acceptance
+R5-E4-D background + breadcrumb + dynamic-image residual corrections
+→ R5-E4-C4 desktop + phone strict visual rerun
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
