@@ -24,9 +24,10 @@ R5-E4 strict geometry, canvas, breadcrumb and recommendation visual rebase：Pas
 R5-E5 notice source audit and first CSS artifact：Passed technically / failed visually.
 R5-E5-FIX1 source and exact CSS validation：Passed.
 R5-E5-FIX1 runtime frame removal：Failed / warm rectangular wash still perceptible.
-R5-E5-FIX2 static-reference comparison：Complete.
-R5-E5-FIX2 exact CSS artifact validation：Passed.
-Current executable phase：Deploy spatial-flow(32).css and run loading / notice / Undo runtime acceptance.
+R5-E5-FIX2 static-reference comparison and exact artifact validation：Passed.
+R5-E5-FIX2 BlockUI filled wash removal：Passed.
+R5-E5-FIX2 residual composition acceptance：Failed / implied frame remains.
+Current executable phase：R5-E5-FIX3 convert Coupon / Apply / Update controls from closed boxes into static-reference-aligned editorial utilities.
 Cart page status：Not done.
 ```
 
@@ -43,7 +44,7 @@ PHP syntax: Passed
 Braces: 1,215 / 1,215
 
 assets/css/spatial-flow.css
-Last runtime-accepted Cart visual artifact: spatial-flow(26).css
+Last runtime-accepted Cart visual artifact before R5-E5: spatial-flow(26).css
 Size: 697,699 bytes
 Logical lines: 23,389
 SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
@@ -57,33 +58,7 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 ```
 
-## R5-E5-FIX1 runtime-rejected artifact
-
-```text
-spatial-flow(31).css
-Size: 697,642 bytes
-Logical lines: 23,387
-SHA256: 74afc4c8f3989c37aa937581687423de3d9ae34294034e363e0cd2cee66e87f7
-Braces: 3,636 / 3,636
-Comments: 337 / 337
-CSS parser errors: 0
-```
-
-The artifact is structurally correct, but its loading-state rules still paint the full form and totals rectangles with 78% opaque warm backgrounds. That replaces the white card with a beige card rather than eliminating the rectangular wash.
-
-## Static-reference conclusion
-
-Authoritative reference:
-
-```text
-preview/spatial-flow-cart-v1.html
-```
-
-The reference uses one uninterrupted warm page canvas. The left Cart owner has no background, border, padding, radius or shadow; item rows are transparent with only bottom dividers. The right Order Summary is the only intentionally filled Cart surface. No loading card or full-form wash exists.
-
-The current Canonical Cart desktop form and item rows already follow that structure. Therefore do not rebuild the form, table, item rows, width, 7fr / 5fr tracks, 80px gap or coupon behavior. Remove only the BlockUI wash.
-
-## R5-E5-FIX2 validated candidate
+## Current deployed R5-E5-FIX2 artifact
 
 ```text
 spatial-flow(32).css
@@ -97,42 +72,72 @@ Line endings: LF
 Final newline: present
 ```
 
-Exact validation record:
+Both BlockUI backgrounds are transparent. The normal screenshot no longer shows a painted loading surface, and the left form remains on the same uninterrupted warm page canvas.
+
+## Residual-frame diagnosis
+
+The remaining frame perception is no longer caused by BlockUI or a form background. It is caused by composition:
 
 ```text
-project2-progress/STEP_4E_B2_R5_E5_FIX2_PRE_DEPLOY_VALIDATION.md
+- full-width product-row bottom divider
+- immediately aligned full-width native actions row
+- closed rectangular Coupon input
+- closed rectangular Apply Coupon button
+- closed rectangular Update Cart button
 ```
 
-Both BlockUI surface backgrounds are transparent. The previous two warm rgba declarations are absent. `opacity: 1`, native blocking, the 18px loader, editorial notice and native Undo remain unchanged.
+This creates an implied card boundary even with a transparent form.
 
-## Deployment operation
+The product-row divider must remain because it exists in the static Cart reference. The native WooCommerce Coupon / Update row does not exist in the static reference, so its production treatment must inherit the static reference's small mono text-action language instead of introducing a second boxed control strip.
 
-Replace only:
+## Current operation · R5-E5-FIX3
+
+Follow exactly:
 
 ```text
-assets/css/spatial-flow.css
-← spatial-flow(32).css
+project2-progress/STEP_4E_B2_R5_E5_FIX2_RUNTIME_VISUAL_REVIEW_AND_FIX3.md
 ```
+
+Start from:
+
+```text
+spatial-flow(32).css
+```
+
+Only the desktop and mobile Coupon / Update Cart owner ranges may change.
+
+The target treatment is:
+
+```text
+- Coupon input becomes a single underline field
+- Apply Coupon becomes a quiet underlined mono text action
+- Update Cart becomes a quiet underlined mono text action
+- no closed rectangular utility controls
+- no change to product divider, width, BlockUI, totals or WooCommerce behavior
+```
+
+Predicted exact artifact:
+
+```text
+Size: 698,076 bytes
+Logical lines: 23,406
+SHA256: 3e6b0d6fa292681cee1c2936e744314b4347a0bcc82ea3e7cd911d5cac1969ce
+Braces: 3,638 / 3,638
+Comments: 337 / 337
+CSS parser errors: 0
+Line endings: LF
+Final newline: present
+```
+
+Do not deploy before exact edited-file validation.
 
 Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
-
-## Runtime acceptance gate
-
-```text
-1. no rectangular wash appears over the Cart form during quantity update
-2. no rectangular wash appears over Order Summary during refresh
-3. only the restrained 18px loader remains visible
-4. native update blocking remains functional
-5. editorial notice and native Undo remain functional
-6. live BAG / Your Bag counts remain synchronized
-7. Cart geometry, breadcrumb, recommendations, Header and Footer remain unchanged
-8. phone loading state has no overflow or flash panel
-```
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX2 runtime loading / notice / Undo acceptance
+R5-E5-FIX3 manual CSS edit + exact artifact validation
+→ R5-E5 runtime Coupon / Update / loading / notice / Undo acceptance
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
 ```
