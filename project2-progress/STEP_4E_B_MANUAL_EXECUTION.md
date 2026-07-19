@@ -23,7 +23,8 @@ R5-E3 empty-Cart parity：Passed / closed.
 R5-E4 strict geometry, canvas, breadcrumb and recommendation visual rebase：Passed / closed.
 R5-E5 notice source audit and bounded CSS artifact：Passed technically.
 R5-E5 runtime visual acceptance：Failed / rejected.
-Current executable phase：R5-E5-FIX1 redesign the notice from the accepted Cart visual language.
+R5-E5-FIX1 loading-frame source audit：Complete.
+Current executable phase：Apply R5-E5-FIX1 to spatial-flow(26).css, then exact pre-deploy validation.
 Cart page status：Not done.
 ```
 
@@ -61,74 +62,61 @@ spatial-flow(28).css
 Size: 697,513 bytes
 Logical lines: 23,384
 SHA256: 2120e5639f780a2eb370b5776fb78dcc470f3049d5a921badf2aef1d23261015
-Braces: 3,633 / 3,633
-Comments: 339 / 339
-CSS parser errors: 0
 ```
 
-The artifact passed source validation and changed the live notice, but the user rejected its visual language as mismatched with the Cart page. It is not an accepted baseline.
+It changed the live notice but was rejected because it still looked like a standalone status component.
 
-Runtime rejection record:
+## New loading-frame diagnosis
 
-```text
-project2-progress/STEP_4E_B2_R5_E5_RUNTIME_REJECTION.md
-```
+The user supplied normal and quantity-update screenshots showing the left Cart region reading like a picture frame and becoming an explicit pale rectangle during loading.
 
-## Closed R5-E4 result
+The Canonical Cart form is already reset to transparent, borderless, zero-radius and shadowless. The width correction did not introduce a form card.
 
-```text
-- live Header BAG and Your Bag counts passed
-- transition-to-empty and direct-empty parity passed
-- phone empty message centering passed
-- desktop width matches completed Shop width
-- 7fr / 5fr relationship and 80px gap passed
-- 88px title-to-count and 120px count-to-main rhythm passed
-- warm Cart canvas passed
-- HOME / YOUR BAG breadcrumb and HOME link passed
-- image-less and explicitly excluded recommendations are suppressed
-- unauthored recommendation descriptions remain blank
-- real image-ready recommendation cards render when inventory permits
-- quantity, remove, Undo, coupon, totals, shipping and checkout navigation passed
-- Shop, Single Product and SAFE5 Checkout regressions passed
-```
-
-## Immediate safe action
-
-Rollback to the last accepted visual artifact is authorized:
-
-```text
-assets/css/spatial-flow.css
-← spatial-flow(26).css
-```
-
-Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
+The direct source is the native WooCommerce BlockUI overlay injected over the rectangular bounds of the Cart form and Order Summary. The current CSS contains no `.blockUI` / `.blockOverlay` ownership. The wider 7fr form column makes that native white overlay footprint more visible, but width is not the direct defect.
 
 ## Current operation · R5-E5-FIX1
 
-The notice must be redesigned as an editorial text response rather than a standalone alert component.
-
-Required direction:
+Follow exactly:
 
 ```text
-- no filled alert panel
-- no full enclosing border rectangle
-- no clay left accent bar
-- no circular icon
-- no shadow
-- no pill or button-like Undo
-- quiet text aligned with existing Cart rhythm
-- only a thin structural divider when separation is necessary
-- native WooCommerce Undo remains functional
-- phone layout remains one-column and overflow-safe
+project2-progress/STEP_4E_B2_R5_E5_FIX1_LOADING_FRAME_AUDIT_AND_MANUAL_FIX.md
 ```
 
-Before issuing another CSS replacement, review the exact runtime notice placement against the accepted desktop and phone Cart composition.
+Start from:
+
+```text
+spatial-flow(26).css
+```
+
+The bounded FIX1 contains two operations:
+
+```text
+A. add Cart-scoped BlockUI surface and restrained loader ownership inside the Canonical Cart owner
+B. replace the rejected Cart Notice block with quiet editorial text feedback
+```
+
+Predicted exact artifact:
+
+```text
+Size: 697,642 bytes
+Logical lines: 23,387
+SHA256: 74afc4c8f3989c37aa937581687423de3d9ae34294034e363e0cd2cee66e87f7
+Braces: 3,636 / 3,636
+Comments: 337 / 337
+CSS parser errors: 0
+Line endings: LF
+Final newline: present
+```
+
+Do not deploy before exact edited-file validation.
+
+Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX1 notice redesign + exact artifact validation
-→ R5-E5 runtime notice/Undo acceptance
+R5-E5-FIX1 manual CSS edit + exact artifact validation
+→ R5-E5 runtime loading/notice/Undo acceptance
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
 ```
