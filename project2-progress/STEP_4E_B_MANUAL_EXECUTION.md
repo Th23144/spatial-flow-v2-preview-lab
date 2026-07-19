@@ -22,9 +22,9 @@ R5-E2 synchronized live counts：Passed / closed.
 R5-E3 empty-Cart parity：Passed / closed.
 R5-E4 strict geometry, canvas, breadcrumb and recommendation visual rebase：Passed / closed.
 R5-E5 notice source audit and first CSS artifact：Passed technically / failed visually.
-R5-E5-FIX1 loading-frame source audit：Complete.
-R5-E5-FIX1 exact CSS artifact validation：Passed.
-Current executable phase：Deploy spatial-flow(31).css and run loading / notice / Undo runtime acceptance.
+R5-E5-FIX1 source and exact CSS validation：Passed.
+R5-E5-FIX1 runtime frame removal：Failed / warm rectangular wash still perceptible.
+Current executable phase：R5-E5-FIX2 remove the BlockUI wash completely while preserving native blocking and the restrained loader.
 Cart page status：Not done.
 ```
 
@@ -55,18 +55,7 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 ```
 
-## Rejected R5-E5 artifact
-
-```text
-spatial-flow(28).css
-Size: 697,513 bytes
-Logical lines: 23,384
-SHA256: 2120e5639f780a2eb370b5776fb78dcc470f3049d5a921badf2aef1d23261015
-```
-
-It changed the live notice but was rejected because it still looked like a standalone status component.
-
-## R5-E5-FIX1 validated candidate
+## R5-E5-FIX1 runtime-rejected artifact
 
 ```text
 spatial-flow(31).css
@@ -76,48 +65,64 @@ SHA256: 74afc4c8f3989c37aa937581687423de3d9ae34294034e363e0cd2cee66e87f7
 Braces: 3,636 / 3,636
 Comments: 337 / 337
 CSS parser errors: 0
+```
+
+The artifact is structurally correct, but its loading-state rules still paint the full form and totals rectangles with 78% opaque warm backgrounds. That replaces the white card with a beige card rather than eliminating the rectangular wash.
+
+Runtime rejection and FIX2 record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E5_FIX1_RUNTIME_REJECTION_AND_FIX2.md
+```
+
+## R5-E5-FIX2 exact operation
+
+Start from `spatial-flow(31).css`.
+
+Inside `Native Cart loading state`, replace only:
+
+```css
+background: rgba(246, 241, 235, .78) !important;
+```
+
+with:
+
+```css
+background: transparent !important;
+```
+
+and replace only:
+
+```css
+background: rgba(237, 231, 223, .78) !important;
+```
+
+with:
+
+```css
+background: transparent !important;
+```
+
+Do not alter `opacity: 1`, the overlay elements, loader, notice block or any other CSS.
+
+Predicted exact artifact:
+
+```text
+Size: 697,616 bytes
+Logical lines: 23,387
+SHA256: 2fa292d96e7e35a3d633dbe5bd8334e73fdb2432bbd6c8e6576a1424e170f55d
+Braces: 3,636 / 3,636
+Comments: 337 / 337
+CSS parser errors: 0
 Line endings: LF
 Final newline: present
-```
-
-Exact validation record:
-
-```text
-project2-progress/STEP_4E_B2_R5_E5_FIX1_PRE_DEPLOY_VALIDATION.md
-```
-
-Part A loading ownership exists exactly once inside the Canonical Cart owner. It was already present in `spatial-flow(30).css` and remained byte-for-byte unchanged in `spatial-flow(31).css`. The latest edit replaced only the rejected Cart Notice START-to-END range with the approved editorial notice treatment.
-
-## Deployment operation
-
-Replace only:
-
-```text
-assets/css/spatial-flow.css
-← spatial-flow(31).css
-```
-
-Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
-
-## Runtime acceptance gate
-
-```text
-1. normal Cart form remains transparent and borderless
-2. quantity update no longer exposes a white rectangular card around the left form
-3. Order Summary loading wash remains on its own warm summary surface
-4. loaders render as small restrained rings
-5. update/remove notice is plain editorial text with only a thin bottom divider
-6. no icon, panel, accent bar, radius, shadow or pill action
-7. native Undo restores the exact item
-8. live BAG / Your Bag counts remain synchronized
-9. phone loading and notice states have no horizontal overflow
-10. Cart width, 7fr/5fr relationship, breadcrumb, recommendations, Header and Footer remain unchanged
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX1 runtime loading / notice / Undo acceptance
+R5-E5-FIX2 exact artifact validation
+→ R5-E5 runtime loading / notice / Undo acceptance
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
 ```
