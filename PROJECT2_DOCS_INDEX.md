@@ -25,8 +25,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 17. project2-progress/STEP_4E_B2_R5_E5_PRE_DEPLOY_VALIDATION.md
 18. project2-progress/STEP_4E_B2_R5_E5_RUNTIME_REJECTION.md
 19. project2-progress/STEP_4E_B2_R5_E5_FIX1_LOADING_FRAME_AUDIT_AND_MANUAL_FIX.md
-20. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-21. project2-progress/PROGRESS_LOG.md
+20. project2-progress/STEP_4E_B2_R5_E5_FIX1_PRE_DEPLOY_VALIDATION.md
+21. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+22. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -54,7 +55,8 @@ R5-E3 empty-Cart parity：Passed / closed
 R5-E4 strict geometry, canvas, breadcrumb and recommendation rebase：Passed / closed
 R5-E5 first notice artifact：Passed technically / failed visually
 R5-E5-FIX1 loading-frame audit：Complete
-Current：Apply R5-E5-FIX1 to spatial-flow(26).css and validate the edited artifact
+R5-E5-FIX1 exact CSS artifact validation：Passed
+Current：Deploy spatial-flow(31).css and run loading / notice / Undo runtime acceptance
 Cart：Not done
 ```
 
@@ -76,7 +78,7 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Last accepted Cart visual artifact: spatial-flow(26).css
+Last runtime-accepted Cart visual artifact: spatial-flow(26).css
 Size: 697,699 bytes
 Logical lines: 23,389
 SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
@@ -85,47 +87,35 @@ Comments: 341 / 341
 CSS parser errors: 0
 ```
 
-## Rejected R5-E5 artifact
+## Validated R5-E5-FIX1 candidate
 
 ```text
-spatial-flow(28).css
-Size: 697,513 bytes
-Logical lines: 23,384
-SHA256: 2120e5639f780a2eb370b5776fb78dcc470f3049d5a921badf2aef1d23261015
-```
-
-It is not an accepted visual baseline.
-
-## Loading-frame diagnosis
-
-The Cart form itself remains transparent and borderless. The visible rectangular loading card is produced by WooCommerce's native BlockUI overlay covering the full form bounds. The strict-width change makes the footprint larger and easier to see, but did not add the frame.
-
-R5-E5-FIX1 will:
-
-```text
-- preserve native blocking and update behavior
-- match the form overlay to the warm Cart canvas
-- match the summary overlay to the summary surface
-- replace the generic dark loader with a restrained ring
-- replace the rejected notice component with quiet editorial text
-```
-
-Predicted FIX1 artifact from `spatial-flow(26).css`:
-
-```text
+spatial-flow(31).css
 Size: 697,642 bytes
 Logical lines: 23,387
 SHA256: 74afc4c8f3989c37aa937581687423de3d9ae34294034e363e0cd2cee66e87f7
 Braces: 3,636 / 3,636
 Comments: 337 / 337
 CSS parser errors: 0
+Line endings: LF
+Final newline: present
 ```
+
+Part A loading ownership exists exactly once and is inside the Canonical Cart owner. It was already present in `spatial-flow(30).css`; the `spatial-flow(30).css` to `spatial-flow(31).css` correction leaves Part A byte-for-byte unchanged and replaces only the rejected Cart Notice range.
+
+## Deployment scope
+
+```text
+assets/css/spatial-flow.css
+← spatial-flow(31).css
+```
+
+Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX1 manual CSS edit + exact pre-deploy validation
-→ R5-E5 runtime loading/notice/Undo acceptance
+R5-E5-FIX1 runtime loading / notice / Undo acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
 ```
