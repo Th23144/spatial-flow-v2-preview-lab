@@ -24,7 +24,8 @@ R5-E4 strict geometry, canvas, breadcrumb and recommendation visual rebase：Pas
 R5-E5 notice source audit and first CSS artifact：Passed technically / failed visually.
 R5-E5-FIX1 source and exact CSS validation：Passed.
 R5-E5-FIX1 runtime frame removal：Failed / warm rectangular wash still perceptible.
-Current executable phase：R5-E5-FIX2 remove the BlockUI wash completely while preserving native blocking and the restrained loader.
+R5-E5-FIX2 static-reference comparison：Complete.
+Current executable phase：Apply the static-aligned transparent BlockUI correction and validate the exact artifact.
 Cart page status：Not done.
 ```
 
@@ -69,7 +70,19 @@ CSS parser errors: 0
 
 The artifact is structurally correct, but its loading-state rules still paint the full form and totals rectangles with 78% opaque warm backgrounds. That replaces the white card with a beige card rather than eliminating the rectangular wash.
 
-Runtime rejection and FIX2 record:
+## Static-reference conclusion
+
+Authoritative reference:
+
+```text
+preview/spatial-flow-cart-v1.html
+```
+
+The reference uses one uninterrupted warm page canvas. The left Cart owner has no background, border, padding, radius or shadow; item rows are transparent with only bottom dividers. The right Order Summary is the only intentionally filled Cart surface. No loading card or full-form wash exists.
+
+The current Canonical Cart desktop form and item rows already follow that structure. Therefore do not rebuild the form, table, item rows, width, 7fr / 5fr tracks, 80px gap or coupon behavior. Remove only the BlockUI wash.
+
+Detailed record:
 
 ```text
 project2-progress/STEP_4E_B2_R5_E5_FIX1_RUNTIME_REJECTION_AND_FIX2.md
