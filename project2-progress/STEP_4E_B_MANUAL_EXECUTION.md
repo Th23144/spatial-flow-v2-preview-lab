@@ -27,25 +27,32 @@ R5-E4-C2 principal geometry measurement：Passed.
 R5-E4-C2 wrapper/source ownership：Passed.
 R5-E4-B-FIX1 artifact and runtime width：Passed / closed.
 R5-E4-C3 full-page visual review：Failed / residuals reopened.
-Current executable phase：R5-E4-D residual strict-visual corrections.
+R5-E4-D current server-source validation：Passed.
+R5-E4-D source diagnosis and manual correction guide：Complete / ready.
+Current executable phase：Perform exact manual R5-E4-D edits and upload both edited files for pre-deploy validation.
 Cart page status：Not done.
 ```
 
-## Accepted code baselines
+## Accepted current uploaded/deployed baselines
 
 ```text
 functions.php
-Deployed source artifact: functions(14).php
+Uploaded source name: functions(15).php
+Exact match to functions(14).php accepted baseline: Yes
 Version: 2.7.8
 Size: 552,215 bytes
+Logical lines: 10,292
 SHA256: 7f4d1f3722e86ba5b03bcbb05ac9119cf1cdd6c74ddc54ba49c1454a291ed070
+Braces: 1,208 / 1,208
+PHP syntax: Passed
 
 assets/js/spatial-flow.js
 Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Deployed artifact: spatial-flow(24).css
+Uploaded source name: spatial-flow(25).css
+Exact match to spatial-flow(24).css accepted baseline: Yes
 Size: 696,069 bytes
 Logical lines: 23,335
 SHA256: 412d6b20993a101e73b0fae9b7a26abc4941b5e8f6eb032c1c38689dfc823436
@@ -53,6 +60,8 @@ Braces: 3,626 / 3,626
 Comments: 340 / 340
 CSS parser errors: 0
 ```
+
+The uploaded names changed, but the source bytes did not. These are safe current-server modification baselines.
 
 ## Accepted geometry
 
@@ -65,59 +74,93 @@ CSS parser errors: 0
 - inherited parent/wrapper padding removal passed
 ```
 
-## R5-E4-C3 visual result
-
-Passed:
+## R5-E4-D exact source diagnosis
 
 ```text
-- desktop frame, main columns and title rhythm
-- desktop product row / Summary / Coupon basic alignment
-- four-column desktop recommendation structure
-- phone non-empty usability and no visible horizontal overflow
-- Header and Footer regression
+1. Warm canvas variable exists, but Astra/page wrappers do not receive a Cart-scoped background owner.
+2. No Cart breadcrumb renderer exists; the existing Cart heading begins at woocommerce_before_cart priority 6.
+3. Recommendation eligibility does not require a real image and has no product-level exclusion control.
+4. Image-less recommendations intentionally render the package/cube icon.
+5. A generated fallback marketing sentence still appears when a product has no authored description.
+6. The Natural Silver Obsidian white label/arrow fragment is part of its current product image/crop, not Cart CSS.
 ```
 
-Blocking residuals:
+## Current exact operation
+
+Follow only:
 
 ```text
-1. Real Cart canvas renders white; approved static Cart canvas is warm #f6f1eb.
-2. Approved HOME / YOUR BAG breadcrumb is absent on desktop and phone.
-3. Recommendation imagery is not presentation-ready:
-   - Natural Silver Obsidian Bracelet shows a white label/arrow fragment
-   - Natural Malachite Mixed Bead Bracelet shows the WooCommerce cube placeholder
+project2-progress/STEP_4E_B2_R5_E4_D_SOURCE_AUDIT_AND_MANUAL_FIX.md
 ```
 
-Detailed record:
+Manual changes are limited to:
 
 ```text
-project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
+functions.php
+- backend-editable HOME / YOUR BAG breadcrumb labels
+- Cart breadcrumb renderer at priority 5
+- product-level Exclude from Cart recommendations checkbox
+- require a valid product image for recommendation eligibility
+- enlarge candidate pools to keep four image-ready dynamic cards
+- omit unauthored recommendation description instead of generating a claim
+
+assets/css/spatial-flow.css
+- assign #f6f1eb to Cart-scoped Astra/page wrappers
+- give breadcrumb full-grid ownership
+- add desktop/phone breadcrumb styling inside Canonical Cart
 ```
 
-## Current exact operation · R5-E4-D
-
-No blind code change is authorized yet.
-
-Required current server inputs:
+Do not modify:
 
 ```text
-- current spatial-flow(24).css / assets/css/spatial-flow.css
-- current functions(14).php / functions.php
+assets/js/spatial-flow.js
+header.php
+WooCommerce templates
+Checkout SAFE5
+Cart geometry values
+Cart Notice block
+Header/Footer
+version 2.7.8
 ```
 
-Required backend content action:
+## Predicted edited-file gate
 
 ```text
-- replace/crop the Natural Silver Obsidian Bracelet image
-- provide a real image for Natural Malachite Mixed Bead Bracelet or remove it from eligible recommendation output
+functions.php
+Size: 555,041 bytes
+Logical lines: 10,351
+SHA256: dfded9e0d3d0c4a2cc8c2ac7898953ee43b77d487c700bdbe5ae616c07f73d0a
+Braces: 1,215 / 1,215
+PHP syntax: Passed
+
+assets/css/spatial-flow.css
+Size: 697,699 bytes
+Logical lines: 23,389
+SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
+Braces: 3,633 / 3,633
+Comments: 341 / 341
+CSS parser errors: 0
 ```
 
-R5-E4-D must use bounded, in-place corrections. Do not alter the completed Header broadly, do not fabricate product imagery, and do not advance to R5-E5 before the visual residuals pass.
+Do not deploy before exact uploaded-file validation.
+
+## Backend action after deployment
+
+```text
+Natural Silver Obsidian Bracelet:
+- replace/crop the featured image, or enable Exclude from Cart recommendations
+
+Natural Malachite Mixed Bead Bracelet:
+- image-less products will be excluded automatically
+- a real featured image can later restore eligibility
+```
 
 ## Remaining sequence
 
 ```text
-R5-E4-D background + breadcrumb + dynamic-image residual corrections
-→ R5-E4-C4 desktop + phone strict visual rerun
+R5-E4-D manual edit + exact pre-deploy validation
+→ R5-E4-D deployment + backend image/exclusion action
+→ R5-E4-C4 strict desktop + phone visual rerun
 → R5-E5 Cart Notice in-place refinement
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
