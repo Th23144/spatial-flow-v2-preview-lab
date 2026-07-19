@@ -21,10 +21,10 @@ R5-E1 exact source/state audit：Complete.
 R5-E2 synchronized live counts：Passed / closed.
 R5-E3 empty-Cart parity：Passed / closed.
 R5-E4 strict geometry, canvas, breadcrumb and recommendation visual rebase：Passed / closed.
-R5-E5 notice source audit and bounded CSS artifact：Passed technically.
-R5-E5 runtime visual acceptance：Failed / rejected.
+R5-E5 notice source audit and first CSS artifact：Passed technically / failed visually.
 R5-E5-FIX1 loading-frame source audit：Complete.
-Current executable phase：Apply R5-E5-FIX1 to spatial-flow(26).css, then exact pre-deploy validation.
+R5-E5-FIX1 exact CSS artifact validation：Passed.
+Current executable phase：Deploy spatial-flow(31).css and run loading / notice / Undo runtime acceptance.
 Cart page status：Not done.
 ```
 
@@ -41,7 +41,7 @@ PHP syntax: Passed
 Braces: 1,215 / 1,215
 
 assets/css/spatial-flow.css
-Last accepted Cart visual artifact: spatial-flow(26).css
+Last runtime-accepted Cart visual artifact: spatial-flow(26).css
 Size: 697,699 bytes
 Logical lines: 23,389
 SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
@@ -66,38 +66,10 @@ SHA256: 2120e5639f780a2eb370b5776fb78dcc470f3049d5a921badf2aef1d23261015
 
 It changed the live notice but was rejected because it still looked like a standalone status component.
 
-## New loading-frame diagnosis
-
-The user supplied normal and quantity-update screenshots showing the left Cart region reading like a picture frame and becoming an explicit pale rectangle during loading.
-
-The Canonical Cart form is already reset to transparent, borderless, zero-radius and shadowless. The width correction did not introduce a form card.
-
-The direct source is the native WooCommerce BlockUI overlay injected over the rectangular bounds of the Cart form and Order Summary. The current CSS contains no `.blockUI` / `.blockOverlay` ownership. The wider 7fr form column makes that native white overlay footprint more visible, but width is not the direct defect.
-
-## Current operation · R5-E5-FIX1
-
-Follow exactly:
+## R5-E5-FIX1 validated candidate
 
 ```text
-project2-progress/STEP_4E_B2_R5_E5_FIX1_LOADING_FRAME_AUDIT_AND_MANUAL_FIX.md
-```
-
-Start from:
-
-```text
-spatial-flow(26).css
-```
-
-The bounded FIX1 contains two operations:
-
-```text
-A. add Cart-scoped BlockUI surface and restrained loader ownership inside the Canonical Cart owner
-B. replace the rejected Cart Notice block with quiet editorial text feedback
-```
-
-Predicted exact artifact:
-
-```text
+spatial-flow(31).css
 Size: 697,642 bytes
 Logical lines: 23,387
 SHA256: 74afc4c8f3989c37aa937581687423de3d9ae34294034e363e0cd2cee66e87f7
@@ -108,15 +80,44 @@ Line endings: LF
 Final newline: present
 ```
 
-Do not deploy before exact edited-file validation.
+Exact validation record:
+
+```text
+project2-progress/STEP_4E_B2_R5_E5_FIX1_PRE_DEPLOY_VALIDATION.md
+```
+
+Part A loading ownership exists exactly once inside the Canonical Cart owner. It was already present in `spatial-flow(30).css` and remained byte-for-byte unchanged in `spatial-flow(31).css`. The latest edit replaced only the rejected Cart Notice START-to-END range with the approved editorial notice treatment.
+
+## Deployment operation
+
+Replace only:
+
+```text
+assets/css/spatial-flow.css
+← spatial-flow(31).css
+```
 
 Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
+
+## Runtime acceptance gate
+
+```text
+1. normal Cart form remains transparent and borderless
+2. quantity update no longer exposes a white rectangular card around the left form
+3. Order Summary loading wash remains on its own warm summary surface
+4. loaders render as small restrained rings
+5. update/remove notice is plain editorial text with only a thin bottom divider
+6. no icon, panel, accent bar, radius, shadow or pill action
+7. native Undo restores the exact item
+8. live BAG / Your Bag counts remain synchronized
+9. phone loading and notice states have no horizontal overflow
+10. Cart width, 7fr/5fr relationship, breadcrumb, recommendations, Header and Footer remain unchanged
+```
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX1 manual CSS edit + exact artifact validation
-→ R5-E5 runtime loading/notice/Undo acceptance
+R5-E5-FIX1 runtime loading / notice / Undo acceptance
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
 ```
