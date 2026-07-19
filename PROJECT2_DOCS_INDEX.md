@@ -26,8 +26,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 18. project2-progress/STEP_4E_B2_R5_E5_RUNTIME_REJECTION.md
 19. project2-progress/STEP_4E_B2_R5_E5_FIX1_LOADING_FRAME_AUDIT_AND_MANUAL_FIX.md
 20. project2-progress/STEP_4E_B2_R5_E5_FIX1_PRE_DEPLOY_VALIDATION.md
-21. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-22. project2-progress/PROGRESS_LOG.md
+21. project2-progress/STEP_4E_B2_R5_E5_FIX1_RUNTIME_REJECTION_AND_FIX2.md
+22. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+23. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -54,9 +55,9 @@ R5-E2 synchronized live counts：Passed / closed
 R5-E3 empty-Cart parity：Passed / closed
 R5-E4 strict geometry, canvas, breadcrumb and recommendation rebase：Passed / closed
 R5-E5 first notice artifact：Passed technically / failed visually
-R5-E5-FIX1 loading-frame audit：Complete
-R5-E5-FIX1 exact CSS artifact validation：Passed
-Current：Deploy spatial-flow(31).css and run loading / notice / Undo runtime acceptance
+R5-E5-FIX1 exact CSS validation：Passed
+R5-E5-FIX1 runtime frame removal：Failed / warm rectangular wash remains perceptible
+Current：R5-E5-FIX2 remove the BlockUI wash completely
 Cart：Not done
 ```
 
@@ -87,35 +88,35 @@ Comments: 341 / 341
 CSS parser errors: 0
 ```
 
-## Validated R5-E5-FIX1 candidate
+## R5-E5-FIX1 runtime-rejected artifact
 
 ```text
 spatial-flow(31).css
 Size: 697,642 bytes
 Logical lines: 23,387
 SHA256: 74afc4c8f3989c37aa937581687423de3d9ae34294034e363e0cd2cee66e87f7
+```
+
+Its source is valid, but the form and totals overlays still use 78% opaque warm backgrounds. FIX1 recolors the rectangle rather than removing it.
+
+## R5-E5-FIX2 target
+
+Replace only the two loading-overlay background declarations with transparent backgrounds while retaining native blocking, `opacity: 1`, and the restrained spinner.
+
+```text
+Predicted size: 697,616 bytes
+Logical lines: 23,387
+SHA256: 2fa292d96e7e35a3d633dbe5bd8334e73fdb2432bbd6c8e6576a1424e170f55d
 Braces: 3,636 / 3,636
 Comments: 337 / 337
 CSS parser errors: 0
-Line endings: LF
-Final newline: present
 ```
-
-Part A loading ownership exists exactly once and is inside the Canonical Cart owner. It was already present in `spatial-flow(30).css`; the `spatial-flow(30).css` to `spatial-flow(31).css` correction leaves Part A byte-for-byte unchanged and replaces only the rejected Cart Notice range.
-
-## Deployment scope
-
-```text
-assets/css/spatial-flow.css
-← spatial-flow(31).css
-```
-
-Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX1 runtime loading / notice / Undo acceptance
+R5-E5-FIX2 exact artifact validation
+→ R5-E5 runtime loading / notice / Undo acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
 ```
