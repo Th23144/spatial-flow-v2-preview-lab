@@ -23,8 +23,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 15. project2-progress/STEP_4E_B2_R5_E4_C4_RUNTIME_ACCEPTANCE.md
 16. project2-progress/STEP_4E_B2_R5_E5_CART_NOTICE_REFINEMENT.md
 17. project2-progress/STEP_4E_B2_R5_E5_PRE_DEPLOY_VALIDATION.md
-18. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-19. project2-progress/PROGRESS_LOG.md
+18. project2-progress/STEP_4E_B2_R5_E5_RUNTIME_REJECTION.md
+19. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+20. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -50,12 +51,13 @@ R5-E1 exact source/state audit：Complete
 R5-E2 synchronized live counts：Passed / closed
 R5-E3 empty-Cart parity：Passed / closed
 R5-E4 strict geometry, canvas, breadcrumb and recommendation rebase：Passed / closed
-R5-E5 bounded Cart Notice CSS artifact：Passed / deployment authorized
-Current：R5-E5 deployment and runtime notice/Undo validation
+R5-E5 source/artifact validation：Passed technically
+R5-E5 runtime visual acceptance：Failed / rejected
+Current：R5-E5-FIX1 notice redesign
 Cart：Not done
 ```
 
-## Accepted deployed baselines before R5-E5 deployment
+## Accepted stable baselines
 
 ```text
 functions.php
@@ -73,7 +75,7 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Currently deployed artifact: spatial-flow(26).css
+Last accepted Cart visual artifact: spatial-flow(26).css
 Size: 697,699 bytes
 Logical lines: 23,389
 SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
@@ -82,54 +84,40 @@ Comments: 341 / 341
 CSS parser errors: 0
 ```
 
-## Authorized R5-E5 CSS artifact
+## Rejected R5-E5 artifact
 
 ```text
 spatial-flow(28).css
 Size: 697,513 bytes
 Logical lines: 23,384
 SHA256: 2120e5639f780a2eb370b5776fb78dcc470f3049d5a921badf2aef1d23261015
-Braces: 3,633 / 3,633
-Comments: 339 / 339
-CSS parser errors: 0
-Line endings: LF
-Final newline: present
 ```
 
-## Closed R5-E4 result
+It changed the live notice and passed source validation, but the user rejected its visual language as inconsistent with the accepted Cart page. It is not an accepted baseline.
+
+## Current design direction
+
+The next notice must read as a quiet editorial text response, not a standalone alert component:
 
 ```text
-- synchronized BAG / Your Bag counts
-- direct/transition empty-Cart parity
-- strict Shop-matched frame width
-- 7fr / 5fr tracks and 80px gap
-- 88px / 120px vertical rhythm
-- warm Cart canvas
-- backend-editable HOME / YOUR BAG breadcrumb
-- image-ready and product-level excluded recommendation ownership
-- no generated unauthored recommendation copy
-- native Cart operations and cross-page regression checks passed
+- no filled panel
+- no enclosing rectangular border
+- no left accent bar
+- no circular status icon
+- no drop shadow
+- no pill/button Undo
+- quiet text aligned with the Cart typography and spacing
+- native WooCommerce Undo preserved
+- phone-safe one-column layout
 ```
 
-## Current R5-E5 operation
-
-Deploy `spatial-flow(28).css`, then verify:
-
-```text
-- full-width editorial Cart update notice
-- restrained removed-item state
-- native Undo/Restore remains functional
-- BAG / Your Bag count synchronization remains intact
-- phone layout has no notice overflow
-- empty Cart parity remains intact
-- Cart geometry, breadcrumb, recommendations, Header and Footer remain unchanged
-- Shop, Single Product and SAFE5 Checkout pass quick regression checks
-```
+Rollback to `spatial-flow(26).css` is authorized while R5-E5-FIX1 is prepared.
 
 ## Remaining sequence
 
 ```text
-R5-E5 deployment + runtime validation
+R5-E5-FIX1 notice redesign + pre-deploy validation
+→ R5-E5 runtime notice/Undo acceptance
 → R5-E6 final strict acceptance
-→ binary Cart status decision
+→ binary Cart decision
 ```
