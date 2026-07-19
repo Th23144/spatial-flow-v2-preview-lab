@@ -22,8 +22,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 14. project2-progress/STEP_4E_B2_R5_E4_D_PRE_DEPLOY_VALIDATION.md
 15. project2-progress/STEP_4E_B2_R5_E4_C4_RUNTIME_ACCEPTANCE.md
 16. project2-progress/STEP_4E_B2_R5_E5_CART_NOTICE_REFINEMENT.md
-17. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-18. project2-progress/PROGRESS_LOG.md
+17. project2-progress/STEP_4E_B2_R5_E5_PRE_DEPLOY_VALIDATION.md
+18. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+19. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -49,11 +50,12 @@ R5-E1 exact source/state audit：Complete
 R5-E2 synchronized live counts：Passed / closed
 R5-E3 empty-Cart parity：Passed / closed
 R5-E4 strict geometry, canvas, breadcrumb and recommendation rebase：Passed / closed
-Current：R5-E5 Cart Notice in-place refinement
+R5-E5 bounded Cart Notice CSS artifact：Passed / deployment authorized
+Current：R5-E5 deployment and runtime notice/Undo validation
 Cart：Not done
 ```
 
-## Accepted deployed baselines
+## Accepted deployed baselines before R5-E5 deployment
 
 ```text
 functions.php
@@ -71,13 +73,27 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 assets/css/spatial-flow.css
-Deployed artifact: spatial-flow(26).css
+Currently deployed artifact: spatial-flow(26).css
 Size: 697,699 bytes
 Logical lines: 23,389
 SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
 Braces: 3,633 / 3,633
 Comments: 341 / 341
 CSS parser errors: 0
+```
+
+## Authorized R5-E5 CSS artifact
+
+```text
+spatial-flow(28).css
+Size: 697,513 bytes
+Logical lines: 23,384
+SHA256: 2120e5639f780a2eb370b5776fb78dcc470f3049d5a921badf2aef1d23261015
+Braces: 3,633 / 3,633
+Comments: 339 / 339
+CSS parser errors: 0
+Line endings: LF
+Final newline: present
 ```
 
 ## Closed R5-E4 result
@@ -97,31 +113,23 @@ CSS parser errors: 0
 
 ## Current R5-E5 operation
 
-Replace only the existing Cart Notice START/END block inside `spatial-flow(26).css`.
-
-Target visual language:
+Deploy `spatial-flow(28).css`, then verify:
 
 ```text
-- full-width editorial status row
-- no 999px rounded toast capsule
-- no drop shadow
-- thin clay state rule
-- small secondary status icon
-- text-style native Undo action
-- phone-safe two-row layout
-```
-
-Exact source and predicted artifact:
-
-```text
-project2-progress/STEP_4E_B2_R5_E5_CART_NOTICE_REFINEMENT.md
+- full-width editorial Cart update notice
+- restrained removed-item state
+- native Undo/Restore remains functional
+- BAG / Your Bag count synchronization remains intact
+- phone layout has no notice overflow
+- empty Cart parity remains intact
+- Cart geometry, breadcrumb, recommendations, Header and Footer remain unchanged
+- Shop, Single Product and SAFE5 Checkout pass quick regression checks
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E5 manual edit + pre-deploy validation
-→ R5-E5 runtime notice/Undo validation
+R5-E5 deployment + runtime validation
 → R5-E6 final strict acceptance
 → binary Cart status decision
 ```
