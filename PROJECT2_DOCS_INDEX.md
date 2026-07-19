@@ -24,8 +24,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 16. project2-progress/STEP_4E_B2_R5_E5_CART_NOTICE_REFINEMENT.md
 17. project2-progress/STEP_4E_B2_R5_E5_PRE_DEPLOY_VALIDATION.md
 18. project2-progress/STEP_4E_B2_R5_E5_RUNTIME_REJECTION.md
-19. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-20. project2-progress/PROGRESS_LOG.md
+19. project2-progress/STEP_4E_B2_R5_E5_FIX1_LOADING_FRAME_AUDIT_AND_MANUAL_FIX.md
+20. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+21. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -51,9 +52,9 @@ R5-E1 exact source/state audit：Complete
 R5-E2 synchronized live counts：Passed / closed
 R5-E3 empty-Cart parity：Passed / closed
 R5-E4 strict geometry, canvas, breadcrumb and recommendation rebase：Passed / closed
-R5-E5 source/artifact validation：Passed technically
-R5-E5 runtime visual acceptance：Failed / rejected
-Current：R5-E5-FIX1 notice redesign
+R5-E5 first notice artifact：Passed technically / failed visually
+R5-E5-FIX1 loading-frame audit：Complete
+Current：Apply R5-E5-FIX1 to spatial-flow(26).css and validate the edited artifact
 Cart：Not done
 ```
 
@@ -93,31 +94,38 @@ Logical lines: 23,384
 SHA256: 2120e5639f780a2eb370b5776fb78dcc470f3049d5a921badf2aef1d23261015
 ```
 
-It changed the live notice and passed source validation, but the user rejected its visual language as inconsistent with the accepted Cart page. It is not an accepted baseline.
+It is not an accepted visual baseline.
 
-## Current design direction
+## Loading-frame diagnosis
 
-The next notice must read as a quiet editorial text response, not a standalone alert component:
+The Cart form itself remains transparent and borderless. The visible rectangular loading card is produced by WooCommerce's native BlockUI overlay covering the full form bounds. The strict-width change makes the footprint larger and easier to see, but did not add the frame.
+
+R5-E5-FIX1 will:
 
 ```text
-- no filled panel
-- no enclosing rectangular border
-- no left accent bar
-- no circular status icon
-- no drop shadow
-- no pill/button Undo
-- quiet text aligned with the Cart typography and spacing
-- native WooCommerce Undo preserved
-- phone-safe one-column layout
+- preserve native blocking and update behavior
+- match the form overlay to the warm Cart canvas
+- match the summary overlay to the summary surface
+- replace the generic dark loader with a restrained ring
+- replace the rejected notice component with quiet editorial text
 ```
 
-Rollback to `spatial-flow(26).css` is authorized while R5-E5-FIX1 is prepared.
+Predicted FIX1 artifact from `spatial-flow(26).css`:
+
+```text
+Size: 697,642 bytes
+Logical lines: 23,387
+SHA256: 74afc4c8f3989c37aa937581687423de3d9ae34294034e363e0cd2cee66e87f7
+Braces: 3,636 / 3,636
+Comments: 337 / 337
+CSS parser errors: 0
+```
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX1 notice redesign + pre-deploy validation
-→ R5-E5 runtime notice/Undo acceptance
+R5-E5-FIX1 manual CSS edit + exact pre-deploy validation
+→ R5-E5 runtime loading/notice/Undo acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
 ```
