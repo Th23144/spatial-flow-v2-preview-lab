@@ -13,22 +13,23 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 5. PROJECT2_CSS_MAINTENANCE_POLICY.md
 6. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 7. project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-8. project2-progress/STEP_4E_B2_R5_E1_EXACT_SOURCE_AUDIT.md
-9. project2-progress/STEP_4E_B2_R5_E2_POST_DEPLOY_VALIDATION.md
-10. project2-progress/STEP_4E_B2_R5_E3_FINAL_RUNTIME_VALIDATION.md
-11. project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
-12. project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
-13. project2-progress/STEP_4E_B2_R5_E4_D_SOURCE_AUDIT_AND_MANUAL_FIX.md
-14. project2-progress/STEP_4E_B2_R5_E4_D_PRE_DEPLOY_VALIDATION.md
-15. project2-progress/STEP_4E_B2_R5_E4_C4_RUNTIME_ACCEPTANCE.md
-16. project2-progress/STEP_4E_B2_R5_E5_CART_NOTICE_REFINEMENT.md
-17. project2-progress/STEP_4E_B2_R5_E5_PRE_DEPLOY_VALIDATION.md
-18. project2-progress/STEP_4E_B2_R5_E5_RUNTIME_REJECTION.md
-19. project2-progress/STEP_4E_B2_R5_E5_FIX1_LOADING_FRAME_AUDIT_AND_MANUAL_FIX.md
-20. project2-progress/STEP_4E_B2_R5_E5_FIX1_PRE_DEPLOY_VALIDATION.md
-21. project2-progress/STEP_4E_B2_R5_E5_FIX1_RUNTIME_REJECTION_AND_FIX2.md
-22. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-23. project2-progress/PROGRESS_LOG.md
+8. preview/spatial-flow-cart-v1.html
+9. project2-progress/STEP_4E_B2_R5_E1_EXACT_SOURCE_AUDIT.md
+10. project2-progress/STEP_4E_B2_R5_E2_POST_DEPLOY_VALIDATION.md
+11. project2-progress/STEP_4E_B2_R5_E3_FINAL_RUNTIME_VALIDATION.md
+12. project2-progress/STEP_4E_B2_R5_E4_A_STRICT_GEOMETRY_AUDIT.md
+13. project2-progress/STEP_4E_B2_R5_E4_C3_VISUAL_REVIEW_RESULT.md
+14. project2-progress/STEP_4E_B2_R5_E4_D_SOURCE_AUDIT_AND_MANUAL_FIX.md
+15. project2-progress/STEP_4E_B2_R5_E4_D_PRE_DEPLOY_VALIDATION.md
+16. project2-progress/STEP_4E_B2_R5_E4_C4_RUNTIME_ACCEPTANCE.md
+17. project2-progress/STEP_4E_B2_R5_E5_CART_NOTICE_REFINEMENT.md
+18. project2-progress/STEP_4E_B2_R5_E5_PRE_DEPLOY_VALIDATION.md
+19. project2-progress/STEP_4E_B2_R5_E5_RUNTIME_REJECTION.md
+20. project2-progress/STEP_4E_B2_R5_E5_FIX1_LOADING_FRAME_AUDIT_AND_MANUAL_FIX.md
+21. project2-progress/STEP_4E_B2_R5_E5_FIX1_PRE_DEPLOY_VALIDATION.md
+22. project2-progress/STEP_4E_B2_R5_E5_FIX1_RUNTIME_REJECTION_AND_FIX2.md
+23. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+24. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -57,7 +58,8 @@ R5-E4 strict geometry, canvas, breadcrumb and recommendation rebase：Passed / c
 R5-E5 first notice artifact：Passed technically / failed visually
 R5-E5-FIX1 exact CSS validation：Passed
 R5-E5-FIX1 runtime frame removal：Failed / warm rectangular wash remains perceptible
-Current：R5-E5-FIX2 remove the BlockUI wash completely
+R5-E5-FIX2 static-reference comparison：Complete
+Current：Apply transparent BlockUI correction and validate the exact artifact
 Cart：Not done
 ```
 
@@ -88,16 +90,15 @@ Comments: 341 / 341
 CSS parser errors: 0
 ```
 
-## R5-E5-FIX1 runtime-rejected artifact
+## Static Cart reference conclusion
 
 ```text
-spatial-flow(31).css
-Size: 697,642 bytes
-Logical lines: 23,387
-SHA256: 74afc4c8f3989c37aa937581687423de3d9ae34294034e363e0cd2cee66e87f7
+preview/spatial-flow-cart-v1.html
 ```
 
-Its source is valid, but the form and totals overlays still use 78% opaque warm backgrounds. FIX1 recolors the rectangle rather than removing it.
+The approved static Cart uses one uninterrupted warm page canvas. The left Cart items owner has no background, border, padding, radius or shadow; rows are transparent and separated only by bottom dividers. The right Order Summary is the only intentionally filled Cart surface. No loading card or full-form wash exists.
+
+The current Canonical Cart desktop form and rows already match that ownership model. The remaining mismatch is the visible BlockUI wash, not the accepted width or form structure.
 
 ## R5-E5-FIX2 target
 
