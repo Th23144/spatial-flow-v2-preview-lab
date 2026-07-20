@@ -33,8 +33,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 25. project2-progress/STEP_4E_B2_R5_E5_FIX3_PRE_DEPLOY_VALIDATION.md
 26. project2-progress/STEP_4E_B2_R5_E5_FIX3_RUNTIME_REJECTION_AND_FIX4.md
 27. project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
-28. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-29. project2-progress/PROGRESS_LOG.md
+28. project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
+29. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+30. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -71,6 +72,7 @@ R5-E5-FIX3 de-boxed Coupon / Apply / Update controls：Passed
 R5-E5-FIX3 implied-frame runtime acceptance：Failed
 R5-E5-FIX4 speculative proposal：Cancelled before execution
 R5-E5-S1 strict source/DOM ownership audit：Complete
+R5-E5-S2 repository Markdown reconciliation：Complete / no theme source change
 Current：R5-E5-S2 exact-file validation and bounded implementation planning
 Cart：Not done
 ```
@@ -104,10 +106,11 @@ The approved static Cart has a product-only left plane and no Coupon / Apply Cou
 
 The first bounded production translation therefore keeps native controls and nonce inside the form but removes the actions row from the visible left layout, auto-invokes the hidden native Update Cart control for quantity changes, and exposes Coupon through one narrow lifecycle-safe control in Order Summary. No template override is authorized at this stage.
 
-Detailed audit:
+Detailed audits:
 
 ```text
 project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
+project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
 ```
 
 ## Current execution gate
