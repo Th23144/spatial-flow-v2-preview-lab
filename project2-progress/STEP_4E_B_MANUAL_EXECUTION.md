@@ -1,6 +1,6 @@
 # Step 4E-B · Manual Staged Cart Execution Protocol
 
-Last updated: 2026-07-19  
+Last updated: 2026-07-20  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
@@ -26,8 +26,9 @@ R5-E5-FIX1 source and exact CSS validation：Passed.
 R5-E5-FIX1 runtime frame removal：Failed / warm rectangular wash still perceptible.
 R5-E5-FIX2 static-reference comparison and exact artifact validation：Passed.
 R5-E5-FIX2 BlockUI filled wash removal：Passed.
-R5-E5-FIX2 residual composition acceptance：Failed / implied frame remains.
-Current executable phase：R5-E5-FIX3 convert Coupon / Apply / Update controls from closed boxes into static-reference-aligned editorial utilities.
+R5-E5-FIX2 residual composition acceptance：Failed / implied frame remained.
+R5-E5-FIX3 exact CSS artifact validation：Passed.
+Current executable phase：Deploy spatial-flow(34).css and run Coupon / Update / loading / notice / Undo runtime acceptance.
 Cart page status：Not done.
 ```
 
@@ -72,53 +73,12 @@ Line endings: LF
 Final newline: present
 ```
 
-Both BlockUI backgrounds are transparent. The normal screenshot no longer shows a painted loading surface, and the left form remains on the same uninterrupted warm page canvas.
+Its BlockUI backgrounds are transparent and the painted loading wash is removed. The remaining implied frame came from the full-width product divider immediately followed by three closed rectangular Coupon / Apply / Update controls.
 
-## Residual-frame diagnosis
-
-The remaining frame perception is no longer caused by BlockUI or a form background. It is caused by composition:
+## Validated R5-E5-FIX3 candidate
 
 ```text
-- full-width product-row bottom divider
-- immediately aligned full-width native actions row
-- closed rectangular Coupon input
-- closed rectangular Apply Coupon button
-- closed rectangular Update Cart button
-```
-
-This creates an implied card boundary even with a transparent form.
-
-The product-row divider must remain because it exists in the static Cart reference. The native WooCommerce Coupon / Update row does not exist in the static reference, so its production treatment must inherit the static reference's small mono text-action language instead of introducing a second boxed control strip.
-
-## Current operation · R5-E5-FIX3
-
-Follow exactly:
-
-```text
-project2-progress/STEP_4E_B2_R5_E5_FIX2_RUNTIME_VISUAL_REVIEW_AND_FIX3.md
-```
-
-Start from:
-
-```text
-spatial-flow(32).css
-```
-
-Only the desktop and mobile Coupon / Update Cart owner ranges may change.
-
-The target treatment is:
-
-```text
-- Coupon input becomes a single underline field
-- Apply Coupon becomes a quiet underlined mono text action
-- Update Cart becomes a quiet underlined mono text action
-- no closed rectangular utility controls
-- no change to product divider, width, BlockUI, totals or WooCommerce behavior
-```
-
-Predicted exact artifact:
-
-```text
+spatial-flow(34).css
 Size: 698,076 bytes
 Logical lines: 23,406
 SHA256: 3e6b0d6fa292681cee1c2936e744314b4347a0bcc82ea3e7cd911d5cac1969ce
@@ -129,15 +89,54 @@ Line endings: LF
 Final newline: present
 ```
 
-Do not deploy before exact edited-file validation.
+Exact validation record:
 
-Do not modify PHP, JavaScript, templates, Cart geometry, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
+```text
+project2-progress/STEP_4E_B2_R5_E5_FIX3_PRE_DEPLOY_VALIDATION.md
+```
+
+Validated ownership:
+
+```text
+Desktop Coupon / Update owner: lines 22,048–22,138
+Mobile Coupon / Update owner: lines 22,889–22,917
+Native loading state: starts line 23,012
+Canonical Cart END: line 23,050
+Cart Notice: lines 23,052–23,158
+```
+
+The candidate preserves the product divider, native Coupon and Update Cart functions, transparent BlockUI, restrained loader, editorial notice and native Undo. It changes the Coupon input and Apply / Update controls from closed boxes to static-reference-aligned editorial utilities.
+
+## Deployment operation
+
+Replace only:
+
+```text
+assets/css/spatial-flow.css
+← spatial-flow(34).css
+```
+
+Do not modify PHP, JavaScript, templates, Cart geometry, product divider, BlockUI, totals, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
+
+## Runtime acceptance gate
+
+```text
+1. Coupon is an underline field, not a closed input box
+2. Apply Coupon and Update Cart are quiet text actions, not bordered rectangles
+3. implied left-column frame is materially removed
+4. product-row divider remains
+5. native Coupon and Update Cart behavior remains functional
+6. disabled Update Cart remains visibly disabled
+7. quantity update shows no BlockUI rectangle and only the restrained loader
+8. update/remove notice remains editorial and native Undo restores the item
+9. mobile Coupon row is readable and has no horizontal overflow
+10. Cart geometry, totals, breadcrumb, recommendations, Header and Footer remain unchanged
+```
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX3 manual CSS edit + exact artifact validation
-→ R5-E5 runtime Coupon / Update / loading / notice / Undo acceptance
+R5-E5-FIX3 runtime Coupon / Update / loading / notice / Undo acceptance
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
 ```
