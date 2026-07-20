@@ -28,7 +28,9 @@ R5-E5-FIX2 static-reference comparison and exact artifact validation：Passed.
 R5-E5-FIX2 BlockUI filled wash removal：Passed.
 R5-E5-FIX2 residual composition acceptance：Failed / implied frame remained.
 R5-E5-FIX3 exact CSS artifact validation：Passed.
-Current executable phase：Deploy spatial-flow(34).css and run Coupon / Update / loading / notice / Undo runtime acceptance.
+R5-E5-FIX3 Coupon / Apply / Update de-boxing：Passed.
+R5-E5-FIX3 implied-frame runtime acceptance：Failed.
+Current executable phase：R5-E5-FIX4 remove the terminal product divider and compact the native utility row.
 Cart page status：Not done.
 ```
 
@@ -59,23 +61,7 @@ Size: 70,828 bytes
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 ```
 
-## Current deployed R5-E5-FIX2 artifact
-
-```text
-spatial-flow(32).css
-Size: 697,616 bytes
-Logical lines: 23,387
-SHA256: 2fa292d96e7e35a3d633dbe5bd8334e73fdb2432bbd6c8e6576a1424e170f55d
-Braces: 3,636 / 3,636
-Comments: 337 / 337
-CSS parser errors: 0
-Line endings: LF
-Final newline: present
-```
-
-Its BlockUI backgrounds are transparent and the painted loading wash is removed. The remaining implied frame came from the full-width product divider immediately followed by three closed rectangular Coupon / Apply / Update controls.
-
-## Validated R5-E5-FIX3 candidate
+## Current deployed R5-E5-FIX3 artifact
 
 ```text
 spatial-flow(34).css
@@ -89,54 +75,65 @@ Line endings: LF
 Final newline: present
 ```
 
-Exact validation record:
+FIX3 successfully changed the Coupon input and Apply / Update controls into editorial utilities, but the runtime screenshot still shows an implied left-column frame.
+
+The remaining geometry is:
 
 ```text
-project2-progress/STEP_4E_B2_R5_E5_FIX3_PRE_DEPLOY_VALIDATION.md
+- final product row still ends with a full-width divider
+- td.actions still owns the full left-column width
+- Coupon begins at the far-left edge
+- justify-content: space-between pins Update Cart to the far-right edge
 ```
 
-Validated ownership:
+The visual axis therefore remains closed even without boxed controls.
+
+## Current operation · R5-E5-FIX4
+
+Follow exactly:
 
 ```text
-Desktop Coupon / Update owner: lines 22,048–22,138
-Mobile Coupon / Update owner: lines 22,889–22,917
-Native loading state: starts line 23,012
-Canonical Cart END: line 23,050
-Cart Notice: lines 23,052–23,158
+project2-progress/STEP_4E_B2_R5_E5_FIX3_RUNTIME_REJECTION_AND_FIX4.md
 ```
 
-The candidate preserves the product divider, native Coupon and Update Cart functions, transparent BlockUI, restrained loader, editorial notice and native Undo. It changes the Coupon input and Apply / Update controls from closed boxes to static-reference-aligned editorial utilities.
-
-## Deployment operation
-
-Replace only:
+Start from:
 
 ```text
-assets/css/spatial-flow.css
-← spatial-flow(34).css
+spatial-flow(34).css
 ```
 
-Do not modify PHP, JavaScript, templates, Cart geometry, product divider, BlockUI, totals, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
-
-## Runtime acceptance gate
+FIX4 ownership:
 
 ```text
-1. Coupon is an underline field, not a closed input box
-2. Apply Coupon and Update Cart are quiet text actions, not bordered rectangles
-3. implied left-column frame is materially removed
-4. product-row divider remains
-5. native Coupon and Update Cart behavior remains functional
-6. disabled Update Cart remains visibly disabled
-7. quantity update shows no BlockUI rectangle and only the restrained loader
-8. update/remove notice remains editorial and native Undo restores the item
-9. mobile Coupon row is readable and has no horizontal overflow
-10. Cart geometry, totals, breadcrumb, recommendations, Header and Footer remain unchanged
+- product dividers become inter-item separators only
+- the final product row before actions has no terminal divider
+- Coupon / Apply / Update become a compact left-aligned group
+- Update Cart no longer defines the far-right edge
+- no change to phone owner, BlockUI, totals, geometry or WooCommerce behavior
 ```
+
+Predicted exact artifact:
+
+```text
+Size: 698,352 bytes
+Logical lines: 23,413
+SHA256: 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
+Braces: 3,639 / 3,639
+Comments: 337 / 337
+CSS parser errors: 0
+Line endings: LF
+Final newline: present
+```
+
+Do not deploy before exact edited-file validation.
+
+Do not modify PHP, JavaScript, templates, Cart geometry, BlockUI, totals, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX3 runtime Coupon / Update / loading / notice / Undo acceptance
+R5-E5-FIX4 manual edit + exact artifact validation
+→ R5-E5 runtime Coupon / Update / loading / notice / Undo acceptance
 → R5-E6 final strict functional + visual acceptance
 → binary Cart status decision
 ```
