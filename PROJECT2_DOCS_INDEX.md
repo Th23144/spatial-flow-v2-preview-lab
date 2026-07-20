@@ -31,8 +31,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 23. project2-progress/STEP_4E_B2_R5_E5_FIX2_PRE_DEPLOY_VALIDATION.md
 24. project2-progress/STEP_4E_B2_R5_E5_FIX2_RUNTIME_VISUAL_REVIEW_AND_FIX3.md
 25. project2-progress/STEP_4E_B2_R5_E5_FIX3_PRE_DEPLOY_VALIDATION.md
-26. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-27. project2-progress/PROGRESS_LOG.md
+26. project2-progress/STEP_4E_B2_R5_E5_FIX3_RUNTIME_REJECTION_AND_FIX4.md
+27. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+28. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -65,7 +66,9 @@ R5-E5-FIX2 static-reference alignment and exact artifact validation：Passed
 R5-E5-FIX2 BlockUI surface removal：Passed
 R5-E5-FIX2 residual composition acceptance：Failed / implied frame remained
 R5-E5-FIX3 exact CSS artifact validation：Passed
-Current：Deploy spatial-flow(34).css and run Coupon / Update / loading / notice / Undo runtime acceptance
+R5-E5-FIX3 de-boxed Coupon / Apply / Update controls：Passed
+R5-E5-FIX3 implied-frame runtime acceptance：Failed
+Current：R5-E5-FIX4 remove terminal product divider and compact utility-row geometry
 Cart：Not done
 ```
 
@@ -96,21 +99,7 @@ Comments: 341 / 341
 CSS parser errors: 0
 ```
 
-## Current deployed candidate
-
-```text
-spatial-flow(32).css
-Size: 697,616 bytes
-Logical lines: 23,387
-SHA256: 2fa292d96e7e35a3d633dbe5bd8334e73fdb2432bbd6c8e6576a1424e170f55d
-Braces: 3,636 / 3,636
-Comments: 337 / 337
-CSS parser errors: 0
-```
-
-Its BlockUI backgrounds are transparent and the painted loading wash is removed. The remaining implied frame came from the product divider and the immediately aligned row of three closed rectangular Coupon / Apply / Update controls.
-
-## Validated R5-E5-FIX3 candidate
+## Current deployed R5-E5-FIX3 artifact
 
 ```text
 spatial-flow(34).css
@@ -124,27 +113,43 @@ Line endings: LF
 Final newline: present
 ```
 
-The exact artifact matches the predicted FIX3 target. Desktop and mobile Coupon / Update owners are present in the correct ranges. Coupon is underline-only; Apply Coupon and Update Cart are underlined mono text actions. Product divider, transparent BlockUI, restrained loader, editorial notice and native Undo remain intact.
+The screenshot confirms that the form and page canvas share the same background and no painted BlockUI surface remains. FIX3 still fails because the final product divider and the full-width actions geometry preserve the same left/right frame axis. `justify-content: space-between` continues to place Update Cart on the far-right edge.
 
-Detailed validation:
-
-```text
-project2-progress/STEP_4E_B2_R5_E5_FIX3_PRE_DEPLOY_VALIDATION.md
-```
-
-## Deployment scope
+## R5-E5-FIX4 target
 
 ```text
-assets/css/spatial-flow.css
-← spatial-flow(34).css
+- make product dividers inter-item separators only
+- remove the terminal divider from the final product row
+- compact Coupon / Apply / Update to a 650px maximum left-aligned group
+- cap the Coupon group at 480px
+- remove the far-right Update Cart anchor
+- preserve the phone owner and native WooCommerce behavior
 ```
 
-Do not modify PHP, JavaScript, templates, Cart geometry, product divider, BlockUI, totals, breadcrumb, recommendations, Header/Footer or version 2.7.8.
+Detailed operation:
+
+```text
+project2-progress/STEP_4E_B2_R5_E5_FIX3_RUNTIME_REJECTION_AND_FIX4.md
+```
+
+Predicted FIX4 artifact:
+
+```text
+Size: 698,352 bytes
+Logical lines: 23,413
+SHA256: 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
+Braces: 3,639 / 3,639
+Comments: 337 / 337
+CSS parser errors: 0
+Line endings: LF
+Final newline: present
+```
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX3 runtime Coupon / Update / loading / notice / Undo acceptance
+R5-E5-FIX4 manual edit + exact artifact validation
+→ R5-E5 runtime Coupon / Update / loading / notice / Undo acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
 ```
