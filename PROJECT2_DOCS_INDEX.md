@@ -68,7 +68,8 @@ R5-E5-FIX2 residual composition acceptance：Failed / implied frame remained
 R5-E5-FIX3 exact CSS artifact validation：Passed
 R5-E5-FIX3 de-boxed Coupon / Apply / Update controls：Passed
 R5-E5-FIX3 implied-frame runtime acceptance：Failed
-Current：R5-E5-FIX4 remove terminal product divider and compact utility-row geometry
+R5-E5-FIX4 speculative proposal：Cancelled before execution
+Current：R5-E5-S1 strict static-to-native ownership rebase
 Cart：Not done
 ```
 
@@ -113,43 +114,35 @@ Line endings: LF
 Final newline: present
 ```
 
-The screenshot confirms that the form and page canvas share the same background and no painted BlockUI surface remains. FIX3 still fails because the final product divider and the full-width actions geometry preserve the same left/right frame axis. `justify-content: space-between` continues to place Update Cart on the far-right edge.
+## Strict-reference correction
 
-## R5-E5-FIX4 target
+The approved static Cart is the visual contract:
 
 ```text
-- make product dividers inter-item separators only
-- remove the terminal divider from the final product row
-- compact Coupon / Apply / Update to a 650px maximum left-aligned group
-- cap the Coupon group at 480px
-- remove the far-right Update Cart anchor
-- preserve the phone owner and native WooCommerce behavior
+preview/spatial-flow-cart-v1.html
 ```
 
-Detailed operation:
+It uses a product-only left `.cart-items` plane. Every `.cart-item` retains its bottom divider, and the right `.cart-sidebar` is the only filled Cart surface. The static markup contains no Coupon / Apply Coupon / Update Cart footer below the product stack.
+
+Therefore the cancelled FIX4 must not be executed. Removing the final divider or inventing a compact left utility strip would alter the approved reference rather than reproduce it.
+
+The native WooCommerce Coupon and Update functions remain mandatory under the strict-1:1 policy, but must be handled through a narrow documented source/DOM adaptation outside the static product plane.
+
+## Current execution gate
 
 ```text
-project2-progress/STEP_4E_B2_R5_E5_FIX3_RUNTIME_REJECTION_AND_FIX4.md
-```
-
-Predicted FIX4 artifact:
-
-```text
-Size: 698,352 bytes
-Logical lines: 23,413
-SHA256: 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
-Braces: 3,639 / 3,639
-Comments: 337 / 337
-CSS parser errors: 0
-Line endings: LF
-Final newline: present
+No manual CSS edit is authorized.
+Do not create or deploy the cancelled predicted FIX4 SHA256:
+6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX4 manual edit + exact artifact validation
-→ R5-E5 runtime Coupon / Update / loading / notice / Undo acceptance
+R5-E5-S1 strict source/DOM ownership audit
+→ exact bounded implementation plan
+→ exact artifact validation
+→ R5-E5 runtime acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
 ```
