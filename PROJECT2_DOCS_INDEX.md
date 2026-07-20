@@ -32,8 +32,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 24. project2-progress/STEP_4E_B2_R5_E5_FIX2_RUNTIME_VISUAL_REVIEW_AND_FIX3.md
 25. project2-progress/STEP_4E_B2_R5_E5_FIX3_PRE_DEPLOY_VALIDATION.md
 26. project2-progress/STEP_4E_B2_R5_E5_FIX3_RUNTIME_REJECTION_AND_FIX4.md
-27. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-28. project2-progress/PROGRESS_LOG.md
+27. project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
+28. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+29. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -69,40 +70,25 @@ R5-E5-FIX3 exact CSS artifact validation：Passed
 R5-E5-FIX3 de-boxed Coupon / Apply / Update controls：Passed
 R5-E5-FIX3 implied-frame runtime acceptance：Failed
 R5-E5-FIX4 speculative proposal：Cancelled before execution
-Current：R5-E5-S1 strict static-to-native ownership rebase
+R5-E5-S1 strict source/DOM ownership audit：Complete
+Current：R5-E5-S2 exact-file validation and bounded implementation planning
 Cart：Not done
 ```
 
-## Accepted stable baselines
+## Current exact files
 
 ```text
-functions.php
-Deployed artifact: functions(17).php
-Version: 2.7.8
+functions(17).php
 Size: 555,130 bytes
 Logical lines: 10,366
 SHA256: ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
-PHP syntax: Passed
-Braces: 1,215 / 1,215
+Version: 2.7.8
 
 assets/js/spatial-flow.js
-Unchanged accepted baseline
 Size: 70,828 bytes
+Logical lines: 1,995
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
-assets/css/spatial-flow.css
-Last runtime-accepted Cart visual artifact before R5-E5: spatial-flow(26).css
-Size: 697,699 bytes
-Logical lines: 23,389
-SHA256: 1699ee8bfc66ab2dd4c9229b04f61be8ec92386493ac33665275bc9d91638e66
-Braces: 3,633 / 3,633
-Comments: 341 / 341
-CSS parser errors: 0
-```
-
-## Current deployed R5-E5-FIX3 artifact
-
-```text
 spatial-flow(34).css
 Size: 698,076 bytes
 Logical lines: 23,406
@@ -110,38 +96,41 @@ SHA256: 3e6b0d6fa292681cee1c2936e744314b4347a0bcc82ea3e7cd911d5cac1969ce
 Braces: 3,638 / 3,638
 Comments: 337 / 337
 CSS parser errors: 0
-Line endings: LF
-Final newline: present
 ```
 
-## Strict-reference correction
+## S1 strict ownership conclusion
 
-The approved static Cart is the visual contract:
+The approved static Cart has a product-only left plane and no Coupon / Apply Coupon / Update Cart footer. WooCommerce 10.4.3 places Coupon, Update Cart, the actions hook and nonce in the final `td.actions` row inside `.woocommerce-cart-form`; native cart.js serializes and replaces the form and totals during updates.
+
+The first bounded production translation therefore keeps native controls and nonce inside the form but removes the actions row from the visible left layout, auto-invokes the hidden native Update Cart control for quantity changes, and exposes Coupon through one narrow lifecycle-safe control in Order Summary. No template override is authorized at this stage.
+
+Detailed audit:
 
 ```text
-preview/spatial-flow-cart-v1.html
+project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
 ```
-
-It uses a product-only left `.cart-items` plane. Every `.cart-item` retains its bottom divider, and the right `.cart-sidebar` is the only filled Cart surface. The static markup contains no Coupon / Apply Coupon / Update Cart footer below the product stack.
-
-Therefore the cancelled FIX4 must not be executed. Removing the final divider or inventing a compact left utility strip would alter the approved reference rather than reproduce it.
-
-The native WooCommerce Coupon and Update functions remain mandatory under the strict-1:1 policy, but must be handled through a narrow documented source/DOM adaptation outside the static product plane.
 
 ## Current execution gate
 
+Upload the exact current local files before manual edits are issued:
+
 ```text
-No manual CSS edit is authorized.
-Do not create or deploy the cancelled predicted FIX4 SHA256:
+1. functions(17).php
+2. assets/js/spatial-flow.js
+3. spatial-flow(34).css
+```
+
+Do not execute the cancelled FIX4 and do not create/deploy SHA256:
+
+```text
 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
 ```
 
 ## Remaining sequence
 
 ```text
-R5-E5-S1 strict source/DOM ownership audit
-→ exact bounded implementation plan
-→ exact artifact validation
+R5-E5-S2 exact-file validation + bounded implementation plan
+→ exact edited-artifact validation
 → R5-E5 runtime acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
