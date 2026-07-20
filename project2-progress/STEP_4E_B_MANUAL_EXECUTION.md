@@ -30,7 +30,8 @@ R5-E5-FIX2 residual composition acceptance：Failed / implied frame remained.
 R5-E5-FIX3 exact CSS artifact validation：Passed.
 R5-E5-FIX3 Coupon / Apply / Update de-boxing：Passed.
 R5-E5-FIX3 implied-frame runtime acceptance：Failed.
-Current executable phase：R5-E5-FIX4 remove the terminal product divider and compact the native utility row.
+R5-E5-FIX4 speculative CSS proposal：Cancelled before execution.
+Current executable phase：R5-E5-S1 strict static-to-native ownership rebase.
 Cart page status：Not done.
 ```
 
@@ -75,65 +76,67 @@ Line endings: LF
 Final newline: present
 ```
 
-FIX3 successfully changed the Coupon input and Apply / Update controls into editorial utilities, but the runtime screenshot still shows an implied left-column frame.
+FIX3 removed closed Coupon / Apply / Update boxes, but the runtime screenshot still shows a non-reference left-column composition.
 
-The remaining geometry is:
+## Strict static contract restored
+
+Authoritative source:
 
 ```text
-- final product row still ends with a full-width divider
-- td.actions still owns the full left-column width
-- Coupon begins at the far-left edge
-- justify-content: space-between pins Update Cart to the far-right edge
+preview/spatial-flow-cart-v1.html
 ```
 
-The visual axis therefore remains closed even without boxed controls.
+The static source owns:
 
-## Current operation · R5-E5-FIX4
+```text
+- maximum Cart frame and gutters
+- 7fr / 5fr columns
+- 80px row and column gap
+- product-only .cart-items left plane
+- a bottom divider on every .cart-item
+- the right Order Summary as the only filled Cart surface
+```
 
-Follow exactly:
+The static markup does not contain a Coupon / Apply Coupon / Update Cart footer under the left product stack.
+
+Therefore the cancelled FIX4 must not be executed:
+
+```text
+- do not remove the final product divider
+- do not compact the native utility row as a new invented layout
+- do not create or deploy the cancelled target SHA256
+  6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
+```
+
+Detailed cancellation record:
 
 ```text
 project2-progress/STEP_4E_B2_R5_E5_FIX3_RUNTIME_REJECTION_AND_FIX4.md
 ```
 
-Start from:
+## Current operation · R5-E5-S1
+
+No manual edit is currently authorized.
+
+First audit the actual WooCommerce ownership and refresh lifecycle for:
 
 ```text
-spatial-flow(34).css
+- quantity form and native Update Cart submit
+- Coupon input/button and nonce
+- notices and Undo
+- AJAX/fragment refresh behavior
+- safe desktop/mobile relocation or conditional rendering points
 ```
 
-FIX4 ownership:
-
-```text
-- product dividers become inter-item separators only
-- the final product row before actions has no terminal divider
-- Coupon / Apply / Update become a compact left-aligned group
-- Update Cart no longer defines the far-right edge
-- no change to phone owner, BlockUI, totals, geometry or WooCommerce behavior
-```
-
-Predicted exact artifact:
-
-```text
-Size: 698,352 bytes
-Logical lines: 23,413
-SHA256: 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
-Braces: 3,639 / 3,639
-Comments: 337 / 337
-CSS parser errors: 0
-Line endings: LF
-Final newline: present
-```
-
-Do not deploy before exact edited-file validation.
-
-Do not modify PHP, JavaScript, templates, Cart geometry, BlockUI, totals, breadcrumb, recommendation logic, Header/Footer or version 2.7.8.
+The next implementation must keep the default left visual plane identical to the static product stack while retaining real WooCommerce functions through a narrow documented adaptation outside that plane.
 
 ## Remaining sequence
 
 ```text
-R5-E5-FIX4 manual edit + exact artifact validation
-→ R5-E5 runtime Coupon / Update / loading / notice / Undo acceptance
-→ R5-E6 final strict functional + visual acceptance
+R5-E5-S1 strict source/DOM ownership audit
+→ exact bounded implementation plan
+→ exact artifact validation
+→ R5-E5 runtime acceptance
+→ R5-E6 final strict acceptance
 → binary Cart status decision
 ```
