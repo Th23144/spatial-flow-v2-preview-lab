@@ -58,8 +58,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 50. project2-progress/STEP_4E_B2_R5_E6_B_GROUP1_RESULT_AND_GROUP2_COUPON.md
 51. project2-progress/STEP_4E_B2_R5_E6_B_GROUP2_RESULT_AND_GROUP3_REMOVE_UNDO.md
 52. project2-progress/STEP_4E_B2_R5_E6_B_GROUP3_RESULT_AND_GROUP4_SHIPPING_ADDRESS.md
-53. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-54. project2-progress/PROGRESS_LOG.md
+53. project2-progress/STEP_4E_B2_R5_E6_B_GROUP4_FUNCTIONAL_PASS_AND_NOTICE_VISUAL_REOPEN.md
+54. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+55. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -125,7 +126,10 @@ R5-E6-B Group 1 quantity/count/totals synchronization：Passed
 R5-E6-B Group 2 Coupon lifecycle：Passed
 Applied Coupon Remove placement：Accepted native behavior
 R5-E6-B Group 3 Remove / Undo lifecycle：Passed
-Current：R5-E6-B Group 4 Shipping / Change address
+R5-E6-B Group 4 Shipping / Change address functional lifecycle：Passed
+R5-E6-B Group 4 Cart notice visual acceptance：Failed / reopened
+Confirmed notice defects：Cart update success + Shipping costs updated
+Current：R5-E6-B-N1 exact Cart notice runtime/source ownership audit
 Cart：Not done
 ```
 
@@ -169,17 +173,21 @@ Mobile is governed by `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md`: production-qual
 
 The invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. The retained product-row divider is accepted in the complete desktop and phone composition.
 
-Group 1 confirmed quantity/count/totals synchronization. Group 2 confirmed valid and invalid Coupon lifecycle, persistence, removal and error handling. Group 3 confirmed native Remove and Undo/Restore ownership, empty-state transition, count reset and complete restoration of the line item and totals.
+Groups 1–4 functionally pass. Group 4 exposed that Cart update feedback and `Shipping costs updated.` still use a visually rejected floating white rounded notice treatment. The next step is a precise runtime/source ownership audit; address fields and native shipping behavior remain accepted and untouched.
 
 ## Current execution gate
 
-Execute R5-E6-B Group 4 only:
+Execute R5-E6-B-N1 only:
 
 ```text
-B9. Shipping and Change address
+1. Inspect exact live DOM/class/placement for Cart updated success feedback.
+2. Inspect exact live DOM/class/placement for Shipping costs updated feedback.
+3. Identify the current CSS rule producing the rounded white notice surface.
+4. Determine whether both states share one owner and how AJAX replacement affects it.
+5. Define a bounded Cart-only correction that preserves native errors, Undo and lifecycle ownership.
 ```
 
-Do not test checkout navigation or direct empty Cart until Group 4 is reported. No source edit, deployment, divider redesign or final binary status decision is authorized during this functional gate.
+No source edit, deployment, address-form redesign or final binary status decision is authorized until this audit is complete.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -190,7 +198,8 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6-B Group 4 shipping / address
+R5-E6-B-N1 Cart notice ownership audit
+→ bounded notice correction and runtime acceptance
 → Group 5 checkout navigation
 → Group 6 direct empty Cart
 → Group 7 AJAX responsive overflow
