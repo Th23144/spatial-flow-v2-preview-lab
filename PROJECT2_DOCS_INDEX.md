@@ -51,8 +51,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 43. project2-progress/STEP_4E_B2_R5_E5_S2_F4_COMPUTED_STYLE_RESULT_AND_S2_F5_TABLE_SHADOW_TEST.md
 44. project2-progress/STEP_4E_B2_R5_E5_S2_F5_TABLE_SHADOW_CONFIRMED_AND_S2_G_DECISION.md
 45. project2-progress/STEP_4E_B2_R5_E5_S2_G_CSS_VALIDATION.md
-46. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-47. project2-progress/PROGRESS_LOG.md
+46. project2-progress/STEP_4E_B2_R5_E5_S2_G_RUNTIME_ACCEPTANCE.md
+47. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+48. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -108,12 +109,14 @@ R5-E5-S2-F4 computed-style audit：Concrete owner found
 R5-E5-S2-F5 Test G：Passed / invisible frame disappeared
 Confirmed owner：table.shop_table.cart 2% box-shadow
 R5-E5-S2-G exact CSS artifact validation：Passed
-Mobile product divider：Retain pending clean post-fix review
-Current：R5-E5-S2-G CSS-only deployment authorized / not yet confirmed
+R5-E5-S2-G CSS-only deployment：Confirmed
+R5-E5-S2-G clean runtime acceptance：Passed
+Mobile product divider：Retained / no separate change authorized
+Current：R5-E6 final strict 1:1 acceptance
 Cart：Not done
 ```
 
-## Current exact files
+## Current exact deployed files
 
 ```text
 functions.php / deployed from functions(19).php
@@ -133,20 +136,15 @@ JavaScript syntax: Passed
 Deployment: Confirmed by runtime
 Rollback SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
-assets/css/spatial-flow.css / currently deployed from spatial-flow(38).css
-Size: 700,177 bytes
-Logical lines: 23,468
-SHA256: 4bce679ee3c2abca6bcc0dfd4733d92d0c8b77e16b7a0bbf7d7832e305cff6b6
-Runtime defect owner: table.shop_table.cart box-shadow rgba(0, 0, 0, 0.02) 0px 5px 20px 0px
-
-Validated deployment candidate: spatial-flow(39).css
+assets/css/spatial-flow.css / deployed from spatial-flow(39).css
 Size: 700,208 bytes
 Logical lines: 23,469
 SHA256: 1a4daa7f09b6370ccc93cc8441ea3c45ec23d8777a049c1a6f2c8fd50720ddce
 Braces: 3,645 / 3,645
 Comments: 338 / 338
 CSS parser errors: 0
-Deployment: Authorized / not yet confirmed
+Deployment: Confirmed
+Runtime acceptance: Passed / invisible frame absent
 Rollback SHA256: 4bce679ee3c2abca6bcc0dfd4733d92d0c8b77e16b7a0bbf7d7832e305cff6b6
 ```
 
@@ -156,19 +154,19 @@ The approved static Cart has a product-only left plane and no Coupon / Apply Cou
 
 S2-A through S2-D successfully moved the visible Coupon control into Order Summary, preserved native WooCommerce ownership, and removed the native actions row from visible geometry.
 
-S2-E removed the explicit phone white-card surface declarations. Tests A-F ruled out dividers, spacing and row geometry as the principal owner. The S2-F4 computed-style audit found a live 2% shadow on `table.shop_table.cart`; Test G removed only that shadow and the user confirmed the invisible frame disappeared. S2-G adds one in-place `box-shadow: none !important` reset to the existing canonical Cart table selector. The approved static reference retains the product-row bottom divider at phone breakpoints, so the divider remains unchanged during this deployment.
+S2-E removed the explicit phone white-card surface declarations. Tests A-F ruled out dividers, spacing and row geometry as the principal owner. The S2-F4 computed-style audit found a live 2% shadow on `table.shop_table.cart`; Test G removed only that shadow and the user confirmed the invisible frame disappeared. S2-G permanently added one in-place `box-shadow: none !important` reset to the existing canonical Cart table selector, and the user confirmed the deployed result passes. The approved static reference retains the product-row bottom divider at phone breakpoints, so no divider change is currently authorized.
 
 ## Current execution gate
 
+Execute R5-E6 final strict acceptance only.
+
 ```text
-1. Deploy spatial-flow(39).css to assets/css/spatial-flow.css only.
-2. Do not modify or redeploy functions.php or assets/js/spatial-flow.js.
-3. Purge active cache layers after replacement.
-4. Hard-reload Cart in clean desktop and phone views.
-5. Confirm table.shop_table.cart computed box-shadow is none.
-6. Confirm the invisible picture-frame effect remains absent.
-7. Confirm the final product divider remains and Cart functions still work.
-8. Return clean desktop/mobile screenshots before any divider redesign.
+1. Compare the clean live Cart against preview/spatial-flow-cart-v1.html at desktop and phone widths.
+2. Confirm the resolved table-shadow defect remains absent without DevTools overrides.
+3. Verify product rows, heading, Order Summary, Coupon, recommendation section and responsive rhythm against the approved static reference.
+4. Reconfirm quantity, BAG count, Subtotal, Total, Coupon, Remove, Undo, Checkout and empty-Cart paths.
+5. Reconfirm WooCommerce data ownership and backend editability remain intact.
+6. Record a binary page decision: Completed 1:1 or Not done.
 ```
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
@@ -180,9 +178,7 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E5-S2-G CSS-only deployment
-→ clean desktop/mobile runtime acceptance
-→ separate divider decision only if still visually rejected
-→ R5-E6 final strict acceptance
+R5-E6 final strict acceptance
+→ resolve any remaining strict-reference deviation if found
 → binary Cart decision
 ```
