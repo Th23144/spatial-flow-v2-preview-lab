@@ -45,8 +45,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 37. project2-progress/STEP_4E_B2_R5_E5_S2_D_RUNTIME_REJECTION_AND_S2_E_MOBILE_ITEM_DEBOX.md
 38. project2-progress/STEP_4E_B2_R5_E5_S2_E_CSS_VALIDATION.md
 39. project2-progress/STEP_4E_B2_R5_E5_S2_E_RUNTIME_REJECTION_AND_S2_F_GEOMETRY_DIAGNOSTIC.md
-40. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-41. project2-progress/PROGRESS_LOG.md
+40. project2-progress/STEP_4E_B2_R5_E5_S2_F_TEST_RESULTS_AND_S2_F2_AXIS_DIAGNOSTIC.md
+41. project2-progress/STEP_4E_B2_R5_E5_S2_F2_RESULTS_AND_S2_F3_MOBILE_REFERENCE_GEOMETRY.md
+42. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+43. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -93,7 +95,11 @@ R5-E5-S2-D mobile strict visual acceptance：Failed / white rounded product-card
 R5-E5-S2-E mobile item debox exact CSS artifact validation：Passed / deployed
 R5-E5-S2-E white rounded item surface removal：Passed
 R5-E5-S2-E implied-frame strict visual acceptance：Failed / reproduced in incognito browser
-Current：R5-E5-S2-F zero-source live geometry diagnostic
+R5-E5-S2-F Tests A/B：No effect
+R5-E5-S2-F Test C：Slight improvement
+R5-E5-S2-F2 Test D：Improved / frame became lighter
+R5-E5-S2-F2 Test E：No change
+Current：R5-E5-S2-F3 zero-source <=480px static-reference geometry test
 Cart：Not done
 ```
 
@@ -135,7 +141,7 @@ The approved static Cart has a product-only left plane and no Coupon / Apply Cou
 
 S2-A through S2-D successfully moved the visible Coupon control into Order Summary, preserved native WooCommerce ownership, and removed the native actions row from visible geometry.
 
-S2-E successfully removed the explicit phone white-card surface declarations. Current form, table, item row and item cells are already transparent, unrounded and shadow-free. The remaining rejected perception is geometric: the heading's full-width bottom divider, the item's full-width final divider and inherited row spacing align into a bounded band in the real one-line-item phone state.
+S2-E successfully removed the explicit phone white-card surface declarations. Tests A-E show that dividers and spacing contribute only partially and are not the principal owner. The newly confirmed strict-reference mismatch is that the approved static Cart switches its item row to one column below 480px, while the current real Cart keeps an 84px + 1fr horizontal row through the entire <=767px range. The current 417px screenshot should already be in the reference's stacked state.
 
 Detailed audits:
 
@@ -153,20 +159,23 @@ project2-progress/STEP_4E_B2_R5_E5_S2_D_COMBINED_DEPLOYMENT.md
 project2-progress/STEP_4E_B2_R5_E5_S2_D_RUNTIME_REJECTION_AND_S2_E_MOBILE_ITEM_DEBOX.md
 project2-progress/STEP_4E_B2_R5_E5_S2_E_CSS_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_E_RUNTIME_REJECTION_AND_S2_F_GEOMETRY_DIAGNOSTIC.md
+project2-progress/STEP_4E_B2_R5_E5_S2_F_TEST_RESULTS_AND_S2_F2_AXIS_DIAGNOSTIC.md
+project2-progress/STEP_4E_B2_R5_E5_S2_F2_RESULTS_AND_S2_F3_MOBILE_REFERENCE_GEOMETRY.md
 ```
 
 ## Current execution gate
 
-Execute S2-F browser DevTools diagnostic only. Do not edit any source file.
+Execute S2-F3 browser DevTools Test F only. Do not edit any source file.
 
 ```text
-Test A: temporarily disable .sf-cart-v2-heading border-bottom; observe whether the implied frame disappears while the product divider remains.
-Test B: restore Test A, temporarily set the phone cart row padding-bottom to 0; observe whether moving the final divider toward the content removes the frame perception.
-Test C: restore Test B, temporarily disable the cart-row border-bottom for diagnosis only; observe whether the lower line is the decisive boundary.
-Record which single test changes the rejected perception.
+1. Reload Cart to remove all previous temporary tests.
+2. At a viewport <=480px, temporarily switch the real Cart item to the approved reference's one-column geometry.
+3. Keep the final product divider, product data, quantity, subtotal and Remove control.
+4. Observe whether the rejected horizontal picture-frame perception disappears or materially improves.
+5. Report Test F before any source edit.
 ```
 
-Do not upload or deploy another CSS file until S2-F identifies the owner. Do not modify PHP or JavaScript. Do not execute the cancelled FIX4 and do not create/deploy SHA256:
+Do not upload or deploy another CSS file until S2-F3 identifies the owner. Do not modify PHP or JavaScript. Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
 ```text
 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
@@ -175,7 +184,7 @@ Do not upload or deploy another CSS file until S2-F identifies the owner. Do not
 ## Remaining sequence
 
 ```text
-R5-E5-S2-F live geometry diagnostic
+R5-E5-S2-F3 <=480px live reference-geometry test
 → bounded S2-G source correction only after owner confirmation
 → exact artifact validation
 → runtime acceptance
