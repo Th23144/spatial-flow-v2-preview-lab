@@ -60,8 +60,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 52. project2-progress/STEP_4E_B2_R5_E6_B_GROUP3_RESULT_AND_GROUP4_SHIPPING_ADDRESS.md
 53. project2-progress/STEP_4E_B2_R5_E6_B_GROUP4_FUNCTIONAL_PASS_AND_NOTICE_VISUAL_REOPEN.md
 54. project2-progress/STEP_4E_B2_R5_E6_B_NOTICE_ATTRIBUTION_AND_SEQUENCE_CORRECTION.md
-55. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-56. project2-progress/PROGRESS_LOG.md
+55. project2-progress/STEP_4E_B2_R5_E6_B_GROUP5_RESULT_AND_GROUP6_DIRECT_EMPTY_CART.md
+56. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+57. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -128,9 +129,10 @@ R5-E6-B Group 2 Coupon lifecycle：Passed
 Applied Coupon Remove placement：Accepted native behavior
 R5-E6-B Group 3 Remove / Undo lifecycle：Passed
 R5-E6-B Group 4 Shipping / Change address functional lifecycle：Passed
+R5-E6-B Group 5 checkout navigation：Passed
 Open visual backlog：Cart update success notice + Shipping costs updated notice
 Notice replacement design：Not selected or user-approved
-Current：R5-E6-B Group 5 checkout navigation
+Current：R5-E6-B Group 6 direct empty Cart
 Cart：Not done
 ```
 
@@ -140,7 +142,7 @@ Cart：Not done
 functions.php / deployed from functions(19).php
 Size: 557,249 bytes
 Logical lines: 10,414
-SHA256: 5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca4de7a640b705d5e75f9ef00b
+SHA256: 5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca6bcc0dfd4733d92d0c8b77e16b7a0bbf7d7832e305cff6b6
 Version: 2.7.8
 PHP syntax: Passed
 Deployment: Confirmed by runtime
@@ -174,17 +176,17 @@ Mobile is governed by `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md`: production-qual
 
 The invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. The retained product-row divider is accepted in the complete desktop and phone composition.
 
-Groups 1–4 functionally pass. Two success-notice visual defects are preserved as an open backlog item. The prior quiet-editorial-text direction was an assistant suggestion, not a user-selected solution. Notice redesign is deferred until the original functional-regression and backend-editability sequence is complete.
+Groups 1–5 functionally pass. Two success-notice visual defects are preserved as an open backlog item. The prior quiet-editorial-text direction was an assistant suggestion, not a user-selected solution. Notice redesign is deferred until the original functional-regression and backend-editability sequence is complete.
 
 ## Current execution gate
 
-Execute R5-E6-B Group 5 only:
+Execute R5-E6-B Group 6 only:
 
 ```text
-B10. Checkout URL and navigation.
+B11. Direct empty-Cart entry.
 ```
 
-Do not redesign notices during Groups 5–7. No source edit, deployment, address-form redesign or final binary status decision is authorized during this functional gate.
+Do not redesign notices during Groups 6–7. No source edit, deployment, address-form redesign or final binary status decision is authorized during this functional gate.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -195,8 +197,7 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6-B Group 5 checkout navigation
-→ Group 6 direct empty Cart
+R5-E6-B Group 6 direct empty Cart
 → Group 7 AJAX responsive overflow
 → R5-E6-C backend editability
 → separate bounded notice visual audit / design / correction
