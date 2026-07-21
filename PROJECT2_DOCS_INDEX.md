@@ -56,8 +56,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 48. project2-progress/STEP_4E_B2_R5_E6_A_VISUAL_EVIDENCE_ACCEPTANCE.md
 49. project2-progress/STEP_4E_B2_R5_E6_A_EVIDENCE_METHOD_CORRECTION_AND_R5_E6_B_EXECUTION.md
 50. project2-progress/STEP_4E_B2_R5_E6_B_GROUP1_RESULT_AND_GROUP2_COUPON.md
-51. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-52. project2-progress/PROGRESS_LOG.md
+51. project2-progress/STEP_4E_B2_R5_E6_B_GROUP2_RESULT_AND_GROUP3_REMOVE_UNDO.md
+52. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+53. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -120,7 +121,9 @@ R5-E6-A desktop strict visual evidence：Passed
 R5-E6-A 390px mobile production-quality review：Passed
 R5-E6-A 360px narrow-phone review：Passed
 R5-E6-B Group 1 quantity/count/totals synchronization：Passed
-Current：R5-E6-B Group 2 Coupon lifecycle
+R5-E6-B Group 2 Coupon lifecycle：Passed
+Applied Coupon Remove placement：Accepted native behavior
+Current：R5-E6-B Group 3 Remove / Undo
 Cart：Not done
 ```
 
@@ -164,18 +167,18 @@ Mobile is governed by `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md`: production-qual
 
 The remaining invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. The retained product-row divider is accepted in the complete desktop and phone composition.
 
-Group 1 confirmed that quantity controls, Header BAG count, Your Bag count, line-item subtotal, Order Summary Subtotal and Total remain synchronized through the WooCommerce AJAX lifecycle and after refresh.
+Group 1 confirmed quantity/count/totals synchronization. Group 2 confirmed valid and invalid Coupon lifecycle, persistence, removal and error handling. The applied Coupon Remove link remains beside the active Coupon row and discount amount; this is accepted native semantic ownership and must not be duplicated beside the input.
 
 ## Current execution gate
 
-Execute R5-E6-B Group 2 only:
+Execute R5-E6-B Group 3 only:
 
 ```text
-B5. valid Coupon
-B6. invalid Coupon and visible error state
+B7. Remove line item
+B8. Undo / Restore line item
 ```
 
-Do not test Remove, Undo, address editing or empty Cart until Group 2 is reported. No source edit, deployment, divider redesign or final binary status decision is authorized during this functional gate.
+Do not test address editing, checkout navigation or direct empty Cart until Group 3 is reported. No source edit, deployment, divider redesign or final binary status decision is authorized during this functional gate.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -186,8 +189,7 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6-B Group 2 Coupon lifecycle
-→ Group 3 Remove / Undo
+R5-E6-B Group 3 Remove / Undo
 → Group 4 shipping / address
 → Group 5 checkout navigation
 → Group 6 direct empty Cart
