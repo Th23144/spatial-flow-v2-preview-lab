@@ -48,8 +48,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 40. project2-progress/STEP_4E_B2_R5_E5_S2_F_TEST_RESULTS_AND_S2_F2_AXIS_DIAGNOSTIC.md
 41. project2-progress/STEP_4E_B2_R5_E5_S2_F2_RESULTS_AND_S2_F3_MOBILE_REFERENCE_GEOMETRY.md
 42. project2-progress/STEP_4E_B2_R5_E5_S2_F3_RESULT_AND_S2_F4_COMPUTED_STYLE_AUDIT.md
-43. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-44. project2-progress/PROGRESS_LOG.md
+43. project2-progress/STEP_4E_B2_R5_E5_S2_F4_COMPUTED_STYLE_RESULT_AND_S2_F5_TABLE_SHADOW_TEST.md
+44. project2-progress/STEP_4E_B2_R5_E5_S2_F5_TABLE_SHADOW_CONFIRMED_AND_S2_G_DECISION.md
+45. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+46. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -101,7 +103,11 @@ R5-E5-S2-F Test C：Slight improvement
 R5-E5-S2-F2 Test D：Improved / frame became lighter
 R5-E5-S2-F2 Test E：No change
 R5-E5-S2-F3 Test F：No meaningful improvement
-Current：R5-E5-S2-F4 zero-source computed-style / DOM owner audit
+R5-E5-S2-F4 computed-style audit：Concrete owner found
+R5-E5-S2-F5 Test G：Passed / invisible frame disappeared
+Confirmed owner：table.shop_table.cart 2% box-shadow
+Mobile product divider：Retain pending clean post-fix review
+Current：R5-E5-S2-G bounded in-place table-shadow source correction
 Cart：Not done
 ```
 
@@ -133,7 +139,8 @@ Braces: 3,645 / 3,645
 Comments: 338 / 338
 CSS parser errors: 0
 Deployment: Confirmed by runtime and incognito test
-Runtime status: white rounded item surface removed; implied frame remains
+Runtime defect owner: table.shop_table.cart box-shadow rgba(0, 0, 0, 0.02) 0px 5px 20px 0px
+Source correction: Authorized / not yet edited
 Rollback to S2-D CSS SHA256: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
 ```
 
@@ -143,20 +150,20 @@ The approved static Cart has a product-only left plane and no Coupon / Apply Cou
 
 S2-A through S2-D successfully moved the visible Coupon control into Order Summary, preserved native WooCommerce ownership, and removed the native actions row from visible geometry.
 
-S2-E removed the explicit phone white-card surface declarations. Tests A-F now rule out the heading divider, row spacing, final divider, shared full-width axis, inset divider and <=480px row geometry as any single principal owner. No further source edit is authorized from screenshot inference. The next step must inspect actual rendered computed styles, pseudo-elements and the full Cart item ancestor chain.
+S2-E removed the explicit phone white-card surface declarations. Tests A-F ruled out dividers, spacing and row geometry as the principal owner. The S2-F4 computed-style audit found a live 2% shadow on `table.shop_table.cart`; Test G removed only that shadow and the user confirmed the invisible frame disappeared. The approved static reference retains the product-row bottom divider at phone breakpoints, so the divider remains unchanged during S2-G.
 
 ## Current execution gate
 
-Execute S2-F4 browser Console diagnostic only. Do not edit any source file.
-
 ```text
-1. Reload Cart to remove all previous temporary tests.
-2. At the rejected phone viewport, collect computed styles and bounding rectangles for the Cart item and every ancestor through body.
-3. Include ::before and ::after pseudo-element styles.
-4. Return the copied JSON report before any source edit.
+1. Obtain the current deployed CSS artifact matching spatial-flow(38).css / SHA256 4bce679ee3c2abca6bcc0dfd4733d92d0c8b77e16b7a0bbf7d7832e305cff6b6.
+2. Locate the exact existing Cart table selector that currently resolves to box-shadow rgba(0, 0, 0, 0.02) 0px 5px 20px 0px.
+3. Change that existing declaration in place to box-shadow: none !important.
+4. Do not append another Cart override.
+5. Do not alter the phone product divider, heading divider, layout, PHP, JavaScript or version 2.7.8.
+6. Perform exact artifact validation before CSS-only deployment.
 ```
 
-Do not upload or deploy another CSS file. Do not modify PHP or JavaScript. Do not execute the cancelled FIX4 and do not create/deploy SHA256:
+Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
 ```text
 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
@@ -165,10 +172,11 @@ Do not upload or deploy another CSS file. Do not modify PHP or JavaScript. Do no
 ## Remaining sequence
 
 ```text
-R5-E5-S2-F4 computed-style / live DOM owner audit
-→ bounded S2-G source correction only after concrete owner confirmation
-→ exact artifact validation
-→ runtime acceptance
+R5-E5-S2-G in-place Cart table shadow correction
+→ exact CSS artifact validation
+→ CSS-only deployment
+→ clean desktop/mobile runtime acceptance
+→ separate divider decision only if still visually rejected
 → R5-E6 final strict acceptance
 → binary Cart decision
 ```
