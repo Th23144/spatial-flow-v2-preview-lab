@@ -34,8 +34,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 26. project2-progress/STEP_4E_B2_R5_E5_FIX3_RUNTIME_REJECTION_AND_FIX4.md
 27. project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
 28. project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
-29. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-30. project2-progress/PROGRESS_LOG.md
+29. project2-progress/STEP_4E_B2_R5_E5_S2_EXACT_FILE_VALIDATION_AND_BOUNDED_PLAN.md
+30. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+31. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -73,25 +74,28 @@ R5-E5-FIX3 implied-frame runtime acceptance：Failed
 R5-E5-FIX4 speculative proposal：Cancelled before execution
 R5-E5-S1 strict source/DOM ownership audit：Complete
 R5-E5-S2 repository Markdown reconciliation：Complete / no theme source change
-Current：R5-E5-S2 exact-file validation and bounded implementation planning
+R5-E5-S2 exact-file identity / syntax / anchor validation：Passed
+Current：R5-E5-S2-A bounded PHP Order Summary Coupon renderer
 Cart：Not done
 ```
 
 ## Current exact files
 
 ```text
-functions(17).php
+functions(17).php / uploaded alias functions(18).php
 Size: 555,130 bytes
 Logical lines: 10,366
 SHA256: ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
 Version: 2.7.8
+PHP syntax: Passed
 
-assets/js/spatial-flow.js
+assets/js/spatial-flow.js / uploaded alias spatial-flow(4).js
 Size: 70,828 bytes
 Logical lines: 1,995
 SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
+JavaScript syntax: Passed
 
-spatial-flow(34).css
+spatial-flow(34).css / uploaded alias spatial-flow(35).css
 Size: 698,076 bytes
 Logical lines: 23,406
 SHA256: 3e6b0d6fa292681cee1c2936e744314b4347a0bcc82ea3e7cd911d5cac1969ce
@@ -100,27 +104,29 @@ Comments: 337 / 337
 CSS parser errors: 0
 ```
 
-## S1 strict ownership conclusion
+## S1 / S2 ownership conclusion
 
 The approved static Cart has a product-only left plane and no Coupon / Apply Coupon / Update Cart footer. WooCommerce 10.4.3 places Coupon, Update Cart, the actions hook and nonce in the final `td.actions` row inside `.woocommerce-cart-form`; native cart.js serializes and replaces the form and totals during updates.
 
-The first bounded production translation therefore keeps native controls and nonce inside the form but removes the actions row from the visible left layout, auto-invokes the hidden native Update Cart control for quantity changes, and exposes Coupon through one narrow lifecycle-safe control in Order Summary. No template override is authorized at this stage.
+The bounded production translation keeps native controls and nonce inside the form, visually clips the native actions owner, auto-invokes the current hidden native Update Cart control for quantity changes, and exposes one lifecycle-safe visible Coupon control inside Order Summary. No template override is authorized.
 
 Detailed audits:
 
 ```text
 project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
 project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
+project2-progress/STEP_4E_B2_R5_E5_S2_EXACT_FILE_VALIDATION_AND_BOUNDED_PLAN.md
 ```
 
 ## Current execution gate
 
-Upload the exact current local files before manual edits are issued:
+Execute S2-A only:
 
 ```text
-1. functions(17).php
-2. assets/js/spatial-flow.js
-3. spatial-flow(34).css
+Insert the bounded Cart-only Order Summary Coupon renderer into the validated functions.php baseline.
+Do not edit JavaScript or CSS yet.
+Do not deploy the PHP file yet.
+Upload the edited PHP file for exact artifact validation.
 ```
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
@@ -132,8 +138,10 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E5-S2 exact-file validation + bounded implementation plan
-→ exact edited-artifact validation
+R5-E5-S2-A PHP renderer edit + exact artifact validation
+→ R5-E5-S2-B delegated JavaScript bridge + exact artifact validation
+→ R5-E5-S2-C in-place CSS ownership correction + exact artifact validation
+→ combined deployment
 → R5-E5 runtime acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
