@@ -42,8 +42,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 34. project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION_ATTEMPT_1.md
 35. project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION.md
 36. project2-progress/STEP_4E_B2_R5_E5_S2_D_COMBINED_DEPLOYMENT.md
-37. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-38. project2-progress/PROGRESS_LOG.md
+37. project2-progress/STEP_4E_B2_R5_E5_S2_D_RUNTIME_REJECTION_AND_S2_E_MOBILE_ITEM_DEBOX.md
+38. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+39. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -82,44 +83,44 @@ R5-E5-FIX4 speculative proposal：Cancelled before execution
 R5-E5-S1 strict source/DOM ownership audit：Complete
 R5-E5-S2 repository Markdown reconciliation：Complete / no theme source change
 R5-E5-S2 exact-file identity / syntax / anchor validation：Passed
-R5-E5-S2-A PHP Order Summary Coupon renderer artifact validation：Passed / not deployed
-R5-E5-S2-B delegated JavaScript lifecycle bridge artifact validation：Passed / not deployed
-R5-E5-S2-C structural CSS validation attempt 1：Passed
-R5-E5-S2-C exact CSS artifact identity attempt 1：Failed by one extra blank line
-R5-E5-S2-C exact CSS artifact identity retry：Passed / not deployed
-Current：R5-E5-S2-D combined deployment authorized / completion not confirmed
+R5-E5-S2-A PHP Order Summary Coupon renderer artifact validation：Passed / deployed
+R5-E5-S2-B delegated JavaScript lifecycle bridge artifact validation：Passed / deployed
+R5-E5-S2-C exact CSS ownership correction：Passed / deployed
+R5-E5-S2-D combined deployment and functional smoke checks：Passed by user report
+R5-E5-S2-D mobile strict visual acceptance：Failed / white rounded product-card frame remained
+Current：R5-E5-S2-E remove obsolete phone product-row surface declarations
 Cart：Not done
 ```
 
-## Current exact files
+## Current exact deployed files
 
 ```text
-functions.php / uploaded alias functions(19).php
+functions.php / deployed from functions(19).php
 Size: 557,249 bytes
 Logical lines: 10,414
 SHA256: 5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca4de7a640b705d5e75f9ef00b
 Version: 2.7.8
 PHP syntax: Passed
-Deployment: Not confirmed
+Deployment: Confirmed by runtime
 Rollback SHA256: ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
 
-assets/js/spatial-flow.js / uploaded alias spatial-flow(5).js
+assets/js/spatial-flow.js / deployed from spatial-flow(5).js
 Size: 78,143 bytes
 Logical lines: 2,242
 SHA256: 7442ee92167ae383b933c6db0281f14ea56a75733339818c3e4858d77d52651b
 JavaScript syntax: Passed
-Deployment: Not confirmed
+Deployment: Confirmed by runtime
 Rollback SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
-assets/css/spatial-flow.css / uploaded alias spatial-flow(37).css
+assets/css/spatial-flow.css / deployed from spatial-flow(37).css
 Size: 700,439 bytes
 Logical lines: 23,474
 SHA256: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
 Braces: 3,645 / 3,645
 Comments: 338 / 338
 CSS parser errors: 0
-Exact identity: Passed
-Deployment: Not confirmed
+Deployment: Confirmed by runtime
+Runtime status: functional, but mobile item-card frame rejected
 Rollback SHA256: 3e6b0d6fa292681cee1c2936e744314b4347a0bcc82ea3e7cd911d5cac1969ce
 ```
 
@@ -127,7 +128,9 @@ Rollback SHA256: 3e6b0d6fa292681cee1c2936e744314b4347a0bcc82ea3e7cd911d5cac1969c
 
 The approved static Cart has a product-only left plane and no Coupon / Apply Coupon / Update Cart footer. WooCommerce 10.4.3 places Coupon, Update Cart, the actions hook and nonce in the final `td.actions` row inside `.woocommerce-cart-form`; native cart.js serializes and replaces the form and totals during updates.
 
-The bounded production translation keeps native controls and nonce inside the form, visually clips the native actions owner, auto-invokes the current hidden native Update Cart control for quantity changes, and exposes one lifecycle-safe visible Coupon control inside Order Summary. No template override is authorized.
+S2-A through S2-D successfully moved the visible Coupon control into Order Summary, preserved native WooCommerce ownership, and removed the native actions row from visible geometry.
+
+The remaining frame is a separate phone product-row presentation owner inside the Canonical Cart media query. It explicitly adds card margin, inset padding, a four-sided border, radius, paper background and shadow. The approved static mobile reference changes only grid geometry and does not add those card surfaces.
 
 Detailed audits:
 
@@ -142,22 +145,36 @@ project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_MANUAL_EXECUTION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION_ATTEMPT_1.md
 project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_D_COMBINED_DEPLOYMENT.md
+project2-progress/STEP_4E_B2_R5_E5_S2_D_RUNTIME_REJECTION_AND_S2_E_MOBILE_ITEM_DEBOX.md
 ```
 
 ## Current execution gate
 
-Execute S2-D combined deployment only, in this order:
+Execute S2-E source edit only:
 
 ```text
-1. functions(19).php → functions.php
-2. spatial-flow(5).js → assets/js/spatial-flow.js
-3. spatial-flow(37).css → assets/css/spatial-flow.css
-4. purge active cache layers after all three replacements
-5. hard-reload Cart and perform the immediate smoke gate
-6. report deployment and runtime results before any further source edit
+1. Start from deployed source alias spatial-flow(37).css.
+2. Inside the Canonical Cart @media (max-width: 767px) product-row rule, delete exactly six obsolete presentation declarations:
+   margin, padding, border, border-radius, background and box-shadow.
+3. Retain every grid/layout declaration and all following phone placement rules.
+4. Do not append a new override.
+5. Do not modify PHP or JavaScript.
+6. Do not deploy the edited CSS until exact artifact validation passes.
+7. Upload the edited CSS for validation.
 ```
 
-Do not deploy CSS first. Do not mix new and rollback artifacts. Do not execute the cancelled FIX4 and do not create/deploy SHA256:
+Required S2-E candidate identity:
+
+```text
+Size: 700,177 bytes
+Logical lines: 23,468
+SHA256: 4bce679ee3c2abca6bcc0dfd4733d92d0c8b77e16b7a0bbf7d7832e305cff6b6
+Braces: 3,645 / 3,645
+Comments: 338 / 338
+CSS parser errors: 0
+```
+
+Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
 ```text
 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
@@ -166,11 +183,9 @@ Do not deploy CSS first. Do not mix new and rollback artifacts. Do not execute t
 ## Remaining sequence
 
 ```text
-R5-E5-S2-A PHP renderer edit + exact artifact validation：Passed
-→ R5-E5-S2-B delegated JavaScript bridge + exact artifact validation：Passed
-→ R5-E5-S2-C CSS ownership correction + exact artifact validation：Passed
-→ R5-E5-S2-D combined deployment
-→ R5-E5 runtime acceptance
+R5-E5-S2-E phone product-row debox source edit + exact artifact validation
+→ CSS-only deployment
+→ mobile and desktop runtime acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
 ```
