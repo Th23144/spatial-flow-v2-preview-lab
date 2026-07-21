@@ -1,4 +1,4 @@
-# Step 4E-B2-R5-E6-B · Group 4 Functional Pass and Notice Visual Reopen
+# Step 4E-B2-R5-E6-B · Group 4 Functional Pass and Deferred Notice Visual Issues
 
 Last updated: 2026-07-21  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
@@ -10,11 +10,9 @@ B9 Shipping / Change address functional lifecycle: Passed.
 Desktop address calculator usability: Passed.
 390px address calculator usability: Passed.
 Shipping destination update and persistence: Passed.
-Cart notice visual acceptance: Failed / reopened.
-Current visual defect set:
-1. Cart update success notice.
-2. Shipping costs updated success notice.
-Source changes authorized: None pending exact runtime/source ownership audit.
+Known Cart notice visual issues: Recorded / deferred.
+Current executable group: R5-E6-B Group 5 Checkout navigation.
+Source changes authorized: None.
 Cart page status: Not done.
 ```
 
@@ -33,102 +31,91 @@ User-confirmed and screenshot-supported behavior:
 - Address calculator remains contained at 390px without horizontal overflow, clipping or checkout-control overlap.
 ```
 
-Therefore B9 is functionally passed.
+Therefore B9 is functionally passed and closed.
 
-## 2. Reopened visual defect
+## 2. Known notice visual issues
 
-After the address update, WooCommerce renders:
+Two success-notice states are currently known to look visually mismatched with the Cart page:
 
 ```text
-Shipping costs updated.
+1. Cart quantity/update success feedback.
+2. Shipping costs updated feedback.
 ```
 
-The live notice appears as a large white rounded floating bar with a shadow-like separated surface across the Cart content frame.
+The live `Shipping costs updated.` state appears as a large white rounded floating bar. The user also reconfirmed the earlier complaint about the Cart update success notice.
 
-This is visually inconsistent with the accepted Cart language:
+These are recorded visual defects, but they do not invalidate the already-passed address/shipping functionality.
+
+## 3. Attribution correction
+
+The user did **not** prescribe a final replacement design and did not say that notices must become an "editorial text response".
+
+Accurate ownership of statements:
 
 ```text
-- warm uninterrupted canvas
-- quiet editorial typography
-- thin structural dividers
-- minimal UI chrome
-- no floating pill/toast/admin-notice treatment
+- User requirement: the current notice presentation looks visually mismatched and needs later review.
+- Earlier assistant/window proposal: reduce the notice toward a quieter editorial treatment.
+- Approved final design direction: Not decided.
 ```
 
-The user also reconfirmed the earlier unresolved visual complaint for the Cart update success notice. Both states belong to the same Cart notice system and must be audited together.
+No historical assistant proposal may be treated as a user-approved requirement.
 
-## 3. Historical continuity
+## 4. Sequencing decision
 
-The repository already records that Cart notice treatments must not look like:
+The notice visual issues are intentionally deferred so they do not interrupt the current R5-E6 functional regression plan.
 
 ```text
-- alert box
-- toast
-- admin notice
-- banner
-- floating white capsule
-- generic design-system status component
+- record the defects now
+- do not perform the notice ownership audit now
+- do not author CSS/PHP/JavaScript changes now
+- complete Groups 5, 6 and 7 first
+- complete R5-E6-C backend editability confirmation
+- then schedule a separate notice visual review and solution-selection step before the final Cart binary decision
 ```
 
-The required direction remains:
+The assistant is responsible for prioritizing and sequencing user-reported issues rather than automatically interrupting the active test plan.
+
+## 5. Deferred review scope
+
+When the deferred notice work begins, first inspect actual runtime ownership for:
 
 ```text
-- no filled panel
-- no enclosing rounded rectangle
-- no drop shadow
-- no circular icon
-- message aligned with existing Cart text rhythm
-- optional thin divider only when needed
-- native WooCommerce behavior preserved
-- mobile one-column and overflow-safe
-```
-
-## 4. Notice states now in scope
-
-Minimum confirmed runtime states:
-
-```text
-A. Cart quantity/update success feedback.
-B. Shipping costs updated feedback.
-```
-
-The next audit should also inspect whether the same owner affects:
-
-```text
-- Coupon applied/removed success feedback
+- Cart quantity/update success feedback
+- Shipping costs updated feedback
+- Coupon applied/removed feedback
 - item restored feedback
 - other native Cart success messages
 ```
 
-This is an ownership audit, not authorization to broadly restyle every WooCommerce notice globally.
-
-## 5. Current decision
+The later review must distinguish:
 
 ```text
-Group 4 functional result: Passed.
-Group 4 visual result: Failed because of success-notice presentation.
-Do not mark the Cart final acceptance complete.
-Do not dismiss the new notice as a minor issue.
-Do not change the address calculator fields or native shipping lifecycle.
+- user-observed visual defects
+- assistant-generated design options
+- final treatment explicitly approved by the user
 ```
 
-## 6. Next executable substep
+No solution is preselected by this document.
+
+## 6. Current execution gate
+
+Continue the existing plan with:
 
 ```text
-R5-E6-B-N1 exact runtime/source ownership audit for Cart success notices.
+R5-E6-B Group 5: Checkout navigation
 ```
 
-The audit must determine:
+Do not modify:
 
 ```text
-- exact DOM class/markup for Cart updated and Shipping costs updated
-- which existing CSS rule produces the white rounded surface
-- whether both states share one owner
-- whether AJAX replacement changes wrapper position or class
-- bounded selector strategy that preserves errors, Undo and native WooCommerce ownership
+- notice presentation
+- address calculator
+- functions.php
+- assets/js/spatial-flow.js
+- assets/css/spatial-flow.css
+- WooCommerce templates
+- version 2.7.8
 ```
-
-No source edit is authorized until this audit is complete.
 
 ## 7. Locked deployed artifacts
 
@@ -147,12 +134,11 @@ SHA256: 1a4daa7f09b6370ccc93cc8441ea3c45ec23d8777a049c1a6f2c8fd50720ddce
 ## 8. Boundaries
 
 ```text
-- no source edit yet
+- no source edit
 - no temporary permanent CSS append
 - no PHP or JavaScript change
 - no template override
 - no version bump
-- address calculator remains untouched
 - cancelled FIX4 remains cancelled
 - Cart remains Not done
 ```
