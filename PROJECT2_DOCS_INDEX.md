@@ -52,8 +52,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 44. project2-progress/STEP_4E_B2_R5_E5_S2_F5_TABLE_SHADOW_CONFIRMED_AND_S2_G_DECISION.md
 45. project2-progress/STEP_4E_B2_R5_E5_S2_G_CSS_VALIDATION.md
 46. project2-progress/STEP_4E_B2_R5_E5_S2_G_RUNTIME_ACCEPTANCE.md
-47. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-48. project2-progress/PROGRESS_LOG.md
+47. project2-progress/STEP_4E_B2_R5_E6_FINAL_STRICT_ACCEPTANCE_EXECUTION.md
+48. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+49. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -112,7 +113,8 @@ R5-E5-S2-G exact CSS artifact validation：Passed
 R5-E5-S2-G CSS-only deployment：Confirmed
 R5-E5-S2-G clean runtime acceptance：Passed
 Mobile product divider：Retained / no separate change authorized
-Current：R5-E6 final strict 1:1 acceptance
+R5-E6 final strict acceptance：Started
+Current：R5-E6-A equivalent-condition visual evidence capture
 Cart：Not done
 ```
 
@@ -148,26 +150,36 @@ Runtime acceptance: Passed / invisible frame absent
 Rollback SHA256: 4bce679ee3c2abca6bcc0dfd4733d92d0c8b77e16b7a0bbf7d7832e305cff6b6
 ```
 
-## S1 / S2 ownership conclusion
+## Current ownership conclusion
 
-The approved static Cart has a product-only left plane and no Coupon / Apply Coupon / Update Cart footer. WooCommerce 10.4.3 places Coupon, Update Cart, the actions hook and nonce in the final `td.actions` row inside `.woocommerce-cart-form`; native cart.js serializes and replaces the form and totals during updates.
+The approved static Cart has a product-only left plane and no Coupon / Apply Coupon / Update Cart footer. Native WooCommerce continues to own quantity, Coupon, Update Cart, notices, shipping, totals, nonces and checkout navigation. The visible Coupon control is lifecycle-safe inside Order Summary; the hidden native actions owner remains in the form.
 
-S2-A through S2-D successfully moved the visible Coupon control into Order Summary, preserved native WooCommerce ownership, and removed the native actions row from visible geometry.
-
-S2-E removed the explicit phone white-card surface declarations. Tests A-F ruled out dividers, spacing and row geometry as the principal owner. The S2-F4 computed-style audit found a live 2% shadow on `table.shop_table.cart`; Test G removed only that shadow and the user confirmed the invisible frame disappeared. S2-G permanently added one in-place `box-shadow: none !important` reset to the existing canonical Cart table selector, and the user confirmed the deployed result passes. The approved static reference retains the product-row bottom divider at phone breakpoints, so no divider change is currently authorized.
+The remaining invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. Product-row dividers remain because the approved static reference retains them at desktop and phone breakpoints.
 
 ## Current execution gate
 
-Execute R5-E6 final strict acceptance only.
+Execute R5-E6-A only:
 
 ```text
-1. Compare the clean live Cart against preview/spatial-flow-cart-v1.html at desktop and phone widths.
-2. Confirm the resolved table-shadow defect remains absent without DevTools overrides.
-3. Verify product rows, heading, Order Summary, Coupon, recommendation section and responsive rhythm against the approved static reference.
-4. Reconfirm quantity, BAG count, Subtotal, Total, Coupon, Remove, Undo, Checkout and empty-Cart paths.
-5. Reconfirm WooCommerce data ownership and backend editability remain intact.
-6. Record a binary page decision: Completed 1:1 or Not done.
+1. Static desktop full page at 1366 × 768 CSS px.
+2. Live desktop full page at 1366 × 768 CSS px.
+3. Static phone full page at 390 × 844 CSS px.
+4. Live phone full page at 390 × 844 CSS px.
+5. Static narrow-phone full page at 360 × 800 CSS px.
+6. Live narrow-phone full page at 360 × 800 CSS px.
 ```
+
+Required conditions:
+
+```text
+browser page zoom 100%
+same viewport for each static/live pair
+page fully loaded and cache clean
+no Console test styles or inspector overlays
+all captures include Header, Cart, recommendations and Footer
+```
+
+No source edit, deployment, divider redesign or final binary status decision is authorized until these six captures are reviewed.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -178,7 +190,9 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6 final strict acceptance
-→ resolve any remaining strict-reference deviation if found
+R5-E6-A equivalent-condition visual evidence
+→ R5-E6-B functional regression
+→ R5-E6-C backend editability
+→ resolve any remaining strict-reference deviation
 → binary Cart decision
 ```
