@@ -53,8 +53,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 45. project2-progress/STEP_4E_B2_R5_E5_S2_G_CSS_VALIDATION.md
 46. project2-progress/STEP_4E_B2_R5_E5_S2_G_RUNTIME_ACCEPTANCE.md
 47. project2-progress/STEP_4E_B2_R5_E6_FINAL_STRICT_ACCEPTANCE_EXECUTION.md
-48. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-49. project2-progress/PROGRESS_LOG.md
+48. project2-progress/STEP_4E_B2_R5_E6_A_VISUAL_EVIDENCE_ACCEPTANCE.md
+49. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+50. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -112,9 +113,11 @@ Confirmed owner：table.shop_table.cart 2% box-shadow
 R5-E5-S2-G exact CSS artifact validation：Passed
 R5-E5-S2-G CSS-only deployment：Confirmed
 R5-E5-S2-G clean runtime acceptance：Passed
-Mobile product divider：Retained / no separate change authorized
-R5-E6 final strict acceptance：Started
-Current：R5-E6-A equivalent-condition visual evidence capture
+Mobile product divider：Retained / accepted in full-page composition
+R5-E6-A desktop strict visual evidence：Passed
+R5-E6-A 390px mobile production-quality review：Passed
+R5-E6-A 360px narrow-phone review：Passed
+Current：R5-E6-B functional regression
 Cart：Not done
 ```
 
@@ -152,34 +155,32 @@ Rollback SHA256: 4bce679ee3c2abca6bcc0dfd4733d92d0c8b77e16b7a0bbf7d7832e305cff6b
 
 ## Current ownership conclusion
 
-The approved static Cart has a product-only left plane and no Coupon / Apply Coupon / Update Cart footer. Native WooCommerce continues to own quantity, Coupon, Update Cart, notices, shipping, totals, nonces and checkout navigation. The visible Coupon control is lifecycle-safe inside Order Summary; the hidden native actions owner remains in the form.
+The approved static Cart is the strict desktop visual contract. Native WooCommerce continues to own quantity, Coupon, Update Cart, notices, shipping, totals, nonces and checkout navigation. The visible Coupon control is lifecycle-safe inside Order Summary; the hidden native actions owner remains in the form.
 
-The remaining invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. Product-row dividers remain because the approved static reference retains them at desktop and phone breakpoints.
+Mobile is governed by `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md`: production-quality hierarchy, readability, touch usability, no overflow and professional composition take priority over literal reproduction of weak static phone measurements. The 390px and 360px live evidence passes this policy.
+
+The remaining invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. The retained product-row divider is accepted in the complete desktop and phone composition.
 
 ## Current execution gate
 
-Execute R5-E6-A only:
+Execute R5-E6-B functional regression only:
 
 ```text
-1. Static desktop full page at 1366 × 768 CSS px.
-2. Live desktop full page at 1366 × 768 CSS px.
-3. Static phone full page at 390 × 844 CSS px.
-4. Live phone full page at 390 × 844 CSS px.
-5. Static narrow-phone full page at 360 × 800 CSS px.
-6. Live narrow-phone full page at 360 × 800 CSS px.
+1. quantity minus and plus
+2. Header BAG count
+3. Your Bag piece count
+4. Subtotal and Total
+5. valid Coupon
+6. invalid Coupon and visible error state
+7. Remove item
+8. Undo / Restore
+9. shipping and Change address
+10. checkout URL and navigation
+11. direct empty-Cart path
+12. no horizontal overflow after AJAX replacements
 ```
 
-Required conditions:
-
-```text
-browser page zoom 100%
-same viewport for each static/live pair
-page fully loaded and cache clean
-no Console test styles or inspector overlays
-all captures include Header, Cart, recommendations and Footer
-```
-
-No source edit, deployment, divider redesign or final binary status decision is authorized until these six captures are reviewed.
+No source edit, deployment, divider redesign or final binary status decision is authorized during this functional gate.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -190,9 +191,8 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6-A equivalent-condition visual evidence
-→ R5-E6-B functional regression
+R5-E6-B functional regression
 → R5-E6-C backend editability
-→ resolve any remaining strict-reference deviation
+→ resolve any remaining strict-reference deviation if found
 → binary Cart decision
 ```
