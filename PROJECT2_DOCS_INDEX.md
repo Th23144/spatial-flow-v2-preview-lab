@@ -36,8 +36,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 28. project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
 29. project2-progress/STEP_4E_B2_R5_E5_S2_EXACT_FILE_VALIDATION_AND_BOUNDED_PLAN.md
 30. project2-progress/STEP_4E_B2_R5_E5_S2_A_PHP_VALIDATION.md
-31. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-32. project2-progress/PROGRESS_LOG.md
+31. project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_MANUAL_EXECUTION.md
+32. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+33. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -77,7 +78,8 @@ R5-E5-S1 strict source/DOM ownership audit：Complete
 R5-E5-S2 repository Markdown reconciliation：Complete / no theme source change
 R5-E5-S2 exact-file identity / syntax / anchor validation：Passed
 R5-E5-S2-A PHP Order Summary Coupon renderer artifact validation：Passed / not deployed
-Current：R5-E5-S2-B delegated JavaScript lifecycle bridge
+R5-E5-S2-B delegated JavaScript lifecycle bridge manual operation：Ready
+Current：R5-E5-S2-B exact JavaScript edit and artifact validation
 Cart：Not done
 ```
 
@@ -121,6 +123,7 @@ project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
 project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_EXACT_FILE_VALIDATION_AND_BOUNDED_PLAN.md
 project2-progress/STEP_4E_B2_R5_E5_S2_A_PHP_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_MANUAL_EXECUTION.md
 ```
 
 ## Current execution gate
