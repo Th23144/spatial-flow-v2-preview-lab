@@ -39,8 +39,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 31. project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_MANUAL_EXECUTION.md
 32. project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_VALIDATION.md
 33. project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_MANUAL_EXECUTION.md
-34. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-35. project2-progress/PROGRESS_LOG.md
+34. project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION_ATTEMPT_1.md
+35. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+36. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -81,8 +82,9 @@ R5-E5-S2 repository Markdown reconciliation：Complete / no theme source change
 R5-E5-S2 exact-file identity / syntax / anchor validation：Passed
 R5-E5-S2-A PHP Order Summary Coupon renderer artifact validation：Passed / not deployed
 R5-E5-S2-B delegated JavaScript lifecycle bridge artifact validation：Passed / not deployed
-R5-E5-S2-C exact CSS ownership correction manual operation：Ready
-Current：R5-E5-S2-C CSS edit and exact artifact validation
+R5-E5-S2-C structural CSS validation attempt 1：Passed
+R5-E5-S2-C exact CSS artifact identity attempt 1：Failed by one extra blank line
+Current：R5-E5-S2-C remove the single extra blank line and re-upload
 Cart：Not done
 ```
 
@@ -106,13 +108,19 @@ JavaScript syntax: Passed
 Deployment: Not performed
 Rollback SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
-spatial-flow(34).css / uploaded alias spatial-flow(35).css
-Size: 698,076 bytes
-Logical lines: 23,406
-SHA256: 3e6b0d6fa292681cee1c2936e744314b4347a0bcc82ea3e7cd911d5cac1969ce
-Braces: 3,638 / 3,638
-Comments: 337 / 337
+assets/css/spatial-flow.css / uploaded alias spatial-flow(36).css
+Actual size: 700,440 bytes
+Actual logical lines: 23,475
+Actual SHA256: c36da91ac031c9cbdf17682ed4ca79d215d57b3b9c23eb47587243bbfbe6344a
+Braces: 3,645 / 3,645
+Comments: 338 / 338
 CSS parser errors: 0
+Exact identity: Failed by one extra blank line
+Required size after correction: 700,439 bytes
+Required logical lines after correction: 23,474
+Required SHA256 after correction: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
+Deployment: Not performed
+Rollback SHA256: 3e6b0d6fa292681cee1c2936e744314b4347a0bcc82ea3e7cd911d5cac1969ce
 ```
 
 ## S1 / S2 ownership conclusion
@@ -131,18 +139,27 @@ project2-progress/STEP_4E_B2_R5_E5_S2_A_PHP_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_MANUAL_EXECUTION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_MANUAL_EXECUTION.md
+project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION_ATTEMPT_1.md
 ```
 
 ## Current execution gate
 
-Execute S2-C only:
+Correct S2-C only:
 
 ```text
-1. Replace the active Canonical Cart native actions presentation with the exact clipped-owner block.
-2. Add the exact Order Summary Coupon styles inside the existing Canonical Cart block.
-3. Remove the obsolete phone td.actions presentation continuation.
+1. In spatial-flow(36).css, locate the end of the Native Coupon / Update Cart owner block.
+2. Remove exactly one of the two empty lines before /* ---------- Order Summary ---------- */.
+3. Do not change any selector, declaration, comment, indentation or other whitespace.
 4. Do not deploy PHP, JavaScript or CSS yet.
-5. Upload the edited CSS file for exact artifact validation.
+5. Upload the corrected CSS file for exact artifact validation.
+```
+
+Required corrected CSS identity:
+
+```text
+Size: 700,439 bytes
+Logical lines: 23,474
+SHA256: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
 ```
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
@@ -156,7 +173,7 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ```text
 R5-E5-S2-A PHP renderer edit + exact artifact validation：Passed / not deployed
 → R5-E5-S2-B delegated JavaScript bridge + exact artifact validation：Passed / not deployed
-→ R5-E5-S2-C in-place CSS ownership correction + exact artifact validation
+→ R5-E5-S2-C remove one extra blank line + exact artifact validation retry
 → combined deployment
 → R5-E5 runtime acceptance
 → R5-E6 final strict acceptance
