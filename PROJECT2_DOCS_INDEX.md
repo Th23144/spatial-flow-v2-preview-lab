@@ -35,8 +35,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 27. project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
 28. project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
 29. project2-progress/STEP_4E_B2_R5_E5_S2_EXACT_FILE_VALIDATION_AND_BOUNDED_PLAN.md
-30. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-31. project2-progress/PROGRESS_LOG.md
+30. project2-progress/STEP_4E_B2_R5_E5_S2_A_PHP_VALIDATION.md
+31. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+32. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -75,19 +76,22 @@ R5-E5-FIX4 speculative proposal：Cancelled before execution
 R5-E5-S1 strict source/DOM ownership audit：Complete
 R5-E5-S2 repository Markdown reconciliation：Complete / no theme source change
 R5-E5-S2 exact-file identity / syntax / anchor validation：Passed
-Current：R5-E5-S2-A bounded PHP Order Summary Coupon renderer
+R5-E5-S2-A PHP Order Summary Coupon renderer artifact validation：Passed / not deployed
+Current：R5-E5-S2-B delegated JavaScript lifecycle bridge
 Cart：Not done
 ```
 
 ## Current exact files
 
 ```text
-functions(17).php / uploaded alias functions(18).php
-Size: 555,130 bytes
-Logical lines: 10,366
-SHA256: ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
+functions.php / uploaded alias functions(19).php
+Size: 557,249 bytes
+Logical lines: 10,414
+SHA256: 5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca4de7a640b705d5e75f9ef00b
 Version: 2.7.8
 PHP syntax: Passed
+Deployment: Not performed
+Rollback SHA256: ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
 
 assets/js/spatial-flow.js / uploaded alias spatial-flow(4).js
 Size: 70,828 bytes
@@ -116,17 +120,18 @@ Detailed audits:
 project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
 project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_EXACT_FILE_VALIDATION_AND_BOUNDED_PLAN.md
+project2-progress/STEP_4E_B2_R5_E5_S2_A_PHP_VALIDATION.md
 ```
 
 ## Current execution gate
 
-Execute S2-A only:
+Execute S2-B only:
 
 ```text
-Insert the bounded Cart-only Order Summary Coupon renderer into the validated functions.php baseline.
-Do not edit JavaScript or CSS yet.
-Do not deploy the PHP file yet.
-Upload the edited PHP file for exact artifact validation.
+Add the bounded delegated Cart-only lifecycle bridge to the validated assets/js/spatial-flow.js baseline.
+Do not edit CSS yet.
+Do not deploy PHP or JavaScript yet.
+Upload the edited JavaScript file for exact artifact validation.
 ```
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
@@ -138,7 +143,7 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E5-S2-A PHP renderer edit + exact artifact validation
+R5-E5-S2-A PHP renderer edit + exact artifact validation：Passed / not deployed
 → R5-E5-S2-B delegated JavaScript bridge + exact artifact validation
 → R5-E5-S2-C in-place CSS ownership correction + exact artifact validation
 → combined deployment
