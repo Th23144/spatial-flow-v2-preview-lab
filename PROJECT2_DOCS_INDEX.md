@@ -54,8 +54,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 46. project2-progress/STEP_4E_B2_R5_E5_S2_G_RUNTIME_ACCEPTANCE.md
 47. project2-progress/STEP_4E_B2_R5_E6_FINAL_STRICT_ACCEPTANCE_EXECUTION.md
 48. project2-progress/STEP_4E_B2_R5_E6_A_VISUAL_EVIDENCE_ACCEPTANCE.md
-49. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-50. project2-progress/PROGRESS_LOG.md
+49. project2-progress/STEP_4E_B2_R5_E6_A_EVIDENCE_METHOD_CORRECTION_AND_R5_E6_B_EXECUTION.md
+50. project2-progress/STEP_4E_B2_R5_E6_B_GROUP1_RESULT_AND_GROUP2_COUPON.md
+51. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+52. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -117,7 +119,8 @@ Mobile product divider：Retained / accepted in full-page composition
 R5-E6-A desktop strict visual evidence：Passed
 R5-E6-A 390px mobile production-quality review：Passed
 R5-E6-A 360px narrow-phone review：Passed
-Current：R5-E6-B functional regression
+R5-E6-B Group 1 quantity/count/totals synchronization：Passed
+Current：R5-E6-B Group 2 Coupon lifecycle
 Cart：Not done
 ```
 
@@ -161,26 +164,18 @@ Mobile is governed by `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md`: production-qual
 
 The remaining invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. The retained product-row divider is accepted in the complete desktop and phone composition.
 
+Group 1 confirmed that quantity controls, Header BAG count, Your Bag count, line-item subtotal, Order Summary Subtotal and Total remain synchronized through the WooCommerce AJAX lifecycle and after refresh.
+
 ## Current execution gate
 
-Execute R5-E6-B functional regression only:
+Execute R5-E6-B Group 2 only:
 
 ```text
-1. quantity minus and plus
-2. Header BAG count
-3. Your Bag piece count
-4. Subtotal and Total
-5. valid Coupon
-6. invalid Coupon and visible error state
-7. Remove item
-8. Undo / Restore
-9. shipping and Change address
-10. checkout URL and navigation
-11. direct empty-Cart path
-12. no horizontal overflow after AJAX replacements
+B5. valid Coupon
+B6. invalid Coupon and visible error state
 ```
 
-No source edit, deployment, divider redesign or final binary status decision is authorized during this functional gate.
+Do not test Remove, Undo, address editing or empty Cart until Group 2 is reported. No source edit, deployment, divider redesign or final binary status decision is authorized during this functional gate.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -191,8 +186,12 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6-B functional regression
+R5-E6-B Group 2 Coupon lifecycle
+→ Group 3 Remove / Undo
+→ Group 4 shipping / address
+→ Group 5 checkout navigation
+→ Group 6 direct empty Cart
+→ Group 7 AJAX responsive overflow
 → R5-E6-C backend editability
-→ resolve any remaining strict-reference deviation if found
 → binary Cart decision
 ```
