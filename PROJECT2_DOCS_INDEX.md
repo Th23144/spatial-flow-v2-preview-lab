@@ -44,8 +44,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 36. project2-progress/STEP_4E_B2_R5_E5_S2_D_COMBINED_DEPLOYMENT.md
 37. project2-progress/STEP_4E_B2_R5_E5_S2_D_RUNTIME_REJECTION_AND_S2_E_MOBILE_ITEM_DEBOX.md
 38. project2-progress/STEP_4E_B2_R5_E5_S2_E_CSS_VALIDATION.md
-39. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-40. project2-progress/PROGRESS_LOG.md
+39. project2-progress/STEP_4E_B2_R5_E5_S2_E_RUNTIME_REJECTION_AND_S2_F_GEOMETRY_DIAGNOSTIC.md
+40. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+41. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -89,12 +90,14 @@ R5-E5-S2-B delegated JavaScript lifecycle bridge artifact validation：Passed / 
 R5-E5-S2-C exact CSS ownership correction：Passed / deployed
 R5-E5-S2-D combined deployment and functional smoke checks：Passed by user report
 R5-E5-S2-D mobile strict visual acceptance：Failed / white rounded product-card frame remained
-R5-E5-S2-E mobile item debox exact CSS artifact validation：Passed / not deployed
-Current：R5-E5-S2-E CSS-only deployment and runtime acceptance
+R5-E5-S2-E mobile item debox exact CSS artifact validation：Passed / deployed
+R5-E5-S2-E white rounded item surface removal：Passed
+R5-E5-S2-E implied-frame strict visual acceptance：Failed / reproduced in incognito browser
+Current：R5-E5-S2-F zero-source live geometry diagnostic
 Cart：Not done
 ```
 
-## Current exact deployed and candidate files
+## Current exact deployed files
 
 ```text
 functions.php / deployed from functions(19).php
@@ -114,21 +117,16 @@ JavaScript syntax: Passed
 Deployment: Confirmed by runtime
 Rollback SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
-assets/css/spatial-flow.css / currently deployed from spatial-flow(37).css
-Size: 700,439 bytes
-Logical lines: 23,474
-SHA256: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
-Runtime status: functional, but mobile item-card frame rejected
-
-assets/css/spatial-flow.css / validated S2-E candidate spatial-flow(38).css
+assets/css/spatial-flow.css / deployed from spatial-flow(38).css
 Size: 700,177 bytes
 Logical lines: 23,468
 SHA256: 4bce679ee3c2abca6bcc0dfd4733d92d0c8b77e16b7a0bbf7d7832e305cff6b6
 Braces: 3,645 / 3,645
 Comments: 338 / 338
 CSS parser errors: 0
-Deployment: Not yet confirmed
-Rollback to current deployed CSS SHA256: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
+Deployment: Confirmed by runtime and incognito test
+Runtime status: white rounded item surface removed; implied frame remains
+Rollback to S2-D CSS SHA256: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
 ```
 
 ## S1 / S2 ownership conclusion
@@ -137,7 +135,7 @@ The approved static Cart has a product-only left plane and no Coupon / Apply Cou
 
 S2-A through S2-D successfully moved the visible Coupon control into Order Summary, preserved native WooCommerce ownership, and removed the native actions row from visible geometry.
 
-The remaining mobile frame was a separate phone product-row presentation owner inside the Canonical Cart media query. S2-E removes only its card margin, inset padding, four-sided border, radius, paper background and shadow while retaining all phone grid and placement rules.
+S2-E successfully removed the explicit phone white-card surface declarations. Current form, table, item row and item cells are already transparent, unrounded and shadow-free. The remaining rejected perception is geometric: the heading's full-width bottom divider, the item's full-width final divider and inherited row spacing align into a bounded band in the real one-line-item phone state.
 
 Detailed audits:
 
@@ -154,25 +152,21 @@ project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_D_COMBINED_DEPLOYMENT.md
 project2-progress/STEP_4E_B2_R5_E5_S2_D_RUNTIME_REJECTION_AND_S2_E_MOBILE_ITEM_DEBOX.md
 project2-progress/STEP_4E_B2_R5_E5_S2_E_CSS_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E5_S2_E_RUNTIME_REJECTION_AND_S2_F_GEOMETRY_DIAGNOSTIC.md
 ```
 
 ## Current execution gate
 
-Execute S2-E CSS-only deployment:
+Execute S2-F browser DevTools diagnostic only. Do not edit any source file.
 
 ```text
-1. spatial-flow(38).css → assets/css/spatial-flow.css
-2. Do not change or redeploy functions.php.
-3. Do not change or redeploy assets/js/spatial-flow.js.
-4. Do not change version 2.7.8.
-5. Purge active cache because the asset version remains unchanged.
-6. Hard-reload the phone Cart and verify the product card frame is absent.
-7. Verify product placement, final divider, Order Summary, Coupon and Cart functions.
-8. Verify desktop Cart remains unchanged.
-9. Report screenshots and runtime result before any further source edit.
+Test A: temporarily disable .sf-cart-v2-heading border-bottom; observe whether the implied frame disappears while the product divider remains.
+Test B: restore Test A, temporarily set the phone cart row padding-bottom to 0; observe whether moving the final divider toward the content removes the frame perception.
+Test C: restore Test B, temporarily disable the cart-row border-bottom for diagnosis only; observe whether the lower line is the decisive boundary.
+Record which single test changes the rejected perception.
 ```
 
-Do not execute the cancelled FIX4 and do not create/deploy SHA256:
+Do not upload or deploy another CSS file until S2-F identifies the owner. Do not modify PHP or JavaScript. Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
 ```text
 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
@@ -181,9 +175,10 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E5-S2-E phone product-row debox source edit + exact artifact validation：Passed
-→ CSS-only deployment
-→ mobile and desktop runtime acceptance
+R5-E5-S2-F live geometry diagnostic
+→ bounded S2-G source correction only after owner confirmation
+→ exact artifact validation
+→ runtime acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
 ```
