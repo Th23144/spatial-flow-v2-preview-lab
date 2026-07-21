@@ -47,8 +47,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 39. project2-progress/STEP_4E_B2_R5_E5_S2_E_RUNTIME_REJECTION_AND_S2_F_GEOMETRY_DIAGNOSTIC.md
 40. project2-progress/STEP_4E_B2_R5_E5_S2_F_TEST_RESULTS_AND_S2_F2_AXIS_DIAGNOSTIC.md
 41. project2-progress/STEP_4E_B2_R5_E5_S2_F2_RESULTS_AND_S2_F3_MOBILE_REFERENCE_GEOMETRY.md
-42. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-43. project2-progress/PROGRESS_LOG.md
+42. project2-progress/STEP_4E_B2_R5_E5_S2_F3_RESULT_AND_S2_F4_COMPUTED_STYLE_AUDIT.md
+43. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+44. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -99,7 +100,8 @@ R5-E5-S2-F Tests A/B：No effect
 R5-E5-S2-F Test C：Slight improvement
 R5-E5-S2-F2 Test D：Improved / frame became lighter
 R5-E5-S2-F2 Test E：No change
-Current：R5-E5-S2-F3 zero-source <=480px static-reference geometry test
+R5-E5-S2-F3 Test F：No meaningful improvement
+Current：R5-E5-S2-F4 zero-source computed-style / DOM owner audit
 Cart：Not done
 ```
 
@@ -141,41 +143,20 @@ The approved static Cart has a product-only left plane and no Coupon / Apply Cou
 
 S2-A through S2-D successfully moved the visible Coupon control into Order Summary, preserved native WooCommerce ownership, and removed the native actions row from visible geometry.
 
-S2-E successfully removed the explicit phone white-card surface declarations. Tests A-E show that dividers and spacing contribute only partially and are not the principal owner. The newly confirmed strict-reference mismatch is that the approved static Cart switches its item row to one column below 480px, while the current real Cart keeps an 84px + 1fr horizontal row through the entire <=767px range. The current 417px screenshot should already be in the reference's stacked state.
-
-Detailed audits:
-
-```text
-project2-progress/STEP_4E_B2_R5_E5_S1_STRICT_SOURCE_DOM_OWNERSHIP_AUDIT.md
-project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
-project2-progress/STEP_4E_B2_R5_E5_S2_EXACT_FILE_VALIDATION_AND_BOUNDED_PLAN.md
-project2-progress/STEP_4E_B2_R5_E5_S2_A_PHP_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_MANUAL_EXECUTION.md
-project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_MANUAL_EXECUTION.md
-project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION_ATTEMPT_1.md
-project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_E5_S2_D_COMBINED_DEPLOYMENT.md
-project2-progress/STEP_4E_B2_R5_E5_S2_D_RUNTIME_REJECTION_AND_S2_E_MOBILE_ITEM_DEBOX.md
-project2-progress/STEP_4E_B2_R5_E5_S2_E_CSS_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_E5_S2_E_RUNTIME_REJECTION_AND_S2_F_GEOMETRY_DIAGNOSTIC.md
-project2-progress/STEP_4E_B2_R5_E5_S2_F_TEST_RESULTS_AND_S2_F2_AXIS_DIAGNOSTIC.md
-project2-progress/STEP_4E_B2_R5_E5_S2_F2_RESULTS_AND_S2_F3_MOBILE_REFERENCE_GEOMETRY.md
-```
+S2-E removed the explicit phone white-card surface declarations. Tests A-F now rule out the heading divider, row spacing, final divider, shared full-width axis, inset divider and <=480px row geometry as any single principal owner. No further source edit is authorized from screenshot inference. The next step must inspect actual rendered computed styles, pseudo-elements and the full Cart item ancestor chain.
 
 ## Current execution gate
 
-Execute S2-F3 browser DevTools Test F only. Do not edit any source file.
+Execute S2-F4 browser Console diagnostic only. Do not edit any source file.
 
 ```text
 1. Reload Cart to remove all previous temporary tests.
-2. At a viewport <=480px, temporarily switch the real Cart item to the approved reference's one-column geometry.
-3. Keep the final product divider, product data, quantity, subtotal and Remove control.
-4. Observe whether the rejected horizontal picture-frame perception disappears or materially improves.
-5. Report Test F before any source edit.
+2. At the rejected phone viewport, collect computed styles and bounding rectangles for the Cart item and every ancestor through body.
+3. Include ::before and ::after pseudo-element styles.
+4. Return the copied JSON report before any source edit.
 ```
 
-Do not upload or deploy another CSS file until S2-F3 identifies the owner. Do not modify PHP or JavaScript. Do not execute the cancelled FIX4 and do not create/deploy SHA256:
+Do not upload or deploy another CSS file. Do not modify PHP or JavaScript. Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
 ```text
 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
@@ -184,8 +165,8 @@ Do not upload or deploy another CSS file until S2-F3 identifies the owner. Do no
 ## Remaining sequence
 
 ```text
-R5-E5-S2-F3 <=480px live reference-geometry test
-→ bounded S2-G source correction only after owner confirmation
+R5-E5-S2-F4 computed-style / live DOM owner audit
+→ bounded S2-G source correction only after concrete owner confirmation
 → exact artifact validation
 → runtime acceptance
 → R5-E6 final strict acceptance
