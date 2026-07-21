@@ -40,8 +40,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 32. project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_VALIDATION.md
 33. project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_MANUAL_EXECUTION.md
 34. project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION_ATTEMPT_1.md
-35. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-36. project2-progress/PROGRESS_LOG.md
+35. project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION.md
+36. project2-progress/STEP_4E_B2_R5_E5_S2_D_COMBINED_DEPLOYMENT.md
+37. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+38. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -84,7 +86,8 @@ R5-E5-S2-A PHP Order Summary Coupon renderer artifact validation：Passed / not 
 R5-E5-S2-B delegated JavaScript lifecycle bridge artifact validation：Passed / not deployed
 R5-E5-S2-C structural CSS validation attempt 1：Passed
 R5-E5-S2-C exact CSS artifact identity attempt 1：Failed by one extra blank line
-Current：R5-E5-S2-C remove the single extra blank line and re-upload
+R5-E5-S2-C exact CSS artifact identity retry：Passed / not deployed
+Current：R5-E5-S2-D combined deployment authorized / completion not confirmed
 Cart：Not done
 ```
 
@@ -97,7 +100,7 @@ Logical lines: 10,414
 SHA256: 5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca4de7a640b705d5e75f9ef00b
 Version: 2.7.8
 PHP syntax: Passed
-Deployment: Not performed
+Deployment: Not confirmed
 Rollback SHA256: ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
 
 assets/js/spatial-flow.js / uploaded alias spatial-flow(5).js
@@ -105,21 +108,18 @@ Size: 78,143 bytes
 Logical lines: 2,242
 SHA256: 7442ee92167ae383b933c6db0281f14ea56a75733339818c3e4858d77d52651b
 JavaScript syntax: Passed
-Deployment: Not performed
+Deployment: Not confirmed
 Rollback SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
-assets/css/spatial-flow.css / uploaded alias spatial-flow(36).css
-Actual size: 700,440 bytes
-Actual logical lines: 23,475
-Actual SHA256: c36da91ac031c9cbdf17682ed4ca79d215d57b3b9c23eb47587243bbfbe6344a
+assets/css/spatial-flow.css / uploaded alias spatial-flow(37).css
+Size: 700,439 bytes
+Logical lines: 23,474
+SHA256: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
 Braces: 3,645 / 3,645
 Comments: 338 / 338
 CSS parser errors: 0
-Exact identity: Failed by one extra blank line
-Required size after correction: 700,439 bytes
-Required logical lines after correction: 23,474
-Required SHA256 after correction: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
-Deployment: Not performed
+Exact identity: Passed
+Deployment: Not confirmed
 Rollback SHA256: 3e6b0d6fa292681cee1c2936e744314b4347a0bcc82ea3e7cd911d5cac1969ce
 ```
 
@@ -140,29 +140,24 @@ project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_MANUAL_EXECUTION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_MANUAL_EXECUTION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION_ATTEMPT_1.md
+project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E5_S2_D_COMBINED_DEPLOYMENT.md
 ```
 
 ## Current execution gate
 
-Correct S2-C only:
+Execute S2-D combined deployment only, in this order:
 
 ```text
-1. In spatial-flow(36).css, locate the end of the Native Coupon / Update Cart owner block.
-2. Remove exactly one of the two empty lines before /* ---------- Order Summary ---------- */.
-3. Do not change any selector, declaration, comment, indentation or other whitespace.
-4. Do not deploy PHP, JavaScript or CSS yet.
-5. Upload the corrected CSS file for exact artifact validation.
+1. functions(19).php → functions.php
+2. spatial-flow(5).js → assets/js/spatial-flow.js
+3. spatial-flow(37).css → assets/css/spatial-flow.css
+4. purge active cache layers after all three replacements
+5. hard-reload Cart and perform the immediate smoke gate
+6. report deployment and runtime results before any further source edit
 ```
 
-Required corrected CSS identity:
-
-```text
-Size: 700,439 bytes
-Logical lines: 23,474
-SHA256: d3460695ff0e53e79465ac9d13d723b440c69021413e15ff671705ec28b907aa
-```
-
-Do not execute the cancelled FIX4 and do not create/deploy SHA256:
+Do not deploy CSS first. Do not mix new and rollback artifacts. Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
 ```text
 6377f0686c9b7a992c440e0c855bfa409cdcd45359f33695f896fa048d5f6737
@@ -171,10 +166,10 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E5-S2-A PHP renderer edit + exact artifact validation：Passed / not deployed
-→ R5-E5-S2-B delegated JavaScript bridge + exact artifact validation：Passed / not deployed
-→ R5-E5-S2-C remove one extra blank line + exact artifact validation retry
-→ combined deployment
+R5-E5-S2-A PHP renderer edit + exact artifact validation：Passed
+→ R5-E5-S2-B delegated JavaScript bridge + exact artifact validation：Passed
+→ R5-E5-S2-C CSS ownership correction + exact artifact validation：Passed
+→ R5-E5-S2-D combined deployment
 → R5-E5 runtime acceptance
 → R5-E6 final strict acceptance
 → binary Cart decision
