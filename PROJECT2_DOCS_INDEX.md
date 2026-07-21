@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-20  
+Last updated: 2026-07-21  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative Cart read order
@@ -37,8 +37,10 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 29. project2-progress/STEP_4E_B2_R5_E5_S2_EXACT_FILE_VALIDATION_AND_BOUNDED_PLAN.md
 30. project2-progress/STEP_4E_B2_R5_E5_S2_A_PHP_VALIDATION.md
 31. project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_MANUAL_EXECUTION.md
-32. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-33. project2-progress/PROGRESS_LOG.md
+32. project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_VALIDATION.md
+33. project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_MANUAL_EXECUTION.md
+34. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+35. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -78,8 +80,9 @@ R5-E5-S1 strict source/DOM ownership audit：Complete
 R5-E5-S2 repository Markdown reconciliation：Complete / no theme source change
 R5-E5-S2 exact-file identity / syntax / anchor validation：Passed
 R5-E5-S2-A PHP Order Summary Coupon renderer artifact validation：Passed / not deployed
-R5-E5-S2-B delegated JavaScript lifecycle bridge manual operation：Ready
-Current：R5-E5-S2-B exact JavaScript edit and artifact validation
+R5-E5-S2-B delegated JavaScript lifecycle bridge artifact validation：Passed / not deployed
+R5-E5-S2-C exact CSS ownership correction manual operation：Ready
+Current：R5-E5-S2-C CSS edit and exact artifact validation
 Cart：Not done
 ```
 
@@ -95,11 +98,13 @@ PHP syntax: Passed
 Deployment: Not performed
 Rollback SHA256: ab7c9b1a893b2fdfaf8db7947fcf82974e8c1d71b54c8f0d17fe32029e5f5d86
 
-assets/js/spatial-flow.js / uploaded alias spatial-flow(4).js
-Size: 70,828 bytes
-Logical lines: 1,995
-SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
+assets/js/spatial-flow.js / uploaded alias spatial-flow(5).js
+Size: 78,143 bytes
+Logical lines: 2,242
+SHA256: 7442ee92167ae383b933c6db0281f14ea56a75733339818c3e4858d77d52651b
 JavaScript syntax: Passed
+Deployment: Not performed
+Rollback SHA256: 6eef5c2cc215c604a2a2cfee38e51e6623897b283f5af996680e6351362873d3
 
 spatial-flow(34).css / uploaded alias spatial-flow(35).css
 Size: 698,076 bytes
@@ -124,17 +129,20 @@ project2-progress/STEP_4E_B2_R5_E5_S2_REPOSITORY_MD_RECONCILIATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_EXACT_FILE_VALIDATION_AND_BOUNDED_PLAN.md
 project2-progress/STEP_4E_B2_R5_E5_S2_A_PHP_VALIDATION.md
 project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_MANUAL_EXECUTION.md
+project2-progress/STEP_4E_B2_R5_E5_S2_B_JS_VALIDATION.md
+project2-progress/STEP_4E_B2_R5_E5_S2_C_CSS_MANUAL_EXECUTION.md
 ```
 
 ## Current execution gate
 
-Execute S2-B only:
+Execute S2-C only:
 
 ```text
-Add the bounded delegated Cart-only lifecycle bridge to the validated assets/js/spatial-flow.js baseline.
-Do not edit CSS yet.
-Do not deploy PHP or JavaScript yet.
-Upload the edited JavaScript file for exact artifact validation.
+1. Replace the active Canonical Cart native actions presentation with the exact clipped-owner block.
+2. Add the exact Order Summary Coupon styles inside the existing Canonical Cart block.
+3. Remove the obsolete phone td.actions presentation continuation.
+4. Do not deploy PHP, JavaScript or CSS yet.
+5. Upload the edited CSS file for exact artifact validation.
 ```
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
@@ -147,7 +155,7 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
 ```text
 R5-E5-S2-A PHP renderer edit + exact artifact validation：Passed / not deployed
-→ R5-E5-S2-B delegated JavaScript bridge + exact artifact validation
+→ R5-E5-S2-B delegated JavaScript bridge + exact artifact validation：Passed / not deployed
 → R5-E5-S2-C in-place CSS ownership correction + exact artifact validation
 → combined deployment
 → R5-E5 runtime acceptance
