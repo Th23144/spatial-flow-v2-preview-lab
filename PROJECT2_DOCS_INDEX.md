@@ -61,8 +61,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 53. project2-progress/STEP_4E_B2_R5_E6_B_GROUP4_FUNCTIONAL_PASS_AND_NOTICE_VISUAL_REOPEN.md
 54. project2-progress/STEP_4E_B2_R5_E6_B_NOTICE_ATTRIBUTION_AND_SEQUENCE_CORRECTION.md
 55. project2-progress/STEP_4E_B2_R5_E6_B_GROUP5_RESULT_AND_GROUP6_DIRECT_EMPTY_CART.md
-56. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-57. project2-progress/PROGRESS_LOG.md
+56. project2-progress/STEP_4E_B2_R5_E6_B_GROUP6_RESULT_AND_GROUP7_AJAX_RESPONSIVE_OVERFLOW.md
+57. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+58. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -130,9 +131,10 @@ Applied Coupon Remove placement：Accepted native behavior
 R5-E6-B Group 3 Remove / Undo lifecycle：Passed
 R5-E6-B Group 4 Shipping / Change address functional lifecycle：Passed
 R5-E6-B Group 5 checkout navigation：Passed
+R5-E6-B Group 6 direct empty-Cart entry：Passed
 Open visual backlog：Cart update success notice + Shipping costs updated notice
 Notice replacement design：Not selected or user-approved
-Current：R5-E6-B Group 6 direct empty Cart
+Current：R5-E6-B Group 7 AJAX responsive-overflow regression
 Cart：Not done
 ```
 
@@ -176,17 +178,17 @@ Mobile is governed by `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md`: production-qual
 
 The invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. The retained product-row divider is accepted in the complete desktop and phone composition.
 
-Groups 1–5 functionally pass. Two success-notice visual defects are preserved as an open backlog item. The prior quiet-editorial-text direction was an assistant suggestion, not a user-selected solution. Notice redesign is deferred until the original functional-regression and backend-editability sequence is complete.
+Groups 1–6 functionally pass. Two success-notice visual defects are preserved as an open backlog item. The prior quiet-editorial-text direction was an assistant suggestion, not a user-selected solution. Notice redesign is deferred until the original functional-regression and backend-editability sequence is complete.
 
 ## Current execution gate
 
-Execute R5-E6-B Group 6 only:
+Execute R5-E6-B Group 7 only:
 
 ```text
-B11. Direct empty-Cart entry.
+B12. No horizontal overflow or responsive break after AJAX replacements.
 ```
 
-Do not redesign notices during Groups 6–7. No source edit, deployment, address-form redesign or final binary status decision is authorized during this functional gate.
+Do not redesign notices during Group 7. No source edit, deployment, address-form redesign or final binary status decision is authorized during this functional gate.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -197,8 +199,7 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6-B Group 6 direct empty Cart
-→ Group 7 AJAX responsive overflow
+R5-E6-B Group 7 AJAX responsive-overflow regression
 → R5-E6-C backend editability
 → separate bounded notice visual audit / design / correction
 → final visual revalidation
