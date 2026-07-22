@@ -7,6 +7,7 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 Uploaded current CSS alias: spatial-flow(40).css.
+Exact identity against the deployed CSS baseline: Passed.
 Current Notice CSS source audit: Complete at selector/ownership level.
 Live DOM classification: Pending.
 Source changes authorized or performed: None.
@@ -15,7 +16,23 @@ Current executable substep: R5-E6-N1-B live DOM and computed-style capture.
 Cart page status: Not done.
 ```
 
-## 1. Audit boundary
+## 1. Exact uploaded-file identity
+
+```text
+Required server path: assets/css/spatial-flow.css
+Uploaded alias: spatial-flow(40).css
+Size: 700,208 bytes
+Logical lines: 23,469
+SHA256: 1a4daa7f09b6370ccc93cc8441ea3c45ec23d8777a049c1a6f2c8fd50720ddce
+Opening / closing braces: 3,645 / 3,645
+Opening / closing comments: 338 / 338
+Final newline: present
+Exact match to the locked deployed CSS identity: Yes
+```
+
+The upload is the current accepted server baseline previously deployed from `spatial-flow(39).css`; the alias number does not represent a source change.
+
+## 2. Audit boundary
 
 This audit inspected the current uploaded `assets/css/spatial-flow.css` content only.
 
@@ -32,7 +49,7 @@ It did not:
 
 The exact live DOM still must be captured before a correction is designed.
 
-## 2. Broad global WooCommerce Notice owner
+## 3. Broad global WooCommerce Notice owner
 
 The current stylesheet contains an early global rule applying to all three WooCommerce notice classes:
 
@@ -61,7 +78,7 @@ This rule is the confirmed source-level owner capable of producing the observed 
 
 It is global rather than Cart-only and therefore affects any WooCommerce notice state not explicitly reset later with a stronger selector.
 
-## 3. Current Cart-specific Notice block
+## 4. Current Cart-specific Notice block
 
 Later in the stylesheet, the `Step 4E Cart Notice Toast` block resets only Cart success-message elements matching:
 
@@ -83,7 +100,7 @@ That block currently applies:
 
 The same block hides add-to-cart messages containing `.wc-forward`.
 
-## 4. Confirmed selector gap
+## 5. Confirmed selector gap
 
 The current Cart-specific reset does not include:
 
@@ -96,7 +113,7 @@ Therefore a Cart notice rendered as `.woocommerce-info` continues to inherit the
 
 The screenshot of `Shipping costs updated.` is source-consistent with this gap. However, this remains a supported inference rather than a final DOM finding until the live element class is captured.
 
-## 5. Why both reported states are not yet assumed identical
+## 6. Why both reported states are not yet assumed identical
 
 The two reported visual defects are:
 
@@ -127,7 +144,7 @@ If the Cart update notice is visibly white despite being a `.woocommerce-message
 
 No one explanation is accepted without DOM and computed-style evidence.
 
-## 6. Prior design-direction attribution remains corrected
+## 7. Prior design-direction attribution remains corrected
 
 The current CSS contains a prior assistant-authored treatment described in source comments as quiet editorial text.
 
@@ -135,7 +152,7 @@ This proves only that the treatment exists in the deployed CSS history. It does 
 
 The user has approved only the defect finding, not the replacement design.
 
-## 7. Runtime states to classify
+## 8. Runtime states to classify
 
 N1-B must capture, where available:
 
@@ -162,9 +179,10 @@ For each state record:
 - display and position
 ```
 
-## 8. Current conclusion
+## 9. Current conclusion
 
 ```text
+Exact current CSS identity: Passed.
 Broad white rounded source owner: Confirmed.
 Cart-specific `.woocommerce-message` reset: Confirmed.
 Cart-specific `.woocommerce-info` reset: Absent.
@@ -174,7 +192,7 @@ Shared owner across all notices: Not yet proven.
 Source correction: Not authorized.
 ```
 
-## 9. Boundaries
+## 10. Boundaries
 
 ```text
 - no source edit during N1-B
