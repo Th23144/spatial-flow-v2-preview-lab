@@ -1,4 +1,4 @@
-# Step 4E-B2-R5-E6-N1-B · Cart Notice Visual-State Inventory
+# Step 4E-B2-R5-E6-N1-B · Cart Notice Visual-State Inventory and Runtime Ownership
 
 Last updated: 2026-07-22  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
@@ -11,16 +11,18 @@ Known runtime Notice states shown: Three.
 Confirmed visual families shown: Two.
 Family 1: transparent text status row (A and B).
 Family 2: broad white rounded Notice surface (C).
-Additional candidate states may exist, but broad screenshot collection is not required.
+Runtime DOM / computed style for A Cart updated: Captured and confirmed.
+Runtime DOM for B removed item + Undo: Pending.
+Runtime DOM for C Shipping costs updated: Pending.
 Source changes authorized or performed: None.
 Notice replacement design: Not selected or user-approved.
-Current executable substep: representative live DOM / computed-style ownership capture.
+Current executable substep: capture B removed-item / Undo DOM.
 Cart page status: Not done.
 ```
 
-## 1. Evidence received
+## 1. Screenshot evidence and visual taxonomy
 
-The user supplied three desktop screenshots with enough surrounding Cart composition to review placement relative to the `Your Bag` heading, product rows and Order Summary.
+The user supplied three desktop screenshots showing:
 
 ```text
 A. Quantity update
@@ -33,70 +35,32 @@ C. Shipping address update
    Visible text: Shipping costs updated.
 ```
 
-The user correctly noted that these are only the states currently discovered and that other WooCommerce feedback states may still exist.
+The screenshots establish three runtime states but only two confirmed visual families.
 
-## 2. Screenshot A — quantity update
-
-Observed composition:
+### Family 1 — A and B
 
 ```text
-- no white card or rounded panel
-- message occupies a full-width status row above the product list
-- text is very small and low contrast
-- the row contains disproportionate empty vertical and horizontal space
-- a long bottom divider extends far beyond the short message
-- the message reads as detached system residue rather than intentional Cart feedback
+- transparent / no white panel
+- full-width status row above product rows
+- bottom divider
+- small, low-contrast text
+- excessive unused row width and space
+- optional native action link for removed-item state
 ```
 
-The text itself is not corrupted data. The "garbled" impression comes from hierarchy and composition:
+The text is not corrupted data. The user’s “garbled” impression is a visual hierarchy and composition failure caused by tiny copy, weak contrast, excessive row width, long divider and unclear action placement.
+
+### Family 2 — C
 
 ```text
-- tiny body copy
-- weak contrast
-- excessive status-row width
-- large unused space
-- unclear alignment with the product content below
-```
-
-This is a visual-design failure, not a functional or encoding failure.
-
-## 3. Screenshot B — removed item / Undo
-
-Observed composition:
-
-```text
-- same transparent, borderless status-row family as Screenshot A
-- same placement above the product rows
-- same long bottom-divider structure
-- longer product title makes the row visually denser
-- the native Undo action is retained
-- the tiny uppercase / monospaced Undo treatment competes with the sentence rather than forming a clear action hierarchy
-```
-
-A and B are separate runtime states but appear to share one visual family.
-
-Important preservation requirement:
-
-```text
-The native Restore / Undo link must remain functional and visible in any future correction.
-```
-
-## 4. Screenshot C — shipping update
-
-Observed composition:
-
-```text
-- full-width Notice placement above the Cart columns
-- a large white rounded pill / capsule spans almost the complete content width
+- broad white rounded surface
 - substantial internal padding
-- the white surface separates strongly from the warm page canvas
-- the component is visually heavier than the brief status message warrants
-- it does not match the accepted editorial Cart composition
+- soft shadow
+- spans most of the Cart content width
+- visually heavier than the short status message warrants
 ```
 
-This is clearly not the same visual treatment as A and B.
-
-The current source audit already identified a broad global WooCommerce rule capable of producing exactly this white rounded surface:
+The broad global WooCommerce rule remains the confirmed source-level candidate for this treatment:
 
 ```css
 .woocommerce-error,
@@ -109,85 +73,133 @@ The current source audit already identified a broad global WooCommerce rule capa
 }
 ```
 
-The Cart-specific transparent reset currently excludes `.woocommerce-info`, making the class-gap explanation for Screenshot C highly plausible. Runtime DOM evidence is still required before closing ownership.
+The Cart-specific transparent reset excludes `.woocommerce-info`, but C still requires live DOM confirmation before exact ownership is closed.
 
-## 5. Visual taxonomy after screenshots
+## 2. Runtime DOM result — A Cart updated
 
-The evidence supports this classification:
-
-```text
-Runtime state A: Cart quantity updated
-Runtime state B: item removed + Undo
-Runtime state C: shipping costs updated
-
-Visual family 1: A + B
-- transparent status row
-- compact plain text
-- bottom divider
-- optional native action link
-
-Visual family 2: C
-- broad white rounded WooCommerce Notice surface
-```
-
-Therefore:
+The user captured the following live state after a quantity update:
 
 ```text
-Three runtime states do not require three independent CSS components.
-A and B should be audited as one shared visual-owner candidate.
-C requires a separate owner check.
+Text: Cart updated.
+Element: div
+Class list: woocommerce-message
+Parent class: woocommerce-notices-wrapper
+Contains .wc-forward: No
+Contains .restore-item: No
 ```
 
-## 6. Other states that may exist
+Exact live markup:
 
-The current WooCommerce lifecycle and prior regression matrix indicate these additional candidate states:
+```html
+<div class="woocommerce-message" role="alert" tabindex="-1">
+  Cart updated.
+</div>
+```
+
+Computed style:
 
 ```text
-1. Coupon applied successfully.
-2. Coupon removed successfully.
-3. Invalid Coupon error.
-4. Restore / Undo completion response, if WooCommerce emits another notice.
-5. Add-to-cart success notice containing `.wc-forward`.
+background-color: rgba(0, 0, 0, 0)
+border-radius: 0px
+box-shadow: none
+padding: 0px 0px 16px
+margin: 0px
+display: flex
+position: relative
 ```
 
-Current source already hides Cart add-to-cart messages containing `.wc-forward`, so that state is not automatically an open visual defect.
+## 3. A ownership conclusion
 
-Coupon success/removal likely belongs to an existing success-message family, but this is not asserted without runtime evidence. Invalid Coupon may create a genuinely different error treatment and must be checked later only if it appears visually different.
-
-No broad screenshot sweep is required now.
-
-## 7. Minimal evidence plan
-
-The next evidence step is intentionally narrow:
+A is now confirmed, not inferred:
 
 ```text
-1. Capture live DOM / computed style for Screenshot A or B as the representative transparent-row family.
-2. Capture live DOM / computed style for Screenshot C as the representative white-rounded family.
-3. Confirm whether A and B share the same class and winning selectors.
-4. Trigger one invalid Coupon error only after the two primary owners are known.
-5. If the invalid error visually matches an existing family, no extra design branch is created.
-6. Coupon applied / removed states need separate capture only if they visibly introduce another treatment.
+Runtime class: .woocommerce-message
+Wrapper: .woocommerce-notices-wrapper
+.wc-forward condition: absent
+Winning visual family: Cart-specific transparent success-message reset
 ```
 
-This avoids making the user manually discover every possible WooCommerce notice before ownership is understood.
+The current Cart-specific selector matches A exactly:
 
-## 8. Design findings, not design decisions
+```css
+body.woocommerce-cart .woocommerce-notices-wrapper > .woocommerce-message:not(:has(.wc-forward)),
+body.woocommerce-cart .woocommerce-message:not(:has(.wc-forward))
+```
 
-The screenshots prove the following defects:
+Therefore the following A properties are intentionally produced by the current Cart Notice block:
 
 ```text
-Family 1 defect:
-- weak hierarchy, excessive empty row space and unclear action composition
-
-Family 2 defect:
-- oversized white rounded surface inconsistent with the Cart page
+- transparent background
+- zero radius
+- no shadow
+- 16px bottom padding
+- flex layout
+- full wrapper width / bottom-divider composition
 ```
 
-They do not approve a replacement design.
+The A defect is not caused by the broad global white rounded Notice rule. It is caused by the currently deployed Cart-specific success-message treatment and its typography / spacing / divider composition.
 
-The earlier quiet-editorial-text direction remains an assistant-authored proposal, not a user-selected solution.
+No replacement treatment is approved by this finding.
 
-## 9. Boundaries
+## 4. B removed-item / Undo capture requirement
+
+B appears visually related to A, but shared DOM ownership is not yet closed.
+
+The next capture must confirm:
+
+```text
+- exact class list
+- parent wrapper
+- presence of .restore-item
+- background / radius / shadow
+- padding / margin
+- display / position
+- exact outerHTML including the native Undo link
+```
+
+The native Restore / Undo lifecycle must remain functional and visible in any future correction.
+
+## 5. Other possible states
+
+Additional WooCommerce states may exist:
+
+```text
+- Coupon applied successfully
+- Coupon removed successfully
+- Invalid Coupon error
+- Restore completion feedback
+- Add-to-cart feedback containing .wc-forward
+```
+
+A broad screenshot sweep is not required.
+
+The evidence order remains:
+
+```text
+1. Close A/B shared-family ownership using B DOM.
+2. Capture C Shipping costs updated DOM.
+3. Trigger one invalid Coupon error only after A/B/C owners are known.
+4. Capture Coupon success/removal separately only if they visibly introduce another treatment.
+5. Present design options only after ownership is complete.
+```
+
+## 6. Design findings, not design decisions
+
+Confirmed defects:
+
+```text
+Family 1:
+- weak hierarchy
+- excessive empty status-row space
+- unclear alignment and action composition
+
+Family 2:
+- oversized white rounded surface inconsistent with the accepted Cart composition
+```
+
+No visual treatment is user-approved. The earlier quiet-editorial-text direction remains an assistant-authored proposal only.
+
+## 7. Boundaries
 
 ```text
 - no source edit
@@ -197,7 +209,6 @@ The earlier quiet-editorial-text direction remains an assistant-authored proposa
 - no template override
 - no plugin addition
 - no version bump
-- no pre-approved replacement design
 - preserve native Restore / Undo behavior
 - preserve native error visibility and lifecycle
 - cancelled FIX4 remains cancelled
