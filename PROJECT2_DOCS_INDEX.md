@@ -62,8 +62,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 54. project2-progress/STEP_4E_B2_R5_E6_B_NOTICE_ATTRIBUTION_AND_SEQUENCE_CORRECTION.md
 55. project2-progress/STEP_4E_B2_R5_E6_B_GROUP5_RESULT_AND_GROUP6_DIRECT_EMPTY_CART.md
 56. project2-progress/STEP_4E_B2_R5_E6_B_GROUP6_RESULT_AND_GROUP7_AJAX_RESPONSIVE_OVERFLOW.md
-57. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-58. project2-progress/PROGRESS_LOG.md
+57. project2-progress/STEP_4E_B2_R5_E6_B_GROUP7_RESULT_AND_R5_E6_C_BACKEND_EDITABILITY.md
+58. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+59. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -132,9 +133,11 @@ R5-E6-B Group 3 Remove / Undo lifecycle：Passed
 R5-E6-B Group 4 Shipping / Change address functional lifecycle：Passed
 R5-E6-B Group 5 checkout navigation：Passed
 R5-E6-B Group 6 direct empty-Cart entry：Passed
+R5-E6-B Group 7 AJAX responsive-overflow regression：Passed
+R5-E6-B complete functional regression：Passed
 Open visual backlog：Cart update success notice + Shipping costs updated notice
 Notice replacement design：Not selected or user-approved
-Current：R5-E6-B Group 7 AJAX responsive-overflow regression
+Current：R5-E6-C backend editability confirmation
 Cart：Not done
 ```
 
@@ -178,17 +181,22 @@ Mobile is governed by `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md`: production-qual
 
 The invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. The retained product-row divider is accepted in the complete desktop and phone composition.
 
-Groups 1–6 functionally pass. Two success-notice visual defects are preserved as an open backlog item. The prior quiet-editorial-text direction was an assistant suggestion, not a user-selected solution. Notice redesign is deferred until the original functional-regression and backend-editability sequence is complete.
+Groups 1–7 and the complete R5-E6-B functional regression pass. Two success-notice visual defects remain as a deferred open backlog item. The prior quiet-editorial-text direction was an assistant suggestion, not a user-selected solution. Notice redesign starts only after backend editability is reconfirmed.
 
 ## Current execution gate
 
-Execute R5-E6-B Group 7 only:
+Execute R5-E6-C only:
 
 ```text
-B12. No horizontal overflow or responsive break after AJAX replacements.
+1. Confirm Cart heading / piece-count / trust copy ownership and editability where designed.
+2. Confirm line-item title, image, URL, price, quantity, variation and subtotal remain WooCommerce-owned.
+3. Confirm product subtitle / secondary copy remains editable through its established backend owner.
+4. Confirm recommendations remain WooCommerce-owned and exclusion / fallback controls remain backend-editable.
+5. Confirm no Cart template override exists and native form / nonce / Coupon / shipping / totals / checkout ownership remains intact.
+6. Confirm no Elementor dependency or new plugin was introduced.
 ```
 
-Do not redesign notices during Group 7. No source edit, deployment, address-form redesign or final binary status decision is authorized during this functional gate.
+Do not redesign notices during R5-E6-C. No source edit, deployment, database/content change or final binary status decision is authorized during this audit.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -199,9 +207,11 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6-B Group 7 AJAX responsive-overflow regression
-→ R5-E6-C backend editability
-→ separate bounded notice visual audit / design / correction
+R5-E6-C backend editability
+→ separate bounded notice runtime ownership audit
+→ present visually reasoned notice options
+→ user selects or approves a direction
+→ bounded notice correction and runtime acceptance
 → final visual revalidation
 → binary Cart decision
 ```
