@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-21  
+Last updated: 2026-07-22  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative Cart read order
@@ -64,8 +64,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 56. project2-progress/STEP_4E_B2_R5_E6_B_GROUP6_RESULT_AND_GROUP7_AJAX_RESPONSIVE_OVERFLOW.md
 57. project2-progress/STEP_4E_B2_R5_E6_B_GROUP7_RESULT_AND_R5_E6_C_BACKEND_EDITABILITY.md
 58. project2-progress/STEP_4E_B2_R5_E6_C_BACKEND_EDITABILITY_RESULT_AND_NOTICE_AUDIT.md
-59. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-60. project2-progress/PROGRESS_LOG.md
+59. project2-progress/STEP_4E_B2_R5_E6_N1_A_NOTICE_CSS_SOURCE_OWNERSHIP_AUDIT.md
+60. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+61. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -137,9 +138,13 @@ R5-E6-B Group 6 direct empty-Cart entry：Passed
 R5-E6-B Group 7 AJAX responsive-overflow regression：Passed
 R5-E6-B complete functional regression：Passed
 R5-E6-C backend editability confirmation：Passed
+R5-E6-N1-A current Notice CSS source ownership audit：Complete
+Broad global white rounded WooCommerce Notice owner：Confirmed
+Cart-specific transparent reset scope：`.woocommerce-message` only
+Cart-specific `.woocommerce-info` reset：Absent
 Open visual backlog：Cart update success notice + Shipping costs updated notice
 Notice replacement design：Not selected or user-approved
-Current：R5-E6-N1 exact Cart notice runtime/source ownership audit
+Current：R5-E6-N1-B live Notice DOM / computed-style capture
 Cart：Not done
 ```
 
@@ -187,21 +192,22 @@ Groups 1–7 and the complete R5-E6-B functional regression pass. R5-E6-C confir
 
 Two success-notice visual defects remain open. No replacement design has been selected or approved. The earlier quiet-editorial-text direction remains an assistant suggestion only.
 
+N1-A confirms a broad global `.woocommerce-error, .woocommerce-info, .woocommerce-message` rule that paints a white 18px-rounded, padded, shadowed surface. The later Cart-specific reset applies only to `.woocommerce-message:not(:has(.wc-forward))`; it does not reset `.woocommerce-info`. This is sufficient to identify a concrete source-level class gap, but not sufficient to assign the exact live class of either reported notice without runtime DOM evidence.
+
 ## Current execution gate
 
-Execute R5-E6-N1 only:
+Execute R5-E6-N1-B only:
 
 ```text
-1. Inspect exact live DOM class, wrapper and placement for Cart update success feedback.
-2. Inspect exact live DOM class, wrapper and placement for Shipping costs updated feedback.
-3. Identify the current CSS rule(s) producing the large white rounded surface.
-4. Determine whether both states share the same owner before and after AJAX replacement.
-5. Check whether Coupon success/removal and restored-item notices share that owner.
-6. Preserve native errors, Undo/Restore links and WooCommerce lifecycle ownership.
-7. Present visually reasoned options only after ownership is proven.
+1. Capture the exact live element tag, class list and parent wrapper for Cart update success feedback.
+2. Capture the same data for Shipping costs updated feedback.
+3. Record computed background, radius, shadow, padding, display and position.
+4. Record whether `.wc-forward` or `.restore-item` exists inside each notice.
+5. Classify Coupon success/removal, removed-item Restore and invalid-Coupon error where available.
+6. Do not apply CSS or JavaScript modifications during capture.
 ```
 
-No source edit, deployment, notice redesign or final binary status decision is authorized during N1.
+No source edit, deployment, notice redesign or final binary status decision is authorized during N1-B.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -212,7 +218,8 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6-N1 exact notice runtime/source ownership audit
+R5-E6-N1-B live Notice DOM / computed-style capture
+→ finalize exact runtime/source ownership map
 → present multiple visually reasoned options
 → user selects or approves a direction
 → bounded notice correction and exact artifact validation
