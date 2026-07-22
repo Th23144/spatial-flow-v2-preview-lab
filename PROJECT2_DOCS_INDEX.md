@@ -63,8 +63,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 55. project2-progress/STEP_4E_B2_R5_E6_B_GROUP5_RESULT_AND_GROUP6_DIRECT_EMPTY_CART.md
 56. project2-progress/STEP_4E_B2_R5_E6_B_GROUP6_RESULT_AND_GROUP7_AJAX_RESPONSIVE_OVERFLOW.md
 57. project2-progress/STEP_4E_B2_R5_E6_B_GROUP7_RESULT_AND_R5_E6_C_BACKEND_EDITABILITY.md
-58. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-59. project2-progress/PROGRESS_LOG.md
+58. project2-progress/STEP_4E_B2_R5_E6_C_BACKEND_EDITABILITY_RESULT_AND_NOTICE_AUDIT.md
+59. project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
+60. project2-progress/PROGRESS_LOG.md
 ```
 
 ## Page-status rule
@@ -135,9 +136,10 @@ R5-E6-B Group 5 checkout navigation：Passed
 R5-E6-B Group 6 direct empty-Cart entry：Passed
 R5-E6-B Group 7 AJAX responsive-overflow regression：Passed
 R5-E6-B complete functional regression：Passed
+R5-E6-C backend editability confirmation：Passed
 Open visual backlog：Cart update success notice + Shipping costs updated notice
 Notice replacement design：Not selected or user-approved
-Current：R5-E6-C backend editability confirmation
+Current：R5-E6-N1 exact Cart notice runtime/source ownership audit
 Cart：Not done
 ```
 
@@ -181,22 +183,25 @@ Mobile is governed by `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md`: production-qual
 
 The invisible-frame defect was conclusively traced to a 2% `box-shadow` on `table.shop_table.cart`. S2-G removed it in place and permanent runtime acceptance passed. The retained product-row divider is accepted in the complete desktop and phone composition.
 
-Groups 1–7 and the complete R5-E6-B functional regression pass. Two success-notice visual defects remain as a deferred open backlog item. The prior quiet-editorial-text direction was an assistant suggestion, not a user-selected solution. Notice redesign starts only after backend editability is reconfirmed.
+Groups 1–7 and the complete R5-E6-B functional regression pass. R5-E6-C confirms that Cart editorial controls remain available in the Customizer, product subtitle and recommendation-exclusion controls remain available in WooCommerce product data, recommendations remain WooCommerce-owned, native Cart/template ownership remains intact, and no Elementor or new-plugin dependency was introduced.
+
+Two success-notice visual defects remain open. No replacement design has been selected or approved. The earlier quiet-editorial-text direction remains an assistant suggestion only.
 
 ## Current execution gate
 
-Execute R5-E6-C only:
+Execute R5-E6-N1 only:
 
 ```text
-1. Confirm Cart heading / piece-count / trust copy ownership and editability where designed.
-2. Confirm line-item title, image, URL, price, quantity, variation and subtotal remain WooCommerce-owned.
-3. Confirm product subtitle / secondary copy remains editable through its established backend owner.
-4. Confirm recommendations remain WooCommerce-owned and exclusion / fallback controls remain backend-editable.
-5. Confirm no Cart template override exists and native form / nonce / Coupon / shipping / totals / checkout ownership remains intact.
-6. Confirm no Elementor dependency or new plugin was introduced.
+1. Inspect exact live DOM class, wrapper and placement for Cart update success feedback.
+2. Inspect exact live DOM class, wrapper and placement for Shipping costs updated feedback.
+3. Identify the current CSS rule(s) producing the large white rounded surface.
+4. Determine whether both states share the same owner before and after AJAX replacement.
+5. Check whether Coupon success/removal and restored-item notices share that owner.
+6. Preserve native errors, Undo/Restore links and WooCommerce lifecycle ownership.
+7. Present visually reasoned options only after ownership is proven.
 ```
 
-Do not redesign notices during R5-E6-C. No source edit, deployment, database/content change or final binary status decision is authorized during this audit.
+No source edit, deployment, notice redesign or final binary status decision is authorized during N1.
 
 Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 
@@ -207,11 +212,11 @@ Do not execute the cancelled FIX4 and do not create/deploy SHA256:
 ## Remaining sequence
 
 ```text
-R5-E6-C backend editability
-→ separate bounded notice runtime ownership audit
-→ present visually reasoned notice options
+R5-E6-N1 exact notice runtime/source ownership audit
+→ present multiple visually reasoned options
 → user selects or approves a direction
-→ bounded notice correction and runtime acceptance
-→ final visual revalidation
+→ bounded notice correction and exact artifact validation
+→ runtime functional and visual acceptance
+→ final desktop and phone visual revalidation
 → binary Cart decision
 ```
