@@ -1,6 +1,6 @@
 # Project 2 · Resume Index
 
-Last updated: 2026-07-13  
+Last updated: 2026-07-29  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 Use this as the top-level entry point when resuming Project 2 from a new ChatGPT window.
@@ -8,19 +8,16 @@ Use this as the top-level entry point when resuming Project 2 from a new ChatGPT
 ## Read these first
 
 ```text
-PROJECT2_RESUME_INDEX.md
-PROJECT2_DOCS_INDEX.md
-PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-PROJECT2_CSS_MAINTENANCE_POLICY.md
-project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
-project2-progress/STEP_4E_B_MANUAL_EXECUTION.md
-project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-project2-progress/STEP_4E_B2_R5_C4_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_B5_VALIDATION.md
-project2-progress/STEP_4E_B2_R5_CART_CSS_CONSOLIDATION_PLAN.md
+1. PROJECT2_RESUME_INDEX.md
+2. PROJECT2_DOCS_INDEX.md
+3. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+4. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+5. PROJECT2_CSS_MAINTENANCE_POLICY.md
+6. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
+7. project2-progress/STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md
+8. project2-progress/CART_DEFERRED_POLISH_BACKLOG.md
+9. preview/spatial-flow-checkout-v1.html
 ```
-
-`PROJECT2_DOCS_INDEX.md` is the synchronized authority for the complete read order and for identifying older records that have been superseded.
 
 ## Binary page-status rule
 
@@ -36,98 +33,98 @@ A page cannot become `Completed 1:1` until implementation, backend editability, 
 ## Current completed pages
 
 ```text
-Main-site Header：Completed 1:1
-Main-site Footer：Completed 1:1
-Shop archive：Completed 1:1
-Single Product：Completed 1:1
+Main-site Header: Completed 1:1
+Main-site Footer: Completed 1:1
+Shop archive: Completed 1:1
+Single Product: Completed 1:1
+Cart: Completed 1:1
 ```
 
-Shop archive and Single Product still have a scheduled later mobile aesthetic re-audit. A concrete defect reopens the relevant page.
+## Cart closure
+
+Authoritative closure document:
+
+```text
+project2-progress/STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md
+```
+
+Final deployed Cart artifacts:
+
+```text
+functions.php
+SHA256: 5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca6de7a640b705d5e75f9ef00b
+Version: 2.7.8
+
+assets/js/spatial-flow.js
+SHA256: 7442ee92167ae383b933c6db0281f14ea56a75733339818c3e4858d77d52651b
+
+assets/css/spatial-flow.css
+Deployed from: spatial-flow(43).css
+Size: 703,035 bytes
+Logical lines: 23,543
+SHA256: 79ab7e08308903f0e1693076b4817402515ada52944c575c1e827324cc6161fd
+Braces: 3,653 / 3,653
+Comments: 338 / 338
+CSS parser errors: 0
+```
+
+Cart closure includes:
+
+```text
+- strict desktop composition passed
+- 390px and 360px mobile acceptance passed
+- complete native Cart functional regression passed
+- backend editability passed
+- generic message / info / error Notice component coverage passed
+- invisible table-frame defect resolved
+- native WooCommerce template and lifecycle ownership preserved
+```
+
+## Deferred Cart polish
+
+One non-blocking mobile Notice polish item remains open:
+
+```text
+Approved future visible copy: Item removed. Undo?
+Status: approved direction / not implemented
+Record: project2-progress/CART_DEFERRED_POLISH_BACKLOG.md
+```
+
+Do not represent this as current runtime behavior. It does not reopen Cart unless a concrete functional or production-blocking regression is found.
 
 ## Current active page
 
 ```text
-Page：Cart
-Status：Not done
-Phase：Step 4E-B2-R5-D final acceptance
-Current executable step：R5-D2-A active Customizer editability test
+Page: Checkout
+Status: Not done
+Current phase: begin current Checkout 1:1 source/state audit
+Static reference: preview/spatial-flow-checkout-v1.html
 ```
 
-## Cart sequence completed
+SAFE5 functionality and earlier Checkout styling exist, but historical work does not count as current page completion.
+
+## Current execution order
 
 ```text
-Step 4E-A audit：Complete
-Step 4E-B0 exact manual map：Complete
-Step 4E-B1-A through B1-H：Passed
-Step 4E-B2-A1 deletion-first attempt：Rejected and rolled back exactly
-Step 4E-B2-R1 dependency re-audit：Complete
-Step 4E-B2-R2 / FIX1 / FIX2 / FIX3：Historical temporary takeover complete
-Step 4E-B2-R4 native functional regression：Passed
-R5-A1 visual-gap and ownership audit：Complete
-R5-B canonical replacement and B1–B5 validation：Passed
-R5-C1 through R5-C4 historical Cart CSS deletion：Passed / closed
-R5-D1 exact source and ownership gate：Passed
-```
-
-## Current exact code baselines
-
-### PHP
-
-```text
-functions.php
-Uploaded name: functions(12).php
-Version: 2.7.8
-Size: 550,884 bytes
-Logical lines: 10,256
-SHA256: dbd7cae7cddf3fe812eaadba2b1fe452bcea7566fc4af21a91aa44774c74404d
-PHP syntax: Passed
-Braces: 1,200 / 1,200
-```
-
-### CSS
-
-```text
-assets/css/spatial-flow.css
-Uploaded name: spatial-flow(18).css
-Size: 695,346 bytes
-Logical lines: 23,305
-SHA256: 316874b203f8ce4104a1a98751f9b5fd63034fb50b0cbeb9aa0c4d2d5711020e
-Braces: 3,619 / 3,619
-Comments: 340 / 340
-CSS parser errors: 0
-```
-
-The scheduled legacy Cart Visual 1, 2-D, 2-E and 3 ranges are all removed. Canonical Cart and Cart Notice remain.
-
-## Current operation
-
-Follow only:
-
-```text
-project2-progress/STEP_4E_B2_R5_D_FINAL_ACCEPTANCE.md
-```
-
-Current operation is a reversible backend-editability test. Do not edit PHP, CSS, JavaScript, templates, URLs, product selectors or version 2.7.8.
-
-## Remaining Cart sequence
-
-```text
-R5-D2-A active Customizer editability
-→ R5-D2-B product-level Cart subtitle editability
-→ R5-D2-C dynamic recommendation ownership
-→ R5-D3 strict desktop and production-quality mobile visual acceptance
-→ R5-D4 final native Cart regression
-→ R5-D5 binary Cart status decision
+Checkout current 1:1 audit, implementation and closure
+→ Thank You current 1:1 implementation / closure
+→ Home
+→ Wishlist / Track Order / Search / 404
+→ About / Services / FAQ / Contact / policy pages
+→ Blog home / issue / article and blog shell
 ```
 
 ## Project rules that remain active
 
 ```text
-- no ZIP or blind complete-file replacement
-- no Cart template override
-- no routine append-only Cart CSS patching
+- preserve native WooCommerce behavior, data, payment, orders, emails, URLs and database ownership
+- preserve backend editability
+- no new plugin unless explicitly approved
+- no Elementor dependency
+- no Cart or Checkout template override without a proven necessity and explicit approval
 - use small bounded and independently reversible operations
-- preserve WooCommerce native behavior and backend editability
-- do not copy weak static mobile decisions blindly
-- do not mark Cart Completed 1:1 before the complete R5-D gate passes
+- prefer exact in-place replacement over append-only CSS
+- do not execute cancelled FIX4
+- version remains 2.7.8 until explicitly changed
+- only ask the user to choose at genuine visual, operational or business decision points
 ```
