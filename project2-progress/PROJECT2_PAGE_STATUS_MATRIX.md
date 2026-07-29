@@ -1,6 +1,6 @@
 # Project 2 · Page Status Matrix
 
-Last updated: 2026-07-10
+Last updated: 2026-07-29
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Purpose
@@ -65,8 +65,8 @@ preview/spatial-flow-blog-article-v1.html
 | Home | `preview/spatial-flow-v1.html` | Not done | Earlier work does not count as current 1:1 completion. |
 | Shop archive | `preview/spatial-flow-shop-v1.html` | Completed 1:1 | Desktop/mobile controlled rebase, Hero, metadata, filters/sort, dynamic Editor’s Pick, product grid, pagination, closing note, regression, and backend editability passed. |
 | Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Hero, Gallery, Summary, options, Product Attributes, The Piece, Related Products, add-to-cart feedback, desktop/mobile regression, backend mappings, and controlled CSS cleanup passed. |
-| Cart | `preview/spatial-flow-cart-v1.html` | Not done | Current active page. `Step 4E-A` is only the audit entry point. |
-| Checkout | `preview/spatial-flow-checkout-v1.html` | Not done | SAFE5 functionality exists, but the page has not completed the current 1:1 acceptance pass. |
+| Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict desktop composition, 390px/360px mobile review, complete native functional regression, backend editability, Notice component coverage, invisible-frame removal and final closure passed. Authoritative closure: `STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md`. |
+| Checkout | `preview/spatial-flow-checkout-v1.html` | Not done | SAFE5 functionality exists, but the page has not completed the current 1:1 acceptance pass. Current next mainline page. |
 | Thank You | `preview/spatial-flow-thank-you-v1.html` | Not done | Earlier implementation does not count as current 1:1 completion. |
 
 ## 3. Account / customer utility pages
@@ -106,6 +106,7 @@ Completed 1:1:
 - Main-site Footer
 - Shop archive
 - Single Product
+- Cart
 ```
 
 All other pages and page families are currently:
@@ -114,7 +115,32 @@ All other pages and page families are currently:
 Not done
 ```
 
-## 7. Functional modules do not change page status
+## 7. Cart closure summary
+
+```text
+R5-E1 exact source/state audit: Complete
+R5-E2 synchronized live counts: Passed
+R5-E3 empty-Cart parity: Passed
+R5-E4 strict geometry and recommendation rebase: Passed
+R5-E5 invisible-frame owner: confirmed as table.shop_table.cart 2% box-shadow
+R5-E5-S2-G invisible-frame removal: Passed
+R5-E6-A desktop / 390px / 360px visual acceptance: Passed
+R5-E6-B complete functional regression: Passed
+R5-E6-C backend editability: Passed
+N2-C Cart Notice message / info / error component coverage: Passed
+Final 1366-width full composition: Passed
+Cart binary decision: Completed 1:1
+```
+
+Deferred non-blocking mobile Notice polish remains open in:
+
+```text
+project2-progress/CART_DEFERRED_POLISH_BACKLOG.md
+```
+
+It must not be represented as implemented and does not change the completed Cart status unless a concrete regression is found.
+
+## 8. Functional modules do not change page status
 
 The following may be completed as functions, but they do not make an unfinished page count as Completed 1:1:
 
@@ -129,12 +155,10 @@ The following may be completed as functions, but they do not make an unfinished 
 - Search separation / mobile-menu / navigation fixes
 ```
 
-## 8. Current execution order
+## 9. Current execution order
 
 ```text
-Cart audit and controlled 1:1 implementation
-→ Cart regression and closure
-→ Checkout current 1:1 implementation / closure
+Checkout current 1:1 audit, implementation and closure
 → Thank You current 1:1 implementation / closure
 → Home
 → Wishlist / Track Order / Search / 404
@@ -144,7 +168,27 @@ Cart audit and controlled 1:1 implementation
 
 The assistant should continue this sequence automatically and only ask the user to choose at genuine visual, operational, or business decision points.
 
-## 9. Hard boundary
+## 10. Current exact deployed Cart baselines
+
+```text
+functions.php
+SHA256: 5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca6de7a640b705d5e75f9ef00b
+Version: 2.7.8
+
+assets/js/spatial-flow.js
+SHA256: 7442ee92167ae383b933c6db0281f14ea56a75733339818c3e4858d77d52651b
+
+assets/css/spatial-flow.css
+Deployed from: spatial-flow(43).css
+Size: 703,035 bytes
+Logical lines: 23,543
+SHA256: 79ab7e08308903f0e1693076b4817402515ada52944c575c1e827324cc6161fd
+Braces: 3,653 / 3,653
+Comments: 338 / 338
+CSS parser errors: 0
+```
+
+## 11. Hard boundary
 
 ```text
 - Backend editability must be preserved.
