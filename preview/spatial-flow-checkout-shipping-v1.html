@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout · Shipping — Spatial Flow</title>
+  <meta name="description" content="Spatial Flow static Checkout reference — Step 02 Shipping." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="spatial-flow-checkout-flow-v1.css" />
+</head>
+<body class="woocommerce-checkout checkout-step-shipping">
+  <div class="masthead-strip-v1">
+    <div>Volume I · Issue 03 · Spring 2026</div>
+    <div class="center">A Journal of Rooms, Rituals &amp; Quiet Objects</div>
+    <div class="right"><span></span>Free shipping over $80 worldwide</div>
+  </div>
+
+  <header class="site-header-v1">
+    <nav class="primary" aria-label="Primary navigation">
+      <ul>
+        <li><a href="spatial-flow-shop-v1.html" class="current">The Index</a></li>
+        <li><a href="spatial-flow-journal-v1.html">The Journal</a></li>
+        <li><a href="spatial-flow-services-v1.html">Services</a></li>
+        <li><a href="spatial-flow-about-v1.html">About Us</a></li>
+      </ul>
+    </nav>
+
+    <a href="spatial-flow-v1.html" class="wordmark">
+      SPATIAL <em>FLOW</em>
+      <span class="sub">Est. 2026 · Est. in quiet rooms</span>
+    </a>
+
+    <nav class="utilities" aria-label="Utilities">
+      <a href="spatial-flow-search-v1.html">Search</a>
+      <a href="spatial-flow-wishlist-v1.html">Saved</a>
+      <a href="spatial-flow-cart-v1.html" class="bag">Bag <sup>(3)</sup></a>
+    </nav>
+  </header>
+
+  <nav class="woocommerce-breadcrumb" aria-label="Breadcrumb">
+    <a href="spatial-flow-v1.html">Home</a>
+    <span class="sep">/</span>
+    <a href="spatial-flow-cart-v1.html">Your Bag</a>
+    <span class="sep">/</span>
+    <span class="here">Checkout · Shipping</span>
+  </nav>
+
+  <section class="checkout-intro">
+    <div>
+      <div class="checkout-kicker">Secure checkout · Step 02 of 04</div>
+      <h1 class="checkout-title">Choose the <em>journey</em>.</h1>
+    </div>
+
+    <div>
+      <p class="checkout-lede">
+        Select the delivery pace that fits this order. The final amount updates before payment begins.
+      </p>
+
+      <div class="checkout-steps" aria-label="Checkout progress">
+        <a class="checkout-step is-complete" data-step="01" href="spatial-flow-checkout-v1.html">Address</a>
+        <span class="checkout-step is-active" data-step="02">Shipping</span>
+        <span class="checkout-step" data-step="03">Payment</span>
+        <span class="checkout-step" data-step="04">Confirmed</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="checkout-shell">
+    <form class="checkout-main" action="#" method="get" data-shipping-form>
+      <section class="checkout-panel">
+        <div class="panel-head">
+          <div class="panel-no">Delivery summary</div>
+          <h2>Before it <em>leaves</em>.</h2>
+        </div>
+
+        <div class="address-summary">
+          <div class="summary-label">Deliver to</div>
+          <div class="summary-copy-block" data-address-output>
+            Alex Morgan<br />123 Quiet Way, Apt 4B<br />Brooklyn, NY 11201<br />United States
+          </div>
+          <a class="edit-link" href="spatial-flow-checkout-v1.html">Edit →</a>
+        </div>
+      </section>
+
+      <section class="checkout-panel">
+        <div class="panel-head">
+          <div class="panel-no">Shipping · 02</div>
+          <h2>How should it <em>travel</em>?</h2>
+        </div>
+        <p class="panel-note">
+          These options are static interaction examples. The live page will later show only methods returned by WooCommerce for the validated address and cart.
+        </p>
+
+        <div class="shipping-options" role="radiogroup" aria-label="Shipping methods">
+          <label
+            class="shipping-option"
+            data-shipping-option
+            data-method="Standard tracked delivery"
+            data-price="0"
+            data-estimate="5–7 business days"
+          >
+            <input type="radio" name="shipping_method" value="standard" checked />
+            <span>
+              <strong>Standard tracked delivery</strong>
+              <span>Estimated arrival in 5–7 business days. Tracking is emailed when the order leaves the studio.</span>
+            </span>
+            <span class="price">Free</span>
+          </label>
+
+          <label
+            class="shipping-option"
+            data-shipping-option
+            data-method="Priority tracked delivery"
+            data-price="18"
+            data-estimate="2–4 business days"
+          >
+            <input type="radio" name="shipping_method" value="priority" />
+            <span>
+              <strong>Priority tracked delivery</strong>
+              <span>Estimated arrival in 2–4 business days after dispatch, with priority carrier handling.</span>
+            </span>
+            <span class="price">$18.00</span>
+          </label>
+
+          <label
+            class="shipping-option"
+            data-shipping-option
+            data-method="Studio collection"
+            data-price="0"
+            data-estimate="By appointment"
+          >
+            <input type="radio" name="shipping_method" value="pickup" />
+            <span>
+              <strong>Studio collection</strong>
+              <span>Reference-only pickup option. The live method must remain hidden unless the store genuinely supports collection.</span>
+            </span>
+            <span class="price">Free</span>
+          </label>
+        </div>
+      </section>
+
+      <div class="checkout-actions">
+        <a class="checkout-button checkout-button--secondary" href="spatial-flow-checkout-v1.html">← Back to Address</a>
+        <button class="checkout-button checkout-button--primary" type="submit">Continue to Payment →</button>
+      </div>
+
+      <p class="prototype-note">
+        Your selected shipping example is stored in this browser tab. Step 03 will be connected in the next bounded phase rather than creating a dead link now.
+      </p>
+    </form>
+
+    <aside class="order-summary" aria-label="Order summary">
+      <div class="order-summary-head">
+        <h3>Order summary</h3>
+        <a href="spatial-flow-cart-v1.html">Edit bag →</a>
+      </div>
+
+      <div class="summary-items">
+        <article class="summary-item">
+          <div class="summary-thumb"></div>
+          <div class="summary-copy">
+            <h4>Ash Quartz · No. 07</h4>
+            <div class="meta">Bracelet · Size M · Qty 1</div>
+          </div>
+          <div class="summary-price">$42.00</div>
+        </article>
+
+        <article class="summary-item">
+          <div class="summary-thumb th-2"></div>
+          <div class="summary-copy">
+            <h4>Bluestone Mala</h4>
+            <div class="meta">Bracelet · Size S · Qty 1</div>
+          </div>
+          <div class="summary-price">$42.00</div>
+        </article>
+
+        <article class="summary-item">
+          <div class="summary-thumb th-3"></div>
+          <div class="summary-copy">
+            <h4>Tussore Throw — Clay</h4>
+            <div class="meta">Textile · One size · Qty 1</div>
+          </div>
+          <div class="summary-price">$245.00</div>
+        </article>
+      </div>
+
+      <div class="summary-totals">
+        <div class="summary-row"><span class="label">Subtotal</span><span class="value">$329.00</span></div>
+        <div class="summary-row"><span class="label">Shipping</span><span class="value" data-shipping-value>Free</span></div>
+        <div class="summary-row"><span class="label">Tax</span><span class="value">Calculated later</span></div>
+        <div class="summary-row total"><span class="label">Estimated total</span><span class="value" data-total-value>$329.00</span></div>
+      </div>
+
+      <p class="summary-note">
+        The selected method and total remain visible before the customer enters the payment step.
+      </p>
+
+      <div class="summary-trust">
+        <div>No payment is attempted in Step 02</div>
+        <div>Live rates will remain WooCommerce-controlled</div>
+        <div>Address editing returns to the existing Step 01 page</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer-v1">
+    <div class="brand-mark">
+      SPATIAL <em>FLOW</em>
+      <span class="sub">A Journal of Rooms, Rituals &amp; Quiet Objects · Est. 2026</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="spatial-flow-v1.html">Home</a>
+      <a href="spatial-flow-shop-v1.html">Shop</a>
+      <a href="spatial-flow-cart-v1.html">Your Bag</a>
+      <a href="spatial-flow-faq-v1.html">FAQ</a>
+      <a href="spatial-flow-contact-v1.html">Contact</a>
+    </nav>
+  </footer>
+
+  <div class="checkout-notice" role="status" aria-live="polite" data-checkout-notice></div>
+  <script src="spatial-flow-checkout-flow-v1.js"></script>
+</body>
+</html>
