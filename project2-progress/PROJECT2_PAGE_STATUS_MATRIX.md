@@ -1,6 +1,6 @@
 # Project 2 · Page Status Matrix
 
-Last updated: 2026-07-29
+Last updated: 2026-07-30
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Purpose
@@ -35,6 +35,7 @@ preview/spatial-flow-product-v1.html
 preview/spatial-flow-cart-v1.html
 preview/spatial-flow-checkout-v1.html
 preview/spatial-flow-thank-you-v1.html
+preview/checkout-v2/index.html
 preview/spatial-flow-account-v1.html
 preview/spatial-flow-wishlist-v1.html
 preview/spatial-flow-track-order-v1.html
@@ -49,6 +50,8 @@ preview/spatial-flow-blog-home-v1.html
 preview/spatial-flow-blog-issue-v1.html
 preview/spatial-flow-blog-article-v1.html
 ```
+
+`preview/spatial-flow-checkout-v1.html` and `preview/spatial-flow-thank-you-v1.html` are historical comparison references. The new authoritative Checkout reference family is being built under `preview/checkout-v2/`.
 
 ## 1. Shared global shell
 
@@ -66,8 +69,8 @@ preview/spatial-flow-blog-article-v1.html
 | Shop archive | `preview/spatial-flow-shop-v1.html` | Completed 1:1 | Desktop/mobile controlled rebase, Hero, metadata, filters/sort, dynamic Editor’s Pick, product grid, pagination, closing note, regression, and backend editability passed. |
 | Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Hero, Gallery, Summary, options, Product Attributes, The Piece, Related Products, add-to-cart feedback, desktop/mobile regression, backend mappings, and controlled CSS cleanup passed. |
 | Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict desktop composition, 390px/360px mobile review, complete native functional regression, backend editability, Notice component coverage, invisible-frame removal and final closure passed. Authoritative closure: `STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md`. |
-| Checkout | `preview/spatial-flow-checkout-v1.html` | Not done | SAFE5 functionality exists, but the page has not completed the current 1:1 acceptance pass. Current next mainline page. |
-| Thank You | `preview/spatial-flow-thank-you-v1.html` | Not done | Earlier implementation does not count as current 1:1 completion. |
+| Checkout | `preview/checkout-v2/index.html` | Not done | Current work is the interactive Checkout V2 reference system. Live PHP/JS/CartFlows/gateway audit and implementation remain paused until the full clickable reference family is approved. Historical comparison: `preview/spatial-flow-checkout-v1.html`. |
+| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` plus planned Checkout V2 Step 04 states | Not done | Step 04 is now defined as Order Confirmed / Thank You / Receipt or an accurate pending result, not a pre-payment Review step. Current result references are not yet complete. |
 
 ## 3. Account / customer utility pages
 
@@ -140,7 +143,45 @@ project2-progress/CART_DEFERRED_POLISH_BACKLOG.md
 
 It must not be represented as implemented and does not change the completed Cart status unless a concrete regression is found.
 
-## 8. Functional modules do not change page status
+## 8. Checkout V2 reference-system status
+
+Approved semantics:
+
+```text
+01 Contact / Address
+02 Shipping
+03 Payment
+04 Order Confirmed / Thank You / Receipt
+```
+
+Approved presentation and payment boundaries:
+
+```text
+- main desktop Checkout is two columns only
+- left workspace is approximately 7fr
+- right sticky Order Summary is approximately 5fr
+- Deliver-to and Shipping summaries are inside the left workspace
+- payment methods are dynamic; unconfirmed future methods are not hardcoded
+- Cryptocurrency is the only confirmed active method at this planning point
+- Cryptocurrency uses a dedicated Step-03 workspace rather than a long inline accordion
+- Step 04 never asks the customer to pay or confirm again
+```
+
+Current reference files:
+
+```text
+preview/checkout-v2/index.html
+preview/checkout-v2/assets/checkout-v2.css
+preview/checkout-v2/assets/checkout-v2.js
+```
+
+Authoritative plan:
+
+```text
+project2-progress/STEP_4F_CHECKOUT_V2_REFERENCE_SYSTEM_EXECUTION_PLAN.md
+```
+
+## 9. Functional modules do not change page status
 
 The following may be completed as functions, but they do not make an unfinished page count as Completed 1:1:
 
@@ -155,11 +196,12 @@ The following may be completed as functions, but they do not make an unfinished 
 - Search separation / mobile-menu / navigation fixes
 ```
 
-## 9. Current execution order
+## 10. Current execution order
 
 ```text
-Checkout current 1:1 audit, implementation and closure
-→ Thank You current 1:1 implementation / closure
+Complete and approve Checkout V2 interactive reference system
+→ Checkout live ownership audit, implementation and closure
+→ Thank You / result-system implementation and closure
 → Home
 → Wishlist / Track Order / Search / 404
 → About / Services / FAQ / Contact / policy pages
@@ -168,7 +210,7 @@ Checkout current 1:1 audit, implementation and closure
 
 The assistant should continue this sequence automatically and only ask the user to choose at genuine visual, operational, or business decision points.
 
-## 10. Current exact deployed Cart baselines
+## 11. Current exact deployed Cart baselines
 
 ```text
 functions.php
@@ -188,13 +230,15 @@ Comments: 338 / 338
 CSS parser errors: 0
 ```
 
-## 11. Hard boundary
+## 12. Hard boundary
 
 ```text
 - Backend editability must be preserved.
 - Existing WordPress/WooCommerce functions are the source of truth.
 - Do not hardcode products, prices, totals, shipping methods, coupon values, URLs, menus, forms, or operational copy when dynamic/editable sources exist.
-- Current local files uploaded by the user are the only implementation baseline.
-- Inspect file size, line count, structure, and static reference before editing.
+- Current local files uploaded by the user are the only live implementation baseline.
+- Inspect file size, line count, structure, and static reference before editing live source.
 - Prefer precise range replacement over whole-file replacement or endless append-only CSS.
+- Do not modify the real Checkout PHP, JavaScript, CartFlows, gateways or broad CSS while the V2 reference system remains incomplete.
+- Do not overwrite or delete historical Checkout V1 and Thank You V1 preview files.
 ```
