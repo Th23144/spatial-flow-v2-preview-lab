@@ -18,8 +18,8 @@ Use this as the top-level entry point when resuming Project 2 from a new ChatGPT
 8. project2-progress/CART_DEFERRED_POLISH_BACKLOG.md
 9. project2-progress/STEP_4F_CHECKOUT_PAYMENT_ARCHITECTURE_DECISION_PROPOSAL.md
 10. project2-progress/STEP_4F_PAYMENT_STEP_03_LAYOUT_AND_CRYPTO_SUBFLOW_CORRECTION.md
-11. project2-progress/STEP_4F_CHECKOUT_V2_REFERENCE_SYSTEM_EXECUTION_PLAN.md
-12. preview/checkout-v2/index.html
+11. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+12. preview/spatial-flow-checkout-v1.html
 ```
 
 ## Binary page-status rule
@@ -71,21 +71,7 @@ Comments: 338 / 338
 CSS parser errors: 0
 ```
 
-Cart closure includes:
-
-```text
-- strict desktop composition passed
-- 390px and 360px mobile acceptance passed
-- complete native Cart functional regression passed
-- backend editability passed
-- generic message / info / error Notice component coverage passed
-- invisible table-frame defect resolved
-- native WooCommerce template and lifecycle ownership preserved
-```
-
 ## Deferred Cart polish
-
-One non-blocking mobile Notice polish item remains open:
 
 ```text
 Approved future visible copy: Item removed. Undo?
@@ -93,21 +79,41 @@ Status: approved direction / not implemented
 Record: project2-progress/CART_DEFERRED_POLISH_BACKLOG.md
 ```
 
-Do not represent this as current runtime behavior. It does not reopen Cart unless a concrete functional or production-blocking regression is found.
+This does not reopen Cart unless a concrete functional or production-blocking regression is found.
 
 ## Current active page
 
 ```text
 Page: Checkout
 Status: Not done
-Current phase: build and approve the interactive Checkout V2 HTML reference system
-Current executable group: Phase V2-1 shared shell and interactive reference hub
-Reference entry: preview/checkout-v2/index.html
-Historical reference only: preview/spatial-flow-checkout-v1.html
-Live Checkout audit: paused until the V2 reference system is approved
+Current phase: complete the linked Checkout static page sequence inside the existing preview/ directory
+Current exact step: Phase S1 — correct spatial-flow-checkout-v1.html into a genuine Step 01 Contact / Address page
+Live Checkout audit: paused until the linked static flow is approved
 ```
 
-Architecture already approved:
+Terminology lock:
+
+```text
+V2 = the repository / Project 2 program:
+Th23144/spatial-flow-v2-preview-lab
+
+V2 does not mean a separate checkout-v2 directory or a new Checkout product version.
+```
+
+The mistaken `preview/checkout-v2/` experiment was removed.
+
+## Approved linked Checkout sequence
+
+```text
+preview/spatial-flow-cart-v1.html
+→ preview/spatial-flow-checkout-v1.html
+→ preview/spatial-flow-checkout-shipping-v1.html
+→ preview/spatial-flow-checkout-payment-v1.html
+→ Step-03 Crypto subpages
+→ preview/spatial-flow-thank-you-v1.html
+```
+
+Business semantics:
 
 ```text
 01 Contact / Address
@@ -122,31 +128,30 @@ Payment-method rule:
 - Cryptocurrency is the only confirmed active method at this planning point.
 - Future gateways remain dynamic and must not be hardcoded as current production methods.
 - Main Step 03 desktop uses two columns only.
-- Cryptocurrency uses a dedicated Step-03 workspace, not a long inline accordion.
+- Cryptocurrency uses dedicated Step-03 pages, not a long inline accordion.
 ```
 
-## Current Checkout V2 build order
+## Current static-flow build order
 
 ```text
-Phase V2-1 shared shell and interactive hub
-→ Phase V2-2 Contact / Address
-→ Phase V2-3 Shipping
-→ Phase V2-4 Payment-method shell
-→ Phase V2-5 Crypto asset/network selection
-→ Phase V2-6 Crypto invoice / waiting
-→ Phase V2-7 confirming and recovery states
-→ Phase V2-8 confirmed / pending result states
-→ Phase V2-9 cross-page link audit
-→ Phase V2-10 desktop/mobile static-flow closure
-→ live Checkout ownership audit and functional reconstruction
+Phase S1 — correct existing Step 01 page
+→ Phase S2 — add Shipping page and link 01 ↔ 02
+→ Phase S3 — add Payment page and link 02 ↔ 03
+→ Phase S4 — add Crypto selection page
+→ Phase S5 — add Crypto invoice / waiting page
+→ Phase S6 — add confirming and recovery pages
+→ Phase S7 — rework existing Thank You page as Step 04
+→ Phase S8 — full link audit from Cart through confirmed result
+→ Phase S9 — 1366 / 390 / 360 static-flow acceptance
+→ live Checkout audit and functional reconstruction
 ```
 
 ## Current execution order
 
 ```text
-Complete and approve Checkout V2 reference system
+Complete and approve linked Checkout static flow
 → Checkout live audit, implementation and closure
-→ Thank You current 1:1 implementation / closure as part of the approved result system
+→ Thank You / result-system implementation and closure
 → Home
 → Wishlist / Track Order / Search / 404
 → About / Services / FAQ / Contact / policy pages
@@ -160,12 +165,12 @@ Complete and approve Checkout V2 reference system
 - preserve backend editability
 - no new plugin unless explicitly approved
 - no Elementor dependency
-- no Cart or Checkout template override without a proven necessity and explicit approval
+- no Cart or Checkout template override without proven necessity and explicit approval
 - use small bounded and independently reversible operations
 - prefer exact in-place replacement over append-only CSS
 - do not execute cancelled FIX4
 - version remains 2.7.8 until explicitly changed
 - only ask the user to choose at genuine visual, operational or business decision points
-- do not modify the real Checkout while the V2 reference system is still incomplete
-- do not replace or delete historical V1 preview files
+- do not modify the real Checkout while the linked static flow is incomplete
+- do not delete the existing Checkout and Thank You reference files; rework them as Step 01 and Step 04
 ```
