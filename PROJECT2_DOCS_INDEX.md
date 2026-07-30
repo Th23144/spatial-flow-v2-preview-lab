@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-29  
+Last updated: 2026-07-30  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative read order
@@ -14,10 +14,20 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 6. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 7. project2-progress/STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md
 8. project2-progress/CART_DEFERRED_POLISH_BACKLOG.md
-9. preview/spatial-flow-checkout-v1.html
+9. project2-progress/STEP_4F_CHECKOUT_PAYMENT_ARCHITECTURE_DECISION_PROPOSAL.md
+10. project2-progress/STEP_4F_PAYMENT_STEP_03_LAYOUT_AND_CRYPTO_SUBFLOW_CORRECTION.md
+11. project2-progress/STEP_4F_CHECKOUT_V2_REFERENCE_SYSTEM_EXECUTION_PLAN.md
+12. preview/checkout-v2/index.html
 ```
 
 Historical Cart execution records remain in `project2-progress/`, but the final closure document supersedes intermediate Cart status statements.
+
+The historical files below remain available for comparison but are not the authoritative future Checkout flow:
+
+```text
+preview/spatial-flow-checkout-v1.html
+preview/spatial-flow-thank-you-v1.html
+```
 
 ## Page-status rule
 
@@ -118,20 +128,95 @@ This item does not change the completed Cart status unless a concrete regression
 Checkout: Not done
 ```
 
-Current next mainline task:
+Current mainline work:
 
 ```text
-Begin the current Checkout 1:1 source/state audit against:
-preview/spatial-flow-checkout-v1.html
+Build and approve the interactive Checkout V2 HTML reference system before any live Checkout reconstruction.
 ```
 
-Earlier SAFE5 functionality and historical Checkout styling remain useful evidence, but they do not count as current 1:1 completion.
+Authoritative plan:
+
+```text
+project2-progress/STEP_4F_CHECKOUT_V2_REFERENCE_SYSTEM_EXECUTION_PLAN.md
+```
+
+Current reference entry:
+
+```text
+preview/checkout-v2/index.html
+```
+
+Current approved Checkout semantics:
+
+```text
+01 Contact / Address
+02 Shipping
+03 Payment
+04 Order Confirmed / Thank You / Receipt
+```
+
+Current payment architecture:
+
+```text
+- one WooCommerce commerce core
+- main-store Checkout and DIY-owned Checkout entry experiences
+- dynamic payment-method framework
+- Cryptocurrency as the only confirmed active method at this planning point
+- two-column desktop Step 03
+- dedicated Step-03 Crypto workspace
+- one canonical WooCommerce-owned result flow
+```
+
+## Checkout V2 reference package
+
+Current files:
+
+```text
+preview/checkout-v2/index.html
+preview/checkout-v2/assets/checkout-v2.css
+preview/checkout-v2/assets/checkout-v2.js
+```
+
+Planned state files:
+
+```text
+step-01-contact-address.html
+step-02-shipping.html
+step-03-payment.html
+step-03-crypto-select.html
+step-03-crypto-invoice.html
+step-03-crypto-confirming.html
+step-03-crypto-expired.html
+step-03-crypto-failed.html
+step-04-order-confirmed.html
+step-04-payment-pending.html
+```
+
+The final package must link to the existing V2 Cart, Shop, Product and Home references and provide a complete clickable simulation without broken routes.
+
+Do not update the existing Cart `Go to checkout` link until the new main Step 01–04 path exists and has no dead links.
+
+## Current Checkout V2 build order
+
+```text
+Phase V2-1 shared shell and interactive hub
+→ Phase V2-2 Contact / Address
+→ Phase V2-3 Shipping
+→ Phase V2-4 Payment-method shell
+→ Phase V2-5 Crypto asset/network selection
+→ Phase V2-6 Crypto invoice / waiting
+→ Phase V2-7 confirming and recovery states
+→ Phase V2-8 confirmed / pending result states
+→ Phase V2-9 cross-page link audit
+→ Phase V2-10 desktop/mobile static-flow closure
+```
 
 ## Remaining execution order
 
 ```text
-Checkout current 1:1 audit, implementation and closure
-→ Thank You current 1:1 implementation / closure
+Complete and approve Checkout V2 reference system
+→ Checkout live ownership audit, implementation and closure
+→ Thank You current 1:1 implementation / closure as part of the approved result system
 → Home
 → Wishlist / Track Order / Search / 404
 → About / Services / FAQ / Contact / policy pages
@@ -143,9 +228,11 @@ Checkout current 1:1 audit, implementation and closure
 ```text
 - preserve WordPress and WooCommerce operational ownership
 - preserve backend editability
-- no fake products, prices, totals, shipping or Coupon data
+- no fake products, prices, totals, shipping or Coupon data in the live implementation
 - no new plugin or Elementor dependency without explicit approval
 - use bounded, reversible source operations
 - prefer exact in-place replacement over append-only CSS
 - do not alter version 2.7.8 without explicit approval
+- do not begin live Checkout PHP, JavaScript, CartFlows, gateway or broad CSS work until the V2 reference system is approved
+- do not overwrite or delete the historical V1 Checkout and Thank You references
 ```
