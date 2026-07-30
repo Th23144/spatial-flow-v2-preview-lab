@@ -35,7 +35,6 @@ preview/spatial-flow-product-v1.html
 preview/spatial-flow-cart-v1.html
 preview/spatial-flow-checkout-v1.html
 preview/spatial-flow-thank-you-v1.html
-preview/checkout-v2/index.html
 preview/spatial-flow-account-v1.html
 preview/spatial-flow-wishlist-v1.html
 preview/spatial-flow-track-order-v1.html
@@ -51,7 +50,17 @@ preview/spatial-flow-blog-issue-v1.html
 preview/spatial-flow-blog-article-v1.html
 ```
 
-`preview/spatial-flow-checkout-v1.html` and `preview/spatial-flow-thank-you-v1.html` are historical comparison references. The new authoritative Checkout reference family is being built under `preview/checkout-v2/`.
+Planned linked Checkout additions:
+
+```text
+preview/spatial-flow-checkout-shipping-v1.html
+preview/spatial-flow-checkout-payment-v1.html
+preview/spatial-flow-checkout-crypto-select-v1.html
+preview/spatial-flow-checkout-crypto-invoice-v1.html
+preview/spatial-flow-checkout-crypto-confirming-v1.html
+preview/spatial-flow-checkout-crypto-expired-v1.html
+preview/spatial-flow-checkout-crypto-failed-v1.html
+```
 
 ## 1. Shared global shell
 
@@ -69,8 +78,8 @@ preview/spatial-flow-blog-article-v1.html
 | Shop archive | `preview/spatial-flow-shop-v1.html` | Completed 1:1 | Desktop/mobile controlled rebase, Hero, metadata, filters/sort, dynamic Editor’s Pick, product grid, pagination, closing note, regression, and backend editability passed. |
 | Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Hero, Gallery, Summary, options, Product Attributes, The Piece, Related Products, add-to-cart feedback, desktop/mobile regression, backend mappings, and controlled CSS cleanup passed. |
 | Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict desktop composition, 390px/360px mobile review, complete native functional regression, backend editability, Notice component coverage, invisible-frame removal and final closure passed. Authoritative closure: `STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md`. |
-| Checkout | `preview/checkout-v2/index.html` | Not done | Current work is the interactive Checkout V2 reference system. Live PHP/JS/CartFlows/gateway audit and implementation remain paused until the full clickable reference family is approved. Historical comparison: `preview/spatial-flow-checkout-v1.html`. |
-| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` plus planned Checkout V2 Step 04 states | Not done | Step 04 is now defined as Order Confirmed / Thank You / Receipt or an accurate pending result, not a pre-payment Review step. Current result references are not yet complete. |
+| Checkout | Existing Step 01: `preview/spatial-flow-checkout-v1.html`; planned Step 02/03 and Crypto pages in the same `preview/` directory | Not done | Current work is to correct the existing page into a true Step 01 and add a fully linked 01 → 02 → 03 → Crypto → 04 static sequence. Live PHP/JS/CartFlows/gateway work remains paused. |
+| Thank You / result system | Existing `preview/spatial-flow-thank-you-v1.html`, to be reworked as Step 04 | Not done | Step 04 is Order Confirmed / Thank You / Receipt or an accurate pending result. It is not a pre-payment Review step. |
 
 ## 3. Account / customer utility pages
 
@@ -141,9 +150,15 @@ Deferred non-blocking mobile Notice polish remains open in:
 project2-progress/CART_DEFERRED_POLISH_BACKLOG.md
 ```
 
-It must not be represented as implemented and does not change the completed Cart status unless a concrete regression is found.
+## 8. Checkout static-flow status
 
-## 8. Checkout V2 reference-system status
+Terminology:
+
+```text
+V2 = Project 2 / repository name, not a Checkout version name.
+```
+
+The mistaken `preview/checkout-v2/` experiment was removed.
 
 Approved semantics:
 
@@ -163,22 +178,14 @@ Approved presentation and payment boundaries:
 - Deliver-to and Shipping summaries are inside the left workspace
 - payment methods are dynamic; unconfirmed future methods are not hardcoded
 - Cryptocurrency is the only confirmed active method at this planning point
-- Cryptocurrency uses a dedicated Step-03 workspace rather than a long inline accordion
+- Cryptocurrency uses dedicated Step-03 pages rather than a long inline accordion
 - Step 04 never asks the customer to pay or confirm again
-```
-
-Current reference files:
-
-```text
-preview/checkout-v2/index.html
-preview/checkout-v2/assets/checkout-v2.css
-preview/checkout-v2/assets/checkout-v2.js
 ```
 
 Authoritative plan:
 
 ```text
-project2-progress/STEP_4F_CHECKOUT_V2_REFERENCE_SYSTEM_EXECUTION_PLAN.md
+project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## 9. Functional modules do not change page status
@@ -199,7 +206,7 @@ The following may be completed as functions, but they do not make an unfinished 
 ## 10. Current execution order
 
 ```text
-Complete and approve Checkout V2 interactive reference system
+Complete and approve linked Checkout static flow
 → Checkout live ownership audit, implementation and closure
 → Thank You / result-system implementation and closure
 → Home
@@ -207,8 +214,6 @@ Complete and approve Checkout V2 interactive reference system
 → About / Services / FAQ / Contact / policy pages
 → Blog home / issue / article and blog shell
 ```
-
-The assistant should continue this sequence automatically and only ask the user to choose at genuine visual, operational, or business decision points.
 
 ## 11. Current exact deployed Cart baselines
 
@@ -239,6 +244,6 @@ CSS parser errors: 0
 - Current local files uploaded by the user are the only live implementation baseline.
 - Inspect file size, line count, structure, and static reference before editing live source.
 - Prefer precise range replacement over whole-file replacement or endless append-only CSS.
-- Do not modify the real Checkout PHP, JavaScript, CartFlows, gateways or broad CSS while the V2 reference system remains incomplete.
-- Do not overwrite or delete historical Checkout V1 and Thank You V1 preview files.
+- Do not modify the real Checkout PHP, JavaScript, CartFlows, gateways or broad CSS while the linked static flow remains incomplete.
+- Do not delete the existing spatial-flow-checkout-v1.html or spatial-flow-thank-you-v1.html; rework them as Step 01 and Step 04.
 ```
