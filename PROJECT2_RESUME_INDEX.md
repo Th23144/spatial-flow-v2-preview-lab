@@ -1,6 +1,6 @@
 # Project 2 · Resume Index
 
-Last updated: 2026-07-29  
+Last updated: 2026-07-30  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 Use this as the top-level entry point when resuming Project 2 from a new ChatGPT window.
@@ -16,7 +16,10 @@ Use this as the top-level entry point when resuming Project 2 from a new ChatGPT
 6. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 7. project2-progress/STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md
 8. project2-progress/CART_DEFERRED_POLISH_BACKLOG.md
-9. preview/spatial-flow-checkout-v1.html
+9. project2-progress/STEP_4F_CHECKOUT_PAYMENT_ARCHITECTURE_DECISION_PROPOSAL.md
+10. project2-progress/STEP_4F_PAYMENT_STEP_03_LAYOUT_AND_CRYPTO_SUBFLOW_CORRECTION.md
+11. project2-progress/STEP_4F_CHECKOUT_V2_REFERENCE_SYSTEM_EXECUTION_PLAN.md
+12. preview/checkout-v2/index.html
 ```
 
 ## Binary page-status rule
@@ -97,17 +100,53 @@ Do not represent this as current runtime behavior. It does not reopen Cart unles
 ```text
 Page: Checkout
 Status: Not done
-Current phase: begin current Checkout 1:1 source/state audit
-Static reference: preview/spatial-flow-checkout-v1.html
+Current phase: build and approve the interactive Checkout V2 HTML reference system
+Current executable group: Phase V2-1 shared shell and interactive reference hub
+Reference entry: preview/checkout-v2/index.html
+Historical reference only: preview/spatial-flow-checkout-v1.html
+Live Checkout audit: paused until the V2 reference system is approved
 ```
 
-SAFE5 functionality and earlier Checkout styling exist, but historical work does not count as current page completion.
+Architecture already approved:
+
+```text
+01 Contact / Address
+02 Shipping
+03 Payment
+04 Order Confirmed / Thank You / Receipt
+```
+
+Payment-method rule:
+
+```text
+- Cryptocurrency is the only confirmed active method at this planning point.
+- Future gateways remain dynamic and must not be hardcoded as current production methods.
+- Main Step 03 desktop uses two columns only.
+- Cryptocurrency uses a dedicated Step-03 workspace, not a long inline accordion.
+```
+
+## Current Checkout V2 build order
+
+```text
+Phase V2-1 shared shell and interactive hub
+→ Phase V2-2 Contact / Address
+→ Phase V2-3 Shipping
+→ Phase V2-4 Payment-method shell
+→ Phase V2-5 Crypto asset/network selection
+→ Phase V2-6 Crypto invoice / waiting
+→ Phase V2-7 confirming and recovery states
+→ Phase V2-8 confirmed / pending result states
+→ Phase V2-9 cross-page link audit
+→ Phase V2-10 desktop/mobile static-flow closure
+→ live Checkout ownership audit and functional reconstruction
+```
 
 ## Current execution order
 
 ```text
-Checkout current 1:1 audit, implementation and closure
-→ Thank You current 1:1 implementation / closure
+Complete and approve Checkout V2 reference system
+→ Checkout live audit, implementation and closure
+→ Thank You current 1:1 implementation / closure as part of the approved result system
 → Home
 → Wishlist / Track Order / Search / 404
 → About / Services / FAQ / Contact / policy pages
@@ -127,4 +166,6 @@ Checkout current 1:1 audit, implementation and closure
 - do not execute cancelled FIX4
 - version remains 2.7.8 until explicitly changed
 - only ask the user to choose at genuine visual, operational or business decision points
+- do not modify the real Checkout while the V2 reference system is still incomplete
+- do not replace or delete historical V1 preview files
 ```
