@@ -1,6 +1,6 @@
-# Step 4F · Checkout and Payment Architecture Decision Proposal
+# Step 4F · Checkout and Payment Architecture Decision
 
-Last updated: 2026-07-29  
+Last updated: 2026-07-30  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status
@@ -8,43 +8,14 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 Cart: Completed 1:1
 Checkout: Not done
+Gate 0 architecture decision: Approved with user correction
 Current source edit: None
-Current gate: architecture decision before visual implementation
+Current executable gate: Gate 1 live Checkout ownership audit
 ```
 
-## 1. Problem statement
+## 1. Authoritative correction
 
-The current live Checkout is not only visually incomplete. Its payment and order flow is structurally weak:
-
-```text
-- the existing multi-step sequence is incomplete and confusing
-- payment-method choice and final confirmation are separated incorrectly
-- the crypto path adds another payment-selection page only after the fourth confirmation step
-- payment success and order-submitted pages are fragmented
-- the current static Checkout reference visually shows Address / Shipping / Payment / Review, but the repository does not currently provide separate authoritative Shipping, Payment and Review static-page files
-- the independent DIY site must use WooCommerce orders, payments, emails, refunds and fulfillment without forcing customers to repeat the full main-store Checkout
-```
-
-This means Checkout cannot be treated as a CSS-only 1:1 page. Functional architecture must be locked first.
-
-## 2. Recommended architecture
-
-Do not choose a pure traditional four-page flow or a pure post-checkout payment aggregator.
-
-Use:
-
-```text
-One WooCommerce commerce core
-+ two customer-facing Checkout entry experiences
-+ one shared payment-orchestration layer
-+ one canonical order-received result
-```
-
-### Main store
-
-Use an on-site branded Checkout on one Checkout URL/session.
-
-The interface may visually expose progressive sections:
+The previous proposal described the main-store sequence as:
 
 ```text
 Contact and address
@@ -53,126 +24,295 @@ Contact and address
 → Final review
 ```
 
-These should be progressive sections or controlled steps in one Checkout state, not four unrelated pages with duplicate submission points.
+That description is superseded.
 
-The shopper selects the payment method before the final Pay / Place order action.
+The user clarified that payment must be completed in step 3. Step 4 is not a pre-payment review step. It is the post-payment result, confirmation and receipt surface.
 
-### DIY site
-
-The DIY site keeps its own source-based Studio, Bag and Checkout experience.
-
-It collects the customer address once and sends the verified design payload, cart data and customer data to WooCommerce through a secure server bridge or supported Store API flow.
-
-After the WooCommerce order or Checkout draft exists, the DIY customer should not be sent through the full main-store four-step Checkout again.
-
-Instead, route the customer to a compact shared payment shell based on the WooCommerce existing-order payment flow:
+The authoritative main-store progression is:
 
 ```text
-Order summary
-Available payment methods
-Pay now
+01 Contact and address
+02 Shipping
+03 Payment
+04 Order Confirmed / Thank You / Receipt
 ```
 
-The shell may be visually branded for DIY, but WooCommerce remains the order and payment authority.
+Therefore:
 
-## 3. Gateway routing model
+```text
+Steps 01–03 = Checkout
+Step 04 = post-Checkout result
+```
+
+The current static reference label `04 REVIEW` is no longer authoritative and must be redesigned before implementation.
+
+## 2. Approved architecture
+
+Use:
+
+```text
+One WooCommerce commerce core
++ two customer-facing Checkout entry experiences
++ one shared payment-orchestration layer
++ one canonical result flow
+```
+
+Do not use four unrelated Checkout pages with repeated submissions.
+
+Do not use a universal post-Checkout payment aggregator for every order.
+
+## 3. Main-store flow
+
+The main store uses one branded Checkout URL/session with progressive sections or controlled state transitions.
+
+### Step 01 — Contact and address
+
+Collect and validate:
+
+```text
+- email / contact details
+- billing address
+- shipping address
+- required customer consent
+```
+
+Advancing to step 02 does not create a paid order and does not represent final commitment.
+
+### Step 02 — Shipping
+
+Present and validate:
+
+```text
+- available shipping methods
+- shipping price
+- delivery estimate where available
+- updated subtotal, shipping and total
+```
+
+Advancing to step 03 does not create a second Checkout session.
+
+### Step 03 — Payment
+
+This is the final transactional Checkout step.
+
+It must include:
+
+```text
+- final order summary
+- final shipping and total
+- available payment methods
+- payment-method-specific fields or handoff
+- one final Pay / Place order action
+```
+
+There is no separate editable review page after step 03.
+
+The user reviews the final order summary inside step 03 before pressing the final payment action.
+
+### Step 04 — Result / confirmation
+
+Step 04 is reached only after step 03 resolves into a defined order/payment result.
+
+It is not another Checkout form and does not contain another confirmation button.
+
+For an immediately paid order, step 04 displays:
+
+```text
+- Order Confirmed / Thank You heading
+- order number
+- payment confirmation / transaction reference where appropriate
+- customer email
+- billing and shipping summary
+- purchased items
+- shipping method
+- subtotal, shipping and total
+- order date
+- next-step / fulfillment guidance
+```
+
+The result page is WooCommerce order-owned and must not infer payment success from navigation alone.
+
+## 4. Result-state branching
+
+`Order Confirmed` must not be shown for every possible outcome indiscriminately.
+
+### Paid / confirmed
+
+```text
+Step 03 payment confirmed
+→ Step 04 Order Confirmed / Thank You / receipt
+```
+
+Typical physical-product state after confirmed payment:
+
+```text
+Processing
+```
+
+### Delayed or manual payment
+
+For bank transfer or another delayed-confirmation method:
+
+```text
+Step 03 submits the order once
+→ order enters Pending payment or On hold as appropriate
+→ Step 04 displays Order received / Payment pending / instructions
+```
+
+This branch is a valid result page, but it must not falsely state that payment has been confirmed.
+
+### Failed, cancelled or expired payment
+
+```text
+Payment failed / cancelled / expired
+→ do not show Order Confirmed
+→ remain in or return to the payment recovery state
+→ allow a safe retry when supported
+```
+
+A failed payment page is not the canonical Thank You state.
+
+## 5. Gateway routing contract
 
 ### Card, Apple Pay and Google Pay
 
-```text
 Main store:
-complete directly in the on-site Checkout payment section
+
+```text
+Complete inside step 03
+→ successful confirmation
+→ step 04 Order Confirmed / Thank You
+```
 
 DIY:
-complete in the compact shared payment shell
+
+```text
+Complete inside the compact shared payment shell
+→ successful confirmation
+→ canonical result flow
 ```
 
 ### Cryptocurrency
 
-Correct flow:
+Correct main-store flow:
 
 ```text
-Select Cryptocurrency as the payment method
-→ click Pay / Place order once
-→ open the crypto gateway coin/network/invoice interface directly
-→ gateway confirms payment
-→ return to the canonical order-received page
+Step 03 select Cryptocurrency
+→ click Pay once
+→ open coin / network / invoice interface as part of the step-03 payment flow
+→ gateway or chain verification confirms payment
+→ step 04 Order Confirmed / Thank You
 ```
 
-Do not keep this sequence:
+The coin/network/invoice interface may be an embedded state or a gateway-specific handoff, but it is not a fifth business step.
+
+Do not keep:
 
 ```text
-select payment
-→ separate review page
-→ click final confirmation
-→ separate generic crypto-choice page
-→ separate success page
+select crypto
+→ separate review step
+→ confirm again
+→ generic crypto-choice page
+→ separate crypto success page
+→ unrelated order-success page
 ```
 
-That creates duplicate commitment points and makes the payment state hard to understand.
-
-### Manual bank transfer or delayed-confirmation methods
+### Manual bank transfer
 
 ```text
-Submit order once
-→ WooCommerce order enters the appropriate unpaid / on-hold state
-→ show payment instructions
-→ move to Processing only after payment is confirmed
+Step 03 submit order once
+→ display transfer instructions
+→ order remains unpaid / On hold
+→ step 04 uses payment-pending language
+→ move to Processing only after payment confirmation
 ```
 
 ### Future redirect gateways
 
-A gateway-specific redirect is acceptable after the customer has selected that method. The gateway should return to the same canonical WooCommerce order-received destination.
+A gateway redirect after selection in step 03 is allowed.
 
-## 4. Why a pure traditional flow is not enough
+The gateway must return to the same canonical WooCommerce result handling, with the visible state determined by the actual order/payment status.
 
-A pure main-store four-step Checkout may work for ordinary main-store orders, but it is a poor handoff for the independent DIY site because it would:
+## 6. DIY-site flow
 
-```text
-- make the customer repeat address information
-- break the DIY brand and interaction continuity
-- expose unrelated main-store Checkout steps
-- increase abandonment
-- complicate preservation of the DIY production payload
-```
+The independent DIY site keeps its own source-based Studio, Preview, Bag and Checkout experience.
 
-## 5. Why a pure post-checkout aggregator is not enough
+The DIY customer must not complete address and shipping on the DIY site and then repeat main-store steps 01 and 02.
 
-A standalone generic payment-selection page for every order would duplicate payment selection for the main store and create two Checkout surfaces.
-
-For the main store, payment methods should remain part of Checkout.
-
-For DIY, a compact existing-order payment shell is appropriate because the DIY Checkout has already collected the operational data.
-
-## 6. One canonical result page
-
-Both main-store and DIY orders should end at one WooCommerce-owned order-received flow.
-
-The presentation may branch by order-source metadata:
+Approved DIY flow:
 
 ```text
-main_store
-diy_studio
+DIY Studio
+→ DIY Preview
+→ DIY Bag
+→ DIY-owned contact / address / shipping collection
+→ securely create or update the WooCommerce order / Checkout draft
+→ compact shared payment shell
+→ canonical result flow
 ```
 
-But there should not be unrelated success pages with different definitions of whether payment and order creation succeeded.
+The compact payment shell contains only what remains necessary:
 
-## 7. Order-state contract
+```text
+- DIY order/design summary
+- final amount
+- available payment methods
+- payment-method-specific fields or handoff
+- Pay now
+```
 
-Use WooCommerce order state as the source of truth:
+It does not repeat the complete main-store Checkout.
+
+Functionally, this compact shell performs the equivalent of main-store step 03.
+
+After successful payment, the DIY customer reaches the same WooCommerce-owned result system used by the main store, with DIY-specific presentation controlled by order-source metadata.
+
+## 7. One canonical result system
+
+Both sources end in one order-owned result architecture:
+
+```text
+order_source = main_store
+order_source = diy_studio
+```
+
+Presentation may branch, but payment and order truth may not.
+
+DIY-specific confirmed-order content may include:
+
+```text
+- design ID
+- wrist size
+- bead/material list
+- design preview image
+- production lead time
+```
+
+The system must not maintain unrelated success pages with conflicting meanings of:
+
+```text
+order submitted
+payment completed
+crypto paid
+order confirmed
+```
+
+## 8. Order-state contract
+
+WooCommerce order state is the source of truth:
 
 ```text
 checkout-draft / draft:
 customer is still completing Checkout
 
 pending payment:
-order committed but not paid
+order committed but payment is not confirmed
 
 on hold:
 payment confirmation is delayed or manual
 
 processing:
-payment received; physical order awaits fulfillment
+payment confirmed; physical order awaits fulfillment
 
 completed:
 fulfillment is finished
@@ -181,18 +321,18 @@ failed / cancelled:
 payment failed, expired or the order was cancelled
 ```
 
-Gateway callbacks / webhooks, not page navigation alone, must confirm successful payment.
+Gateway callback, webhook or verified payment result—not page navigation alone—must determine payment success.
 
-## 8. Integration boundary for DIY
+## 9. DIY integration boundary
 
 Do not expose WooCommerce REST API secrets in browser JavaScript.
 
-Acceptable directions:
+Acceptable implementation directions:
 
 ```text
 - server-to-server bridge controlled by the DIY backend
 - WooCommerce Store API with Cart Token / Nonce where appropriate
-- existing-order Checkout / order-pay processing after the order is securely created
+- existing-order Checkout / order-pay processing after secure order creation
 ```
 
 WooCommerce remains responsible for:
@@ -206,10 +346,11 @@ WooCommerce remains responsible for:
 - inventory
 - emails
 - refunds
-- order notes and fulfillment status
+- order notes
+- fulfillment status
 ```
 
-## 9. Reference-status conclusion
+## 10. Static-reference consequence
 
 Repository evidence currently confirms:
 
@@ -218,40 +359,81 @@ preview/spatial-flow-checkout-v1.html
 preview/spatial-flow-thank-you-v1.html
 ```
 
-The Checkout reference contains the Address / Shipping / Payment / Review progress language, but separate authoritative static Shipping, Payment and Review page files have not been confirmed.
-
-Therefore the visible current Checkout reference is not sufficient by itself to define the full functional flow.
-
-## 10. Required execution sequence
+The current Checkout static reference visibly labels:
 
 ```text
-Gate 0 — approve Checkout/payment architecture
+01 ADDRESS
+02 SHIPPING
+03 PAYMENT
+04 REVIEW
+```
+
+That fourth label conflicts with the approved architecture.
+
+Before live implementation, the Checkout reference set must be revised or extended to define:
+
+```text
+01 Contact / Address
+02 Shipping
+03 Payment + final order summary
+04 Order Confirmed / Thank You / Receipt
+```
+
+It must also define non-success result states:
+
+```text
+- payment pending / bank-transfer instructions
+- payment failed
+- payment cancelled
+- payment expired
+- payment retry
+- crypto invoice / coin-network selection
+- crypto awaiting confirmation
+- DIY compact payment shell
+```
+
+The existing visual screenshot alone is not a complete functional specification.
+
+## 11. Required execution sequence
+
+```text
+Gate 0 — Checkout/payment architecture: Approved
 Gate 1 — audit current live Checkout PHP, JS, hooks, CartFlows and gateway ownership
 Gate 2 — create the payment-method contract matrix
-Gate 3 — define main-store and DIY Checkout state diagrams
-Gate 4 — complete/extend the Checkout static reference for all real states
+Gate 3 — define main-store and DIY state diagrams
+Gate 4 — revise/extend static references for every real state
 Gate 5 — implement functionality while preserving WooCommerce ownership
-Gate 6 — perform visual 1:1 replacement
-Gate 7 — gateway sandbox tests, failure tests and webhook tests
+Gate 6 — perform visual 1:1 replacement against the corrected references
+Gate 7 — gateway sandbox, failure, cancellation, timeout, retry and webhook tests
 Gate 8 — backend editability, desktop/mobile and order-lifecycle closure
 ```
 
-Do not start broad Checkout CSS replacement before Gates 0–4 are complete.
+Do not start broad Checkout CSS replacement before Gates 1–4 are complete.
 
-## 11. Recommended decision
+## 12. Locked decision
 
 ```text
-Recommended:
-Hybrid WooCommerce payment orchestration
+Architecture: Hybrid WooCommerce payment orchestration
 
 Main store:
-on-site progressive Checkout with payment-method selection before one final Pay action
+01 Contact and address
+02 Shipping
+03 Payment and final order commitment
+04 Order Confirmed / Thank You / receipt result
 
 DIY:
-DIY-owned Checkout data collection, then compact shared WooCommerce payment shell without repeated address steps
+DIY-owned data collection
+→ compact shared payment shell equivalent to step 03
+→ canonical result system
 
 Crypto:
-direct gateway-specific handoff after selecting Cryptocurrency, then return to one canonical order-received page
+coin/network/invoice handling belongs to step 03 payment flow
+→ confirmed payment
+→ step 04 confirmed-order result
+
+No separate pre-payment Review step.
+No second final-confirmation click after payment-method selection.
+No duplicated full main-store Checkout for DIY customers.
 ```
 
-This is a proposal pending explicit user approval. It is not yet implemented.
+This architecture is approved. No Checkout source implementation has started yet.
