@@ -210,15 +210,38 @@ S4A order-total synchronization:
 412e4b302cd58073725a82c586d1428d9dbf3f3a
 ```
 
+## Final acceptance
+
+The user reviewed the completed S4A page and confirmed:
+
+```text
+visual review: passed
+interaction review: passed
+static-example limitation: understood and accepted
+```
+
+Authoritative acceptance record:
+
+```text
+project2-progress/STEP_4F_S4A_FINAL_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_ACCEPTANCE.md
+```
+
+Acceptance commit:
+
+```text
+3d7ff20d457b45f3b7ab513b4e157306caa26f3d
+```
+
 ## Current gate
 
 ```text
 S4A implementation: complete
-S4A visual review: pending
-S4A interaction review: pending
+S4A visual review: passed
+S4A interaction review: passed
+S4A: accepted and closed
 S4B plugin-capability alignment: blocked until plugin decision exists
-S5 Invoice / Waiting: not started
+S5 Invoice / Waiting: not authorized
 Checkout page status: Not done
 ```
 
-No S5 or real gateway work is authorized before S4A review and the separate plugin capability decision.
+The next required input is the capability handoff from the separate payment-plugin selection work. No S5 or real gateway work should begin before S4B determines whether the selected gateway uses a custom, embedded or hosted invoice flow.
