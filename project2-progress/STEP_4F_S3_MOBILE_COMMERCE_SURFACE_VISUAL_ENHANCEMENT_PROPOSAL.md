@@ -1,20 +1,29 @@
 # Project 2 · Checkout S3 Mobile Commerce-Surface Visual Enhancement Proposal
 
-Date: 2026-07-31
+Date: 2026-07-31  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Current status
 
 ```text
 01 Address → 02 Shipping → 03 Payment
-Desktop review: passed
-390px review: passed
-360px review: passed
+Desktop review before enhancement: passed
+390px review before enhancement: passed
+360px review before enhancement: passed
 Interaction and state handoff: passed
+Mobile Commerce Surface direction: approved
+Structure-locked implementation: complete
+Post-implementation visual review: pending
 Checkout page status: Not done
 ```
 
-This document records a newly observed mobile-only visual concern after S3 functional and responsive acceptance. It does not reopen desktop S3 and does not authorize source changes by itself.
+This document records the mobile-only visual concern, design decision, approval boundary and resulting structure-locked implementation.
+
+Authoritative implementation record:
+
+```text
+project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_STRUCTURE_LOCKED_IMPLEMENTATION.md
+```
 
 ## User-observed issue
 
@@ -37,7 +46,7 @@ primary transaction actions
 
 A blanket high-contrast background applied to every section would risk making the mobile page heavy, fragmented and inconsistent with the established Spatial Flow language.
 
-## Recommended direction
+## Approved direction
 
 Use a mobile-only `commerce surface` system.
 
@@ -51,7 +60,7 @@ section headings
 completed-context summaries
 ```
 
-Increase contrast only for areas that require customer action:
+Increase contrast for areas that require customer action:
 
 ```text
 Step 01 text inputs, selects and textarea
@@ -61,66 +70,48 @@ future Crypto asset/network choices
 future invoice/action panels where interaction is required
 ```
 
-Recommended hierarchy:
+Approved hierarchy:
 
 ```text
 Page background:
 retain the existing warm neutral background
 
 Interactive group surface:
-use a clearly lighter or slightly deeper warm contrasting plane
+use a clearly layered warm contrasting plane
 with a restrained border and compact internal padding
 
 Individual field/control:
-use an even clearer fill than the group surface
+use a clearer paper-like fill than the group surface
 with a visible focus/selected state
 
 Selected option:
-use the established dark green/stone accent through border,
-radio state or a narrow accent edge rather than filling the entire screen
+use the established dark green / stone accent through border,
+radio state and restrained background shift
 
 Primary action:
-retain the existing dark filled CTA
+use the stone-green filled CTA on mobile
 ```
 
-## What should not change
+## What must not change
 
 ```text
-desktop composition
 page structure
 step order
 WooCommerce ownership
 field semantics
 real data and backend editability
 touch-target size
-approved 02/03 context-card architecture
+approved 02 / 03 context-card architecture
 Order Summary hierarchy
+01 → 02 → 03 state handoff
+Cryptocurrency as the only currently confirmed payment method
 ```
 
-## Proposed visual intensity
-
-The goal is not a loud or saturated checkout. The target is:
-
-```text
-editorial shell + unmistakable commerce controls
-```
-
-The contrast should be strong enough that a customer can immediately identify where to type, choose and pay, while the page still belongs to Spatial Flow.
-
-## Rejected broad approach
-
-Do not apply one contrasting rectangle to every text block, summary and section. That would:
-
-```text
-create excessive card stacking
-make the mobile page visually heavy
-reduce the distinction between read-only and interactive content
-weaken the editorial identity instead of balancing it
-```
+Desktop composition remains unchanged except for the explicitly approved Step 01 field icons.
 
 ## Visual-reference review outcome
 
-The later generated mobile Checkout images were approved only as a **visual-language reference**.
+Generated mobile Checkout images were approved only as a **visual-language reference**.
 
 They are explicitly **not** an approved replacement page structure and must not be treated as a new static specification.
 
@@ -136,9 +127,9 @@ compact mobile rhythm and stronger transactional hierarchy
 subtle decorative linework only where it does not compete with information
 ```
 
-### Structural elements that remain authoritative
+### Structural source of truth
 
-The current approved repository pages remain the sole structural source of truth:
+The current repository pages remain the sole structural source of truth:
 
 ```text
 preview/spatial-flow-checkout-v1.html
@@ -146,7 +137,7 @@ preview/spatial-flow-checkout-shipping-v1.html
 preview/spatial-flow-checkout-payment-v1.html
 ```
 
-The implementation must preserve their approved:
+The implementation preserves their approved:
 
 ```text
 01 Address content and field sequence
@@ -159,9 +150,9 @@ Order Summary ownership and placement
 Cryptocurrency as the only currently confirmed payment method
 ```
 
-### Rejected structural transfer from generated images
+### Rejected structural transfer
 
-Do not copy the generated images' altered:
+Do not copy generated images' altered:
 
 ```text
 header or step-navigation construction
@@ -176,11 +167,18 @@ product data
 spacing measurements merely because they appear in the image
 ```
 
-The generated images may guide color, surface depth, border weight, typography contrast and visual rhythm only.
-
 ### Additional visual exclusion
 
-Do not introduce a decorative vertical color strip beside the active payment or shipping option merely to imitate a reference image. Selection should remain legible through the approved border, radio state, background shift or another restrained state treatment.
+Do not introduce a decorative vertical color strip beside an active input, payment option or shipping option.
+
+Selection must remain legible through:
+
+```text
+border
+radio state
+paper / stone background shift
+focus outline
+```
 
 ## Locked implementation principle
 
@@ -190,26 +188,39 @@ Borrow only the approved Editorial Commerce visual language.
 Do not redesign the page while applying the mobile visual enhancement.
 ```
 
-Any future implementation proposal must be demonstrated against the actual 01, 02 and 03 repository structures before source changes are authorized.
+## Approved implementation
 
-## Recommended next decision gate
-
-Before implementation, prepare a mobile-only structural-faithful visual comparison using the actual Checkout pages:
+A dedicated reversible stylesheet was added:
 
 ```text
-01 Address — current approved structure + proposed visual language
-02 Shipping — current approved structure + proposed visual language
-03 Payment — current approved structure + proposed visual language
+preview/spatial-flow-checkout-mobile-commerce-v1.css
 ```
 
-The comparison must not alter the content hierarchy, section order, field sequence or approved interaction model.
+It is linked after the existing stylesheets on Steps 01, 02 and 03.
 
-## Implementation boundary
+Step 01 icons are CSS background SVGs and therefore require no wrapper markup or added DOM elements. They appear on desktop and mobile as explicitly approved.
+
+GitHub structure audit confirmed:
 
 ```text
-No source edit approved yet.
-No desktop rule changes.
-No broad global card treatment.
-No change to the approved S3 interaction flow.
-No structural transfer from generated images.
+new CSS files: 1
+Step 01 HTML additions: 1 stylesheet link
+Step 02 HTML additions: 1 stylesheet link
+Step 03 HTML additions: 1 stylesheet link
+HTML deletions: 0
+body-structure changes: 0
+field changes: 0
+copy changes: 0
+interaction-script changes: 0
 ```
+
+## Current review gate
+
+```text
+Review desktop Step 01 icons.
+Review 390px Steps 01 / 02 / 03.
+Review 360px Steps 01 / 02 / 03.
+Confirm no icon overlap, control shrinkage, overflow or structural regression.
+```
+
+No Phase S4 Crypto page work begins until this enhancement passes review.
