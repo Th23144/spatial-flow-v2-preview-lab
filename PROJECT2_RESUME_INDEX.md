@@ -24,10 +24,14 @@ Use this as the top-level entry point when resuming Project 2 from a new ChatGPT
 14. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_VISUAL_ENHANCEMENT_PROPOSAL.md
 15. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_STRUCTURE_LOCKED_IMPLEMENTATION.md
 16. project2-progress/STEP_4F_S3_FINAL_STATIC_CHECKOUT_AND_MOBILE_COMMERCE_SURFACE_ACCEPTANCE.md
-17. preview/spatial-flow-checkout-v1.html
-18. preview/spatial-flow-checkout-shipping-v1.html
-19. preview/spatial-flow-checkout-payment-v1.html
-20. preview/spatial-flow-checkout-mobile-commerce-v1.css
+17. project2-progress/STEP_4F_S4A_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_IMPLEMENTATION.md
+18. preview/spatial-flow-checkout-v1.html
+19. preview/spatial-flow-checkout-shipping-v1.html
+20. preview/spatial-flow-checkout-payment-v1.html
+21. preview/spatial-flow-checkout-crypto-select-v1.html
+22. preview/spatial-flow-checkout-mobile-commerce-v1.css
+23. preview/spatial-flow-checkout-crypto-v1.css
+24. preview/spatial-flow-checkout-crypto-v1.js
 ```
 
 ## Binary page-status rule
@@ -96,8 +100,10 @@ Page: Checkout
 Status: Not done
 Current phase: complete and approve the linked Checkout static page sequence
 Phase S3 status: accepted and closed
-Current exact step: Phase S4 Crypto asset/network selection workspace
-Next artifact: preview/spatial-flow-checkout-crypto-select-v1.html
+Phase S4A status: implemented / awaiting visual and interaction review
+Current exact step: review preview/spatial-flow-checkout-crypto-select-v1.html
+Phase S4B: blocked until the separate payment-plugin capability decision exists
+Phase S5: not started
 Live Checkout audit: paused until the complete linked static flow is approved
 ```
 
@@ -119,7 +125,8 @@ preview/spatial-flow-cart-v1.html
 → preview/spatial-flow-checkout-v1.html
 → preview/spatial-flow-checkout-shipping-v1.html
 → preview/spatial-flow-checkout-payment-v1.html
-→ Step-03 Crypto subpages
+→ preview/spatial-flow-checkout-crypto-select-v1.html
+→ future Step-03 Crypto invoice / waiting / confirmation pages
 → preview/spatial-flow-thank-you-v1.html
 ```
 
@@ -203,28 +210,51 @@ Desktop Step 01 icons: passed
 Phase S3: accepted and closed
 ```
 
-## Phase S4 boundary
+## Phase S4A implementation
 
-Next page:
+Authoritative record:
+
+```text
+project2-progress/STEP_4F_S4A_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_IMPLEMENTATION.md
+```
+
+Authoritative page:
 
 ```text
 preview/spatial-flow-checkout-crypto-select-v1.html
 ```
 
-Required flow:
+Implemented contract:
 
 ```text
-Step 03 Payment
-→ Continue with Cryptocurrency
-→ choose supported asset
-→ choose supported network for that asset
-→ review amount and compatibility warning
-→ continue toward Crypto invoice creation
+no asset selected
+→ network unavailable
+→ Continue disabled
+
+asset selected
+→ example networks displayed
+→ previous network cleared when asset changes
+
+asset + network selected
+→ Continue enabled
+→ selection retained in static session state
 ```
 
-S4 remains inside Step 03 and must not create a fifth Checkout step or alter the accepted 01 / 02 / 03 structure.
+Every displayed asset and network is explicitly a static example and is not confirmed as gateway capability.
 
-Static examples must not be represented as verified live gateway support before the later live gateway audit.
+S4A deliberately does not create:
+
+```text
+real order
+quote
+wallet address
+QR code
+network fee
+Crypto invoice
+blockchain transaction
+webhook
+payment confirmation
+```
 
 ## Current static-flow build order
 
@@ -233,8 +263,9 @@ Phase S1 — correct existing Step 01 page: implemented
 → Phase S2 — add Shipping page and link 01 ↔ 02: implemented
 → Phase S3 — add Payment page and link 02 ↔ 03: implemented
 → Phase S3 Mobile Commerce Surface: implemented / accepted / closed
-→ Phase S4 — add Crypto selection page: next / not started
-→ Phase S5 — add Crypto invoice / waiting page
+→ Phase S4A — plugin-agnostic Crypto selection page: implemented / awaiting review
+→ Phase S4B — align S4A with selected plugin capability: blocked pending plugin decision
+→ Phase S5 — add Crypto invoice / waiting page: not started
 → Phase S6 — add confirming and recovery pages
 → Phase S7 — rework existing Thank You page as Step 04
 → Phase S8 — full link audit from Cart through confirmed result
@@ -245,7 +276,10 @@ Phase S1 — correct existing Step 01 page: implemented
 ## Current execution order
 
 ```text
-Complete and approve linked Checkout static flow
+Review and approve S4A
+→ obtain separate payment-plugin capability decision
+→ complete S4B capability alignment
+→ continue remaining Crypto static flow
 → Checkout live audit, implementation and closure
 → Thank You / result-system implementation and closure
 → Home
