@@ -19,9 +19,12 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 11. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 12. project2-progress/STEP_4F_CHECKOUT_CONTEXT_PANEL_ARCHITECTURE_APPROVAL_AND_STATIC_IMPLEMENTATION.md
 13. project2-progress/STEP_4F_S3_CONTEXT_PANEL_AND_PAYMENT_PAGE_IMPLEMENTATION.md
-14. preview/spatial-flow-checkout-v1.html
-15. preview/spatial-flow-checkout-shipping-v1.html
-16. preview/spatial-flow-checkout-payment-v1.html
+14. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_VISUAL_ENHANCEMENT_PROPOSAL.md
+15. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_STRUCTURE_LOCKED_IMPLEMENTATION.md
+16. preview/spatial-flow-checkout-v1.html
+17. preview/spatial-flow-checkout-shipping-v1.html
+18. preview/spatial-flow-checkout-payment-v1.html
+19. preview/spatial-flow-checkout-mobile-commerce-v1.css
 ```
 
 ## Page-status rule
@@ -119,9 +122,10 @@ project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 Current review group:
 
 ```text
-Step 02 Shipping context-hierarchy revision
-Step 03 main Payment static page
-Desktop + 390px + 360px visual and interaction review
+Structure-locked Mobile Commerce Surface implementation
+Desktop Step 01 field icons
+390px Steps 01 / 02 / 03
+360px Steps 01 / 02 / 03
 ```
 
 ## Approved linked static flow
@@ -183,12 +187,60 @@ right upper = Contact
 right lower = Shipping Method on Step 03 only
 ```
 
+## Structure-locked Mobile Commerce Surface
+
+Authoritative implementation record:
+
+```text
+project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_STRUCTURE_LOCKED_IMPLEMENTATION.md
+```
+
+Authoritative visual stylesheet:
+
+```text
+preview/spatial-flow-checkout-mobile-commerce-v1.css
+```
+
+Approved scope:
+
+```text
+Step 01 CSS field icons on desktop and mobile
+mobile layered warm surfaces
+paper-like form controls and choices
+stone-green selected states and primary CTA
+stronger Order Summary visual hierarchy
+subtle context-card linework
+```
+
+Structural audit:
+
+```text
+Step 01 HTML: +1 stylesheet link only
+Step 02 HTML: +1 stylesheet link only
+Step 03 HTML: +1 stylesheet link only
+body changes: 0
+field changes: 0
+copy changes: 0
+script changes: 0
+```
+
+Forbidden transfers:
+
+```text
+new DOM wrappers
+field or section reordering
+new payment methods
+changed transaction semantics
+decorative vertical accent strips
+```
+
 ## Corrected static-flow build order
 
 ```text
 Phase S1 — correct spatial-flow-checkout-v1.html into true Step 01: implemented
 → Phase S2 — create Shipping page and link 01 ↔ 02: implemented
-→ Phase S3 — create Payment page and link 02 ↔ 03: implemented / awaiting review
+→ Phase S3 — create Payment page and link 02 ↔ 03: implemented
+→ Phase S3 Mobile Commerce Surface: implemented / awaiting visual review
 → Phase S4 — create Crypto selection page
 → Phase S5 — create Crypto invoice / waiting page
 → Phase S6 — create confirming and recovery pages
