@@ -1,0 +1,312 @@
+/*
+ * Project 2 Checkout static reference
+ * Structure-locked mobile commerce visual layer.
+ *
+ * Scope:
+ * - Step 01 field icons on desktop and mobile.
+ * - Mobile-only visual surfaces for Steps 01–03.
+ *
+ * This file must not change DOM order, page semantics, field ownership,
+ * navigation, payment availability or approved Checkout structure.
+ */
+
+/* Step 01 field icons: desktop + mobile, without wrapper markup or accent bars. */
+.checkout-step-address .form-row input,
+.checkout-step-address .form-row select,
+.checkout-step-address .form-row textarea {
+  padding-left: 44px;
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+  background-size: 16px 16px;
+}
+
+.checkout-step-address .form-row textarea {
+  background-position: 16px 17px;
+}
+
+.checkout-step-address #billing_email {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b635d' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6h16v12H4z'/%3E%3Cpath d='m5 7 7 6 7-6'/%3E%3C/svg%3E");
+}
+
+.checkout-step-address #billing_first_name,
+.checkout-step-address #billing_last_name {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b635d' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='3.5'/%3E%3Cpath d='M5.5 18.5c1.8-3 11.2-3 13 0'/%3E%3C/svg%3E");
+}
+
+.checkout-step-address #billing_country {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b635d' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3Cpath d='M4 12h16M12 4a13 13 0 0 1 0 16M12 4a13 13 0 0 0 0 16'/%3E%3C/svg%3E");
+}
+
+.checkout-step-address #billing_address_1 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b635d' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 10.5 12 4l8 6.5'/%3E%3Cpath d='M6.5 9.5V20h11V9.5M10 20v-5h4v5'/%3E%3C/svg%3E");
+}
+
+.checkout-step-address #billing_city {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b635d' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20V9l6-3v14M10 20V5l10 3v12'/%3E%3Cpath d='M7 12h.01M7 15h.01M14 11h.01M17 11h.01M14 14h.01M17 14h.01'/%3E%3C/svg%3E");
+}
+
+.checkout-step-address #billing_postcode {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b635d' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z'/%3E%3Ccircle cx='12' cy='10' r='2.2'/%3E%3C/svg%3E");
+}
+
+.checkout-step-address #billing_state {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b635d' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20zM9 4v13.5M15 6.5V20'/%3E%3C/svg%3E");
+}
+
+.checkout-step-address #billing_phone {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b635d' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7.5 5.5h3l1.2 3.2-1.7 1.7a13 13 0 0 0 4 4l1.7-1.7 3.2 1.2v3c0 .6-.4 1-1 1A14.4 14.4 0 0 1 5.5 6.5c0-.6.4-1 1-1Z'/%3E%3C/svg%3E");
+}
+
+.checkout-step-address #order_comments {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b635d' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 4h12v16H6zM9 9h6M9 13h6'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 720px) {
+  /* Warm editorial shell + unmistakable commerce controls. */
+  .woocommerce-checkout .checkout-panel {
+    margin-bottom: 14px;
+    padding: 15px;
+    border: 1px solid rgba(74, 93, 90, .12);
+    background: linear-gradient(145deg, rgba(255, 255, 255, .18), transparent 42%), var(--bg-2);
+    box-shadow: 0 8px 22px rgba(43, 35, 30, .045);
+  }
+
+  .woocommerce-checkout .checkout-panel:last-of-type {
+    margin-bottom: 14px;
+    padding-bottom: 15px;
+  }
+
+  .woocommerce-checkout .panel-head {
+    margin-bottom: 9px;
+  }
+
+  .woocommerce-checkout .panel-no {
+    margin-bottom: 5px;
+    font-size: 7px;
+    letter-spacing: .17em;
+  }
+
+  .woocommerce-checkout .panel-head h2,
+  .woocommerce-checkout .panel-head h3 {
+    font-size: 25px;
+  }
+
+  .woocommerce-checkout .panel-note {
+    margin-bottom: 13px;
+    font-size: 10px;
+    line-height: 1.55;
+  }
+
+  .checkout-step-address .form-row {
+    gap: 5px;
+    margin-bottom: 11px;
+  }
+
+  .checkout-step-address .form-row label,
+  .checkout-step-address .field-label {
+    font-size: 7px;
+    letter-spacing: .13em;
+  }
+
+  .checkout-step-address .form-row input,
+  .checkout-step-address .form-row select,
+  .checkout-step-address .form-row textarea {
+    min-height: 47px;
+    padding-top: 12px;
+    padding-right: 13px;
+    padding-bottom: 12px;
+    padding-left: 42px;
+    border-color: rgba(74, 93, 90, .25);
+    background-color: var(--paper);
+    background-position-x: 14px;
+    background-size: 15px 15px;
+    box-shadow: 0 3px 10px rgba(48, 39, 33, .025);
+  }
+
+  .checkout-step-address .form-row textarea {
+    min-height: 94px;
+    background-position: 14px 15px;
+  }
+
+  .checkout-step-address .form-row input:focus,
+  .checkout-step-address .form-row select:focus,
+  .checkout-step-address .form-row textarea:focus {
+    border-color: var(--stone);
+    background-color: var(--paper);
+    box-shadow: 0 0 0 2px rgba(74, 93, 90, .08);
+  }
+
+  .checkout-step-address .field-hint {
+    font-size: 9px;
+    line-height: 1.45;
+  }
+
+  .checkout-step-address .checkbox-row {
+    gap: 8px;
+    color: var(--soft);
+    font-size: 9px;
+    line-height: 1.5;
+  }
+
+  .woocommerce-checkout .checkout-button--primary {
+    border-color: var(--stone);
+    background: var(--stone);
+    color: var(--bg);
+    box-shadow: 0 7px 18px rgba(74, 93, 90, .15);
+  }
+
+  .woocommerce-checkout .checkout-button--primary:hover {
+    border-color: var(--stone);
+    background: var(--stone);
+  }
+
+  .woocommerce-checkout .shipping-options,
+  .woocommerce-checkout .payment-methods {
+    gap: 8px;
+    margin-top: 18px;
+    padding: 10px;
+    border: 1px solid rgba(74, 93, 90, .18);
+    background: var(--bg-2);
+    box-shadow: 0 8px 20px rgba(43, 35, 30, .045);
+  }
+
+  .woocommerce-checkout .shipping-option,
+  .woocommerce-checkout .payment-method {
+    gap: 9px;
+    padding: 12px 11px;
+    border-color: rgba(31, 25, 22, .18);
+    background: var(--paper);
+    box-shadow: 0 3px 11px rgba(48, 39, 33, .025);
+  }
+
+  .woocommerce-checkout .shipping-option:hover,
+  .woocommerce-checkout .shipping-option.is-selected,
+  .woocommerce-checkout .shipping-option:has(input:checked),
+  .woocommerce-checkout .payment-method.is-selected {
+    border-color: var(--stone);
+    background: linear-gradient(90deg, rgba(74, 93, 90, .12), var(--paper) 46%);
+    box-shadow: 0 5px 14px rgba(74, 93, 90, .08);
+  }
+
+  .woocommerce-checkout .shipping-option strong,
+  .woocommerce-checkout .payment-method__copy strong {
+    margin-bottom: 2px;
+    font-size: 16px;
+    line-height: 1.12;
+  }
+
+  .woocommerce-checkout .shipping-option span,
+  .woocommerce-checkout .payment-method__copy span {
+    font-size: 9px;
+    line-height: 1.45;
+  }
+
+  .woocommerce-checkout .shipping-option .price {
+    font-size: 14px;
+  }
+
+  .woocommerce-checkout .payment-method__meta {
+    color: var(--stone);
+    font-size: 6px;
+    letter-spacing: .08em;
+  }
+
+  .woocommerce-checkout .payment-truth-note {
+    margin-top: 10px;
+    padding-left: 0;
+    border-left: 0;
+    font-size: 9px;
+    line-height: 1.5;
+  }
+
+  .woocommerce-checkout .context-card,
+  .woocommerce-checkout .order-summary {
+    border: 1px solid rgba(31, 25, 22, .07);
+    background: linear-gradient(145deg, rgba(255, 255, 255, .18), transparent 46%), var(--bg-2);
+    box-shadow: 0 8px 22px rgba(43, 35, 30, .045);
+  }
+
+  .woocommerce-checkout .context-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .woocommerce-checkout .context-card::after {
+    position: absolute;
+    right: -8px;
+    bottom: -24px;
+    width: 104px;
+    height: 144px;
+    opacity: .09;
+    background: radial-gradient(ellipse at 56% 80%, transparent 60%, var(--stone) 61%, transparent 63%), linear-gradient(65deg, transparent 49.3%, var(--stone) 50%, transparent 50.7%);
+    content: "";
+    pointer-events: none;
+    transform: rotate(-7deg);
+  }
+
+  .woocommerce-checkout .context-card__head,
+  .woocommerce-checkout .context-card__grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .woocommerce-checkout .order-summary {
+    padding: 22px 18px;
+  }
+
+  .woocommerce-checkout .order-summary-head {
+    margin-bottom: 13px;
+    padding-bottom: 11px;
+  }
+
+  .woocommerce-checkout .order-summary-head h3 {
+    font-size: 24px;
+  }
+
+  .woocommerce-checkout .summary-items {
+    gap: 0;
+    margin-bottom: 14px;
+  }
+
+  .woocommerce-checkout .summary-item {
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .woocommerce-checkout .summary-copy h4 {
+    font-size: 15px;
+  }
+
+  .woocommerce-checkout .summary-copy .meta {
+    font-size: 7px;
+  }
+
+  .woocommerce-checkout .summary-totals {
+    gap: 8px;
+    padding-top: 13px;
+  }
+
+  .woocommerce-checkout .summary-row .label {
+    font-size: 7px;
+  }
+
+  .woocommerce-checkout .summary-row .value {
+    font-size: 14px;
+  }
+
+  .woocommerce-checkout .summary-row.total {
+    padding-top: 11px;
+  }
+
+  .woocommerce-checkout .summary-row.total .value {
+    font-size: 23px;
+  }
+
+  .woocommerce-checkout .summary-note,
+  .woocommerce-checkout .summary-trust {
+    margin-top: 14px;
+    padding-top: 13px;
+    font-size: 9px;
+  }
+}
