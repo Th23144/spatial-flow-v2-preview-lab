@@ -38,7 +38,8 @@
 }
 
 .context-card__edit,
-.context-section__edit {
+.context-section__edit,
+.context-address-edit {
   color: var(--soft);
   font-family: var(--mono);
   font-size: 8px;
@@ -118,6 +119,7 @@
 }
 
 .checkout-step-payment .context-card__head {
+  justify-content: flex-start;
   padding-bottom: 13px;
 }
 
@@ -132,6 +134,9 @@
 }
 
 .checkout-step-payment .context-card__address {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
   padding-right: 17px;
 }
 
@@ -163,6 +168,14 @@
 .checkout-step-payment .context-value small {
   margin-top: 2px;
   color: var(--soft);
+}
+
+.checkout-step-payment .context-address-edit {
+  display: block;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
 }
 
 .payment-methods {
@@ -294,7 +307,8 @@
 
   .context-label,
   .context-card__edit,
-  .context-section__edit {
+  .context-section__edit,
+  .context-address-edit {
     font-size: 7px;
   }
 
@@ -346,6 +360,10 @@
   .checkout-step-payment .context-value small {
     font-size: 9.5px;
     line-height: 1.42;
+  }
+
+  .checkout-step-payment .context-address-edit {
+    padding-top: 8px;
   }
 
   .payment-method {
