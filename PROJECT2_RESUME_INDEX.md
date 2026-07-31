@@ -1,6 +1,6 @@
 # Project 2 · Resume Index
 
-Last updated: 2026-07-30  
+Last updated: 2026-07-31  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 Use this as the top-level entry point when resuming Project 2 from a new ChatGPT window.
@@ -19,7 +19,11 @@ Use this as the top-level entry point when resuming Project 2 from a new ChatGPT
 9. project2-progress/STEP_4F_CHECKOUT_PAYMENT_ARCHITECTURE_DECISION_PROPOSAL.md
 10. project2-progress/STEP_4F_PAYMENT_STEP_03_LAYOUT_AND_CRYPTO_SUBFLOW_CORRECTION.md
 11. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
-12. preview/spatial-flow-checkout-v1.html
+12. project2-progress/STEP_4F_CHECKOUT_CONTEXT_PANEL_ARCHITECTURE_APPROVAL_AND_STATIC_IMPLEMENTATION.md
+13. project2-progress/STEP_4F_S3_CONTEXT_PANEL_AND_PAYMENT_PAGE_IMPLEMENTATION.md
+14. preview/spatial-flow-checkout-v1.html
+15. preview/spatial-flow-checkout-shipping-v1.html
+16. preview/spatial-flow-checkout-payment-v1.html
 ```
 
 ## Binary page-status rule
@@ -87,7 +91,8 @@ This does not reopen Cart unless a concrete functional or production-blocking re
 Page: Checkout
 Status: Not done
 Current phase: complete the linked Checkout static page sequence inside the existing preview/ directory
-Current exact step: Phase S1 — correct spatial-flow-checkout-v1.html into a genuine Step 01 Contact / Address page
+Current exact step: Phase S3 visual/interaction review of revised Step 02 and new Step 03
+Next build phase after acceptance: Phase S4 Crypto asset/network selection workspace
 Live Checkout audit: paused until the linked static flow is approved
 ```
 
@@ -131,12 +136,29 @@ Payment-method rule:
 - Cryptocurrency uses dedicated Step-03 pages, not a long inline accordion.
 ```
 
+## Approved context-panel architecture
+
+```text
+Step 02 Before it leaves.:
+- Deliver to
+- Contact
+- no Shipping Method yet
+
+Step 03 Before it leaves.:
+- left: Deliver to
+- right upper: Contact
+- right lower: confirmed Shipping Method
+
+Mobile Step 03 retains the same internal two-column information grid.
+Order Summary remains below the context card.
+```
+
 ## Current static-flow build order
 
 ```text
-Phase S1 — correct existing Step 01 page
-→ Phase S2 — add Shipping page and link 01 ↔ 02
-→ Phase S3 — add Payment page and link 02 ↔ 03
+Phase S1 — correct existing Step 01 page: implemented
+→ Phase S2 — add Shipping page and link 01 ↔ 02: implemented
+→ Phase S3 — add Payment page and link 02 ↔ 03: implemented / awaiting review
 → Phase S4 — add Crypto selection page
 → Phase S5 — add Crypto invoice / waiting page
 → Phase S6 — add confirming and recovery pages
