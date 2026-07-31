@@ -1,75 +1,63 @@
 # Step 4F · Checkout Static Flow Completion Plan
 
-Last updated: 2026-07-30  
+Last updated: 2026-07-31  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
-## Status
+## 1. Current status
 
 ```text
 Cart: Completed 1:1
 Checkout: Not done
-Gate 0 architecture: Approved, still being fully specified through the linked static reference flow
-Gate 1 live-code audit: Paused
-Current real-site source edit: None
-Current executable work: Complete and link the existing Checkout static page family inside preview/
+Phase S3: accepted and closed
+Phase S4A: accepted and closed as a plugin-agnostic static reference
+Phase S4B V0.2.5 capability alignment: completed
+Current gate: payment-plugin integration contract proposal
+S4A gateway-specific adaptation: not started
+S5 Invoice / Waiting: not started
+Live Checkout source work: paused
 ```
 
-## 1. Terminology correction
+No live Checkout PHP, JavaScript, CartFlows, WooCommerce gateway or broad production CSS change is authorized while the linked static flow and plugin contract remain incomplete.
 
-`V2` refers to the repository and Project 2 visual-replacement program:
+## 2. Terminology lock
+
+`V2` refers to Project 2 and this repository:
 
 ```text
 Th23144/spatial-flow-v2-preview-lab
 ```
 
-It does not mean that Checkout should be renamed to `checkout-v2`, placed in a new `checkout-v2/` directory, or treated as a separate product version.
+It does not mean a separate `checkout-v2` product, directory or page family.
 
-The misinterpreted `preview/checkout-v2/` experiment has been removed.
-
-## 2. Existing authoritative entry page
-
-The existing static Checkout entry remains:
+All authoritative Checkout static files remain inside:
 
 ```text
-preview/spatial-flow-checkout-v1.html
+preview/
 ```
-
-This page is the Step 01 Contact / Address screen in the linked static sequence.
-
-The existing Cart reference already links to it:
-
-```text
-preview/spatial-flow-cart-v1.html
-→ spatial-flow-checkout-v1.html
-```
-
-That link must remain the normal static customer journey.
 
 ## 3. Locked business progression
 
 ```text
 01 Contact / Address
-02 Shipping
-03 Payment
-04 Order Confirmed / Thank You / Receipt
+→ 02 Shipping
+→ 03 Payment
+→ 04 Order Confirmed / Thank You / Receipt
 ```
 
 Authoritative distinction:
 
 ```text
 Steps 01–03 = Checkout
-Step 04 = post-payment or post-submission result
+Step 04 = post-payment confirmed result
 ```
 
-The former `04 REVIEW` concept is superseded.
+Step 04 is not Review and must not ask the customer to confirm or pay again.
 
-Step 03 contains the final Order Summary and the one final payment/submission action. Step 04 never asks the customer to confirm or pay again.
+Crypto invoice, waiting, verification and recovery remain Step-03 subviews.
 
-## 4. Required linked static files
+## 4. Current authoritative static files
 
-All pages remain in the existing `preview/` directory and retain the repository's current naming language.
-
-### Main sequence
+### Main Checkout sequence
 
 ```text
 preview/spatial-flow-checkout-v1.html
@@ -79,297 +67,378 @@ preview/spatial-flow-checkout-shipping-v1.html
   Step 02 Shipping
 
 preview/spatial-flow-checkout-payment-v1.html
-  Step 03 dynamic payment-method entry
+  Step 03 Payment entry
 
 preview/spatial-flow-thank-you-v1.html
-  Step 04 Order Confirmed / Thank You / Receipt
+  Future Step 04 Order Confirmed / Thank You / Receipt
 ```
 
-### Cryptocurrency Step-03 subflow
+### Current Crypto reference
 
 ```text
 preview/spatial-flow-checkout-crypto-select-v1.html
+```
+
+This file is an accepted plugin-agnostic interaction reference. It is not yet the final gateway-specific implementation.
+
+### Planned gateway-aligned Step-03 subviews
+
+Final file count and state pages must follow the approved plugin contract. The likely static family remains:
+
+```text
 preview/spatial-flow-checkout-crypto-invoice-v1.html
 preview/spatial-flow-checkout-crypto-confirming-v1.html
 preview/spatial-flow-checkout-crypto-expired-v1.html
 preview/spatial-flow-checkout-crypto-failed-v1.html
 ```
 
-These are Step-03 subviews, not fourth or fifth Checkout business steps.
+However, a page must not be created merely because it appeared in an early generic plan. It must correspond to a real plugin-supported state or a clearly labeled future architecture state.
 
-## 5. Clickable navigation contract
-
-### Main path
+## 5. Current linked flow
 
 ```text
 Cart
 → 01 Contact / Address
 → 02 Shipping
 → 03 Payment
-→ Cryptocurrency workspace
-→ Invoice / Waiting
-→ Confirming
+→ fixed Crypto confirmation under the current V0.2.5 capability
+→ WooCommerce order creation
+→ Step-03 Crypto invoice / waiting workspace
+→ server-authoritative payment verification
 → 04 Order Confirmed
 ```
 
-### Back navigation
+Back navigation:
 
 ```text
-02 Shipping
-→ Back to contact / address
-
-03 Payment
-→ Back to shipping
-
-Any Crypto Step-03 subview
-→ Back to payment methods
+02 Shipping → 01 Address
+03 Payment → 02 Shipping
+Crypto Step-03 subview → 03 Payment where operationally safe
 ```
 
-### Recovery navigation
+Recovery navigation must be based on actual plugin states and WooCommerce order status, not static browser state alone.
+
+## 6. Accepted 01 / 02 / 03 architecture
+
+### Step 01
 
 ```text
-Crypto Invoice
-→ Expired
-→ Create new invoice
-
-Crypto processing
-→ Failed
-→ Retry or choose another payment method
+Contact
+Delivery address
+Optional order note
+Continue to Shipping
+Order Summary
 ```
 
-Every page must use real relative links to another existing file. No dead links may be represented as completed flow.
-
-## 6. Existing Step-01 page correction
-
-The current `spatial-flow-checkout-v1.html` visually identifies Step 01 as active, but its source currently places Address, a shipping placeholder, payment placeholders and a Review / Place Order block into one long document.
-
-It must be corrected into a true Step-01 page:
+### Step 02
 
 ```text
-Keep:
-- Contact / email
-- billing / delivery address fields
-- optional separate-shipping-address control where appropriate
-- order notes only if the final product decision retains them in Step 01
-- right-side Order Summary
-
-Remove from Step 01:
-- selectable shipping-method UI
-- payment-method UI
-- Review / Place Order UI
-
-Replace final action with:
-- Continue to Shipping
+completed Address + Contact context
+Shipping selection
+Back to Address
+Continue to Payment
+Order Summary with selected shipping total
 ```
 
-The static form may use local prototype state, but must not claim to create a real order.
+The upper `Before it leaves.` card does not show Shipping Method while Shipping is still being selected.
 
-## 7. Step-02 Shipping page contract
-
-The new Shipping page must:
+### Step 03
 
 ```text
-- keep the same shared header, intro and two-column Checkout language
-- show Step 01 as complete and Step 02 as active
-- display a concise Deliver-to summary with Edit link back to Step 01
-- display only shipping methods that are represented as prototype examples
-- show delivery timing, price and selected state clearly
-- update the prototype Order Summary total visibly
-- provide Back and Continue to Payment actions
+completed Address + Contact + confirmed Shipping Method context
+Payment method region
+Cryptocurrency as the currently confirmed method
+Back to Shipping
+gateway handoff action
+Order Summary
 ```
 
-The live implementation will later map this surface to WooCommerce shipping methods and totals. The static page remains a visual interaction contract only.
+Desktop uses two columns. Mobile preserves the accepted internal two-column context-card information grid.
 
-## 8. Step-03 dynamic payment framework
+## 7. Structure-locked visual baseline
 
-The current production payment capability is incomplete. Cryptocurrency is the only confirmed active method at this planning point.
-
-Therefore Step 03 must not permanently hardcode unconfirmed methods such as:
+Authoritative stylesheet:
 
 ```text
-Apple Pay
-Google Pay
-Credit Card
-PayPal
-Bank Transfer
+preview/spatial-flow-checkout-mobile-commerce-v1.css
 ```
 
-Instead the static design defines a dynamic payment-method region capable of supporting:
+Accepted visual scope:
 
 ```text
-- express wallet
-- inline secure fields
-- dedicated Step-03 subflow
-- redirect gateway
-- offline / delayed-confirmation method
+Desktop Step 01 field icons
+Mobile 01 / 02 / 03 warm layered commerce surfaces
+paper-like form fields and option surfaces
+stone-green selected states and primary CTAs
+stronger Order Summary hierarchy
+subtle context-card linework
 ```
 
-The first authoritative customer path shows Cryptocurrency as the current available method.
-
-Future gateway examples may be documented separately as compatibility studies, but must not be presented as currently enabled production behavior.
-
-## 9. Authoritative Step-03 desktop layout
-
-Desktop uses two columns only:
+Passed review:
 
 ```text
-Left payment workspace: approximately 7fr
-Right sticky Order Summary: approximately 5fr
-Gap: approximately 72–80px
+Desktop Step 01 icons
+390px Steps 01 / 02 / 03
+360px Steps 01 / 02 / 03
 ```
 
-The following are sections inside the left workspace, not a third column:
+Forbidden without explicit new approval:
 
 ```text
-- Deliver-to summary + Edit
-- Shipping summary + Edit
-- payment-method entry area
-- selected gateway content or transition action
-- terms / consent where applicable
-- one final payment/submission action
+accepted-page DOM restructuring
+field or section reordering
+invented payment methods
+changed transaction semantics
+decorative vertical accent strips
+changes to accepted Step-03 context spacing
 ```
 
-## 10. Cryptocurrency presentation rule
+## 8. S4A plugin-agnostic reference
 
-The main Payment page shows a concise entry:
+Authoritative records:
+
+```text
+project2-progress/STEP_4F_S4A_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_IMPLEMENTATION.md
+project2-progress/STEP_4F_S4A_FINAL_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_ACCEPTANCE.md
+```
+
+The accepted prototype demonstrates:
+
+```text
+asset selection
+asset-dependent network display
+network selection
+selection reset when the asset changes
+button enablement only after both selections
+sessionStorage continuity
+```
+
+All displayed assets and networks are static examples. The reference creates no real WooCommerce order, invoice, address, quote, transaction or payment confirmation.
+
+## 9. S4B V0.2.5 capability baseline
+
+Authoritative decision:
+
+```text
+project2-progress/STEP_4F_S4B_V025_PLUGIN_CAPABILITY_ALIGNMENT_DECISION.md
+```
+
+Reviewed plugin:
+
+```text
+Spatial Flow Crypto Pay Trial 0.2.5
+Gateway class: SF_Crypto_Pay_Gateway
+Gateway ID: spatial_flow_crypto
+Classic WC_Payment_Gateway
+Package SHA256: 41e926e96af99a0623d850189ec99ea4a58536b3f4b23be78f1eba9d21d7550f
+```
+
+Current real capability:
+
+```text
+Asset: USDT
+Network: TRON / TRC20
+Environment: administrator-selected mainnet / nile / shasta
+Order: created before Crypto invoice
+Waiting order status: on-hold
+Invoice: generated or reused after order creation
+Payment proof: customer manually submits tx hash
+Verification: WordPress server queries TronGrid
+Success: payment_complete()
+Result: WooCommerce Order Received / Thank You
+```
+
+Current plugin does not provide:
+
+```text
+dynamic asset/network API
+customer-selectable multi-network routing
+REST or AJAX Invoice API
+automatic chain monitoring
+server worker or WP-Cron confirmation
+webhook
+QR generation
+real fiat-to-Crypto quote
+rate lock
+operational countdown / expiry state
+confirmation-count stream
+WooCommerce Blocks payment registration
+```
+
+## 10. Gateway-specific S4A contract
+
+Authoritative decision:
+
+```text
+Choice C:
+S4A becomes a fixed pre-invoice confirmation surface under V0.2.5.
+```
+
+Production-facing content:
 
 ```text
 Cryptocurrency
-Choose from supported digital assets and networks.
-[ Continue with Cryptocurrency ]
+Asset: USDT
+Network: TRON / TRC20
+Order total
+environment disclosure where applicable
+network compatibility warning
+Continue to Crypto payment workspace
 ```
 
-It must not expand the complete asset/network catalog inside a small accordion.
-
-The dedicated Crypto selection page remains Step 03 and preserves:
+For an administrator-controlled Nile environment, the page may truthfully disclose:
 
 ```text
-- Step 03 active state
-- same prototype Checkout session
-- same Order Summary amount authority
-- Back to payment methods
+Test USDT
+TRON Nile Testnet
 ```
 
-Primary selection order:
+The customer must not choose Mainnet, Nile or Shasta. Environment selection remains a backend setting.
+
+The following accepted S4A prototype functions must not be transferred into current production behavior:
 
 ```text
-choose/search asset
-→ choose one enabled network for that asset
-→ review quote and rate-lock information
-→ create invoice
+USDC or BTC selection
+Ethereum, Solana or Bitcoin network selection
+asset search as a real catalog
+customer-controlled network filtering
+asset/network parameters accepted without server support
 ```
 
-The UI represents backend-supported `asset + allowed network` pairs rather than arbitrary combinations.
+## 11. Gateway-aligned S5 contract
 
-## 11. Crypto invoice and waiting contract
-
-After invoice creation, the Step-03 invoice page must show:
+Authoritative decision:
 
 ```text
-- selected asset
-- selected network
-- exact amount
-- receiving address
-- QR code
-- invoice ID
-- expiry countdown
-- copy amount
-- copy address
-- automatic status language
-- optional manual Refresh status action
+Choice B:
+Project 2 owns the visual shell; plugin/server owns true data and payment authority.
 ```
 
-The customer cannot mark the order paid manually.
-
-The static simulation may demonstrate:
+Project 2 may design:
 
 ```text
-awaiting payment
-→ transaction detected
-→ confirming
-→ confirmed
+invoice summary
+USDT / TRON confirmation
+amount presentation
+receiver-address presentation
+copy controls
+QR placement if later implemented
+waiting-payment language
+manual tx-hash fallback field
+rejection and retry presentation
+responsive desktop and mobile layout
 ```
 
-Success enters Step 04 only after the simulated confirmed state.
-
-Recovery states remain Step 03:
+Plugin/server must own:
 
 ```text
-expired
-underpaid
-failed
-cancelled
+Order ID and Order Key authorization
+invoice creation and reuse
+invoice ID
+true order and expected Crypto amount
+receiver address
+network environment
+invoice persistence
+transaction verification
+old-transaction protection
+receiver and token validation
+duplicate-transaction protection
+Sandbox permission
+payment success decision
+payment_complete()
+WooCommerce status mutation
 ```
 
-## 12. Step-04 result contract
+The current independent `/crypto-pay/` visual page may be replaced or integrated. Its server authority must not be bypassed.
 
-`preview/spatial-flow-thank-you-v1.html` will become the linked Step-04 confirmed result reference.
+## 12. Order-creation truth
 
-Paid / confirmed presentation may show:
+The user-visible flow remains four business steps, but the technical sequence for the classic gateway is:
 
 ```text
-- Order Confirmed / Thank You heading
-- order number
-- payment confirmation / transaction reference where appropriate
-- customer email
-- billing and shipping summary
-- purchased items
-- shipping method
-- subtotal, shipping and total
-- order date
-- next-step / fulfillment guidance
+Step 03 payment confirmation
+→ submit WooCommerce Checkout
+→ WooCommerce order created
+→ order becomes on-hold
+→ create or restore Crypto invoice
+→ show Step-03 payment workspace
+→ server verifies payment
+→ payment_complete()
+→ Step 04 confirmed result
 ```
 
-A separate pending-result reference may be added only as an architectural state and must not claim that a delayed-payment production method is currently enabled.
-
-Failed, cancelled or expired payment does not enter the Thank You page.
-
-## 13. Shared prototype state
-
-The linked static pages may use:
+Therefore:
 
 ```text
-query parameters
-sessionStorage
-localStorage
+- WooCommerce order creation occurs before Crypto payment confirmation
+- an on-hold order is not a confirmed result
+- the browser cannot promote the order to Step 04
+- only server-authoritative success may produce the Order Received result
 ```
 
-to preserve example values such as:
+## 13. Plugin integration-contract gate
+
+Prepared prompt:
 
 ```text
-- contact and address
-- selected shipping method
-- selected crypto asset/network pair
-- example amount
-- example invoice status
+project2-progress/STEP_4F_S4B_PAYMENT_PLUGIN_INTEGRATION_CONTRACT_PROMPT_PROPOSAL.md
 ```
 
-The preview must not:
+The separate payment-plugin workstream must first propose contracts for:
 
 ```text
-- create a real WooCommerce order
-- query a real blockchain
-- expose API secrets
-- contain real private wallet credentials
-- persist production customer data
+Create or Reuse Invoice
+Get Current Invoice
+Submit Transaction Hash
+Get Payment Status
+Sandbox Simulate Success
+Recover Unfinished Payment
+normalized customer-safe errors
+server-authoritative success response
 ```
 
-## 14. Existing V2-repository integration
-
-All new pages must continue linking to the existing repository reference pages:
+The proposal must define:
 
 ```text
-spatial-flow-v1.html
-spatial-flow-shop-v1.html
-spatial-flow-product-v1.html
-spatial-flow-cart-v1.html
-spatial-flow-search-v1.html
-spatial-flow-wishlist-v1.html
+transport method
+input fields
+response fields
+Order Key / nonce / capability authorization
+idempotency
+invoice persistence
+WooCommerce order-status effects
+refresh and unfinished-payment recovery
+Sandbox restrictions
 ```
 
-The Checkout sequence is part of the existing preview site, not a separate hub.
+No new plugin ZIP or version is authorized until Project 2 reviews this contract.
 
-The Cart's current `Go to checkout` link already enters `spatial-flow-checkout-v1.html`; no redirect to a new directory is required.
+## 14. Current and future state boundaries
+
+Implemented or evidenced now:
+
+```text
+waiting_payment
+paid_confirmed
+on-hold WooCommerce waiting state
+processing after payment_complete() for normal physical products
+server rejection codes for invalid submitted transactions
+```
+
+Not to be represented as completed current behavior:
+
+```text
+automatic payment_detected
+live confirming counts
+operational expired state
+automatic underpaid accumulation
+overpaid workflow
+late-paid workflow
+cancelled-after-payment workflow
+manual_review state machine
+```
+
+S6 pages must reflect only states supported by the approved plugin contract or be explicitly labeled future architecture references.
 
 ## 15. Responsive acceptance
 
@@ -384,58 +453,69 @@ Every authoritative state must be reviewed at:
 Required mobile qualities:
 
 ```text
-- no horizontal overflow
-- clear active-step hierarchy
-- readable address and shipping summaries
-- accessible asset/network search and selection
-- usable invoice QR/address/countdown
-- no obscured gateway controls or primary actions
+no horizontal overflow
+clear active-step hierarchy
+readable address, shipping and payment context
+usable amount and address copy controls
+usable manual tx-hash fallback
+no obscured primary actions
+truthful status and recovery messages
 ```
 
-## 16. Corrected build order
+## 16. Current corrected build order
 
 ```text
-Phase S1 — correct existing spatial-flow-checkout-v1.html into true Step 01 and add Continue to Shipping
-Phase S2 — create spatial-flow-checkout-shipping-v1.html and link 01 ↔ 02
-Phase S3 — create spatial-flow-checkout-payment-v1.html and link 02 ↔ 03
-Phase S4 — create Crypto select page and link from Step 03
-Phase S5 — create Crypto invoice / waiting page
-Phase S6 — create confirming and recovery pages
-Phase S7 — rework spatial-flow-thank-you-v1.html into Step 04 confirmed result and link successful flow
-Phase S8 — full relative-link audit across Cart / 01 / 02 / 03 / Crypto / 04
-Phase S9 — 1366 / 390 / 360 visual and interaction acceptance
+S1 — Step 01 Contact / Address: implemented
+→ S2 — Shipping: implemented
+→ S3 — Payment: implemented
+→ S3 Mobile Commerce Surface: accepted and closed
+→ S4A — plugin-agnostic selector: accepted and closed as a reference
+→ S4B — V0.2.5 capability alignment: completed
+→ S4B contract proposal: current gate
+→ S4A gateway-specific fixed USDT/TRON adaptation
+→ S5 gateway-aligned Invoice / Waiting shell
+→ S6 only real supported verification and recovery states
+→ S7 Step 04 Order Confirmed / Thank You
+→ S8 full relative-link and session-state audit
+→ S9 1366 / 390 / 360 static acceptance
+→ live Checkout ownership audit
+→ functional reconstruction preserving WooCommerce and plugin authority
+→ Sandbox and recovery testing
+→ final 1:1 closure
 ```
 
 One bounded group is reviewed at a time.
 
-## 17. Boundary before live implementation
-
-Until the complete linked static flow passes approval:
+## 17. Hard boundaries before live implementation
 
 ```text
 - do not modify live Checkout PHP
 - do not modify live Checkout JavaScript
 - do not modify CartFlows configuration
-- do not modify payment gateways
+- do not modify the payment plugin
 - do not begin broad live Checkout CSS replacement
+- do not create a fake headless payment API
+- do not hardcode unimplemented assets or networks as live
+- do not treat sessionStorage or browser state as payment authority
+- do not create S5 before the integration contract is reviewed
 - do not mark Checkout Completed 1:1
 ```
 
-After approval:
+After the complete static and contract sequence passes approval:
 
 ```text
 live ownership audit
-→ payment-method contract matrix
-→ functional reconstruction preserving WooCommerce ownership
-→ gateway sandbox and recovery testing
-→ final 1:1 visual replacement
+→ plugin integration implementation
+→ gateway Sandbox and recovery testing
+→ production visual replacement
 → backend editability and order-lifecycle closure
 ```
 
 ## 18. Current exact next action
 
 ```text
-Phase S1:
-Refactor preview/spatial-flow-checkout-v1.html into a genuine Step 01 Contact / Address static page.
-Add a real relative link to the future preview/spatial-flow-checkout-shipping-v1.html only in the same bounded change that creates the Step 02 file, so the repository never contains a dead Next link.
+Send the approved integration-contract prompt to the separate payment-plugin window.
+Receive its contract proposal.
+Review the transport, authorization, response schema, idempotency and recovery model.
+Do not authorize plugin code generation before that review passes.
 ```
