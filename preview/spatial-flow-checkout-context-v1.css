@@ -113,8 +113,9 @@
   line-height: 1.45;
 }
 
-/* Step 03 only: compact the completed-context card without removing information. */
+/* Step 03 only: balance the completed-context card without removing information. */
 .checkout-step-payment .context-card {
+  position: relative;
   padding: 24px 28px 22px;
 }
 
@@ -134,9 +135,8 @@
 }
 
 .checkout-step-payment .context-card__address {
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
+  display: block;
+  min-height: 0;
   padding-right: 17px;
 }
 
@@ -145,12 +145,12 @@
 }
 
 .checkout-step-payment .context-section + .context-section {
-  margin-top: 10px;
-  padding-top: 10px;
+  margin-top: 5px;
+  padding-top: 5px;
 }
 
 .checkout-step-payment .context-section__head {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
 .checkout-step-payment .context-value,
@@ -165,17 +165,26 @@
   font-weight: 500;
 }
 
-.checkout-step-payment .context-value small {
-  margin-top: 2px;
+.checkout-step-payment .context-card__secondary .context-value,
+.checkout-step-payment .context-card__secondary .context-value strong,
+.checkout-step-payment .context-card__secondary .context-value small {
+  line-height: 1.3;
+}
+
+.checkout-step-payment .context-card__secondary .context-value small {
+  margin-top: 0;
   color: var(--soft);
 }
 
 .checkout-step-payment .context-address-edit {
-  display: block;
-  width: 100%;
-  margin-top: auto;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
+  position: absolute;
+  top: 30px;
+  right: 28px;
+  display: inline-block;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .payment-methods {
@@ -351,19 +360,30 @@
   }
 
   .checkout-step-payment .context-section + .context-section {
-    margin-top: 9px;
-    padding-top: 9px;
+    margin-top: 4px;
+    padding-top: 4px;
+  }
+
+  .checkout-step-payment .context-section__head {
+    margin-bottom: 2px;
   }
 
   .checkout-step-payment .context-value,
   .checkout-step-payment .context-value strong,
   .checkout-step-payment .context-value small {
     font-size: 9.5px;
-    line-height: 1.42;
+    line-height: 1.4;
+  }
+
+  .checkout-step-payment .context-card__secondary .context-value,
+  .checkout-step-payment .context-card__secondary .context-value strong,
+  .checkout-step-payment .context-card__secondary .context-value small {
+    line-height: 1.28;
   }
 
   .checkout-step-payment .context-address-edit {
-    padding-top: 8px;
+    top: 24px;
+    right: 16px;
   }
 
   .payment-method {
@@ -410,5 +430,10 @@
   .checkout-step-payment .context-value strong,
   .checkout-step-payment .context-value small {
     font-size: 9px;
+  }
+
+  .checkout-step-payment .context-address-edit {
+    top: 22px;
+    right: 14px;
   }
 }
