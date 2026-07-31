@@ -118,17 +118,91 @@ reduce the distinction between read-only and interactive content
 weaken the editorial identity instead of balancing it
 ```
 
-## Recommended next decision gate
+## Visual-reference review outcome
 
-Before implementation, prepare a mobile-only visual comparison for one representative section using the actual Checkout language:
+The later generated mobile Checkout images were approved only as a **visual-language reference**.
+
+They are explicitly **not** an approved replacement page structure and must not be treated as a new static specification.
+
+### Approved visual qualities to borrow
 
 ```text
-Option A — current minimal surface
-Option B — recommended warm commerce surface
-Option C — stronger high-contrast commerce surface
+warmer and more layered neutral surfaces
+clearer distinction between page background and commerce controls
+stronger but restrained input, shipping-option and payment-option boundaries
+dark green / stone primary CTA treatment
+more visible product thumbnails, prices and totals as commerce signals
+compact mobile rhythm and stronger transactional hierarchy
+subtle decorative linework only where it does not compete with information
 ```
 
-The preferred candidate should then be applied consistently to Step 01 fields, Step 02 shipping choices and Step 03 payment choices through bounded mobile selectors only.
+### Structural elements that remain authoritative
+
+The current approved repository pages remain the sole structural source of truth:
+
+```text
+preview/spatial-flow-checkout-v1.html
+preview/spatial-flow-checkout-shipping-v1.html
+preview/spatial-flow-checkout-payment-v1.html
+```
+
+The implementation must preserve their approved:
+
+```text
+01 Address content and field sequence
+02 Shipping information hierarchy and interaction flow
+03 Payment information hierarchy and interaction flow
+02 / 03 Before it leaves. context-card architecture
+03 Address + Contact + confirmed Shipping Method grid
+Order Summary ownership and placement
+01 → 02 → 03 linked state handoff
+Cryptocurrency as the only currently confirmed payment method
+```
+
+### Rejected structural transfer from generated images
+
+Do not copy the generated images' altered:
+
+```text
+header or step-navigation construction
+field grouping or field order
+page-section order
+context-card layout
+shipping-option structure
+payment-option inventory
+CTA wording or transaction semantics
+Order Summary structure
+product data
+spacing measurements merely because they appear in the image
+```
+
+The generated images may guide color, surface depth, border weight, typography contrast and visual rhythm only.
+
+### Additional visual exclusion
+
+Do not introduce a decorative vertical color strip beside the active payment or shipping option merely to imitate a reference image. Selection should remain legible through the approved border, radio state, background shift or another restrained state treatment.
+
+## Locked implementation principle
+
+```text
+Preserve the approved Checkout structure exactly.
+Borrow only the approved Editorial Commerce visual language.
+Do not redesign the page while applying the mobile visual enhancement.
+```
+
+Any future implementation proposal must be demonstrated against the actual 01, 02 and 03 repository structures before source changes are authorized.
+
+## Recommended next decision gate
+
+Before implementation, prepare a mobile-only structural-faithful visual comparison using the actual Checkout pages:
+
+```text
+01 Address — current approved structure + proposed visual language
+02 Shipping — current approved structure + proposed visual language
+03 Payment — current approved structure + proposed visual language
+```
+
+The comparison must not alter the content hierarchy, section order, field sequence or approved interaction model.
 
 ## Implementation boundary
 
@@ -137,4 +211,5 @@ No source edit approved yet.
 No desktop rule changes.
 No broad global card treatment.
 No change to the approved S3 interaction flow.
+No structural transfer from generated images.
 ```
