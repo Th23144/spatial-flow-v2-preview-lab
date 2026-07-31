@@ -161,6 +161,10 @@
 
   hydrateAddressAndContact();
 
+  if (document.body.classList.contains('checkout-step-payment')) {
+    hydrateConfirmedShipping();
+  }
+
   const shippingOptions = [...document.querySelectorAll('[data-shipping-option]')];
   const shippingForm = document.querySelector('[data-shipping-form]');
   let currentShippingDraft = null;
@@ -218,12 +222,17 @@
 
   const paymentForm = document.querySelector('[data-payment-form]');
   if (paymentForm) {
-    hydrateConfirmedShipping();
-
     paymentForm.addEventListener('submit', (event) => {
       event.preventDefault();
       mergeState({ paymentMethod: 'cryptocurrency' });
-      showNotice('The dedicated Cryptocurrency asset and network workspace will be connected in the next bounded static-reference phase. No real payment was attempted.');
+
+      const action = paymentForm.getAttribute('action');
+      if (action && action !== '#') {
+        window.location.href = action;
+        return;
+      }
+
+      showNotice('The dedicated Cryptocurrency asset and network workspace is not connected. No real payment was attempted.');
     });
   }
 
