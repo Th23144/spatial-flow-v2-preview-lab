@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="spatial-flow-checkout-flow-v1.css" />
+  <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css" />
 </head>
 <body class="woocommerce-checkout checkout-step-shipping">
   <div class="masthead-strip-v1">
@@ -68,22 +69,7 @@
   </section>
 
   <main class="checkout-shell">
-    <form class="checkout-main" action="#" method="get" data-shipping-form>
-      <section class="checkout-panel">
-        <div class="panel-head">
-          <div class="panel-no">Delivery summary</div>
-          <h2>Before it <em>leaves</em>.</h2>
-        </div>
-
-        <div class="address-summary">
-          <div class="summary-label">Deliver to</div>
-          <div class="summary-copy-block" data-address-output>
-            Alex Morgan<br />123 Quiet Way, Apt 4B<br />Brooklyn, NY 11201<br />United States
-          </div>
-          <a class="edit-link" href="spatial-flow-checkout-v1.html">Edit →</a>
-        </div>
-      </section>
-
+    <form class="checkout-main" action="spatial-flow-checkout-payment-v1.html" method="get" data-shipping-form>
       <section class="checkout-panel">
         <div class="panel-head">
           <div class="panel-no">Shipping · 02</div>
@@ -147,61 +133,91 @@
       </div>
 
       <p class="prototype-note">
-        Your selected shipping example is stored in this browser tab. Step 03 will be connected in the next bounded phase rather than creating a dead link now.
+        Selecting a method previews its cost. Continuing commits that prototype selection and opens the linked Payment reference page.
       </p>
     </form>
 
-    <aside class="order-summary" aria-label="Order summary">
-      <div class="order-summary-head">
-        <h3>Order summary</h3>
-        <a href="spatial-flow-cart-v1.html">Edit bag →</a>
-      </div>
+    <aside class="checkout-side" aria-label="Checkout context and order summary">
+      <section class="context-card" aria-label="Delivery and contact confirmation">
+        <div class="context-card__head">
+          <h3>Before it <em>leaves</em>.</h3>
+          <a class="context-card__edit" href="spatial-flow-checkout-v1.html">Edit address →</a>
+        </div>
 
-      <div class="summary-items">
-        <article class="summary-item">
-          <div class="summary-thumb"></div>
-          <div class="summary-copy">
-            <h4>Ash Quartz · No. 07</h4>
-            <div class="meta">Bracelet · Size M · Qty 1</div>
+        <div class="context-card__grid">
+          <section class="context-card__address context-section">
+            <div class="context-section__head">
+              <span class="context-label">Deliver to</span>
+            </div>
+            <div class="context-value" data-address-output>Alex Morgan
+123 Quiet Way, Apt 4B
+Brooklyn, NY 11201
+United States</div>
+          </section>
+
+          <div class="context-card__secondary">
+            <section class="context-section">
+              <div class="context-section__head">
+                <span class="context-label">Contact</span>
+              </div>
+              <div class="context-value"><span data-contact-email>alex@morgan.com</span><br /><span data-contact-phone>+1 (917) 555-0192</span></div>
+            </section>
           </div>
-          <div class="summary-price">$42.00</div>
-        </article>
+        </div>
+      </section>
 
-        <article class="summary-item">
-          <div class="summary-thumb th-2"></div>
-          <div class="summary-copy">
-            <h4>Bluestone Mala</h4>
-            <div class="meta">Bracelet · Size S · Qty 1</div>
-          </div>
-          <div class="summary-price">$42.00</div>
-        </article>
+      <section class="order-summary" aria-label="Order summary">
+        <div class="order-summary-head">
+          <h3>Order summary</h3>
+          <a href="spatial-flow-cart-v1.html">Edit bag →</a>
+        </div>
 
-        <article class="summary-item">
-          <div class="summary-thumb th-3"></div>
-          <div class="summary-copy">
-            <h4>Tussore Throw — Clay</h4>
-            <div class="meta">Textile · One size · Qty 1</div>
-          </div>
-          <div class="summary-price">$245.00</div>
-        </article>
-      </div>
+        <div class="summary-items">
+          <article class="summary-item">
+            <div class="summary-thumb"></div>
+            <div class="summary-copy">
+              <h4>Ash Quartz · No. 07</h4>
+              <div class="meta">Bracelet · Size M · Qty 1</div>
+            </div>
+            <div class="summary-price">$42.00</div>
+          </article>
 
-      <div class="summary-totals">
-        <div class="summary-row"><span class="label">Subtotal</span><span class="value">$329.00</span></div>
-        <div class="summary-row"><span class="label">Shipping</span><span class="value" data-shipping-value>Free</span></div>
-        <div class="summary-row"><span class="label">Tax</span><span class="value">Calculated later</span></div>
-        <div class="summary-row total"><span class="label">Estimated total</span><span class="value" data-total-value>$329.00</span></div>
-      </div>
+          <article class="summary-item">
+            <div class="summary-thumb th-2"></div>
+            <div class="summary-copy">
+              <h4>Bluestone Mala</h4>
+              <div class="meta">Bracelet · Size S · Qty 1</div>
+            </div>
+            <div class="summary-price">$42.00</div>
+          </article>
 
-      <p class="summary-note">
-        The selected method and total remain visible before the customer enters the payment step.
-      </p>
+          <article class="summary-item">
+            <div class="summary-thumb th-3"></div>
+            <div class="summary-copy">
+              <h4>Tussore Throw — Clay</h4>
+              <div class="meta">Textile · One size · Qty 1</div>
+            </div>
+            <div class="summary-price">$245.00</div>
+          </article>
+        </div>
 
-      <div class="summary-trust">
-        <div>No payment is attempted in Step 02</div>
-        <div>Live rates will remain WooCommerce-controlled</div>
-        <div>Address editing returns to the existing Step 01 page</div>
-      </div>
+        <div class="summary-totals">
+          <div class="summary-row"><span class="label">Subtotal</span><span class="value">$329.00</span></div>
+          <div class="summary-row"><span class="label">Shipping preview</span><span class="value" data-shipping-value>Free</span></div>
+          <div class="summary-row"><span class="label">Tax</span><span class="value">Calculated later</span></div>
+          <div class="summary-row total"><span class="label">Estimated total</span><span class="value" data-total-value>$329.00</span></div>
+        </div>
+
+        <p class="summary-note">
+          The selected shipping cost is a preview until you continue to Payment.
+        </p>
+
+        <div class="summary-trust">
+          <div>No payment is attempted in Step 02</div>
+          <div>Live rates will remain WooCommerce-controlled</div>
+          <div>The confirmation card contains only completed Step 01 information</div>
+        </div>
+      </section>
     </aside>
   </main>
 
