@@ -2,6 +2,7 @@
   'use strict';
 
   const STORAGE_KEY = 'spatialFlowCheckoutPrototype';
+  const SUBTOTAL = 329;
 
   const ASSETS = {
     usdt: {
@@ -61,6 +62,10 @@
   const selectedNetworkOutput = document.querySelector('[data-selected-network]');
   const submitButton = form.querySelector('[data-crypto-submit]');
   const notice = document.querySelector('[data-checkout-notice]');
+  const orderTotalRow = [...document.querySelectorAll('.crypto-detail-row')].find((row) => {
+    return row.querySelector('dt')?.textContent.trim() === 'Order total';
+  });
+  const orderTotalOutput = orderTotalRow?.querySelector('dd') || null;
   let noticeTimer = null;
 
   const showNotice = (message) => {
@@ -69,6 +74,16 @@
     notice.classList.add('is-visible');
     window.clearTimeout(noticeTimer);
     noticeTimer = window.setTimeout(() => notice.classList.remove('is-visible'), 4200);
+  };
+
+  const updateOrderTotal = () => {
+    if (!orderTotalOutput) return;
+
+    const shippingPrice = Number(readState().shipping?.price || 0);
+    const firstTextNode = [...orderTotalOutput.childNodes].find((node) => node.nodeType === Node.TEXT_NODE);
+    if (firstTextNode) {
+      firstTextNode.nodeValue = `$${(SUBTOTAL + shippingPrice).toFixed(2)}`;
+    }
   };
 
   const storedDraft = readState().cryptoDraft || {};
@@ -227,6 +242,7 @@
     showNotice('Static S4A handoff reached. No quote, wallet address, WooCommerce order or Crypto invoice was created.');
   });
 
+  updateOrderTotal();
   renderAssets();
   renderNetworks();
   updateSummary();
