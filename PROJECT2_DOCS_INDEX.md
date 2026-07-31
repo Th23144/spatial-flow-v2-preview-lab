@@ -26,18 +26,18 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 18. project2-progress/STEP_4F_S4A_FINAL_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_ACCEPTANCE.md
 19. project2-progress/STEP_4F_S4B_V025_PLUGIN_CAPABILITY_ALIGNMENT_DECISION.md
 20. project2-progress/STEP_4F_S4B_PAYMENT_PLUGIN_INTEGRATION_CONTRACT_PROMPT_PROPOSAL.md
-21. preview/spatial-flow-checkout-v1.html
-22. preview/spatial-flow-checkout-shipping-v1.html
-23. preview/spatial-flow-checkout-payment-v1.html
-24. preview/spatial-flow-checkout-crypto-select-v1.html
-25. preview/spatial-flow-checkout-mobile-commerce-v1.css
-26. preview/spatial-flow-checkout-crypto-v1.css
-27. preview/spatial-flow-checkout-crypto-v1.js
+21. project2-progress/STEP_4F_S4B_INTEGRATION_CONTRACT_REVIEW_AND_CORRECTED_DECISION.md
+22. project2-progress/STEP_4F_S4B_PLUGIN_IMPLEMENTATION_PLAN_PROMPT.md
+23. preview/spatial-flow-checkout-v1.html
+24. preview/spatial-flow-checkout-shipping-v1.html
+25. preview/spatial-flow-checkout-payment-v1.html
+26. preview/spatial-flow-checkout-crypto-select-v1.html
+27. preview/spatial-flow-checkout-mobile-commerce-v1.css
+28. preview/spatial-flow-checkout-crypto-v1.css
+29. preview/spatial-flow-checkout-crypto-v1.js
 ```
 
 ## Page-status rule
-
-Only these statuses are valid:
 
 ```text
 Completed 1:1
@@ -62,7 +62,7 @@ Checkout remains:
 Not done
 ```
 
-## Current deployed Cart baseline
+## Current Cart baseline
 
 ```text
 functions.php
@@ -85,7 +85,10 @@ Cancelled FIX4 remains cancelled.
 Phase S3: accepted and closed
 Phase S4A: accepted and closed as a plugin-agnostic static reference
 Phase S4B V0.2.5 capability alignment: completed
-Current gate: payment-plugin integration contract proposal
+S4B integration-contract proposal: received and reviewed
+S4B corrected contract decision: completed
+Current gate: plugin First-Phase Implementation Plan
+Plugin code/ZIP generation: not authorized
 S4A gateway-specific adaptation: not started
 S5 Invoice / Waiting: not started
 Live Checkout audit: paused
@@ -180,7 +183,7 @@ Authoritative decision:
 project2-progress/STEP_4F_S4B_V025_PLUGIN_CAPABILITY_ALIGNMENT_DECISION.md
 ```
 
-Reviewed plugin baseline:
+Reviewed plugin:
 
 ```text
 Spatial Flow Crypto Pay Trial 0.2.5
@@ -195,17 +198,17 @@ Current true capability:
 ```text
 USDT on TRON / TRC20
 administrator-selected mainnet / nile / shasta environment
-WooCommerce order created before invoice
+WooCommerce order created before Crypto invoice
 order held on-hold while unpaid
-independent Crypto page in current plugin
-manual Generate Invoice
-manual tx-hash submission
+current independent /crypto-pay/ page
+manual invoice creation
+manual transaction-hash submission
 server-side TronGrid validation
 payment_complete() on success
 WooCommerce Order Received / Thank You result
 ```
 
-Current plugin does not expose a reusable headless Invoice API, asset/network endpoint, automatic status monitor, QR generator, rate-lock system, operational invoice-expiry state, confirming state stream, webhook or Blocks registration.
+The plugin does not currently expose a reusable headless Invoice API, customer asset/network endpoint, automatic chain monitor, QR generator, active expiry/countdown, quote/rate lock, confirmation stream, webhook or Blocks payment registration.
 
 ## S4A gateway-specific decision
 
@@ -226,77 +229,108 @@ Continue to Crypto payment workspace
 
 The customer cannot choose Mainnet, Nile or Shasta. That remains an administrator setting.
 
-USDC, BTC, Ethereum, Solana and Bitcoin remain static future examples only and must not enter real V0.2.5-backed behavior.
-
 ## S5 ownership decision
 
 ```text
 Choice B
 ```
 
-Project 2 may own the visual shell:
+Project 2 may own the visual shell. Plugin/server ownership remains mandatory for order authorization, invoice creation, amount, receiver address, TRON environment, transaction verification, Sandbox permission, payment_complete() and WooCommerce order-state mutation.
+
+## S4B corrected integration contract
+
+Authoritative review and correction:
 
 ```text
-invoice presentation
-amount and address layout
-copy controls
-waiting and rejection language
-manual tx-hash fallback UI
-responsive layout
+project2-progress/STEP_4F_S4B_INTEGRATION_CONTRACT_REVIEW_AND_CORRECTED_DECISION.md
 ```
 
-Plugin/server ownership remains mandatory for:
+Approved direction:
 
 ```text
-Order ID / Order Key authorization
-invoice creation and reuse
-true amount and receiver address
-chain/token environment
-transaction verification
-payment success
-Sandbox permission
-payment_complete()
-WooCommerce order-state mutation
+WooCommerce order-pay recovery route
+server-rendered Step-03 workspace bootstrap
+same-origin WordPress REST operations
+old /crypto-pay/ and admin-post retained as rollback
+server-authoritative success
 ```
 
-The current `/crypto-pay/` visual page is replaceable. Its server-side payment authority is not.
+Mandatory corrections:
 
-## Supersession of early generic assumptions
+```text
+- do not repeatedly transmit the raw Order Key from browser JavaScript
+- mint a short-lived order-scoped Workspace credential after server-side order-pay validation
+- define exact Guest CSRF protection
+- explicitly permit unpaid on-hold spatial_flow_crypto orders without global WooCommerce filters
+- do not activate expired/replacement-invoice behavior in the first revision
+- do not show a real countdown
+- do not add QR in the first revision
+- do not run default continuous polling without automatic chain monitoring
+- transaction-hash submission remains required
+- Workspace automatically creates or reuses one invoice after the user has already chosen Continue
+- old path remains functional and reversible
+```
 
-The newer S4B decision supersedes early generic statements in:
+First-phase states:
+
+```text
+waiting_payment
+verification_failed
+manual_review
+cancelled
+paid_confirmed
+```
+
+Deferred states/capabilities:
+
+```text
+expired
+payment_detected
+confirming
+partially_paid
+overpaid
+late_paid
+QR
+countdown
+automatic monitoring
+```
+
+## Current implementation-plan gate
+
+Prompt:
+
+```text
+project2-progress/STEP_4F_S4B_PLUGIN_IMPLEMENTATION_PLAN_PROMPT.md
+```
+
+The plugin window must now provide a plan that locks:
+
+```text
+exact order-pay hooks/template boundary
+Workspace-token format and lifetime
+Guest CSRF protection
+on-hold order eligibility
+REST routes and permission callbacks
+invoice concurrency lock
+state migration
+Feature Flag and rollback
+legacy admin-post compatibility
+front-end bootstrap fields
+test matrix
+bounded development steps
+```
+
+It must not generate code, ZIP or a new version number until that plan is reviewed.
+
+## Supersession rule
+
+The corrected S4B decision is newer and more specific than early generic assumptions in:
 
 ```text
 project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
-Specifically, customer-selectable multi-assets/networks, QR, active countdown, automatic detection and confirming states are no longer assumed current capabilities.
-
-They may be added only after explicit plugin implementation and testing.
-
-## Current payment-plugin contract gate
-
-Prepared prompt:
-
-```text
-project2-progress/STEP_4F_S4B_PAYMENT_PLUGIN_INTEGRATION_CONTRACT_PROMPT_PROPOSAL.md
-```
-
-Required proposal scope:
-
-```text
-Create or Reuse Invoice
-Get Current Invoice
-Submit Transaction Hash
-Get Payment Status
-Sandbox Simulate Success
-Recover Unfinished Payment
-normalized JSON errors and success
-Order Key / nonce / capability authorization
-idempotency and duplicate-request behavior
-WooCommerce order-status effects
-```
-
-The separate plugin window must return the contract proposal before generating a new ZIP or choosing a new plugin version.
+Where the old plan assumes customer-selectable assets/networks, QR, active countdown, automatic detection or confirming states as current defaults, the corrected S4B decision supersedes them.
 
 ## Current build order
 
@@ -307,7 +341,9 @@ S1 Step 01: implemented
 → S3 mobile visual layer: accepted
 → S4A plugin-agnostic selector: accepted as a reference
 → S4B V0.2.5 alignment: completed
-→ plugin integration contract proposal: current gate
+→ S4B corrected integration contract: completed
+→ plugin First-Phase Implementation Plan: current gate
+→ bounded plugin implementation only after plan approval
 → S4A fixed USDT/TRON adaptation
 → S5 gateway-aligned Invoice / Waiting shell
 → S6 real supported verification/recovery states
@@ -326,8 +362,9 @@ S1 Step 01: implemented
 - no new plugin or Elementor dependency without explicit approval
 - no Checkout template override without proven necessity and approval
 - do not alter version 2.7.8 without approval
-- do not begin S5 before the plugin contract is reviewed
+- do not begin S5 before the plugin integration path is approved
 - do not treat browser state as payment authority
+- do not expose or repeatedly transmit raw Order Keys from the front end
 - do not represent static multi-asset examples as V0.2.5 support
-- do not generate a new plugin ZIP before contract approval
+- do not generate a new plugin ZIP before the implementation plan is approved
 ```
