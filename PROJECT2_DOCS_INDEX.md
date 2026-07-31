@@ -1,6 +1,6 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-07-30  
+Last updated: 2026-07-31  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative read order
@@ -17,7 +17,11 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 9. project2-progress/STEP_4F_CHECKOUT_PAYMENT_ARCHITECTURE_DECISION_PROPOSAL.md
 10. project2-progress/STEP_4F_PAYMENT_STEP_03_LAYOUT_AND_CRYPTO_SUBFLOW_CORRECTION.md
 11. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
-12. preview/spatial-flow-checkout-v1.html
+12. project2-progress/STEP_4F_CHECKOUT_CONTEXT_PANEL_ARCHITECTURE_APPROVAL_AND_STATIC_IMPLEMENTATION.md
+13. project2-progress/STEP_4F_S3_CONTEXT_PANEL_AND_PAYMENT_PAGE_IMPLEMENTATION.md
+14. preview/spatial-flow-checkout-v1.html
+15. preview/spatial-flow-checkout-shipping-v1.html
+16. preview/spatial-flow-checkout-payment-v1.html
 ```
 
 ## Page-status rule
@@ -112,13 +116,13 @@ Authoritative plan:
 project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
-Current entry page:
+Current review group:
 
 ```text
-preview/spatial-flow-checkout-v1.html
+Step 02 Shipping context-hierarchy revision
+Step 03 main Payment static page
+Desktop + 390px + 360px visual and interaction review
 ```
-
-This existing page is the Step 01 Contact / Address entry. It will be corrected into a genuine Step-01-only page and linked to newly added Step 02 and Step 03 pages.
 
 ## Approved linked static flow
 
@@ -163,12 +167,28 @@ Step 04 is not a pre-payment Review page.
 - one canonical WooCommerce-owned result flow
 ```
 
+## Approved context-panel architecture
+
+```text
+Step 02:
+Before it leaves. = Deliver to + Contact only
+Shipping cost in Order Summary is a live selection preview
+
+Step 03:
+Before it leaves. = Deliver to + Contact + confirmed Shipping Method
+
+Desktop and mobile:
+left = Deliver to
+right upper = Contact
+right lower = Shipping Method on Step 03 only
+```
+
 ## Corrected static-flow build order
 
 ```text
-Phase S1 — correct spatial-flow-checkout-v1.html into true Step 01
-→ Phase S2 — create Shipping page and link 01 ↔ 02
-→ Phase S3 — create Payment page and link 02 ↔ 03
+Phase S1 — correct spatial-flow-checkout-v1.html into true Step 01: implemented
+→ Phase S2 — create Shipping page and link 01 ↔ 02: implemented
+→ Phase S3 — create Payment page and link 02 ↔ 03: implemented / awaiting review
 → Phase S4 — create Crypto selection page
 → Phase S5 — create Crypto invoice / waiting page
 → Phase S6 — create confirming and recovery pages
