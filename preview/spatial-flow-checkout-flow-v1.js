@@ -71,7 +71,7 @@
     const country = address.billing_country || 'United States';
     const email = address.billing_email || 'alex@morgan.com';
     const phone = address.billing_phone || '+1 (917) 555-0192';
-    const cityLine = [city, state, postcode].filter(Boolean).join(', ').replace(', ,', ',');
+    const cityLine = `${city}${state ? `, ${state}` : ''}${postcode ? ` ${postcode}` : ''}`;
 
     return {
       name,
