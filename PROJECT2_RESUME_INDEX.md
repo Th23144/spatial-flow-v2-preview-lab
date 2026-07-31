@@ -21,9 +21,12 @@ Use this as the top-level entry point when resuming Project 2 from a new ChatGPT
 11. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 12. project2-progress/STEP_4F_CHECKOUT_CONTEXT_PANEL_ARCHITECTURE_APPROVAL_AND_STATIC_IMPLEMENTATION.md
 13. project2-progress/STEP_4F_S3_CONTEXT_PANEL_AND_PAYMENT_PAGE_IMPLEMENTATION.md
-14. preview/spatial-flow-checkout-v1.html
-15. preview/spatial-flow-checkout-shipping-v1.html
-16. preview/spatial-flow-checkout-payment-v1.html
+14. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_VISUAL_ENHANCEMENT_PROPOSAL.md
+15. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_STRUCTURE_LOCKED_IMPLEMENTATION.md
+16. preview/spatial-flow-checkout-v1.html
+17. preview/spatial-flow-checkout-shipping-v1.html
+18. preview/spatial-flow-checkout-payment-v1.html
+19. preview/spatial-flow-checkout-mobile-commerce-v1.css
 ```
 
 ## Binary page-status rule
@@ -90,8 +93,12 @@ This does not reopen Cart unless a concrete functional or production-blocking re
 ```text
 Page: Checkout
 Status: Not done
-Current phase: complete the linked Checkout static page sequence inside the existing preview/ directory
-Current exact step: Phase S3 visual/interaction review of revised Step 02 and new Step 03
+Current phase: complete and approve the linked Checkout static page sequence
+Current exact step: review the structure-locked Mobile Commerce Surface implementation
+Required review:
+- desktop Step 01 field icons
+- 390px Steps 01 / 02 / 03
+- 360px Steps 01 / 02 / 03
 Next build phase after acceptance: Phase S4 Crypto asset/network selection workspace
 Live Checkout audit: paused until the linked static flow is approved
 ```
@@ -153,12 +160,49 @@ Mobile Step 03 retains the same internal two-column information grid.
 Order Summary remains below the context card.
 ```
 
+## Structure-locked Mobile Commerce Surface
+
+```text
+Authoritative stylesheet:
+preview/spatial-flow-checkout-mobile-commerce-v1.css
+
+Desktop change:
+Step 01 field icons only
+
+Mobile changes:
+warm layered commerce surfaces
+paper-like inputs and options
+stone-green selected states and primary CTAs
+stronger Order Summary commerce hierarchy
+subtle context-card linework
+
+Forbidden:
+DOM changes
+field reordering
+section reordering
+new payment methods
+decorative vertical accent strips
+```
+
+GitHub structure audit:
+
+```text
+Step 01 HTML: +1 stylesheet link only
+Step 02 HTML: +1 stylesheet link only
+Step 03 HTML: +1 stylesheet link only
+body changes: 0
+field changes: 0
+copy changes: 0
+script changes: 0
+```
+
 ## Current static-flow build order
 
 ```text
 Phase S1 — correct existing Step 01 page: implemented
 → Phase S2 — add Shipping page and link 01 ↔ 02: implemented
-→ Phase S3 — add Payment page and link 02 ↔ 03: implemented / awaiting review
+→ Phase S3 — add Payment page and link 02 ↔ 03: implemented
+→ Phase S3 Mobile Commerce Surface: implemented / awaiting visual review
 → Phase S4 — add Crypto selection page
 → Phase S5 — add Crypto invoice / waiting page
 → Phase S6 — add confirming and recovery pages
