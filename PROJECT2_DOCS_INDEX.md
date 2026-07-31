@@ -23,13 +23,14 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 15. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_STRUCTURE_LOCKED_IMPLEMENTATION.md
 16. project2-progress/STEP_4F_S3_FINAL_STATIC_CHECKOUT_AND_MOBILE_COMMERCE_SURFACE_ACCEPTANCE.md
 17. project2-progress/STEP_4F_S4A_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_IMPLEMENTATION.md
-18. preview/spatial-flow-checkout-v1.html
-19. preview/spatial-flow-checkout-shipping-v1.html
-20. preview/spatial-flow-checkout-payment-v1.html
-21. preview/spatial-flow-checkout-crypto-select-v1.html
-22. preview/spatial-flow-checkout-mobile-commerce-v1.css
-23. preview/spatial-flow-checkout-crypto-v1.css
-24. preview/spatial-flow-checkout-crypto-v1.js
+18. project2-progress/STEP_4F_S4A_FINAL_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_ACCEPTANCE.md
+19. preview/spatial-flow-checkout-v1.html
+20. preview/spatial-flow-checkout-shipping-v1.html
+21. preview/spatial-flow-checkout-payment-v1.html
+22. preview/spatial-flow-checkout-crypto-select-v1.html
+23. preview/spatial-flow-checkout-mobile-commerce-v1.css
+24. preview/spatial-flow-checkout-crypto-v1.css
+25. preview/spatial-flow-checkout-crypto-v1.js
 ```
 
 ## Page-status rule
@@ -111,10 +112,10 @@ The incorrectly created `preview/checkout-v2/` experiment and its plan were remo
 ```text
 Checkout: Not done
 Phase S3: accepted and closed
-Phase S4A: implemented / awaiting visual and interaction review
-Current artifact: preview/spatial-flow-checkout-crypto-select-v1.html
-Phase S4B: blocked pending payment-plugin capability decision
-Phase S5: not started
+Phase S4A: accepted and closed
+Current phase: S4B payment-plugin capability alignment
+S4B status: blocked pending the separate plugin decision
+Phase S5: not authorized
 ```
 
 Current mainline work:
@@ -135,6 +136,12 @@ S4A implementation record:
 project2-progress/STEP_4F_S4A_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_IMPLEMENTATION.md
 ```
 
+S4A final acceptance:
+
+```text
+project2-progress/STEP_4F_S4A_FINAL_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_ACCEPTANCE.md
+```
+
 ## Approved linked static flow
 
 ```text
@@ -143,16 +150,8 @@ preview/spatial-flow-cart-v1.html
 → preview/spatial-flow-checkout-shipping-v1.html
 → preview/spatial-flow-checkout-payment-v1.html
 → preview/spatial-flow-checkout-crypto-select-v1.html
-→ preview/spatial-flow-checkout-crypto-invoice-v1.html
-→ preview/spatial-flow-checkout-crypto-confirming-v1.html
+→ gateway-dependent invoice / waiting / confirmation flow
 → preview/spatial-flow-thank-you-v1.html
-```
-
-Recovery pages planned:
-
-```text
-preview/spatial-flow-checkout-crypto-expired-v1.html
-preview/spatial-flow-checkout-crypto-failed-v1.html
 ```
 
 ## Approved business semantics
@@ -250,7 +249,7 @@ changed transaction semantics
 decorative vertical accent strips
 ```
 
-## Phase S4A status
+## Phase S4A final status
 
 Authoritative page:
 
@@ -265,7 +264,7 @@ preview/spatial-flow-checkout-crypto-v1.css
 preview/spatial-flow-checkout-crypto-v1.js
 ```
 
-Implemented interaction sequence:
+Accepted interaction sequence:
 
 ```text
 no asset selected
@@ -284,9 +283,18 @@ change asset
 → previous network cleared
 ```
 
-All assets and networks are explicitly marked as unconfirmed static examples.
+Final acceptance:
 
-The enabled S4A button stops before S5 and creates no real:
+```text
+S4A visual review: passed
+S4A interaction review: passed
+S4A static-example limitation: understood and accepted
+S4A: accepted and closed
+```
+
+All displayed assets and networks remain unconfirmed static examples.
+
+The accepted S4A boundary creates no real:
 
 ```text
 WooCommerce order
@@ -303,14 +311,30 @@ payment confirmation
 S4B must wait for the separate plugin-selection work to determine:
 
 ```text
-whether custom asset/network selection is supported
-whether the gateway supplies an API or embedded component
-whether it forces a hosted redirect
-which fields are returned
-whether it owns the invoice/waiting screen
+selected plugin / gateway name and version
+custom selection UI vs embedded component vs hosted redirect
+asset/network selection ownership
+asset and network data source
+quote / invoice request fields
+invoice / waiting-screen ownership
+wallet-address and QR ownership
+rate-lock and quote-expiry behavior
+webhook / callback behavior
+WooCommerce order-status mapping
+underpayment / overpayment / expiry / failure handling
+return URL and order-received behavior
+sandbox / test-mode capability
 ```
 
-S4A may be visually reviewed now, but it cannot be treated as the final gateway-specific implementation until S4B is complete.
+S4B decides whether S4A remains a full custom selector, becomes a reduced pre-handoff page, or is bypassed by a gateway-hosted selector.
+
+## S5 gate
+
+```text
+Phase S5 Invoice / Waiting: not authorized
+```
+
+Do not presume that the project owns the Invoice / Waiting page. The selected plugin may provide a hosted page, iframe, embedded component or direct redirect.
 
 ## Corrected static-flow build order
 
@@ -319,10 +343,10 @@ Phase S1 — correct spatial-flow-checkout-v1.html into true Step 01: implemente
 → Phase S2 — create Shipping page and link 01 ↔ 02: implemented
 → Phase S3 — create Payment page and link 02 ↔ 03: implemented
 → Phase S3 Mobile Commerce Surface: implemented / accepted / closed
-→ Phase S4A — plugin-agnostic Crypto selection page: implemented / awaiting review
-→ Phase S4B — plugin-capability alignment: blocked pending plugin decision
-→ Phase S5 — create Crypto invoice / waiting page: not started
-→ Phase S6 — create confirming and recovery pages
+→ Phase S4A — plugin-agnostic Crypto selection page: implemented / accepted / closed
+→ Phase S4B — plugin-capability alignment: next / blocked pending plugin decision
+→ Phase S5 — Crypto invoice / waiting: not authorized until S4B
+→ Phase S6 — confirming and recovery pages
 → Phase S7 — rework spatial-flow-thank-you-v1.html as Step 04
 → Phase S8 — full link audit from Cart through result
 → Phase S9 — 1366 / 390 / 360 static-flow closure
@@ -333,9 +357,9 @@ The Cart's existing `Go to checkout` link already points to `spatial-flow-checko
 ## Remaining execution order
 
 ```text
-Review and approve S4A
-→ obtain the payment-plugin capability decision
+Obtain the payment-plugin capability handoff
 → complete S4B
+→ decide whether S5 is custom, embedded, hosted or unnecessary
 → continue remaining Crypto static flow
 → Checkout live ownership audit, implementation and closure
 → Thank You / result-system implementation and closure
@@ -356,6 +380,6 @@ Review and approve S4A
 - prefer exact in-place replacement over append-only CSS
 - do not alter version 2.7.8 without explicit approval
 - do not begin live Checkout PHP, JavaScript, CartFlows, gateway or broad CSS work until the linked static flow is approved
-- do not begin S5 as a presumed gateway-specific invoice page before S4B resolves actual plugin capability
+- do not begin S5 before S4B resolves the selected plugin's real capability and ownership
 - do not delete the existing spatial-flow-checkout-v1.html or spatial-flow-thank-you-v1.html; rework them as Step 01 and Step 04
 ```
