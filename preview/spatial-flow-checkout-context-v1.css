@@ -113,7 +113,7 @@
   line-height: 1.45;
 }
 
-/* Step 03 only: balance the completed-context card without removing information. */
+/* Step 03 only: preserve the accepted structure and refine only the requested spacing. */
 .checkout-step-payment .context-card {
   position: relative;
   padding: 24px 28px 22px;
@@ -135,8 +135,9 @@
 }
 
 .checkout-step-payment .context-card__address {
-  display: block;
-  min-height: 0;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
   padding-right: 17px;
 }
 
@@ -165,30 +166,38 @@
   font-weight: 500;
 }
 
-.checkout-step-payment .context-card__secondary .context-value,
-.checkout-step-payment .context-card__secondary .context-value strong,
-.checkout-step-payment .context-card__secondary .context-value small {
-  line-height: 1.3;
-}
-
 .checkout-step-payment .context-card__secondary .context-value {
   white-space: normal;
 }
 
-.checkout-step-payment .context-card__secondary .context-value small {
-  margin-top: 0;
+.checkout-step-payment .context-card__secondary .context-section:last-child .context-section__head {
+  margin-bottom: 1px;
+}
+
+.checkout-step-payment .context-card__secondary .context-section:last-child .context-value {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.checkout-step-payment .context-card__secondary .context-section:last-child .context-value strong,
+.checkout-step-payment .context-card__secondary .context-section:last-child .context-value small {
+  margin: 0;
+  line-height: 1.25;
+}
+
+.checkout-step-payment .context-card__secondary .context-section:last-child .context-value small {
   color: var(--soft);
 }
 
 .checkout-step-payment .context-address-edit {
-  position: absolute;
-  top: 30px;
-  right: 28px;
-  display: inline-block;
-  width: auto;
-  margin: 0;
-  padding: 0;
-  border: 0;
+  display: block;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
 }
 
 .payment-methods {
@@ -379,15 +388,22 @@
     line-height: 1.4;
   }
 
-  .checkout-step-payment .context-card__secondary .context-value,
-  .checkout-step-payment .context-card__secondary .context-value strong,
-  .checkout-step-payment .context-card__secondary .context-value small {
-    line-height: 1.28;
+  .checkout-step-payment .context-card__secondary .context-section:last-child .context-section__head {
+    margin-bottom: 1px;
+  }
+
+  .checkout-step-payment .context-card__secondary .context-section:last-child .context-value {
+    gap: 1px;
+    line-height: 1.22;
+  }
+
+  .checkout-step-payment .context-card__secondary .context-section:last-child .context-value strong,
+  .checkout-step-payment .context-card__secondary .context-section:last-child .context-value small {
+    line-height: 1.22;
   }
 
   .checkout-step-payment .context-address-edit {
-    top: 24px;
-    right: 16px;
+    padding-top: 8px;
   }
 
   .payment-method {
@@ -434,10 +450,5 @@
   .checkout-step-payment .context-value strong,
   .checkout-step-payment .context-value small {
     font-size: 9px;
-  }
-
-  .checkout-step-payment .context-address-edit {
-    top: 22px;
-    right: 14px;
   }
 }
