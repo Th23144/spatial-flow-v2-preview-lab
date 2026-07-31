@@ -25,13 +25,14 @@ Use this as the top-level entry point when resuming Project 2 from a new ChatGPT
 15. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_STRUCTURE_LOCKED_IMPLEMENTATION.md
 16. project2-progress/STEP_4F_S3_FINAL_STATIC_CHECKOUT_AND_MOBILE_COMMERCE_SURFACE_ACCEPTANCE.md
 17. project2-progress/STEP_4F_S4A_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_IMPLEMENTATION.md
-18. preview/spatial-flow-checkout-v1.html
-19. preview/spatial-flow-checkout-shipping-v1.html
-20. preview/spatial-flow-checkout-payment-v1.html
-21. preview/spatial-flow-checkout-crypto-select-v1.html
-22. preview/spatial-flow-checkout-mobile-commerce-v1.css
-23. preview/spatial-flow-checkout-crypto-v1.css
-24. preview/spatial-flow-checkout-crypto-v1.js
+18. project2-progress/STEP_4F_S4A_FINAL_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_ACCEPTANCE.md
+19. preview/spatial-flow-checkout-v1.html
+20. preview/spatial-flow-checkout-shipping-v1.html
+21. preview/spatial-flow-checkout-payment-v1.html
+22. preview/spatial-flow-checkout-crypto-select-v1.html
+23. preview/spatial-flow-checkout-mobile-commerce-v1.css
+24. preview/spatial-flow-checkout-crypto-v1.css
+25. preview/spatial-flow-checkout-crypto-v1.js
 ```
 
 ## Binary page-status rule
@@ -100,10 +101,10 @@ Page: Checkout
 Status: Not done
 Current phase: complete and approve the linked Checkout static page sequence
 Phase S3 status: accepted and closed
-Phase S4A status: implemented / awaiting visual and interaction review
-Current exact step: review preview/spatial-flow-checkout-crypto-select-v1.html
-Phase S4B: blocked until the separate payment-plugin capability decision exists
-Phase S5: not started
+Phase S4A status: accepted and closed
+Current exact step: wait for the separate payment-plugin capability handoff
+Phase S4B: next required phase / blocked until plugin decision exists
+Phase S5: not authorized
 Live Checkout audit: paused until the complete linked static flow is approved
 ```
 
@@ -126,7 +127,7 @@ preview/spatial-flow-cart-v1.html
 → preview/spatial-flow-checkout-shipping-v1.html
 → preview/spatial-flow-checkout-payment-v1.html
 → preview/spatial-flow-checkout-crypto-select-v1.html
-→ future Step-03 Crypto invoice / waiting / confirmation pages
+→ gateway-dependent invoice / waiting / confirmation flow
 → preview/spatial-flow-thank-you-v1.html
 ```
 
@@ -210,12 +211,18 @@ Desktop Step 01 icons: passed
 Phase S3: accepted and closed
 ```
 
-## Phase S4A implementation
+## Phase S4A implementation and acceptance
 
-Authoritative record:
+Authoritative implementation record:
 
 ```text
 project2-progress/STEP_4F_S4A_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_IMPLEMENTATION.md
+```
+
+Authoritative final acceptance:
+
+```text
+project2-progress/STEP_4F_S4A_FINAL_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_ACCEPTANCE.md
 ```
 
 Authoritative page:
@@ -224,7 +231,7 @@ Authoritative page:
 preview/spatial-flow-checkout-crypto-select-v1.html
 ```
 
-Implemented contract:
+Accepted interaction contract:
 
 ```text
 no asset selected
@@ -240,7 +247,16 @@ asset + network selected
 → selection retained in static session state
 ```
 
-Every displayed asset and network is explicitly a static example and is not confirmed as gateway capability.
+Final review:
+
+```text
+S4A visual review: passed
+S4A interaction review: passed
+S4A example-data disclosure: understood and accepted
+S4A: accepted and closed
+```
+
+Every displayed asset and network remains a static example and is not confirmed as gateway capability.
 
 S4A deliberately does not create:
 
@@ -256,6 +272,30 @@ webhook
 payment confirmation
 ```
 
+## Phase S4B capability-handoff gate
+
+The next required work is not page styling. It is alignment with the selected payment plugin or gateway.
+
+Required handoff from the separate plugin-selection work:
+
+```text
+selected plugin / gateway and version
+custom UI vs embedded component vs hosted redirect
+asset/network selection ownership
+asset and network data source
+quote / invoice creation fields
+invoice / waiting-screen ownership
+wallet-address and QR ownership
+rate-lock and quote-expiry behavior
+webhook / callback behavior
+WooCommerce order-status mapping
+underpayment / overpayment / expiry / failure behavior
+return URL and order-received behavior
+sandbox / test-mode capability
+```
+
+S5 must not begin until S4B determines whether a custom Invoice / Waiting page is technically valid or whether the gateway owns that interface.
+
 ## Current static-flow build order
 
 ```text
@@ -263,10 +303,10 @@ Phase S1 — correct existing Step 01 page: implemented
 → Phase S2 — add Shipping page and link 01 ↔ 02: implemented
 → Phase S3 — add Payment page and link 02 ↔ 03: implemented
 → Phase S3 Mobile Commerce Surface: implemented / accepted / closed
-→ Phase S4A — plugin-agnostic Crypto selection page: implemented / awaiting review
-→ Phase S4B — align S4A with selected plugin capability: blocked pending plugin decision
-→ Phase S5 — add Crypto invoice / waiting page: not started
-→ Phase S6 — add confirming and recovery pages
+→ Phase S4A — plugin-agnostic Crypto selection page: implemented / accepted / closed
+→ Phase S4B — align with selected plugin capability: next / blocked pending plugin decision
+→ Phase S5 — Crypto invoice / waiting: not authorized until S4B
+→ Phase S6 — confirming and recovery pages
 → Phase S7 — rework existing Thank You page as Step 04
 → Phase S8 — full link audit from Cart through confirmed result
 → Phase S9 — 1366 / 390 / 360 static-flow acceptance
@@ -276,9 +316,9 @@ Phase S1 — correct existing Step 01 page: implemented
 ## Current execution order
 
 ```text
-Review and approve S4A
-→ obtain separate payment-plugin capability decision
+Obtain the payment-plugin capability handoff
 → complete S4B capability alignment
+→ decide whether S5 is custom, embedded, hosted or unnecessary
 → continue remaining Crypto static flow
 → Checkout live audit, implementation and closure
 → Thank You / result-system implementation and closure
@@ -302,5 +342,6 @@ Review and approve S4A
 - version remains 2.7.8 until explicitly changed
 - only ask the user to choose at genuine visual, operational or business decision points
 - do not modify the real Checkout while the linked static flow is incomplete
+- do not begin S5 before S4B resolves the selected plugin's actual ownership and capability
 - do not delete the existing Checkout and Thank You reference files; rework them as Step 01 and Step 04
 ```
