@@ -21,10 +21,11 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 13. project2-progress/STEP_4F_S3_CONTEXT_PANEL_AND_PAYMENT_PAGE_IMPLEMENTATION.md
 14. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_VISUAL_ENHANCEMENT_PROPOSAL.md
 15. project2-progress/STEP_4F_S3_MOBILE_COMMERCE_SURFACE_STRUCTURE_LOCKED_IMPLEMENTATION.md
-16. preview/spatial-flow-checkout-v1.html
-17. preview/spatial-flow-checkout-shipping-v1.html
-18. preview/spatial-flow-checkout-payment-v1.html
-19. preview/spatial-flow-checkout-mobile-commerce-v1.css
+16. project2-progress/STEP_4F_S3_FINAL_STATIC_CHECKOUT_AND_MOBILE_COMMERCE_SURFACE_ACCEPTANCE.md
+17. preview/spatial-flow-checkout-v1.html
+18. preview/spatial-flow-checkout-shipping-v1.html
+19. preview/spatial-flow-checkout-payment-v1.html
+20. preview/spatial-flow-checkout-mobile-commerce-v1.css
 ```
 
 ## Page-status rule
@@ -105,6 +106,9 @@ The incorrectly created `preview/checkout-v2/` experiment and its plan were remo
 
 ```text
 Checkout: Not done
+Phase S3: accepted and closed
+Current phase: S4 Crypto asset/network selection workspace
+Next artifact: preview/spatial-flow-checkout-crypto-select-v1.html
 ```
 
 Current mainline work:
@@ -119,13 +123,10 @@ Authoritative plan:
 project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
-Current review group:
+Final S3 acceptance:
 
 ```text
-Structure-locked Mobile Commerce Surface implementation
-Desktop Step 01 field icons
-390px Steps 01 / 02 / 03
-360px Steps 01 / 02 / 03
+project2-progress/STEP_4F_S3_FINAL_STATIC_CHECKOUT_AND_MOBILE_COMMERCE_SURFACE_ACCEPTANCE.md
 ```
 
 ## Approved linked static flow
@@ -224,6 +225,15 @@ copy changes: 0
 script changes: 0
 ```
 
+Final review:
+
+```text
+Desktop Step 01 icons: passed
+390px Steps 01 / 02 / 03: passed
+360px Steps 01 / 02 / 03: passed
+Phase S3: accepted and closed
+```
+
 Forbidden transfers:
 
 ```text
@@ -234,14 +244,43 @@ changed transaction semantics
 decorative vertical accent strips
 ```
 
+## Phase S4 scope
+
+Next file:
+
+```text
+preview/spatial-flow-checkout-crypto-select-v1.html
+```
+
+S4 remains inside Payment Step 03. It must not introduce a fifth Checkout step.
+
+Required selection sequence:
+
+```text
+choose supported digital asset
+→ choose a supported network for that asset
+→ review order amount and network compatibility warning
+→ continue toward Crypto invoice creation
+```
+
+Required navigation:
+
+```text
+Step 03 Payment → Crypto selection
+Crypto selection → back to Step 03 Payment
+Crypto selection → future Crypto invoice page
+```
+
+Static token and network examples must not be described as verified live gateway support before the later gateway audit.
+
 ## Corrected static-flow build order
 
 ```text
 Phase S1 — correct spatial-flow-checkout-v1.html into true Step 01: implemented
 → Phase S2 — create Shipping page and link 01 ↔ 02: implemented
 → Phase S3 — create Payment page and link 02 ↔ 03: implemented
-→ Phase S3 Mobile Commerce Surface: implemented / awaiting visual review
-→ Phase S4 — create Crypto selection page
+→ Phase S3 Mobile Commerce Surface: implemented / accepted / closed
+→ Phase S4 — create Crypto selection page: next / not started
 → Phase S5 — create Crypto invoice / waiting page
 → Phase S6 — create confirming and recovery pages
 → Phase S7 — rework spatial-flow-thank-you-v1.html as Step 04
