@@ -16,7 +16,7 @@ S4A plugin-agnostic asset/network selector: accepted and closed as a future refe
 S4B plugin capability alignment and corrected integration contract: completed
 S5 fixed-USDT/TRON Invoice / Waiting structure: accepted
 Future multi-asset integrated Crypto Workspace preview: accepted and isolated
-Current bounded task: S5 Preparing Invoice internal-state correction
+S5 Preparing Invoice internal-state correction: implemented, awaiting user acceptance
 S6 verification/recovery states: not started
 S7 Step 04 result: not started
 Live Checkout source work: paused
@@ -89,7 +89,7 @@ preview/spatial-flow-thank-you-v1.html
 
 ```text
 preview/spatial-flow-checkout-crypto-invoice-v1.html
-  accepted fixed-USDT/TRON Invoice / Waiting Workspace
+  accepted fixed-USDT/TRON Invoice / Waiting Workspace with implemented Preparing state
 ```
 
 ### Accepted future references
@@ -112,7 +112,8 @@ Cart
 → Step 02 Shipping
 → Step 03 Payment host
 → one final Cryptocurrency handoff action
-→ current fixed-USDT/TRON S5 Workspace
+→ S5 Preparing Invoice
+→ S5 Waiting for payment
 → transaction-hash verification boundary
 → future server-authoritative Step 04 result
 ```
@@ -310,9 +311,9 @@ payment recovery link
 pending Order Summary
 ```
 
-### Current bounded correction: Preparing Invoice
+### Implemented Preparing Invoice correction
 
-Before invoice readiness, the same S5 page must show:
+Before invoice readiness, the same S5 page now shows:
 
 ```text
 Preparing your Crypto payment
@@ -329,16 +330,18 @@ While preparing:
 - no customer action generates a second invoice request
 ```
 
-After server availability:
+After simulated or real server availability:
 
 ```text
 Preparing Invoice
 → Waiting for payment
 ```
 
+This implementation is awaiting user visual and interaction acceptance.
+
 ### Invoice-bootstrap failure
 
-The same bounded correction also defines:
+The same implementation defines:
 
 ```text
 We could not prepare your Crypto payment.
@@ -474,7 +477,7 @@ S1 Step 01: implemented
 → S4B capability/contract: completed
 → S5 fixed Workspace structure: accepted
 → future multi-asset Workspace preview: accepted and isolated
-→ S5 Preparing Invoice + bootstrap failure: current task
+→ S5 Preparing Invoice + bootstrap failure: implemented, awaiting acceptance
 → S6 supported verification/recovery states
 → S7 Step 04 result
 → S8 full link/session audit
@@ -504,7 +507,7 @@ One bounded group is reviewed at a time.
 ## 18. Current exact next action
 
 ```text
-Implement the bounded S5 Preparing Invoice internal state and invoice-bootstrap failure/retry state in the existing S5 HTML/CSS/JS only.
+Obtain user visual and interaction acceptance for the implemented S5 Preparing Invoice and invoice-bootstrap failure/retry states.
 
-Then obtain user acceptance before beginning S6.
+Do not begin S6 before that acceptance.
 ```
