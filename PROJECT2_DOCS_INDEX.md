@@ -23,7 +23,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 15. project2-progress/STEP_4F_S4B_FIRST_PHASE_IMPLEMENTATION_PLAN_REVIEW_AND_STEP1_AUTHORIZATION.md
 16. project2-progress/STEP_4F_S4A_S4B_PHASE_AND_SCOPE_CORRECTION.md
 17. project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
-18. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+18. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
+19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -57,7 +58,7 @@ The accepted main payment page is:
 preview/spatial-flow-checkout-payment-v1.html
 ```
 
-It must remain a payment-method host rather than becoming a Crypto-only architecture.
+It must remain a reusable payment-method host rather than becoming a Crypto-only architecture.
 
 Currently confirmed active method:
 
@@ -78,9 +79,53 @@ concise entry in the main payment page
 → dedicated Step-03 Workspace
 not a long default-open accordion
 
+Redirect gateway:
+concise method entry
+→ one final action
+→ hosted or redirected flow
+
 Bank transfer:
 delayed/offline instruction branch
 ```
+
+## Future-gateway reservation
+
+Audit result:
+
+```text
+Visual/layout reservation: present
+Gateway/runtime reservation: incomplete
+```
+
+Already reusable:
+
+```text
+payment-method list container
+payment-method row pattern
+selected payment workspace area
+one final action zone
+right Order Summary
+accepted desktop/mobile shell
+```
+
+Required bounded completion:
+
+```text
+gateway descriptor/adapter model
+generic selected-method panel boundary
+registry-driven static handoff
+dynamic final-action label/behavior contract
+safe WooCommerce-native fallback for unknown eligible gateways
+truthful fixed USDT / TRON Crypto copy
+```
+
+Authoritative gate:
+
+```text
+project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
+```
+
+A newly enabled gateway may require one small presentation adapter, but must not require rebuilding Step 01, Step 02, progress, Order Summary or the complete Step-03 page.
 
 ## S4A status
 
@@ -148,7 +193,8 @@ The accepted S4A and Step-03 files were not modified by the rejected implementat
 S3: accepted and closed
 S4A: accepted and closed
 S4B capability/contract: completed
-S5 Invoice / Waiting Workspace shell: next full static surface
+Current next bounded work: Step-03 Payment Host extensibility pass
+S5 Invoice / Waiting Workspace shell: follows host-pass acceptance
 Plugin installation: deferred
 Plugin Step 2: deferred
 Live Checkout: not started
@@ -189,7 +235,7 @@ browser-controlled payment success
 ## Locked structural boundaries
 
 ```text
-- preserve accepted Step 01 / 02 / 03 DOM and order
+- preserve accepted Step 01 / 02 / 03 visual structure
 - preserve desktop two-column Checkout structure
 - preserve accepted mobile context-card information grid
 - do not default-expand Crypto as an inline accordion
@@ -197,6 +243,7 @@ browser-controlled payment success
 - do not add a second generic confirmation click
 - do not repeat address or shipping in the Crypto Workspace
 - do not create duplicate WooCommerce orders
+- do not display fake payment methods
 - do not modify live Checkout or plugin during the static page phase
 - one bounded review group at a time
 ```
