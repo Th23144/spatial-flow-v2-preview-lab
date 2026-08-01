@@ -24,7 +24,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 16. project2-progress/STEP_4F_S4A_S4B_PHASE_AND_SCOPE_CORRECTION.md
 17. project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
 18. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
-19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+19. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_IMPLEMENTATION.md
+20. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_STATIC_IMPLEMENTATION.md
+21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page-status rule
@@ -102,43 +104,33 @@ There is no second generic review or confirmation click.
 
 ## Future-gateway extensibility status
 
-Current audit:
+The bounded payment-host extensibility pass is implemented.
+
+Reusable host contract:
 
 ```text
-Visual/layout reservation: present
-Gateway/runtime reservation: incomplete
-```
-
-Already reusable:
-
-```text
-payment-methods container
-payment-method item pattern
-left payment workspace
+payment-method list
+selected-method panel
 one final action zone
 right Order Summary
-accepted responsive shell
+accepted Address / Contact / Shipping context
 ```
 
-Still required before S5:
+Gateway descriptors now drive:
 
 ```text
-generic gateway descriptor/adapter contract
-generic selected-method panel boundary
-registry-driven static handoff instead of hard-coded Crypto routing
-truthful fixed USDT / TRON copy
-safe native fallback for future eligible gateways
+gateway ID
+family
+presentation mode
+customer title and description
+action label
+settlement label
+approved handoff route
 ```
 
-Authoritative contract:
+Adding a future eligible WooCommerce gateway may require a small presentation adapter, but must not require rebuilding Step 01, Step 02, progress, Order Summary or the entire Step-03 page.
 
-```text
-project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
-```
-
-Adding a future gateway may require a small adapter for polished presentation, but must not require rebuilding Address, Shipping, progress, Order Summary or the whole Payment page.
-
-## Accepted static artifacts
+## Authoritative static artifacts
 
 ```text
 preview/spatial-flow-checkout-v1.html
@@ -148,10 +140,13 @@ preview/spatial-flow-checkout-shipping-v1.html
   Step 02
 
 preview/spatial-flow-checkout-payment-v1.html
-  Step 03 main payment-method page
+  Step 03 reusable payment host
 
 preview/spatial-flow-checkout-crypto-select-v1.html
   accepted S4A plugin-agnostic future asset/network interaction reference
+
+preview/spatial-flow-checkout-crypto-invoice-v1.html
+  S5 fixed-USDT/TRON Invoice / Waiting Workspace static reference
 ```
 
 S4A remains accepted and closed. Its multi-asset examples are not current gateway capabilities.
@@ -214,50 +209,77 @@ The attempted extra fixed-route confirmation page was rejected and removed. Its 
 project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
 ```
 
+## S5 implementation status
+
+Implemented static workspace:
+
+```text
+preview/spatial-flow-checkout-crypto-invoice-v1.html
+preview/spatial-flow-checkout-crypto-invoice-v1.css
+preview/spatial-flow-checkout-crypto-invoice-v1.js
+```
+
+Implemented reference content and interactions:
+
+```text
+waiting-payment status
+order and invoice identifiers
+USDT amount
+TRON / TRC20
+server-owned environment disclosure
+receiver address
+copy amount / address
+TRON-only warning
+wallet/exchange transfer instructions
+required transaction-hash form
+64-character hexadecimal format validation
+manual Refresh status
+Copy recovery link
+right-side payment-pending Order Summary
+```
+
+Static safeguards:
+
+```text
+deliberately invalid prototype receiver address
+no real order or invoice
+no TronGrid request
+no payment confirmation
+no Step 04 navigation
+```
+
+Deferred:
+
+```text
+QR
+wallet connection
+operational countdown / expiry
+automatic monitoring
+confirmation count
+multi-asset / customer network selection
+```
+
 ## Current exact stop point
 
 ```text
 S3 main Step-03 Payment page: accepted and closed
+Step-03 reusable payment host: implemented
 S4A generic selector reference: accepted and closed
 S4B capability alignment and corrected contract: completed
-Rejected redundant fixed-route page: removed
-Current next bounded work: Step-03 Payment Host extensibility pass
-S5 dedicated Step-03 Invoice / Waiting Workspace shell: immediately after host-pass acceptance
+S5 Invoice / Waiting Workspace static page: implemented
+Current action: user visual and interaction review of Step 03 host + S5
+S6 verification-failure / recovery state family: not started
 Plugin live integration: deferred
 Live Checkout reconstruction: not started
 Checkout: Not done
 ```
 
-The host pass may adjust only payment-entry copy, generic adapter/state boundaries and static routing abstraction. The accepted two-column structure, context card, order summary and mobile composition remain locked.
-
-## S5 truthful first-phase scope
-
-May represent:
+Required review sizes:
 
 ```text
-invoice ID
-USDT amount
-TRON / TRC20
-active environment disclosure
-receiver address
-copy amount / address
-waiting-payment instructions
-required transaction-hash input
-manual Refresh status
-customer-safe deterministic rejection messages
-recovery link
-paid-confirmed transition to Step 04
-```
-
-Must not claim:
-
-```text
-QR
-live countdown
-operational expiry
-automatic chain monitoring
-confirmation-count progress
-multi-asset or customer-selectable networks
+Desktop / 1366 × 768
+390 × 844
+360 × 800
 ```
 
 ## Plugin package status
@@ -281,5 +303,6 @@ Plugin Step 2 now: not current Project 2 work
 - no raw Order Key as REST authorization
 - no redundant Crypto confirmation page
 - no S5 claims beyond the approved plugin contract
+- do not begin S6 until S5 is accepted or corrected
 - one bounded group at a time
 ```
