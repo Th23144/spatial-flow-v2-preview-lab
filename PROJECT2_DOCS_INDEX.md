@@ -28,7 +28,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 20. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_STATIC_IMPLEMENTATION.md
 21. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_ACCEPTANCE.md
 22. project2-progress/STEP_4F_FUTURE_MULTI_ASSET_CRYPTO_WORKSPACE_PREVIEW_IMPLEMENTATION.md
-23. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+23. project2-progress/STEP_4F_FUTURE_MULTI_ASSET_CRYPTO_WORKSPACE_PREVIEW_ACCEPTANCE.md
+24. project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_GATE.md
+25. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -161,7 +163,7 @@ Rollback record:
 project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
 ```
 
-## S5 status
+## S5 accepted structure
 
 Accepted static page:
 
@@ -225,27 +227,29 @@ multi-asset
 customer-selectable network
 ```
 
-## Future multi-asset Crypto Workspace preview
+## Accepted future multi-asset Crypto Workspace preview
 
 Standalone artifact:
 
 ```text
 preview/spatial-flow-checkout-crypto-workspace-future-v1.html
 preview/spatial-flow-checkout-crypto-workspace-future-v1.css
+preview/spatial-flow-checkout-crypto-workspace-future-v1-base.css
 preview/spatial-flow-checkout-crypto-workspace-future-v1.js
 ```
 
 It is intentionally not linked from current Checkout.
 
-Demonstrated internal Step-03 flow:
+Accepted internal Step-03 flow:
 
 ```text
 Choose payment pair
 → Preparing Crypto payment
 → Invoice and transfer
-→ Submit transaction identifier
-→ server-authoritative verification boundary
+→ Verify payment
 ```
+
+The compacted internal stage indicator is accepted on desktop and mobile.
 
 Displayed examples:
 
@@ -258,7 +262,47 @@ USDC + Solana: future example
 BTC + Bitcoin: future example
 ```
 
-The page combines the accepted S4A selection language with the accepted S5 Invoice / Waiting shell, but it does not alter current capability or current routing.
+The page is a non-production architecture reference and does not alter current capability or routing.
+
+## Current bounded correction: S5 Preparing Invoice
+
+The current S5 static page opens directly in:
+
+```text
+Waiting for payment
+```
+
+The next bounded correction adds the internal bootstrap sequence:
+
+```text
+Preparing your Crypto payment
+→ Creating or restoring your secure invoice
+→ Waiting for payment
+```
+
+During Preparing:
+
+```text
+- amount/address are not authoritative yet
+- copy and Transaction Hash controls remain unavailable
+- no fake invoice readiness is shown
+```
+
+The same group must define an invoice-bootstrap failure surface:
+
+```text
+We could not prepare your Crypto payment.
+[Retry]
+[Return to payment methods]
+```
+
+This is not an S6 transaction-verification failure. It occurs before the customer can pay.
+
+Authoritative gate:
+
+```text
+project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_GATE.md
+```
 
 ## Current exact execution point
 
@@ -267,21 +311,14 @@ S3: accepted and closed
 Step-03 reusable payment host: implemented
 S4A: accepted and closed
 S4B capability/contract: completed
-S5 Invoice / Waiting Workspace: accepted and closed
-Future integrated Crypto Workspace preview: implemented, awaiting review
-S6 verification-failure / recovery states: next formal phase
+S5 fixed-USDT/TRON structure: accepted
+Future integrated Crypto Workspace preview: accepted and closed
+Current bounded task: S5 Preparing Invoice internal-state correction
+S6 verification-failure / recovery states: begins after the S5 correction passes
 Plugin installation: deferred
 Plugin Step 2: deferred
 Live Checkout: not started
 Checkout: Not done
-```
-
-Required review:
-
-```text
-Desktop / 1366 × 768
-390 × 844
-360 × 800
 ```
 
 ## Locked structural boundaries
@@ -296,6 +333,7 @@ Desktop / 1366 × 768
 - do not create duplicate WooCommerce orders
 - do not display fake payment methods in current Checkout
 - keep future multi-asset examples isolated until plugin support exists
+- Preparing Invoice remains an internal S5 state
 - do not represent QR, countdown or automatic monitoring as current behavior
 - do not modify live Checkout or plugin during the static page phase
 - S6 must reflect only approved first-phase states
