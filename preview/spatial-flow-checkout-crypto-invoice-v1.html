@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout · Crypto Payment — Spatial Flow</title>
+  <meta name="description" content="Spatial Flow static Checkout reference — Step 03 Crypto invoice and waiting workspace." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="spatial-flow-checkout-flow-v1.css" />
+  <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css?v=20260731-0504" />
+  <link rel="stylesheet" href="spatial-flow-checkout-mobile-commerce-v1.css?v=20260731-0657" />
+  <link rel="stylesheet" href="spatial-flow-checkout-crypto-invoice-v1.css" />
+</head>
+<body class="woocommerce-checkout checkout-step-payment checkout-step-crypto-invoice">
+  <div class="masthead-strip-v1">
+    <div>Volume I · Issue 03 · Spring 2026</div>
+    <div class="center">A Journal of Rooms, Rituals &amp; Quiet Objects</div>
+    <div class="right"><span></span>Free shipping over $80 worldwide</div>
+  </div>
+
+  <header class="site-header-v1">
+    <nav class="primary" aria-label="Primary navigation">
+      <ul>
+        <li><a href="spatial-flow-shop-v1.html" class="current">The Index</a></li>
+        <li><a href="spatial-flow-journal-v1.html">The Journal</a></li>
+        <li><a href="spatial-flow-services-v1.html">Services</a></li>
+        <li><a href="spatial-flow-about-v1.html">About Us</a></li>
+      </ul>
+    </nav>
+
+    <a href="spatial-flow-v1.html" class="wordmark">
+      SPATIAL <em>FLOW</em>
+      <span class="sub">Est. 2026 · Est. in quiet rooms</span>
+    </a>
+
+    <nav class="utilities" aria-label="Utilities">
+      <a href="spatial-flow-search-v1.html">Search</a>
+      <a href="spatial-flow-wishlist-v1.html">Saved</a>
+      <a href="spatial-flow-cart-v1.html" class="bag">Bag <sup>(3)</sup></a>
+    </nav>
+  </header>
+
+  <nav class="woocommerce-breadcrumb" aria-label="Breadcrumb">
+    <a href="spatial-flow-v1.html">Home</a>
+    <span class="sep">/</span>
+    <a href="spatial-flow-cart-v1.html">Your Bag</a>
+    <span class="sep">/</span>
+    <a href="spatial-flow-checkout-payment-v1.html">Checkout · Payment</a>
+    <span class="sep">/</span>
+    <span class="here">Crypto payment</span>
+  </nav>
+
+  <section class="checkout-intro crypto-invoice-intro">
+    <div>
+      <div class="checkout-kicker">Secure checkout · Step 03 of 04</div>
+      <h1 class="checkout-title">Complete the <em>transfer</em>.</h1>
+    </div>
+
+    <div>
+      <p class="checkout-lede">
+        Send the exact USDT amount through TRON / TRC20, then submit the transaction hash so the server can verify your payment.
+      </p>
+
+      <div class="checkout-steps" aria-label="Checkout progress">
+        <span class="checkout-step is-complete" data-step="01">Address</span>
+        <span class="checkout-step is-complete" data-step="02">Shipping</span>
+        <span class="checkout-step is-active" data-step="03">Payment</span>
+        <span class="checkout-step" data-step="04">Confirmed</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="checkout-shell crypto-workspace-shell">
+    <div class="checkout-main crypto-workspace-main" data-crypto-workspace>
+      <section class="crypto-workspace-status" data-workspace-status-card>
+        <div class="crypto-workspace-status__signal" aria-hidden="true"><span></span></div>
+        <div>
+          <span class="crypto-workspace-status__eyebrow">Payment status</span>
+          <h2 data-workspace-status-title>Waiting for payment</h2>
+          <p data-workspace-status-message>
+            Your order is reserved but not paid. Complete the transfer and submit the transaction hash below.
+          </p>
+        </div>
+        <span class="crypto-workspace-status__badge">Order on hold</span>
+      </section>
+
+      <section class="checkout-panel crypto-invoice-panel">
+        <div class="panel-head">
+          <div class="panel-no">Payment invoice · 03</div>
+          <h2>Your secure <em>invoice</em>.</h2>
+        </div>
+        <p class="panel-note">
+          The live workspace receives these values from WooCommerce and the Crypto plugin. The values shown here are static prototype data and must not be used for a real transfer.
+        </p>
+
+        <dl class="crypto-invoice-meta">
+          <div>
+            <dt>Order</dt>
+            <dd>#SF-1048</dd>
+          </div>
+          <div>
+            <dt>Invoice ID</dt>
+            <dd>SF-CRYPTO-1048-01</dd>
+          </div>
+          <div>
+            <dt>Asset</dt>
+            <dd>USDT</dd>
+          </div>
+          <div>
+            <dt>Network</dt>
+            <dd>TRON / TRC20</dd>
+          </div>
+          <div>
+            <dt>Environment</dt>
+            <dd>TRON Mainnet<small>Server supplied in production</small></dd>
+          </div>
+          <div>
+            <dt>Verification</dt>
+            <dd>Transaction hash required</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="checkout-panel crypto-transfer-panel">
+        <div class="panel-head">
+          <div class="panel-no">Transfer · 03</div>
+          <h2>Send the exact <em>amount</em>.</h2>
+        </div>
+        <p class="panel-note">
+          Open your wallet or exchange account and create a USDT transfer using the TRON / TRC20 network only.
+        </p>
+
+        <div class="crypto-payment-value crypto-payment-value--amount">
+          <div>
+            <span class="crypto-payment-value__label">Amount to send</span>
+            <strong id="crypto-payment-amount" data-crypto-amount>329.00 USDT</strong>
+            <small>Static reference amount · live value is server authoritative</small>
+          </div>
+          <button class="crypto-copy-button" type="button" data-copy-target="crypto-payment-amount">Copy amount</button>
+        </div>
+
+        <div class="crypto-payment-value crypto-payment-value--address">
+          <div>
+            <span class="crypto-payment-value__label">Receiving address</span>
+            <strong id="crypto-payment-address" data-crypto-address>T-PROTOTYPE-NOT-A-REAL-ADDRESS</strong>
+            <small>Prototype only · do not send funds to this address</small>
+          </div>
+          <button class="crypto-copy-button" type="button" data-copy-target="crypto-payment-address">Copy address</button>
+        </div>
+
+        <div class="crypto-network-warning" role="note">
+          <strong>TRON / TRC20 only</strong>
+          <p>
+            Do not use Ethereum, Solana, BNB Chain, Bitcoin or another network. Sending through the wrong network may be irreversible and cannot be corrected by the store.
+          </p>
+        </div>
+
+        <ol class="crypto-transfer-steps">
+          <li>
+            <span>01</span>
+            <div><strong>Open your wallet</strong><p>Use a wallet or exchange account that supports USDT withdrawals through TRON / TRC20.</p></div>
+          </li>
+          <li>
+            <span>02</span>
+            <div><strong>Send the exact amount</strong><p>Copy the amount and receiver address exactly as supplied by the live invoice.</p></div>
+          </li>
+          <li>
+            <span>03</span>
+            <div><strong>Return with the transaction hash</strong><p>After the transfer is broadcast, copy the TRON transaction hash from your wallet history.</p></div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="checkout-panel crypto-verification-panel">
+        <div class="panel-head">
+          <div class="panel-no">Verification · 03</div>
+          <h2>Confirm the <em>transaction</em>.</h2>
+        </div>
+        <p class="panel-note">
+          This gateway does not automatically monitor the chain. Submitting the TRON transaction hash is required before payment can be confirmed.
+        </p>
+
+        <button class="crypto-transfer-complete" type="button" aria-expanded="false" data-transfer-complete>
+          <span>I have completed the transfer</span>
+          <span aria-hidden="true">＋</span>
+        </button>
+
+        <form class="crypto-hash-form" action="#" method="post" data-crypto-hash-form hidden novalidate>
+          <label for="crypto-transaction-hash">TRON transaction hash</label>
+          <div class="crypto-hash-control">
+            <input
+              id="crypto-transaction-hash"
+              name="transaction_hash"
+              type="text"
+              inputmode="text"
+              autocomplete="off"
+              spellcheck="false"
+              maxlength="64"
+              placeholder="Enter the 64-character transaction hash"
+              aria-describedby="crypto-hash-help crypto-hash-error"
+              data-crypto-hash-input
+            />
+            <button type="submit">Verify payment →</button>
+          </div>
+          <p id="crypto-hash-help" class="crypto-hash-help">
+            Find this value in your wallet or exchange withdrawal history after the transfer has been submitted.
+          </p>
+          <p id="crypto-hash-error" class="crypto-hash-error" role="alert" data-crypto-hash-error hidden></p>
+        </form>
+      </section>
+
+      <section class="crypto-workspace-tools" aria-label="Payment workspace tools">
+        <a href="spatial-flow-checkout-payment-v1.html">← Choose another payment method</a>
+        <button type="button" data-refresh-status>Refresh status</button>
+        <button type="button" data-copy-recovery>Copy payment recovery link</button>
+      </section>
+
+      <p class="prototype-note crypto-workspace-prototype-note">
+        Static S5 visual and interaction reference only. No WooCommerce order, live invoice, wallet address, TronGrid request or payment confirmation is created by this page.
+      </p>
+    </div>
+
+    <aside class="checkout-side" aria-label="Order and payment summary">
+      <section class="order-summary crypto-order-summary">
+        <div class="crypto-order-summary__status">
+          <span>Order #SF-1048</span>
+          <strong>Payment pending</strong>
+          <small>The order is reserved. Fulfilment begins only after server-confirmed payment.</small>
+        </div>
+
+        <div class="order-summary-head">
+          <h3>Order summary</h3>
+          <span>3 items</span>
+        </div>
+
+        <div class="summary-items">
+          <article class="summary-item">
+            <div class="summary-thumb"></div>
+            <div class="summary-copy">
+              <h4>Ash Quartz · No. 07</h4>
+              <div class="meta">Bracelet · Size M · Qty 1</div>
+            </div>
+            <div class="summary-price">$42.00</div>
+          </article>
+
+          <article class="summary-item">
+            <div class="summary-thumb th-2"></div>
+            <div class="summary-copy">
+              <h4>Bluestone Mala</h4>
+              <div class="meta">Bracelet · Size S · Qty 1</div>
+            </div>
+            <div class="summary-price">$42.00</div>
+          </article>
+
+          <article class="summary-item">
+            <div class="summary-thumb th-3"></div>
+            <div class="summary-copy">
+              <h4>Tussore Throw — Clay</h4>
+              <div class="meta">Textile · One size · Qty 1</div>
+            </div>
+            <div class="summary-price">$245.00</div>
+          </article>
+        </div>
+
+        <div class="summary-totals">
+          <div class="summary-row"><span class="label">Subtotal</span><span class="value">$329.00</span></div>
+          <div class="summary-row"><span class="label">Shipping</span><span class="value" data-shipping-value>Free</span></div>
+          <div class="summary-row"><span class="label">Tax</span><span class="value">Calculated</span></div>
+          <div class="summary-row total"><span class="label">Order total</span><span class="value" data-total-value>$329.00</span></div>
+        </div>
+
+        <dl class="crypto-order-payment-facts">
+          <div><dt>Payment</dt><dd>USDT</dd></div>
+          <div><dt>Network</dt><dd>TRON / TRC20</dd></div>
+          <div><dt>Status</dt><dd>Waiting for payment</dd></div>
+        </dl>
+
+        <div class="summary-trust">
+          <div>The browser cannot mark this order paid</div>
+          <div>Transaction verification is server controlled</div>
+          <div>Step 04 opens only after confirmed payment</div>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="site-footer-v1">
+    <div class="brand-mark">
+      SPATIAL <em>FLOW</em>
+      <span class="sub">A Journal of Rooms, Rituals &amp; Quiet Objects · Est. 2026</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="spatial-flow-v1.html">Home</a>
+      <a href="spatial-flow-shop-v1.html">Shop</a>
+      <a href="spatial-flow-cart-v1.html">Your Bag</a>
+      <a href="spatial-flow-faq-v1.html">FAQ</a>
+      <a href="spatial-flow-contact-v1.html">Contact</a>
+    </nav>
+  </footer>
+
+  <div class="checkout-notice" role="status" aria-live="polite" data-checkout-notice></div>
+  <script src="spatial-flow-checkout-flow-v1.js"></script>
+  <script src="spatial-flow-checkout-crypto-invoice-v1.js"></script>
+</body>
+</html>
