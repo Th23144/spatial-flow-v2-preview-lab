@@ -1,6 +1,6 @@
 # Project 2 · Page Status Matrix
 
-Last updated: 2026-07-30
+Last updated: 2026-08-01  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Purpose
@@ -22,11 +22,11 @@ Only two page statuses are allowed:
 Important:
 
 ```text
-Historical implementation, old visual work, functional fixes, accepted static HTML, or partial redesign do not count as page completion.
-If the real page has not completed the current 1:1 acceptance process, mark it as Not done.
+Historical implementation, accepted static HTML, visual approval, functional fixes or partial redesign do not count as page completion.
+If the real page has not completed the current 1:1 acceptance process, mark it Not done.
 ```
 
-Static references available:
+## Static references available
 
 ```text
 preview/spatial-flow-v1.html
@@ -34,6 +34,11 @@ preview/spatial-flow-shop-v1.html
 preview/spatial-flow-product-v1.html
 preview/spatial-flow-cart-v1.html
 preview/spatial-flow-checkout-v1.html
+preview/spatial-flow-checkout-shipping-v1.html
+preview/spatial-flow-checkout-payment-v1.html
+preview/spatial-flow-checkout-crypto-select-v1.html
+preview/spatial-flow-checkout-crypto-invoice-v1.html
+preview/spatial-flow-checkout-crypto-workspace-future-v1.html
 preview/spatial-flow-thank-you-v1.html
 preview/spatial-flow-account-v1.html
 preview/spatial-flow-wishlist-v1.html
@@ -50,16 +55,13 @@ preview/spatial-flow-blog-issue-v1.html
 preview/spatial-flow-blog-article-v1.html
 ```
 
-Planned linked Checkout additions:
+Checkout notes:
 
 ```text
-preview/spatial-flow-checkout-shipping-v1.html
-preview/spatial-flow-checkout-payment-v1.html
-preview/spatial-flow-checkout-crypto-select-v1.html
-preview/spatial-flow-checkout-crypto-invoice-v1.html
-preview/spatial-flow-checkout-crypto-confirming-v1.html
-preview/spatial-flow-checkout-crypto-expired-v1.html
-preview/spatial-flow-checkout-crypto-failed-v1.html
+- spatial-flow-checkout-crypto-select-v1.html is an accepted future asset/network interaction reference.
+- spatial-flow-checkout-crypto-workspace-future-v1.html is an accepted isolated future multi-asset architecture reference.
+- Neither future reference is linked into the current fixed-USDT/TRON Checkout route.
+- Do not create confirming/expired/failed pages merely because they appeared in an early generic plan; only approved real states may be represented.
 ```
 
 ## 1. Shared global shell
@@ -77,9 +79,9 @@ preview/spatial-flow-checkout-crypto-failed-v1.html
 | Home | `preview/spatial-flow-v1.html` | Not done | Earlier work does not count as current 1:1 completion. |
 | Shop archive | `preview/spatial-flow-shop-v1.html` | Completed 1:1 | Desktop/mobile controlled rebase, Hero, metadata, filters/sort, dynamic Editor’s Pick, product grid, pagination, closing note, regression, and backend editability passed. |
 | Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Hero, Gallery, Summary, options, Product Attributes, The Piece, Related Products, add-to-cart feedback, desktop/mobile regression, backend mappings, and controlled CSS cleanup passed. |
-| Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict desktop composition, 390px/360px mobile review, complete native functional regression, backend editability, Notice component coverage, invisible-frame removal and final closure passed. Authoritative closure: `STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md`. |
-| Checkout | Existing Step 01: `preview/spatial-flow-checkout-v1.html`; planned Step 02/03 and Crypto pages in the same `preview/` directory | Not done | Current work is to correct the existing page into a true Step 01 and add a fully linked 01 → 02 → 03 → Crypto → 04 static sequence. Live PHP/JS/CartFlows/gateway work remains paused. |
-| Thank You / result system | Existing `preview/spatial-flow-thank-you-v1.html`, to be reworked as Step 04 | Not done | Step 04 is Order Confirmed / Thank You / Receipt or an accurate pending result. It is not a pre-payment Review step. |
+| Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict desktop composition, 390px/360px mobile review, native functional regression, backend editability, Notice coverage, invisible-frame removal and final closure passed. |
+| Checkout | Step 01/02/03 and Crypto static references under `preview/` | Not done | Static architecture is still being completed. Current task is the S5 Preparing Invoice internal state. Live ownership audit, functional reconstruction and full 1:1 closure have not started. |
+| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` | Not done | Step 04 must be reviewed/reworked after S6. It is Order Confirmed / Thank You / Receipt or an accurate pending result, never a pre-payment Review step. |
 
 ## 3. Account / customer utility pages
 
@@ -121,7 +123,7 @@ Completed 1:1:
 - Cart
 ```
 
-All other pages and page families are currently:
+All other pages and page families are:
 
 ```text
 Not done
@@ -158,9 +160,7 @@ Terminology:
 V2 = Project 2 / repository name, not a Checkout version name.
 ```
 
-The mistaken `preview/checkout-v2/` experiment was removed.
-
-Approved semantics:
+Approved business semantics:
 
 ```text
 01 Contact / Address
@@ -169,17 +169,36 @@ Approved semantics:
 04 Order Confirmed / Thank You / Receipt
 ```
 
-Approved presentation and payment boundaries:
+Approved boundaries:
 
 ```text
-- main desktop Checkout is two columns only
-- left workspace is approximately 7fr
-- right sticky Order Summary is approximately 5fr
-- Deliver-to and Shipping summaries are inside the left workspace
-- payment methods are dynamic; unconfirmed future methods are not hardcoded
-- Cryptocurrency is the only confirmed active method at this planning point
-- Cryptocurrency uses dedicated Step-03 pages rather than a long inline accordion
+- desktop Checkout is two columns
+- payment methods come from genuine WooCommerce availability
+- current confirmed method is Cryptocurrency
+- current plugin supports fixed USDT on TRON / TRC20
+- Cryptocurrency uses a dedicated Step-03 Workspace
+- there is one final Checkout commitment action
+- no redundant fixed-route Crypto confirmation page
 - Step 04 never asks the customer to pay or confirm again
+```
+
+Current accepted static gates:
+
+```text
+S3 main Payment surface
+Step-03 reusable payment host
+S4A future selector reference
+S4B capability/integration contract
+S5 fixed Invoice / Waiting structure
+future multi-asset integrated Workspace reference
+```
+
+Current bounded task:
+
+```text
+S5 Preparing Invoice
+→ automatic Waiting for payment transition
+→ invoice-bootstrap failure Retry/Return surface
 ```
 
 Authoritative plan:
@@ -190,7 +209,7 @@ project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 
 ## 9. Functional modules do not change page status
 
-The following may be completed as functions, but they do not make an unfinished page count as Completed 1:1:
+The following may be completed as functions but do not make an unfinished page `Completed 1:1`:
 
 ```text
 - Add-to-cart Lift & Settle feedback
@@ -201,21 +220,34 @@ The following may be completed as functions, but they do not make an unfinished 
 - SAFE5 Coupon
 - Crypto payment / order-status flows
 - Search separation / mobile-menu / navigation fixes
+- accepted Checkout static pages
 ```
 
-## 10. Current execution order
+## 10. Current Checkout execution order
 
 ```text
-Complete and approve linked Checkout static flow
-→ Checkout live ownership audit, implementation and closure
-→ Thank You / result-system implementation and closure
+S5 Preparing Invoice internal state
+→ S6 supported verification/recovery states
+→ S7 Step 04 result
+→ S8 full relative-link/session-state audit
+→ S9 1366 / 390 / 360 static acceptance
+→ live Checkout ownership audit
+→ functional reconstruction preserving WooCommerce/plugin authority
+→ Sandbox and unfinished-payment recovery testing
+→ final Checkout 1:1 closure
+```
+
+After Checkout closure:
+
+```text
+Thank You/result-system live closure
 → Home
 → Wishlist / Track Order / Search / 404
 → About / Services / FAQ / Contact / policy pages
 → Blog home / issue / article and blog shell
 ```
 
-## 11. Current exact deployed Cart baselines
+## 11. Current deployed Cart baselines
 
 ```text
 functions.php
@@ -226,13 +258,7 @@ assets/js/spatial-flow.js
 SHA256: 7442ee92167ae383b933c6db0281f14ea56a75733339818c3e4858d77d52651b
 
 assets/css/spatial-flow.css
-Deployed from: spatial-flow(43).css
-Size: 703,035 bytes
-Logical lines: 23,543
 SHA256: 79ab7e08308903f0e1693076b4817402515ada52944c575c1e827324cc6161fd
-Braces: 3,653 / 3,653
-Comments: 338 / 338
-CSS parser errors: 0
 ```
 
 ## 12. Hard boundary
@@ -240,10 +266,11 @@ CSS parser errors: 0
 ```text
 - Backend editability must be preserved.
 - Existing WordPress/WooCommerce functions are the source of truth.
-- Do not hardcode products, prices, totals, shipping methods, coupon values, URLs, menus, forms, or operational copy when dynamic/editable sources exist.
+- Do not hardcode products, prices, totals, shipping methods, coupon values, URLs, menus, forms or operational copy when dynamic/editable sources exist.
 - Current local files uploaded by the user are the only live implementation baseline.
-- Inspect file size, line count, structure, and static reference before editing live source.
+- Inspect file size, line count, structure and static reference before editing live source.
 - Prefer precise range replacement over whole-file replacement or endless append-only CSS.
-- Do not modify the real Checkout PHP, JavaScript, CartFlows, gateways or broad CSS while the linked static flow remains incomplete.
+- Do not modify real Checkout PHP/JS, CartFlows, gateways or broad production CSS while the linked static flow remains incomplete.
 - Do not delete the existing spatial-flow-checkout-v1.html or spatial-flow-thank-you-v1.html; rework them as Step 01 and Step 04.
+- Do not mark Checkout Completed 1:1 before live implementation, regression and backend-editability closure.
 ```
