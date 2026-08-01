@@ -6,21 +6,57 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ## 1. Authoritative phase status
 
 ```text
-S4A: accepted and closed
-S4B: current active phase
-S5: not started
-Plugin Step 2: paused / not part of the current Project 2 execution step
-Local plugin installation: deferred
+S3 main Step-03 Payment page: accepted and closed
+S4A plugin-agnostic asset/network interaction reference: accepted and closed
+S4B payment-plugin capability alignment and corrected integration contract: completed
+S5 dedicated Step-03 Invoice / Waiting Workspace shell: not started
+Plugin live integration: deferred
 Checkout: Not done
 ```
 
-## 2. S4A remains closed
+## 2. Main Step 03 is the payment page
 
-Authoritative S4A acceptance:
+The authoritative Step-03 purpose is:
 
 ```text
-project2-progress/STEP_4F_S4A_FINAL_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_ACCEPTANCE.md
+- show available payment methods
+- show payment-method-specific fields or handoff
+- show final order summary and total
+- provide one final Pay / Place order action
 ```
+
+The current static page shows only Cryptocurrency because it is the only confirmed active method. That does not convert Step 03 into a cryptocurrency-only product architecture.
+
+The payment-method region must remain capable of supporting future confirmed methods such as:
+
+```text
+Card / wallet
+Cryptocurrency
+Bank transfer when intentionally enabled
+other future WooCommerce gateways
+```
+
+No unconfirmed method is displayed as active merely to fill the page.
+
+## 3. Payment families do not share one inline-expansion model
+
+Locked distinction:
+
+```text
+Card / wallet:
+compact gateway fields may appear inline inside Step 03
+
+Cryptocurrency:
+asset/network/invoice/transfer/verification is a large lifecycle
+and must not default-expand as one long inline accordion
+
+Bank transfer:
+offline instruction / delayed-confirmation flow
+```
+
+Therefore selecting Cryptocurrency presents a concise entry/handoff in the main Step-03 payment page, then enters a dedicated Crypto Payment Workspace that is still visually and functionally Step 03.
+
+## 4. S4A remains closed
 
 Accepted S4A artifact:
 
@@ -28,128 +64,157 @@ Accepted S4A artifact:
 preview/spatial-flow-checkout-crypto-select-v1.html
 ```
 
-S4A proved the plugin-agnostic asset/network interaction and was explicitly accepted by the user.
-
-It must not be:
+S4A proved a generic interaction model for gateways that may support:
 
 ```text
-reopened
-renamed as unfinished
-replaced silently
-called the current phase
+asset search and selection
+asset-dependent network selection
+selection reset
+selection summary
+continue only after a valid pair
 ```
 
-## 3. What S4B actually is
+Its USDT / USDC / BTC and TRON / Ethereum / Solana / Bitcoin entries are static examples only.
 
-S4B is the payment-plugin capability-alignment phase.
+S4A is not the current gateway implementation and is not reopened.
 
-Its purpose is to convert the accepted S4A design language into a gateway-truthful Project 2 payment handoff based on the actual plugin capability.
+## 5. What S4B actually determined
 
-The reviewed gateway baseline established:
+S4B reviewed the real plugin and established:
 
 ```text
 Plugin: Spatial Flow Crypto Pay Trial
 Gateway ID: spatial_flow_crypto
-Current real asset: USDT
-Current real network: TRON / TRC20
+Current asset: USDT
+Current network: TRON / TRC20
 Environment: administrator-selected mainnet / nile / shasta
 Customer asset/network selection: not supported
-Invoice creation: after WooCommerce order creation
-Payment verification: customer submits TRON transaction hash
-Success authority: server calls payment_complete()
+WooCommerce order is created before the invoice
+Unpaid state: on-hold
+Invoice: create or reuse after order creation
+Verification: customer submits TRON transaction hash
+Server authority: retained TronGrid validation + payment_complete()
 ```
 
-## 4. S4B work already completed
-
-The following S4B inputs and decisions are already complete:
+S4B also approved:
 
 ```text
-- V0.2.5 plugin capability handoff received
-- V0.2.5 source reviewed
-- S4A compatibility choice C approved
-- S5 ownership choice B approved
-- order / invoice / payment ownership boundaries documented
-- plugin integration contract reviewed
-- future plugin implementation plan documented
+server-rendered Step-03 workspace bootstrap
+same-origin REST operations
+WooCommerce order-pay recovery route
+old /crypto-pay/ path retained as rollback
+one active invoice per unpaid order
+no fake automatic monitoring
+no operational countdown / expiry in the first revision
+no QR in the first revision
+transaction-hash submission as the required verification action
 ```
 
-These records remain valid as S4B architecture evidence.
+## 6. Critical gateway-alignment consequence
 
-## 5. Work that exceeded S4B scope
-
-The following later work was useful future preparation but was not required to continue the Project 2 static Checkout flow:
+Because the current plugin supports only one fixed pair:
 
 ```text
-V0.2.6 module-skeleton package
-V0.2.6.1 compatibility correction
-local legacy-plugin regression planning
-future Plugin Step 2 planning
+USDT on TRON / TRC20
 ```
 
-These artifacts are parked as future live-integration preparation.
+the customer has no asset or network decision to make.
 
-They must not become the current Project 2 gate and must not force the user to install the old-page plugin while the new Checkout reference flow is still unfinished.
+Therefore the generic S4A selector is bypassed in the current production-facing flow. It is not replaced with another intermediate page containing two fixed cards.
 
-## 6. Current S4B executable deliverable
-
-The current executable S4B task is not to reopen S4A.
-
-It is to produce the gateway-aligned Step-03 confirmation reference derived from the accepted S4A design language while preserving the accepted S4A artifact as historical reference.
-
-The S4B gateway-aligned reference must truthfully show:
+The rejected sequence is:
 
 ```text
-Cryptocurrency
-Asset: USDT
-Network: TRON / TRC20
-administrator-controlled environment disclosure where appropriate
-order amount context
-network compatibility warning
-Continue to Create Crypto Invoice
-Back to payment methods
+Step 03 Payment
+→ Continue with Cryptocurrency
+→ fixed USDT / TRON confirmation page
+→ Continue to Create Crypto Invoice
 ```
 
-It must not present these as current selectable capabilities:
+That would create a redundant second confirmation click and behave like a separate review step.
+
+## 7. Correct current flow
 
 ```text
-USDC
-BTC
-Ethereum
-Solana
-Bitcoin
-customer-selectable mainnet / nile / shasta
+Step 03 Payment
+→ concise Cryptocurrency entry/handoff
+→ one final payment / place-order action
+→ WooCommerce creates the order
+→ order becomes on-hold
+→ process_payment() opens the dedicated Step-03 Crypto Workspace
+→ workspace automatically creates or restores the USDT / TRON invoice
+→ customer transfers funds and submits the transaction hash
+→ server verifies and calls payment_complete()
+→ Step 04 WooCommerce Order Received / Thank You
 ```
 
-The S4B implementation should be a separate bounded artifact or an explicitly versioned gateway-aligned derivative. It must not silently destroy the accepted S4A reference.
-
-## 7. Correct next sequence
+The Crypto Workspace:
 
 ```text
-S4A accepted and closed
-→ finish S4B gateway-aligned Step-03 confirmation reference
-→ user reviews and accepts S4B
-→ begin S5 Invoice / Waiting static reference
-→ continue truthful transaction-hash verification and recovery states
-→ Step 04 Thank You
-→ full static-flow link and responsive acceptance
-→ later live Checkout/plugin integration
+- remains Step 03
+- preserves the order summary and Checkout identity
+- is not a small inline accordion
+- is not Step 04 or Step 05
+- does not ask for address or shipping again
+- does not create a duplicate order
 ```
 
-## 8. Explicit cancellations
+## 8. Correct next static work
 
-The following statements are cancelled:
+The next full static surface is:
 
 ```text
-"return to S4A"
-"S4A gateway-specific adaptation is the current phase"
-"local V0.2.6.1 installation is the immediate next Project 2 step"
-"Plugin Step 2 is the current mainline gate"
+S5 dedicated Step-03 Invoice / Waiting Workspace shell
 ```
 
-## 9. Current exact action
+It must represent only plugin-supported first-phase data and actions:
 
 ```text
-Create the S4B gateway-aligned fixed USDT / TRON Step-03 confirmation reference as one bounded repository change.
-Do not modify the accepted S4A artifact in the same change.
-Do not install or continue developing the plugin in this phase.
+invoice ID
+USDT amount
+TRON / TRC20
+active environment disclosure
+receiver address
+copy amount / address
+waiting-payment instructions
+required TRON transaction-hash field
+manual Refresh status
+customer-safe deterministic rejection messages
+recovery-link presentation
+paid-confirmed transition to Step 04
+```
+
+It must not claim:
+
+```text
+QR
+live countdown
+operational expiry
+automatic chain monitoring
+confirmation-count progress
+multi-asset or customer-selectable networks
+```
+
+Before S5 is linked, only a bounded copy/action correction may be made to the accepted main Step-03 payment entry. Its two-column structure, context card, order summary and accepted mobile composition remain locked.
+
+## 9. Rejected implementation and rollback
+
+The attempted separate fixed-USDT / TRON confirmation page was rejected and removed.
+
+Authoritative rollback record:
+
+```text
+project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
+```
+
+## 10. Current exact stop point
+
+```text
+S4A: accepted and closed
+S4B: completed as capability alignment + integration contract
+Rejected extra confirmation page: removed
+S5: next full static page
+Plugin installation and Plugin Step 2: not current work
+Live Checkout: not started
+Checkout: Not done
 ```
