@@ -26,7 +26,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 18. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
 19. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_IMPLEMENTATION.md
 20. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_STATIC_IMPLEMENTATION.md
-21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+21. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_ACCEPTANCE.md
+22. project2-progress/STEP_4F_FUTURE_MULTI_ASSET_CRYPTO_WORKSPACE_PREVIEW_IMPLEMENTATION.md
+23. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page-status rule
@@ -146,10 +148,15 @@ preview/spatial-flow-checkout-crypto-select-v1.html
   accepted S4A plugin-agnostic future asset/network interaction reference
 
 preview/spatial-flow-checkout-crypto-invoice-v1.html
-  S5 fixed-USDT/TRON Invoice / Waiting Workspace static reference
+  accepted S5 fixed-USDT/TRON Invoice / Waiting Workspace reference
+
+preview/spatial-flow-checkout-crypto-workspace-future-v1.html
+  isolated future multi-asset integrated Workspace preview
 ```
 
 S4A remains accepted and closed. Its multi-asset examples are not current gateway capabilities.
+
+The future integrated Workspace preview is not linked from the current Checkout flow.
 
 ## S4B actual result
 
@@ -209,9 +216,9 @@ The attempted extra fixed-route confirmation page was rejected and removed. Its 
 project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
 ```
 
-## S5 implementation status
+## S5 status
 
-Implemented static workspace:
+Accepted current static workspace:
 
 ```text
 preview/spatial-flow-checkout-crypto-invoice-v1.html
@@ -219,7 +226,7 @@ preview/spatial-flow-checkout-crypto-invoice-v1.css
 preview/spatial-flow-checkout-crypto-invoice-v1.js
 ```
 
-Implemented reference content and interactions:
+Accepted current first-phase content:
 
 ```text
 waiting-payment status
@@ -256,8 +263,30 @@ wallet connection
 operational countdown / expiry
 automatic monitoring
 confirmation count
-multi-asset / customer network selection
+multi-asset / customer network selection in the current plugin
 ```
+
+## Future multi-asset Workspace preview
+
+Standalone preview:
+
+```text
+preview/spatial-flow-checkout-crypto-workspace-future-v1.html
+```
+
+It combines:
+
+```text
+asset search and selection
+asset-dependent network selection
+Preparing invoice state
+Invoice / transfer state
+network-adaptive amount/address presentation
+transaction-identifier verification boundary
+right sticky Order Summary
+```
+
+Displayed non-TRON assets and networks are future examples only. The page is intentionally isolated and does not alter the current authoritative fixed USDT/TRON flow.
 
 ## Current exact stop point
 
@@ -266,15 +295,15 @@ S3 main Step-03 Payment page: accepted and closed
 Step-03 reusable payment host: implemented
 S4A generic selector reference: accepted and closed
 S4B capability alignment and corrected contract: completed
-S5 Invoice / Waiting Workspace static page: implemented
-Current action: user visual and interaction review of Step 03 host + S5
-S6 verification-failure / recovery state family: not started
+S5 Invoice / Waiting Workspace: accepted and closed
+Future integrated Crypto Workspace preview: implemented, awaiting user review
+S6 verification-failure / recovery state family: next formal phase
 Plugin live integration: deferred
 Live Checkout reconstruction: not started
 Checkout: Not done
 ```
 
-Required review sizes:
+Required review sizes for the future preview:
 
 ```text
 Desktop / 1366 × 768
@@ -298,11 +327,11 @@ Plugin Step 2 now: not current Project 2 work
 - preserve backend editability
 - no live Checkout source changes during static-flow design
 - no broad CSS replacement
-- no unconfirmed payment methods
+- no unconfirmed payment methods in the current Checkout flow
 - no fake payment data or browser-authoritative success
 - no raw Order Key as REST authorization
 - no redundant Crypto confirmation page
-- no S5 claims beyond the approved plugin contract
-- do not begin S6 until S5 is accepted or corrected
+- keep the future multi-asset preview isolated until plugin support exists
+- S6 must represent only approved first-phase states
 - one bounded group at a time
 ```
