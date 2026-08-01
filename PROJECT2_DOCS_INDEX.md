@@ -24,7 +24,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 16. project2-progress/STEP_4F_S4A_S4B_PHASE_AND_SCOPE_CORRECTION.md
 17. project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
 18. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
-19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+19. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_IMPLEMENTATION.md
+20. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_STATIC_IMPLEMENTATION.md
+21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -52,13 +54,23 @@ Step 04 is an order-owned result, not a pre-payment review.
 
 ## Main Step-03 payment host
 
-The accepted main payment page is:
+Authoritative page:
 
 ```text
 preview/spatial-flow-checkout-payment-v1.html
 ```
 
-It must remain a reusable payment-method host rather than becoming a Crypto-only architecture.
+The page is now a reusable payment-method host rather than a permanently Crypto-specific implementation.
+
+Stable host regions:
+
+```text
+payment-method list
+selected-method panel
+one final action zone
+right Order Summary
+accepted Address / Contact / Shipping context
+```
 
 Currently confirmed active method:
 
@@ -66,66 +78,28 @@ Currently confirmed active method:
 Cryptocurrency
 ```
 
-Future methods may be added only when their WooCommerce gateways are actually confirmed and enabled.
+Future methods may be added only when their WooCommerce gateways are actually enabled and eligible.
 
 Presentation families:
 
 ```text
 Card / wallet:
-compact inline gateway fields are acceptable
+compact inline gateway fields
 
 Cryptocurrency:
-concise entry in the main payment page
+concise entry
+→ one final Step-03 action
 → dedicated Step-03 Workspace
-not a long default-open accordion
 
 Redirect gateway:
-concise method entry
-→ one final action
-→ hosted or redirected flow
+concise entry
+→ hosted/redirected payment
 
 Bank transfer:
-delayed/offline instruction branch
+delayed/offline instructions
 ```
 
-## Future-gateway reservation
-
-Audit result:
-
-```text
-Visual/layout reservation: present
-Gateway/runtime reservation: incomplete
-```
-
-Already reusable:
-
-```text
-payment-method list container
-payment-method row pattern
-selected payment workspace area
-one final action zone
-right Order Summary
-accepted desktop/mobile shell
-```
-
-Required bounded completion:
-
-```text
-gateway descriptor/adapter model
-generic selected-method panel boundary
-registry-driven static handoff
-dynamic final-action label/behavior contract
-safe WooCommerce-native fallback for unknown eligible gateways
-truthful fixed USDT / TRON Crypto copy
-```
-
-Authoritative gate:
-
-```text
-project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
-```
-
-A newly enabled gateway may require one small presentation adapter, but must not require rebuilding Step 01, Step 02, progress, Order Summary or the complete Step-03 page.
+Gateway descriptors drive title, description, family, presentation mode, settlement label, action label and approved handoff route. A future gateway may need a small adapter, but not a full Checkout rebuild.
 
 ## S4A status
 
@@ -177,59 +151,99 @@ one final Step-03 action
 
 ## Rejected redundant page
 
-A separate fixed USDT / TRON confirmation page was created and rejected because it added an unnecessary second confirmation action after the main Step-03 payment page.
+The separate fixed USDT / TRON confirmation page was rejected and removed because it added an unnecessary second confirmation action.
 
-The three preview files were removed. The rejection and rollback remain documented at:
+Rollback record:
 
 ```text
 project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
 ```
 
-The accepted S4A and Step-03 files were not modified by the rejected implementation or rollback.
+## S5 status
+
+Implemented static page:
+
+```text
+preview/spatial-flow-checkout-crypto-invoice-v1.html
+```
+
+Supporting assets:
+
+```text
+preview/spatial-flow-checkout-crypto-invoice-v1.css
+preview/spatial-flow-checkout-crypto-invoice-v1.js
+```
+
+Current static flow:
+
+```text
+preview/spatial-flow-checkout-payment-v1.html
+→ Continue to secure Crypto payment
+→ preview/spatial-flow-checkout-crypto-invoice-v1.html
+```
+
+S5 currently represents:
+
+```text
+waiting-payment status
+order number and Invoice ID
+USDT amount
+TRON / TRC20
+server-owned environment disclosure
+receiver address
+copy amount and address
+TRON-only warning
+wallet/exchange transfer instructions
+required transaction-hash form
+64-character hexadecimal format validation
+manual Refresh status
+Copy payment recovery link
+payment-pending Order Summary
+```
+
+Prototype safeguards:
+
+```text
+deliberately invalid receiver address
+no real order or Invoice
+no TronGrid request
+no server payment confirmation
+no Step 04 navigation
+```
+
+Deferred:
+
+```text
+QR
+WalletConnect / wallet launch
+operational countdown or expiry
+automatic monitoring
+confirmation counter
+multi-asset
+customer-selectable network
+```
 
 ## Current exact execution point
 
 ```text
 S3: accepted and closed
+Step-03 reusable payment host: implemented
 S4A: accepted and closed
 S4B capability/contract: completed
-Current next bounded work: Step-03 Payment Host extensibility pass
-S5 Invoice / Waiting Workspace shell: follows host-pass acceptance
+S5 Invoice / Waiting Workspace: implemented, awaiting user review
+S6 verification-failure / recovery states: not started
 Plugin installation: deferred
 Plugin Step 2: deferred
 Live Checkout: not started
 Checkout: Not done
 ```
 
-## S5 first-phase contract
-
-Allowed visual/data contract:
+Required review:
 
 ```text
-invoice ID
-USDT amount
-TRON / TRC20
-active environment
-receiver address
-copy controls
-waiting-payment instructions
-required transaction-hash form
-manual Refresh
-customer-safe rejection/retry
-payment recovery link
-server-confirmed transition to Step 04
-```
-
-Deferred and prohibited as current claims:
-
-```text
-QR
-operational countdown or expiry
-automatic monitoring
-confirmation counter
-multi-asset
-customer-selectable network
-browser-controlled payment success
+Desktop / 1366 × 768
+390 × 844
+360 × 800
 ```
 
 ## Locked structural boundaries
@@ -237,13 +251,14 @@ browser-controlled payment success
 ```text
 - preserve accepted Step 01 / 02 / 03 visual structure
 - preserve desktop two-column Checkout structure
-- preserve accepted mobile context-card information grid
 - do not default-expand Crypto as an inline accordion
 - do not add a fifth business step
 - do not add a second generic confirmation click
-- do not repeat address or shipping in the Crypto Workspace
+- do not repeat Address or Shipping collection in the Crypto Workspace
 - do not create duplicate WooCommerce orders
 - do not display fake payment methods
+- do not represent QR, countdown or automatic monitoring as current behavior
 - do not modify live Checkout or plugin during the static page phase
+- do not begin S6 before S5 review
 - one bounded review group at a time
 ```
