@@ -26,7 +26,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 18. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
 19. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_IMPLEMENTATION.md
 20. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_STATIC_IMPLEMENTATION.md
-21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+21. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_ACCEPTANCE.md
+22. project2-progress/STEP_4F_FUTURE_MULTI_ASSET_CRYPTO_WORKSPACE_PREVIEW_IMPLEMENTATION.md
+23. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -60,7 +62,7 @@ Authoritative page:
 preview/spatial-flow-checkout-payment-v1.html
 ```
 
-The page is now a reusable payment-method host rather than a permanently Crypto-specific implementation.
+The page is a reusable payment-method host rather than a permanently Crypto-specific implementation.
 
 Stable host regions:
 
@@ -161,7 +163,7 @@ project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
 
 ## S5 status
 
-Implemented static page:
+Accepted static page:
 
 ```text
 preview/spatial-flow-checkout-crypto-invoice-v1.html
@@ -182,7 +184,7 @@ preview/spatial-flow-checkout-payment-v1.html
 → preview/spatial-flow-checkout-crypto-invoice-v1.html
 ```
 
-S5 currently represents:
+Accepted S5 content:
 
 ```text
 waiting-payment status
@@ -211,7 +213,7 @@ no server payment confirmation
 no Step 04 navigation
 ```
 
-Deferred:
+Deferred in the current plugin:
 
 ```text
 QR
@@ -223,6 +225,41 @@ multi-asset
 customer-selectable network
 ```
 
+## Future multi-asset Crypto Workspace preview
+
+Standalone artifact:
+
+```text
+preview/spatial-flow-checkout-crypto-workspace-future-v1.html
+preview/spatial-flow-checkout-crypto-workspace-future-v1.css
+preview/spatial-flow-checkout-crypto-workspace-future-v1.js
+```
+
+It is intentionally not linked from current Checkout.
+
+Demonstrated internal Step-03 flow:
+
+```text
+Choose payment pair
+→ Preparing Crypto payment
+→ Invoice and transfer
+→ Submit transaction identifier
+→ server-authoritative verification boundary
+```
+
+Displayed examples:
+
+```text
+USDT + TRON / TRC20: current supported pair
+USDT + Ethereum / ERC20: future example
+USDT + BNB Chain / BEP20: future example
+USDC + Ethereum / ERC20: future example
+USDC + Solana: future example
+BTC + Bitcoin: future example
+```
+
+The page combines the accepted S4A selection language with the accepted S5 Invoice / Waiting shell, but it does not alter current capability or current routing.
+
 ## Current exact execution point
 
 ```text
@@ -230,8 +267,9 @@ S3: accepted and closed
 Step-03 reusable payment host: implemented
 S4A: accepted and closed
 S4B capability/contract: completed
-S5 Invoice / Waiting Workspace: implemented, awaiting user review
-S6 verification-failure / recovery states: not started
+S5 Invoice / Waiting Workspace: accepted and closed
+Future integrated Crypto Workspace preview: implemented, awaiting review
+S6 verification-failure / recovery states: next formal phase
 Plugin installation: deferred
 Plugin Step 2: deferred
 Live Checkout: not started
@@ -256,9 +294,10 @@ Desktop / 1366 × 768
 - do not add a second generic confirmation click
 - do not repeat Address or Shipping collection in the Crypto Workspace
 - do not create duplicate WooCommerce orders
-- do not display fake payment methods
+- do not display fake payment methods in current Checkout
+- keep future multi-asset examples isolated until plugin support exists
 - do not represent QR, countdown or automatic monitoring as current behavior
 - do not modify live Checkout or plugin during the static page phase
-- do not begin S6 before S5 review
+- S6 must reflect only approved first-phase states
 - one bounded review group at a time
 ```
