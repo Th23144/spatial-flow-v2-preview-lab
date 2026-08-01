@@ -4,10 +4,17 @@
   const STORAGE_KEY = 'spatialFlowCheckoutPrototype';
   const SUBTOTAL = 329;
   const HASH_PATTERN = /^[a-fA-F0-9]{64}$/;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const BOOTSTRAP_DELAY = prefersReducedMotion ? 450 : 1500;
+
   const workspace = document.querySelector('[data-crypto-workspace]');
   if (!workspace) return;
 
   const notice = document.querySelector('[data-checkout-notice]');
+  const preparingPanel = workspace.querySelector('[data-invoice-preparing]');
+  const failedPanel = workspace.querySelector('[data-invoice-failed]');
+  const readyContent = workspace.querySelector('[data-invoice-ready-content]');
+  const retryButton = workspace.querySelector('[data-invoice-retry]');
   const amountOutput = workspace.querySelector('[data-crypto-amount]');
   const transferCompleteButton = workspace.querySelector('[data-transfer-complete]');
   const hashForm = workspace.querySelector('[data-crypto-hash-form]');
@@ -17,7 +24,15 @@
   const recoveryButton = workspace.querySelector('[data-copy-recovery]');
   const statusTitle = workspace.querySelector('[data-workspace-status-title]');
   const statusMessage = workspace.querySelector('[data-workspace-status-message]');
+  const summaryPaymentState = document.querySelector('[data-summary-payment-state]');
+  const summaryPaymentMessage = document.querySelector('[data-summary-payment-message]');
+  const summaryPaymentFact = document.querySelector('[data-summary-payment-fact]');
+
+  const query = new URLSearchParams(window.location.search);
+  const previewBootstrapFailure = query.get('prototype_invoice') === 'fail';
+
   let noticeTimer = null;
+  let bootstrapTimer = null;
 
   const readState = () => {
     try {
@@ -123,8 +138,65 @@
     });
   };
 
+  const setSummaryState = (state) => {
+    const summary = {
+      preparing: {
+        title: 'Preparing payment',
+        message: 'The secure invoice is being created or restored. Payment details are not available yet.',
+        fact: 'Preparing invoice'
+      },
+      failed: {
+        title: 'Payment setup unavailable',
+        message: 'No payment details were issued. Retry the invoice request or return to the payment methods.',
+        fact: 'Invoice unavailable'
+      },
+      ready: {
+        title: 'Payment pending',
+        message: 'The order is reserved. Fulfilment begins only after server-confirmed payment.',
+        fact: 'Waiting for payment'
+      }
+    }[state];
+
+    if (!summary) return;
+    if (summaryPaymentState) summaryPaymentState.textContent = summary.title;
+    if (summaryPaymentMessage) summaryPaymentMessage.textContent = summary.message;
+    if (summaryPaymentFact) summaryPaymentFact.textContent = summary.fact;
+  };
+
+  const setBootstrapState = (state) => {
+    workspace.dataset.invoiceBootstrapState = state;
+    workspace.classList.toggle('is-preparing', state === 'preparing');
+    workspace.classList.toggle('is-bootstrap-failed', state === 'failed');
+    workspace.classList.toggle('is-invoice-ready', state === 'ready');
+    workspace.setAttribute('aria-busy', String(state === 'preparing'));
+
+    if (preparingPanel) preparingPanel.hidden = state !== 'preparing';
+    if (failedPanel) failedPanel.hidden = state !== 'failed';
+    if (readyContent) readyContent.hidden = state !== 'ready';
+
+    setSummaryState(state);
+    persistWorkspaceDraft({ invoiceBootstrapState: state });
+  };
+
+  const beginInvoiceBootstrap = ({ allowPreviewFailure = true } = {}) => {
+    window.clearTimeout(bootstrapTimer);
+    setBootstrapState('preparing');
+
+    bootstrapTimer = window.setTimeout(() => {
+      if (allowPreviewFailure && previewBootstrapFailure) {
+        setBootstrapState('failed');
+        return;
+      }
+
+      hydrateTotals();
+      setBootstrapState('ready');
+    }, BOOTSTRAP_DELAY);
+  };
+
   workspace.querySelectorAll('[data-copy-target]').forEach((button) => {
     button.addEventListener('click', async () => {
+      if (workspace.dataset.invoiceBootstrapState !== 'ready') return;
+
       const targetId = button.getAttribute('data-copy-target');
       const target = targetId ? document.getElementById(targetId) : null;
       const value = target?.textContent.trim();
@@ -144,6 +216,8 @@
   });
 
   transferCompleteButton?.addEventListener('click', () => {
+    if (workspace.dataset.invoiceBootstrapState !== 'ready') return;
+
     const isOpen = transferCompleteButton.getAttribute('aria-expanded') === 'true';
     if (isOpen) {
       closeHashForm();
@@ -160,6 +234,8 @@
 
   hashForm?.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    if (workspace.dataset.invoiceBootstrapState !== 'ready') return;
 
     const hash = hashInput?.value.trim() || '';
     if (!HASH_PATTERN.test(hash)) {
@@ -182,16 +258,23 @@
   });
 
   refreshButton?.addEventListener('click', () => {
+    if (workspace.dataset.invoiceBootstrapState !== 'ready') return;
     showNotice('Static status refreshed. No server or blockchain request was made.');
   });
 
   recoveryButton?.addEventListener('click', async () => {
+    if (workspace.dataset.invoiceBootstrapState !== 'ready') return;
+
     try {
-      await copyText(window.location.href);
+      await copyText(window.location.href.split('?')[0]);
       showNotice('Static payment recovery link copied. The live link will be generated by WooCommerce order-pay.');
     } catch (error) {
       showNotice('Copy was not available. Copy the current page address manually.');
     }
+  });
+
+  retryButton?.addEventListener('click', () => {
+    beginInvoiceBootstrap({ allowPreviewFailure: false });
   });
 
   const draft = readState().cryptoWorkspaceDraft || {};
@@ -204,4 +287,10 @@
   }
 
   hydrateTotals();
+  beginInvoiceBootstrap();
+
+  window.addEventListener('pagehide', () => {
+    window.clearTimeout(bootstrapTimer);
+    window.clearTimeout(noticeTimer);
+  });
 })();
