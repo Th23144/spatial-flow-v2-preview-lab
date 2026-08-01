@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="spatial-flow-checkout-flow-v1.css" />
   <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css?v=20260731-0504" />
   <link rel="stylesheet" href="spatial-flow-checkout-mobile-commerce-v1.css?v=20260731-0657" />
-  <link rel="stylesheet" href="spatial-flow-checkout-crypto-invoice-v1.css" />
+  <link rel="stylesheet" href="spatial-flow-checkout-crypto-invoice-v1.css?v=20260801-1138" />
 </head>
 <body class="woocommerce-checkout checkout-step-payment checkout-step-crypto-invoice">
   <div class="masthead-strip-v1">
@@ -73,161 +73,196 @@
   </section>
 
   <main class="checkout-shell crypto-workspace-shell">
-    <div class="checkout-main crypto-workspace-main" data-crypto-workspace>
-      <section class="crypto-workspace-status" data-workspace-status-card>
-        <div class="crypto-workspace-status__signal" aria-hidden="true"><span></span></div>
-        <div>
-          <span class="crypto-workspace-status__eyebrow">Payment status</span>
-          <h2 data-workspace-status-title>Waiting for payment</h2>
-          <p data-workspace-status-message>
-            Your order is reserved but not paid. Complete the transfer and submit the transaction hash below.
-          </p>
-        </div>
-        <span class="crypto-workspace-status__badge">Order on hold</span>
-      </section>
-
-      <section class="checkout-panel crypto-invoice-panel">
-        <div class="panel-head">
-          <div class="panel-no">Payment invoice · 03</div>
-          <h2>Your secure <em>invoice</em>.</h2>
-        </div>
-        <p class="panel-note">
-          The live workspace receives these values from WooCommerce and the Crypto plugin. The values shown here are static prototype data and must not be used for a real transfer.
-        </p>
-
-        <dl class="crypto-invoice-meta">
-          <div>
-            <dt>Order</dt>
-            <dd>#SF-1048</dd>
-          </div>
-          <div>
-            <dt>Invoice ID</dt>
-            <dd>SF-CRYPTO-1048-01</dd>
-          </div>
-          <div>
-            <dt>Asset</dt>
-            <dd>USDT</dd>
-          </div>
-          <div>
-            <dt>Network</dt>
-            <dd>TRON / TRC20</dd>
-          </div>
-          <div>
-            <dt>Environment</dt>
-            <dd>TRON Mainnet<small>Server supplied in production</small></dd>
-          </div>
-          <div>
-            <dt>Verification</dt>
-            <dd>Transaction hash required</dd>
-          </div>
-        </dl>
-      </section>
-
-      <section class="checkout-panel crypto-transfer-panel">
-        <div class="panel-head">
-          <div class="panel-no">Transfer · 03</div>
-          <h2>Send the exact <em>amount</em>.</h2>
-        </div>
-        <p class="panel-note">
-          Open your wallet or exchange account and create a USDT transfer using the TRON / TRC20 network only.
-        </p>
-
-        <div class="crypto-payment-value crypto-payment-value--amount">
-          <div>
-            <span class="crypto-payment-value__label">Amount to send</span>
-            <strong id="crypto-payment-amount" data-crypto-amount>329.00 USDT</strong>
-            <small>Static reference amount · live value is server authoritative</small>
-          </div>
-          <button class="crypto-copy-button" type="button" data-copy-target="crypto-payment-amount">Copy amount</button>
-        </div>
-
-        <div class="crypto-payment-value crypto-payment-value--address">
-          <div>
-            <span class="crypto-payment-value__label">Receiving address</span>
-            <strong id="crypto-payment-address" data-crypto-address>T-PROTOTYPE-NOT-A-REAL-ADDRESS</strong>
-            <small>Prototype only · do not send funds to this address</small>
-          </div>
-          <button class="crypto-copy-button" type="button" data-copy-target="crypto-payment-address">Copy address</button>
-        </div>
-
-        <div class="crypto-network-warning" role="note">
-          <strong>TRON / TRC20 only</strong>
+    <div
+      class="checkout-main crypto-workspace-main is-preparing"
+      data-crypto-workspace
+      data-invoice-bootstrap-state="preparing"
+      aria-busy="true"
+    >
+      <section class="crypto-invoice-bootstrap crypto-invoice-bootstrap--preparing" data-invoice-preparing aria-live="polite">
+        <div class="crypto-invoice-bootstrap__inner">
+          <div class="crypto-invoice-bootstrap__ring" aria-hidden="true"></div>
+          <span class="crypto-invoice-bootstrap__eyebrow">Secure payment workspace</span>
+          <h2>Preparing your <em>Crypto payment</em>.</h2>
           <p>
-            Do not use Ethereum, Solana, BNB Chain, Bitcoin or another network. Sending through the wrong network may be irreversible and cannot be corrected by the store.
+            Creating or restoring your secure invoice. The exact amount and receiver address will appear only after the server returns the invoice.
           </p>
+          <span class="crypto-invoice-bootstrap__prototype">Static reference · simulated server handoff</span>
         </div>
-
-        <ol class="crypto-transfer-steps">
-          <li>
-            <span>01</span>
-            <div><strong>Open your wallet</strong><p>Use a wallet or exchange account that supports USDT withdrawals through TRON / TRC20.</p></div>
-          </li>
-          <li>
-            <span>02</span>
-            <div><strong>Send the exact amount</strong><p>Copy the amount and receiver address exactly as supplied by the live invoice.</p></div>
-          </li>
-          <li>
-            <span>03</span>
-            <div><strong>Return with the transaction hash</strong><p>After the transfer is broadcast, copy the TRON transaction hash from your wallet history.</p></div>
-          </li>
-        </ol>
       </section>
 
-      <section class="checkout-panel crypto-verification-panel">
-        <div class="panel-head">
-          <div class="panel-no">Verification · 03</div>
-          <h2>Confirm the <em>transaction</em>.</h2>
-        </div>
-        <p class="panel-note">
-          This gateway does not automatically monitor the chain. Submitting the TRON transaction hash is required before payment can be confirmed.
-        </p>
-
-        <button class="crypto-transfer-complete" type="button" aria-expanded="false" data-transfer-complete>
-          <span>I have completed the transfer</span>
-          <span aria-hidden="true">＋</span>
-        </button>
-
-        <form class="crypto-hash-form" action="#" method="post" data-crypto-hash-form hidden novalidate>
-          <label for="crypto-transaction-hash">TRON transaction hash</label>
-          <div class="crypto-hash-control">
-            <input
-              id="crypto-transaction-hash"
-              name="transaction_hash"
-              type="text"
-              inputmode="text"
-              autocomplete="off"
-              spellcheck="false"
-              maxlength="64"
-              placeholder="Enter the 64-character transaction hash"
-              aria-describedby="crypto-hash-help crypto-hash-error"
-              data-crypto-hash-input
-            />
-            <button type="submit">Verify payment →</button>
+      <section class="crypto-invoice-bootstrap crypto-invoice-bootstrap--failed" data-invoice-failed hidden aria-live="assertive">
+        <div class="crypto-invoice-bootstrap__inner">
+          <div class="crypto-invoice-bootstrap__failure-mark" aria-hidden="true">!</div>
+          <span class="crypto-invoice-bootstrap__eyebrow">Invoice unavailable</span>
+          <h2>We could not prepare your <em>Crypto payment</em>.</h2>
+          <p>
+            No payment details were issued. Retry the secure invoice request, or return to the payment methods without creating another order.
+          </p>
+          <div class="crypto-invoice-bootstrap__actions">
+            <button class="checkout-button checkout-button--primary" type="button" data-invoice-retry>Retry preparing invoice →</button>
+            <a class="checkout-button checkout-button--secondary" href="spatial-flow-checkout-payment-v1.html">← Return to payment methods</a>
           </div>
-          <p id="crypto-hash-help" class="crypto-hash-help">
-            Find this value in your wallet or exchange withdrawal history after the transfer has been submitted.
+          <span class="crypto-invoice-bootstrap__prototype">Prototype failure preview · no server request occurred</span>
+        </div>
+      </section>
+
+      <div class="crypto-invoice-ready-content" data-invoice-ready-content hidden>
+        <section class="crypto-workspace-status" data-workspace-status-card>
+          <div class="crypto-workspace-status__signal" aria-hidden="true"><span></span></div>
+          <div>
+            <span class="crypto-workspace-status__eyebrow">Payment status</span>
+            <h2 data-workspace-status-title>Waiting for payment</h2>
+            <p data-workspace-status-message>
+              Your order is reserved but not paid. Complete the transfer and submit the transaction hash below.
+            </p>
+          </div>
+          <span class="crypto-workspace-status__badge">Order on hold</span>
+        </section>
+
+        <section class="checkout-panel crypto-invoice-panel">
+          <div class="panel-head">
+            <div class="panel-no">Payment invoice · 03</div>
+            <h2>Your secure <em>invoice</em>.</h2>
+          </div>
+          <p class="panel-note">
+            The live workspace receives these values from WooCommerce and the Crypto plugin. The values shown here are static prototype data and must not be used for a real transfer.
           </p>
-          <p id="crypto-hash-error" class="crypto-hash-error" role="alert" data-crypto-hash-error hidden></p>
-        </form>
-      </section>
 
-      <section class="crypto-workspace-tools" aria-label="Payment workspace tools">
-        <a href="spatial-flow-checkout-payment-v1.html">← Choose another payment method</a>
-        <button type="button" data-refresh-status>Refresh status</button>
-        <button type="button" data-copy-recovery>Copy payment recovery link</button>
-      </section>
+          <dl class="crypto-invoice-meta">
+            <div>
+              <dt>Order</dt>
+              <dd>#SF-1048</dd>
+            </div>
+            <div>
+              <dt>Invoice ID</dt>
+              <dd>SF-CRYPTO-1048-01</dd>
+            </div>
+            <div>
+              <dt>Asset</dt>
+              <dd>USDT</dd>
+            </div>
+            <div>
+              <dt>Network</dt>
+              <dd>TRON / TRC20</dd>
+            </div>
+            <div>
+              <dt>Environment</dt>
+              <dd>TRON Mainnet<small>Server supplied in production</small></dd>
+            </div>
+            <div>
+              <dt>Verification</dt>
+              <dd>Transaction hash required</dd>
+            </div>
+          </dl>
+        </section>
 
-      <p class="prototype-note crypto-workspace-prototype-note">
-        Static S5 visual and interaction reference only. No WooCommerce order, live invoice, wallet address, TronGrid request or payment confirmation is created by this page.
-      </p>
+        <section class="checkout-panel crypto-transfer-panel">
+          <div class="panel-head">
+            <div class="panel-no">Transfer · 03</div>
+            <h2>Send the exact <em>amount</em>.</h2>
+          </div>
+          <p class="panel-note">
+            Open your wallet or exchange account and create a USDT transfer using the TRON / TRC20 network only.
+          </p>
+
+          <div class="crypto-payment-value crypto-payment-value--amount">
+            <div>
+              <span class="crypto-payment-value__label">Amount to send</span>
+              <strong id="crypto-payment-amount" data-crypto-amount>329.00 USDT</strong>
+              <small>Static reference amount · live value is server authoritative</small>
+            </div>
+            <button class="crypto-copy-button" type="button" data-copy-target="crypto-payment-amount">Copy amount</button>
+          </div>
+
+          <div class="crypto-payment-value crypto-payment-value--address">
+            <div>
+              <span class="crypto-payment-value__label">Receiving address</span>
+              <strong id="crypto-payment-address" data-crypto-address>T-PROTOTYPE-NOT-A-REAL-ADDRESS</strong>
+              <small>Prototype only · do not send funds to this address</small>
+            </div>
+            <button class="crypto-copy-button" type="button" data-copy-target="crypto-payment-address">Copy address</button>
+          </div>
+
+          <div class="crypto-network-warning" role="note">
+            <strong>TRON / TRC20 only</strong>
+            <p>
+              Do not use Ethereum, Solana, BNB Chain, Bitcoin or another network. Sending through the wrong network may be irreversible and cannot be corrected by the store.
+            </p>
+          </div>
+
+          <ol class="crypto-transfer-steps">
+            <li>
+              <span>01</span>
+              <div><strong>Open your wallet</strong><p>Use a wallet or exchange account that supports USDT withdrawals through TRON / TRC20.</p></div>
+            </li>
+            <li>
+              <span>02</span>
+              <div><strong>Send the exact amount</strong><p>Copy the amount and receiver address exactly as supplied by the live invoice.</p></div>
+            </li>
+            <li>
+              <span>03</span>
+              <div><strong>Return with the transaction hash</strong><p>After the transfer is broadcast, copy the TRON transaction hash from your wallet history.</p></div>
+            </li>
+          </ol>
+        </section>
+
+        <section class="checkout-panel crypto-verification-panel">
+          <div class="panel-head">
+            <div class="panel-no">Verification · 03</div>
+            <h2>Confirm the <em>transaction</em>.</h2>
+          </div>
+          <p class="panel-note">
+            This gateway does not automatically monitor the chain. Submitting the TRON transaction hash is required before payment can be confirmed.
+          </p>
+
+          <button class="crypto-transfer-complete" type="button" aria-expanded="false" data-transfer-complete>
+            <span>I have completed the transfer</span>
+            <span aria-hidden="true">＋</span>
+          </button>
+
+          <form class="crypto-hash-form" action="#" method="post" data-crypto-hash-form hidden novalidate>
+            <label for="crypto-transaction-hash">TRON transaction hash</label>
+            <div class="crypto-hash-control">
+              <input
+                id="crypto-transaction-hash"
+                name="transaction_hash"
+                type="text"
+                inputmode="text"
+                autocomplete="off"
+                spellcheck="false"
+                maxlength="64"
+                placeholder="Enter the 64-character transaction hash"
+                aria-describedby="crypto-hash-help crypto-hash-error"
+                data-crypto-hash-input
+              />
+              <button type="submit">Verify payment →</button>
+            </div>
+            <p id="crypto-hash-help" class="crypto-hash-help">
+              Find this value in your wallet or exchange withdrawal history after the transfer has been submitted.
+            </p>
+            <p id="crypto-hash-error" class="crypto-hash-error" role="alert" data-crypto-hash-error hidden></p>
+          </form>
+        </section>
+
+        <section class="crypto-workspace-tools" aria-label="Payment workspace tools">
+          <a href="spatial-flow-checkout-payment-v1.html">← Choose another payment method</a>
+          <button type="button" data-refresh-status>Refresh status</button>
+          <button type="button" data-copy-recovery>Copy payment recovery link</button>
+        </section>
+
+        <p class="prototype-note crypto-workspace-prototype-note">
+          Static S5 visual and interaction reference only. No WooCommerce order, live invoice, wallet address, TronGrid request or payment confirmation is created by this page.
+        </p>
+      </div>
     </div>
 
     <aside class="checkout-side" aria-label="Order and payment summary">
       <section class="order-summary crypto-order-summary">
         <div class="crypto-order-summary__status">
           <span>Order #SF-1048</span>
-          <strong>Payment pending</strong>
-          <small>The order is reserved. Fulfilment begins only after server-confirmed payment.</small>
+          <strong data-summary-payment-state>Preparing payment</strong>
+          <small data-summary-payment-message>The secure invoice is being created or restored. Payment details are not available yet.</small>
         </div>
 
         <div class="order-summary-head">
@@ -274,7 +309,7 @@
         <dl class="crypto-order-payment-facts">
           <div><dt>Payment</dt><dd>USDT</dd></div>
           <div><dt>Network</dt><dd>TRON / TRC20</dd></div>
-          <div><dt>Status</dt><dd>Waiting for payment</dd></div>
+          <div><dt>Status</dt><dd data-summary-payment-fact>Preparing invoice</dd></div>
         </dl>
 
         <div class="summary-trust">
@@ -302,6 +337,6 @@
 
   <div class="checkout-notice" role="status" aria-live="polite" data-checkout-notice></div>
   <script src="spatial-flow-checkout-flow-v1.js"></script>
-  <script src="spatial-flow-checkout-crypto-invoice-v1.js"></script>
+  <script src="spatial-flow-checkout-crypto-invoice-v1.js?v=20260801-1138"></script>
 </body>
 </html>
