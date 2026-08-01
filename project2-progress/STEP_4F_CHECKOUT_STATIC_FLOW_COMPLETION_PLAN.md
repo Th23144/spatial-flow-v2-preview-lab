@@ -16,12 +16,10 @@ S4A plugin-agnostic asset/network selector: accepted and closed as a future refe
 S4B plugin capability alignment and corrected integration contract: completed
 S5 fixed-USDT/TRON Waiting / Preparing / bootstrap failure: accepted and closed
 Future multi-asset Crypto Workspace: accepted and isolated
-S6 supported verification/recovery states: implemented, awaiting user acceptance
-S7 Step 04 result: not started
+S6 supported verification/recovery states: accepted and closed
+S7 Step-04 Order Confirmed / Thank You / Receipt: authorized next phase, not started
 Live Checkout source work: paused
 ```
-
-This plan supersedes earlier paths that described a fixed USDT/TRON intermediate confirmation page, S4B contract review as the current gate, S5 as not started, or immediate plugin installation.
 
 ## 2. Locked business progression
 
@@ -49,11 +47,11 @@ preview/spatial-flow-checkout-payment-v1.html
   Step 03 reusable payment host
 
 preview/spatial-flow-checkout-crypto-invoice-v1.html
-  current fixed-USDT/TRON S5/S6 Workspace
+  accepted fixed-USDT/TRON S5/S6 Workspace
 
 preview/spatial-flow-checkout-crypto-states-v1.css
 preview/spatial-flow-checkout-crypto-states-v1.js
-  isolated S6 state layer
+  accepted S6 state layer
 
 preview/spatial-flow-checkout-crypto-select-v1.html
   accepted future asset/network interaction reference
@@ -76,7 +74,7 @@ Cart
 → S5 Preparing Invoice
 → S5 Waiting for payment
 → S6 verification/recovery state boundary
-→ future server-authoritative Step 04 result
+→ S7 canonical server-authoritative Step-04 result
 ```
 
 Removed and prohibited:
@@ -88,29 +86,50 @@ Step 03
 → payment workspace
 ```
 
-## 5. Reusable Step-03 payment host
+## 5. Accepted Step-03 and Crypto state contracts
 
-WooCommerce remains the source of available and eligible gateways.
-
-Stable host:
+Accepted S5 sequence:
 
 ```text
-Payment Method List
-Selected Method Panel
-one Final Action Zone
-right Order Summary
+Preparing your Crypto payment
+→ Creating or restoring your secure invoice
+→ Waiting for payment
 ```
 
-Gateway families:
+Accepted S6 states:
 
 ```text
-Card / wallet: compact gateway-owned fields or eligible wallet surface
-Cryptocurrency: concise entry followed by dedicated Step-03 Workspace
-Redirect gateway: concise handoff followed by real hosted/redirect flow
-Offline gateway: instructions and correct unpaid/order state
+verification_failed
+retryable temporary verification error
+manual_review
+cancelled
+paid_confirmed transition boundary
+unfinished-payment recovery
 ```
 
-Future gateways may need bounded adapters but never a complete Checkout rebuild.
+Accepted S6 semantics:
+
+```text
+verification_failed:
+order remains on-hold; a different valid Hash may be submitted
+
+temporary error:
+not a rejection; current invoice remains active; bounded retry
+
+manual review:
+do not send another payment; safe recovery/status tools remain
+
+cancelled:
+all payment operations are unavailable
+
+paid confirmed:
+server-authoritative boundary only; result page belongs to S7
+
+recovered:
+restore the same order and active invoice
+```
+
+The shared empty-action-box CSS defect was corrected before S6 acceptance.
 
 ## 6. Current Crypto capability truth
 
@@ -135,7 +154,7 @@ WooCommerce creates order
 → WooCommerce owns canonical result
 ```
 
-Unsupported current claims:
+Unsupported current claims remain:
 
 ```text
 QR
@@ -147,94 +166,41 @@ confirmation-count stream
 production multi-asset routing
 ```
 
-## 7. Accepted S5 state contract
+## 7. S7 Step-04 result
+
+S7 is now the next bounded static phase.
+
+Artifact to audit and rework:
 
 ```text
-Preparing your Crypto payment
-→ Creating or restoring your secure invoice
-→ Waiting for payment
+preview/spatial-flow-thank-you-v1.html
 ```
 
-Before readiness, amount/address/copy/transfer/hash controls remain unavailable.
-
-Accepted bootstrap failure:
-
-```text
-Invoice unavailable
-→ Retry preparing invoice
-→ Preparing
-→ Waiting for payment
-```
-
-No duplicate order, second generic confirmation or Generate Invoice action is introduced.
-
-## 8. Implemented S6 state contract
-
-S6 is implemented as a query-controlled static state layer that leaves default S5 unchanged.
-
-Implemented states:
-
-```text
-verification_failed
-retryable temporary verification error
-manual_review
-cancelled
-paid_confirmed transition boundary
-unfinished-payment recovery
-```
-
-Deterministic failure reasons:
-
-```text
-receiver mismatch
-transaction predating the invoice
-wrong token / no qualifying USDT transfer
-amount too low
-duplicate transaction
-```
-
-Required semantics:
-
-```text
-verification_failed:
-order remains on-hold; new valid hash may be submitted
-
-temporary error:
-not a rejection; current invoice remains active; bounded retry
-
-manual review:
-do not send another payment; preserve recovery/Refresh access
-
-cancelled:
-no payment action remains available
-
-paid confirmed:
-server-authoritative only; stop before S7 result
-
-recovered:
-restore same order and same active invoice
-```
-
-S6 does not implement automatic detection, continuous polling, confirmations, operational expiry, replacement invoices, partial/over/late-payment workflows or Step 04.
-
-## 9. S7 Step 04 result
-
-After server-authoritative success:
+Required success ownership:
 
 ```text
 payment_complete()
 → canonical WooCommerce Order Received / Thank You
 ```
 
-S7 must review/rework:
+Required S7 semantics:
 
 ```text
-preview/spatial-flow-thank-you-v1.html
+- Step 04 is a result, not a Review step
+- success must be server-authoritative
+- confirmed order and receipt details are shown
+- no Pay or Confirm action exists
+- no fifth Checkout step exists
+- no browser/session state can declare payment success
+- pending/on-hold results use accurate unpaid language where applicable
+- duplicate success/result surfaces are prohibited
 ```
 
-S7 remains blocked until S6 is accepted.
+S7 must first audit the existing Thank You reference before modifying it.
 
-## 10. S8 and S9 static closure gates
+S7 must not modify the accepted S5/S6 Workspace in the same group.
+
+## 8. S8 and S9 static closure gates
 
 ### S8 — link and session audit
 
@@ -245,6 +211,7 @@ session continuity
 shipping totals
 payment-host selection
 S5/S6 recovery behavior
+Step-04 result links
 no orphan or stale route
 no link into isolated future examples
 ```
@@ -257,7 +224,7 @@ no link into isolated future examples
 360 × 800
 ```
 
-## 11. Live implementation after static acceptance
+## 9. Live implementation after static acceptance
 
 ```text
 live Checkout ownership audit
@@ -272,7 +239,7 @@ live Checkout ownership audit
 
 Plugin V0.2.6.1 remains a future integration baseline. Local installation and Plugin Step 2 remain deferred.
 
-## 12. Current build order
+## 10. Current build order
 
 ```text
 S1 Step 01: implemented
@@ -283,8 +250,8 @@ S1 Step 01: implemented
 → S4B capability/contract: completed
 → S5 Waiting/Preparing/bootstrap failure: accepted and closed
 → future multi-asset Workspace: accepted and isolated
-→ S6 verification/recovery states: implemented, awaiting acceptance
-→ S7 Step 04 result
+→ S6 verification/recovery states: accepted and closed
+→ S7 Step-04 result: next phase
 → S8 link/session audit
 → S9 responsive static acceptance
 → live ownership audit
@@ -295,7 +262,7 @@ S1 Step 01: implemented
 
 One bounded group is reviewed at a time.
 
-## 13. Hard boundaries
+## 11. Hard boundaries
 
 ```text
 - no live Checkout, CartFlows or production gateway modification during static work
@@ -304,15 +271,15 @@ One bounded group is reviewed at a time.
 - no browser-authoritative payment success
 - no fifth business step
 - no redundant fixed-route confirmation page
-- no automatic monitoring/continuous polling in S6
-- no Step 04 implementation before S6 acceptance
+- no automatic monitoring or continuous polling
+- do not modify S5/S6 while implementing S7 unless a separate defect is approved
 - Checkout remains Not done
 ```
 
-## 14. Current exact action
+## 12. Current exact action
 
 ```text
-Review and accept or correct the implemented S6 state family.
+Audit the existing preview/spatial-flow-thank-you-v1.html against the locked Step-04 ownership and result semantics.
 
-Do not begin S7 in the same group.
+Then implement one bounded S7 static result group only after that audit.
 ```
