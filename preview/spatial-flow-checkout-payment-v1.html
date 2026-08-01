@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="spatial-flow-checkout-flow-v1.css" />
   <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css?v=20260731-0504" />
   <link rel="stylesheet" href="spatial-flow-checkout-mobile-commerce-v1.css?v=20260731-0657" />
+  <link rel="stylesheet" href="spatial-flow-checkout-payment-host-v1.css" />
 </head>
 <body class="woocommerce-checkout checkout-step-payment">
   <div class="masthead-strip-v1">
@@ -70,26 +71,61 @@
   </section>
 
   <main class="checkout-shell">
-    <form class="checkout-main" action="#" method="post" data-payment-form>
+    <form class="checkout-main" action="#" method="post" data-payment-host>
       <section class="checkout-panel">
         <div class="panel-head">
           <div class="panel-no">Payment · 03</div>
           <h2>How should it <em>settle</em>?</h2>
         </div>
         <p class="panel-note">
-          This reference page shows only the payment capability currently confirmed for the project. Future gateways will enter the same dynamic payment area only after they are actually enabled.
+          This reference page shows only the payment capability currently confirmed for the project. Future gateways will enter this same payment host only after WooCommerce reports them as enabled and eligible.
         </p>
 
         <div class="payment-methods" role="radiogroup" aria-label="Available payment methods">
-          <label class="payment-method is-selected">
-            <input type="radio" name="payment_method" value="cryptocurrency" checked />
+          <label class="payment-method is-selected" data-payment-method-item>
+            <input
+              type="radio"
+              name="payment_method"
+              value="spatial_flow_crypto"
+              checked
+              data-payment-gateway="spatial_flow_crypto"
+              data-payment-family="cryptocurrency"
+              data-presentation-mode="dedicated_workspace"
+              data-customer-title="Cryptocurrency"
+              data-customer-description="Pay with USDT on TRON / TRC20. After the order is created, payment continues in a secure dedicated Step 03 workspace."
+              data-action-label="Continue to secure Crypto payment →"
+              data-settlement-label="USDT · TRON / TRC20"
+              data-handoff-route=""
+            />
             <span class="payment-method__copy">
               <strong>Cryptocurrency</strong>
-              <span>Continue to a dedicated Step 03 workspace to choose a supported digital asset and network.</span>
+              <span>USDT on TRON / TRC20 · complete payment in a secure dedicated Step 03 workspace.</span>
             </span>
             <span class="payment-method__meta">Current enabled method</span>
           </label>
         </div>
+
+        <section class="payment-selected-panel" data-payment-selected-panel aria-live="polite">
+          <span class="payment-selected-panel__eyebrow">Selected payment method</span>
+          <h3 data-selected-payment-title>Cryptocurrency</h3>
+          <p data-selected-payment-description>
+            Pay with USDT on TRON / TRC20. After the order is created, payment continues in a secure dedicated Step 03 workspace.
+          </p>
+          <dl class="payment-selected-panel__facts">
+            <div>
+              <dt>Gateway family</dt>
+              <dd data-selected-payment-family>cryptocurrency</dd>
+            </div>
+            <div>
+              <dt>Presentation</dt>
+              <dd data-selected-payment-mode>dedicated workspace</dd>
+            </div>
+            <div>
+              <dt>Settlement</dt>
+              <dd data-selected-payment-settlement>USDT · TRON / TRC20</dd>
+            </div>
+          </dl>
+        </section>
 
         <p class="payment-truth-note">
           No card, wallet, PayPal or bank-transfer option is represented as active until a real WooCommerce gateway is confirmed and enabled.
@@ -98,11 +134,11 @@
 
       <div class="checkout-actions">
         <a class="checkout-button checkout-button--secondary" href="spatial-flow-checkout-shipping-v1.html">← Back to Shipping</a>
-        <button class="checkout-button checkout-button--primary" type="submit">Continue with Cryptocurrency →</button>
+        <button class="checkout-button checkout-button--primary" type="submit" data-payment-action>Continue to secure Crypto payment →</button>
       </div>
 
-      <p class="prototype-note">
-        This button currently stops at the approved gateway handoff boundary. The asset/network workspace is the next bounded static-reference phase.
+      <p class="prototype-note" data-payment-prototype-note>
+        The Step-03 payment host is ready. The selected gateway workspace is not linked until its next approved static phase exists.
       </p>
     </form>
 
@@ -217,5 +253,6 @@ United States</div>
 
   <div class="checkout-notice" role="status" aria-live="polite" data-checkout-notice></div>
   <script src="spatial-flow-checkout-flow-v1.js"></script>
+  <script src="spatial-flow-checkout-payment-host-v1.js"></script>
 </body>
 </html>
