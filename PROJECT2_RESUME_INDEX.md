@@ -28,7 +28,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 20. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_STATIC_IMPLEMENTATION.md
 21. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_ACCEPTANCE.md
 22. project2-progress/STEP_4F_FUTURE_MULTI_ASSET_CRYPTO_WORKSPACE_PREVIEW_IMPLEMENTATION.md
-23. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+23. project2-progress/STEP_4F_FUTURE_MULTI_ASSET_CRYPTO_WORKSPACE_PREVIEW_ACCEPTANCE.md
+24. project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_GATE.md
+25. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page-status rule
@@ -118,7 +120,7 @@ right Order Summary
 accepted Address / Contact / Shipping context
 ```
 
-Gateway descriptors now drive:
+Gateway descriptors drive:
 
 ```text
 gateway ID
@@ -151,12 +153,12 @@ preview/spatial-flow-checkout-crypto-invoice-v1.html
   accepted S5 fixed-USDT/TRON Invoice / Waiting Workspace reference
 
 preview/spatial-flow-checkout-crypto-workspace-future-v1.html
-  isolated future multi-asset integrated Workspace preview
+  accepted isolated future multi-asset integrated Workspace preview
 ```
 
 S4A remains accepted and closed. Its multi-asset examples are not current gateway capabilities.
 
-The future integrated Workspace preview is not linked from the current Checkout flow.
+The future integrated Workspace preview is accepted as a non-production architecture reference and is not linked from the current Checkout flow.
 
 ## S4B actual result
 
@@ -216,7 +218,7 @@ The attempted extra fixed-route confirmation page was rejected and removed. Its 
 project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
 ```
 
-## S5 status
+## S5 accepted structure
 
 Accepted current static workspace:
 
@@ -226,7 +228,7 @@ preview/spatial-flow-checkout-crypto-invoice-v1.css
 preview/spatial-flow-checkout-crypto-invoice-v1.js
 ```
 
-Accepted current first-phase content:
+Accepted current content:
 
 ```text
 waiting-payment status
@@ -255,7 +257,7 @@ no payment confirmation
 no Step 04 navigation
 ```
 
-Deferred:
+Deferred in the current plugin:
 
 ```text
 QR
@@ -263,10 +265,10 @@ wallet connection
 operational countdown / expiry
 automatic monitoring
 confirmation count
-multi-asset / customer network selection in the current plugin
+multi-asset / customer network selection
 ```
 
-## Future multi-asset Workspace preview
+## Accepted future multi-asset Workspace preview
 
 Standalone preview:
 
@@ -274,19 +276,50 @@ Standalone preview:
 preview/spatial-flow-checkout-crypto-workspace-future-v1.html
 ```
 
-It combines:
+Accepted internal flow:
 
 ```text
-asset search and selection
-asset-dependent network selection
-Preparing invoice state
-Invoice / transfer state
-network-adaptive amount/address presentation
-transaction-identifier verification boundary
-right sticky Order Summary
+Choose payment pair
+→ Preparing Crypto payment
+→ Invoice and transfer
+→ Verify payment
 ```
 
-Displayed non-TRON assets and networks are future examples only. The page is intentionally isolated and does not alter the current authoritative fixed USDT/TRON flow.
+Displayed non-TRON assets and networks remain future examples only. The preview is isolated and does not alter the current fixed USDT/TRON route.
+
+## Current bounded task: S5 Preparing Invoice
+
+The accepted S5 page currently opens directly in:
+
+```text
+Waiting for payment
+```
+
+The next bounded correction must add the truthful internal transition:
+
+```text
+Preparing your Crypto payment
+→ Creating or restoring your secure invoice
+→ Waiting for payment
+```
+
+This remains inside the same S5 page.
+
+Required consequence:
+
+```text
+- amount/address/copy/hash actions unavailable before invoice readiness
+- automatic transition after invoice availability
+- bootstrap failure exposes Retry + Return to payment methods
+- no additional customer confirmation click
+- no new Checkout page or business step
+```
+
+Authoritative gate:
+
+```text
+project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_GATE.md
+```
 
 ## Current exact stop point
 
@@ -295,20 +328,13 @@ S3 main Step-03 Payment page: accepted and closed
 Step-03 reusable payment host: implemented
 S4A generic selector reference: accepted and closed
 S4B capability alignment and corrected contract: completed
-S5 Invoice / Waiting Workspace: accepted and closed
-Future integrated Crypto Workspace preview: implemented, awaiting user review
-S6 verification-failure / recovery state family: next formal phase
+S5 fixed-USDT/TRON structure: accepted
+Future integrated Crypto Workspace preview: accepted and closed
+Current bounded task: S5 Preparing Invoice internal-state correction
+S6 verification-failure / recovery state family: begins after that correction passes
 Plugin live integration: deferred
 Live Checkout reconstruction: not started
 Checkout: Not done
-```
-
-Required review sizes for the future preview:
-
-```text
-Desktop / 1366 × 768
-390 × 844
-360 × 800
 ```
 
 ## Plugin package status
@@ -331,7 +357,8 @@ Plugin Step 2 now: not current Project 2 work
 - no fake payment data or browser-authoritative success
 - no raw Order Key as REST authorization
 - no redundant Crypto confirmation page
-- keep the future multi-asset preview isolated until plugin support exists
+- keep future multi-asset examples isolated until plugin support exists
+- Preparing Invoice is an internal S5 state, not a page
 - S6 must represent only approved first-phase states
 - one bounded group at a time
 ```
