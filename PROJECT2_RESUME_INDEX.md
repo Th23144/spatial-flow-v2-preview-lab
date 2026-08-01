@@ -26,7 +26,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 18. project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_ACCEPTANCE.md
 19. project2-progress/STEP_4F_S6_SUPPORTED_VERIFICATION_AND_RECOVERY_STATE_GATE.md
 20. project2-progress/STEP_4F_S6_SUPPORTED_VERIFICATION_AND_RECOVERY_STATE_IMPLEMENTATION.md
-21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+21. project2-progress/STEP_4F_S6_HIDDEN_ACTION_EMPTY_BOX_FIX.md
+22. project2-progress/STEP_4F_S6_SUPPORTED_VERIFICATION_AND_RECOVERY_STATE_ACCEPTANCE.md
+23. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -93,7 +95,7 @@ Current plugin does not provide QR, wallet connection, automatic monitoring, ope
 ```text
 Step 03 Payment
 → one final Cryptocurrency action
-→ S5 Step-03 Crypto Workspace
+→ Step-03 Crypto Workspace
 ```
 
 Because only `USDT + TRON / TRC20` exists, current Checkout bypasses asset/network selection.
@@ -129,6 +131,67 @@ Invoice unavailable
 
 No duplicate order, second generic confirmation or Generate Invoice action is introduced.
 
+## Accepted S6 state family
+
+Resources:
+
+```text
+preview/spatial-flow-checkout-crypto-states-v1.css
+preview/spatial-flow-checkout-crypto-states-v1.js
+```
+
+Accepted states:
+
+```text
+verification_failed
+retryable temporary verification error
+manual_review
+cancelled
+paid_confirmed transition boundary
+unfinished-payment recovery
+```
+
+Accepted deterministic failure presentations:
+
+```text
+receiver mismatch
+transaction predating the invoice
+wrong token
+no qualifying USDT transfer
+amount too low
+duplicate transaction
+```
+
+Accepted behavior:
+
+```text
+verification_failed:
+order remains on hold; customer may submit a different valid Hash
+
+temporary_error:
+not a rejection; current invoice remains active; bounded retry
+
+manual_review:
+do not send another payment; suppress payment actions; preserve safe recovery/status tools
+
+cancelled:
+remove all payment actions
+
+paid_confirmed:
+server-authoritative boundary only; stop before Step 04
+
+recovered:
+restore the same order and active invoice without duplication
+```
+
+The shared empty-action-box defect was fixed by restoring `hidden` precedence for empty controls.
+
+Acceptance record:
+
+```text
+project2-progress/STEP_4F_S6_SUPPORTED_VERIFICATION_AND_RECOVERY_STATE_ACCEPTANCE.md
+```
+
 ## Accepted future multi-asset Workspace
 
 ```text
@@ -146,55 +209,6 @@ Choose payment pair
 
 It remains isolated until the plugin supports multiple server-confirmed payment pairs.
 
-## Current review gate: S6
-
-S6 is implemented as an isolated layer on the existing S5 Workspace:
-
-```text
-preview/spatial-flow-checkout-crypto-states-v1.css
-preview/spatial-flow-checkout-crypto-states-v1.js
-```
-
-Implemented review states:
-
-```text
-verification_failed
-retryable temporary verification error
-manual_review
-cancelled
-paid_confirmed transition boundary
-unfinished-payment recovery
-```
-
-Deterministic failure examples:
-
-```text
-receiver mismatch
-transaction predating the invoice
-wrong token / no qualifying transfer
-amount too low
-duplicate transaction
-```
-
-Default S5 has no query parameter and remains unchanged.
-
-S6 static review parameters:
-
-```text
-?prototype_payment=verification_failed&reason=receiver_mismatch
-?prototype_payment=verification_failed&reason=old_transaction
-?prototype_payment=verification_failed&reason=wrong_token
-?prototype_payment=verification_failed&reason=amount_too_low
-?prototype_payment=verification_failed&reason=duplicate_tx
-?prototype_payment=temporary_error
-?prototype_payment=manual_review
-?prototype_payment=cancelled
-?prototype_payment=paid_confirmed
-?prototype_payment=recovered
-```
-
-These parameters are review controls only, not production transport contracts.
-
 ## Current exact stop point
 
 ```text
@@ -204,8 +218,8 @@ S4A selector reference: accepted and closed
 S4B capability/contract: completed
 S5 Waiting / Preparing / bootstrap failure: accepted and closed
 Future multi-asset Workspace: accepted and isolated
-S6 verification/recovery states: implemented, awaiting user acceptance
-S7 Step 04 result: blocked and not started
+S6 verification/recovery states: accepted and closed
+S7 Step-04 Order Confirmed / Thank You / Receipt: authorized next phase, not started
 Live Checkout reconstruction: not started
 Checkout: Not done
 ```
@@ -213,8 +227,7 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-S6 review/acceptance
-→ S7 Step 04 result
+S7 Step-04 result
 → S8 full relative-link/session-state audit
 → S9 1366 / 390 / 360 static acceptance
 → live Checkout ownership audit
@@ -226,6 +239,28 @@ S6 review/acceptance
 → final Checkout 1:1 closure
 ```
 
+## S7 boundary
+
+S7 reviews and reworks:
+
+```text
+preview/spatial-flow-thank-you-v1.html
+```
+
+Required result semantics:
+
+```text
+server-authoritative success only
+canonical WooCommerce Order Received / Thank You ownership
+confirmed order and receipt details
+no Pay or Confirm action
+no fifth Checkout step
+accurate pending language when payment is not confirmed
+no browser-authoritative success
+```
+
+S7 must not modify the accepted S5/S6 Workspace unless a directly related defect is separately identified and approved.
+
 ## Hard boundaries
 
 ```text
@@ -236,8 +271,6 @@ S6 review/acceptance
 - no browser-authoritative payment success
 - no redundant Crypto confirmation page
 - no QR/countdown/automatic-monitoring claim under current capability
-- no automatic payment detection or continuous polling in S6
-- no Step 04 implementation until S6 passes
 - one bounded group at a time
 - Checkout remains Not done
 ```
