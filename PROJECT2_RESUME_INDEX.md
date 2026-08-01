@@ -23,7 +23,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 15. project2-progress/STEP_4F_S4B_FIRST_PHASE_IMPLEMENTATION_PLAN_REVIEW_AND_STEP1_AUTHORIZATION.md
 16. project2-progress/STEP_4F_S4A_S4B_PHASE_AND_SCOPE_CORRECTION.md
 17. project2-progress/STEP_4F_S4B_GATEWAY_ALIGNED_USDT_TRON_STATIC_IMPLEMENTATION.md
-18. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+18. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
+19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page-status rule
@@ -87,7 +88,7 @@ Bank transfer:
 delayed-confirmation instruction flow
 ```
 
-The main Step-03 page remains a payment-method host. It currently displays only Cryptocurrency because that is the only confirmed active gateway. Do not invent inactive Card, Apple Pay, Google Pay, PayPal or Bank Transfer methods.
+The main Step-03 page remains a reusable payment-method host. It currently displays only Cryptocurrency because that is the only confirmed active gateway. Do not invent inactive Card, Apple Pay, Google Pay, PayPal or Bank Transfer methods.
 
 Cryptocurrency uses:
 
@@ -98,6 +99,44 @@ concise Step-03 payment entry
 ```
 
 There is no second generic review or confirmation click.
+
+## Future-gateway extensibility status
+
+Current audit:
+
+```text
+Visual/layout reservation: present
+Gateway/runtime reservation: incomplete
+```
+
+Already reusable:
+
+```text
+payment-methods container
+payment-method item pattern
+left payment workspace
+one final action zone
+right Order Summary
+accepted responsive shell
+```
+
+Still required before S5:
+
+```text
+generic gateway descriptor/adapter contract
+generic selected-method panel boundary
+registry-driven static handoff instead of hard-coded Crypto routing
+truthful fixed USDT / TRON copy
+safe native fallback for future eligible gateways
+```
+
+Authoritative contract:
+
+```text
+project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_AND_S5_ENTRY_GATE.md
+```
+
+Adding a future gateway may require a small adapter for polished presentation, but must not require rebuilding Address, Shipping, progress, Order Summary or the whole Payment page.
 
 ## Accepted static artifacts
 
@@ -182,13 +221,14 @@ S3 main Step-03 Payment page: accepted and closed
 S4A generic selector reference: accepted and closed
 S4B capability alignment and corrected contract: completed
 Rejected redundant fixed-route page: removed
-S5 dedicated Step-03 Invoice / Waiting Workspace shell: next full static surface
+Current next bounded work: Step-03 Payment Host extensibility pass
+S5 dedicated Step-03 Invoice / Waiting Workspace shell: immediately after host-pass acceptance
 Plugin live integration: deferred
 Live Checkout reconstruction: not started
 Checkout: Not done
 ```
 
-Before S5 is linked, only a bounded copy/action correction may be made to the accepted Step-03 payment entry. Its two-column structure, context card, order summary and accepted mobile composition remain locked.
+The host pass may adjust only payment-entry copy, generic adapter/state boundaries and static routing abstraction. The accepted two-column structure, context card, order summary and mobile composition remain locked.
 
 ## S5 truthful first-phase scope
 
