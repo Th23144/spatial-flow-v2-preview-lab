@@ -100,6 +100,12 @@
   text-transform: uppercase;
 }
 
+.crypto-payment-state__actions[hidden],
+.crypto-payment-state__actions button[hidden],
+.crypto-payment-state__actions a[hidden] {
+  display: none;
+}
+
 .crypto-payment-state__actions button {
   background: var(--ink);
   color: var(--bg);
@@ -220,6 +226,12 @@
   .crypto-payment-state__actions button,
   .crypto-payment-state__actions a {
     width: 100%;
+  }
+
+  .crypto-payment-state__actions[hidden],
+  .crypto-payment-state__actions button[hidden],
+  .crypto-payment-state__actions a[hidden] {
+    display: none;
   }
 
   .crypto-workspace-main.is-s6-terminal .crypto-payment-state {
