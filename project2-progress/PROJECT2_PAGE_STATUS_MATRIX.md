@@ -32,8 +32,8 @@ Accepted static HTML, visual approval or partial functionality do not count as p
 | Shop archive | `preview/spatial-flow-shop-v1.html` | Completed 1:1 | Desktop/mobile, filters, product grid, pagination, regression and backend editability passed. |
 | Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Gallery, summary, options, attributes, related products, regression and backend mappings passed. |
 | Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict geometry, mobile review, native regression, backend editability and invisible-frame removal passed. |
-| Checkout | Step 01/02/03 and Crypto references under `preview/` | Not done | Static S5 Preparing/Waiting/bootstrap-failure states are accepted. S6 is next; live implementation and final 1:1 closure have not started. |
-| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` | Not done | S7 must review/rework Step 04 after S6. |
+| Checkout | Step 01/02/03 and Crypto references under `preview/` | Not done | S5 state family is accepted. S6 verification/recovery states are implemented and awaiting review. Live implementation and final 1:1 closure have not started. |
+| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` | Not done | S7 must review/rework Step 04 after S6 acceptance. |
 
 ## 3. Account and utility pages
 
@@ -86,6 +86,10 @@ preview/spatial-flow-checkout-v1.html
 preview/spatial-flow-checkout-shipping-v1.html
 preview/spatial-flow-checkout-payment-v1.html
 preview/spatial-flow-checkout-crypto-invoice-v1.html
+preview/spatial-flow-checkout-crypto-invoice-v1.css
+preview/spatial-flow-checkout-crypto-invoice-v1.js
+preview/spatial-flow-checkout-crypto-states-v1.css
+preview/spatial-flow-checkout-crypto-states-v1.js
 preview/spatial-flow-checkout-crypto-select-v1.html
 preview/spatial-flow-checkout-crypto-workspace-future-v1.html
 preview/spatial-flow-thank-you-v1.html
@@ -100,10 +104,13 @@ accepted future asset/network interaction reference
 crypto-workspace-future-v1.html:
 accepted isolated future multi-asset architecture reference
 
-Neither future reference is linked into current fixed-USDT/TRON Checkout.
+crypto-states-v1.css/js:
+current isolated S6 verification/recovery state layer
 ```
 
-Do not create confirming/expired/failed pages merely because they appeared in an early generic plan. Only approved real states may be represented.
+Future references remain outside the current fixed-USDT/TRON route.
+
+Do not create confirming/expired/failed pages merely because they appeared in an early generic plan. Approved real states are represented inside the existing Step-03 Workspace.
 
 ## 8. Approved Checkout semantics
 
@@ -134,32 +141,50 @@ S3 main Payment surface
 Step-03 reusable payment host
 S4A future selector reference
 S4B capability/integration contract
-S5 fixed Invoice / Waiting structure
-S5 Preparing Invoice / bootstrap-failure state
+S5 fixed Waiting / Preparing / bootstrap-failure state family
 future multi-asset integrated Workspace reference
 ```
 
-Accepted S5 sequence:
+## 10. Current S6 review gate
+
+Implemented S6 states:
 
 ```text
-Preparing your Crypto payment
-→ Creating or restoring your secure invoice
-→ Waiting for payment
+verification_failed
+retryable temporary verification error
+manual_review
+cancelled
+paid_confirmed transition boundary
+unfinished-payment recovery
 ```
 
-Accepted failure/retry sequence:
+Deterministic failure reasons:
 
 ```text
-Invoice unavailable
-→ Retry preparing invoice
-→ Preparing
-→ Waiting for payment
+receiver mismatch
+transaction predating the invoice
+wrong token / no qualifying USDT transfer
+amount too low
+duplicate transaction
 ```
 
-## 10. Current Checkout execution order
+Default S5 remains unchanged unless a static review parameter is supplied.
+
+S6 prohibits:
 
 ```text
-S6 supported verification/recovery states
+automatic payment detection
+continuous polling
+live confirmation counts
+operational expiry/replacement invoice behavior
+automatic underpayment/overpayment workflows
+Step-04 implementation
+```
+
+## 11. Current Checkout execution order
+
+```text
+S6 review and acceptance
 → S7 Step 04 result
 → S8 full relative-link/session-state audit
 → S9 1366 / 390 / 360 static acceptance
@@ -167,28 +192,6 @@ S6 supported verification/recovery states
 → functional reconstruction preserving WooCommerce/plugin authority
 → Sandbox and unfinished-payment recovery testing
 → final Checkout 1:1 closure
-```
-
-## 11. S6 boundary
-
-Allowed:
-
-```text
-verification_failed
-manual_review only when supplied by the approved contract
-cancelled
-paid_confirmed transition boundary
-unfinished-payment recovery through WooCommerce order-pay
-```
-
-Prohibited inventions:
-
-```text
-automatic payment detection
-live confirmation counts
-operational expired/replacement invoice behavior
-automatic underpayment/overpayment workflows
-continuous polling
 ```
 
 ## 12. Current deployed Cart baseline
@@ -212,5 +215,6 @@ SHA256: 79ab7e08308903f0e1693076b4817402515ada52944c575c1e827324cc6161fd
 - WooCommerce/plugin remain the source of transaction truth
 - do not modify live Checkout, CartFlows or gateway behavior during static work
 - do not hardcode dynamic commerce data where editable sources exist
+- do not begin S7 before S6 acceptance
 - do not mark Checkout Completed 1:1 before live implementation, regression and backend-editability closure
 ```
