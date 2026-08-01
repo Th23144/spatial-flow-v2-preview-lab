@@ -32,8 +32,8 @@ Accepted static HTML, visual approval or partial functionality do not count as p
 | Shop archive | `preview/spatial-flow-shop-v1.html` | Completed 1:1 | Desktop/mobile, filters, product grid, pagination, regression and backend editability passed. |
 | Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Gallery, summary, options, attributes, related products, regression and backend mappings passed. |
 | Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict geometry, mobile review, native regression, backend editability and invisible-frame removal passed. |
-| Checkout | Step 01/02/03 and Crypto references under `preview/` | Not done | S5 state family is accepted. S6 verification/recovery states are implemented and awaiting review. Live implementation and final 1:1 closure have not started. |
-| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` | Not done | S7 must review/rework Step 04 after S6 acceptance. |
+| Checkout | Step 01/02/03 and Crypto references under `preview/` | Not done | S5 and S6 static state families are accepted and closed. S7 Step-04 result is next. Live implementation and final 1:1 closure have not started. |
+| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` | Not done | Existing static reference must be audited/reworked under S7 as the canonical WooCommerce-owned Step-04 result. |
 
 ## 3. Account and utility pages
 
@@ -105,12 +105,13 @@ crypto-workspace-future-v1.html:
 accepted isolated future multi-asset architecture reference
 
 crypto-states-v1.css/js:
-current isolated S6 verification/recovery state layer
+accepted S6 verification/recovery state layer
+
+thank-you-v1.html:
+existing Step-04 reference requiring S7 audit/rework
 ```
 
 Future references remain outside the current fixed-USDT/TRON route.
-
-Do not create confirming/expired/failed pages merely because they appeared in an early generic plan. Approved real states are represented inside the existing Step-03 Workspace.
 
 ## 8. Approved Checkout semantics
 
@@ -142,12 +143,13 @@ Step-03 reusable payment host
 S4A future selector reference
 S4B capability/integration contract
 S5 fixed Waiting / Preparing / bootstrap-failure state family
+S6 verification / recovery state family
 future multi-asset integrated Workspace reference
 ```
 
-## 10. Current S6 review gate
+## 10. S6 accepted scope
 
-Implemented S6 states:
+Accepted states:
 
 ```text
 verification_failed
@@ -158,19 +160,9 @@ paid_confirmed transition boundary
 unfinished-payment recovery
 ```
 
-Deterministic failure reasons:
+The empty hidden secondary-action control defect was corrected before closure.
 
-```text
-receiver mismatch
-transaction predating the invoice
-wrong token / no qualifying USDT transfer
-amount too low
-duplicate transaction
-```
-
-Default S5 remains unchanged unless a static review parameter is supplied.
-
-S6 prohibits:
+S6 continues to prohibit:
 
 ```text
 automatic payment detection
@@ -184,8 +176,7 @@ Step-04 implementation
 ## 11. Current Checkout execution order
 
 ```text
-S6 review and acceptance
-→ S7 Step 04 result
+S7 Step-04 Order Confirmed / Thank You / Receipt
 → S8 full relative-link/session-state audit
 → S9 1366 / 390 / 360 static acceptance
 → live Checkout ownership audit
@@ -194,7 +185,27 @@ S6 review and acceptance
 → final Checkout 1:1 closure
 ```
 
-## 12. Current deployed Cart baseline
+## 12. S7 boundary
+
+S7 must audit/rework:
+
+```text
+preview/spatial-flow-thank-you-v1.html
+```
+
+Required rules:
+
+```text
+- canonical WooCommerce Order Received / Thank You ownership
+- server-authoritative success only
+- confirmed order and receipt details
+- no Pay or Confirm action
+- no fifth Checkout step
+- accurate pending language when the order is not confirmed
+- no browser/session state declaring success
+```
+
+## 13. Current deployed Cart baseline
 
 ```text
 functions.php
@@ -208,13 +219,12 @@ assets/css/spatial-flow.css
 SHA256: 79ab7e08308903f0e1693076b4817402515ada52944c575c1e827324cc6161fd
 ```
 
-## 13. Hard boundary
+## 14. Hard boundary
 
 ```text
 - preserve backend editability
 - WooCommerce/plugin remain the source of transaction truth
 - do not modify live Checkout, CartFlows or gateway behavior during static work
 - do not hardcode dynamic commerce data where editable sources exist
-- do not begin S7 before S6 acceptance
 - do not mark Checkout Completed 1:1 before live implementation, regression and backend-editability closure
 ```
