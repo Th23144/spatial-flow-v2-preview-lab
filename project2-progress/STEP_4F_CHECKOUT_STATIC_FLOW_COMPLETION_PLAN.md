@@ -14,22 +14,14 @@ S3 main Step-03 Payment surface: accepted and closed
 Step-03 reusable payment host: accepted and closed
 S4A plugin-agnostic asset/network selector: accepted and closed as a future reference
 S4B plugin capability alignment and corrected integration contract: completed
-S5 fixed-USDT/TRON Invoice / Waiting structure: accepted
-S5 Preparing Invoice and bootstrap failure: accepted and closed
-Future multi-asset integrated Crypto Workspace preview: accepted and isolated
-S6 supported verification/recovery states: next phase, not started
+S5 fixed-USDT/TRON Waiting / Preparing / bootstrap failure: accepted and closed
+Future multi-asset Crypto Workspace: accepted and isolated
+S6 supported verification/recovery states: implemented, awaiting user acceptance
 S7 Step 04 result: not started
 Live Checkout source work: paused
 ```
 
-This plan supersedes earlier paths that described:
-
-```text
-- a fixed USDT/TRON intermediate confirmation page
-- S4B contract review as the current gate
-- S5 as not started
-- immediate plugin installation or Plugin Step 2
-```
+This plan supersedes earlier paths that described a fixed USDT/TRON intermediate confirmation page, S4B contract review as the current gate, S5 as not started, or immediate plugin installation.
 
 ## 2. Locked business progression
 
@@ -40,14 +32,9 @@ This plan supersedes earlier paths that described:
 → 04 Order Confirmed / Thank You / Receipt
 ```
 
-Rules:
+Steps 01–03 are Checkout. Step 04 is a WooCommerce-owned result and never asks the customer to pay or confirm again.
 
-```text
-Steps 01–03 are Checkout.
-Step 04 is a WooCommerce-owned post-payment result.
-Step 04 is not Review and never asks the customer to pay or confirm again.
 Crypto selection, invoice, waiting, verification and recovery remain Step-03 internal views/states.
-```
 
 ## 3. Authoritative static artifacts
 
@@ -62,13 +49,17 @@ preview/spatial-flow-checkout-payment-v1.html
   Step 03 reusable payment host
 
 preview/spatial-flow-checkout-crypto-invoice-v1.html
-  accepted fixed-USDT/TRON S5 Workspace
+  current fixed-USDT/TRON S5/S6 Workspace
+
+preview/spatial-flow-checkout-crypto-states-v1.css
+preview/spatial-flow-checkout-crypto-states-v1.js
+  isolated S6 state layer
 
 preview/spatial-flow-checkout-crypto-select-v1.html
   accepted future asset/network interaction reference
 
 preview/spatial-flow-checkout-crypto-workspace-future-v1.html
-  accepted isolated future multi-asset Workspace reference
+  accepted isolated future multi-asset Workspace
 
 preview/spatial-flow-thank-you-v1.html
   existing Step-04 reference requiring S7 review/rework
@@ -84,7 +75,7 @@ Cart
 → one final Cryptocurrency action
 → S5 Preparing Invoice
 → S5 Waiting for payment
-→ transaction-hash verification boundary
+→ S6 verification/recovery state boundary
 → future server-authoritative Step 04 result
 ```
 
@@ -97,7 +88,7 @@ Step 03
 → payment workspace
 ```
 
-## 5. Reusable Step-03 payment-host contract
+## 5. Reusable Step-03 payment host
 
 WooCommerce remains the source of available and eligible gateways.
 
@@ -110,7 +101,7 @@ one Final Action Zone
 right Order Summary
 ```
 
-Gateway-family presentations:
+Gateway families:
 
 ```text
 Card / wallet: compact gateway-owned fields or eligible wallet surface
@@ -119,12 +110,11 @@ Redirect gateway: concise handoff followed by real hosted/redirect flow
 Offline gateway: instructions and correct unpaid/order state
 ```
 
-A future gateway may need a bounded adapter, but must not require rebuilding Step 01, Step 02, progress, Order Summary or the complete Step-03 page.
+Future gateways may need bounded adapters but never a complete Checkout rebuild.
 
 ## 6. Current Crypto capability truth
 
 ```text
-Plugin: Spatial Flow Crypto Pay Trial 0.2.5
 Gateway ID: spatial_flow_crypto
 Asset: USDT
 Network: TRON / TRC20
@@ -132,12 +122,12 @@ Environment: administrator-controlled mainnet / nile / shasta
 Customer asset/network selection: unavailable
 ```
 
-Current real behavior:
+Real lifecycle:
 
 ```text
 WooCommerce creates order
-→ order becomes on-hold
-→ plugin creates or restores invoice
+→ on-hold
+→ plugin creates/restores invoice
 → customer transfers externally
 → customer submits TRON transaction hash
 → server verifies through TronGrid
@@ -145,23 +135,19 @@ WooCommerce creates order
 → WooCommerce owns canonical result
 ```
 
-Current plugin does not provide:
+Unsupported current claims:
 
 ```text
-dynamic asset/network API
-customer-selectable multi-network routing
-QR contract
+QR
 wallet connection
 automatic chain monitoring
-Webhook / Worker / Cron confirmation
-real quote/rate lock
+Worker / Cron / Webhook confirmation
 operational countdown/expiry
 confirmation-count stream
+production multi-asset routing
 ```
 
 ## 7. Accepted S5 state contract
-
-Accepted internal sequence:
 
 ```text
 Preparing your Crypto payment
@@ -169,15 +155,7 @@ Preparing your Crypto payment
 → Waiting for payment
 ```
 
-Before readiness:
-
-```text
-amount/address hidden
-copy controls unavailable
-transfer instructions unavailable
-Transaction Hash controls unavailable
-right Order Summary reports Preparing payment / Preparing invoice
-```
+Before readiness, amount/address/copy/transfer/hash controls remain unavailable.
 
 Accepted bootstrap failure:
 
@@ -188,58 +166,56 @@ Invoice unavailable
 → Waiting for payment
 ```
 
-Alternative:
-
-```text
-Return to payment methods
-→ Step 03
-```
-
 No duplicate order, second generic confirmation or Generate Invoice action is introduced.
 
-Acceptance record:
+## 8. Implemented S6 state contract
 
-```text
-project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_ACCEPTANCE.md
-```
+S6 is implemented as a query-controlled static state layer that leaves default S5 unchanged.
 
-## 8. S6 supported verification/recovery states
-
-S6 is now authorized as the next bounded phase but has not started.
-
-Allowed state family:
+Implemented states:
 
 ```text
 verification_failed
-manual_review only where supplied by the approved implementation contract
+retryable temporary verification error
+manual_review
 cancelled
 paid_confirmed transition boundary
-unfinished-payment recovery through WooCommerce order-pay
+unfinished-payment recovery
 ```
 
-Customer-safe deterministic failures may include:
+Deterministic failure reasons:
 
 ```text
-transaction not found
 receiver mismatch
-wrong token
+transaction predating the invoice
+wrong token / no qualifying USDT transfer
 amount too low
-transaction predates invoice
 duplicate transaction
-temporary chain/API failure
 ```
 
-S6 must not invent:
+Required semantics:
 
 ```text
-automatic payment detection
-live confirmation counts
-operational expired/replacement invoice behavior
-automatic underpayment accumulation
-overpayment workflow
-late-payment reconciliation
-continuous polling
+verification_failed:
+order remains on-hold; new valid hash may be submitted
+
+temporary error:
+not a rejection; current invoice remains active; bounded retry
+
+manual review:
+do not send another payment; preserve recovery/Refresh access
+
+cancelled:
+no payment action remains available
+
+paid confirmed:
+server-authoritative only; stop before S7 result
+
+recovered:
+restore same order and same active invoice
 ```
+
+S6 does not implement automatic detection, continuous polling, confirmations, operational expiry, replacement invoices, partial/over/late-payment workflows or Step 04.
 
 ## 9. S7 Step 04 result
 
@@ -256,16 +232,7 @@ S7 must review/rework:
 preview/spatial-flow-thank-you-v1.html
 ```
 
-Requirements:
-
-```text
-confirmed order/result language
-receipt/order details
-correct payment state
-no Pay/Confirm action
-no browser-authoritative success
-accurate pending language where WooCommerce has not confirmed payment
-```
+S7 remains blocked until S6 is accepted.
 
 ## 10. S8 and S9 static closure gates
 
@@ -277,7 +244,7 @@ back navigation
 session continuity
 shipping totals
 payment-host selection
-S5 recovery behavior
+S5/S6 recovery behavior
 no orphan or stale route
 no link into isolated future examples
 ```
@@ -290,23 +257,12 @@ no link into isolated future examples
 360 × 800
 ```
 
-Required qualities:
-
-```text
-no horizontal overflow
-clear active-step hierarchy
-usable amount/address copy controls
-usable Transaction Hash flow
-no obscured primary action
-truthful status and recovery messages
-```
-
-## 11. Live implementation sequence after static acceptance
+## 11. Live implementation after static acceptance
 
 ```text
 live Checkout ownership audit
 → plugin workspace integration
-→ WooCommerce gateway dynamic rendering
+→ WooCommerce dynamic gateway rendering
 → Sandbox and unfinished-payment recovery tests
 → server-authoritative result tests
 → production visual replacement
@@ -314,9 +270,9 @@ live Checkout ownership audit
 → final Checkout 1:1 closure
 ```
 
-Plugin package V0.2.6.1 remains a future integration baseline. Local installation and Plugin Step 2 are deferred until separately authorized.
+Plugin V0.2.6.1 remains a future integration baseline. Local installation and Plugin Step 2 remain deferred.
 
-## 12. Current corrected build order
+## 12. Current build order
 
 ```text
 S1 Step 01: implemented
@@ -325,10 +281,9 @@ S1 Step 01: implemented
 → Step-03 payment host: accepted and closed
 → S4A selector reference: accepted and closed
 → S4B capability/contract: completed
-→ S5 fixed Workspace structure: accepted
-→ S5 Preparing Invoice/bootstrap failure: accepted and closed
+→ S5 Waiting/Preparing/bootstrap failure: accepted and closed
 → future multi-asset Workspace: accepted and isolated
-→ S6 supported verification/recovery states: next phase
+→ S6 verification/recovery states: implemented, awaiting acceptance
 → S7 Step 04 result
 → S8 link/session audit
 → S9 responsive static acceptance
@@ -343,19 +298,21 @@ One bounded group is reviewed at a time.
 ## 13. Hard boundaries
 
 ```text
-- do not modify live Checkout PHP/JS, CartFlows or production gateway behavior during static work
-- do not create a fake headless payment API
-- do not hardcode future assets/networks as current capabilities
-- do not treat sessionStorage or browser state as payment authority
-- do not add a fifth business step
-- do not add a redundant fixed-route confirmation page
-- do not mark Checkout Completed 1:1
+- no live Checkout, CartFlows or production gateway modification during static work
+- no fake headless payment API
+- no future assets/networks as current capabilities
+- no browser-authoritative payment success
+- no fifth business step
+- no redundant fixed-route confirmation page
+- no automatic monitoring/continuous polling in S6
+- no Step 04 implementation before S6 acceptance
+- Checkout remains Not done
 ```
 
-## 14. Current exact next action
+## 14. Current exact action
 
 ```text
-Define and implement one bounded S6 static state group using only approved first-phase verification and recovery states.
+Review and accept or correct the implemented S6 state family.
 
 Do not begin S7 in the same group.
 ```
