@@ -80,7 +80,7 @@ Checkout notes:
 | Shop archive | `preview/spatial-flow-shop-v1.html` | Completed 1:1 | Desktop/mobile controlled rebase, Hero, metadata, filters/sort, dynamic Editor’s Pick, product grid, pagination, closing note, regression, and backend editability passed. |
 | Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Hero, Gallery, Summary, options, Product Attributes, The Piece, Related Products, add-to-cart feedback, desktop/mobile regression, backend mappings, and controlled CSS cleanup passed. |
 | Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict desktop composition, 390px/360px mobile review, native functional regression, backend editability, Notice coverage, invisible-frame removal and final closure passed. |
-| Checkout | Step 01/02/03 and Crypto static references under `preview/` | Not done | Static architecture is still being completed. Current task is the S5 Preparing Invoice internal state. Live ownership audit, functional reconstruction and full 1:1 closure have not started. |
+| Checkout | Step 01/02/03 and Crypto static references under `preview/` | Not done | S5 Preparing Invoice and bootstrap-failure states are implemented and awaiting user acceptance. S6, live ownership audit, functional reconstruction and full 1:1 closure have not started. |
 | Thank You / result system | `preview/spatial-flow-thank-you-v1.html` | Not done | Step 04 must be reviewed/reworked after S6. It is Order Confirmed / Thank You / Receipt or an accurate pending result, never a pre-payment Review step. |
 
 ## 3. Account / customer utility pages
@@ -193,12 +193,18 @@ S5 fixed Invoice / Waiting structure
 future multi-asset integrated Workspace reference
 ```
 
-Current bounded task:
+Current review gate:
 
 ```text
 S5 Preparing Invoice
 → automatic Waiting for payment transition
 → invoice-bootstrap failure Retry/Return surface
+```
+
+Implementation status:
+
+```text
+Implemented, awaiting user visual and interaction acceptance.
 ```
 
 Authoritative plan:
@@ -226,7 +232,7 @@ The following may be completed as functions but do not make an unfinished page `
 ## 10. Current Checkout execution order
 
 ```text
-S5 Preparing Invoice internal state
+Accept S5 Preparing Invoice and bootstrap-failure states
 → S6 supported verification/recovery states
 → S7 Step 04 result
 → S8 full relative-link/session-state audit
