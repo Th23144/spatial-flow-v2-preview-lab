@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout · Future Crypto Workspace — Spatial Flow</title>
+  <meta name="description" content="Spatial Flow future architecture preview for a multi-asset Step 03 Crypto Payment Workspace." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="spatial-flow-checkout-flow-v1.css" />
+  <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css?v=20260731-0504" />
+  <link rel="stylesheet" href="spatial-flow-checkout-mobile-commerce-v1.css?v=20260731-0657" />
+  <link rel="stylesheet" href="spatial-flow-checkout-crypto-workspace-future-v1.css" />
+</head>
+<body class="woocommerce-checkout checkout-step-payment checkout-step-crypto-workspace-future">
+  <div class="masthead-strip-v1">
+    <div>Volume I · Issue 03 · Spring 2026</div>
+    <div class="center">A Journal of Rooms, Rituals &amp; Quiet Objects</div>
+    <div class="right"><span></span>Free shipping over $80 worldwide</div>
+  </div>
+
+  <header class="site-header-v1">
+    <nav class="primary" aria-label="Primary navigation">
+      <ul>
+        <li><a href="spatial-flow-shop-v1.html" class="current">The Index</a></li>
+        <li><a href="spatial-flow-journal-v1.html">The Journal</a></li>
+        <li><a href="spatial-flow-services-v1.html">Services</a></li>
+        <li><a href="spatial-flow-about-v1.html">About Us</a></li>
+      </ul>
+    </nav>
+
+    <a href="spatial-flow-v1.html" class="wordmark">
+      SPATIAL <em>FLOW</em>
+      <span class="sub">Est. 2026 · Est. in quiet rooms</span>
+    </a>
+
+    <nav class="utilities" aria-label="Utilities">
+      <a href="spatial-flow-search-v1.html">Search</a>
+      <a href="spatial-flow-wishlist-v1.html">Saved</a>
+      <a href="spatial-flow-cart-v1.html" class="bag">Bag <sup>(3)</sup></a>
+    </nav>
+  </header>
+
+  <nav class="woocommerce-breadcrumb" aria-label="Breadcrumb">
+    <a href="spatial-flow-v1.html">Home</a>
+    <span class="sep">/</span>
+    <a href="spatial-flow-cart-v1.html">Your Bag</a>
+    <span class="sep">/</span>
+    <a href="spatial-flow-checkout-payment-v1.html">Checkout · Payment</a>
+    <span class="sep">/</span>
+    <span class="here">Future Crypto Workspace</span>
+  </nav>
+
+  <section class="checkout-intro">
+    <div>
+      <div class="checkout-kicker">Architecture preview · Step 03 of 04</div>
+      <h1 class="checkout-title">Crypto payment <em>workspace</em>.</h1>
+    </div>
+
+    <div>
+      <p class="checkout-lede">
+        A single dedicated workspace for future asset selection, network selection, invoice creation, transfer and payment verification.
+      </p>
+
+      <div class="checkout-steps" aria-label="Checkout progress">
+        <span class="checkout-step is-complete" data-step="01">Address</span>
+        <span class="checkout-step is-complete" data-step="02">Shipping</span>
+        <span class="checkout-step is-active" data-step="03">Payment</span>
+        <span class="checkout-step" data-step="04">Confirmed</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="checkout-shell" data-future-crypto-workspace>
+    <div class="checkout-main crypto-workspace-future-main">
+      <section class="crypto-future-banner" aria-label="Future architecture disclosure">
+        <span class="crypto-future-banner__mark" aria-hidden="true">F</span>
+        <div>
+          <strong>Future architecture preview</strong>
+          <p>
+            USDC, BTC, Ethereum, Solana and BNB Chain are interaction examples only. The current plugin still supports only USDT on TRON / TRC20.
+          </p>
+        </div>
+        <span class="crypto-future-banner__current">Not linked to current Checkout</span>
+      </section>
+
+      <nav class="crypto-workspace-stage-nav" aria-label="Crypto workspace phases">
+        <div class="crypto-workspace-stage-nav__item is-active" data-future-stage-item="select">
+          <span class="crypto-workspace-stage-nav__number">01</span>
+          <div><strong>Choose payment pair</strong><small>Asset and supported network</small></div>
+        </div>
+        <div class="crypto-workspace-stage-nav__item" data-future-stage-item="invoice">
+          <span class="crypto-workspace-stage-nav__number">02</span>
+          <div><strong>Invoice and transfer</strong><small>Amount and receiver address</small></div>
+        </div>
+        <div class="crypto-workspace-stage-nav__item" data-future-stage-item="verify">
+          <span class="crypto-workspace-stage-nav__number">03</span>
+          <div><strong>Verify payment</strong><small>Server-authoritative settlement</small></div>
+        </div>
+      </nav>
+
+      <section class="crypto-workspace-future-stage" data-future-stage="select">
+        <section class="checkout-panel">
+          <div class="panel-head">
+            <div class="panel-no">Payment pair · 03</div>
+            <h2>Choose a digital <em>asset</em>.</h2>
+          </div>
+          <p class="panel-note">
+            A future backend payment-pair registry supplies only enabled combinations. The storefront does not create arbitrary token and network combinations.
+          </p>
+
+          <label class="crypto-search">
+            <span>Search architecture examples</span>
+            <input type="search" placeholder="Search by symbol or name" autocomplete="off" data-future-search />
+          </label>
+
+          <div class="crypto-future-asset-grid" role="group" aria-label="Future asset examples">
+            <button class="crypto-future-choice" type="button" data-future-asset="usdt" aria-pressed="false">
+              <span class="crypto-future-choice__mark" aria-hidden="true">₮</span>
+              <span class="crypto-future-choice__copy">
+                <strong>USDT</strong>
+                <span>Tether · stablecoin</span>
+              </span>
+              <span class="crypto-future-choice__badge is-current">Current asset</span>
+            </button>
+
+            <button class="crypto-future-choice" type="button" data-future-asset="usdc" aria-pressed="false">
+              <span class="crypto-future-choice__mark" aria-hidden="true">$</span>
+              <span class="crypto-future-choice__copy">
+                <strong>USDC</strong>
+                <span>USD Coin · future example</span>
+              </span>
+              <span class="crypto-future-choice__badge">Not currently enabled</span>
+            </button>
+
+            <button class="crypto-future-choice" type="button" data-future-asset="btc" aria-pressed="false">
+              <span class="crypto-future-choice__mark" aria-hidden="true">₿</span>
+              <span class="crypto-future-choice__copy">
+                <strong>BTC</strong>
+                <span>Bitcoin · future example</span>
+              </span>
+              <span class="crypto-future-choice__badge">Not currently enabled</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="checkout-panel">
+          <div class="panel-head">
+            <div class="panel-no">Network · 03</div>
+            <h2>Choose an enabled <em>route</em>.</h2>
+          </div>
+          <p class="panel-note">
+            Network choices appear only after an asset is selected. Changing the asset clears the earlier network so an invalid pair cannot continue.
+          </p>
+
+          <div class="crypto-future-network-shell">
+            <div class="crypto-future-network-empty" data-future-network-empty>
+              Select an asset first. A live gateway would return only the networks enabled for that asset.
+            </div>
+            <div class="crypto-future-network-grid" data-future-network-grid role="group" aria-label="Future network examples" hidden></div>
+          </div>
+        </section>
+
+        <section class="checkout-panel">
+          <div class="panel-head">
+            <div class="panel-no">Selection summary · 03</div>
+            <h2>Review the selected <em>pair</em>.</h2>
+          </div>
+
+          <dl class="crypto-future-pair-summary">
+            <div>
+              <dt>Asset</dt>
+              <dd data-future-selected-asset>Not selected</dd>
+            </div>
+            <div>
+              <dt>Network</dt>
+              <dd data-future-selected-network>Not selected</dd>
+            </div>
+            <div>
+              <dt>Availability</dt>
+              <dd data-future-pair-status>Awaiting selection<small>Backend registry is authoritative</small></dd>
+            </div>
+          </dl>
+
+          <div class="crypto-warning">
+            <strong>Architecture truth</strong>
+            <p>
+              This preview demonstrates future selection behavior. Selecting a future example does not mean the current payment plugin can generate or verify that invoice.
+            </p>
+          </div>
+
+          <div class="crypto-future-action-row">
+            <p class="crypto-future-action-note">
+              In production, this action submits the selected backend-supported payment pair and requests one idempotent invoice inside the same Step 03 workspace.
+            </p>
+            <button class="checkout-button checkout-button--primary" type="button" data-future-continue disabled aria-disabled="true">
+              Continue to create invoice →
+            </button>
+          </div>
+        </section>
+      </section>
+
+      <section class="crypto-future-preparing" data-future-stage="preparing" hidden aria-live="polite">
+        <div>
+          <div class="crypto-future-preparing__ring" aria-hidden="true"></div>
+          <h2>Preparing your Crypto payment…</h2>
+          <p>
+            A live workspace would create or restore one server-authoritative invoice for the selected payment pair. No real invoice is created in this preview.
+          </p>
+        </div>
+      </section>
+
+      <section class="crypto-workspace-future-stage" data-future-stage="invoice" hidden>
+        <section class="crypto-workspace-status">
+          <div class="crypto-workspace-status__signal" aria-hidden="true"><span></span></div>
+          <div>
+            <span class="crypto-workspace-status__eyebrow">Payment status</span>
+            <h2>Waiting for payment</h2>
+            <p>Send the exact amount through the selected network, then submit the transaction identifier for server verification.</p>
+          </div>
+          <span class="crypto-workspace-status__badge">Architecture preview</span>
+        </section>
+
+        <section class="checkout-panel">
+          <div class="panel-head">
+            <div class="panel-no">Invoice · 03</div>
+            <h2>Your selected <em>invoice</em>.</h2>
+          </div>
+
+          <dl class="crypto-future-invoice-meta">
+            <div><dt>Order</dt><dd>#SF-FUTURE-01</dd></div>
+            <div><dt>Invoice ID</dt><dd>SF-FUTURE-PREVIEW</dd></div>
+            <div><dt>Asset</dt><dd data-future-invoice-asset>—</dd></div>
+            <div><dt>Network</dt><dd data-future-invoice-network>—</dd></div>
+            <div><dt>Environment</dt><dd data-future-invoice-environment>—</dd></div>
+            <div><dt>Verification</dt><dd data-future-verification-label>Transaction identifier</dd></div>
+          </dl>
+        </section>
+
+        <section class="checkout-panel">
+          <div class="panel-head">
+            <div class="panel-no">Transfer · 03</div>
+            <h2>Send the exact <em>amount</em>.</h2>
+          </div>
+          <p class="panel-note">
+            The same Workspace shell adapts to the server-returned asset, network, amount, receiver address and verification type.
+          </p>
+
+          <div class="crypto-future-value">
+            <div>
+              <span class="crypto-future-value__label">Amount to send</span>
+              <strong data-future-invoice-amount data-future-copy-value="amount">—</strong>
+              <small>Prototype only · server authoritative in production</small>
+            </div>
+            <button class="crypto-future-copy" type="button" data-future-copy-target="amount">Copy amount</button>
+          </div>
+
+          <div class="crypto-future-value">
+            <div>
+              <span class="crypto-future-value__label">Receiver address</span>
+              <strong data-future-invoice-address data-future-copy-value="address">—</strong>
+              <small>Non-payable architecture example · do not send funds</small>
+            </div>
+            <button class="crypto-future-copy" type="button" data-future-copy-target="address">Copy address</button>
+          </div>
+
+          <div class="crypto-warning">
+            <strong>Use the selected network only</strong>
+            <p>
+              A live warning must be generated from the selected payment pair. Sending through another network may be irreversible.
+            </p>
+          </div>
+        </section>
+
+        <section class="checkout-panel">
+          <div class="panel-head">
+            <div class="panel-no">Verification · 03</div>
+            <h2>Submit the transaction <em>identifier</em>.</h2>
+          </div>
+          <p class="panel-note">
+            The field label and future verification adapter change with the selected network. Only the server may confirm settlement and open Step 04.
+          </p>
+
+          <form class="crypto-future-verify-shell" action="#" method="post" data-future-verify-form novalidate>
+            <label for="future-crypto-transaction" data-future-verification-label>Transaction identifier</label>
+            <div class="crypto-future-verify-control">
+              <input
+                id="future-crypto-transaction"
+                name="transaction_identifier"
+                type="text"
+                maxlength="64"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="Enter the transaction identifier"
+                data-future-verify-input
+              />
+              <button type="submit">Verify payment →</button>
+            </div>
+            <p class="crypto-future-verify-help">
+              This preview validates only a 64-character hexadecimal example. No gateway or blockchain request is performed.
+            </p>
+            <p class="crypto-future-verify-error" role="alert" data-future-verify-error hidden></p>
+          </form>
+
+          <div class="crypto-future-tools">
+            <button type="button" data-future-reset>← Change asset or network</button>
+            <button type="button" data-future-refresh>Refresh status</button>
+            <button type="button" data-future-recovery>Copy recovery link</button>
+            <a href="spatial-flow-checkout-payment-v1.html">Back to current Payment page</a>
+          </div>
+        </section>
+      </section>
+
+      <p class="prototype-note">
+        Separate future-architecture preview only. It is intentionally not linked from the current fixed USDT / TRON Checkout flow.
+      </p>
+    </div>
+
+    <aside class="checkout-side" aria-label="Order and Crypto payment summary">
+      <section class="order-summary">
+        <div class="order-summary-head">
+          <h3>Order summary</h3>
+          <span>Architecture preview</span>
+        </div>
+
+        <div class="crypto-future-summary-pair">
+          <div>
+            <span>Selected asset</span>
+            <strong data-future-selected-asset>Not selected</strong>
+          </div>
+          <div>
+            <span>Selected network</span>
+            <strong data-future-selected-network>Not selected</strong>
+          </div>
+        </div>
+
+        <div class="summary-items">
+          <article class="summary-item">
+            <div class="summary-thumb"></div>
+            <div class="summary-copy">
+              <h4>Ash Quartz · No. 07</h4>
+              <div class="meta">Bracelet · Size M · Qty 1</div>
+            </div>
+            <div class="summary-price">$42.00</div>
+          </article>
+
+          <article class="summary-item">
+            <div class="summary-thumb th-2"></div>
+            <div class="summary-copy">
+              <h4>Bluestone Mala</h4>
+              <div class="meta">Bracelet · Size S · Qty 1</div>
+            </div>
+            <div class="summary-price">$42.00</div>
+          </article>
+
+          <article class="summary-item">
+            <div class="summary-thumb th-3"></div>
+            <div class="summary-copy">
+              <h4>Tussore Throw — Clay</h4>
+              <div class="meta">Textile · One size · Qty 1</div>
+            </div>
+            <div class="summary-price">$245.00</div>
+          </article>
+        </div>
+
+        <div class="summary-totals">
+          <div class="summary-row"><span class="label">Subtotal</span><span class="value">$329.00</span></div>
+          <div class="summary-row"><span class="label">Shipping</span><span class="value" data-shipping-value>Free</span></div>
+          <div class="summary-row"><span class="label">Tax</span><span class="value">Calculated</span></div>
+          <div class="summary-row total"><span class="label">Order total</span><span class="value" data-total-value>$329.00</span></div>
+        </div>
+
+        <p class="summary-note">
+          One Workspace shell can support a backend-confirmed payment-pair registry without rebuilding Checkout or the final Order Summary.
+        </p>
+
+        <div class="summary-trust">
+          <div>Current live capability remains USDT / TRON only</div>
+          <div>Future examples are not enabled payment methods</div>
+          <div>Payment confirmation remains server controlled</div>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="site-footer-v1">
+    <div class="brand-mark">
+      SPATIAL <em>FLOW</em>
+      <span class="sub">A Journal of Rooms, Rituals &amp; Quiet Objects · Est. 2026</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="spatial-flow-v1.html">Home</a>
+      <a href="spatial-flow-shop-v1.html">Shop</a>
+      <a href="spatial-flow-cart-v1.html">Your Bag</a>
+      <a href="spatial-flow-faq-v1.html">FAQ</a>
+      <a href="spatial-flow-contact-v1.html">Contact</a>
+    </nav>
+  </footer>
+
+  <div class="checkout-notice" role="status" aria-live="polite" data-checkout-notice></div>
+  <script src="spatial-flow-checkout-flow-v1.js"></script>
+  <script src="spatial-flow-checkout-crypto-workspace-future-v1.js"></script>
+</body>
+</html>
