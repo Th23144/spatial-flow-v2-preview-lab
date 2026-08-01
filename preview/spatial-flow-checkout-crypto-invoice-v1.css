@@ -6,6 +6,118 @@
   min-width: 0;
 }
 
+.crypto-invoice-bootstrap[hidden],
+.crypto-invoice-ready-content[hidden] {
+  display: none;
+}
+
+.crypto-invoice-bootstrap {
+  display: grid;
+  min-height: 470px;
+  place-items: center;
+  padding: 54px 38px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 25%, rgba(220, 229, 225, .48), transparent 42%),
+    rgba(250, 247, 243, .34);
+  text-align: center;
+}
+
+.crypto-invoice-bootstrap__inner {
+  width: min(100%, 620px);
+  margin: 0 auto;
+}
+
+.crypto-invoice-bootstrap__ring {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 20px;
+  border: 1px solid rgba(74, 93, 90, .22);
+  border-top-color: var(--stone);
+  border-radius: 50%;
+  animation: crypto-invoice-spin 1s linear infinite;
+}
+
+.crypto-invoice-bootstrap__failure-mark {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 20px;
+  place-items: center;
+  border: 1px solid rgba(168, 116, 92, .42);
+  border-radius: 50%;
+  color: var(--clay);
+  font-family: var(--serif);
+  font-size: 25px;
+}
+
+.crypto-invoice-bootstrap__eyebrow,
+.crypto-invoice-bootstrap__prototype {
+  display: block;
+  font-family: var(--mono);
+  text-transform: uppercase;
+}
+
+.crypto-invoice-bootstrap__eyebrow {
+  color: var(--clay);
+  font-size: 8px;
+  letter-spacing: .2em;
+}
+
+.crypto-invoice-bootstrap h2 {
+  margin-top: 10px;
+  font-family: var(--serif);
+  font-size: clamp(34px, 4vw, 50px);
+  font-weight: 300;
+  line-height: 1.02;
+}
+
+.crypto-invoice-bootstrap h2 em {
+  color: var(--stone);
+  font-weight: 300;
+}
+
+.crypto-invoice-bootstrap p {
+  max-width: 58ch;
+  margin: 16px auto 0;
+  color: var(--soft);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.crypto-invoice-bootstrap__prototype {
+  margin-top: 22px;
+  color: var(--faint);
+  font-size: 7px;
+  letter-spacing: .15em;
+}
+
+.crypto-invoice-bootstrap__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.crypto-invoice-bootstrap__actions .checkout-button {
+  min-width: 210px;
+}
+
+@keyframes crypto-invoice-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crypto-invoice-bootstrap__ring {
+    animation: none;
+    border-color: rgba(74, 93, 90, .28);
+    box-shadow: inset 0 0 0 9px rgba(220, 229, 225, .38);
+  }
+}
+
 .crypto-workspace-status {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -428,6 +540,42 @@
     box-shadow: 0 8px 22px rgba(43, 35, 30, .045);
   }
 
+  .crypto-invoice-bootstrap {
+    min-height: 350px;
+    padding: 34px 18px;
+    border-color: rgba(74, 93, 90, .12);
+    background:
+      radial-gradient(circle at 50% 18%, rgba(220, 229, 225, .55), transparent 46%),
+      #f0e8df;
+    box-shadow: 0 8px 22px rgba(43, 35, 30, .045);
+  }
+
+  .crypto-invoice-bootstrap__ring,
+  .crypto-invoice-bootstrap__failure-mark {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 16px;
+  }
+
+  .crypto-invoice-bootstrap h2 {
+    font-size: 31px;
+  }
+
+  .crypto-invoice-bootstrap p {
+    font-size: 9px;
+  }
+
+  .crypto-invoice-bootstrap__actions {
+    align-items: stretch;
+    flex-direction: column;
+    margin-top: 22px;
+  }
+
+  .crypto-invoice-bootstrap__actions .checkout-button {
+    width: 100%;
+    min-width: 0;
+  }
+
   .crypto-workspace-status {
     grid-template-columns: auto minmax(0, 1fr);
     gap: 12px;
@@ -530,6 +678,15 @@
 }
 
 @media (max-width: 380px) {
+  .crypto-invoice-bootstrap {
+    min-height: 330px;
+    padding: 30px 14px;
+  }
+
+  .crypto-invoice-bootstrap h2 {
+    font-size: 28px;
+  }
+
   .crypto-invoice-meta {
     grid-template-columns: 1fr;
   }
