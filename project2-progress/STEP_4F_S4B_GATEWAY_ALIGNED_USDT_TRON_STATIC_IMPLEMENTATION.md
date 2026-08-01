@@ -1,186 +1,148 @@
-# Project 2 · Checkout S4B Gateway-Aligned USDT / TRON Static Implementation
+# Project 2 · Rejected S4B Redundant USDT / TRON Confirmation Page and Rollback
 
 Date: 2026-08-01  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
-## 1. Phase status
+## 1. Final status
 
 ```text
-S4A: accepted and closed
-S4B: active
-S4B capability alignment: complete
-S4B gateway-aligned static reference: implemented, awaiting user review
+Implementation: rejected by user
+Visual review: failed before acceptance
+Flow decision: invalid
+Three preview files: removed
+S4A: remains accepted and closed
+S4B capability alignment and corrected integration contract: remain valid
 S5 Invoice / Waiting: not started
-Plugin installation / Step 2: paused
 Checkout: Not done
 ```
 
-## 2. New authoritative S4B review artifact
+## 2. Rejected implementation
+
+The rejected group created:
 
 ```text
 preview/spatial-flow-checkout-crypto-gateway-v1.html
-```
-
-Supporting files:
-
-```text
 preview/spatial-flow-checkout-crypto-gateway-v1.css
 preview/spatial-flow-checkout-crypto-gateway-v1.js
 ```
 
-The accepted S4A artifact remains unchanged:
+It rendered a separate fixed-USDT / TRON confirmation page after the main Step-03 Payment page.
+
+The user rejected this direction because it reduced the prior Checkout/payment architecture work to two fixed capability cards and added an unnecessary confirmation surface.
+
+## 3. Why it was architecturally wrong
+
+The locked Step-03 architecture states:
+
+```text
+- Step 03 is the payment page and final Checkout commitment surface
+- payment methods are concise entry points inside Step 03
+- Card / wallet may expose compact inline gateway fields
+- Cryptocurrency must not expand a large token/network/invoice lifecycle inline
+- Cryptocurrency enters a dedicated Step-03 Crypto Payment Workspace
+- there is one final Pay / Place order action
+- there is no second generic confirmation click or separate review page
+```
+
+The rejected page produced the wrong sequence:
+
+```text
+Step 03 Payment
+→ Continue with Cryptocurrency
+→ separate fixed USDT / TRON confirmation page
+→ Continue to Create Crypto Invoice
+```
+
+That sequence introduced a redundant second confirmation action even though the reviewed plugin supports only one fixed route:
+
+```text
+USDT on TRON / TRC20
+```
+
+Because the customer has no asset or network choice, there is nothing to select or reconfirm on an intermediate page.
+
+## 4. Correct gateway-aligned sequence
+
+The correct sequence remains:
+
+```text
+Step 03 Payment page
+→ customer selects Cryptocurrency as the payment method
+→ one final payment / place-order action
+→ WooCommerce creates the order
+→ order enters on-hold
+→ process_payment() opens the dedicated Step-03 Crypto Workspace
+→ plugin/server automatically creates or restores the fixed USDT / TRON invoice
+→ workspace displays exact amount, receiver address and required transaction-hash action
+→ server verifies payment
+→ payment_complete()
+→ Step 04 WooCommerce Order Received / Thank You
+```
+
+The dedicated Workspace is not an inline accordion and is not a fifth business step.
+
+## 5. S4A meaning remains unchanged
+
+Accepted S4A remains:
 
 ```text
 preview/spatial-flow-checkout-crypto-select-v1.html
 ```
 
-S4B is a separate gateway-aligned derivative. It does not reopen, overwrite or silently replace S4A.
+Its multi-asset / network selector is a plugin-agnostic interaction reference for a possible future gateway catalog.
 
-## 3. Gateway-truthful content
-
-The S4B page represents the reviewed current capability:
+Under the current fixed USDT / TRON plugin capability:
 
 ```text
-Payment method: Cryptocurrency
-Asset: USDT
-Network: TRON / TRC20
-Environment ownership: administrator controlled
-Customer asset selection: unavailable
-Customer network selection: unavailable
-Transaction hash: required for server verification
-Payment success: server authoritative
+- S4A is not inserted as a required production page
+- USDT / TRON is not presented as two customer choices
+- the customer does not choose Mainnet / Nile / Shasta
+- the main flow may bypass asset/network selection entirely
 ```
 
-The page does not present these as current selectable capabilities:
+## 6. What S4B actually completed
+
+S4B is the payment-plugin capability-alignment and integration-contract phase.
+
+Already completed S4B outputs include:
 
 ```text
-USDC
-BTC
-Ethereum
-Solana
-Bitcoin
-customer-selectable Mainnet / Nile / Shasta
+- V0.2.5 source and capability review
+- confirmation of fixed USDT / TRON capability
+- confirmation that Crypto requires a dedicated Step-03 Workspace
+- Project 2 / plugin / WooCommerce ownership split
+- order-pay recovery direction
+- invoice, transaction-hash, status and rollback contract
+- corrected authorization, idempotency and first-phase state rules
 ```
 
-## 4. Static interaction boundary
+S4B did not require an additional fixed-route confirmation page.
 
-The primary action is:
+## 7. Rollback commits
 
 ```text
-Continue to Create Crypto Invoice →
+Remove HTML:
+b246a99b93afd9d7466ef3f2826c94e7b6e59961
+
+Remove CSS:
+4fe0eb73108e174bffdb18d01df875b0a9d5198f
+
+Remove JS:
+e443c959f8a0a3da3aa2d2c3aef12031450c2589
 ```
 
-In S4B static review it only records this prototype state in sessionStorage:
+No accepted S4A, Step 01, Step 02, Step 03, shared Checkout script, plugin source or live WordPress file was changed by the rollback.
+
+## 8. Current stop point
 
 ```text
-paymentMethod = cryptocurrency
-cryptoGatewayHandoff.assetCode = USDT
-cryptoGatewayHandoff.networkCode = TRON
-cryptoGatewayHandoff.customerSelectable = false
-cryptoGatewayHandoff.transactionHashRequired = true
-cryptoGatewayHandoff.prototypeOnly = true
-```
+Do not create another intermediate currency/network confirmation page.
+Do not reopen S4A.
+Do not install the plugin merely to test the old visual page.
 
-It then shows a boundary notice.
+Next static design target:
+S5 dedicated Step-03 Invoice / Waiting Workspace shell,
+using the completed S4B integration contract and fixed USDT / TRON server-owned data model.
 
-It does not create:
-
-```text
-WooCommerce order
-on-hold order transition
-Crypto invoice
-USDT quote
-receiver address
-TronGrid request
-transaction verification
-payment_complete()
-Step 04 redirect
-```
-
-S5 remains not started.
-
-## 5. Preserved Checkout context
-
-The new page continues to use the accepted Checkout shell and shared state for:
-
-```text
-Address
-Contact
-confirmed Shipping Method
-Order Summary
-shipping-adjusted estimated total
-Step 03 progress state
-```
-
-The accepted right-side `Before it leaves.` composition and Order Summary architecture are preserved.
-
-## 6. Responsive composition
-
-Dedicated S4B CSS provides:
-
-```text
-fixed USDT and TRON capability cards
-administrator-controlled environment panel
-handoff detail table
-order/invoice and transfer/verification explanation
-network compatibility warning
-mobile single-column route cards
-mobile compact environment and handoff panels
-360px / 390px-oriented functional composition
-```
-
-No decorative vertical payment accent strip was added.
-
-## 7. Change audit
-
-Compared:
-
-```text
-Base: b9254bac330cd113621a168cedcf5271d2499048
-Head: 96b75c9fc800c64edbb1eb1c38dcd45f65c6f71c
-```
-
-Only these files were added:
-
-```text
-preview/spatial-flow-checkout-crypto-gateway-v1.html  +318
-preview/spatial-flow-checkout-crypto-gateway-v1.css   +255
-preview/spatial-flow-checkout-crypto-gateway-v1.js    +71
-```
-
-Unchanged in this implementation group:
-
-```text
-accepted S4A HTML / CSS / JS
-Step 01 HTML
-Step 02 HTML
-Step 03 Payment HTML
-shared Checkout flow JS
-production WordPress / WooCommerce source
-Crypto payment plugin
-Project 2 version 2.7.8
-```
-
-## 8. Review gate
-
-Required user review:
-
-```text
-desktop visual hierarchy
-mobile 390px composition
-mobile 360px composition
-fixed USDT / TRON wording
-administrator-controlled environment wording
-primary-action wording
-right-side context consistency
-```
-
-S4B is not accepted or closed until the user reviews the new page.
-
-## 9. Current stop point
-
-```text
-Open and review preview/spatial-flow-checkout-crypto-gateway-v1.html.
-Do not begin S5 before S4B visual/content acceptance.
-Do not install or continue developing the payment plugin in this phase.
+Before S5 implementation, the main Step-03 payment entry copy/action must be reviewed only as a bounded handoff adjustment; its accepted overall structure remains locked.
 ```
