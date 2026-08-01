@@ -23,21 +23,13 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 15. project2-progress/STEP_4F_FUTURE_MULTI_ASSET_CRYPTO_WORKSPACE_PREVIEW_ACCEPTANCE.md
 16. project2-progress/STEP_4F_CHECKOUT_SEQUENCE_REAUDIT_BEFORE_S5_PREPARING.md
 17. project2-progress/STEP_4F_S5_CRYPTO_INVOICE_WAITING_WORKSPACE_ACCEPTANCE.md
-18. project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_IMPLEMENTATION.md
-19. project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_ACCEPTANCE.md
-20. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+18. project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_ACCEPTANCE.md
+19. project2-progress/STEP_4F_S6_SUPPORTED_VERIFICATION_AND_RECOVERY_STATE_GATE.md
+20. project2-progress/STEP_4F_S6_SUPPORTED_VERIFICATION_AND_RECOVERY_STATE_IMPLEMENTATION.md
+21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
-
-Only:
-
-```text
-Completed 1:1
-Not done
-```
-
-Current page decisions:
 
 ```text
 Main-site Header: Completed 1:1
@@ -59,19 +51,14 @@ Static acceptance does not equal live-page `Completed 1:1`.
 → 04 Order Confirmed / Thank You / Receipt
 ```
 
-```text
-Steps 01–03 = Checkout
-Step 04 = WooCommerce-owned result
-```
-
-Step 04 is not Review and never asks the customer to pay or confirm again.
+Steps 01–03 are Checkout. Step 04 is the WooCommerce-owned result and is never a Review/payment-confirmation step.
 
 ## Step-03 payment host
 
 Status:
 
 ```text
-Accepted and closed as a static-reference gate
+Accepted and closed as a reusable static-reference host
 ```
 
 Stable host:
@@ -84,43 +71,22 @@ right Order Summary
 Address / Contact / Shipping context
 ```
 
-Only genuinely enabled and eligible WooCommerce gateways may appear.
-
-Gateway families:
-
-```text
-Card / wallet: compact gateway-owned fields or eligible wallet surface
-Cryptocurrency: concise entry → dedicated Step-03 Workspace
-Redirect gateway: concise entry → real hosted/redirect flow
-Offline gateway: instructions + correct unpaid/order state
-```
-
-A future gateway may need a bounded adapter, not a complete Checkout rebuild.
+Only genuinely enabled and eligible WooCommerce gateways may appear. Future gateways use bounded adapters rather than a complete Checkout rebuild.
 
 ## Current Crypto capability truth
 
 ```text
-Plugin: Spatial Flow Crypto Pay Trial
 Gateway ID: spatial_flow_crypto
-Current asset: USDT
-Current network: TRON / TRC20
+Asset: USDT
+Network: TRON / TRC20
 Environment: administrator-controlled mainnet / nile / shasta
 Customer asset/network selection: unavailable
-Unresolved order status: on-hold
+Unresolved order state: on-hold
 Verification: customer-submitted TRON transaction hash
 Authority: server-side TronGrid verification + payment_complete()
 ```
 
-Current plugin does not provide:
-
-```text
-QR
-wallet connection
-automatic chain monitoring
-operational expiry
-confirmation-count progress
-production multi-asset routing
-```
+Current plugin does not provide QR, wallet connection, automatic monitoring, operational expiry, confirmation counts or production multi-asset routing.
 
 ## Current fixed Crypto route
 
@@ -132,20 +98,11 @@ Step 03 Payment
 
 Because only `USDT + TRON / TRC20` exists, current Checkout bypasses asset/network selection.
 
-Prohibited:
-
-```text
-Step 03
-→ fixed USDT/TRON confirmation page
-→ second Continue/Create Invoice action
-→ payment workspace
-```
-
-The rejected redundant page remains removed.
+The rejected fixed-route intermediate confirmation page remains removed.
 
 ## Accepted S5 state family
 
-Authoritative static artifact:
+Authoritative base artifact:
 
 ```text
 preview/spatial-flow-checkout-crypto-invoice-v1.html
@@ -153,7 +110,7 @@ preview/spatial-flow-checkout-crypto-invoice-v1.css
 preview/spatial-flow-checkout-crypto-invoice-v1.js
 ```
 
-Accepted internal sequence:
+Accepted sequence:
 
 ```text
 Preparing your Crypto payment
@@ -161,17 +118,7 @@ Preparing your Crypto payment
 → Waiting for payment
 ```
 
-Accepted Preparing behavior:
-
-```text
-amount/address hidden
-copy controls unavailable
-transfer instructions hidden
-Transaction Hash controls hidden
-right summary = Preparing payment / Preparing invoice
-```
-
-Accepted bootstrap-failure behavior:
+Accepted bootstrap failure:
 
 ```text
 Invoice unavailable
@@ -180,30 +127,15 @@ Invoice unavailable
 → Waiting for payment
 ```
 
-Alternative:
-
-```text
-Return to payment methods
-→ Step 03
-```
-
-No duplicate order, extra confirmation page or Generate Invoice action is introduced.
-
-Acceptance record:
-
-```text
-project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_ACCEPTANCE.md
-```
+No duplicate order, second generic confirmation or Generate Invoice action is introduced.
 
 ## Accepted future multi-asset Workspace
-
-Standalone reference:
 
 ```text
 preview/spatial-flow-checkout-crypto-workspace-future-v1.html
 ```
 
-Accepted internal architecture:
+Accepted architecture:
 
 ```text
 Choose payment pair
@@ -212,7 +144,56 @@ Choose payment pair
 → Verify payment
 ```
 
-It remains isolated until the plugin supports multiple backend-confirmed payment pairs.
+It remains isolated until the plugin supports multiple server-confirmed payment pairs.
+
+## Current review gate: S6
+
+S6 is implemented as an isolated layer on the existing S5 Workspace:
+
+```text
+preview/spatial-flow-checkout-crypto-states-v1.css
+preview/spatial-flow-checkout-crypto-states-v1.js
+```
+
+Implemented review states:
+
+```text
+verification_failed
+retryable temporary verification error
+manual_review
+cancelled
+paid_confirmed transition boundary
+unfinished-payment recovery
+```
+
+Deterministic failure examples:
+
+```text
+receiver mismatch
+transaction predating the invoice
+wrong token / no qualifying transfer
+amount too low
+duplicate transaction
+```
+
+Default S5 has no query parameter and remains unchanged.
+
+S6 static review parameters:
+
+```text
+?prototype_payment=verification_failed&reason=receiver_mismatch
+?prototype_payment=verification_failed&reason=old_transaction
+?prototype_payment=verification_failed&reason=wrong_token
+?prototype_payment=verification_failed&reason=amount_too_low
+?prototype_payment=verification_failed&reason=duplicate_tx
+?prototype_payment=temporary_error
+?prototype_payment=manual_review
+?prototype_payment=cancelled
+?prototype_payment=paid_confirmed
+?prototype_payment=recovered
+```
+
+These parameters are review controls only, not production transport contracts.
 
 ## Current exact stop point
 
@@ -221,66 +202,28 @@ S3 main Step-03 Payment: accepted and closed
 Step-03 reusable payment host: accepted and closed
 S4A selector reference: accepted and closed
 S4B capability/contract: completed
-S5 Waiting structure: accepted
-S5 Preparing Invoice and bootstrap failure: accepted and closed
+S5 Waiting / Preparing / bootstrap failure: accepted and closed
 Future multi-asset Workspace: accepted and isolated
-S6 supported verification/recovery states: authorized next phase, not started
-S7 Step 04 result: not started
+S6 verification/recovery states: implemented, awaiting user acceptance
+S7 Step 04 result: blocked and not started
 Live Checkout reconstruction: not started
 Checkout: Not done
 ```
 
-## Remaining static sequence
+## Remaining sequence
 
 ```text
-S6 supported verification/recovery states
+S6 review/acceptance
 → S7 Step 04 result
 → S8 full relative-link/session-state audit
 → S9 1366 / 390 / 360 static acceptance
-```
-
-After static acceptance:
-
-```text
-live Checkout ownership audit
+→ live Checkout ownership audit
 → plugin/workspace integration
-→ dynamic gateway rendering
 → Sandbox and unfinished-payment recovery tests
 → server-authoritative result tests
 → production replacement
 → backend-editability validation
 → final Checkout 1:1 closure
-```
-
-## S6 boundary
-
-S6 may represent only approved first-phase states:
-
-```text
-verification_failed
-manual_review only where implemented by the approved contract
-cancelled
-paid_confirmed transition boundary
-unfinished-payment recovery through WooCommerce order-pay
-```
-
-S6 must not invent:
-
-```text
-automatic payment detection
-live confirmation counts
-operational expired/replacement invoice behavior
-automatic underpayment or overpayment workflows
-continuous polling
-```
-
-## Plugin package status
-
-```text
-V0.2.6.1 package integrity: reviewed
-Role: future integration baseline
-Local installation: deferred
-Plugin Step 2: deferred
 ```
 
 ## Hard boundaries
@@ -293,6 +236,8 @@ Plugin Step 2: deferred
 - no browser-authoritative payment success
 - no redundant Crypto confirmation page
 - no QR/countdown/automatic-monitoring claim under current capability
+- no automatic payment detection or continuous polling in S6
+- no Step 04 implementation until S6 passes
 - one bounded group at a time
 - Checkout remains Not done
 ```
