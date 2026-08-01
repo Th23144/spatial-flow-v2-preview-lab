@@ -220,26 +220,6 @@
     });
   }
 
-  const paymentForm = document.querySelector('[data-payment-form]');
-  if (paymentForm) {
-    const prototypeNote = paymentForm.querySelector('.prototype-note');
-    if (prototypeNote) {
-      prototypeNote.textContent = 'Continuing opens the approved plugin-agnostic Crypto asset and network selection workspace. No real payment is attempted.';
-    }
-
-    paymentForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      mergeState({ paymentMethod: 'cryptocurrency' });
-
-      const declaredAction = paymentForm.getAttribute('action');
-      const nextRoute = declaredAction && declaredAction !== '#'
-        ? declaredAction
-        : 'spatial-flow-checkout-crypto-select-v1.html';
-
-      window.location.href = nextRoute;
-    });
-  }
-
   document.addEventListener('click', (event) => {
     const disabled = event.target.closest('[data-prototype-disabled]');
     if (!disabled) return;
