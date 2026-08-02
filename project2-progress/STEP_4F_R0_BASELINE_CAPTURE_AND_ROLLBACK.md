@@ -169,25 +169,59 @@ cod / Cash on delivery: no
 airwallex_main / Pay with cards and more: no
 ```
 
-The exported gateway-object `order` property is null, while the separate WooCommerce option preserves administrative order. Actual front-end availability remains cart/session/address dependent and must be confirmed in the smoke test.
+The exported gateway-object `order` property is null, while the separate WooCommerce option preserves administrative order. Actual front-end availability was confirmed during Test A: both enabled gateways rendered for the tested cart/session.
 
-## 7. Remaining R0 evidence gate
+## 7. Functional smoke test status
 
-### Baseline functional smoke test
-
-Before any source edit, record current behavior:
+Authoritative record:
 
 ```text
-Cart reaches /checkout-2-2/
-Step 01 fields render
-shipping methods and totals update
-payment gateways render dynamically
-legacy Review-step Place Order can create an order
-Crypto Sandbox creates an on-hold order and enters /crypto-pay/
-current order-received page loads
+project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
 ```
 
-Passing this test does not accept the old design. It proves the rollback baseline.
+### Test A — normal WooCommerce legacy path
+
+Recorded runtime result:
+
+```text
+Gateway: bacs / 测试
+Observed order: #3571
+Total: $44.99
+Resulting state: on-hold
+Step 03 dynamic gateways: 测试 + Pay with Crypto
+Legacy Review: reachable
+Native Place Order: produced the observed WooCommerce order
+Current result template: loaded
+```
+
+The result page confirmed the known semantic defect in real runtime output:
+
+```text
+on-hold order
+→ still shown with preparation, fulfillment-queue and On The Way language
+```
+
+This defect is carried into R4. It does not block preservation of the pre-change baseline.
+
+Evidence limits are documented in the functional-smoke-test record: malformed-email blocking, the exact shipping recalculation transition, duplicate-order absence and the separate admin order screen were not independently captured by the supplied screenshots.
+
+### Test B — Crypto V0.2.5 Sandbox
+
+```text
+Pending
+```
+
+Required before R0 closure:
+
+```text
+- select Pay with Crypto
+- create one on-hold WooCommerce order
+- reach legacy /crypto-pay/
+- confirm invoice/reuse interface
+- use administrator-only Sandbox success
+- reach canonical WooCommerce result
+- record initial/final status and relevant order notes
+```
 
 ## 8. Current status
 
@@ -199,7 +233,9 @@ R0 page/plugin ownership evidence: completed
 R0 saved theme-mod export: completed
 R0 gateway order export: completed
 R0 runtime registered/title/enabled export: completed
-R0 functional smoke test: pending
+R0 Test A normal order path: recorded
+R0 Test B Crypto Sandbox path: pending
+R0 functional smoke test: in progress
 R1: blocked and not started
 Runtime source modification: none
 Checkout: Not done
