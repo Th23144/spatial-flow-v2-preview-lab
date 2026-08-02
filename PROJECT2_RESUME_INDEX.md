@@ -26,7 +26,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 18. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
 19. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 20. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
-21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+21. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
+22. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -143,6 +144,48 @@ project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 ```
 
+## Current S9 responsive gate
+
+S9 source-level responsive rules have been audited for:
+
+```text
+1366 × 768
+390 × 844
+360 × 800
+```
+
+Scope:
+
+```text
+Step 01 Address
+Step 02 Shipping
+Step 03 Payment
+S5 Preparing / Waiting / bootstrap failure
+S6 verification / recovery state family
+S7 Confirmed / Pending
+```
+
+Source audit result:
+
+```text
+- shared Checkout shell collapses below 1040px
+- forms and action groups stack below 720px
+- sticky summaries become static
+- long context/payment values use shrink and wrapping protection
+- Crypto metadata becomes one column below 380px
+- S6 actions become full-width mobile controls
+- S7 overview/facts become one column below 420px
+- no deterministic source-level horizontal-overflow defect found
+```
+
+The audit environment could not load RawGitHack because of `net::ERR_BLOCKED_BY_ADMINISTRATOR`; therefore automated screenshots are not claimed. User visual validation remains mandatory.
+
+Detailed record:
+
+```text
+project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
+```
+
 ## Current exact stop point
 
 ```text
@@ -150,15 +193,16 @@ S5: accepted and closed
 S6: accepted and closed
 S7 confirmed/pending Step-04 result: accepted and closed
 S8 full relative-link/session-state audit: accepted and closed
-S9 responsive static acceptance: authorized next phase, not started
-Live Checkout reconstruction: not started
+S9 responsive source audit: completed
+S9 1366 / 390 / 360 visual acceptance: awaiting user validation
+Live Checkout reconstruction: blocked and not started
 Checkout: Not done
 ```
 
 ## Remaining sequence
 
 ```text
-S9 1366 / 390 / 360 static acceptance
+S9 user visual validation and acceptance
 → live Checkout ownership audit
 → plugin/workspace integration
 → Sandbox and unfinished-payment recovery tests
@@ -178,7 +222,7 @@ S9 1366 / 390 / 360 static acceptance
 - no fifth Checkout step
 - no duplicate order or invoice
 - no QR/countdown/automatic-monitoring claim under current capability
-- S9 must be executed as a separate bounded group
+- live ownership audit cannot begin before S9 user acceptance
 - one bounded group at a time
 - Checkout remains Not done
 ```
