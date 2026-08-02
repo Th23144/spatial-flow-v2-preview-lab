@@ -7,11 +7,17 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 S6 verification/recovery state family: accepted and closed
-S7 Step 04 confirmed/pending static result page: implemented
-User visual/content/interaction review: required
-S8 link/session audit: not started
+S7 Step 04 confirmed/pending static result page: accepted and closed
+User visual/content/interaction review: passed
+S8 link/session audit: authorized next phase, not started
 Live WooCommerce integration: not started
 Checkout: Not done
+```
+
+Acceptance record:
+
+```text
+project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
 ```
 
 ## 2. Rebuilt artifact
@@ -180,6 +186,8 @@ single-column overview/facts on narrow screens
 mobile-safe receipt items and actions
 ```
 
+The final odd-grid mobile overview correction spans the last item across the full row. The user accepted both confirmed and pending states after this correction.
+
 Formal S9 responsive acceptance remains later.
 
 ## 10. Files and commits
@@ -199,18 +207,24 @@ b2311d1ec8a3f539a377b12abd6db362803f53a2
 
 Pending order-status/progress correction:
 3dc6b6e1136e5dab00f7b00a6d0e7e7b7af714f0
+
+Final mobile odd-grid correction:
+1b498529631c6e5802d04e2e8bd2185da5991b78
+
+Acceptance record creation:
+388a33fde9477c6dc8321785da3c770ebc5cef0f
 ```
 
 ## 11. Range audit
 
-Compared:
+Compared implementation range:
 
 ```text
 Base: 2227d40147a5ff19d44615f9192a0797457c1dd4
 Head: 3dc6b6e1136e5dab00f7b00a6d0e7e7b7af714f0
 ```
 
-Changed exactly:
+Changed exactly during the initial implementation range:
 
 ```text
 preview/spatial-flow-thank-you-v1.html
@@ -218,6 +232,8 @@ preview/spatial-flow-thank-you-v1.css
 preview/spatial-flow-thank-you-v1.js
 project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_AUDIT_AND_GATE.md
 ```
+
+The later mobile correction changed only the S7 result-page CSS and its documentation.
 
 Unchanged:
 
@@ -235,21 +251,25 @@ live WordPress/WooCommerce
 Project 2 version 2.7.8
 ```
 
-## 12. Required user review
+## 12. User acceptance
 
-Review confirmed:
+The user reviewed:
 
 ```text
+confirmed:
 preview/spatial-flow-thank-you-v1.html
-```
 
-Review pending:
-
-```text
+pending:
 preview/spatial-flow-thank-you-v1.html?prototype_result=pending
 ```
 
-Confirm:
+Final decision:
+
+```text
+都没问题，验收通过
+```
+
+Accepted conclusions:
 
 ```text
 - confirmed state clearly represents server-confirmed payment
@@ -258,14 +278,16 @@ Confirm:
 - no extra payment/confirmation action exists
 - exact totals and payment facts are understandable
 - pending recovery/help actions are appropriate
-- desktop hierarchy is balanced
-- mobile has no overflow or obscured controls
+- desktop hierarchy is accepted
+- mobile composition is accepted
+- no remaining overflow or obscured controls were reported
 ```
 
 ## 13. Current stop point
 
 ```text
-S7: implemented, awaiting user acceptance
-S8: blocked and not started
+S7: accepted and closed
+S8: authorized next phase, not started
+S9: not started
 Checkout: Not done
 ```
