@@ -28,7 +28,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 20. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 21. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
 22. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
-23. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+23. project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
+24. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -169,21 +170,6 @@ S7 Confirmed / Pending
 
 The S9 gate covered static visual appearance, responsive composition and basic interface usability. It did not cover real WooCommerce order creation, payment verification, Crypto plugin integration or production replacement.
 
-Source audit result:
-
-```text
-- shared Checkout shell collapses below 1040px
-- forms and action groups stack below 720px
-- sticky summaries become static
-- long context/payment values use shrink and wrapping protection
-- Crypto metadata becomes one column below 380px
-- S6 actions become full-width mobile controls
-- S7 overview/facts become one column below 420px
-- no deterministic source-level horizontal-overflow defect found
-```
-
-The automated audit environment could not load RawGitHack because of `net::ERR_BLOCKED_BY_ADMINISTRATOR`; automated screenshots are not claimed. Final acceptance is based on the user's real-browser visual review plus the completed source audit.
-
 User decision after scope clarification:
 
 ```text
@@ -197,6 +183,50 @@ project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
 project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
 ```
 
+## Current Live Checkout ownership audit
+
+Repository evidence layer:
+
+```text
+Completed.
+```
+
+Confirmed ownership:
+
+```text
+- WooCommerce owns fields, shipping, totals, validation, notices, payment submission, order and result truth
+- child-theme functions.php owns at least the shared Cart/Checkout item-context filter
+- checkout-safe5.css is the Checkout-only visual/notice layer
+- spatial-flow.css is the shared/global layer and must not absorb Checkout fixes by default
+- spatial-flow.js participates in the current storefront interaction layer, but its exact Checkout event ownership requires the current file
+- spatial_flow_crypto owns the fixed USDT/TRON gateway, on-hold state, TronGrid verification and payment_complete()
+- the accepted V0.2.6.1 package does not activate REST, order-pay hooks, template replacement or a new Workspace
+- WooCommerce order-pay is the approved future unfinished-payment recovery surface
+- WooCommerce order-received remains the canonical Step-04 truth owner
+```
+
+Current-source verification remains open because the repository is not the complete local WordPress installation.
+
+Required current evidence:
+
+```text
+functions.php
+assets/js/spatial-flow.js
+assets/css/checkout-safe5.css
+assets/css/spatial-flow.css
+child-theme woocommerce/checkout/ directory and existing files
+/checkout-2-2/ page/template assignment
+CartFlows flow/step configuration
+active Checkout/payment plugin list
+currently installed Spatial Flow Crypto plugin source/version
+```
+
+Audit record:
+
+```text
+project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
+```
+
 ## Current exact stop point
 
 ```text
@@ -205,15 +235,19 @@ S6: accepted and closed
 S7 confirmed/pending Step-04 result: accepted and closed
 S8 full relative-link/session-state audit: accepted and closed
 S9 responsive static acceptance: accepted and closed
-Live Checkout ownership audit: authorized next phase, not started
-Plugin/workspace integration: not started
+Live Checkout ownership audit — repository evidence: completed
+Live Checkout ownership audit — current local-source verification: required next
+Bounded reconstruction plan: blocked
+Plugin/workspace integration: blocked
 Checkout: Not done
 ```
 
 ## Remaining sequence
 
 ```text
-live Checkout ownership audit
+current local-source verification
+→ exact hook/template/asset ownership matrix
+→ bounded reconstruction plan
 → plugin/workspace integration
 → Sandbox and unfinished-payment recovery tests
 → server-authoritative result tests
@@ -232,8 +266,7 @@ live Checkout ownership audit
 - no fifth Checkout step
 - no duplicate order or invoice
 - no QR/countdown/automatic-monitoring claim under current capability
-- live Checkout ownership audit must be a separate bounded phase
-- no production modification before ownership is mapped
+- no source modification before the current local files and CartFlows/plugin ownership are verified
 - one bounded group at a time
 - Checkout remains Not done
 ```
