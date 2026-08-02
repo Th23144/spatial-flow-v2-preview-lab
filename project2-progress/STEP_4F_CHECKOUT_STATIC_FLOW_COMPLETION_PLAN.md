@@ -21,9 +21,10 @@ S8 link/session continuity: accepted and closed
 S9 responsive static acceptance: accepted and closed
 Live Checkout ownership audit: closed
 Exact source-backed ownership matrix: issued
-Bounded reconstruction plan: issued
-Plan acceptance: waiting for user decision
-R0 baseline capture: not started
+Bounded reconstruction plan: accepted
+R0 file baseline and rollback package: completed
+R0 database/config export: pending
+R0 functional smoke test: pending
 R1 live code modification: not authorized and not started
 Plugin/workspace integration: not started
 ```
@@ -176,6 +177,12 @@ Authoritative document:
 project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
 ```
 
+User decision:
+
+```text
+计划通过，开始 R0
+```
+
 Plan groups:
 
 ```text
@@ -190,28 +197,42 @@ R7 full commerce regression
 R8 final 1366/390/360 strict acceptance and closure
 ```
 
-Every group has:
+## 9. R0 baseline capture
+
+Authoritative record:
 
 ```text
-- exact allowed files
-- exact functional scope
-- rollback boundary
-- preconditions
-- functional tests
-- visual/admin acceptance gate
-- explicit stop point
+project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
 ```
 
-No group may be merged into an unreviewed batch.
-
-## 9. Immediate next action
+Completed evidence:
 
 ```text
-User reviews and accepts the bounded reconstruction plan.
-Then begin R0 baseline capture only.
-R0 performs no runtime code modification.
-R1 requires a later explicit authorization after R0 closes.
+- exact current seven-file theme baseline
+- byte size, line count and SHA256
+- PHP and JavaScript syntax checks
+- CSS parser, brace and comment balance checks
+- external rollback ZIP
+- authoritative V0.2.5 ZIP in the rollback package
+- current page/plugin ownership evidence
 ```
+
+Rollback package:
+
+```text
+project2-checkout-r0-baseline-20260802.zip
+SHA256: 5eb98b952a19a7de000cfc870f3750cb15b3237e543e93dea284e78e7a36f45c
+```
+
+Remaining R0 gates:
+
+```text
+1. export current saved sf_checkout_* and sf_order_received_* theme mods
+2. export current dynamic gateway IDs, titles, enabled states and order
+3. execute and record the current pre-edit functional smoke test
+```
+
+R1 remains blocked until all three gates are recorded and R0 is formally closed.
 
 ## 10. Hard boundaries
 
@@ -233,9 +254,11 @@ R1 requires a later explicit authorization after R0 closes.
 ## 11. Current exact stop point
 
 ```text
-Bounded reconstruction plan: issued
-Plan acceptance: waiting
-R0 baseline capture: not started
+Bounded reconstruction plan: accepted
+R0 file baseline and rollback package: completed
+R0 database/config export: pending
+R0 functional smoke test: pending
+R0 closure: blocked
 R1 implementation: not authorized and not started
 Plugin/workspace integration: not started
 Checkout: Not done
