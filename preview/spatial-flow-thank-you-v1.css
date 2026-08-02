@@ -691,6 +691,10 @@ body[data-result-state="pending"] .result-status__badge {
     padding: 13px;
   }
 
+  .result-overview li:last-child {
+    grid-column: 1 / -1;
+  }
+
   .result-facts {
     grid-template-columns: 1fr 1fr;
   }
