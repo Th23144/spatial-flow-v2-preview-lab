@@ -23,7 +23,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 15. project2-progress/STEP_4F_LIVE_CHECKOUT_WPCODE_VERIFICATION_AND_OWNERSHIP_CLOSURE.md
 16. project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
 17. project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
-18. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+18. project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
+19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -103,7 +104,7 @@ review-order.php
 1. form-checkout.php still implements Information → Shipping → Payment → Review.
 2. checkout-safe5.js moves native Place Order into Review and blocks submission until Step 4.
 3. thankyou.php gives pending/on-hold the same success-like composition as paid non-failed statuses.
-4. current SAFE5 hardcodes visible copy while many Checkout Customizer controls are orphaned.
+4. current SAFE5 hardcodes visible copy while many old Checkout Customizer controls are orphaned.
 5. spatial-flow.js and checkout-safe5.js overlap on updated_checkout / checkout_error notice handling.
 6. spatial-flow.css still contains substantial historical Checkout selectors beneath SAFE5.
 ```
@@ -161,6 +162,12 @@ Issued at:
 project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
 ```
 
+User decision:
+
+```text
+计划通过，开始 R0
+```
+
 Planned groups:
 
 ```text
@@ -175,16 +182,50 @@ R7 full commerce regression
 R8 final 1366/390/360 strict acceptance and closure
 ```
 
-The plan is documentation only. No runtime source was changed.
+## R0 current status
+
+Authoritative record:
+
+```text
+project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
+```
+
+Completed:
+
+```text
+- exact byte size, line count and SHA256 for all seven supplied theme files
+- PHP syntax validation
+- JavaScript syntax validation
+- CSS parse, brace and comment balance validation
+- external rollback ZIP containing exact supplied files and V0.2.5 artifact
+- Checkout page, CartFlows, WPCode and plugin ownership evidence
+```
+
+Rollback package:
+
+```text
+project2-checkout-r0-baseline-20260802.zip
+SHA256: 5eb98b952a19a7de000cfc870f3750cb15b3237e543e93dea284e78e7a36f45c
+```
+
+Still required before R0 can close:
+
+```text
+- machine-readable current sf_checkout_* and sf_order_received_* saved theme mods
+- machine-readable current dynamic gateway list/order
+- current pre-edit functional smoke test
+```
 
 ## Current exact stop point
 
 ```text
 Live Checkout ownership audit: closed
 Exact source-backed ownership matrix: issued
-Bounded reconstruction plan: issued
-Plan acceptance: waiting for user decision
-R0 baseline capture: not started
+Bounded reconstruction plan: accepted
+R0 file baseline and rollback package: completed
+R0 database/config export: pending
+R0 functional smoke test: pending
+R0 closure: blocked until both are complete
 R1 live code modification: not authorized and not started
 Plugin/workspace integration: not started
 Checkout: Not done
@@ -193,8 +234,9 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-user accepts bounded plan
-→ R0 baseline capture only
+complete R0 database/config export
+→ complete current functional smoke test
+→ close R0
 → explicit authorization for R1
 → one controlled implementation group at a time
 → Sandbox and unfinished-payment recovery tests
