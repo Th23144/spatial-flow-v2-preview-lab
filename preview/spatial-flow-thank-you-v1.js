@@ -22,6 +22,7 @@
       statusMark: '✓',
       overviewPayment: 'Confirmed',
       paymentStatus: 'Confirmed',
+      orderStatus: 'Processing',
       transaction: '8f27…c4a1',
       transactionNote: 'Customer-safe abbreviated static reference',
       summaryTitle: 'Order confirmed',
@@ -66,6 +67,7 @@
       statusMark: '…',
       overviewPayment: 'Pending',
       paymentStatus: 'On hold',
+      orderStatus: 'On hold',
       transaction: 'Not confirmed',
       transactionNote: 'No confirmed transaction reference is available',
       summaryTitle: 'Payment pending',
@@ -134,6 +136,11 @@
   setText('[data-result-progress-payment]', current.progressPayment);
   setText('[data-result-progress-result]', current.progressResult);
 
+  const orderStatus = document.querySelector('.result-facts > div:nth-child(5) dd');
+  if (orderStatus?.firstChild) {
+    orderStatus.firstChild.nodeValue = current.orderStatus;
+  }
+
   const primary = document.querySelector('[data-result-primary]');
   if (primary) {
     primary.textContent = current.primaryLabel;
@@ -162,6 +169,6 @@
   const paymentStep = document.querySelector('[data-result-payment-step]');
   if (paymentStep) {
     paymentStep.classList.toggle('is-complete', state === 'confirmed');
-    paymentStep.classList.toggle('is-active', state === 'pending');
+    paymentStep.classList.remove('is-active');
   }
 })();
