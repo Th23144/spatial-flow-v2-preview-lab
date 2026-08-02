@@ -26,7 +26,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 18. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
 19. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 20. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
-21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+21. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
+22. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -71,7 +72,6 @@ future multi-asset integrated Workspace reference
 
 ```text
 S8 full relative-link/session-state audit: accepted and closed
-S9 responsive static acceptance: authorized next phase, not started
 ```
 
 S8 corrected and the user accepted:
@@ -99,6 +99,46 @@ project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 ```
 
+## Current S9 responsive status
+
+```text
+S9 responsive source audit: completed
+S9 1366 / 390 / 360 visual acceptance: awaiting user validation
+Live Checkout ownership audit: blocked and not started
+```
+
+S9 source audit covers:
+
+```text
+Step 01 Address
+Step 02 Shipping
+Step 03 Payment
+S5 Preparing / Waiting / bootstrap failure
+S6 verification / recovery state family
+S7 Confirmed / Pending
+```
+
+Confirmed responsive contracts:
+
+```text
+shared Checkout shell collapses below 1040px
+forms and action groups stack below 720px
+sticky summaries become static
+context/payment data uses min-width:0 and wrapping protection
+Crypto invoice metadata becomes one column below 380px
+S6 actions become full-width mobile controls
+S7 overview/facts become one column below 420px
+no deterministic source-level horizontal-overflow defect was found
+```
+
+The audit environment blocked RawGitHack with `net::ERR_BLOCKED_BY_ADMINISTRATOR`, so automated screenshots are not claimed. The required three-size real-browser visual gate remains open.
+
+Detailed record:
+
+```text
+project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
+```
+
 ## Maintained authority boundary
 
 The static Checkout flow does not perform:
@@ -122,16 +162,17 @@ S5: accepted and closed
 S6: accepted and closed
 S7 Step-04 confirmed/pending result: accepted and closed
 S8 link/session audit: accepted and closed
-S9 responsive static acceptance: authorized next phase, not started
+S9 responsive source audit: completed
+S9 visual acceptance: awaiting user validation
 Plugin installation: deferred
-Live Checkout: not started
+Live Checkout: blocked and not started
 Checkout: Not done
 ```
 
 ## Remaining sequence
 
 ```text
-S9 desktop / 390 / 360 static acceptance
+S9 user visual validation and acceptance
 → live Checkout ownership audit
 → plugin/workspace integration
 → Sandbox and recovery testing
@@ -150,7 +191,7 @@ S9 desktop / 390 / 360 static acceptance
 - no duplicate order or invoice
 - no fake payment success
 - no live Checkout or plugin edits during static work
-- S9 must be executed as a separate bounded group
+- live ownership audit cannot begin before S9 acceptance
 - one bounded group at a time
 - Checkout remains Not done
 ```
