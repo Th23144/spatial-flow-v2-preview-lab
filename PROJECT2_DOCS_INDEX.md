@@ -23,7 +23,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 15. project2-progress/STEP_4F_S6_SUPPORTED_VERIFICATION_AND_RECOVERY_STATE_ACCEPTANCE.md
 16. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_AUDIT_AND_GATE.md
 17. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_IMPLEMENTATION.md
-18. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+18. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
+19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -59,10 +60,11 @@ S4A future selector reference
 S4B capability/integration contract
 S5 Waiting / Preparing / bootstrap failure
 S6 verification / recovery state family
+S7 Step-04 confirmed / pending result family
 future multi-asset integrated Workspace reference
 ```
 
-## Current S7 implementation
+## Accepted S7 implementation
 
 Artifacts:
 
@@ -72,7 +74,7 @@ preview/spatial-flow-thank-you-v1.css
 preview/spatial-flow-thank-you-v1.js
 ```
 
-Review states:
+Accepted states:
 
 ```text
 confirmed:
@@ -87,6 +89,18 @@ Confirmed means server-confirmed payment and a WooCommerce-owned successful resu
 Pending means the order exists but payment is not confirmed; fulfilment has not started and the order remains on hold.
 
 Neither state contains Pay, Confirm, Place order or another Checkout commitment action.
+
+User decision after the final mobile overview-grid correction:
+
+```text
+都没问题，验收通过
+```
+
+Acceptance record:
+
+```text
+project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
+```
 
 ## S7 maintained authority boundary
 
@@ -115,6 +129,7 @@ Step 04 progress identity added
 stale # links removed from the result page
 Account utility removed under guest checkout
 inline page CSS split into maintainable resources
+odd five-item mobile overview grid corrected
 ```
 
 ## Current execution point
@@ -122,8 +137,9 @@ inline page CSS split into maintainable resources
 ```text
 S5: accepted and closed
 S6: accepted and closed
-S7 Step-04 confirmed/pending result: implemented, awaiting review
-S8 full link/session audit: blocked and not started
+S7 Step-04 confirmed/pending result: accepted and closed
+S8 full relative-link/session-state audit: authorized next phase, not started
+S9 responsive static acceptance: not started
 Plugin installation: deferred
 Live Checkout: not started
 Checkout: Not done
@@ -132,8 +148,7 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-S7 review/acceptance
-→ S8 full relative-link/session-state audit
+S8 full relative-link/session-state audit
 → S9 desktop / 390 / 360 static acceptance
 → live Checkout ownership audit
 → plugin/workspace integration
@@ -153,7 +168,7 @@ S7 review/acceptance
 - no duplicate order or invoice
 - no fake payment success
 - no live Checkout or plugin edits during static work
-- S8 cannot begin before S7 acceptance
+- S8 must be executed as a separate bounded group
 - one bounded group at a time
 - Checkout remains Not done
 ```
