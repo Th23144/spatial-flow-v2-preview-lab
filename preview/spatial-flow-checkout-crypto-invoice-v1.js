@@ -30,9 +30,11 @@
 
   const query = new URLSearchParams(window.location.search);
   const previewBootstrapFailure = query.get('prototype_invoice') === 'fail';
+  const confirmedResultRoute = 'spatial-flow-thank-you-v1.html?prototype_result=confirmed';
 
   let noticeTimer = null;
   let bootstrapTimer = null;
+  let resultBridgeObserver = null;
 
   const readState = () => {
     try {
@@ -193,6 +195,31 @@
     }, BOOTSTRAP_DELAY);
   };
 
+  const installConfirmedResultBridge = () => {
+    if (workspace.dataset.paymentState !== 'paid_confirmed') return;
+
+    const statePanel = workspace.querySelector('.crypto-payment-state');
+    const actions = statePanel?.querySelector('[data-state-actions]');
+    if (!statePanel || !actions) return;
+
+    let resultLink = actions.querySelector('[data-s8-result-link]');
+    if (!resultLink) {
+      resultLink = document.createElement('a');
+      resultLink.href = confirmedResultRoute;
+      resultLink.textContent = 'View confirmed order result →';
+      resultLink.setAttribute('data-s8-result-link', '');
+      actions.append(resultLink);
+    }
+
+    actions.hidden = false;
+
+    statePanel.querySelectorAll('[data-state-details] li').forEach((item) => {
+      if (item.textContent.includes('reviewed separately in S7')) {
+        item.textContent = 'Continue to the accepted Step 04 result after this server-confirmed transition.';
+      }
+    });
+  };
+
   workspace.querySelectorAll('[data-copy-target]').forEach((button) => {
     button.addEventListener('click', async () => {
       if (workspace.dataset.invoiceBootstrapState !== 'ready') return;
@@ -286,10 +313,20 @@
     openHashForm(false);
   }
 
+  resultBridgeObserver = new MutationObserver(installConfirmedResultBridge);
+  resultBridgeObserver.observe(workspace, {
+    attributes: true,
+    attributeFilter: ['data-payment-state'],
+    childList: true,
+    subtree: true
+  });
+
   hydrateTotals();
   beginInvoiceBootstrap();
+  installConfirmedResultBridge();
 
   window.addEventListener('pagehide', () => {
+    resultBridgeObserver?.disconnect();
     window.clearTimeout(bootstrapTimer);
     window.clearTimeout(noticeTimer);
   });
