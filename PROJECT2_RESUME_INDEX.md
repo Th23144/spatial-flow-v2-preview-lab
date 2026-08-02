@@ -40,7 +40,7 @@ Cart: Completed 1:1
 Checkout: Not done
 ```
 
-Static acceptance never changes the live-page binary status.
+Static acceptance and R0 baseline closure do not change the live-page binary status.
 
 ## Locked Checkout flow
 
@@ -184,7 +184,7 @@ R7 full commerce regression
 R8 final 1366/390/360 strict acceptance and closure
 ```
 
-## R0 current status
+## R0 — closed
 
 Authoritative records:
 
@@ -207,6 +207,7 @@ Completed:
 - WooCommerce gateway order export
 - runtime gateway registration/title/enabled export
 - Test A normal WooCommerce legacy order path
+- Test B current Crypto V0.2.5 Sandbox path
 ```
 
 Rollback package:
@@ -226,7 +227,7 @@ Enabled runtime gateways: 2
 - spatial_flow_crypto / Pay with Crypto
 ```
 
-Test A recorded baseline:
+Test A baseline:
 
 ```text
 Observed order: #3571
@@ -239,6 +240,21 @@ Native Place Order produced the observed WooCommerce order
 Current order-received template loaded
 ```
 
+Test B baseline:
+
+```text
+Observed order: #3574
+Gateway: spatial_flow_crypto / Pay with Crypto
+Total: $20.99
+Legacy /crypto-pay/ route loaded
+TRON Nile Testnet / Test USDT invoice loaded
+Pre-success UI: Waiting Payment
+Administrator-only Sandbox success control worked
+Final rendered status: Processing
+Sandbox simulation notice displayed
+Canonical WooCommerce result template loaded
+```
+
 Confirmed runtime defect:
 
 ```text
@@ -246,10 +262,14 @@ The on-hold order is still shown with preparation, fulfillment-queue and On The 
 This is carried into R4 server-authoritative result mapping.
 ```
 
-Still required before R0 can close:
+Evidence limits retained for R1/R7 regression:
 
 ```text
-- Test B current Crypto V0.2.5 Sandbox path
+- malformed-email blocking screenshot
+- exact shipping recalculation transition
+- explicit duplicate-order audit
+- separate WooCommerce admin order screens and notes
+- gateway-decline/server-error states
 ```
 
 ## Current exact stop point
@@ -258,11 +278,8 @@ Still required before R0 can close:
 Live Checkout ownership audit: closed
 Exact source-backed ownership matrix: issued
 Bounded reconstruction plan: accepted
-R0 file/config baseline: completed
-R0 Test A normal order path: recorded
-R0 Test B Crypto Sandbox path: pending
-R0 closure: blocked until Test B is recorded
-R1 live code modification: not authorized and not started
+R0 baseline/config/smoke tests: completed and closed
+R1 live code modification: awaiting explicit user authorization; not started
 Plugin/workspace integration: not started
 Checkout: Not done
 ```
@@ -270,13 +287,10 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-complete R0 Crypto Sandbox Test B
-→ close R0
-→ explicit authorization for R1
-→ one controlled implementation group at a time
-→ Sandbox and unfinished-payment recovery tests
-→ server-authoritative result tests
-→ backend-editability validation
+explicit user authorization for R1
+→ modify only form-checkout.php + checkout-safe5.js + checkout-safe5.css
+→ stop for R1 functional/visual acceptance
+→ proceed one controlled group at a time
 → final desktop/mobile strict acceptance
 → Checkout Completed 1:1 only after user approval
 ```
