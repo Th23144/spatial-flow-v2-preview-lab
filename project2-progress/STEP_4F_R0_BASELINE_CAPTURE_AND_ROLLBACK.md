@@ -86,16 +86,6 @@ Crypto gateway: Spatial Flow Crypto Pay Trial V0.2.5
 Current supplied Crypto mode: Nile Testnet + Sandbox enabled
 ```
 
-Payment-provider screen evidence:
-
-```text
-Spatial Flow Crypto Pay: active
-WooPayments: installed, setup/action incomplete
-Airwallex: installed, setup/action incomplete
-PayPal: not installed from the supplied screen
-Cash on delivery: provider row present
-```
-
 ## 5. Saved configuration exports
 
 Authoritative snapshot:
@@ -114,9 +104,13 @@ SHA256: 4e8d4b6d6fd7c8a1146e8488dd21ea1ef0a9a4a993fe453d4020443fb74e63af
 r0-gateway-order.json
 Bytes: 1478
 SHA256: 96f0ac37903eac3aec13f95ff11046e9dcdbd587d45416b420c2af2f9906675c
+
+r0-runtime-gateways.json
+Bytes: 3959
+SHA256: 19115bd99a69b9f870482777ecf14bcecf01485ce947908597edcfb44d6dee9a
 ```
 
-Both parse as valid JSON.
+All three parse as valid JSON.
 
 Relevant saved theme-mod result:
 
@@ -135,33 +129,51 @@ sf_checkout_payment_note = ""
 
 The 32 saved Order Received values are preserved in the configuration snapshot. Their current copy is strongly success/fulfillment-oriented; R4 must preserve the values before adding server-status-specific result families.
 
-Gateway order result:
+## 6. Gateway baseline
+
+Administrative order option:
 
 ```text
 woocommerce_gateway_order entries: 58
 woocommerce_payments: 1
+bacs: 22
 cod: 24
 airwallex_main: 50
 spatial_flow_crypto: 57
 ```
 
-The order option does not contain runtime title, enabled state or availability. A final read-only runtime gateway export remains required.
-
-## 6. Remaining R0 evidence gates
-
-### A. Runtime gateway list
-
-Export, without secrets:
+Runtime registered gateways:
 
 ```text
-gateway ID
-display title
-enabled state
-runtime availability
-configured order
+Registered objects: 30
+Enabled objects: 2
 ```
 
-### B. Baseline functional smoke test
+Enabled:
+
+```text
+bacs
+Title: 测试
+Enabled: yes
+
+spatial_flow_crypto
+Title: Pay with Crypto
+Enabled: yes
+```
+
+Important disabled baselines:
+
+```text
+woocommerce_payments / Card: no
+cod / Cash on delivery: no
+airwallex_main / Pay with cards and more: no
+```
+
+The exported gateway-object `order` property is null, while the separate WooCommerce option preserves administrative order. Actual front-end availability remains cart/session/address dependent and must be confirmed in the smoke test.
+
+## 7. Remaining R0 evidence gate
+
+### Baseline functional smoke test
 
 Before any source edit, record current behavior:
 
@@ -171,13 +183,13 @@ Step 01 fields render
 shipping methods and totals update
 payment gateways render dynamically
 legacy Review-step Place Order can create an order
-Crypto Sandbox creates on-hold order and enters /crypto-pay/
+Crypto Sandbox creates an on-hold order and enters /crypto-pay/
 current order-received page loads
 ```
 
 Passing this test does not accept the old design. It proves the rollback baseline.
 
-## 7. Current status
+## 8. Current status
 
 ```text
 R0 file manifest: completed
@@ -186,7 +198,7 @@ R0 external rollback ZIP: completed
 R0 page/plugin ownership evidence: completed
 R0 saved theme-mod export: completed
 R0 gateway order export: completed
-R0 runtime gateway title/enabled/availability export: pending
+R0 runtime registered/title/enabled export: completed
 R0 functional smoke test: pending
 R1: blocked and not started
 Runtime source modification: none
