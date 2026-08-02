@@ -1,6 +1,6 @@
 # Project 2 · Page Status Matrix
 
-Last updated: 2026-08-01  
+Last updated: 2026-08-02  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status rule
@@ -32,8 +32,8 @@ Accepted static HTML, visual approval or partial functionality do not count as p
 | Shop archive | `preview/spatial-flow-shop-v1.html` | Completed 1:1 | Desktop/mobile, filters, product grid, pagination, regression and backend editability passed. |
 | Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Gallery, summary, options, attributes, related products, regression and backend mappings passed. |
 | Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict geometry, mobile review, native regression, backend editability and invisible-frame removal passed. |
-| Checkout | Step 01/02/03 and Crypto references under `preview/` | Not done | S5 and S6 static state families are accepted and closed. S7 Step-04 result is next. Live implementation and final 1:1 closure have not started. |
-| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` | Not done | Existing static reference must be audited/reworked under S7 as the canonical WooCommerce-owned Step-04 result. |
+| Checkout | Step 01/02/03, Crypto Workspace and Step-04 static references | Not done | S5/S6 are accepted. S7 confirmed/pending result states are implemented and awaiting acceptance. Live implementation and final closure have not started. |
+| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` | Not done | S7 static confirmed/pending result family is implemented but not yet accepted or integrated into live WooCommerce. |
 
 ## 3. Account and utility pages
 
@@ -90,28 +90,17 @@ preview/spatial-flow-checkout-crypto-invoice-v1.css
 preview/spatial-flow-checkout-crypto-invoice-v1.js
 preview/spatial-flow-checkout-crypto-states-v1.css
 preview/spatial-flow-checkout-crypto-states-v1.js
-preview/spatial-flow-checkout-crypto-select-v1.html
-preview/spatial-flow-checkout-crypto-workspace-future-v1.html
 preview/spatial-flow-thank-you-v1.html
+preview/spatial-flow-thank-you-v1.css
+preview/spatial-flow-thank-you-v1.js
 ```
 
-Reference roles:
+Isolated future references:
 
 ```text
-crypto-select-v1.html:
-accepted future asset/network interaction reference
-
-crypto-workspace-future-v1.html:
-accepted isolated future multi-asset architecture reference
-
-crypto-states-v1.css/js:
-accepted S6 verification/recovery state layer
-
-thank-you-v1.html:
-existing Step-04 reference requiring S7 audit/rework
+preview/spatial-flow-checkout-crypto-select-v1.html
+preview/spatial-flow-checkout-crypto-workspace-future-v1.html
 ```
-
-Future references remain outside the current fixed-USDT/TRON route.
 
 ## 8. Approved Checkout semantics
 
@@ -125,58 +114,63 @@ Future references remain outside the current fixed-USDT/TRON route.
 Boundaries:
 
 ```text
-- desktop Checkout uses two columns
-- payment methods come from genuine WooCommerce availability
 - current confirmed method is Cryptocurrency
 - current plugin supports fixed USDT on TRON / TRC20
-- Cryptocurrency uses a dedicated Step-03 Workspace
-- there is one final Checkout commitment action
-- no redundant fixed-route Crypto confirmation page
+- Crypto uses a dedicated Step-03 Workspace
+- one final Checkout commitment action
+- no redundant Crypto confirmation page
 - Step 04 never asks the customer to pay or confirm again
+- browser state never decides payment success
 ```
 
-## 9. Accepted Checkout static gates
+## 9. Accepted static gates
 
 ```text
 S3 main Payment surface
 Step-03 reusable payment host
 S4A future selector reference
 S4B capability/integration contract
-S5 fixed Waiting / Preparing / bootstrap-failure state family
+S5 Waiting / Preparing / bootstrap-failure state family
 S6 verification / recovery state family
 future multi-asset integrated Workspace reference
 ```
 
-## 10. S6 accepted scope
+## 10. Current S7 review gate
 
-Accepted states:
-
-```text
-verification_failed
-retryable temporary verification error
-manual_review
-cancelled
-paid_confirmed transition boundary
-unfinished-payment recovery
-```
-
-The empty hidden secondary-action control defect was corrected before closure.
-
-S6 continues to prohibit:
+Implemented files:
 
 ```text
-automatic payment detection
-continuous polling
-live confirmation counts
-operational expiry/replacement invoice behavior
-automatic underpayment/overpayment workflows
-Step-04 implementation
+preview/spatial-flow-thank-you-v1.html
+preview/spatial-flow-thank-you-v1.css
+preview/spatial-flow-thank-you-v1.js
 ```
+
+Implemented states:
+
+```text
+confirmed:
+server-confirmed payment, exact receipt, no further payment action
+
+pending:
+order received, payment unconfirmed, order on hold, fulfilment not started
+```
+
+Review URLs:
+
+```text
+confirmed:
+preview/spatial-flow-thank-you-v1.html
+
+pending:
+preview/spatial-flow-thank-you-v1.html?prototype_result=pending
+```
+
+Static query controls do not mutate WooCommerce state.
 
 ## 11. Current Checkout execution order
 
 ```text
-S7 Step-04 Order Confirmed / Thank You / Receipt
+S7 review and acceptance
 → S8 full relative-link/session-state audit
 → S9 1366 / 390 / 360 static acceptance
 → live Checkout ownership audit
@@ -185,27 +179,7 @@ S7 Step-04 Order Confirmed / Thank You / Receipt
 → final Checkout 1:1 closure
 ```
 
-## 12. S7 boundary
-
-S7 must audit/rework:
-
-```text
-preview/spatial-flow-thank-you-v1.html
-```
-
-Required rules:
-
-```text
-- canonical WooCommerce Order Received / Thank You ownership
-- server-authoritative success only
-- confirmed order and receipt details
-- no Pay or Confirm action
-- no fifth Checkout step
-- accurate pending language when the order is not confirmed
-- no browser/session state declaring success
-```
-
-## 13. Current deployed Cart baseline
+## 12. Current deployed Cart baseline
 
 ```text
 functions.php
@@ -219,12 +193,13 @@ assets/css/spatial-flow.css
 SHA256: 79ab7e08308903f0e1693076b4817402515ada52944c575c1e827324cc6161fd
 ```
 
-## 14. Hard boundary
+## 13. Hard boundary
 
 ```text
 - preserve backend editability
-- WooCommerce/plugin remain the source of transaction truth
+- WooCommerce/plugin remain the transaction authority
 - do not modify live Checkout, CartFlows or gateway behavior during static work
-- do not hardcode dynamic commerce data where editable sources exist
+- do not hardcode dynamic commerce data in production
+- do not begin S8 before S7 acceptance
 - do not mark Checkout Completed 1:1 before live implementation, regression and backend-editability closure
 ```
