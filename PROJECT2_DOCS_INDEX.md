@@ -27,7 +27,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 19. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 20. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 21. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
-22. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+22. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
+23. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -65,7 +66,8 @@ S5 Waiting / Preparing / bootstrap failure
 S6 verification / recovery state family
 S7 Step-04 confirmed / pending result family
 S8 active-flow link/session continuity
-future multi-asset integrated Workspace reference
+S9 responsive static acceptance
+future multi-asset integrated Workspace reference remains isolated
 ```
 
 ## Accepted S8 status
@@ -86,28 +88,30 @@ old prototype transaction hashes are cleared after a new Shipping commitment
 active flow remains isolated from future selector/workspace examples
 ```
 
-User decision:
-
-```text
-通过
-```
-
-Detailed records:
+Records:
 
 ```text
 project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 ```
 
-## Current S9 responsive status
+## Accepted S9 responsive status
 
 ```text
 S9 responsive source audit: completed
-S9 1366 / 390 / 360 visual acceptance: awaiting user validation
-Live Checkout ownership audit: blocked and not started
+S9 1366 / 390 / 360 visual acceptance: accepted and closed
+Live Checkout ownership audit: authorized next phase, not started
 ```
 
-S9 source audit covers:
+Accepted dimensions:
+
+```text
+1366 × 768
+390 × 844
+360 × 800
+```
+
+Accepted scope:
 
 ```text
 Step 01 Address
@@ -117,6 +121,8 @@ S5 Preparing / Waiting / bootstrap failure
 S6 verification / recovery state family
 S7 Confirmed / Pending
 ```
+
+The S9 gate was explicitly clarified as static visual appearance, responsive layout and basic interface usability. It did not include real WooCommerce order creation, payment verification, Crypto plugin integration, production replacement, stock changes or email behavior.
 
 Confirmed responsive contracts:
 
@@ -131,12 +137,17 @@ S7 overview/facts become one column below 420px
 no deterministic source-level horizontal-overflow defect was found
 ```
 
-The audit environment blocked RawGitHack with `net::ERR_BLOCKED_BY_ADMINISTRATOR`, so automated screenshots are not claimed. The required three-size real-browser visual gate remains open.
+The audit environment blocked RawGitHack with `net::ERR_BLOCKED_BY_ADMINISTRATOR`, so automated screenshots are not claimed. The user completed the real-browser visual review and confirmed:
 
-Detailed record:
+```text
+全部通过了
+```
+
+Records:
 
 ```text
 project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
+project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
 ```
 
 ## Maintained authority boundary
@@ -162,18 +173,16 @@ S5: accepted and closed
 S6: accepted and closed
 S7 Step-04 confirmed/pending result: accepted and closed
 S8 link/session audit: accepted and closed
-S9 responsive source audit: completed
-S9 visual acceptance: awaiting user validation
+S9 responsive static acceptance: accepted and closed
 Plugin installation: deferred
-Live Checkout: blocked and not started
+Live Checkout ownership audit: authorized next phase, not started
 Checkout: Not done
 ```
 
 ## Remaining sequence
 
 ```text
-S9 user visual validation and acceptance
-→ live Checkout ownership audit
+live Checkout ownership audit
 → plugin/workspace integration
 → Sandbox and recovery testing
 → server-authoritative result testing
@@ -187,11 +196,12 @@ S9 user visual validation and acceptance
 ```text
 - preserve accepted Step 01 / 02 / 03 structure
 - preserve WooCommerce and plugin authority
+- static acceptance does not equal live Checkout completion
 - no fifth business step
 - no duplicate order or invoice
 - no fake payment success
-- no live Checkout or plugin edits during static work
-- live ownership audit cannot begin before S9 acceptance
+- live Checkout ownership audit must be a separate bounded phase
+- no production modification before ownership is mapped
 - one bounded group at a time
 - Checkout remains Not done
 ```
