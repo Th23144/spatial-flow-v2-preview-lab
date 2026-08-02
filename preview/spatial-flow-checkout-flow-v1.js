@@ -153,7 +153,10 @@
         ...current,
         address,
         shipping: null,
-        shippingDraft: null
+        shippingDraft: null,
+        paymentMethod: null,
+        paymentHostSelection: null,
+        cryptoWorkspaceDraft: null
       });
       window.location.href = addressForm.action;
     });
@@ -212,7 +215,10 @@
 
       const next = mergeState({
         shipping: currentShippingDraft,
-        shippingDraft: currentShippingDraft
+        shippingDraft: currentShippingDraft,
+        paymentMethod: null,
+        paymentHostSelection: null,
+        cryptoWorkspaceDraft: null
       });
 
       if (!next.shipping) return;
