@@ -7,10 +7,22 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 S7 Step-04 result family: accepted and closed
-S8 full relative-link/session-state audit: implemented, awaiting user acceptance
-S9 responsive static acceptance: not started
+S8 full relative-link/session-state audit: accepted and closed
+S9 responsive static acceptance: authorized next phase, not started
 Live Checkout/plugin integration: not started
 Checkout: Not done
+```
+
+User decision:
+
+```text
+通过
+```
+
+Acceptance and closure record:
+
+```text
+project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 ```
 
 ## 2. Audit scope
@@ -27,7 +39,7 @@ Cart
 → S7 confirmed or pending Step-04 result
 ```
 
-Audited:
+Audited and accepted:
 
 ```text
 - relative links and form/action destinations
@@ -217,7 +229,7 @@ Commit:
 36862cbc018bc22d3f303947081b5d7b2c1a615c
 ```
 
-## 5. Passed route audit
+## 5. Accepted route audit
 
 Confirmed valid active-flow routes:
 
@@ -227,6 +239,7 @@ Step 01 form → Step 02
 Step 02 form → Step 03
 Step 03 selected Crypto gateway → S5 Workspace
 S5 failure → Step 03 payment methods
+S6 paid_confirmed → S7 Confirmed
 S7 Pending → recovered S5/S6 Workspace
 S7 Pending/Confirmed → existing Contact support
 S6 Cancelled → existing Shop or Contact
@@ -243,7 +256,7 @@ No active Checkout artifact links into those future examples.
 
 ## 6. Authority boundary preserved
 
-The S8 changes do not perform:
+The accepted S8 changes do not perform:
 
 ```text
 WooCommerce order creation or lookup
@@ -258,58 +271,35 @@ live gateway selection
 
 The S6 paid-confirmed and S7 result query parameters remain deterministic static review controls only.
 
-## 7. Required user validation
+## 7. User acceptance result
 
-Run the linked preview in one browser tab.
-
-### Flow continuity
+The user validated the implemented linked flow and session behavior and confirmed:
 
 ```text
-1. Start at Step 01.
-2. Enter a distinct email/address.
-3. Continue to Step 02.
-4. Select Priority tracked delivery ($18.00).
-5. Continue through Step 03 to the Crypto Workspace.
-6. Confirm that the amount is 347.00 USDT.
-7. Open the S6 paid-confirmed review state.
-8. Use View confirmed order result.
-9. Confirm S7 displays the entered email/address, $18.00 shipping and $347.00 total.
+通过
 ```
 
-### Recovery continuity
+Accepted validation includes:
 
 ```text
-1. Open S7 Pending.
-2. Use Return to payment workspace or the Payment workspace breadcrumb.
-3. Confirm the recovered state restores the same session values and does not route to Step 01.
+- session email/address continuity
+- Priority Shipping $18 continuity
+- $347.00 total continuity through S5 and S7
+- S6 paid-confirmed → S7 Confirmed route
+- S7 Pending → recovered Workspace route
+- old prototype transaction hash invalidation after Shipping changes
+- Order support route replacing the dead Track Order link
+- future examples remaining isolated
+- no fifth Checkout step
 ```
-
-### Upstream invalidation
-
-```text
-1. Enter any 64-character prototype hash in S5.
-2. Return to Shipping and commit another shipping method.
-3. Continue to S5 again.
-4. Confirm the old hash is not restored.
-```
-
-### Route safety
-
-```text
-- Confirmed uses Order support, not a dead Track Order link.
-- No active-flow action opens the future asset selector or future multi-asset Workspace.
-- No fifth Checkout step appears.
-```
-
-A hard refresh may be required if the browser cached the previously reviewed JavaScript resources.
 
 ## 8. Current stop point
 
 ```text
-S8: implemented, awaiting user acceptance
-S9: blocked and not started
+S8: accepted and closed
+S9: authorized next phase, not started
 Live Checkout/plugin integration: not started
 Checkout: Not done
 ```
 
-S9 must not begin until the user explicitly accepts the S8 linked-flow and session behavior.
+S9 must be executed as a separate bounded group. This S8 closure does not itself begin S9.
