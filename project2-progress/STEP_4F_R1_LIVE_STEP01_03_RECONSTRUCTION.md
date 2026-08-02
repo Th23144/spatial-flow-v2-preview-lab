@@ -94,14 +94,14 @@ A full candidate was generated internally for diffing and syntax review. It must
 |---|---:|---:|---:|---:|---|
 | `form-checkout.php` | 9,107 | -33 (-0.36%) | 269 | -9 (-3.24%) | plausible, still requires anchored decomposition |
 | `checkout-safe5.js` | 24,010 | -453 (-1.85%) | 624 | -156 (-20.0%) | major line reduction; requires function-by-function removal audit |
-| `checkout-safe5.css` | 34,593 | +13,657 (+65.23%) | 986 | +387 (+64.61%) | blocked; unexplained material growth |
+| `checkout-safe5.css` | 34,593 | +13,657 (+65.23%) | 986 | +387 (+64.61%) | blocked; material mixed-scope growth |
 
 Diff line counts:
 
 ```text
-form-checkout.php: +123 / -132
-checkout-safe5.js: +423 / -579
-checkout-safe5.css: +719 / -332
+form-checkout.php: +124 / -133
+checkout-safe5.js: +417 / -573
+checkout-safe5.css: +718 / -331
 ```
 
 ### Candidate decision
@@ -118,7 +118,22 @@ is withdrawn as a deployment artifact.
 - retain only as an internal diff/audit reference
 ```
 
-The CSS candidate is specifically blocked because a 65.23% size increase is inconsistent with a controlled page-specific reconstruction until every added block is classified as replacement, genuinely new structure, or duplication.
+Detailed evidence:
+
+```text
+project2-progress/STEP_4F_R1_FIRST_CANDIDATE_DETAILED_DIFF_AUDIT.md
+```
+
+Locked conclusions:
+
+```text
+- archive contents show no malicious/unknown executable artifact
+- CSS was not appended as one bottom block; it was broadly rewritten from the top
+- CSS contains no exact duplicate selectors, but mixes functional shell work with a large static-reference visual migration
+- PHP preserves WooCommerce hooks but changes 257 diff lines in a 278-line template
+- JavaScript removes intended Review/relocation functions but also rewrites validation, notices, coupon/event handling and removes all comments
+- syntax success is not equivalent to runtime safety
+```
 
 ## 6. Locked R1 functional outcome
 
@@ -173,17 +188,35 @@ Rules:
 - R1-D visual work begins only after functional structure is stable
 - CSS must not jump directly from 20,936 bytes to 34,593 bytes
 - every CSS group requires exact START/END anchors and a stated size delta
+- PHP and JS comments/maintainability must be preserved where not obsolete
 - no browser acceptance is claimed until all coupled functional parts are applied
 ```
 
-## 8. Current execution point
+## 8. Future package boundary
+
+A future installation package may be offered for convenience only after:
+
+```text
+- it is regenerated from exact R0 hashes
+- only approved anchored regions differ
+- all size/line deltas are explained
+- no unrelated hook/function/selector changes remain
+- syntax/structure checks pass
+- before/after hashes and rollback instructions are included
+- the package is installed only on the local site before runtime acceptance
+```
+
+No dynamic WooCommerce change can honestly be guaranteed as absolute zero-risk before local runtime testing. The acceptable claim is bounded, source-audited, reversible and ready for local validation.
+
+## 9. Current execution point
 
 ```text
 R1 authorization: recorded
 Manual replacement and file-size policy: locked
-First full candidate: audited and blocked from deployment
+First full candidate: detailed audit completed and blocked from deployment
 Runtime source modification: none
-Next: prepare R1-A exact anchored manual replacement
+Next: prepare minimal R1-A/B/C anchored changes and re-audit size
+R1-D: blocked until functional shell is stable
 R2: blocked
 Checkout: Not done
 ```
