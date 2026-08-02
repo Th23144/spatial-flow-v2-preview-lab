@@ -21,7 +21,10 @@ S8 link/session continuity: accepted and closed
 S9 responsive static acceptance: accepted and closed
 Live Checkout ownership audit: closed
 Exact source-backed ownership matrix: issued
-Bounded reconstruction plan: next separate phase, not started
+Bounded reconstruction plan: issued
+Plan acceptance: waiting for user decision
+R0 baseline capture: not started
+R1 live code modification: not authorized and not started
 Plugin/workspace integration: not started
 ```
 
@@ -43,7 +46,7 @@ Review as a fourth Checkout input step
 fifth Checkout step
 second fixed Crypto confirmation page
 browser-authoritative payment success
-Pay / Confirm / Place order on Step 04
+Pay / Confirm / Place Order on Step 04
 ```
 
 ## 3. Authoritative static artifacts
@@ -60,7 +63,7 @@ preview/spatial-flow-thank-you-v1.css
 preview/spatial-flow-thank-you-v1.js
 ```
 
-Future multi-asset references remain isolated and must not enter current production work.
+Future multi-asset references remain isolated and must not enter current production work without a separate plugin phase.
 
 ## 4. Ownership audit result
 
@@ -74,7 +77,7 @@ project2-progress/STEP_4F_LIVE_CHECKOUT_WPCODE_VERIFICATION_AND_OWNERSHIP_CLOSUR
 project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
 ```
 
-Confirmed current environment:
+Confirmed environment:
 
 ```text
 WooCommerce Checkout page: ID 623
@@ -150,8 +153,6 @@ no autonomous expiry worker
 
 ## 7. Exact ownership decisions
 
-The source-backed matrix locks:
-
 ```text
 - keep Checkout page ID, URL and shortcode host
 - rebuild form-checkout.php as Step 01–03 while preserving native Woo hooks
@@ -167,36 +168,50 @@ The source-backed matrix locks:
 - exclude CartFlows and WPCode
 ```
 
-## 8. Next phase — bounded reconstruction plan
+## 8. Bounded reconstruction plan
 
-The next phase is documentation/planning only. It must define, for each implementation group:
+Authoritative document:
 
 ```text
-- exact files allowed to change
-- exact functions/selectors to keep, remove or migrate
-- rollback snapshot/hash requirements
+project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
+```
+
+Plan groups:
+
+```text
+R0 baseline capture and rollback package
+R1 rebuild live Step 01–03 shell and remove Review/Place Order dependency
+R2 consolidate Checkout notice and error ownership
+R3 restore backend-editable Checkout copy
+R4 map server-authoritative Step-04 results
+R5 clean historical Checkout CSS ownership
+R6 run V0.2.5 regression and choose legacy vs separate plugin-upgrade route
+R7 full commerce regression
+R8 final 1366/390/360 strict acceptance and closure
+```
+
+Every group has:
+
+```text
+- exact allowed files
+- exact functional scope
+- rollback boundary
 - preconditions
-- test cases
-- user visual/functional acceptance gate
+- functional tests
+- visual/admin acceptance gate
 - explicit stop point
 ```
 
-No implementation begins until the user explicitly approves the plan and authorizes the first group.
+No group may be merged into an unreviewed batch.
 
-## 9. Recommended reconstruction order to be finalized in the plan
+## 9. Immediate next action
 
 ```text
-Group 1: rebuild live Step 01–03 shell while preserving native Woo output
-Group 2: remove Review dependency and return native Place Order to Step 03
-Group 3: consolidate Checkout notice and shared-asset ownership
-Group 4: restore backend-editable Checkout copy
-Group 5: map server-authoritative Confirmed / Pending / Failed result semantics
-Group 6: preserve and test current V0.2.5 legacy Crypto bridge
-Group 7: full Sandbox, gateway, unfinished-payment and regression testing
-Group 8: final 1366 / 390 / 360 strict acceptance and cleanup
+User reviews and accepts the bounded reconstruction plan.
+Then begin R0 baseline capture only.
+R0 performs no runtime code modification.
+R1 requires a later explicit authorization after R0 closes.
 ```
-
-These groups may be narrowed further; they must not be executed as one batch.
 
 ## 10. Hard boundaries
 
@@ -209,14 +224,19 @@ These groups may be narrowed further; they must not be executed as one batch.
 - no fifth business step
 - no duplicate order or invoice
 - no QR/countdown/automatic-monitoring claim under V0.2.5
+- no blind whole-file overwrite
+- no routine bottom-of-file CSS patch
 - V0.2.6.1 installation and Workspace integration remain deferred
 - one bounded implementation group at a time
 ```
 
-## 11. Current exact action
+## 11. Current exact stop point
 
 ```text
-Prepare the bounded reconstruction plan as the next separate phase only after an explicit user instruction to start.
-
-Do not modify Checkout, theme assets, WPCode, CartFlows or the Crypto plugin in the same planning group.
+Bounded reconstruction plan: issued
+Plan acceptance: waiting
+R0 baseline capture: not started
+R1 implementation: not authorized and not started
+Plugin/workspace integration: not started
+Checkout: Not done
 ```
