@@ -7,7 +7,7 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 R0: completed and closed
-R1: authorized
+R1: authorized and installed for local validation
 Checkout: Not done
 ```
 
@@ -81,7 +81,7 @@ Status: superseded and prohibited
 
 Reason: removed the visible Confirmed progress stage and therefore did not strictly match V2.
 
-### Corrected current candidate
+### Corrected current package
 
 Authoritative record:
 
@@ -115,7 +115,7 @@ final visual 1:1 acceptance
 production readiness
 ```
 
-## 4. Corrected candidate file audit
+## 4. Corrected package file audit
 
 | File | R0 bytes / lines | Candidate bytes / lines | Delta |
 |---|---:|---:|---:|
@@ -155,15 +155,48 @@ Duplicate order: no new submit path found; runtime repeat-click test required
 Crypto redirect: source path unchanged; runtime `/crypto-pay/` test required
 ```
 
-## 7. Current execution point
+## 7. Runtime installation evidence
+
+Authoritative record:
 
 ```text
-Corrected V2-flow package: issued
-Runtime installation: not yet performed
-Browser regression: not yet performed
+project2-progress/STEP_4F_R1_V2_FLOW_RUNTIME_INSTALLATION_EVIDENCE.md
+```
+
+User-supplied desktop screenshot confirms:
+
+```text
+- /checkout-2-2/ loads without PHP white screen
+- Address / Shipping / Payment / Confirmed progress is visible
+- Address is active
+- old Review progress label is absent
+- Step 01 billing/contact fields render
+- Order Summary renders
+- Continue to Shipping renders
+```
+
+The screenshot does not yet prove navigation, Confirmed click blocking, shipping recalculation, Step-03 Place Order, normal order creation, duplicate prevention or Crypto redirect.
+
+## 8. Why the visual appearance remains close to the prior page
+
+The corrected package intentionally completed only the bounded functional shell work.
+
+```text
+R1-A/B/C: installed for local validation
+R1-D strict V2 visual migration: not started
+```
+
+It preserves the existing SAFE5 appearance so that functional risk can be isolated before the full reference-page visual migration. Therefore the main visible changes are progress semantics and removal of Review ownership, not a wholesale visual redesign.
+
+## 9. Current execution point
+
+```text
+Corrected V2-flow package: installed
+Initial Step-01 render smoke check: passed from screenshot
+R1 functional browser regression: pending
 Final V2 visual migration: not started
 R2: blocked
 Checkout: Not done
 ```
 
-After local installation, stop before further code work and validate the entire R1 commerce matrix.
+Next gate: validate Step 01 → Step 02 → Step 03 and the real WooCommerce submission path before starting R1-D visual migration.
