@@ -25,7 +25,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 17. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_IMPLEMENTATION.md
 18. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
 19. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
-20. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+20. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
+21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -62,6 +63,7 @@ S4B capability/integration contract: completed
 S5 Waiting / Preparing / bootstrap failure: accepted and closed
 S6 verification/recovery state family: accepted and closed
 S7 Step-04 confirmed/pending result family: accepted and closed
+S8 full relative-link/session-state audit: accepted and closed
 Future multi-asset Crypto Workspace: accepted and isolated
 ```
 
@@ -102,19 +104,13 @@ Pending result:
 preview/spatial-flow-thank-you-v1.html?prototype_result=pending
 ```
 
-User decision after the final mobile odd-grid correction:
-
-```text
-都没问题，验收通过
-```
-
-Acceptance record:
+S7 acceptance record:
 
 ```text
 project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
 ```
 
-## Current S8 implementation
+## Accepted S8 link/session continuity
 
 S8 audited the active static route from Cart through S7 and corrected:
 
@@ -126,7 +122,7 @@ S8 audited the active static route from Cart through S7 and corrected:
 - Pending breadcrumb restarting Checkout instead of recovering the same order
 ```
 
-Implementation commits:
+Accepted implementation commits:
 
 ```text
 f5d009b611e8963536511d4d76588dc8816b8da8
@@ -134,10 +130,17 @@ f5d009b611e8963536511d4d76588dc8816b8da8
 36862cbc018bc22d3f303947081b5d7b2c1a615c
 ```
 
-Audit record:
+User decision:
+
+```text
+通过
+```
+
+Audit and acceptance records:
 
 ```text
 project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
+project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 ```
 
 ## Current exact stop point
@@ -146,8 +149,8 @@ project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 S5: accepted and closed
 S6: accepted and closed
 S7 confirmed/pending Step-04 result: accepted and closed
-S8 full relative-link/session-state audit: implemented, awaiting user acceptance
-S9 responsive static acceptance: blocked and not started
+S8 full relative-link/session-state audit: accepted and closed
+S9 responsive static acceptance: authorized next phase, not started
 Live Checkout reconstruction: not started
 Checkout: Not done
 ```
@@ -155,8 +158,7 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-S8 user validation and acceptance
-→ S9 1366 / 390 / 360 static acceptance
+S9 1366 / 390 / 360 static acceptance
 → live Checkout ownership audit
 → plugin/workspace integration
 → Sandbox and unfinished-payment recovery tests
@@ -176,7 +178,7 @@ S8 user validation and acceptance
 - no fifth Checkout step
 - no duplicate order or invoice
 - no QR/countdown/automatic-monitoring claim under current capability
-- S9 cannot begin before S8 user acceptance
+- S9 must be executed as a separate bounded group
 - one bounded group at a time
 - Checkout remains Not done
 ```
