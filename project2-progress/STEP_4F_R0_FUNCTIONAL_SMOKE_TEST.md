@@ -8,9 +8,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 This is a pre-change smoke test of the current legacy Checkout baseline.
 
 ```text
-No source file is changed.
-No WordPress/WooCommerce setting is changed.
-No gateway is enabled, disabled or reordered.
+No source file was changed.
+No WordPress/WooCommerce setting was changed.
+No gateway was enabled, disabled or reordered.
 Passing does not accept the current design.
 It proves the baseline can be restored and retested after R1.
 ```
@@ -134,41 +134,119 @@ No customer test data from the screenshots is reproduced in the repository recor
 
 ## 3. Test B · Current Crypto V0.2.5 Sandbox path
 
-Run only after Test A is recorded.
-
-Required observations:
+Gateway used:
 
 ```text
-B1. Select Pay with Crypto in Step 03.
-B2. Native Place Order creates one WooCommerce order.
-B3. Order enters on-hold before verified payment.
-B4. Redirect reaches the current /crypto-pay/ legacy page.
-B5. Existing invoice creation/reuse interface loads.
-B6. Administrator-only Sandbox success control is available under the supplied local settings.
-B7. Sandbox success calls the existing server path and reaches WooCommerce order-received.
-B8. Resulting order status and notes are recorded.
+Gateway ID: spatial_flow_crypto
+Displayed title: Pay with Crypto
+Plugin: Spatial Flow Crypto Pay Trial V0.2.5
+Network: TRON Nile Testnet / TRC20
+Asset: Test USDT
 ```
 
-Evidence requested:
+### Recorded evidence
+
+The user supplied three screenshots from one Sandbox order path.
+
+#### Legacy Crypto entry
+
+Observed:
 
 ```text
-- screenshot of /crypto-pay/ with address bar
-- order number and initial on-hold status
-- screenshot of order-received after Sandbox success
-- final WooCommerce order status and relevant order-note summary
+Order number: 3574
+Legacy route: /crypto-pay/
+Order total: USD 20.99
+Payment amount: 20.99 Test USDT
+Selected network: TRON Nile Testnet
+Selected token: Test USDT
+Action: GENERATE PAYMENT INVOICE
 ```
 
-No real chain transfer is required in R0.
+The screenshot contained a WooCommerce order key in the browser URL. The key is intentionally not reproduced in this repository record.
 
-## 4. R0 completion rule
+#### Generated invoice / waiting state
 
-R0 closes only when both Test A and Test B are recorded, or when a concrete existing-baseline defect is documented and explicitly carried into R1/R6.
+Observed:
 
 ```text
-R0 Test A: recorded
-R0 Test B: pending
-R0 functional smoke test: in progress
-R1: blocked and not started
+Order number: 3574
+Status displayed: Waiting Payment
+Amount: 20.99 Test USDT
+Network: TRON Nile Testnet / TRC20
+Invoice interface: loaded
+Receiver-address field: present
+Invoice ID: present
+Administrator-only Sandbox Test Mode panel: present
+SIMULATE SUCCESSFUL PAYMENT control: present
+Transaction-hash submission interface: present
+```
+
+The receiver address, full order key and full invoice identifier are intentionally not reproduced in this repository record.
+
+#### Result after Sandbox success
+
+Observed from the real WooCommerce result object:
+
+```text
+Order number: 3574
+Payment method: Pay with Crypto
+Order status displayed: Processing
+Total: $20.99
+Sandbox notice: displayed
+Sandbox notice states that the payment was simulated and no real blockchain payment was made
+Simulated reference: displayed but not reproduced here
+```
+
+The result proves that the existing Sandbox control reached the server-side success path, transitioned the order into WooCommerce's paid/processing state and loaded the canonical order-received template.
+
+### Test B result
+
+| Check | Result | Evidence boundary |
+|---|---|---|
+| B1. Pay with Crypto selected in Checkout | Pass by resulting gateway path | The resulting order uses Pay with Crypto and reaches `/crypto-pay/`; no separate Step-03 selection screenshot was supplied for this order. |
+| B2. Native Place Order creates a WooCommerce order | Pass for one observed order | Order #3574 appears throughout the Crypto and result pages. Duplicate-order absence was not independently audited in admin. |
+| B3. Pre-payment order is on-hold | Supported, not independently admin-captured | V0.2.5 source contract sets the order to on-hold; the live page shows `Waiting Payment`. No separate pre-success WooCommerce admin status screenshot was supplied. |
+| B4. Legacy `/crypto-pay/` route loads | Pass | Browser URL and Crypto Payment page supplied. |
+| B5. Invoice creation/reuse interface loads | Pass | Generated invoice screen supplied with amount, network, address field and invoice ID. |
+| B6. Administrator-only Sandbox control is available | Pass | Sandbox Test Mode panel and success control supplied while logged in as administrator. |
+| B7. Sandbox success reaches WooCommerce result | Pass | Order-received result supplied after the simulation. |
+| B8. Final status and Sandbox note recorded | Pass from rendered order object | Status Processing; payment method Pay with Crypto; Sandbox simulation notice displayed. No separate WooCommerce admin order-notes screenshot was supplied. |
+
+Test B core baseline conclusion:
+
+```text
+Current Crypto V0.2.5 legacy Sandbox path: operational
+Observed created order: #3574
+Pre-success UI state: Waiting Payment
+Expected source-owned pre-payment order state: on-hold
+Sandbox result state: processing
+Gateway: spatial_flow_crypto / Pay with Crypto
+Canonical WooCommerce result template: loaded
+Test B: recorded
+```
+
+### Security evidence boundary
+
+The supplied screenshots visibly contained local test values including a WooCommerce order key, receiver address and invoice ID.
+
+```text
+- none of those full values are stored in the GitHub documentation
+- future screenshots should obscure the order key and receiver address
+- no private key, API key or secret was supplied
+```
+
+## 4. R0 functional smoke-test conclusion
+
+```text
+Test A normal WooCommerce legacy path: recorded
+Test B Crypto V0.2.5 Sandbox path: recorded
+Current legacy Checkout baseline: restorable and functionally observable
+Known on-hold result-language defect: carried into R4
+Malformed-email, exact shipping-recalculation transition, duplicate-order audit and separate admin-order screenshots: not independently captured in R0; retained as R1/R7 regression cases
+R0 functional smoke test: completed
+R1: not started
 Runtime source modification: none
 Checkout: Not done
 ```
+
+Passing R0 does not approve the current four-step design or current result semantics. It closes the pre-change baseline only.
