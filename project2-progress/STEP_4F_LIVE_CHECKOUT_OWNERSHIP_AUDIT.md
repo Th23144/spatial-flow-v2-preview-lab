@@ -3,264 +3,170 @@
 Date: 2026-08-02  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
-## 1. Status
+## 1. Authoritative status
 
 ```text
 S7 Step-04 result family: accepted and closed
 S8 link/session audit: accepted and closed
 S9 responsive static acceptance: accepted and closed
-Live Checkout ownership audit — repository evidence layer: completed
-Live Checkout ownership audit — current local-source verification: required next
+Repository ownership evidence layer: completed
+Current child-theme/template verification: completed
+Checkout page assignment: completed
+CartFlows ownership check: completed; no Flow exists
+Active plugin/payment evidence: completed
+Current Crypto plugin artifact: verified as authoritative V0.2.5
+WPCode active-snippet ownership check: required final residual check
+Bounded reconstruction plan: not started
 Plugin/workspace integration: not started
 Checkout: Not done
 ```
 
-This phase remains read-only. No live WordPress, WooCommerce, CartFlows, theme, database or Crypto-plugin source was changed.
+This phase remains read-only. No live WordPress, WooCommerce, CartFlows, theme, database, WPCode snippet or Crypto-plugin source was changed.
 
-## 2. Audit objective
+## 2. Detailed evidence records
 
-Determine which live component owns each Checkout responsibility before any production reconstruction begins.
-
-Ownership domains:
+Repository evidence layer:
 
 ```text
-- WooCommerce core templates and checkout lifecycle
-- child-theme template overrides
-- child-theme functions.php hooks, filters and AJAX handlers
-- CartFlows or other Checkout-page wrappers
-- Checkout-specific and shared CSS/JavaScript
-- payment-gateway rendering and submission
-- Spatial Flow Crypto order creation, on-hold state, recovery and verification
-- Thank You/result routing
-- backend-editable text and settings sources
+project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
 ```
 
-## 3. Repository evidence boundary
-
-The repository contains:
+Current page/CartFlows evidence:
 
 ```text
-- accepted static references
-- architecture and integration decisions
-- historical local-source audits
-- deployed-file hashes and sync manifests
-- Crypto-plugin package reviews
+project2-progress/STEP_4F_LIVE_CHECKOUT_PAGE_AND_CARTFLOWS_EVIDENCE.md
 ```
 
-The repository does not contain the complete current local WordPress installation or the current full contents of:
+Current source/plugin verification:
 
 ```text
-functions.php
-assets/js/spatial-flow.js
-assets/css/checkout-safe5.css
-assets/css/spatial-flow.css
-active child-theme woocommerce/checkout/ overrides
-CartFlows flow/step configuration
-currently installed Crypto-plugin source
+project2-progress/STEP_4F_LIVE_CHECKOUT_CURRENT_SOURCE_AND_PLUGIN_VERIFICATION.md
 ```
 
-An earlier authoritative plugin review explicitly found no repository source reference to:
+The current-source record contains exact hashes, template ownership, active plugin/payment evidence and the V0.2.5 artifact verification.
 
-```text
-checkout/form-pay.php
-woocommerce_locate_template
-before_woocommerce_pay_form
-```
+## 3. Confirmed current owners
 
-and correctly warned that this does not prove the local installation has no override or handler. Therefore repository evidence can establish the ownership contract, but cannot close the current local-source verification gate by itself.
-
-## 4. Confirmed current ownership map
-
-| Surface / responsibility | Confirmed owner | Repository conclusion |
+| Surface | Current owner | Decision boundary |
 |---|---|---|
-| Checkout entry from Cart | WooCommerce checkout navigation | The accepted Cart routes to `/checkout-2-2/`; Cart does not replace the checkout URL or nonce lifecycle. |
-| Contact, address, shipping, totals, validation, notices, order commitment | WooCommerce core lifecycle | These must remain server-owned and dynamic. Static Step 01–03 files are visual references only. |
-| Available payment methods and final payment submission | WooCommerce gateway system | Step 03 is the only final transactional Checkout step. No second Review/Confirm step is permitted. |
-| Order, order key, stock, taxes, totals, email, refunds and statuses | WooCommerce | Navigation or browser state cannot decide payment success. |
-| Checkout product secondary line | Child-theme `functions.php` shared filter | `spatial_flow_cart_visual_2_cart_item_name()` runs on Cart and Checkout and adds `.sf-cart-item-meta`; it is a cross-page dependency that must not be removed blindly. |
-| SAFE5 Checkout visual/notice treatment | `assets/css/checkout-safe5.css` | Checkout-only stylesheet. It contains at least the accepted rule that hides the carried add-to-cart success notice on SAFE5 while preserving validation, Coupon, payment and required-field errors. |
-| Shared storefront shell and potentially historical Checkout selectors | `assets/css/spatial-flow.css` | Global/shared visual owner. Checkout-specific changes must not default to this file when `checkout-safe5.css` is the correct scoped owner. Exact current overlap still requires source verification. |
-| Existing Checkout interaction layer | Child-theme `assets/js/spatial-flow.js` and WooCommerce scripts | The deployed JS artifact is recorded, but its exact current Checkout responsibilities cannot be proven without the current file contents. WooCommerce AJAX/update lifecycle must remain intact. |
-| Current fixed Crypto gateway identity | Spatial Flow Crypto plugin | Gateway ID `spatial_flow_crypto`; fixed USDT on TRON/TRC20; administrator-controlled mainnet/Nile/Shasta; customer-submitted TRON transaction hash; server-side TronGrid verification. |
-| Current unresolved Crypto order state | Spatial Flow Crypto plugin + WooCommerce | Expected state is `on-hold`; server verification calls `payment_complete()` at most once and WooCommerce owns the resulting order lifecycle. |
-| Existing Crypto customer path | Current Crypto plugin legacy flow | Reviewed package evidence preserves `process_payment()`, `/crypto-pay/`, `[sf_crypto_pay]`, invoice creation, admin-post handlers, Sandbox and canonical Thank You behavior. |
-| Future dedicated Crypto order-pay Workspace | Not active in the accepted V0.2.6.1 Step-1 package | V0.2.6.1 adds only inert skeletons and a default-off feature flag. It introduces no REST route, no order-pay hook, no template override and no redirect change. Installation/runtime activation is not established by this repository audit. |
-| Unfinished-payment recovery target | WooCommerce order-pay | Approved future recovery surface. Before activation, the active theme/plugins must be checked for `form-pay.php`, `woocommerce_locate_template`, `before_woocommerce_pay_form` and other order-pay customizations. |
-| Step 04 / canonical result truth | WooCommerce order-received lifecycle | Confirmed and Pending static S7 pages define accepted presentation and language only. The live result must be selected from the actual WooCommerce order/payment state. |
-| Operational content/editability | WordPress theme mods/options, WooCommerce data and gateway settings | Existing dynamic/editable sources must be preserved. Static copy must not replace product, customer, shipping, totals, payment or status truth. |
+| `/checkout-2-2/` WordPress page | WooCommerce Checkout page ID 623 with `[woocommerce_checkout]` | Page editor is only the shortcode host. |
+| Main live Checkout structure | Child-theme `woocommerce/checkout/form-checkout.php` | Current four-view SAFE5 structure is legacy and includes a rejected Step 4 Review. |
+| SAFE5 step state, validation, shipping mirror, coupon, notices and Place Order relocation | `assets/js/checkout-safe5.js` | Major migration owner; not decorative JS. |
+| SAFE5 page-specific visual layer | `assets/css/checkout-safe5.css` | Scoped Checkout stylesheet. |
+| Shared notice/terms behavior | `assets/js/spatial-flow.js` | Overlaps SAFE5 on `updated_checkout` and `checkout_error`; requires deliberate migration decision. |
+| Historical shared Checkout cascade | `assets/css/spatial-flow.css` | Contains substantial old Checkout selectors; cannot remain an unexamined fallback layer. |
+| Asset loading, legacy unhooks, item context, Customizer registration | `functions.php` | Must preserve WooCommerce authority while removing obsolete visual ownership. |
+| Live Step 04 result | Child-theme `woocommerce/checkout/thankyou.php` + WooCommerce order object/hooks | Current non-failed branch does not distinguish pending/on-hold from paid success semantics. |
+| Billing, shipping, totals, notices, gateways, order creation, statuses, stock and email | WooCommerce core/gateway lifecycle | Must remain server authoritative. |
+| Current Crypto path | Spatial Flow Crypto Pay Trial V0.2.5 | Fixed USDT/TRON legacy `/crypto-pay/` flow; no Project 2 Workspace exists. |
+| CartFlows | Plugin active, but no Flow exists | Not the current Checkout or Thank You structure owner. |
 
-## 5. Confirmed deployed/theme evidence
+## 4. Locked current live defects relative to the accepted static architecture
 
-Current repository records identify the deployed commerce-theme baseline as:
+### A. Rejected Review step remains live
+
+Current live sequence:
 
 ```text
-functions.php
-Version: 2.7.8
-SHA256: 5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca6de7a640b705d5e75f9ef00b
-
-assets/js/spatial-flow.js
-SHA256: 7442ee92167ae383b933c6db0281f14ea56a75733339818c3e4858d77d52651b
-
-assets/css/spatial-flow.css
-SHA256: 79ab7e08308903f0e1693076b4817402515ada52944c575c1e827324cc6161fd
+Information → Shipping → Payment → Review → Place Order
 ```
 
-These hashes prove the accepted Cart baseline, not the exact current Checkout hook/function map. The source contents must be re-read before editing.
-
-## 6. Crypto integration truth
-
-Approved current/future split:
-
-### Existing legacy path
+Accepted Project 2 sequence:
 
 ```text
-Step 03 selects spatial_flow_crypto
-→ WooCommerce creates the order
-→ order becomes on-hold
-→ current plugin redirects to /crypto-pay/
-→ customer creates/uses an invoice
-→ customer submits the transaction hash
-→ server verifies through TronGrid
-→ payment_complete()
-→ canonical WooCommerce Thank You/result
+01 Contact / Address
+→ 02 Shipping
+→ 03 Payment
+→ 04 Order Confirmed / Thank You / Receipt
 ```
 
-### Future dedicated Step-03 Workspace
+The live Review step is not accepted and must not become a fifth business step.
+
+### B. Current JS requires Step 4 before native submission
+
+`checkout-safe5.js` moves the real WooCommerce `.place-order` row into Step 4 and intercepts form submission until that step is active. This behavior must be reworked so the final transactional action belongs to Step 03.
+
+### C. Current Thank You semantics are incomplete
+
+The live `thankyou.php` separates failed orders, but all other statuses use the same success-like Order Received composition. Pending/on-hold orders therefore lack the accepted unpaid/pending language and recovery route.
+
+### D. Checkout Customizer fields are partly orphaned
+
+The backend still exposes `Spatial Flow Checkout Page`, but SAFE5 removes the legacy hooks that consume many of those values while `form-checkout.php` hardcodes current headings, step labels, summary and trust copy. Backend control presence does not equal active editability.
+
+### E. Shared and SAFE5 notice owners overlap
+
+Both `spatial-flow.js` and `checkout-safe5.js` listen to WooCommerce Checkout refresh/error events and move/normalize notices. `spatial-flow.css` also contains a historical rule hiding `.woocommerce-NoticeGroup-checkout`. This overlap must be resolved in the reconstruction plan.
+
+## 5. Current Crypto truth
+
+Current artifact:
 
 ```text
-WooCommerce order-pay validation
-→ dedicated spatial_flow_crypto Workspace
-→ create/reuse one invoice
-→ required transaction-hash submission
-→ server verification
-→ canonical Step 04
+Spatial Flow Crypto Pay Trial V0.2.5
+SHA256: 41e926e96af99a0623d850189ec99ea4a58536b3f4b23be78f1eba9d21d7550f
 ```
 
-The accepted V0.2.6.1 Step-1 package does not activate this future flow. It has:
+The supplied ZIP hash matches the previously recorded authoritative V0.2.5 baseline exactly.
+
+Current runtime contract:
 
 ```text
-- no REST route
-- no order-pay hook
-- no checkout/form-pay.php replacement
-- no Workspace Token generation
-- no process_payment() redirect change
-- default-off inert feature flag
+Gateway ID: spatial_flow_crypto
+fixed USDT on TRON/TRC20
+administrator-controlled mainnet / Nile / Shasta
+process_payment() sets on-hold
+redirect to legacy /crypto-pay/ with order_id + WooCommerce order key
+invoice and transaction submission through admin-post handlers
+server-side TronGrid verification
+payment_complete(tx_hash) on verified success
+canonical WooCommerce order-received result
+administrator-only Sandbox path
 ```
 
-Therefore Project 2 must not design against an assumed active order-pay Workspace until the installed plugin source and runtime version are confirmed.
+Current supplied settings show Nile Testnet and Sandbox enabled for local testing.
 
-## 7. Current unresolved ownership questions
-
-### A. Main Checkout template ownership
-
-Not yet proven from current source:
+Absent from V0.2.5:
 
 ```text
-- whether the child theme currently overrides woocommerce/checkout/form-checkout.php
-- whether it overrides review-order.php or payment.php
-- whether CartFlows replaces/wraps the Checkout form or only supplies the WordPress page/step container
-- whether any plugin filters woocommerce_locate_template for Checkout templates
+REST Workspace routes
+before_woocommerce_pay_form Workspace bootstrap
+woocommerce_locate_template form-pay replacement
+project2_workspace_enabled
+Workspace epoch/token
+X-SF-Workspace-Token
+active order-pay Workspace
 ```
 
-### B. Order-pay ownership
+The invoice expiry timestamp is stored, but V0.2.5 has no autonomous worker/cron expiry transition. Minimum confirmations is stored for a later worker version. No operational countdown, automatic monitoring or confirmation tracker may be claimed.
 
-Not yet proven from current source:
+## 6. Final residual ownership check
+
+WPCode Lite 2.3.3 is active and can inject PHP/CSS/JavaScript outside the supplied child-theme files.
+
+The only remaining user evidence required for this ownership phase is the active WPCode snippet list, checking for snippets related to:
 
 ```text
-- active woocommerce/checkout/form-pay.php override
-- before_woocommerce_pay_form handlers
-- woocommerce_valid_order_statuses_for_payment filters
-- order-pay CSS/JS customizations
-- conflict with a future dedicated Crypto Workspace
+checkout
+woocommerce_checkout
+order-received / thankyou
+payment gateways
+crypto-pay
+wc-ajax
 ```
 
-### C. Theme PHP and JavaScript ownership
+No snippet is authorized to be edited or disabled during this check.
 
-Not yet proven from current source:
+## 7. Next safe boundary
+
+After the WPCode active-snippet check:
 
 ```text
-- exact SAFE5 hooks and callback priorities in functions.php
-- exact Step 01/02/03 state owner
-- exact email validation owner
-- exact shipping-step transition owner
-- exact payment-section transition owner
-- WooCommerce updated_checkout / checkout_error / AJAX event handlers in spatial-flow.js
-- any DOM relocation that depends on current WooCommerce markup
+close Live Checkout ownership audit
+→ produce exact source-backed ownership matrix
+→ write a bounded reconstruction plan
+→ obtain explicit user authorization
+→ only then modify one controlled implementation group
 ```
 
-### D. Result-page ownership
-
-Not yet proven from current source:
-
-```text
-- whether woocommerce/checkout/thankyou.php is currently overridden
-- which hooks add custom Thank You content
-- whether current Pending/On-hold language is gateway-specific or generic
-- which existing result content is backend editable
-```
-
-### E. Installed Crypto-plugin runtime
-
-Not yet proven by this repository audit:
-
-```text
-- exact installed plugin version
-- whether V0.2.6.1 has been installed
-- whether its Step-1 local old-path regression passed
-- current value of project2_workspace_enabled
-- current epoch option value
-```
-
-## 8. Required current-source evidence bundle
-
-The next bounded audit group requires the current local copies or exact current listings for:
-
-```text
-1. wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/functions.php
-2. wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/assets/js/spatial-flow.js
-3. wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/assets/css/checkout-safe5.css
-4. wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/assets/css/spatial-flow.css
-5. directory listing: wp-content/themes/spatial-flow-astra-child-v1.2-main-journal/woocommerce/checkout/
-6. every existing file from that directory, especially:
-   - form-checkout.php
-   - form-pay.php
-   - review-order.php
-   - payment.php
-   - thankyou.php
-7. current `/checkout-2-2/` WordPress page content/template assignment
-8. CartFlows flow/step configuration or export that owns `/checkout-2-2/`
-9. current active-plugin list relevant to Checkout/payment
-10. currently installed `spatial-flow-crypto-pay` plugin source or exact installed ZIP/version evidence
-```
-
-Large files must be reviewed as current baselines before any edit. Historical hashes and previous uploads are not substitutes.
-
-## 9. Safe implementation boundary after source verification
-
-After the evidence bundle is read, the next output must be a source-backed ownership matrix naming:
-
-```text
-- exact file
-- exact hook/filter/event
-- exact callback or selector
-- current responsibility
-- keep / replace / unhook / migrate decision
-- backend-editability source
-- rollback boundary
-- regression tests
-```
-
-Only after that matrix is accepted may a bounded reconstruction plan be written.
-
-No live template, CSS, JS, CartFlows or Crypto-plugin change is authorized by this audit record.
-
-## 10. Current stop point
-
-```text
-Live Checkout ownership audit — repository evidence layer: completed
-Live Checkout ownership audit — current local-source verification: required next
-Bounded reconstruction plan: blocked
-Plugin/workspace integration: blocked
-Live Checkout source modification: not started
-Checkout: Not done
-```
+No live reconstruction, V0.2.6.1 installation or Workspace integration is authorized by this audit document.
