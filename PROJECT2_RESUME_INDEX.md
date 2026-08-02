@@ -14,22 +14,13 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 6. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 7. project2-progress/STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md
 8. project2-progress/STEP_4F_CHECKOUT_PAYMENT_ARCHITECTURE_DECISION_PROPOSAL.md
-9. project2-progress/STEP_4F_PAYMENT_STEP_03_LAYOUT_AND_CRYPTO_SUBFLOW_CORRECTION.md
-10. project2-progress/STEP_4F_S3_FINAL_STATIC_CHECKOUT_AND_MOBILE_COMMERCE_SURFACE_ACCEPTANCE.md
-11. project2-progress/STEP_4F_STEP03_PAYMENT_HOST_EXTENSIBILITY_ACCEPTANCE.md
-12. project2-progress/STEP_4F_S4A_FINAL_PLUGIN_AGNOSTIC_CRYPTO_SELECTION_ACCEPTANCE.md
-13. project2-progress/STEP_4F_S4B_INTEGRATION_CONTRACT_REVIEW_AND_CORRECTED_DECISION.md
-14. project2-progress/STEP_4F_S5_PREPARING_INVOICE_INTERNAL_STATE_ACCEPTANCE.md
-15. project2-progress/STEP_4F_S6_SUPPORTED_VERIFICATION_AND_RECOVERY_STATE_ACCEPTANCE.md
-16. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_AUDIT_AND_GATE.md
-17. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_IMPLEMENTATION.md
-18. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
-19. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
-20. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
-21. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
-22. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
-23. project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
-24. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+9. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
+10. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
+11. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
+12. project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
+13. project2-progress/STEP_4F_LIVE_CHECKOUT_PAGE_AND_CARTFLOWS_EVIDENCE.md
+14. project2-progress/STEP_4F_LIVE_CHECKOUT_CURRENT_SOURCE_AND_PLUGIN_VERIFICATION.md
+15. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -45,7 +36,7 @@ Checkout: Not done
 
 Static acceptance never equals live-page `Completed 1:1`.
 
-## Locked Checkout business flow
+## Locked Checkout flow
 
 ```text
 01 Contact / Address
@@ -54,206 +45,143 @@ Static acceptance never equals live-page `Completed 1:1`.
 → 04 Order Confirmed / Thank You / Receipt
 ```
 
-Steps 01–03 are Checkout. Step 04 is the WooCommerce-owned result and is never a Review or another payment-confirmation step.
+Step 04 is WooCommerce-owned result truth. It is never Review and never requests payment again.
 
-## Accepted Checkout static gates
+## Accepted static gates
 
 ```text
 S3 main Step-03 Payment: accepted and closed
-Step-03 reusable payment host: accepted and closed
-S4A future asset/network selector: accepted and closed
+Step-03 payment host: accepted and closed
+S4A future selector reference: accepted and isolated
 S4B capability/integration contract: completed
 S5 Waiting / Preparing / bootstrap failure: accepted and closed
 S6 verification/recovery state family: accepted and closed
-S7 Step-04 confirmed/pending result family: accepted and closed
-S8 full relative-link/session-state audit: accepted and closed
-S9 responsive static acceptance: accepted and closed
-Future multi-asset Crypto Workspace: accepted and isolated
+S7 confirmed/pending Step-04 result: accepted and closed
+S8 link/session continuity: accepted and closed
+S9 1366/390/360 responsive static acceptance: accepted and closed
 ```
 
-## Current Crypto capability truth
+## Current live ownership truth
+
+Confirmed current page/configuration:
+
+```text
+WooCommerce Cart page: ID 622
+WooCommerce Checkout page: ID 623
+Checkout URL: /checkout-2-2/
+Checkout page content: [woocommerce_checkout]
+CartFlows: active plugin, but no Flow exists
+```
+
+Confirmed active child-theme Checkout files:
+
+```text
+woocommerce/checkout/form-checkout.php
+woocommerce/checkout/thankyou.php
+assets/js/checkout-safe5.js
+assets/css/checkout-safe5.css
+functions.php
+assets/js/spatial-flow.js
+assets/css/spatial-flow.css
+```
+
+No child-theme override exists for:
+
+```text
+form-pay.php
+payment.php
+review-order.php
+```
+
+## Current live defects relative to the accepted architecture
+
+```text
+1. form-checkout.php still implements Information → Shipping → Payment → Review.
+2. checkout-safe5.js moves native Place Order into the rejected Review step and blocks submission until Step 4.
+3. thankyou.php treats every non-failed status with one success-like result composition; pending/on-hold lacks accepted Pending semantics.
+4. many Checkout Customizer fields are still registered but current SAFE5 hardcodes visible copy and removes the legacy hooks that consume those fields.
+5. spatial-flow.js and checkout-safe5.js overlap on updated_checkout / checkout_error notice ownership.
+6. spatial-flow.css contains substantial historical Checkout rules beneath the later SAFE5 layer.
+```
+
+## Current Crypto truth
+
+Current installed/source artifact:
+
+```text
+Spatial Flow Crypto Pay Trial V0.2.5
+ZIP SHA256: 41e926e96af99a0623d850189ec99ea4a58536b3f4b23be78f1eba9d21d7550f
+```
+
+The hash matches the previously recorded authoritative V0.2.5 baseline exactly.
+
+Current runtime contract:
 
 ```text
 Gateway ID: spatial_flow_crypto
-Asset: USDT
-Network: TRON / TRC20
-Environment: administrator-controlled mainnet / nile / shasta
-Customer asset/network selection: unavailable
-Unresolved order state: on-hold
-Verification: customer-submitted TRON transaction hash
-Authority: server-side TronGrid verification + payment_complete()
+fixed USDT / TRON-TRC20
+admin-selected mainnet / Nile / Shasta
+process_payment() → on-hold
+legacy /crypto-pay/ redirect
+invoice and transaction submission through admin-post
+server-side TronGrid verification
+payment_complete(tx_hash)
+canonical WooCommerce order-received result
+administrator-only Sandbox path
 ```
 
-No current QR, wallet connection, automatic monitoring, operational expiry, confirmation counts or production multi-asset routing exists.
+Supplied local settings currently show Nile Testnet and Sandbox enabled.
 
-## Accepted S7 result family
-
-Artifacts:
+Absent from V0.2.5:
 
 ```text
-preview/spatial-flow-thank-you-v1.html
-preview/spatial-flow-thank-you-v1.css
-preview/spatial-flow-thank-you-v1.js
+REST Workspace routes
+order-pay Workspace hooks
+form-pay replacement
+project2_workspace_enabled
+Workspace token/epoch
+active Project 2 Crypto Workspace
 ```
 
-Confirmed result:
-
-```text
-preview/spatial-flow-thank-you-v1.html
-```
-
-Pending result:
-
-```text
-preview/spatial-flow-thank-you-v1.html?prototype_result=pending
-```
-
-S7 acceptance record:
-
-```text
-project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
-```
-
-## Accepted S8 link/session continuity
-
-S8 audited the active static route from Cart through S7 and corrected:
-
-```text
-- stale payment/invoice state surviving Address or Shipping edits
-- missing S6 paid-confirmed → S7 confirmed bridge
-- S7 fixed values not inheriting Checkout session email/address/shipping/total
-- dead Track Order preview route
-- Pending breadcrumb restarting Checkout instead of recovering the same order
-```
-
-Accepted implementation commits:
-
-```text
-f5d009b611e8963536511d4d76588dc8816b8da8
-7fc652f202113cf5e432e6621be336fa8035b3a0
-36862cbc018bc22d3f303947081b5d7b2c1a615c
-```
-
-User decision:
-
-```text
-通过
-```
-
-Records:
-
-```text
-project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
-project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
-```
-
-## Accepted S9 responsive gate
-
-Accepted viewport families:
-
-```text
-1366 × 768
-390 × 844
-360 × 800
-```
-
-Accepted scope:
-
-```text
-Step 01 Address
-Step 02 Shipping
-Step 03 Payment
-S5 Preparing / Waiting / bootstrap failure
-S6 verification / recovery state family
-S7 Confirmed / Pending
-```
-
-The S9 gate covered static visual appearance, responsive composition and basic interface usability. It did not cover real WooCommerce order creation, payment verification, Crypto plugin integration or production replacement.
-
-User decision after scope clarification:
-
-```text
-全部通过了
-```
-
-Records:
-
-```text
-project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
-project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
-```
-
-## Current Live Checkout ownership audit
-
-Repository evidence layer:
-
-```text
-Completed.
-```
-
-Confirmed ownership:
-
-```text
-- WooCommerce owns fields, shipping, totals, validation, notices, payment submission, order and result truth
-- child-theme functions.php owns at least the shared Cart/Checkout item-context filter
-- checkout-safe5.css is the Checkout-only visual/notice layer
-- spatial-flow.css is the shared/global layer and must not absorb Checkout fixes by default
-- spatial-flow.js participates in the current storefront interaction layer, but its exact Checkout event ownership requires the current file
-- spatial_flow_crypto owns the fixed USDT/TRON gateway, on-hold state, TronGrid verification and payment_complete()
-- the accepted V0.2.6.1 package does not activate REST, order-pay hooks, template replacement or a new Workspace
-- WooCommerce order-pay is the approved future unfinished-payment recovery surface
-- WooCommerce order-received remains the canonical Step-04 truth owner
-```
-
-Current-source verification remains open because the repository is not the complete local WordPress installation.
-
-Required current evidence:
-
-```text
-functions.php
-assets/js/spatial-flow.js
-assets/css/checkout-safe5.css
-assets/css/spatial-flow.css
-child-theme woocommerce/checkout/ directory and existing files
-/checkout-2-2/ page/template assignment
-CartFlows flow/step configuration
-active Checkout/payment plugin list
-currently installed Spatial Flow Crypto plugin source/version
-```
-
-Audit record:
-
-```text
-project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
-```
+No QR, wallet connection, automatic monitoring, operational countdown or live confirmation tracker may be claimed.
 
 ## Current exact stop point
 
 ```text
-S5: accepted and closed
-S6: accepted and closed
-S7 confirmed/pending Step-04 result: accepted and closed
-S8 full relative-link/session-state audit: accepted and closed
-S9 responsive static acceptance: accepted and closed
-Live Checkout ownership audit — repository evidence: completed
-Live Checkout ownership audit — current local-source verification: required next
-Bounded reconstruction plan: blocked
-Plugin/workspace integration: blocked
+Repository ownership evidence: completed
+Current child-theme/template verification: completed
+Checkout page assignment: completed
+CartFlows ownership check: completed; no Flow
+Active plugin/payment evidence: completed
+Crypto V0.2.5 source verification: completed
+WPCode active-snippet ownership check: required final residual check
+Exact ownership matrix: not yet issued
+Bounded reconstruction plan: not started
+Plugin/workspace integration: not started
 Checkout: Not done
 ```
 
-## Remaining sequence
+## Next action
+
+Read-only check of WPCode Lite active snippets for any code targeting:
 
 ```text
-current local-source verification
-→ exact hook/template/asset ownership matrix
-→ bounded reconstruction plan
-→ plugin/workspace integration
-→ Sandbox and unfinished-payment recovery tests
-→ server-authoritative result tests
-→ production replacement
-→ backend-editability validation
-→ final Checkout 1:1 closure
+checkout
+woocommerce_checkout
+order-received / thankyou
+payment gateways
+crypto-pay
+wc-ajax
+```
+
+After that check:
+
+```text
+close ownership audit
+→ issue exact source-backed ownership matrix
+→ write bounded reconstruction plan
+→ obtain explicit authorization
+→ implement one controlled group only
 ```
 
 ## Hard boundaries
@@ -261,12 +189,10 @@ current local-source verification
 ```text
 - preserve WooCommerce order/payment authority
 - preserve backend editability
-- static acceptance does not equal live Checkout completion
 - no browser-authoritative payment success
 - no fifth Checkout step
 - no duplicate order or invoice
-- no QR/countdown/automatic-monitoring claim under current capability
-- no source modification before the current local files and CartFlows/plugin ownership are verified
-- one bounded group at a time
+- no live source modification during ownership audit
+- V0.2.6.1 installation and Workspace integration remain deferred
 - Checkout remains Not done
 ```
