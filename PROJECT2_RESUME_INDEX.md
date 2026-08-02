@@ -23,7 +23,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 15. project2-progress/STEP_4F_S6_SUPPORTED_VERIFICATION_AND_RECOVERY_STATE_ACCEPTANCE.md
 16. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_AUDIT_AND_GATE.md
 17. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_IMPLEMENTATION.md
-18. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+18. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
+19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -59,6 +60,7 @@ S4A future asset/network selector: accepted and closed
 S4B capability/integration contract: completed
 S5 Waiting / Preparing / bootstrap failure: accepted and closed
 S6 verification/recovery state family: accepted and closed
+S7 Step-04 confirmed/pending result family: accepted and closed
 Future multi-asset Crypto Workspace: accepted and isolated
 ```
 
@@ -77,9 +79,9 @@ Authority: server-side TronGrid verification + payment_complete()
 
 No current QR, wallet connection, automatic monitoring, operational expiry, confirmation counts or production multi-asset routing exists.
 
-## Current S7 review gate
+## Accepted S7 result family
 
-Rebuilt Step-04 artifacts:
+Artifacts:
 
 ```text
 preview/spatial-flow-thank-you-v1.html
@@ -87,13 +89,13 @@ preview/spatial-flow-thank-you-v1.css
 preview/spatial-flow-thank-you-v1.js
 ```
 
-Default confirmed result:
+Confirmed result:
 
 ```text
 preview/spatial-flow-thank-you-v1.html
 ```
 
-Pending result review:
+Pending result:
 
 ```text
 preview/spatial-flow-thank-you-v1.html?prototype_result=pending
@@ -120,6 +122,18 @@ return to the same payment workspace or contact support
 
 The query parameter is a static review control only. Browser state never decides real payment success.
 
+User decision after the final mobile odd-grid correction:
+
+```text
+都没问题，验收通过
+```
+
+Acceptance record:
+
+```text
+project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
+```
+
 ## S7 corrections from the old page
 
 ```text
@@ -131,6 +145,7 @@ added server-confirmed and pending result distinction
 removed Account under the guest-checkout model
 removed non-operational # links from this page
 split inline CSS into independent CSS/JS resources
+fixed the odd five-item mobile overview grid
 ```
 
 ## Current exact stop point
@@ -138,8 +153,8 @@ split inline CSS into independent CSS/JS resources
 ```text
 S5: accepted and closed
 S6: accepted and closed
-S7 confirmed/pending Step-04 result: implemented, awaiting user acceptance
-S8 full link/session audit: blocked and not started
+S7 confirmed/pending Step-04 result: accepted and closed
+S8 full relative-link/session-state audit: authorized next phase, not started
 S9 responsive static acceptance: not started
 Live Checkout reconstruction: not started
 Checkout: Not done
@@ -148,8 +163,7 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-S7 review/acceptance
-→ S8 full relative-link/session-state audit
+S8 full relative-link/session-state audit
 → S9 1366 / 390 / 360 static acceptance
 → live Checkout ownership audit
 → plugin/workspace integration
@@ -170,7 +184,7 @@ S7 review/acceptance
 - no fifth Checkout step
 - no duplicate order or invoice
 - no QR/countdown/automatic-monitoring claim under current capability
-- S8 cannot begin before S7 acceptance
+- S8 must be executed as a separate bounded group
 - one bounded group at a time
 - Checkout remains Not done
 ```
