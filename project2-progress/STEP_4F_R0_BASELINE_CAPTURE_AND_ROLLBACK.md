@@ -23,8 +23,6 @@ Checkout: Not done
 
 ## 2. Exact uploaded source baseline
 
-The current user-supplied files were copied into an external rollback package without altering content.
-
 | Runtime path | Bytes | Lines | SHA256 | Validation |
 |---|---:|---:|---|---|
 | `functions.php` | 557249 | 10414 | `5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca6de7a640b705d5e75f9ef00b` | `php -l`: pass |
@@ -34,9 +32,9 @@ The current user-supplied files were copied into an external rollback package wi
 | `assets/css/checkout-safe5.css` | 20936 | 599 | `6316615551f3f732933881f07fa6c1c128a1a013aa4de3e5afce22dff471313a` | tinycss2: 0 parse errors; braces/comments balanced |
 | `woocommerce/checkout/form-checkout.php` | 9140 | 278 | `5ffb8eab32114354a7c40e2613bc03ccbcf72275217d6f50f5eca9ce35668b5f` | `php -l`: pass |
 | `woocommerce/checkout/thankyou.php` | 23174 | 341 | `6556ba6faf6fd6d687b69e5d38cd2910dd89805405d842dc27a2caab4fec7cfa` | `php -l`: pass |
-| `spatial-flow-crypto-pay-trial-v0.2.5.zip` | 16378 | — | `41e926e96af99a0623d850189ec99ea4a58536b3f4b23be78f1eba9d21d7550f` | authoritative V0.2.5 artifact previously verified |
+| `spatial-flow-crypto-pay-trial-v0.2.5.zip` | 16378 | — | `41e926e96af99a0623d850189ec99ea4a58536b3f4b23be78f1eba9d21d7550f` | authoritative V0.2.5 artifact verified |
 
-Newline preservation was also recorded:
+Newline preservation:
 
 ```text
 LF: functions.php, spatial-flow.js, spatial-flow.css, thankyou.php
@@ -45,16 +43,9 @@ CRLF: checkout-safe5.js, checkout-safe5.css, form-checkout.php
 
 ## 3. External rollback package
 
-Package name:
-
 ```text
-project2-checkout-r0-baseline-20260802.zip
-```
-
-Package SHA256:
-
-```text
-5eb98b952a19a7de000cfc870f3750cb15b3237e543e93dea284e78e7a36f45c
+Package: project2-checkout-r0-baseline-20260802.zip
+SHA256: 5eb98b952a19a7de000cfc870f3750cb15b3237e543e93dea284e78e7a36f45c
 ```
 
 Contents:
@@ -74,7 +65,7 @@ plugin/spatial-flow-crypto-pay-trial-v0.2.5.zip
 
 This package is external to the repository and does not pollute the runtime project.
 
-R1 rollback rule remains atomic:
+R1 atomic rollback unit:
 
 ```text
 form-checkout.php
@@ -82,9 +73,7 @@ form-checkout.php
 + checkout-safe5.css
 ```
 
-These three coupled files must be restored together if R1 is rolled back.
-
-## 4. Configuration evidence already confirmed
+## 4. Confirmed page/plugin baseline
 
 ```text
 WooCommerce Cart page: Cart, ID 622
@@ -97,7 +86,7 @@ Crypto gateway: Spatial Flow Crypto Pay Trial V0.2.5
 Current supplied Crypto mode: Nile Testnet + Sandbox enabled
 ```
 
-Payment-provider screen evidence records:
+Payment-provider screen evidence:
 
 ```text
 Spatial Flow Crypto Pay: active
@@ -107,26 +96,72 @@ PayPal: not installed from the supplied screen
 Cash on delivery: provider row present
 ```
 
-This screenshot evidence is sufficient for ownership, but R0 still requires a machine-readable current gateway list/order before R1.
+## 5. Saved configuration exports
 
-## 5. Remaining R0 evidence gates
-
-### A. Current saved theme mods
-
-Export only current saved keys beginning with:
+Authoritative snapshot:
 
 ```text
-sf_checkout_
-sf_order_received_
+project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
 ```
 
-Defaults declared in source are not a substitute for current database values.
+Source artifacts:
 
-### B. Current dynamic gateway list/order
+```text
+r0-theme-mods.json
+Bytes: 29488
+SHA256: 4e8d4b6d6fd7c8a1146e8488dd21ea1ef0a9a4a993fe453d4020443fb74e63af
 
-Export gateway ID, display title, enabled state and current WooCommerce order. Do not export gateway secrets.
+r0-gateway-order.json
+Bytes: 1478
+SHA256: 96f0ac37903eac3aec13f95ff11046e9dcdbd587d45416b420c2af2f9906675c
+```
 
-### C. Baseline functional smoke test
+Both parse as valid JSON.
+
+Relevant saved theme-mod result:
+
+```text
+Complete theme-mod keys: 395
+Saved sf_checkout_* keys: 1
+Saved sf_order_received_* keys: 32
+Total relevant saved keys: 33
+```
+
+The only saved Checkout key is:
+
+```text
+sf_checkout_payment_note = ""
+```
+
+The 32 saved Order Received values are preserved in the configuration snapshot. Their current copy is strongly success/fulfillment-oriented; R4 must preserve the values before adding server-status-specific result families.
+
+Gateway order result:
+
+```text
+woocommerce_gateway_order entries: 58
+woocommerce_payments: 1
+cod: 24
+airwallex_main: 50
+spatial_flow_crypto: 57
+```
+
+The order option does not contain runtime title, enabled state or availability. A final read-only runtime gateway export remains required.
+
+## 6. Remaining R0 evidence gates
+
+### A. Runtime gateway list
+
+Export, without secrets:
+
+```text
+gateway ID
+display title
+enabled state
+runtime availability
+configured order
+```
+
+### B. Baseline functional smoke test
 
 Before any source edit, record current behavior:
 
@@ -142,15 +177,16 @@ current order-received page loads
 
 Passing this test does not accept the old design. It proves the rollback baseline.
 
-## 6. Current status
+## 7. Current status
 
 ```text
 R0 file manifest: completed
 R0 syntax/parser verification: completed
 R0 external rollback ZIP: completed
 R0 page/plugin ownership evidence: completed
-R0 saved theme-mod export: pending
-R0 dynamic gateway export: pending
+R0 saved theme-mod export: completed
+R0 gateway order export: completed
+R0 runtime gateway title/enabled/availability export: pending
 R0 functional smoke test: pending
 R1: blocked and not started
 Runtime source modification: none
