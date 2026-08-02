@@ -17,10 +17,16 @@ S4B capability/integration contract: completed
 S5 Waiting / Preparing / bootstrap failure: accepted and closed
 S6 verification/recovery state family: accepted and closed
 Future multi-asset Crypto Workspace: accepted and isolated
-S7 Step-04 confirmed/pending result: implemented, awaiting user acceptance
-S8 link/session audit: not started
+S7 Step-04 confirmed/pending result: accepted and closed
+S8 link/session audit: authorized next phase, not started
 S9 responsive static acceptance: not started
 Live Checkout source work: paused
+```
+
+S7 acceptance record:
+
+```text
+project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
 ```
 
 ## 2. Locked business progression
@@ -58,7 +64,7 @@ preview/spatial-flow-checkout-crypto-states-v1.js
 preview/spatial-flow-thank-you-v1.html
 preview/spatial-flow-thank-you-v1.css
 preview/spatial-flow-thank-you-v1.js
-  implemented S7 Step-04 result family
+  accepted S7 Step-04 result family
 ```
 
 Future references remain isolated:
@@ -111,15 +117,15 @@ unfinished-payment recovery
 
 No S5/S6 state creates a duplicate order, replacement invoice or fake automatic monitoring flow.
 
-## 6. S7 implemented contract
+## 6. Accepted S7 contract
 
-Default confirmed result:
+Confirmed result:
 
 ```text
 preview/spatial-flow-thank-you-v1.html
 ```
 
-Pending review result:
+Pending result:
 
 ```text
 preview/spatial-flow-thank-you-v1.html?prototype_result=pending
@@ -148,7 +154,13 @@ no success claim
 
 The query parameter is a static review mechanism only. Production result state must be supplied by WooCommerce or the approved gateway integration.
 
-## 7. S7 page structure
+User decision after the final mobile odd-grid correction:
+
+```text
+都没问题，验收通过
+```
+
+## 7. S7 accepted page structure
 
 ```text
 accepted global shell
@@ -174,7 +186,7 @@ Order total
 
 ## 8. S8 and S9 closure gates
 
-S8 starts only after S7 acceptance.
+S7 is accepted and closed. S8 is now authorized as the next separate bounded phase.
 
 ### S8 — link and session audit
 
@@ -224,8 +236,8 @@ S1 implemented
 → S4B completed
 → S5 accepted
 → S6 accepted
-→ S7 implemented, awaiting acceptance
-→ S8 link/session audit
+→ S7 accepted
+→ S8 link/session audit, authorized next and not started
 → S9 responsive acceptance
 → live ownership audit
 → functional reconstruction
@@ -242,14 +254,14 @@ S1 implemented
 - no fifth business step
 - no duplicate order or invoice
 - no QR/countdown/automatic monitoring claim
-- do not begin S8 before S7 acceptance
+- S8 must be a separate bounded group
 - Checkout remains Not done
 ```
 
 ## 12. Current exact action
 
 ```text
-Review the S7 confirmed and pending Step-04 result states.
+Begin S8 full relative-link and session-state audit as the next separate bounded group.
 
-Do not begin S8 in the same group.
+Do not begin S9 or live Checkout work in the same group.
 ```
