@@ -24,7 +24,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 16. project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
 17. project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
 18. project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
-19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+19. project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
+20. project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
+21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -86,8 +88,10 @@ project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
 Bounded implementation sequence:
 project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
 
-Current R0 baseline record:
+R0 file/config/smoke closure:
 project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
+project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
+project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
 ```
 
 ## Ownership audit final status
@@ -136,8 +140,9 @@ Current path remains legacy `/crypto-pay/`. No REST/order-pay Workspace, form-pa
 ```text
 Plan document: issued
 User decision: 计划通过，开始 R0
+R0: completed and closed
 Runtime source changes: none
-R1 live implementation: not authorized
+R1 live implementation: awaiting explicit authorization
 ```
 
 Plan groups:
@@ -154,7 +159,7 @@ R7 full commerce regression
 R8 final strict desktop/mobile acceptance and closure
 ```
 
-## R0 status
+## R0 closure
 
 Completed:
 
@@ -165,6 +170,10 @@ Completed:
 - CSS parse and balance checks passed
 - external rollback package created
 - V0.2.5 authoritative ZIP included
+- saved Checkout/Order Received theme mods exported
+- WooCommerce gateway order and runtime registration exported
+- Test A normal WooCommerce legacy path recorded
+- Test B Crypto V0.2.5 Sandbox path recorded
 ```
 
 Rollback package:
@@ -174,12 +183,28 @@ project2-checkout-r0-baseline-20260802.zip
 SHA256: 5eb98b952a19a7de000cfc870f3750cb15b3237e543e93dea284e78e7a36f45c
 ```
 
-Pending:
+Observed baseline orders:
 
 ```text
-- current saved sf_checkout_* and sf_order_received_* theme mods
-- current dynamic payment gateway list/order
-- current pre-edit functional smoke test
+#3571 — bacs / 测试 — $44.99 — On hold
+#3574 — spatial_flow_crypto / Pay with Crypto — $20.99 — Sandbox result Processing
+```
+
+Confirmed baseline defect:
+
+```text
+On-hold orders are still shown with success/preparation/fulfillment language.
+This is assigned to R4.
+```
+
+Evidence limits retained for R1/R7:
+
+```text
+malformed-email blocking
+exact shipping recalculation transition
+explicit duplicate-order audit
+separate admin-order screenshots/notes
+gateway decline/server errors
 ```
 
 ## Current execution point
@@ -188,11 +213,8 @@ Pending:
 Live Checkout ownership audit: closed
 Exact ownership matrix: issued
 Bounded reconstruction plan: accepted
-R0 file baseline and rollback package: completed
-R0 database/config export: pending
-R0 functional smoke test: pending
-R0 closure: blocked
-R1: not authorized and not started
+R0: completed and closed
+R1: awaiting explicit user authorization; not started
 Plugin/workspace integration: not started
 Checkout: Not done
 ```
@@ -200,11 +222,10 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-complete R0 exports
-→ complete R0 functional smoke test
-→ close R0
-→ explicit user authorization for R1
-→ one controlled implementation group at a time
+explicit user authorization for R1
+→ modify only form-checkout.php + checkout-safe5.js + checkout-safe5.css
+→ stop for R1 functional/visual acceptance
+→ proceed one bounded group at a time
 → final strict desktop/mobile acceptance
 ```
 
