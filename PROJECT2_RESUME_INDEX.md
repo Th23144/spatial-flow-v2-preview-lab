@@ -27,7 +27,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 19. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 20. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 21. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
-22. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+22. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
+23. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -65,6 +66,7 @@ S5 Waiting / Preparing / bootstrap failure: accepted and closed
 S6 verification/recovery state family: accepted and closed
 S7 Step-04 confirmed/pending result family: accepted and closed
 S8 full relative-link/session-state audit: accepted and closed
+S9 responsive static acceptance: accepted and closed
 Future multi-asset Crypto Workspace: accepted and isolated
 ```
 
@@ -137,16 +139,16 @@ User decision:
 通过
 ```
 
-Audit and acceptance records:
+Records:
 
 ```text
 project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 ```
 
-## Current S9 responsive gate
+## Accepted S9 responsive gate
 
-S9 source-level responsive rules have been audited for:
+Accepted viewport families:
 
 ```text
 1366 × 768
@@ -154,7 +156,7 @@ S9 source-level responsive rules have been audited for:
 360 × 800
 ```
 
-Scope:
+Accepted scope:
 
 ```text
 Step 01 Address
@@ -164,6 +166,8 @@ S5 Preparing / Waiting / bootstrap failure
 S6 verification / recovery state family
 S7 Confirmed / Pending
 ```
+
+The S9 gate covered static visual appearance, responsive composition and basic interface usability. It did not cover real WooCommerce order creation, payment verification, Crypto plugin integration or production replacement.
 
 Source audit result:
 
@@ -178,12 +182,19 @@ Source audit result:
 - no deterministic source-level horizontal-overflow defect found
 ```
 
-The audit environment could not load RawGitHack because of `net::ERR_BLOCKED_BY_ADMINISTRATOR`; therefore automated screenshots are not claimed. User visual validation remains mandatory.
+The automated audit environment could not load RawGitHack because of `net::ERR_BLOCKED_BY_ADMINISTRATOR`; automated screenshots are not claimed. Final acceptance is based on the user's real-browser visual review plus the completed source audit.
 
-Detailed record:
+User decision after scope clarification:
+
+```text
+全部通过了
+```
+
+Records:
 
 ```text
 project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
+project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
 ```
 
 ## Current exact stop point
@@ -193,17 +204,16 @@ S5: accepted and closed
 S6: accepted and closed
 S7 confirmed/pending Step-04 result: accepted and closed
 S8 full relative-link/session-state audit: accepted and closed
-S9 responsive source audit: completed
-S9 1366 / 390 / 360 visual acceptance: awaiting user validation
-Live Checkout reconstruction: blocked and not started
+S9 responsive static acceptance: accepted and closed
+Live Checkout ownership audit: authorized next phase, not started
+Plugin/workspace integration: not started
 Checkout: Not done
 ```
 
 ## Remaining sequence
 
 ```text
-S9 user visual validation and acceptance
-→ live Checkout ownership audit
+live Checkout ownership audit
 → plugin/workspace integration
 → Sandbox and unfinished-payment recovery tests
 → server-authoritative result tests
@@ -217,12 +227,13 @@ S9 user visual validation and acceptance
 ```text
 - preserve WooCommerce order/payment authority
 - preserve backend editability
-- no live Checkout or plugin modification during static work
+- static acceptance does not equal live Checkout completion
 - no browser-authoritative payment success
 - no fifth Checkout step
 - no duplicate order or invoice
 - no QR/countdown/automatic-monitoring claim under current capability
-- live ownership audit cannot begin before S9 user acceptance
+- live Checkout ownership audit must be a separate bounded phase
+- no production modification before ownership is mapped
 - one bounded group at a time
 - Checkout remains Not done
 ```
