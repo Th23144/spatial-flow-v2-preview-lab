@@ -9,8 +9,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 S7 Step-04 result family: accepted and closed
 S8 link/session audit: accepted and closed
 S9 responsive source audit: completed
-S9 three-size visual acceptance: awaiting user validation
-Live Checkout ownership audit: not started
+S9 three-size visual acceptance: accepted and closed
+Live Checkout ownership audit: authorized next phase, not started
 Plugin/workspace integration: not started
 Checkout: Not done
 ```
@@ -78,7 +78,7 @@ Confirmed rules:
 - payment method metadata drops below the method copy on mobile
 ```
 
-The 360px context card intentionally remains a compact two-column confirmation surface. This is not marked accepted solely from source inspection; its readability remains part of the user visual gate.
+The compact two-column confirmation surface at 360px was included in the user's final visual acceptance.
 
 ### Payment host
 
@@ -175,78 +175,80 @@ Result:
 ```text
 No deterministic source-level horizontal-overflow defect was found in the active S1–S7 Checkout flow.
 No active-flow rule points to the isolated future selector or future multi-asset Workspace.
-No S9 code correction is applied without visual evidence.
-```
-
-Areas requiring explicit visual attention:
-
-```text
-- mobile masthead strip at 390 and 360
-- compact two-column context card at 360
-- long customer email/address presentation in S7
-- S6 paid-confirmed result action at 360
-- 64-character hash field and action stack at 360
+No S9 code correction was applied without visual evidence.
 ```
 
 ## 6. Runtime limitation and evidence boundary
 
-The current audit environment blocked the RawGitHack preview host with:
+The automated audit environment blocked the RawGitHack preview host with:
 
 ```text
 net::ERR_BLOCKED_BY_ADMINISTRATOR
 ```
 
-Therefore this record does not claim that automated browser screenshots were successfully captured. Source-level responsive rules were audited completely, but the final S9 decision remains dependent on the user's real-browser review at the required dimensions.
+Therefore no automated browser screenshots are claimed. Source-level responsive rules were audited completely, and final S9 acceptance is based on the user's real-browser review at the required dimensions.
 
-This limitation does not affect the public preview links available to the user and does not justify fabricating visual evidence.
+## 7. Acceptance-scope clarification
 
-## 7. Required user validation
+The user asked whether this step was purely a visual-appearance check.
 
-Use the review links in one browser and inspect:
+The confirmed S9 gate was:
 
 ```text
-1366 × 768
-390 × 844
-360 × 800
+static visual appearance
+responsive composition
+basic interface usability at 1366 / 390 / 360
 ```
 
-For every page/state confirm:
+It did not include real WooCommerce order creation, payment verification, Crypto plugin integration, production replacement, stock mutation or email behavior.
+
+## 8. User acceptance
+
+After the scope clarification, the user confirmed:
 
 ```text
-- no horizontal page scrolling
+全部通过了
+```
+
+Accepted visual criteria include:
+
+```text
+- no unacceptable horizontal page scrolling
 - no clipped text, cards or controls
-- all buttons can be tapped and read
+- buttons remain readable and reachable
 - progress rows remain usable
-- summaries do not cover the main content
-- long address/hash/payment values wrap correctly
-- no state panel creates an empty bordered control
-- desktop hierarchy remains balanced
-- mobile density remains readable rather than merely fitting
+- summaries do not cover main content
+- long address/hash/payment values wrap acceptably
+- desktop hierarchy is acceptable at 1366 × 768
+- mobile density and composition are acceptable at 390 × 844 and 360 × 800
 ```
 
-The Preparing state is transient and should be reviewed immediately after opening the base Crypto Workspace. Waiting appears after the simulated bootstrap completes.
-
-## 8. Locked boundaries
+Independent closure record:
 
 ```text
-- static preview files only
-- no live WordPress/WooCommerce changes
-- no Crypto plugin changes
+project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
+```
+
+## 9. Locked boundaries
+
+```text
+- static preview acceptance does not equal live Checkout completion
+- no live WordPress/WooCommerce changes were made in S9
+- no Crypto plugin changes were made in S9
 - no browser-authoritative payment success
 - no fifth Checkout step
 - no duplicate order or invoice
 - future multi-asset examples remain isolated
-- live Checkout work does not begin in this group
 - Checkout remains Not done
 ```
 
-## 9. Current stop point
+## 10. Current stop point
 
 ```text
-S9 source audit: completed
-S9 1366 / 390 / 360 visual acceptance: awaiting user validation
-Live Checkout ownership audit: blocked and not started
+S9 responsive static acceptance: accepted and closed
+Live Checkout ownership audit: authorized next phase, not started
+Plugin/workspace integration: not started
 Checkout: Not done
 ```
 
-S9 closes only after explicit user acceptance of the three-size visual review. Any reported defect must be corrected and revalidated inside S9 before the live ownership audit begins.
+The live Checkout ownership audit must begin as a separate bounded phase. S9 acceptance does not authorize immediate production modification or plugin integration.
