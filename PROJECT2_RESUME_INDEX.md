@@ -24,7 +24,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 16. project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
 17. project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
 18. project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
-19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+19. project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
+20. project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
+21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -184,10 +186,12 @@ R8 final 1366/390/360 strict acceptance and closure
 
 ## R0 current status
 
-Authoritative record:
+Authoritative records:
 
 ```text
 project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
+project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
+project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
 ```
 
 Completed:
@@ -199,6 +203,10 @@ Completed:
 - CSS parse, brace and comment balance validation
 - external rollback ZIP containing exact supplied files and V0.2.5 artifact
 - Checkout page, CartFlows, WPCode and plugin ownership evidence
+- saved sf_checkout_* and sf_order_received_* theme-mod export
+- WooCommerce gateway order export
+- runtime gateway registration/title/enabled export
+- Test A normal WooCommerce legacy order path
 ```
 
 Rollback package:
@@ -208,12 +216,40 @@ project2-checkout-r0-baseline-20260802.zip
 SHA256: 5eb98b952a19a7de000cfc870f3750cb15b3237e543e93dea284e78e7a36f45c
 ```
 
+Relevant saved configuration:
+
+```text
+Saved sf_checkout_* keys: 1
+Saved sf_order_received_* keys: 32
+Enabled runtime gateways: 2
+- bacs / 测试
+- spatial_flow_crypto / Pay with Crypto
+```
+
+Test A recorded baseline:
+
+```text
+Observed order: #3571
+Gateway: bacs / 测试
+Total: $44.99
+Resulting status: on-hold
+Step 03 rendered both enabled gateways
+Legacy Review remained reachable
+Native Place Order produced the observed WooCommerce order
+Current order-received template loaded
+```
+
+Confirmed runtime defect:
+
+```text
+The on-hold order is still shown with preparation, fulfillment-queue and On The Way language.
+This is carried into R4 server-authoritative result mapping.
+```
+
 Still required before R0 can close:
 
 ```text
-- machine-readable current sf_checkout_* and sf_order_received_* saved theme mods
-- machine-readable current dynamic gateway list/order
-- current pre-edit functional smoke test
+- Test B current Crypto V0.2.5 Sandbox path
 ```
 
 ## Current exact stop point
@@ -222,10 +258,10 @@ Still required before R0 can close:
 Live Checkout ownership audit: closed
 Exact source-backed ownership matrix: issued
 Bounded reconstruction plan: accepted
-R0 file baseline and rollback package: completed
-R0 database/config export: pending
-R0 functional smoke test: pending
-R0 closure: blocked until both are complete
+R0 file/config baseline: completed
+R0 Test A normal order path: recorded
+R0 Test B Crypto Sandbox path: pending
+R0 closure: blocked until Test B is recorded
 R1 live code modification: not authorized and not started
 Plugin/workspace integration: not started
 Checkout: Not done
@@ -234,8 +270,7 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-complete R0 database/config export
-→ complete current functional smoke test
+complete R0 Crypto Sandbox Test B
 → close R0
 → explicit authorization for R1
 → one controlled implementation group at a time
