@@ -18,8 +18,8 @@ S5 Waiting / Preparing / bootstrap failure: accepted and closed
 S6 verification/recovery state family: accepted and closed
 Future multi-asset Crypto Workspace: accepted and isolated
 S7 Step-04 confirmed/pending result: accepted and closed
-S8 link/session audit: authorized next phase, not started
-S9 responsive static acceptance: not started
+S8 link/session audit: implemented, awaiting user acceptance
+S9 responsive static acceptance: blocked and not started
 Live Checkout source work: paused
 ```
 
@@ -27,6 +27,12 @@ S7 acceptance record:
 
 ```text
 project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
+```
+
+S8 audit record:
+
+```text
+project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 ```
 
 ## 2. Locked business progression
@@ -64,7 +70,7 @@ preview/spatial-flow-checkout-crypto-states-v1.js
 preview/spatial-flow-thank-you-v1.html
 preview/spatial-flow-thank-you-v1.css
 preview/spatial-flow-thank-you-v1.js
-  accepted S7 Step-04 result family
+  accepted S7 Step-04 result family plus S8 session/link continuity
 ```
 
 Future references remain isolated:
@@ -131,78 +137,54 @@ Pending result:
 preview/spatial-flow-thank-you-v1.html?prototype_result=pending
 ```
 
-### Confirmed
+Confirmed remains server-confirmed only. Pending remains unpaid/on hold and recovers the same payment workspace.
+
+## 7. Implemented S8 contract
+
+S8 corrected and now requires browser acceptance for:
 
 ```text
-payment confirmed by server
-WooCommerce payment lifecycle completed
-Payment received / Order confirmed language allowed
-Order status may proceed to Processing
-no payment action remains
+upstream Address/Shipping edits invalidate stale downstream payment and Crypto drafts
+payment-host selection remains consistent with the newly committed Shipping context
+S6 paid_confirmed exposes a route to accepted S7 Confirmed
+S7 inherits session email, address, shipping price and total
+S7 Pending returns to the same recovered Workspace
+S7 no longer contains a dead Track Order route
+active flow does not enter isolated future selector/workspace examples
 ```
 
-### Pending
+Implementation commits:
 
 ```text
-order received
-payment not confirmed
-order remains On hold
-fulfilment has not started
-return to the same payment workspace or contact support
-no success claim
-```
-
-The query parameter is a static review mechanism only. Production result state must be supplied by WooCommerce or the approved gateway integration.
-
-User decision after the final mobile odd-grid correction:
-
-```text
-都没问题，验收通过
-```
-
-## 7. S7 accepted page structure
-
-```text
-accepted global shell
-01 / 02 / 03 / 04 progress identity
-result-status card
-order overview
-exact order receipt table
-payment record
-next-stage timeline
-billing/shipping details
-right receipt summary
-state-safe actions
-```
-
-Exact receipt language:
-
-```text
-Subtotal
-Shipping
-Tax
-Order total
+f5d009b611e8963536511d4d76588dc8816b8da8
+7fc652f202113cf5e432e6621be336fa8035b3a0
+36862cbc018bc22d3f303947081b5d7b2c1a615c
 ```
 
 ## 8. S8 and S9 closure gates
 
-S7 is accepted and closed. S8 is now authorized as the next separate bounded phase.
+### S8 — current gate
 
-### S8 — link and session audit
+User must validate in one browser tab:
 
 ```text
-relative links
-back navigation
-session continuity
-shipping totals
-payment-host selection
-S5/S6 recovery behavior
-S7 confirmed/pending links
-no orphan or stale route
-no link into isolated future examples
+Step 01 distinct address/email
+→ Priority Shipping ($18)
+→ Step 03
+→ S5 amount 347.00 USDT
+→ S6 paid_confirmed
+→ S7 Confirmed with the same address/email, $18 shipping and $347 total
 ```
 
-### S9 — responsive static acceptance
+Also validate:
+
+```text
+S7 Pending → recovered Workspace
+changed Shipping → old transaction hash is cleared
+Confirmed Order support opens the existing Contact page
+```
+
+### S9 — blocked until S8 acceptance
 
 ```text
 1366 × 768 and desktop full composition
@@ -237,7 +219,7 @@ S1 implemented
 → S5 accepted
 → S6 accepted
 → S7 accepted
-→ S8 link/session audit, authorized next and not started
+→ S8 implemented, awaiting user acceptance
 → S9 responsive acceptance
 → live ownership audit
 → functional reconstruction
@@ -254,14 +236,14 @@ S1 implemented
 - no fifth business step
 - no duplicate order or invoice
 - no QR/countdown/automatic monitoring claim
-- S8 must be a separate bounded group
+- S9 cannot begin before S8 user acceptance
 - Checkout remains Not done
 ```
 
 ## 12. Current exact action
 
 ```text
-Begin S8 full relative-link and session-state audit as the next separate bounded group.
+User validates the implemented S8 linked flow and session behavior.
 
 Do not begin S9 or live Checkout work in the same group.
 ```
