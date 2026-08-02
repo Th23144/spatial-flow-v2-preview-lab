@@ -22,7 +22,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 14. project2-progress/STEP_4F_LIVE_CHECKOUT_CURRENT_SOURCE_AND_PLUGIN_VERIFICATION.md
 15. project2-progress/STEP_4F_LIVE_CHECKOUT_WPCODE_VERIFICATION_AND_OWNERSHIP_CLOSURE.md
 16. project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
-17. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+17. project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
+18. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -80,6 +81,9 @@ project2-progress/STEP_4F_LIVE_CHECKOUT_WPCODE_VERIFICATION_AND_OWNERSHIP_CLOSUR
 
 Exact keep/replace/migrate ownership matrix:
 project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
+
+Bounded implementation sequence and rollback plan:
+project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
 ```
 
 ## Ownership audit final status
@@ -151,12 +155,38 @@ Nile Testnet + Sandbox enabled in supplied settings
 
 Current path remains legacy `/crypto-pay/`. No REST/order-pay Workspace, form-pay replacement, feature flag, token or epoch exists in V0.2.5.
 
+## Bounded reconstruction plan status
+
+```text
+Plan document: issued
+Plan acceptance: waiting for user decision
+Runtime source changes: none
+R0 baseline capture: not started
+R1 live implementation: not authorized
+```
+
+Plan groups:
+
+```text
+R0 baseline capture and rollback package
+R1 live Step 01–03 shell + native Place Order in Step 03
+R2 notice/error ownership consolidation
+R3 backend-editable Checkout copy
+R4 server-authoritative result mapping
+R5 historical Checkout CSS cleanup
+R6 Crypto V0.2.5 regression and upgrade decision gate
+R7 full commerce regression
+R8 final strict desktop/mobile acceptance and closure
+```
+
 ## Current execution point
 
 ```text
 Live Checkout ownership audit: closed
 Exact ownership matrix: issued
-Bounded reconstruction plan: next separate phase, not started
+Bounded reconstruction plan: issued
+Plan acceptance: waiting
+R0 baseline capture: not started
 Plugin/workspace integration: not started
 Checkout: Not done
 ```
@@ -164,9 +194,10 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-bounded reconstruction plan
-→ explicit user authorization
-→ one controlled implementation group
+user accepts bounded plan
+→ R0 baseline capture only
+→ explicit authorization for R1
+→ one controlled implementation group at a time
 → Sandbox/recovery tests
 → server-authoritative result tests
 → backend-editability validation
@@ -181,6 +212,8 @@ bounded reconstruction plan
 - no fifth Checkout step
 - no fake/browser-authoritative success
 - no duplicate order or invoice
+- no blind whole-file overwrite
+- no append-only CSS patch pile
 - V0.2.6.1/Workspace integration remains deferred
 - one bounded implementation group at a time
 - Checkout remains Not done
