@@ -20,7 +20,9 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 12. project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
 13. project2-progress/STEP_4F_LIVE_CHECKOUT_PAGE_AND_CARTFLOWS_EVIDENCE.md
 14. project2-progress/STEP_4F_LIVE_CHECKOUT_CURRENT_SOURCE_AND_PLUGIN_VERIFICATION.md
-15. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+15. project2-progress/STEP_4F_LIVE_CHECKOUT_WPCODE_VERIFICATION_AND_OWNERSHIP_CLOSURE.md
+16. project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
+17. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -63,110 +65,98 @@ Static acceptance does not change the live Checkout status.
 
 ## Live ownership audit documents
 
-Main status:
-
 ```text
+Main final status:
 project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
-```
 
 Page and CartFlows evidence:
-
-```text
 project2-progress/STEP_4F_LIVE_CHECKOUT_PAGE_AND_CARTFLOWS_EVIDENCE.md
-```
 
-Current source/plugin verification:
-
-```text
+Current theme/plugin verification:
 project2-progress/STEP_4F_LIVE_CHECKOUT_CURRENT_SOURCE_AND_PLUGIN_VERIFICATION.md
+
+WPCode final residual closure:
+project2-progress/STEP_4F_LIVE_CHECKOUT_WPCODE_VERIFICATION_AND_OWNERSHIP_CLOSURE.md
+
+Exact keep/replace/migrate ownership matrix:
+project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
 ```
 
-## Confirmed current source ownership
-
-```text
-/checkout-2-2/ page ID 623:
-- WooCommerce Checkout page
-- body contains [woocommerce_checkout]
-- page editor is not the visual owner
-
-CartFlows:
-- plugin active
-- no Flow exists
-- not current Checkout/Thank You structure owner
-
-form-checkout.php:
-- current live SAFE5 structure
-- still contains rejected Step 4 Review
-
-checkout-safe5.js:
-- four-view state owner
-- validates steps
-- mirrors shipping
-- handles coupon wc-ajax
-- listens to updated_checkout / checkout_error
-- moves real Place Order into Step 4
-- blocks submission until Step 4
-
-checkout-safe5.css:
-- scoped SAFE5 visual owner
-
-functions.php:
-- enqueues SAFE5 assets
-- removes legacy visual hooks
-- keeps WooCommerce and item-context hooks
-- registers Checkout and Thank You Customizer fields
-
-spatial-flow.js:
-- shared Terms-link and Checkout Notice handlers
-- overlaps SAFE5 on updated_checkout / checkout_error
-
-spatial-flow.css:
-- shared/global stylesheet
-- still contains substantial historical Checkout cascade
-
-thankyou.php:
-- real WooCommerce order-received template override
-- preserves order/gateway hooks and editable result copy
-- does not currently separate pending/on-hold from paid success composition
-```
-
-## Current Crypto artifact
-
-```text
-Spatial Flow Crypto Pay Trial V0.2.5
-SHA256: 41e926e96af99a0623d850189ec99ea4a58536b3f4b23be78f1eba9d21d7550f
-```
-
-The supplied artifact hash matches the authoritative V0.2.5 baseline.
-
-Current path:
-
-```text
-Step 03 selects spatial_flow_crypto
-→ WooCommerce creates on-hold order
-→ redirect to /crypto-pay/
-→ create/reuse invoice
-→ customer submits TRON transaction hash
-→ server verifies through TronGrid
-→ payment_complete(tx_hash)
-→ canonical WooCommerce order-received page
-```
-
-No active REST/order-pay Workspace, form-pay replacement, feature flag, Workspace token or epoch exists in V0.2.5.
-
-Current supplied settings show Nile Testnet and Sandbox enabled for local testing.
-
-## Current execution point
+## Ownership audit final status
 
 ```text
 Repository evidence: completed
 Theme/template source verification: completed
-Page/CartFlows verification: completed
+Checkout page assignment: completed
+CartFlows ownership check: completed; no Flow exists
 Active plugin/payment evidence: completed
 Crypto V0.2.5 verification: completed
-WPCode active-snippet check: required final residual check
-Ownership matrix: not yet issued
-Reconstruction plan: not started
+WPCode active-snippet check: completed; no Checkout owner found
+Live Checkout ownership audit: closed
+Exact ownership matrix: issued
+```
+
+## Confirmed live owners and gaps
+
+```text
+/checkout-2-2/:
+- WooCommerce page ID 623
+- [woocommerce_checkout] host only
+
+form-checkout.php:
+- owns current Information → Shipping → Payment → Review shell
+- Review is rejected by accepted Project 2 architecture
+
+checkout-safe5.js:
+- owns view switching, validation, shipping mirror, coupon and notices
+- moves native Place Order into Review
+- blocks native submission until Step 4
+
+checkout-safe5.css:
+- scoped Checkout visual owner
+
+functions.php:
+- enqueues SAFE5 assets
+- removes legacy visual hooks
+- keeps WooCommerce item/data hooks
+- registers partly orphaned Checkout Customizer controls
+
+spatial-flow.js:
+- shared Terms and Checkout notice handling
+- overlaps SAFE5 on updated_checkout / checkout_error
+
+spatial-flow.css:
+- substantial historical Checkout cascade remains active
+
+thankyou.php:
+- preserves real WooCommerce order/gateway hooks
+- does not separate pending/on-hold from success-like non-failed output
+
+CartFlows:
+- active but no Flow; excluded
+
+WPCode:
+- active snippets checked; no Checkout/payment/Crypto owner
+```
+
+## Current Crypto baseline
+
+```text
+Spatial Flow Crypto Pay Trial V0.2.5
+SHA256: 41e926e96af99a0623d850189ec99ea4a58536b3f4b23be78f1eba9d21d7550f
+Gateway ID: spatial_flow_crypto
+Fixed USDT / TRON-TRC20
+Nile Testnet + Sandbox enabled in supplied settings
+```
+
+Current path remains legacy `/crypto-pay/`. No REST/order-pay Workspace, form-pay replacement, feature flag, token or epoch exists in V0.2.5.
+
+## Current execution point
+
+```text
+Live Checkout ownership audit: closed
+Exact ownership matrix: issued
+Bounded reconstruction plan: next separate phase, not started
 Plugin/workspace integration: not started
 Checkout: Not done
 ```
@@ -174,16 +164,13 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-WPCode active-snippet read-only check
-→ close ownership audit
-→ exact hook/template/asset ownership matrix
-→ bounded reconstruction plan
+bounded reconstruction plan
 → explicit user authorization
 → one controlled implementation group
 → Sandbox/recovery tests
 → server-authoritative result tests
 → backend-editability validation
-→ final Checkout 1:1 closure
+→ final strict desktop/mobile acceptance
 ```
 
 ## Locked boundaries
@@ -194,7 +181,7 @@ WPCode active-snippet read-only check
 - no fifth Checkout step
 - no fake/browser-authoritative success
 - no duplicate order or invoice
-- no live source or snippet change during ownership audit
 - V0.2.6.1/Workspace integration remains deferred
+- one bounded implementation group at a time
 - Checkout remains Not done
 ```
