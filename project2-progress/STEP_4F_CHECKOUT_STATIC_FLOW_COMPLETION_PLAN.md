@@ -19,28 +19,17 @@ S6 verification/recovery state family: accepted and closed
 Future multi-asset Crypto Workspace: accepted and isolated
 S7 Step-04 confirmed/pending result: accepted and closed
 S8 link/session audit: accepted and closed
-S9 responsive source audit: completed
-S9 responsive visual acceptance: awaiting user validation
-Live Checkout source work: paused
+S9 responsive static acceptance: accepted and closed
+Live Checkout ownership audit: authorized next phase, not started
+Plugin/workspace integration: not started
 ```
 
-S7 acceptance record:
+Acceptance records:
 
 ```text
 project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
-```
-
-S8 records:
-
-```text
-project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
-```
-
-S9 record:
-
-```text
-project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE.md
+project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
 ```
 
 ## 2. Locked business progression
@@ -88,7 +77,7 @@ preview/spatial-flow-checkout-crypto-select-v1.html
 preview/spatial-flow-checkout-crypto-workspace-future-v1.html
 ```
 
-## 4. Current static flow
+## 4. Accepted static flow
 
 ```text
 Cart
@@ -170,15 +159,9 @@ f5d009b611e8963536511d4d76588dc8816b8da8
 36862cbc018bc22d3f303947081b5d7b2c1a615c
 ```
 
-User decision:
+## 8. Accepted S9 responsive contract
 
-```text
-通过
-```
-
-## 8. Current S9 responsive gate
-
-Required viewport families:
+Accepted viewport families:
 
 ```text
 1366 × 768
@@ -186,7 +169,7 @@ Required viewport families:
 360 × 800
 ```
 
-S9 scope:
+Accepted scope:
 
 ```text
 Step 01 Address
@@ -197,7 +180,17 @@ S6 supported verification and recovery states
 S7 Confirmed and Pending
 ```
 
-Source-level audit completed for:
+The S9 gate was explicitly limited to:
+
+```text
+static visual appearance
+responsive composition
+basic interface usability
+```
+
+It did not include live WooCommerce order creation, real payment verification, Crypto plugin integration, production replacement, stock changes or email behavior.
+
+Source-level responsive audit covered:
 
 ```text
 preview/spatial-flow-checkout-flow-v1.css
@@ -209,49 +202,52 @@ preview/spatial-flow-checkout-crypto-states-v1.css
 preview/spatial-flow-thank-you-v1.css
 ```
 
-Confirmed responsive contracts:
+The automated audit environment blocked RawGitHack with `net::ERR_BLOCKED_BY_ADMINISTRATOR`; no automated screenshots are claimed. The user completed the real-browser visual review and confirmed:
 
 ```text
-- accepted desktop two-column layouts collapse at their defined tablet breakpoints
-- sticky summaries become static below the desktop layout
-- Step 01 forms and action rows stack below 720px
-- context and payment data use min-width:0 and wrapping protection
-- Crypto payment values, hash form and tools become full-width mobile controls
-- Crypto invoice facts become one column below 380px
-- S6 state actions become full-width mobile controls
-- S7 overview and payment facts become one column below 420px
-- no deterministic source-level horizontal-overflow defect was found
+全部通过了
 ```
 
-Runtime evidence boundary:
+S9 is accepted and closed.
+
+## 9. Next phase — live Checkout ownership audit
+
+The next authorized phase is a read-only ownership and integration audit of the real Checkout implementation.
+
+It must determine, before modification:
 
 ```text
-The audit environment blocked RawGitHack with net::ERR_BLOCKED_BY_ADMINISTRATOR.
-Automated screenshots are therefore not claimed.
-User real-browser validation remains required before S9 can close.
+- which structures are owned by WooCommerce templates
+- which structures are owned by hooks, filters or theme functions
+- which structures are owned by CartFlows or another plugin
+- which fields and payment methods are dynamically rendered
+- which assets currently control layout, validation and AJAX refresh behavior
+- how the Crypto gateway enters Checkout and order-pay recovery
+- where Step 04 Thank You output is owned and extended
+- which existing customizations must be preserved or removed
+- which static artifacts can map to live surfaces without replacing authority
+- where backend-editable content is stored and rendered
 ```
 
-Responsive acceptance targets:
+The ownership audit is read-only by default.
+
+It does not authorize:
 
 ```text
-- no horizontal overflow
-- no clipped content or obscured controls
-- no overlapping sticky/fixed elements
-- readable typography and controls
-- stable two-column-to-single-column transitions
-- order summaries remain understandable
-- progress identity remains visible and accurate
-- state-specific actions remain reachable
-- accepted session/link behavior remains intact
+live template replacement
+CSS/JS deployment
+plugin installation or modification
+payment-flow changes
+CartFlows changes
+production data or URL changes
 ```
 
-S9 does not authorize live Checkout or plugin modification.
-
-## 9. Live implementation after static acceptance
+## 10. Live implementation after ownership audit
 
 ```text
 live Checkout ownership audit
-→ plugin workspace integration
+→ bounded reconstruction plan
+→ plugin/workspace integration
 → WooCommerce dynamic gateway rendering
 → Sandbox and unfinished-payment recovery tests
 → server-authoritative result tests
@@ -260,9 +256,9 @@ live Checkout ownership audit
 → final Checkout 1:1 closure
 ```
 
-Plugin V0.2.6.1 remains a future integration baseline. Installation and Plugin Step 2 remain deferred.
+Plugin V0.2.6.1 remains a future integration baseline. Installation and Plugin Step 2 remain deferred until the ownership audit and explicit authorization.
 
-## 10. Current build order
+## 11. Current build order
 
 ```text
 S1 implemented
@@ -275,31 +271,32 @@ S1 implemented
 → S6 accepted
 → S7 accepted
 → S8 accepted
-→ S9 source audit completed, awaiting 1366 / 390 / 360 user validation
-→ live ownership audit
-→ functional reconstruction
+→ S9 accepted
+→ live Checkout ownership audit, authorized next and not started
+→ bounded functional reconstruction
 → Sandbox/recovery testing
 → final 1:1 closure
 ```
 
-## 11. Hard boundaries
+## 12. Hard boundaries
 
 ```text
-- no live Checkout, CartFlows or production gateway modification during static work
+- Checkout remains Not done until live implementation and final user acceptance
+- preserve WooCommerce order/payment authority
+- preserve backend editability
 - no fake headless payment API
 - no browser-authoritative payment success
 - no fifth business step
 - no duplicate order or invoice
-- no QR/countdown/automatic monitoring claim
-- live ownership audit cannot begin before S9 user acceptance
-- Checkout remains Not done
+- no QR/countdown/automatic monitoring claim under current capability
+- ownership must be mapped before production modification
+- live ownership audit must be a separate bounded group
 ```
 
-## 12. Current exact action
+## 13. Current exact action
 
 ```text
-User reviews the complete accepted static flow at 1366 × 768, 390 × 844 and 360 × 800.
+Begin the live Checkout ownership audit as the next separate bounded phase only after an explicit user instruction to start.
 
-Any reported responsive defect remains inside S9 for correction and revalidation.
-Do not begin live Checkout or plugin work before explicit S9 acceptance.
+Do not modify the live Checkout, CartFlows, theme or Crypto plugin during the audit.
 ```
