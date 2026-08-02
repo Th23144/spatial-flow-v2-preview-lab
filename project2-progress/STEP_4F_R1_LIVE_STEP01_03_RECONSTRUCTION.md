@@ -157,13 +157,14 @@ Crypto redirect: source path unchanged; runtime `/crypto-pay/` test required
 
 ## 7. Runtime installation evidence
 
-Authoritative record:
+Authoritative records:
 
 ```text
 project2-progress/STEP_4F_R1_V2_FLOW_RUNTIME_INSTALLATION_EVIDENCE.md
+project2-progress/STEP_4F_R1_STEP02_SHIPPING_RUNTIME_EVIDENCE.md
 ```
 
-User-supplied desktop screenshot confirms:
+Step 01 screenshot confirms:
 
 ```text
 - /checkout-2-2/ loads without PHP white screen
@@ -175,7 +176,35 @@ User-supplied desktop screenshot confirms:
 - Continue to Shipping renders
 ```
 
-The screenshot does not yet prove navigation, Confirmed click blocking, shipping recalculation, Step-03 Place Order, normal order creation, duplicate prevention or Crypto redirect.
+Step 02 screenshot confirms:
+
+```text
+- Address is marked complete
+- Shipping is active
+- Payment and Confirmed remain pending
+- no Review progress item is present
+- one WooCommerce shipping method renders
+- observed subtotal: $36.00
+- observed shipping: $8.99
+- observed total: $44.99
+- Continue to Payment renders
+- no PHP white screen or fatal layout collapse is visible
+```
+
+The visible total is internally consistent:
+
+```text
+$36.00 + $8.99 = $44.99
+```
+
+Confirmed strict-V2 mismatch:
+
+```text
+Current label: BACK TO INFORMATION
+Required label: BACK TO ADDRESS
+```
+
+This mismatch must be corrected before R1 closure. The screenshot does not yet prove a fresh address-driven rate recalculation, Step-03 gateways, the native Place Order path, order creation, duplicate prevention or Crypto redirect.
 
 ## 8. Why the visual appearance remains close to the prior page
 
@@ -192,11 +221,19 @@ It preserves the existing SAFE5 appearance so that functional risk can be isolat
 
 ```text
 Corrected V2-flow package: installed
-Initial Step-01 render smoke check: passed from screenshot
-R1 functional browser regression: pending
+Step-01 initial render: passed from screenshot
+Step-02 initial render and visible totals: passed from screenshot
+Strict V2 back-label copy: failed; correction required
+R1 functional browser regression: in progress
 Final V2 visual migration: not started
 R2: blocked
 Checkout: Not done
 ```
 
-Next gate: validate Step 01 → Step 02 → Step 03 and the real WooCommerce submission path before starting R1-D visual migration.
+Next gate:
+
+```text
+Continue to Payment
+→ capture complete Step 03 screenshot
+→ verify both enabled gateways and exactly one native Place Order control
+```
