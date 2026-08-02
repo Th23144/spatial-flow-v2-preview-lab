@@ -24,7 +24,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 16. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_AUDIT_AND_GATE.md
 17. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_IMPLEMENTATION.md
 18. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
-19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+19. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
+20. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -64,73 +65,46 @@ S7 Step-04 confirmed / pending result family
 future multi-asset integrated Workspace reference
 ```
 
-## Accepted S7 implementation
-
-Artifacts:
+## S8 implementation status
 
 ```text
-preview/spatial-flow-thank-you-v1.html
-preview/spatial-flow-thank-you-v1.css
-preview/spatial-flow-thank-you-v1.js
+S8 full relative-link/session-state audit: implemented, awaiting user acceptance
+S9 responsive static acceptance: blocked and not started
 ```
 
-Accepted states:
+S8 corrected:
 
 ```text
-confirmed:
-preview/spatial-flow-thank-you-v1.html
-
-pending:
-preview/spatial-flow-thank-you-v1.html?prototype_result=pending
+Address/Shipping edits now invalidate stale downstream payment and Crypto draft state
+S6 paid_confirmed now links to the accepted S7 Confirmed result
+S7 inherits session email, address, shipping and total values
+S7 dead Track Order route was replaced by the existing Order support route
+S7 Pending breadcrumb now recovers the same payment workspace
 ```
 
-Confirmed means server-confirmed payment and a WooCommerce-owned successful result.
+Active-flow routes were checked from Cart through Step 04. The future selector and future multi-asset Workspace remain isolated and are not linked by the active Checkout flow.
 
-Pending means the order exists but payment is not confirmed; fulfilment has not started and the order remains on hold.
-
-Neither state contains Pay, Confirm, Place order or another Checkout commitment action.
-
-User decision after the final mobile overview-grid correction:
+Detailed record:
 
 ```text
-都没问题，验收通过
+project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 ```
 
-Acceptance record:
+## Maintained authority boundary
+
+The static Checkout flow does not perform:
 
 ```text
-project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
-```
-
-## S7 maintained authority boundary
-
-The static result page does not perform:
-
-```text
-WooCommerce order lookup
+WooCommerce order lookup or creation
 payment verification
 payment_complete()
 order-status mutation
 stock mutation
 email dispatch
-real order-pay recovery generation
+real invoice creation or recovery
 ```
 
 Production state and all commerce data remain server-owned.
-
-## S7 corrections
-
-```text
-Payment: Placeholder removed
-Status: Received ambiguity removed
-Estimated total replaced by Order total
-confirmed and pending results separated
-Step 04 progress identity added
-stale # links removed from the result page
-Account utility removed under guest checkout
-inline page CSS split into maintainable resources
-odd five-item mobile overview grid corrected
-```
 
 ## Current execution point
 
@@ -138,8 +112,8 @@ odd five-item mobile overview grid corrected
 S5: accepted and closed
 S6: accepted and closed
 S7 Step-04 confirmed/pending result: accepted and closed
-S8 full relative-link/session-state audit: authorized next phase, not started
-S9 responsive static acceptance: not started
+S8 link/session audit: implemented, awaiting user acceptance
+S9 responsive static acceptance: blocked and not started
 Plugin installation: deferred
 Live Checkout: not started
 Checkout: Not done
@@ -148,7 +122,7 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-S8 full relative-link/session-state audit
+S8 user validation and acceptance
 → S9 desktop / 390 / 360 static acceptance
 → live Checkout ownership audit
 → plugin/workspace integration
@@ -168,7 +142,7 @@ S8 full relative-link/session-state audit
 - no duplicate order or invoice
 - no fake payment success
 - no live Checkout or plugin edits during static work
-- S8 must be executed as a separate bounded group
+- S9 cannot begin before S8 user acceptance
 - one bounded group at a time
 - Checkout remains Not done
 ```
