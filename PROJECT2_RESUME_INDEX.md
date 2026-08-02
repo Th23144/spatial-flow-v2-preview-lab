@@ -24,7 +24,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 16. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_AUDIT_AND_GATE.md
 17. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_IMPLEMENTATION.md
 18. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
-19. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+19. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
+20. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Binary page status
@@ -101,27 +102,6 @@ Pending result:
 preview/spatial-flow-thank-you-v1.html?prototype_result=pending
 ```
 
-Confirmed semantics:
-
-```text
-server confirmed payment
-payment received
-WooCommerce order status may proceed to Processing
-no Pay / Confirm / Place order action
-```
-
-Pending semantics:
-
-```text
-order received
-payment not confirmed
-order remains on hold
-fulfilment has not started
-return to the same payment workspace or contact support
-```
-
-The query parameter is a static review control only. Browser state never decides real payment success.
-
 User decision after the final mobile odd-grid correction:
 
 ```text
@@ -134,18 +114,30 @@ Acceptance record:
 project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
 ```
 
-## S7 corrections from the old page
+## Current S8 implementation
+
+S8 audited the active static route from Cart through S7 and corrected:
 
 ```text
-removed Payment: Placeholder
-removed Status: Received ambiguity
-replaced Estimated total with exact Order total
-added 01 / 02 / 03 / 04 Step identity
-added server-confirmed and pending result distinction
-removed Account under the guest-checkout model
-removed non-operational # links from this page
-split inline CSS into independent CSS/JS resources
-fixed the odd five-item mobile overview grid
+- stale payment/invoice state surviving Address or Shipping edits
+- missing S6 paid-confirmed → S7 confirmed bridge
+- S7 fixed values not inheriting Checkout session email/address/shipping/total
+- dead Track Order preview route
+- Pending breadcrumb restarting Checkout instead of recovering the same order
+```
+
+Implementation commits:
+
+```text
+f5d009b611e8963536511d4d76588dc8816b8da8
+7fc652f202113cf5e432e6621be336fa8035b3a0
+36862cbc018bc22d3f303947081b5d7b2c1a615c
+```
+
+Audit record:
+
+```text
+project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
 ```
 
 ## Current exact stop point
@@ -154,8 +146,8 @@ fixed the odd five-item mobile overview grid
 S5: accepted and closed
 S6: accepted and closed
 S7 confirmed/pending Step-04 result: accepted and closed
-S8 full relative-link/session-state audit: authorized next phase, not started
-S9 responsive static acceptance: not started
+S8 full relative-link/session-state audit: implemented, awaiting user acceptance
+S9 responsive static acceptance: blocked and not started
 Live Checkout reconstruction: not started
 Checkout: Not done
 ```
@@ -163,7 +155,7 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-S8 full relative-link/session-state audit
+S8 user validation and acceptance
 → S9 1366 / 390 / 360 static acceptance
 → live Checkout ownership audit
 → plugin/workspace integration
@@ -184,7 +176,7 @@ S8 full relative-link/session-state audit
 - no fifth Checkout step
 - no duplicate order or invoice
 - no QR/countdown/automatic-monitoring claim under current capability
-- S8 must be executed as a separate bounded group
+- S9 cannot begin before S8 user acceptance
 - one bounded group at a time
 - Checkout remains Not done
 ```
