@@ -1,28 +1,17 @@
-# Step 4F · R1 Live Step 01–03 Reconstruction
+# Step 4F · R1 Live Checkout Reconstruction
 
 Date: 2026-08-02  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
-## 1. Authorization
-
-User instruction:
+## 1. Current authority
 
 ```text
-不需要补 on-hold 证据就开始 R1
-```
-
-Decision:
-
-```text
-Additional on-hold screenshot: not required
-R0: closed with explicit evidence boundary
+R0: completed and closed
 R1: authorized
 Checkout: Not done
 ```
 
-## 2. Atomic R1 scope
-
-Only these three coupled runtime files may change:
+Only these runtime files may change in R1:
 
 ```text
 woocommerce/checkout/form-checkout.php
@@ -30,7 +19,7 @@ assets/js/checkout-safe5.js
 assets/css/checkout-safe5.css
 ```
 
-Prohibited in R1:
+The following remain prohibited in R1:
 
 ```text
 functions.php
@@ -41,182 +30,140 @@ WPCode
 CartFlows
 WooCommerce page ID / URL / shortcode
 Spatial Flow Crypto Pay Trial V0.2.5
-payment gateway configuration
+gateway configuration
 ```
 
-## 3. Locked delivery method
+## 2. Strict V2 operation flow
 
-Authoritative policy:
+The user re-locked this rule:
 
 ```text
-PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+All live page operation experience must strictly follow the accepted Project 2 V2 repository reference pages.
 ```
 
-R1 must be delivered as:
+Checkout progression:
 
 ```text
-exact target file
-→ exact old code to search
-→ expected unique match count
-→ exact replacement code
-→ expected byte/line delta
-→ user saves manually
-→ actual byte/line/hash verification
-→ syntax/parser validation
-→ stop before next part
+01 Address
+→ 02 Shipping
+→ 03 Payment
+→ 04 Confirmed
 ```
 
-Prohibited:
+Meaning:
 
 ```text
-- replacement ZIP deployment
-- whole-file overwrite
-- broad unanchored replacement
-- proceeding when match count differs
-- skipping before/after file-size review
+- Address, Shipping and Payment are interactive Checkout views.
+- Confirmed remains visible as the fourth progress stage.
+- Confirmed is disabled/non-interactive on Checkout.
+- No Step-04 input view exists.
+- Real confirmation is rendered only by the WooCommerce order result.
 ```
 
-## 4. Verified R0 baseline
+## 3. Candidate history
 
-| File | Bytes | Lines | SHA256 |
-|---|---:|---:|---|
-| `woocommerce/checkout/form-checkout.php` | 9,140 | 278 | `5ffb8eab32114354a7c40e2613bc03ccbcf72275217d6f50f5eca9ce35668b5f` |
-| `assets/js/checkout-safe5.js` | 24,463 | 780 | `45e5abf27de3f676bed64c44a0568a9135e0c1442a790f6fb890d7fbcbe681d0` |
-| `assets/css/checkout-safe5.css` | 20,936 | 599 | `6316615551f3f732933881f07fa6c1c128a1a013aa4de3e5afce22dff471313a` |
-
-Atomic rollback boundary remains all three files, but implementation is applied as manual bounded replacements rather than full-file deployment.
-
-## 5. First generated candidate — audit result
-
-A full candidate was generated internally for diffing and syntax review. It must not be deployed.
-
-| File | Candidate bytes | Byte delta | Candidate lines | Line delta | Review |
-|---|---:|---:|---:|---:|---|
-| `form-checkout.php` | 9,107 | -33 (-0.36%) | 269 | -9 (-3.24%) | plausible, still requires anchored decomposition |
-| `checkout-safe5.js` | 24,010 | -453 (-1.85%) | 624 | -156 (-20.0%) | major line reduction; requires function-by-function removal audit |
-| `checkout-safe5.css` | 34,593 | +13,657 (+65.23%) | 986 | +387 (+64.61%) | blocked; material mixed-scope growth |
-
-Diff line counts:
-
-```text
-form-checkout.php: +124 / -133
-checkout-safe5.js: +417 / -573
-checkout-safe5.css: +718 / -331
-```
-
-### Candidate decision
+### Broad first candidate
 
 ```text
 project2-checkout-r1-candidate-20260802.zip
+Status: prohibited
 ```
 
-is withdrawn as a deployment artifact.
+Reason: mixed functional restructuring with a broad whole-file visual rewrite; CSS grew 65.23%, PHP and JavaScript changed excessive unrelated scope.
+
+### Three-column minimal candidate
 
 ```text
-- do not overwrite runtime files with it
-- do not use its complete files as manual copy targets
-- retain only as an internal diff/audit reference
+project2-checkout-r1-minimal-audited-20260802.zip
+SHA256: aad2b0d5bb9b1dfcc2a8565f01c47de662e38c248e96f299e3bfe71d16b5a906
+Status: superseded and prohibited
 ```
 
-Detailed evidence:
+Reason: removed the visible Confirmed progress stage and therefore did not strictly match V2.
+
+### Corrected current candidate
+
+Authoritative record:
 
 ```text
-project2-progress/STEP_4F_R1_FIRST_CANDIDATE_DETAILED_DIFF_AUDIT.md
+project2-progress/STEP_4F_R1_V2_FLOW_AUDITED_PACKAGE.md
 ```
 
-Locked conclusions:
+Package:
 
 ```text
-- archive contents show no malicious/unknown executable artifact
-- CSS was not appended as one bottom block; it was broadly rewritten from the top
-- CSS contains no exact duplicate selectors, but mixes functional shell work with a large static-reference visual migration
-- PHP preserves WooCommerce hooks but changes 257 diff lines in a 278-line template
-- JavaScript removes intended Review/relocation functions but also rewrites validation, notices, coupon/event handling and removes all comments
-- syntax success is not equivalent to runtime safety
+project2-checkout-r1-v2-flow-audited-20260802.zip
+ZIP bytes: 16,062
+SHA256: c2a7cfce51fd8e404ede7f9854df178169167f55fe666d97b9c0df59bb2c27f4
 ```
 
-## 6. Locked R1 functional outcome
-
-Replace:
+Classification:
 
 ```text
-Information
-→ Shipping
-→ Payment
-→ Review
+source-audited
+minimal-diff
+V2-flow-aligned
+reversible
+acceptable for local-site installation and regression testing
 ```
 
-with:
+Not claimed:
 
 ```text
-01 Contact / Address
-→ 02 Shipping
-→ 03 Payment
+absolute zero runtime risk before installation
+final visual 1:1 acceptance
+production readiness
 ```
 
-Required behavior:
+## 4. Corrected candidate file audit
+
+| File | R0 bytes / lines | Candidate bytes / lines | Delta |
+|---|---:|---:|---:|
+| `form-checkout.php` | 9,140 / 278 | 7,787 / 237 | -1,353 bytes / -41 lines |
+| `checkout-safe5.js` | 24,463 / 780 | 20,659 / 668 | -3,804 bytes / -112 lines |
+| `checkout-safe5.css` | 20,936 / 599 | 20,931 / 599 | -5 bytes / 0 lines |
+
+No bottom CSS append, breakpoint change, field-grid rewrite, design-token rewrite or shared-file change exists.
+
+## 5. Locked functional boundary
 
 ```text
-- remove Review as a live input/navigation step
-- keep native WooCommerce billing/contact output in Step 01
-- keep native WooCommerce shipping fields/rates in Step 02
-- keep native WooCommerce dynamic payment gateways in Step 03
-- keep the real .place-order / #place_order inside Step 03
-- remove JavaScript relocation of .place-order
-- remove the rule requiring Step 4 before submission
-- preserve native WooCommerce checkout submit, nonce, AJAX, gateway fields and redirects
-- preserve the server-backed coupon path
-- preserve V0.2.5 legacy /crypto-pay/ handoff
-- preserve early client validation only as a non-authoritative UX guard
+- progress remains Address / Shipping / Payment / Confirmed
+- Review input page is removed
+- Confirmed has no client navigation target
+- native WooCommerce billing/contact remains Step 01
+- native WooCommerce shipping remains Step 02
+- native dynamic payment gateways remain Step 03
+- the single real `.place-order` / `#place_order` remains inside Step 03
+- no Place Order cloning or relocation
+- WooCommerce submit, nonce, AJAX, gateway fields and redirects remain authoritative
+- Coupon remains server-backed
+- Crypto V0.2.5 legacy `/crypto-pay/` handoff remains
+- pressing Enter cannot bypass Address or Shipping
 ```
 
-## 7. Required re-planning before the first user edit
-
-R1 is now divided into manual parts:
+## 6. Commerce behavior source audit
 
 ```text
-R1-A: template navigation and Review DOM removal
-R1-B: JavaScript step-count and Review/Place-Order relocation removal
-R1-C: minimal CSS conversion from four-step to three-step
-R1-D: approved static visual migration in bounded selector groups
+Address-driven shipping/totals refresh: source ownership preserved; runtime test required
+updated_checkout payment availability: native payment fragment remains in Step 03; runtime test required
+Coupon AJAX and total refresh: unchanged
+error routing: unchanged except Terms/Privacy now maps to Step 03
+Terms error: visible and blocked in Step 03
+Place Order: single native WooCommerce control, not cloned
+Duplicate order: no new submit path found; runtime repeat-click test required
+Crypto redirect: source path unchanged; runtime `/crypto-pay/` test required
 ```
 
-Rules:
+## 7. Current execution point
 
 ```text
-- R1-A/B/C establish the correct functional three-step shell first
-- R1-D visual work begins only after functional structure is stable
-- CSS must not jump directly from 20,936 bytes to 34,593 bytes
-- every CSS group requires exact START/END anchors and a stated size delta
-- PHP and JS comments/maintainability must be preserved where not obsolete
-- no browser acceptance is claimed until all coupled functional parts are applied
-```
-
-## 8. Future package boundary
-
-A future installation package may be offered for convenience only after:
-
-```text
-- it is regenerated from exact R0 hashes
-- only approved anchored regions differ
-- all size/line deltas are explained
-- no unrelated hook/function/selector changes remain
-- syntax/structure checks pass
-- before/after hashes and rollback instructions are included
-- the package is installed only on the local site before runtime acceptance
-```
-
-No dynamic WooCommerce change can honestly be guaranteed as absolute zero-risk before local runtime testing. The acceptable claim is bounded, source-audited, reversible and ready for local validation.
-
-## 9. Current execution point
-
-```text
-R1 authorization: recorded
-Manual replacement and file-size policy: locked
-First full candidate: detailed audit completed and blocked from deployment
-Runtime source modification: none
-Next: prepare minimal R1-A/B/C anchored changes and re-audit size
-R1-D: blocked until functional shell is stable
+Corrected V2-flow package: issued
+Runtime installation: not yet performed
+Browser regression: not yet performed
+Final V2 visual migration: not started
 R2: blocked
 Checkout: Not done
 ```
+
+After local installation, stop before further code work and validate the entire R1 commerce matrix.
