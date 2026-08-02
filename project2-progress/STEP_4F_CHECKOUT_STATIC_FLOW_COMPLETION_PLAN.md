@@ -22,10 +22,8 @@ S9 responsive static acceptance: accepted and closed
 Live Checkout ownership audit: closed
 Exact source-backed ownership matrix: issued
 Bounded reconstruction plan: accepted
-R0 file baseline and rollback package: completed
-R0 database/config export: pending
-R0 functional smoke test: pending
-R1 live code modification: not authorized and not started
+R0 baseline/configuration/functional smoke test: completed and closed
+R1 live code modification: awaiting explicit authorization; not started
 Plugin/workspace integration: not started
 ```
 
@@ -197,12 +195,14 @@ R7 full commerce regression
 R8 final 1366/390/360 strict acceptance and closure
 ```
 
-## 9. R0 baseline capture
+## 9. R0 baseline capture — closed
 
-Authoritative record:
+Authoritative records:
 
 ```text
 project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
+project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
+project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
 ```
 
 Completed evidence:
@@ -215,6 +215,10 @@ Completed evidence:
 - external rollback ZIP
 - authoritative V0.2.5 ZIP in the rollback package
 - current page/plugin ownership evidence
+- saved sf_checkout_* and sf_order_received_* theme mods
+- gateway order plus runtime registration/title/enabled export
+- Test A normal WooCommerce legacy order path
+- Test B current Crypto V0.2.5 Sandbox path
 ```
 
 Rollback package:
@@ -224,17 +228,69 @@ project2-checkout-r0-baseline-20260802.zip
 SHA256: 5eb98b952a19a7de000cfc870f3750cb15b3237e543e93dea284e78e7a36f45c
 ```
 
-Remaining R0 gates:
+Observed functional baselines:
 
 ```text
-1. export current saved sf_checkout_* and sf_order_received_* theme mods
-2. export current dynamic gateway IDs, titles, enabled states and order
-3. execute and record the current pre-edit functional smoke test
+Test A:
+#3571 — bacs / 测试 — $44.99 — On hold
+
+Test B:
+#3574 — spatial_flow_crypto / Pay with Crypto — $20.99
+/crypto-pay/ invoice loaded
+Waiting Payment shown before simulation
+Sandbox success reached Processing result
 ```
 
-R1 remains blocked until all three gates are recorded and R0 is formally closed.
+Confirmed defect carried into R4:
 
-## 10. Hard boundaries
+```text
+on-hold orders are still shown with success/preparation/fulfillment language
+```
+
+Evidence limits carried into R1/R7:
+
+```text
+malformed-email blocking
+exact shipping recalculation transition
+explicit duplicate-order audit
+separate WooCommerce admin order screens/notes
+gateway decline/server errors
+```
+
+R0 did not modify runtime source or configuration.
+
+## 10. R1 authorization boundary
+
+R1 is the first live-code group. It may start only after a new explicit user authorization.
+
+Allowed files only:
+
+```text
+woocommerce/checkout/form-checkout.php
+assets/js/checkout-safe5.js
+assets/css/checkout-safe5.css
+```
+
+R1 objective:
+
+```text
+- convert the live Checkout shell from four input views to three
+- remove Review as an input/business step
+- keep native Place Order once inside Step 03
+- preserve native WooCommerce fields, shipping, totals, coupon, gateways, nonces and order creation
+- keep Crypto V0.2.5 untouched and preserve the legacy /crypto-pay/ path
+- stop for functional and visual acceptance before R2
+```
+
+Atomic rollback:
+
+```text
+form-checkout.php
++ checkout-safe5.js
++ checkout-safe5.css
+```
+
+## 11. Hard boundaries
 
 ```text
 - Checkout remains Not done until live implementation and final acceptance
@@ -251,15 +307,12 @@ R1 remains blocked until all three gates are recorded and R0 is formally closed.
 - one bounded implementation group at a time
 ```
 
-## 11. Current exact stop point
+## 12. Current exact stop point
 
 ```text
 Bounded reconstruction plan: accepted
-R0 file baseline and rollback package: completed
-R0 database/config export: pending
-R0 functional smoke test: pending
-R0 closure: blocked
-R1 implementation: not authorized and not started
+R0: completed and closed
+R1 implementation: awaiting explicit user authorization; not started
 Plugin/workspace integration: not started
 Checkout: Not done
 ```
