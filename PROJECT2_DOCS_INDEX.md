@@ -25,7 +25,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 17. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_IMPLEMENTATION.md
 18. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
 19. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
-20. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+20. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
+21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -62,32 +63,40 @@ S4B capability/integration contract
 S5 Waiting / Preparing / bootstrap failure
 S6 verification / recovery state family
 S7 Step-04 confirmed / pending result family
+S8 active-flow link/session continuity
 future multi-asset integrated Workspace reference
 ```
 
-## S8 implementation status
+## Accepted S8 status
 
 ```text
-S8 full relative-link/session-state audit: implemented, awaiting user acceptance
-S9 responsive static acceptance: blocked and not started
+S8 full relative-link/session-state audit: accepted and closed
+S9 responsive static acceptance: authorized next phase, not started
 ```
 
-S8 corrected:
+S8 corrected and the user accepted:
 
 ```text
-Address/Shipping edits now invalidate stale downstream payment and Crypto draft state
-S6 paid_confirmed now links to the accepted S7 Confirmed result
+Address/Shipping edits invalidate stale downstream payment and Crypto draft state
+S6 paid_confirmed links to the accepted S7 Confirmed result
 S7 inherits session email, address, shipping and total values
-S7 dead Track Order route was replaced by the existing Order support route
-S7 Pending breadcrumb now recovers the same payment workspace
+S7 dead Track Order route is replaced by the existing Order support route
+S7 Pending breadcrumb recovers the same payment workspace
+old prototype transaction hashes are cleared after a new Shipping commitment
+active flow remains isolated from future selector/workspace examples
 ```
 
-Active-flow routes were checked from Cart through Step 04. The future selector and future multi-asset Workspace remain isolated and are not linked by the active Checkout flow.
+User decision:
 
-Detailed record:
+```text
+通过
+```
+
+Detailed records:
 
 ```text
 project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_AUDIT.md
+project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
 ```
 
 ## Maintained authority boundary
@@ -112,8 +121,8 @@ Production state and all commerce data remain server-owned.
 S5: accepted and closed
 S6: accepted and closed
 S7 Step-04 confirmed/pending result: accepted and closed
-S8 link/session audit: implemented, awaiting user acceptance
-S9 responsive static acceptance: blocked and not started
+S8 link/session audit: accepted and closed
+S9 responsive static acceptance: authorized next phase, not started
 Plugin installation: deferred
 Live Checkout: not started
 Checkout: Not done
@@ -122,8 +131,7 @@ Checkout: Not done
 ## Remaining sequence
 
 ```text
-S8 user validation and acceptance
-→ S9 desktop / 390 / 360 static acceptance
+S9 desktop / 390 / 360 static acceptance
 → live Checkout ownership audit
 → plugin/workspace integration
 → Sandbox and recovery testing
@@ -142,7 +150,7 @@ S8 user validation and acceptance
 - no duplicate order or invoice
 - no fake payment success
 - no live Checkout or plugin edits during static work
-- S9 cannot begin before S8 user acceptance
+- S9 must be executed as a separate bounded group
 - one bounded group at a time
 - Checkout remains Not done
 ```
