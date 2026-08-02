@@ -11,22 +11,14 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 3. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
 4. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
 5. PROJECT2_CSS_MAINTENANCE_POLICY.md
-6. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
-7. project2-progress/STEP_4E_B2_R5_E6_FINAL_CART_1_TO_1_ACCEPTANCE_AND_CLOSURE.md
-8. project2-progress/STEP_4F_CHECKOUT_PAYMENT_ARCHITECTURE_DECISION_PROPOSAL.md
-9. project2-progress/STEP_4F_S7_STEP04_RESULT_PAGE_ACCEPTANCE_AND_CLOSURE.md
-10. project2-progress/STEP_4F_S8_CHECKOUT_LINK_AND_SESSION_ACCEPTANCE_AND_CLOSURE.md
-11. project2-progress/STEP_4F_S9_RESPONSIVE_STATIC_ACCEPTANCE_AND_CLOSURE.md
-12. project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
-13. project2-progress/STEP_4F_LIVE_CHECKOUT_PAGE_AND_CARTFLOWS_EVIDENCE.md
-14. project2-progress/STEP_4F_LIVE_CHECKOUT_CURRENT_SOURCE_AND_PLUGIN_VERIFICATION.md
-15. project2-progress/STEP_4F_LIVE_CHECKOUT_WPCODE_VERIFICATION_AND_OWNERSHIP_CLOSURE.md
-16. project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
-17. project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
-18. project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
-19. project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
-20. project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
-21. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+6. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+7. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
+8. project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
+9. project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
+10. project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
+11. project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
+12. project2-progress/STEP_4F_R1_LIVE_STEP01_03_RECONSTRUCTION.md
+13. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
 ```
 
 ## Page status
@@ -51,182 +43,93 @@ Checkout: Not done
 
 Step 04 is WooCommerce-owned result truth. It is not Review and never requests payment again.
 
-## Accepted static work
+## R0 closure
 
 ```text
-S3 Step-03 Payment: accepted
-Step-03 payment host: accepted
-S4A future selector reference: accepted and isolated
-S4B capability/integration contract: completed
-S5 Waiting / Preparing / failure: accepted
-S6 verification/recovery states: accepted
-S7 confirmed/pending result family: accepted
-S8 link/session continuity: accepted
-S9 1366/390/360 responsive static acceptance: accepted
+R0 file/config/smoke baseline: completed and closed
+Runtime source changes during R0: none
 ```
 
-Static acceptance does not change the live Checkout status.
-
-## Live ownership and reconstruction documents
+Authoritative records:
 
 ```text
-Main ownership status:
-project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
-
-Page and CartFlows evidence:
-project2-progress/STEP_4F_LIVE_CHECKOUT_PAGE_AND_CARTFLOWS_EVIDENCE.md
-
-Current theme/plugin verification:
-project2-progress/STEP_4F_LIVE_CHECKOUT_CURRENT_SOURCE_AND_PLUGIN_VERIFICATION.md
-
-WPCode residual closure:
-project2-progress/STEP_4F_LIVE_CHECKOUT_WPCODE_VERIFICATION_AND_OWNERSHIP_CLOSURE.md
-
-Exact keep/replace/migrate matrix:
-project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
-
-Bounded implementation sequence:
-project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
-
-R0 file/config/smoke closure:
 project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
 project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
 project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
 ```
 
-## Ownership audit final status
+## R1 delivery policy
+
+Project 2 implementation must use manual anchored replacement and mandatory before/after file-size auditing.
 
 ```text
-Repository evidence: completed
-Theme/template source verification: completed
-Checkout page assignment: completed
-CartFlows ownership check: completed; no Flow exists
-Active plugin/payment evidence: completed
-Crypto V0.2.5 verification: completed
-WPCode active-snippet check: completed; no Checkout owner found
-Live Checkout ownership audit: closed
-Exact ownership matrix: issued
+exact old code
+→ expected match count
+→ exact replacement code
+→ expected byte/line delta
+→ user saves manually
+→ actual byte/line/hash validation
+→ syntax/parser validation
+→ stop
 ```
 
-## Confirmed current owners and gaps
+Prohibited by default:
 
 ```text
-/checkout-2-2/: WooCommerce page ID 623 with [woocommerce_checkout]
-form-checkout.php: current Information → Shipping → Payment → Review shell
-checkout-safe5.js: steps, validation, shipping mirror, coupon, notices and Place Order relocation
-checkout-safe5.css: scoped Checkout visual layer
-functions.php: asset loading, legacy unhooks and Customizer registration
-spatial-flow.js: shared Terms and overlapping Checkout notice handling
-spatial-flow.css: historical Checkout cascade
-thankyou.php: real order-received output without correct pending/on-hold separation
-CartFlows: active but no Flow; excluded
-WPCode: active snippets checked; no Checkout/payment/Crypto owner
+replacement ZIP deployment
+complete-file overwrite
+unanchored broad replacement
+skipping file-size review
+routine append-only CSS patching
 ```
 
-## Current Crypto baseline
+Authoritative policy:
 
 ```text
-Spatial Flow Crypto Pay Trial V0.2.5
-SHA256: 41e926e96af99a0623d850189ec99ea4a58536b3f4b23be78f1eba9d21d7550f
-Gateway ID: spatial_flow_crypto
-Fixed USDT / TRON-TRC20
-Nile Testnet + Sandbox enabled in supplied settings
+PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
 ```
 
-Current path remains legacy `/crypto-pay/`. No REST/order-pay Workspace, form-pay replacement, feature flag, token or epoch exists in V0.2.5.
+## R1 candidate audit
 
-## Bounded reconstruction plan status
+The first complete R1 candidate is not approved for deployment.
+
+| File | Baseline | Candidate delta | Decision |
+|---|---|---:|---|
+| `form-checkout.php` | 9,140 bytes / 278 lines | -33 bytes / -9 lines | decompose into anchored parts |
+| `checkout-safe5.js` | 24,463 bytes / 780 lines | -453 bytes / -156 lines | function-by-function audit required |
+| `checkout-safe5.css` | 20,936 bytes / 599 lines | +13,657 bytes / +387 lines | blocked; +65.23% growth |
+
+The artifact:
 
 ```text
-Plan document: issued
-User decision: 计划通过，开始 R0
-R0: completed and closed
-Runtime source changes: none
-R1 live implementation: awaiting explicit authorization
+project2-checkout-r1-candidate-20260802.zip
 ```
 
-Plan groups:
+is withdrawn as a deployment method and must not be applied.
+
+## R1 sequence
 
 ```text
-R0 baseline capture and rollback package
-R1 live Step 01–03 shell + native Place Order in Step 03
-R2 notice/error ownership consolidation
-R3 backend-editable Checkout copy
-R4 server-authoritative result mapping
-R5 historical Checkout CSS cleanup
-R6 Crypto V0.2.5 regression and upgrade decision gate
-R7 full commerce regression
-R8 final strict desktop/mobile acceptance and closure
+R1-A template navigation and Review DOM removal
+R1-B JavaScript three-step conversion and relocation removal
+R1-C minimal CSS functional conversion
+R1-D bounded approved visual migration
 ```
 
-## R0 closure
-
-Completed:
-
-```text
-- seven exact current theme files captured
-- byte size, line count and SHA256 recorded
-- PHP/JS syntax checks passed
-- CSS parse and balance checks passed
-- external rollback package created
-- V0.2.5 authoritative ZIP included
-- saved Checkout/Order Received theme mods exported
-- WooCommerce gateway order and runtime registration exported
-- Test A normal WooCommerce legacy path recorded
-- Test B Crypto V0.2.5 Sandbox path recorded
-```
-
-Rollback package:
-
-```text
-project2-checkout-r0-baseline-20260802.zip
-SHA256: 5eb98b952a19a7de000cfc870f3750cb15b3237e543e93dea284e78e7a36f45c
-```
-
-Observed baseline orders:
-
-```text
-#3571 — bacs / 测试 — $44.99 — On hold
-#3574 — spatial_flow_crypto / Pay with Crypto — $20.99 — Sandbox result Processing
-```
-
-Confirmed baseline defect:
-
-```text
-On-hold orders are still shown with success/preparation/fulfillment language.
-This is assigned to R4.
-```
-
-Evidence limits retained for R1/R7:
-
-```text
-malformed-email blocking
-exact shipping recalculation transition
-explicit duplicate-order audit
-separate admin-order screenshots/notes
-gateway decline/server errors
-```
+Every part must include exact anchors, expected match count, expected size delta, actual size/hash check, syntax validation and an independent rollback.
 
 ## Current execution point
 
 ```text
-Live Checkout ownership audit: closed
-Exact ownership matrix: issued
+Ownership audit: closed
 Bounded reconstruction plan: accepted
-R0: completed and closed
-R1: awaiting explicit user authorization; not started
-Plugin/workspace integration: not started
+R0: closed
+R1: authorized
+First complete R1 candidate: blocked from deployment
+Runtime source modification: none
+Next: R1-A manual replacement instructions
+R2: blocked
 Checkout: Not done
-```
-
-## Remaining sequence
-
-```text
-explicit user authorization for R1
-→ modify only form-checkout.php + checkout-safe5.js + checkout-safe5.css
-→ stop for R1 functional/visual acceptance
-→ proceed one bounded group at a time
-→ final strict desktop/mobile acceptance
 ```
 
 ## Locked boundaries
@@ -237,9 +140,10 @@ explicit user authorization for R1
 - no fifth Checkout step
 - no fake/browser-authoritative success
 - no duplicate order or invoice
-- no blind whole-file overwrite
+- no whole-file replacement package
+- mandatory file-size review
 - no append-only CSS patch pile
 - V0.2.6.1/Workspace integration remains deferred
-- one bounded implementation group at a time
+- one bounded part at a time
 - Checkout remains Not done
 ```
