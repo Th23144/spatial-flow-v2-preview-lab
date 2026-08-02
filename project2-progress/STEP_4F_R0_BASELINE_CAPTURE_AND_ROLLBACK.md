@@ -11,13 +11,13 @@ User authorization:
 计划通过，开始 R0
 ```
 
-R0 is documentation, evidence capture and rollback preparation only.
+R0 was documentation, evidence capture and rollback preparation only.
 
 ```text
-Runtime source modification: prohibited
-WordPress/WooCommerce configuration modification: prohibited
-WPCode/CartFlows modification: prohibited
-Crypto plugin modification: prohibited
+Runtime source modification: none
+WordPress/WooCommerce configuration modification: none
+WPCode/CartFlows modification: none
+Crypto plugin modification: none
 Checkout: Not done
 ```
 
@@ -72,6 +72,8 @@ form-checkout.php
 + checkout-safe5.js
 + checkout-safe5.css
 ```
+
+These three files are coupled and must be restored together if R1 is rolled back.
 
 ## 4. Confirmed page/plugin baseline
 
@@ -171,7 +173,7 @@ airwallex_main / Pay with cards and more: no
 
 The exported gateway-object `order` property is null, while the separate WooCommerce option preserves administrative order. Actual front-end availability was confirmed during Test A: both enabled gateways rendered for the tested cart/session.
 
-## 7. Functional smoke test status
+## 7. Functional smoke-test baseline
 
 Authoritative record:
 
@@ -180,8 +182,6 @@ project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
 ```
 
 ### Test A — normal WooCommerce legacy path
-
-Recorded runtime result:
 
 ```text
 Gateway: bacs / 测试
@@ -194,36 +194,57 @@ Native Place Order: produced the observed WooCommerce order
 Current result template: loaded
 ```
 
-The result page confirmed the known semantic defect in real runtime output:
+Confirmed runtime defect:
 
 ```text
 on-hold order
 → still shown with preparation, fulfillment-queue and On The Way language
 ```
 
-This defect is carried into R4. It does not block preservation of the pre-change baseline.
+This defect is carried into R4.
 
-Evidence limits are documented in the functional-smoke-test record: malformed-email blocking, the exact shipping recalculation transition, duplicate-order absence and the separate admin order screen were not independently captured by the supplied screenshots.
-
-### Test B — Crypto V0.2.5 Sandbox
+### Test B — Crypto V0.2.5 Sandbox path
 
 ```text
-Pending
+Gateway: spatial_flow_crypto / Pay with Crypto
+Observed order: #3574
+Order total: $20.99
+Legacy route: /crypto-pay/
+Network: TRON Nile Testnet / TRC20
+Asset: Test USDT
+Invoice interface: loaded
+Pre-success UI state: Waiting Payment
+Administrator-only Sandbox success control: present
+Sandbox result state: Processing
+Canonical WooCommerce result template: loaded
+Sandbox simulation notice: displayed
 ```
 
-Required before R0 closure:
+Evidence boundary:
 
 ```text
-- select Pay with Crypto
-- create one on-hold WooCommerce order
-- reach legacy /crypto-pay/
-- confirm invoice/reuse interface
-- use administrator-only Sandbox success
-- reach canonical WooCommerce result
-- record initial/final status and relevant order notes
+- the pre-success WooCommerce admin status was not separately screenshotted
+- V0.2.5 source sets the order to on-hold and the live page showed Waiting Payment
+- the final Processing state and Sandbox note were visible in the rendered order result
+- no separate admin order-notes screenshot was supplied
+- full order keys, receiver address, invoice ID and simulated reference are intentionally not stored in GitHub
 ```
 
-## 8. Current status
+## 8. Known baseline limits retained for later regression
+
+The following were not independently captured during R0 and remain mandatory R1/R7 regression cases:
+
+```text
+- malformed-email blocking screenshot
+- exact shipping recalculation transition
+- explicit duplicate-order audit
+- separate WooCommerce admin order screen for Test A and Test B
+- gateway-decline/server-error states
+```
+
+These evidence limits do not invalidate the pre-change baseline. They must not be misrepresented as already passed.
+
+## 9. R0 closure
 
 ```text
 R0 file manifest: completed
@@ -234,9 +255,12 @@ R0 saved theme-mod export: completed
 R0 gateway order export: completed
 R0 runtime registered/title/enabled export: completed
 R0 Test A normal order path: recorded
-R0 Test B Crypto Sandbox path: pending
-R0 functional smoke test: in progress
-R1: blocked and not started
+R0 Test B Crypto Sandbox path: recorded
+R0 functional smoke test: completed
+R0: closed
+R1: not authorized and not started
 Runtime source modification: none
 Checkout: Not done
 ```
+
+R0 closure does not approve the current four-step design, current result semantics or any production readiness claim. It only establishes the exact rollback and pre-change functional baseline.
