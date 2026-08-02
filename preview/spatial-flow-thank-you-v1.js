@@ -1,8 +1,18 @@
 (() => {
   'use strict';
 
+  const STORAGE_KEY = 'spatialFlowCheckoutPrototype';
+  const SUBTOTAL = 329;
   const body = document.body;
   if (!body.classList.contains('checkout-step-result')) return;
+
+  const readState = () => {
+    try {
+      return JSON.parse(window.sessionStorage.getItem(STORAGE_KEY) || '{}');
+    } catch (error) {
+      return {};
+    }
+  };
 
   const query = new URLSearchParams(window.location.search);
   const requested = query.get('prototype_result');
@@ -31,8 +41,10 @@
       summaryNote: 'A confirmation email and later tracking updates are sent by the real WooCommerce mail system.',
       primaryLabel: 'Continue browsing →',
       primaryHref: 'spatial-flow-shop-v1.html',
-      secondaryLabel: 'Track order',
-      secondaryHref: 'spatial-flow-track-order-v1.html',
+      secondaryLabel: 'Order support',
+      secondaryHref: 'spatial-flow-contact-v1.html',
+      breadcrumbLabel: 'Shop',
+      breadcrumbHref: 'spatial-flow-shop-v1.html',
       timeline: [
         {
           step: '01 · Confirmed',
@@ -78,6 +90,8 @@
       primaryHref: 'spatial-flow-checkout-crypto-invoice-v1.html?prototype_payment=recovered',
       secondaryLabel: 'Contact support',
       secondaryHref: 'spatial-flow-contact-v1.html',
+      breadcrumbLabel: 'Payment workspace',
+      breadcrumbHref: 'spatial-flow-checkout-crypto-invoice-v1.html?prototype_payment=recovered',
       timeline: [
         {
           step: '01 · Received',
@@ -113,6 +127,58 @@
   const setHTML = (selector, value) => {
     const node = document.querySelector(selector);
     if (node) node.innerHTML = value;
+  };
+
+  const setAddressLines = (node, lines) => {
+    if (!node) return;
+
+    node.textContent = '';
+    lines.filter(Boolean).forEach((line, index) => {
+      if (index) node.append(document.createElement('br'));
+      node.append(document.createTextNode(line));
+    });
+  };
+
+  const hydrateSessionDetails = () => {
+    const stored = readState();
+    const address = stored.address || {};
+    const hasStoredAddress = Object.keys(address).length > 0;
+    const name = [address.billing_first_name, address.billing_last_name].filter(Boolean).join(' ');
+    const street = address.billing_address_1 || '';
+    const city = address.billing_city || '';
+    const region = address.billing_state || '';
+    const postcode = address.billing_postcode || '';
+    const country = address.billing_country || '';
+    const cityLine = `${city}${region ? `, ${region}` : ''}${postcode ? ` ${postcode}` : ''}`;
+    const addressLines = hasStoredAddress
+      ? [name || 'Customer', street, cityLine, country]
+      : ['Quiet Room Studio', '18 Paper Street', 'Los Angeles, CA 90001', 'United States'];
+    const email = address.billing_email || 'you@example.com';
+    const shipping = stored.shipping || {};
+    const shippingPrice = Number(shipping.price || 0);
+    const shippingLabel = shipping.displayPrice || (shippingPrice === 0 ? 'Free' : `$${shippingPrice.toFixed(2)}`);
+    const totalLabel = `$${(SUBTOTAL + shippingPrice).toFixed(2)}`;
+
+    const overviewEmail = document.querySelector('.result-overview li:nth-child(3) strong');
+    const overviewTotal = document.querySelector('.result-overview li:nth-child(4) strong');
+    const receiptShipping = document.querySelector('.result-order-table tfoot tr:nth-child(2) td:last-child');
+    const receiptTotal = document.querySelector('.result-order-table tfoot .result-total td:last-child');
+    const billingAddress = document.querySelector('.result-address-card:nth-child(1) address');
+    const billingEmail = document.querySelector('.result-address-card:nth-child(1) p');
+    const shippingAddress = document.querySelector('.result-address-card:nth-child(2) address');
+    const summaryShipping = document.querySelector('.result-summary__totals .result-summary__row:nth-child(2) strong');
+    const summaryTotal = document.querySelector('.result-summary__totals .result-summary__row--total strong');
+
+    if (overviewEmail) overviewEmail.textContent = email;
+    if (overviewTotal) overviewTotal.textContent = totalLabel;
+    if (receiptShipping) receiptShipping.textContent = shippingLabel;
+    if (receiptTotal) receiptTotal.textContent = totalLabel;
+    if (billingEmail) billingEmail.textContent = email;
+    if (summaryShipping) summaryShipping.textContent = shippingLabel;
+    if (summaryTotal) summaryTotal.textContent = totalLabel;
+
+    setAddressLines(billingAddress, addressLines);
+    setAddressLines(shippingAddress, addressLines);
   };
 
   setText('[data-result-kicker]', current.kicker);
@@ -153,6 +219,18 @@
     secondary.href = current.secondaryHref;
   }
 
+  const checkoutBreadcrumb = document.querySelector('.woocommerce-breadcrumb a[href="spatial-flow-checkout-v1.html"]');
+  if (checkoutBreadcrumb) {
+    checkoutBreadcrumb.textContent = current.breadcrumbLabel;
+    checkoutBreadcrumb.href = current.breadcrumbHref;
+  }
+
+  const staleTrackLinks = document.querySelectorAll('a[href="spatial-flow-track-order-v1.html"]');
+  staleTrackLinks.forEach((link) => {
+    link.textContent = 'Order support';
+    link.href = 'spatial-flow-contact-v1.html';
+  });
+
   document.querySelectorAll('[data-result-timeline]').forEach((card, index) => {
     const item = current.timeline[index];
     if (!item) return;
@@ -171,4 +249,6 @@
     paymentStep.classList.toggle('is-complete', state === 'confirmed');
     paymentStep.classList.remove('is-active');
   }
+
+  hydrateSessionDetails();
 })();
