@@ -19,11 +19,9 @@ S6 verification/recovery family: accepted and closed
 S7 confirmed/pending Step-04 result: accepted and closed
 S8 link/session continuity: accepted and closed
 S9 responsive static acceptance: accepted and closed
-Live ownership audit — repository evidence: completed
-Live ownership audit — current theme/template/plugin verification: completed
-WPCode active-snippet ownership check: required final residual check
-Exact ownership matrix: not yet issued
-Bounded reconstruction plan: not started
+Live Checkout ownership audit: closed
+Exact source-backed ownership matrix: issued
+Bounded reconstruction plan: next separate phase, not started
 Plugin/workspace integration: not started
 ```
 
@@ -64,71 +62,65 @@ preview/spatial-flow-thank-you-v1.js
 
 Future multi-asset references remain isolated and must not enter current production work.
 
-## 4. Current live source truth
+## 4. Ownership audit result
 
-### Checkout entry
+Authoritative records:
+
+```text
+project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
+project2-progress/STEP_4F_LIVE_CHECKOUT_PAGE_AND_CARTFLOWS_EVIDENCE.md
+project2-progress/STEP_4F_LIVE_CHECKOUT_CURRENT_SOURCE_AND_PLUGIN_VERIFICATION.md
+project2-progress/STEP_4F_LIVE_CHECKOUT_WPCODE_VERIFICATION_AND_OWNERSHIP_CLOSURE.md
+project2-progress/STEP_4F_LIVE_CHECKOUT_EXACT_OWNERSHIP_MATRIX.md
+```
+
+Confirmed current environment:
 
 ```text
 WooCommerce Checkout page: ID 623
 URL: /checkout-2-2/
 Content: [woocommerce_checkout]
-CartFlows Flows: none
+CartFlows: active but no Flow exists
+WPCode: no Checkout/payment/Crypto owner found
+Crypto: authoritative V0.2.5 legacy baseline
 ```
 
-### Child-theme owners
-
-```text
-woocommerce/checkout/form-checkout.php
-woocommerce/checkout/thankyou.php
-assets/js/checkout-safe5.js
-assets/css/checkout-safe5.css
-functions.php
-assets/js/spatial-flow.js
-assets/css/spatial-flow.css
-```
-
-No override exists for:
-
-```text
-form-pay.php
-payment.php
-review-order.php
-```
-
-### Current live conflicts
+## 5. Locked live conflicts
 
 ```text
 form-checkout.php:
-Information → Shipping → Payment → Review
+- current shell is Information → Shipping → Payment → Review
+- Review must be removed as an input stage
 
 checkout-safe5.js:
-- moves the native Place Order row into Review
-- blocks native submission until Step 4
-- owns step validation, shipping mirror, coupon and notice behavior
+- owns step navigation, client validation, shipping mirror, coupon and notices
+- moves native .place-order into Review
+- blocks submission until Step 4
 
 thankyou.php:
 - failed has a dedicated branch
 - all non-failed statuses share one success-like composition
-- pending/on-hold does not yet use accepted S7 Pending semantics
+- pending/on-hold lacks accepted Pending semantics
 
-Customizer:
-- old Checkout controls still exist
+functions.php / Customizer:
+- old Checkout controls remain registered
 - current SAFE5 hardcodes much visible copy
-- legacy hooks consuming many settings are removed on SAFE5
+- many old hooks consuming those settings are removed
 
-Shared assets:
-- spatial-flow.js overlaps SAFE5 on updated_checkout and checkout_error
-- spatial-flow.css retains historical Checkout rules beneath the SAFE5 layer
+shared assets:
+- spatial-flow.js overlaps SAFE5 on updated_checkout / checkout_error
+- spatial-flow.css retains historical Checkout rules beneath SAFE5
 ```
 
-## 5. Current Crypto baseline
+## 6. Current Crypto baseline
 
 ```text
 Spatial Flow Crypto Pay Trial V0.2.5
 ZIP SHA256: 41e926e96af99a0623d850189ec99ea4a58536b3f4b23be78f1eba9d21d7550f
+Gateway ID: spatial_flow_crypto
+Fixed USDT / TRON-TRC20
+Current supplied mode: Nile Testnet + Sandbox enabled
 ```
-
-The supplied artifact exactly matches the authoritative V0.2.5 baseline.
 
 Current path:
 
@@ -136,22 +128,11 @@ Current path:
 spatial_flow_crypto selected
 → WooCommerce creates order
 → on-hold
-→ /crypto-pay/ with order_id + order key
-→ invoice generation
-→ TRON hash submission
+→ legacy /crypto-pay/
+→ invoice + transaction-hash submission
 → server-side TronGrid verification
 → payment_complete(tx_hash)
 → canonical WooCommerce result
-```
-
-Current supplied settings:
-
-```text
-Gateway enabled
-Nile Testnet
-Sandbox enabled
-Invoice expiry setting 30 minutes
-Minimum confirmations setting 12
 ```
 
 Capability boundary:
@@ -167,73 +148,75 @@ no operational confirmation tracker
 no autonomous expiry worker
 ```
 
-## 6. Final ownership-audit action
+## 7. Exact ownership decisions
 
-Because WPCode Lite is active, inspect the active snippet list for any code targeting:
-
-```text
-checkout
-woocommerce_checkout
-order-received / thankyou
-payment gateways
-crypto-pay
-wc-ajax
-```
-
-This is read-only. No snippet may be changed or disabled in this group.
-
-## 7. Required output after WPCode check
-
-Close the ownership audit and issue one exact matrix containing:
+The source-backed matrix locks:
 
 ```text
-surface
-exact file
-exact hook/filter/event/selector
-current callback/output
-current data authority
-keep / replace / unhook / migrate decision
-backend-editability source
-rollback boundary
-regression tests
+- keep Checkout page ID, URL and shortcode host
+- rebuild form-checkout.php as Step 01–03 while preserving native Woo hooks
+- keep WooCommerce billing, shipping, order-review and payment authority
+- keep native #place_order in Step 03
+- remove Review-state filling and Place Order relocation
+- preserve server-side coupon and gateway behavior
+- consolidate Checkout notices into one scoped owner
+- reconnect or migrate backend Checkout copy controls
+- map pending/on-hold and paid result states correctly in thankyou.php
+- keep V0.2.5 untouched during initial shell work
+- clean historical shared Checkout CSS in bounded blocks
+- exclude CartFlows and WPCode
 ```
 
-Then write a bounded reconstruction plan. Implementation requires a separate explicit user authorization.
+## 8. Next phase — bounded reconstruction plan
 
-## 8. Expected reconstruction order after authorization
+The next phase is documentation/planning only. It must define, for each implementation group:
 
 ```text
-Group 1: live Step 01–03 shell and WooCommerce ownership preservation
-Group 2: remove rejected Review-step submission dependency
-Group 3: dynamic payment gateway host
-Group 4: current V0.2.5 legacy Crypto bridge or separately authorized plugin upgrade path
-Group 5: server-authoritative confirmed/pending Step-04 result mapping
-Group 6: backend-editability restoration
-Group 7: Sandbox, unfinished-payment recovery and full regression
-Group 8: final desktop/mobile strict acceptance
+- exact files allowed to change
+- exact functions/selectors to keep, remove or migrate
+- rollback snapshot/hash requirements
+- preconditions
+- test cases
+- user visual/functional acceptance gate
+- explicit stop point
 ```
 
-The exact groups may be narrowed further by the ownership matrix. They must not be executed as one batch.
+No implementation begins until the user explicitly approves the plan and authorizes the first group.
 
-## 9. Hard boundaries
+## 9. Recommended reconstruction order to be finalized in the plan
+
+```text
+Group 1: rebuild live Step 01–03 shell while preserving native Woo output
+Group 2: remove Review dependency and return native Place Order to Step 03
+Group 3: consolidate Checkout notice and shared-asset ownership
+Group 4: restore backend-editable Checkout copy
+Group 5: map server-authoritative Confirmed / Pending / Failed result semantics
+Group 6: preserve and test current V0.2.5 legacy Crypto bridge
+Group 7: full Sandbox, gateway, unfinished-payment and regression testing
+Group 8: final 1366 / 390 / 360 strict acceptance and cleanup
+```
+
+These groups may be narrowed further; they must not be executed as one batch.
+
+## 10. Hard boundaries
 
 ```text
 - Checkout remains Not done until live implementation and final acceptance
 - preserve WooCommerce order/payment authority
 - preserve backend editability
+- no fake headless payment API
+- no browser-authoritative payment success
 - no fifth business step
 - no duplicate order or invoice
-- no fake or browser-authoritative success
 - no QR/countdown/automatic-monitoring claim under V0.2.5
-- no live modification during ownership audit
 - V0.2.6.1 installation and Workspace integration remain deferred
 - one bounded implementation group at a time
 ```
 
-## 10. Current exact action
+## 11. Current exact action
 
 ```text
-Obtain the WPCode active-snippet list only.
-Then close the ownership audit and produce the exact ownership matrix.
-Do not modify Checkout, snippets, theme or Crypto plugin in the same group.
+Prepare the bounded reconstruction plan as the next separate phase only after an explicit user instruction to start.
+
+Do not modify Checkout, theme assets, WPCode, CartFlows or the Crypto plugin in the same planning group.
 ```
