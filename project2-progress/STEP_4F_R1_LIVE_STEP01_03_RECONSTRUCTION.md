@@ -98,7 +98,7 @@ Implementation rules:
 - validate desktop and mobile after each visual group
 ```
 
-## 6. R1-D1 installed state
+## 6. R1-D1 closed result
 
 Authoritative records:
 
@@ -106,71 +106,45 @@ Authoritative records:
 project2-progress/STEP_4F_R1D1_INTRO_PROGRESS_VISUAL_MIGRATION.md
 project2-progress/STEP_4F_R1D1_390PX_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1D1_360PX_AND_MOBILE_GUTTER_DEFECT.md
+project2-progress/STEP_4F_R1D1_MOBILE_GUTTER_CORRECTION.md
 ```
 
-Installed audited state:
-
-| File | Bytes / lines | SHA256 |
-|---|---:|---|
-| `form-checkout.php` | 7,925 / 240 | `14e58b22966d1c3cb6c713157e5475eb43de102bc271a4e620ddfe14a4da17ec` |
-| `checkout-safe5.js` | 20,744 / 671 | `7b2906a3be0823cc5055db409fe20cc498878d71d479809c7e812174530ae0df` |
-| `checkout-safe5.css` | 22,543 / 654 | `e005cf24b4ced7140627aa04b20ed3cbe2e54583fcfca02dd9864e2e2b489195` |
-
-Desktop evidence confirms:
+Passed scope:
 
 ```text
-- warm editorial Checkout surface
-- two-column Intro composition
-- large low-weight serif Checkout title
+- desktop two-column editorial Intro
+- mobile single-column Intro
+- large low-weight serif title
 - italic explanatory copy
 - flat 01 / 02 / 03 / 04 progression
-- Address active
-- Confirmed visible and non-interactive
-- no rounded progress cards
+- Address active and Confirmed non-interactive
+- all four stage labels retained at 390px and 360px
+- no visible horizontal overflow
+- corrected mobile Intro/progress outer gutter
 ```
 
-Desktop D1 status:
+Classification:
 
 ```text
-passed
+R1-D1 desktop: passed
+R1-D1 390px Intro/progress: passed
+R1-D1 360px Intro/progress: passed
+R1-D1: closed
 ```
 
-## 7. Mobile D1 evidence and corrected classification
+## 7. R1-D2 confirmed starting defects
 
-The 390px and 360px screenshots confirm:
+The latest 360px screenshot proves the D1 Intro/progress correction is active, while separate body surfaces remain edge-touching or nearly edge-touching:
 
 ```text
-- single-column Intro
-- readable title and explanatory copy
-- all four stages remain visible
-- no progress-label clipping
-- no obvious horizontal page overflow
+- Order Summary outer card
+- Address/form outer card
+- bottom action surfaces
 ```
 
-However, the user correctly identified a strict V2 mismatch: the live content is too close to the viewport edges compared with the accepted 390px and 360px references.
+The exact responsive selector/width/margin cascade must be audited in D2 before issuing a correction.
 
-Current D1 mobile Intro rule provides 16px nominal side space:
-
-```css
-width: min(100% - 32px, 1180px);
-```
-
-The accepted reference uses a 22px mobile gutter class.
-
-Correct status:
-
-```text
-R1-D1 390px structural containment: passed
-R1-D1 390px strict visual 1:1: pending/fail
-R1-D1 360px structural containment: passed
-R1-D1 360px strict visual 1:1: pending/fail
-```
-
-The earlier unqualified mobile pass classification is superseded.
-
-## 8. R1-D2 body defects already confirmed
-
-Current live mobile order:
+Current mobile body order:
 
 ```text
 Intro → Order Summary → Address form
@@ -182,24 +156,25 @@ Accepted V2 order:
 Intro → Address form → Order Summary
 ```
 
-R1-D2 also owns:
+R1-D2 scope:
 
 ```text
-- body outer gutter and edge contact
-- form/panel surface migration
-- field surface and spacing migration
-- Order Summary migration
-- mobile action-button migration
+- restore form-before-Order-Summary mobile order
+- establish accepted mobile body outer gutter
+- migrate form/panel surfaces
+- migrate field surfaces and spacing
+- migrate action buttons
+- migrate Order Summary and trust surfaces
 ```
 
-## 9. Current stop point
+R1-D2 must preserve all completed functional gates and must not alter WooCommerce ownership, gateway rendering, Place Order or Crypto redirect behavior.
+
+## 8. Current stop point
 
 ```text
-R1-D1 desktop: passed
-R1-D1 mobile structural containment: passed
-R1-D1 mobile strict visual acceptance: blocked by gutter mismatch
-Next bounded action: mobile gutter/layout-foundation correction
-R1-D2: not started
+R1-D1: closed
+R1-D2: next active bounded group
+R1-D2 source audit: not started
 R2: blocked
 Checkout: Not done
 ```
