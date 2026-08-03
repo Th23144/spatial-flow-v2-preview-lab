@@ -175,17 +175,65 @@ Classification:
 ```text
 R1-D1 desktop application: passed
 R1-D1 desktop visual intent: passed
-R1-D1 mobile 390 / 360: pending
-R1-D2 form/panel/summary migration: not started
-Checkout: Not done
 ```
 
-## 9. Current stop point
+## 9. Runtime 390px evidence
+
+Authoritative evidence record:
 
 ```text
-R1-D1 desktop: accepted from live screenshot
-Runtime source rollback: not required
-Next bounded evidence: R1-D1 at 390px mobile before starting R1-D2
-R1-D2 and later visual groups: blocked until mobile D1 passes
+project2-progress/STEP_4F_R1D1_390PX_RUNTIME_EVIDENCE.md
+```
+
+The live 390px screenshot confirms:
+
+```text
+- Intro collapses to one mobile column
+- kicker remains visible as Step 01 of 04
+- Checkout title and explanatory copy remain readable
+- 01 Address / 02 Shipping / 03 Payment / 04 Confirmed all remain visible
+- no label clipping is visible
+- no former rounded progress cards return
+- no visible horizontal page overflow appears in the supplied screenshot
+```
+
+Classification:
+
+```text
+R1-D1 390px Intro/progress: passed
+R1-D1 360px: pending
+```
+
+## 10. Strict-V2 body-order mismatch discovered
+
+The 390px screenshot also exposes a mismatch outside D1 scope:
+
+```text
+Current live mobile order:
+Intro → Order Summary → Address form
+
+Accepted V2 Step-01 order:
+Intro → Address form → Order Summary
+```
+
+The current reversal comes from the existing responsive `.sf-safe5-summary { order: -1; }` rule. It was not introduced by D1, so it does not invalidate D1, but it must be corrected in R1-D2.
+
+Additional D2-open surfaces visible in the screenshot:
+
+```text
+- rounded Order Summary container/trust cards
+- rounded Address/contact panels
+- existing field surfaces
+- current mobile action-button treatment
+```
+
+## 11. Current stop point
+
+```text
+R1-D1 desktop: passed
+R1-D1 390px: passed
+R1-D1 360px: pending
+R1-D2: blocked until 360px D1 check
+R1-D2 must restore form-before-Order-Summary mobile order
 Checkout: Not done
 ```
