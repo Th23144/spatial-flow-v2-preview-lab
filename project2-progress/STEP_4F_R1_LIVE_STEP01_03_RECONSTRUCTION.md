@@ -1,6 +1,6 @@
 # Step 4F · R1 Live Checkout Reconstruction
 
-Date: 2026-08-02  
+Date: 2026-08-03  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## 1. Current authority
@@ -157,12 +157,12 @@ The correction normalizes the native Step-03 `.place-order` host and trust secti
 ## 6. Commerce behavior source audit
 
 ```text
-Address-driven shipping/totals refresh: source ownership preserved; runtime test required
-updated_checkout payment availability: native payment fragment remains in Step 03; runtime test required
-Coupon AJAX and total refresh: unchanged
-error routing: unchanged except Terms/Privacy now maps to Step 03
-Terms error: visible and blocked in Step 03; runtime test required
-Place Order: single native WooCommerce control, not cloned
+Address-driven shipping/totals refresh: source ownership preserved; runtime transition evidence still required
+updated_checkout payment availability: native payment fragment remains in Step 03; initial runtime rendering passed
+Coupon AJAX and total refresh: unchanged; runtime coupon regression still required later
+error routing: unchanged except Terms/Privacy maps to Step 03
+Terms error: runtime visible and retained in Step 03; passed
+Place Order: single native WooCommerce control, not cloned; initial runtime rendering passed
 Duplicate order: no new submit path found; runtime repeat-click test required
 Crypto redirect: source path unchanged; runtime `/crypto-pay/` test required
 ```
@@ -175,6 +175,7 @@ Authoritative records:
 project2-progress/STEP_4F_R1_V2_FLOW_RUNTIME_INSTALLATION_EVIDENCE.md
 project2-progress/STEP_4F_R1_STEP02_SHIPPING_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1_STEP03_PAYMENT_LAYOUT_REGRESSION.md
+project2-progress/STEP_4F_R1_TERMS_REJECTION_RUNTIME_EVIDENCE.md
 ```
 
 ### Step 01
@@ -220,7 +221,7 @@ Current label: BACK TO INFORMATION
 Required label: BACK TO ADDRESS
 ```
 
-### Step 03
+### Step 03 initial rendering
 
 Initial screenshot confirmed:
 
@@ -255,6 +256,35 @@ Gateway rendering: passed
 Single native Place Order presence: passed
 ```
 
+### Terms rejection
+
+The user left Terms unchecked and clicked Place Order once.
+
+Screenshot confirms:
+
+```text
+- Payment remains active
+- Confirmed remains pending
+- no order-received or Crypto navigation occurred
+- Terms remains unchecked
+- the existing visible error notice appears above the Payment area
+```
+
+Observed notice:
+
+```text
+Please read and accept the terms and conditions to proceed with your order.
+```
+
+Classification:
+
+```text
+Terms rejection visibility: passed
+Terms error routing to Step 03: passed
+Payment-stage retention: passed
+Admin/database order count: not independently proven by this screenshot
+```
+
 ## 8. Why the visual appearance remains close to the prior page
 
 The corrected package intentionally completed only the bounded functional shell work.
@@ -274,8 +304,8 @@ Step-01 initial render: passed
 Step-02 initial render and visible totals: passed
 Step-03 gateways and single Place Order: passed
 Step-03 layout regression: corrected and screenshot-verified
+Terms rejection and Step-03 error routing: passed
 Strict V2 back-label copy: failed; correction required
-Terms rejection: pending
 Normal order creation: pending
 Duplicate-order prevention: pending
 Crypto redirect: pending
@@ -287,8 +317,8 @@ Checkout: Not done
 Next gate:
 
 ```text
-Leave Terms unchecked
+Select 测试
+→ check Terms
 → click Place Order once
-→ confirm the order is not created
-→ confirm the error remains visible in Step 03
+→ capture the resulting WooCommerce result page and order number
 ```
