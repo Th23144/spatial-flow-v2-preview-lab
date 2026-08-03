@@ -79,7 +79,7 @@ thankyou.php
 Crypto plugin
 ```
 
-## 4. Current verified live baseline
+## 4. Verified pre-edit live baseline
 
 | File | Bytes | Lines | SHA256 |
 |---|---:|---:|---|
@@ -89,7 +89,7 @@ Crypto plugin
 
 The PHP baseline includes the accepted `BACK TO ADDRESS` correction. The CSS baseline includes the accepted Step-03 Place Order/trust-width correction.
 
-## 5. Audited candidate
+## 5. Audited installed candidate
 
 | File | Candidate bytes / lines | Delta | Candidate SHA256 |
 |---|---:|---:|---|
@@ -148,21 +148,44 @@ CSS comments: 12 / 12
 CRLF preserved in all three files
 ```
 
-## 8. Application method
+## 8. Runtime desktop evidence
+
+User supplied a live Step-01 desktop screenshot after applying all coupled replacements.
+
+Observed:
 
 ```text
-manual anchored replacement only
-three coupled replacements must all be saved before browser refresh
-stop if any expected match count is not exactly one
-no replacement ZIP
+- Checkout page loads without PHP white screen
+- warm editorial Checkout surface is present
+- Intro is split into left title and right explanatory/progress columns
+- large low-weight serif Checkout title renders
+- explanatory copy renders in serif italic styling
+- progress is flat, not four rounded cards
+- visible labels are 01 Address / 02 Shipping / 03 Payment / 04 Confirmed
+- Address is active
+- Confirmed remains visible and non-interactive
+- a divider separates Intro from the Checkout body
+- existing Step-01 fields and Order Summary still render
+```
+
+The lower form panels, field styling and Order Summary remain visibly close to the prior SAFE5 implementation. This is expected because they are outside R1-D1 and must not be misclassified as an R1-D1 failure.
+
+Classification:
+
+```text
+R1-D1 desktop application: passed
+R1-D1 desktop visual intent: passed
+R1-D1 mobile 390 / 360: pending
+R1-D2 form/panel/summary migration: not started
+Checkout: Not done
 ```
 
 ## 9. Current stop point
 
 ```text
-R1-D1 candidate: audited and ready to issue
-Runtime application: pending
-Browser acceptance: pending
-Next: user applies the three exact replacements and submits one Step-01 desktop screenshot
+R1-D1 desktop: accepted from live screenshot
+Runtime source rollback: not required
+Next bounded evidence: R1-D1 at 390px mobile before starting R1-D2
+R1-D2 and later visual groups: blocked until mobile D1 passes
 Checkout: Not done
 ```
