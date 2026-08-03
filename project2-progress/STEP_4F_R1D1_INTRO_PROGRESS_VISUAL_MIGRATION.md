@@ -6,7 +6,7 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ## 1. Authority
 
 ```text
-R1-D strict V2 visual migration: started
+R1-D strict V2 visual migration: in progress
 R1-D1 scope: Intro + four-stage progress
 Checkout: Not done
 ```
@@ -74,18 +74,29 @@ Installed D1 candidate:
 | `checkout-safe5.js` | 20,744 / 671 | +85 / +3 | `7b2906a3be0823cc5055db409fe20cc498878d71d479809c7e812174530ae0df` |
 | `checkout-safe5.css` | 22,543 / 654 | +1,305 / +45 | `e005cf24b4ced7140627aa04b20ed3cbe2e54583fcfca02dd9864e2e2b489195` |
 
-Static validation:
+Post-D1 mobile gutter correction audit target:
+
+```text
+checkout-safe5.css
+Expected bytes: 22,595
+Expected lines: 655
+Expected SHA256: 290f5185d23382d02ecdbd679fcdd021d996df25ee1c8cff58ed323d1068eacc
+```
+
+A fresh source upload/hash was not supplied after the final gutter edit; the expected value remains the audit target.
+
+Static validation before runtime application:
 
 ```text
 PHP syntax: passed
 JavaScript syntax: passed
 CSS parse errors: 0
-CSS braces: 89 / 89
-CSS comments: 12 / 12
+CSS braces: balanced
+CSS comments: balanced
 CRLF preserved
 ```
 
-## 4. Runtime desktop evidence
+## 4. Desktop result
 
 The live Step-01 desktop screenshot confirms:
 
@@ -98,7 +109,6 @@ The live Step-01 desktop screenshot confirms:
 - Address active
 - Confirmed visible and non-interactive
 - no rounded progress cards
-- fields and Order Summary still render
 ```
 
 Classification:
@@ -107,16 +117,17 @@ Classification:
 R1-D1 desktop: passed
 ```
 
-## 5. Runtime mobile evidence
+## 5. Mobile result
 
 Evidence records:
 
 ```text
 project2-progress/STEP_4F_R1D1_390PX_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1D1_360PX_AND_MOBILE_GUTTER_DEFECT.md
+project2-progress/STEP_4F_R1D1_MOBILE_GUTTER_CORRECTION.md
 ```
 
-Both 390px and 360px screenshots confirm:
+The 390px and 360px screenshots confirm:
 
 ```text
 - Intro collapses to one column
@@ -126,47 +137,27 @@ Both 390px and 360px screenshots confirm:
 - no obvious horizontal overflow
 ```
 
-These points establish structural containment only.
+After the bounded gutter correction, the latest 360px screenshot confirms the Intro/progress block now preserves a visible outer gutter materially closer to the accepted V2 reference.
 
-## 6. Confirmed mobile strict-V2 defect
-
-The user correctly identified that the live mobile content is too close to the viewport edges compared with the accepted 390px and 360px references.
-
-Accepted reference mobile gutter:
+Classification:
 
 ```text
-22px class of outer spacing
+R1-D1 390px Intro/progress: passed
+R1-D1 360px Intro/progress: passed
+R1-D1 mobile visual scope: accepted
 ```
 
-Current D1 mobile Intro rule:
+## 6. Separate R1-D2 defects
 
-```css
-width: min(100% - 32px, 1180px);
-```
-
-which provides only 16px nominal space per side before other live cascade effects.
-
-Visible mismatch:
+The latest screenshot still shows body surfaces touching or nearly touching the viewport edges:
 
 ```text
-- Intro/progress gutter is narrower than the accepted reference
-- Order Summary appears flush or nearly flush to the viewport edge
-- Address/form card appears flush or nearly flush to the viewport edge
-- accepted references retain a clear consistent gutter
+- Order Summary outer card
+- Address/form outer card
+- bottom action surfaces
 ```
 
-Correct classification:
-
-```text
-390px structural containment: passed
-390px strict visual 1:1: failed/pending gutter correction
-360px structural containment: passed
-360px strict visual 1:1: failed/pending gutter correction
-```
-
-The prior unqualified `R1-D1 390px: passed` classification is superseded.
-
-## 7. Related R1-D2 body defects
+These are not controlled by the D1 Intro/progress visual group. Their exact selector/width cascade must be audited and corrected in D2.
 
 Current mobile body order:
 
@@ -183,20 +174,20 @@ Intro → Address form → Order Summary
 R1-D2 also owns:
 
 ```text
+- form/panel surface migration
+- field surface and spacing migration
+- Order Summary migration
+- mobile action-button migration
 - body outer gutter
-- rounded form/panel treatment
-- rounded Order Summary/trust cards
-- field surfaces and spacing
-- mobile action-button treatment
 ```
 
-## 8. Current stop point
+## 7. Closure
 
 ```text
 R1-D1 desktop: passed
-R1-D1 mobile structural containment: passed
-R1-D1 mobile strict visual acceptance: pending gutter correction
-R1-D2: not started
-Next: bounded mobile gutter/layout-foundation correction before D2
+R1-D1 390px: passed for Intro/progress scope
+R1-D1 360px: passed for Intro/progress scope
+R1-D1: closed
+R1-D2: next active bounded group
 Checkout: Not done
 ```
