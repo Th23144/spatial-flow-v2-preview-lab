@@ -132,23 +132,9 @@ R1-D1 360px Intro/progress: passed
 R1-D1: closed
 ```
 
-## 7. R1-D2 confirmed starting defects
+## 7. R1-D2 full scope
 
-Current mobile body order:
-
-```text
-Intro → Order Summary → Address form
-```
-
-Accepted V2 order:
-
-```text
-Intro → Address form → Order Summary
-```
-
-Current mobile body also retains the old rounded white-card treatment for the form, Order Summary and action buttons.
-
-R1-D2 full scope remains:
+R1-D2 must:
 
 ```text
 - restore form-before-Order-Summary mobile order
@@ -164,53 +150,62 @@ R1-D2 must preserve all completed functional gates and must not alter WooCommerc
 
 ## 8. Active subgroup: R1-D2A
 
-Authoritative record:
+Authoritative records:
 
 ```text
 project2-progress/STEP_4F_R1D2A_MOBILE_BODY_ORDER_AND_SURFACE_FOUNDATION.md
+project2-progress/STEP_4F_R1D2A_360PX_RUNTIME_EVIDENCE.md
 ```
 
-D2A is limited to:
-
-```text
-- remove the responsive Order Summary order:-1 reversal
-- keep the main form before Order Summary below 980px
-- replace mobile outer form and summary cards with square warm editorial surfaces
-- place primary Continue before secondary Back on mobile
-- remove mobile pill-radius from the two navigation controls
-```
-
-Runtime file:
+Installed D2A CSS target:
 
 ```text
 assets/css/checkout-safe5.css
-```
-
-Current baseline:
-
-```text
-22,595 bytes / 655 lines
-SHA256: 290f5185d23382d02ecdbd679fcdd021d996df25ee1c8cff58ed323d1068eacc
-```
-
-Audited D2A candidate:
-
-```text
 23,283 bytes / 674 lines
 SHA256: e94c0dac13f48bc564166e5de61655547b9c166ef2ab118af37258f18cb2cc09
-Delta: +688 bytes / +19 lines / +3.04%
 ```
 
-The change is two anchored responsive-block replacements. It is not a bottom append and does not modify PHP, JavaScript, fields, summary internals, gateway logic or submit behavior.
+The 360px runtime screenshot confirms:
+
+```text
+- mobile order is now Intro → Address form → actions → Order Summary
+- primary Continue appears before secondary Return to cart
+- old pill-radius is removed from the two navigation controls
+- warm editorial outer-surface direction is active
+- no visible horizontal overflow was introduced
+- R1-D1 Intro/progress remains intact
+```
+
+However, the same screenshot shows that the expected V2 body gutter is still not achieved:
+
+```text
+- Address/form outer surface remains full-bleed or nearly full-bleed
+- primary Continue action remains edge-to-edge or nearly edge-to-edge
+- Order Summary outer surface remains full-bleed or nearly full-bleed
+```
+
+Correct classification:
+
+```text
+D2A mobile body order: passed
+D2A mobile action order: passed
+D2A body outer gutter: failed / open
+D2A overall: partial, not closed
+```
+
+Nested Billing Details rounding, field surfaces, summary internals, trust cards and final button styling remain planned later D2 work and are not newly introduced regressions.
 
 ## 9. Current stop point
 
 ```text
 R1-D1: closed
-R1-D2A candidate: source-audited and issued
-Runtime application: pending
-Next evidence: 360px Step-01 screenshot after both D2A replacements
-R1-D2B: blocked until D2A passes
+R1-D2A source application: confirmed
+R1-D2A body order: passed
+R1-D2A action order: passed
+R1-D2A body gutter: failed / unresolved
+R1-D2A overall: partial
+Next bounded action: audit and correct mobile body width/margin cascade
+R1-D2B: blocked
 R2: blocked
 Checkout: Not done
 ```
