@@ -155,9 +155,10 @@ Authoritative records:
 ```text
 project2-progress/STEP_4F_R1D2A_MOBILE_BODY_ORDER_AND_SURFACE_FOUNDATION.md
 project2-progress/STEP_4F_R1D2A_360PX_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1D2A_BOX_SIZING_GUTTER_CORRECTION.md
 ```
 
-Installed D2A CSS target:
+Installed D2A CSS state before the gutter correction:
 
 ```text
 assets/css/checkout-safe5.css
@@ -176,20 +177,31 @@ The 360px runtime screenshot confirms:
 - R1-D1 Intro/progress remains intact
 ```
 
-However, the same screenshot shows that the expected V2 body gutter is still not achieved:
+However, the expected V2 body gutter is still visually consumed by the body surfaces and controls.
+
+Root cause:
 
 ```text
-- Address/form outer surface remains full-bleed or nearly full-bleed
-- primary Continue action remains edge-to-edge or nearly edge-to-edge
-- Order Summary outer surface remains full-bleed or nearly full-bleed
+The 22px-class shell width is present, but affected descendants still use content-box sizing.
+Their padding and borders are added outside the stretched grid/100% width and consume the reserved gutter.
 ```
+
+Audited correction target:
+
+```text
+assets/css/checkout-safe5.css
+23,816 bytes / 682 lines
+SHA256: 395ccd6d3b07e6c03e8f43eb2e812e5f942889f40fa3543f84ded1419cc77fba
+```
+
+The correction scopes `box-sizing: border-box` and `max-width: 100%` to the Checkout main/summary/cards/actions only. It does not change PHP, JavaScript, WooCommerce behavior or gateway content.
 
 Correct classification:
 
 ```text
 D2A mobile body order: passed
 D2A mobile action order: passed
-D2A body outer gutter: failed / open
+D2A body outer gutter: correction issued, runtime pending
 D2A overall: partial, not closed
 ```
 
@@ -199,12 +211,11 @@ Nested Billing Details rounding, field surfaces, summary internals, trust cards 
 
 ```text
 R1-D1: closed
-R1-D2A source application: confirmed
 R1-D2A body order: passed
 R1-D2A action order: passed
-R1-D2A body gutter: failed / unresolved
+R1-D2A box-sizing gutter correction: issued, not yet applied/verified
 R1-D2A overall: partial
-Next bounded action: audit and correct mobile body width/margin cascade
+Next evidence: 360px Step-01 screenshot after the box-sizing correction
 R1-D2B: blocked
 R2: blocked
 Checkout: Not done
