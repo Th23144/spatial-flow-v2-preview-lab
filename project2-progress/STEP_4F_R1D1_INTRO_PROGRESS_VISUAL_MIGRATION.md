@@ -3,23 +3,15 @@
 Date: 2026-08-03  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
-## 1. Authorization
-
-User instruction:
-
-```text
-开始
-```
-
-Decision:
+## 1. Authority
 
 ```text
 R1-D strict V2 visual migration: started
-First bounded group: Intro + four-stage progress
+R1-D1 scope: Intro + four-stage progress
 Checkout: Not done
 ```
 
-## 2. Authoritative accepted references
+Authoritative accepted references:
 
 ```text
 preview/spatial-flow-checkout-v1.html
@@ -30,30 +22,15 @@ preview/spatial-flow-checkout-mobile-commerce-v1.css
 project2-progress/STEP_4F_S3_FINAL_STATIC_CHECKOUT_AND_MOBILE_COMMERCE_SURFACE_ACCEPTANCE.md
 ```
 
-Locked visible progression:
+Locked progression:
 
 ```text
 01 Address → 02 Shipping → 03 Payment → 04 Confirmed
 ```
 
-Accepted reference characteristics for this group:
+## 2. Scope
 
-```text
-- warm editorial page background
-- two-column Checkout intro at desktop
-- large low-weight serif Checkout title
-- serif italic explanatory copy
-- four flat progress items with 01 / 02 / 03 / 04 numbering
-- no rounded progress cards
-- active number uses the clay accent
-- completed stages keep their number and show a trailing check mark
-- Confirmed remains visible and non-interactive
-- mobile retains all four labels and allows horizontal containment when required
-```
-
-## 3. Exact scope
-
-Runtime files touched by this bounded group:
+Runtime files changed in this group:
 
 ```text
 woocommerce/checkout/form-checkout.php
@@ -61,7 +38,7 @@ assets/js/checkout-safe5.js
 assets/css/checkout-safe5.css
 ```
 
-Not touched:
+Not changed:
 
 ```text
 billing/shipping field order
@@ -79,161 +56,147 @@ thankyou.php
 Crypto plugin
 ```
 
-## 4. Verified pre-edit live baseline
+## 3. Installed audited state
 
-| File | Bytes | Lines | SHA256 |
+Pre-edit baseline:
+
+| File | Bytes / lines | SHA256 |
+|---|---:|---|
+| `form-checkout.php` | 7,783 / 237 | `7a5d620a6f5526b76a83877f2ee8abb55e6f28f66595609e51dd695935adee2f` |
+| `checkout-safe5.js` | 20,659 / 668 | `48feecd27d3da5a921b822734b48b6885e3ce1fe8b0a195b5ef9af81bc999f04` |
+| `checkout-safe5.css` | 21,238 / 609 | `adcd779a7e41676096fc40ae75cf67174ee038d156f853c5873c5528807d5d73` |
+
+Installed D1 candidate:
+
+| File | Bytes / lines | Delta | SHA256 |
 |---|---:|---:|---|
-| `form-checkout.php` | 7,783 | 237 | `7a5d620a6f5526b76a83877f2ee8abb55e6f28f66595609e51dd695935adee2f` |
-| `checkout-safe5.js` | 20,659 | 668 | `48feecd27d3da5a921b822734b48b6885e3ce1fe8b0a195b5ef9af81bc999f04` |
-| `checkout-safe5.css` | 21,238 | 609 | `adcd779a7e41676096fc40ae75cf67174ee038d156f853c5873c5528807d5d73` |
+| `form-checkout.php` | 7,925 / 240 | +142 / +3 | `14e58b22966d1c3cb6c713157e5475eb43de102bc271a4e620ddfe14a4da17ec` |
+| `checkout-safe5.js` | 20,744 / 671 | +85 / +3 | `7b2906a3be0823cc5055db409fe20cc498878d71d479809c7e812174530ae0df` |
+| `checkout-safe5.css` | 22,543 / 654 | +1,305 / +45 | `e005cf24b4ced7140627aa04b20ed3cbe2e54583fcfca02dd9864e2e2b489195` |
 
-The PHP baseline includes the accepted `BACK TO ADDRESS` correction. The CSS baseline includes the accepted Step-03 Place Order/trust-width correction.
-
-## 5. Audited installed candidate
-
-| File | Candidate bytes / lines | Delta | Candidate SHA256 |
-|---|---:|---:|---|
-| `form-checkout.php` | 7,925 / 240 | +142 bytes / +3 lines | `14e58b22966d1c3cb6c713157e5475eb43de102bc271a4e620ddfe14a4da17ec` |
-| `checkout-safe5.js` | 20,744 / 671 | +85 bytes / +3 lines | `7b2906a3be0823cc5055db409fe20cc498878d71d479809c7e812174530ae0df` |
-| `checkout-safe5.css` | 22,543 / 654 | +1,305 bytes / +45 lines | `e005cf24b4ced7140627aa04b20ed3cbe2e54583fcfca02dd9864e2e2b489195` |
-
-Growth review:
+Static validation:
 
 ```text
-PHP: +1.82%
-JavaScript: +0.41%
-CSS: +6.14%
-```
-
-All are below the Project 2 material-growth trigger. The CSS increase is explained by replacing the former rounded-card Hero/progress rules with the accepted desktop/mobile editorial Intro rules; it is not a bottom append.
-
-## 6. Exact behavior changes
-
-Template:
-
-```text
-- groups title/copy/progress inside one Intro section
-- keeps existing neutral Checkout title and existing explanatory copy
-- changes visible stage numbers to 01 / 02 / 03 / 04
-- keeps Confirmed disabled and non-interactive
-```
-
-JavaScript:
-
-```text
-- preserves 01 / 02 / 03 stage numbers instead of replacing completed numbers with a standalone check
-- updates the visible kicker to Step 01 / 02 / 03 of 04
-- keeps all navigation and validation behavior unchanged
-```
-
-CSS:
-
-```text
-- warm V2 background and accepted color tokens
-- desktop two-column Intro geometry
-- accepted serif/mono typography hierarchy
-- flat four-stage progress treatment
-- completed trailing check mark
-- mobile single-column Intro and four visible progress labels
-```
-
-## 7. Static validation
-
-```text
-form-checkout.php: php -l pass
-checkout-safe5.js: node --check pass
-checkout-safe5.css: tinycss2 errors = 0
+PHP syntax: passed
+JavaScript syntax: passed
+CSS parse errors: 0
 CSS braces: 89 / 89
 CSS comments: 12 / 12
-CRLF preserved in all three files
+CRLF preserved
 ```
 
-## 8. Runtime desktop evidence
+## 4. Runtime desktop evidence
 
-User supplied a live Step-01 desktop screenshot after applying all coupled replacements.
-
-Observed:
+The live Step-01 desktop screenshot confirms:
 
 ```text
-- Checkout page loads without PHP white screen
-- warm editorial Checkout surface is present
-- Intro is split into left title and right explanatory/progress columns
-- large low-weight serif Checkout title renders
-- explanatory copy renders in serif italic styling
-- progress is flat, not four rounded cards
-- visible labels are 01 Address / 02 Shipping / 03 Payment / 04 Confirmed
-- Address is active
-- Confirmed remains visible and non-interactive
-- a divider separates Intro from the Checkout body
-- existing Step-01 fields and Order Summary still render
-```
-
-The lower form panels, field styling and Order Summary remain visibly close to the prior SAFE5 implementation. This is expected because they are outside R1-D1 and must not be misclassified as an R1-D1 failure.
-
-Classification:
-
-```text
-R1-D1 desktop application: passed
-R1-D1 desktop visual intent: passed
-```
-
-## 9. Runtime 390px evidence
-
-Authoritative evidence record:
-
-```text
-project2-progress/STEP_4F_R1D1_390PX_RUNTIME_EVIDENCE.md
-```
-
-The live 390px screenshot confirms:
-
-```text
-- Intro collapses to one mobile column
-- kicker remains visible as Step 01 of 04
-- Checkout title and explanatory copy remain readable
-- 01 Address / 02 Shipping / 03 Payment / 04 Confirmed all remain visible
-- no label clipping is visible
-- no former rounded progress cards return
-- no visible horizontal page overflow appears in the supplied screenshot
+- warm editorial Checkout surface
+- two-column Intro composition
+- large low-weight serif Checkout title
+- italic explanatory copy
+- flat 01 / 02 / 03 / 04 progression
+- Address active
+- Confirmed visible and non-interactive
+- no rounded progress cards
+- fields and Order Summary still render
 ```
 
 Classification:
-
-```text
-R1-D1 390px Intro/progress: passed
-R1-D1 360px: pending
-```
-
-## 10. Strict-V2 body-order mismatch discovered
-
-The 390px screenshot also exposes a mismatch outside D1 scope:
-
-```text
-Current live mobile order:
-Intro → Order Summary → Address form
-
-Accepted V2 Step-01 order:
-Intro → Address form → Order Summary
-```
-
-The current reversal comes from the existing responsive `.sf-safe5-summary { order: -1; }` rule. It was not introduced by D1, so it does not invalidate D1, but it must be corrected in R1-D2.
-
-Additional D2-open surfaces visible in the screenshot:
-
-```text
-- rounded Order Summary container/trust cards
-- rounded Address/contact panels
-- existing field surfaces
-- current mobile action-button treatment
-```
-
-## 11. Current stop point
 
 ```text
 R1-D1 desktop: passed
-R1-D1 390px: passed
-R1-D1 360px: pending
-R1-D2: blocked until 360px D1 check
-R1-D2 must restore form-before-Order-Summary mobile order
+```
+
+## 5. Runtime mobile evidence
+
+Evidence records:
+
+```text
+project2-progress/STEP_4F_R1D1_390PX_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1D1_360PX_AND_MOBILE_GUTTER_DEFECT.md
+```
+
+Both 390px and 360px screenshots confirm:
+
+```text
+- Intro collapses to one column
+- title and explanatory copy remain readable
+- 01 / 02 / 03 / 04 all remain visible
+- no progress-label clipping
+- no obvious horizontal overflow
+```
+
+These points establish structural containment only.
+
+## 6. Confirmed mobile strict-V2 defect
+
+The user correctly identified that the live mobile content is too close to the viewport edges compared with the accepted 390px and 360px references.
+
+Accepted reference mobile gutter:
+
+```text
+22px class of outer spacing
+```
+
+Current D1 mobile Intro rule:
+
+```css
+width: min(100% - 32px, 1180px);
+```
+
+which provides only 16px nominal space per side before other live cascade effects.
+
+Visible mismatch:
+
+```text
+- Intro/progress gutter is narrower than the accepted reference
+- Order Summary appears flush or nearly flush to the viewport edge
+- Address/form card appears flush or nearly flush to the viewport edge
+- accepted references retain a clear consistent gutter
+```
+
+Correct classification:
+
+```text
+390px structural containment: passed
+390px strict visual 1:1: failed/pending gutter correction
+360px structural containment: passed
+360px strict visual 1:1: failed/pending gutter correction
+```
+
+The prior unqualified `R1-D1 390px: passed` classification is superseded.
+
+## 7. Related R1-D2 body defects
+
+Current mobile body order:
+
+```text
+Intro → Order Summary → Address form
+```
+
+Accepted V2 order:
+
+```text
+Intro → Address form → Order Summary
+```
+
+R1-D2 also owns:
+
+```text
+- body outer gutter
+- rounded form/panel treatment
+- rounded Order Summary/trust cards
+- field surfaces and spacing
+- mobile action-button treatment
+```
+
+## 8. Current stop point
+
+```text
+R1-D1 desktop: passed
+R1-D1 mobile structural containment: passed
+R1-D1 mobile strict visual acceptance: pending gutter correction
+R1-D2: not started
+Next: bounded mobile gutter/layout-foundation correction before D2
 Checkout: Not done
 ```
