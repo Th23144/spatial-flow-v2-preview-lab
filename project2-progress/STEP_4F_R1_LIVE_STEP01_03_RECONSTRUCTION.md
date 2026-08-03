@@ -105,6 +105,7 @@ Authoritative records:
 ```text
 project2-progress/STEP_4F_R1D1_INTRO_PROGRESS_VISUAL_MIGRATION.md
 project2-progress/STEP_4F_R1D1_390PX_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1D1_360PX_AND_MOBILE_GUTTER_DEFECT.md
 ```
 
 Installed audited state:
@@ -128,57 +129,77 @@ Desktop evidence confirms:
 - no rounded progress cards
 ```
 
-390px evidence confirms:
+Desktop D1 status:
+
+```text
+passed
+```
+
+## 7. Mobile D1 evidence and corrected classification
+
+The 390px and 360px screenshots confirm:
 
 ```text
 - single-column Intro
 - readable title and explanatory copy
 - all four stages remain visible
-- no visible progress-label clipping
-- no visible horizontal page overflow
+- no progress-label clipping
+- no obvious horizontal page overflow
 ```
 
-Classification:
+However, the user correctly identified a strict V2 mismatch: the live content is too close to the viewport edges compared with the accepted 390px and 360px references.
+
+Current D1 mobile Intro rule provides 16px nominal side space:
+
+```css
+width: min(100% - 32px, 1180px);
+```
+
+The accepted reference uses a 22px mobile gutter class.
+
+Correct status:
 
 ```text
-R1-D1 desktop: passed
-R1-D1 390px: passed
-R1-D1 360px: pending
+R1-D1 390px structural containment: passed
+R1-D1 390px strict visual 1:1: pending/fail
+R1-D1 360px structural containment: passed
+R1-D1 360px strict visual 1:1: pending/fail
 ```
 
-## 7. Strict-V2 body mismatch assigned to R1-D2
+The earlier unqualified mobile pass classification is superseded.
 
-The 390px screenshot exposes the current live body order as:
+## 8. R1-D2 body defects already confirmed
+
+Current live mobile order:
 
 ```text
 Intro → Order Summary → Address form
 ```
 
-The accepted Step-01 V2 reference order is:
+Accepted V2 order:
 
 ```text
 Intro → Address form → Order Summary
 ```
 
-The reversal is caused by the existing responsive `.sf-safe5-summary { order: -1; }` rule. It was not introduced by D1 but must be corrected in D2.
-
-Other D2-open visual surfaces:
+R1-D2 also owns:
 
 ```text
-rounded form/panel treatment
-rounded Order Summary and trust cards
-field surfaces and spacing
-mobile action-button treatment
+- body outer gutter and edge contact
+- form/panel surface migration
+- field surface and spacing migration
+- Order Summary migration
+- mobile action-button migration
 ```
 
-## 8. Current stop point
+## 9. Current stop point
 
 ```text
-R1-D1 desktop acceptance: passed
-R1-D1 390px acceptance: passed
-Next evidence: Step-01 at 360px mobile
-Do not start R1-D2 until 360px D1 is checked
-R1-D2 must restore form-before-Order-Summary mobile order
+R1-D1 desktop: passed
+R1-D1 mobile structural containment: passed
+R1-D1 mobile strict visual acceptance: blocked by gutter mismatch
+Next bounded action: mobile gutter/layout-foundation correction
+R1-D2: not started
 R2: blocked
 Checkout: Not done
 ```
