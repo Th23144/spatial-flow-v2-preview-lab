@@ -11,29 +11,29 @@ User-supplied full-page screenshot after navigating:
 Address → Shipping → Payment
 ```
 
-Observed:
+Initial failure observed:
 
 ```text
-- Address and Shipping are complete
-- Payment is active
-- Confirmed remains pending
-- both enabled gateways render: 测试 + Pay with Crypto
-- one native Place Order button renders
-- terms/privacy content renders
-- Order Summary remains visible with $36.00 subtotal + $8.99 shipping = $44.99 total
-- three checkout trust items below Place Order collapse to near-min-content width
-- trust item copy wraps one character per line
-- the left column becomes thousands of pixels tall
+- Address and Shipping complete
+- Payment active
+- Confirmed pending
+- both enabled gateways rendered: 测试 + Pay with Crypto
+- one native Place Order button rendered
+- terms/privacy content rendered
+- Order Summary remained visible with $36.00 subtotal + $8.99 shipping = $44.99 total
+- three checkout trust items below Place Order collapsed to near-min-content width
+- trust item copy wrapped one character per line
+- the left column became thousands of pixels tall
 ```
 
-Classification:
+Initial classification:
 
 ```text
 Step 03 gateway rendering: passed
 Single native Place Order presence: passed from screenshot
 Step 03 layout integrity: failed severely
 R1 runtime acceptance: blocked
-Do not submit an order in this state
+Order submission prohibited until corrected
 Checkout: Not done
 ```
 
@@ -51,7 +51,7 @@ The package retargeted only these SAFE5 selectors:
 → .sf-safe5-payment-mount #place_order
 ```
 
-However, the native `.place-order` row remains inside the WooCommerce/theme payment layout context. The existing function:
+The native `.place-order` row remained inside the WooCommerce/theme payment layout context. The existing function:
 
 ```text
 spatial_flow_checkout_visual_trust()
@@ -65,22 +65,13 @@ woocommerce_review_order_after_submit
 
 Therefore the three `.sf-checkout-trust__item` cards are children of `.place-order`.
 
-When `.place-order` remains inside `#payment`, inherited WooCommerce/theme flex/layout behavior can compress the trust section to its min-content width. The button still spans the row because `#place_order` has `width: 100%`, while the trust cards shrink and wrap character-by-character.
+When `.place-order` remained inside `#payment`, inherited WooCommerce/theme flex/layout behavior compressed the trust section to its min-content width. The button still spanned the row because `#place_order` had `width: 100%`, while the trust cards shrank and wrapped character-by-character.
 
-Evidence supporting this diagnosis:
+This was an implementation regression caused by incomplete normalization of the native `.place-order` host. It was not a gateway, total, database or Crypto failure.
 
-```text
-- the only CSS change in the package was the Place Order selector retarget
-- the failure begins immediately below the native Place Order button
-- the affected content is exactly the trust section inserted by woocommerce_review_order_after_submit
-- the same trust content rendered correctly when the complete .place-order row was previously moved outside #payment
-```
+## 3. Applied bounded correction
 
-This is an implementation regression caused by incomplete normalization of the native `.place-order` host. It is not a gateway, total, database or Crypto failure.
-
-## 3. Required correction
-
-The `.place-order` host must be explicitly normalized inside Step 03:
+The existing `.place-order` selector block was replaced in place with explicit Step-03 host normalization:
 
 ```text
 - display: block
@@ -90,18 +81,18 @@ The `.place-order` host must be explicitly normalized inside Step 03:
 - clear: both
 ```
 
-The injected `.sf-checkout-trust` section must also receive:
+The injected `.sf-checkout-trust` section received:
 
 ```text
 - width: 100%
 - min-width: 0
 ```
 
-No PHP or JavaScript change is required for this defect.
+No PHP or JavaScript change was required.
 
-## 4. Audited CSS hotfix candidate
+## 4. Audited CSS result
 
-Current installed R1 CSS baseline:
+Installed pre-fix R1 CSS:
 
 ```text
 assets/css/checkout-safe5.css
@@ -110,7 +101,7 @@ assets/css/checkout-safe5.css
 SHA256: e1c855fd9044132982a084e7d0b95472c2fd50e233620b6dad9322c774797174
 ```
 
-Audited hotfix candidate:
+Corrected CSS:
 
 ```text
 21,238 bytes
@@ -133,16 +124,58 @@ PHP changes: none
 JavaScript changes: none
 ```
 
-## 5. Current stop point
+## 5. Post-fix runtime evidence
+
+User-supplied Step-03 screenshot after applying the bounded CSS replacement confirms:
+
+```text
+- the left column returned to normal page height
+- Secure Checkout, Shipping Shown Before Payment and Easy Returns render at normal width
+- trust-card copy no longer wraps one character per line
+- both enabled gateways remain visible
+- one native Place Order button remains visible
+- terms/privacy content remains visible
+- Order Summary remains visible
+- total remains $44.99
+- Back to Shipping remains available
+```
+
+Post-fix classification:
+
+```text
+Step 03 catastrophic layout regression: corrected
+Step 03 initial layout integrity: passed from screenshot
+Gateway rendering: passed
+Single native Place Order presence: passed
+Order submission path: not yet tested
+Terms-error routing: not yet tested
+Duplicate-order prevention: not yet tested
+Crypto /crypto-pay/ redirect: not yet tested
+Checkout: Not done
+```
+
+## 6. Remaining R1 defects and gates
+
+Still open:
+
+```text
+- Step 02 Back control says BACK TO INFORMATION instead of BACK TO ADDRESS
+- Terms rejection must remain visible in Step 03
+- normal test gateway must create exactly one order
+- repeat-click/processing behavior must not create a duplicate order
+- Crypto must still redirect to legacy /crypto-pay/
+- strict V2 visual migration has not started
+```
+
+## 7. Current stop point
 
 ```text
 R1 package installed
 Step 01 render: passed
-Step 02 initial render: passed with Back-to-Information copy defect
+Step 02 initial render: passed with back-label copy defect
 Step 03 gateway/Place Order presence: passed
-Step 03 layout: failed severely
-Order submission: prohibited until corrected
-Next: apply one bounded CSS replacement and re-test Step 03
+Step 03 layout regression: corrected and screenshot-verified
+Next: test Terms rejection without creating an order
 R1-D visual migration: not started
 R2: blocked
 Checkout: Not done
