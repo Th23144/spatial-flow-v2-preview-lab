@@ -63,7 +63,21 @@ But only the first three are interactive Checkout views.
 
 The absence of a separate intermediate 04 page is therefore expected and correct.
 
-## 4. Remaining result-page defect
+## 4. Screenshot adequacy
+
+The screenshot contains all evidence required for the normal-order result-route gate:
+
+```text
+- resulting order number
+- payment method
+- order total
+- rendered WooCommerce order status
+- successful transition from Step 03 to the result route
+```
+
+No additional result-page screenshot is required for this gate.
+
+## 5. Remaining result-page defect
 
 The observed order is `On hold`, while the current result page still displays success/preparation/fulfillment language such as order preparation and shipping progression.
 
@@ -75,13 +89,25 @@ R4 server-authoritative result-state mapping
 
 The current screenshot proves the order-result route, not final result-copy correctness.
 
-## 5. Evidence boundary
+## 6. Evidence boundary
 
 The screenshot proves one visible resulting order number and successful navigation to the result page.
 
 It does not independently prove from WooCommerce admin that no duplicate order was created during the submission attempt. Duplicate-order verification remains a separate runtime gate.
 
-## 6. Current decision
+## 7. Next gate
+
+Open the WooCommerce Orders list and verify the submission produced exactly one new order:
+
+```text
+expected new order: #3575
+expected payment method: 测试
+expected status: On hold
+```
+
+The evidence should show the newest surrounding order rows, not only the single order detail page, so an adjacent duplicate can be ruled out.
+
+## 8. Current decision
 
 ```text
 Normal test gateway result route: passed
@@ -89,7 +115,8 @@ No separate Step-04 input page: correct
 WooCommerce result page as Step 04: confirmed
 Observed order #3575: created
 Observed status: On hold
-Duplicate-order admin verification: pending
+Additional result-page screenshot: not required
+Duplicate-order admin verification: next
 Crypto redirect regression: pending
 Strict V2 visual migration: not started
 Checkout: Not done
