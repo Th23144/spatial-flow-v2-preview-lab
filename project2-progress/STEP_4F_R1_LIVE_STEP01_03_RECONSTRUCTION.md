@@ -42,25 +42,11 @@ gateway configuration
 → 04 Confirmed
 ```
 
-Meaning:
-
-```text
-- Address, Shipping and Payment are the only interactive Checkout views.
-- Confirmed remains visible as the fourth progress/result stage.
-- Confirmed is non-interactive on Checkout.
-- no Step-04 input or Review page exists.
-- the WooCommerce order-received/result page is the real server-owned Step 04.
-```
+Only Address, Shipping and Payment are interactive Checkout views. Confirmed is a visible, non-interactive result stage. The WooCommerce order-received/result page is the real server-owned Step 04. No client Review or Step-04 input page may exist.
 
 All live operation experience must ultimately match the accepted Project 2 V2 repository references strictly.
 
 ## 3. Installed source state
-
-Authoritative package record:
-
-```text
-project2-progress/STEP_4F_R1_V2_FLOW_AUDITED_PACKAGE.md
-```
 
 Installed package:
 
@@ -77,30 +63,16 @@ Installed source audit:
 | `checkout-safe5.js` | 24,463 bytes / 780 lines | 20,659 bytes / 668 lines |
 | `checkout-safe5.css` | 20,936 bytes / 599 lines | 20,931 bytes / 599 lines |
 
-Post-install bounded Step-03 CSS correction:
+Post-install bounded corrections:
 
 ```text
 checkout-safe5.css
-21,238 bytes / 609 lines
-SHA256: adcd779a7e41676096fc40ae75cf67174ee038d156f853c5873c5528807d5d73
+→ 21,238 bytes / 609 lines
+→ Step-03 native place-order/trust host normalization only
+
+form-checkout.php
+→ BACK TO INFORMATION changed to BACK TO ADDRESS
 ```
-
-The correction only normalizes the native Step-03 `.place-order` host and injected trust section. It does not change breakpoints, field grids, shared CSS, PHP or JavaScript.
-
-Post-install bounded template-copy correction:
-
-```text
-BACK TO INFORMATION
-→ BACK TO ADDRESS
-```
-
-Authoritative record:
-
-```text
-project2-progress/STEP_4F_R1_BACK_TO_ADDRESS_COPY_CORRECTION.md
-```
-
-The user confirmed the corrected label and return behavior passed. A fresh machine-measured post-edit hash was not supplied, so the documented expected hash remains an audit target rather than an independently measured result.
 
 ## 4. Runtime evidence records
 
@@ -113,6 +85,8 @@ project2-progress/STEP_4F_R1_NORMAL_ORDER_RESULT_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1_NORMAL_ORDER_DUPLICATE_CHECK.md
 project2-progress/STEP_4F_R1_CRYPTO_REDIRECT_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1_BACK_TO_ADDRESS_COPY_CORRECTION.md
+project2-progress/STEP_4F_R1_MALFORMED_EMAIL_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1_GLOBAL_FLAT_RATE_TEST_DECISION.md
 ```
 
 ## 5. Runtime results completed
@@ -120,11 +94,10 @@ project2-progress/STEP_4F_R1_BACK_TO_ADDRESS_COPY_CORRECTION.md
 ### Step 01
 
 ```text
-- /checkout-2-2/ loads
 - Address / Shipping / Payment / Confirmed progress renders
-- Address is active
 - old Review progress is absent
 - billing/contact fields and Order Summary render
+- malformed email remains blocked with visible notice
 ```
 
 ### Step 02
@@ -134,7 +107,7 @@ project2-progress/STEP_4F_R1_BACK_TO_ADDRESS_COPY_CORRECTION.md
 - Shipping becomes active
 - one WooCommerce shipping method renders
 - subtotal $36.00 + shipping $8.99 = total $44.99
-- BACK TO ADDRESS copy and return behavior passed by user confirmation
+- BACK TO ADDRESS copy and return behavior passed
 ```
 
 ### Step 03
@@ -144,9 +117,8 @@ project2-progress/STEP_4F_R1_BACK_TO_ADDRESS_COPY_CORRECTION.md
 - one native Place Order control renders
 - Terms/privacy content renders
 - Order Summary remains visible
+- initial trust-card collapse was corrected by one bounded CSS replacement
 ```
-
-The initial trust-card min-content collapse was corrected by one bounded CSS replacement. The corrected screenshot shows normal card width and page height.
 
 ### Terms rejection
 
@@ -165,11 +137,8 @@ Gateway: 测试
 Total: $44.99
 Status: On hold
 Route: Step 03 → native WooCommerce order-received result
+Visible duplicate-order check: passed
 ```
-
-No separate client Review/Confirmed form appeared. The result page is the real Step 04.
-
-Order-list evidence shows `#3575` as the only new latest order, with the preceding order `#3574` created about 17 hours earlier. No visible same-time duplicate order was created.
 
 ### Crypto gateway
 
@@ -179,43 +148,37 @@ Route: /crypto-pay/
 Order total: USD 44.99
 Network: TRON Nile Testnet
 Token: Test USDT
-Generate Payment Invoice control: rendered
+Legacy Crypto redirect: passed
 ```
 
-The WooCommerce order key visible in the screenshot was not recorded in GitHub.
+## 6. Global flat-rate shipping decision
 
-Classification:
+The user confirmed the current business configuration is one global flat rate:
 
 ```text
-Crypto gateway selection: passed
-native Step-03 submit: passed
-legacy /crypto-pay/ redirect: passed
-V0.2.5 initial page render: passed
+Shipping: $8.99 worldwide
 ```
 
-Invoice generation and Sandbox completion were not repeated in this R1 gate; they were already baseline-tested in R0 and belong to the later dedicated Crypto regression group.
+Therefore a destination change is not expected to change the shipping amount. Requiring a visible price change would be an invalid acceptance criterion.
 
-## 6. Result-page defect retained for R4
+R1 decision:
+
+```text
+- no country-change test is required to force a different rate
+- unchanged $8.99 is correct under the current configuration
+- selected-rate persistence with only one available global rate is not a discriminating R1 gate
+- address-driven/multiple-rate AJAX behavior is deferred to R7 full WooCommerce regression
+```
+
+This gate must be reactivated if multiple rates, shipping zones, destination taxes, free-shipping thresholds or dynamic shipping plugins are introduced.
+
+## 7. Result-page defect retained for R4
 
 The normal `On hold` order still receives preparation/fulfilment/shipping language on the result page.
 
 ```text
 Owner: R4 server-authoritative result-state mapping
 ```
-
-This does not invalidate the R1 route test, but the Checkout page remains `Not done`.
-
-## 7. Remaining R1 gates
-
-```text
-1. Recheck malformed-email blocking after the R1 source change.
-2. Directly observe address-driven shipping/totals recalculation.
-3. Observe selected shipping-rate persistence after updated_checkout.
-4. Perform 1366 / 390 / 360 runtime review.
-5. Execute bounded strict V2 visual migration; current SAFE5 visual is not final 1:1.
-```
-
-Coupon code remains source-unchanged and will receive its planned later commerce regression.
 
 ## 8. Current stop point
 
@@ -224,9 +187,12 @@ R1 core three-stage architecture: passed
 normal order route: passed
 visible duplicate-order check: passed
 Crypto /crypto-pay/ redirect: passed
-BACK TO ADDRESS correction: passed by user confirmation
-R1 remaining interaction gates: open
-R1 strict V2 visual migration: not started
+BACK TO ADDRESS correction: passed
+malformed-email blocking: passed
+global flat-rate amount-change test: not required
+single-rate persistence test: not required in R1
+responsive 1366 / 390 / 360 review: open
+strict V2 visual migration: not started
 R2: blocked
 Checkout: Not done
 ```
@@ -234,6 +200,6 @@ Checkout: Not done
 Next bounded action:
 
 ```text
-Recheck malformed-email blocking on Step 01,
-then continue shipping recalculation/persistence checks before visual migration.
+Begin R1-D strict V2 visual migration planning from the accepted repository references,
+then validate at 1366 / 390 / 360 after each bounded visual group.
 ```
