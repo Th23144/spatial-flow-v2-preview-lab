@@ -7,11 +7,11 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 R0: completed and closed
-R1: authorized and installed for local validation
+R1: authorized, installed and under local runtime validation
 Checkout: Not done
 ```
 
-Only these runtime files may change in R1:
+R1 runtime scope remains limited to:
 
 ```text
 woocommerce/checkout/form-checkout.php
@@ -19,7 +19,7 @@ assets/js/checkout-safe5.js
 assets/css/checkout-safe5.css
 ```
 
-The following remain prohibited in R1:
+R1 does not modify:
 
 ```text
 functions.php
@@ -28,20 +28,12 @@ assets/css/spatial-flow.css
 woocommerce/checkout/thankyou.php
 WPCode
 CartFlows
-WooCommerce page ID / URL / shortcode
+WooCommerce page assignment / URL / shortcode
 Spatial Flow Crypto Pay Trial V0.2.5
 gateway configuration
 ```
 
-## 2. Strict V2 operation flow
-
-The user re-locked this rule:
-
-```text
-All live page operation experience must strictly follow the accepted Project 2 V2 repository reference pages.
-```
-
-Checkout progression:
+## 2. Locked V2 operation flow
 
 ```text
 01 Address
@@ -53,272 +45,186 @@ Checkout progression:
 Meaning:
 
 ```text
-- Address, Shipping and Payment are interactive Checkout views.
-- Confirmed remains visible as the fourth progress stage.
-- Confirmed is disabled/non-interactive on Checkout.
-- No Step-04 input view exists.
-- Real confirmation is rendered only by the WooCommerce order result.
+- Address, Shipping and Payment are the only interactive Checkout views.
+- Confirmed remains visible as the fourth progress/result stage.
+- Confirmed is non-interactive on Checkout.
+- no Step-04 input or Review page exists.
+- the WooCommerce order-received/result page is the real server-owned Step 04.
 ```
 
-## 3. Candidate history
+All live operation experience must ultimately match the accepted Project 2 V2 repository references strictly.
 
-### Broad first candidate
+## 3. Installed source state
 
-```text
-project2-checkout-r1-candidate-20260802.zip
-Status: prohibited
-```
-
-Reason: mixed functional restructuring with a broad whole-file visual rewrite; CSS grew 65.23%, PHP and JavaScript changed excessive unrelated scope.
-
-### Three-column minimal candidate
-
-```text
-project2-checkout-r1-minimal-audited-20260802.zip
-SHA256: aad2b0d5bb9b1dfcc2a8565f01c47de662e38c248e96f299e3bfe71d16b5a906
-Status: superseded and prohibited
-```
-
-Reason: removed the visible Confirmed progress stage and therefore did not strictly match V2.
-
-### Corrected current package
-
-Authoritative record:
+Authoritative package record:
 
 ```text
 project2-progress/STEP_4F_R1_V2_FLOW_AUDITED_PACKAGE.md
 ```
 
-Package:
+Installed package:
 
 ```text
 project2-checkout-r1-v2-flow-audited-20260802.zip
-ZIP bytes: 16,062
 SHA256: c2a7cfce51fd8e404ede7f9854df178169167f55fe666d97b9c0df59bb2c27f4
 ```
 
-Classification:
+Installed source audit:
 
-```text
-source-audited
-minimal-diff
-V2-flow-aligned
-reversible
-acceptable for local-site installation and regression testing
-```
+| File | R0 baseline | Installed candidate |
+|---|---:|---:|
+| `form-checkout.php` | 9,140 bytes / 278 lines | 7,787 bytes / 237 lines |
+| `checkout-safe5.js` | 24,463 bytes / 780 lines | 20,659 bytes / 668 lines |
+| `checkout-safe5.css` | 20,936 bytes / 599 lines | 20,931 bytes / 599 lines |
 
-Not claimed:
-
-```text
-absolute zero runtime risk before installation
-final visual 1:1 acceptance
-production readiness
-```
-
-## 4. Corrected package file audit
-
-| File | R0 bytes / lines | Candidate bytes / lines | Delta |
-|---|---:|---:|---:|
-| `form-checkout.php` | 9,140 / 278 | 7,787 / 237 | -1,353 bytes / -41 lines |
-| `checkout-safe5.js` | 24,463 / 780 | 20,659 / 668 | -3,804 bytes / -112 lines |
-| `checkout-safe5.css` | 20,936 / 599 | 20,931 / 599 | -5 bytes / 0 lines |
-
-No bottom CSS append, breakpoint change, field-grid rewrite, design-token rewrite or shared-file change exists.
-
-Post-install bounded CSS correction:
+Post-install bounded Step-03 CSS correction:
 
 ```text
 checkout-safe5.css
-20,931 bytes / 599 lines
-→ 21,238 bytes / 609 lines
-Delta: +307 bytes / +10 lines
+21,238 bytes / 609 lines
 SHA256: adcd779a7e41676096fc40ae75cf67174ee038d156f853c5873c5528807d5d73
 ```
 
-The correction normalizes the native Step-03 `.place-order` host and trust section only. No PHP, JavaScript, breakpoint, field-grid or bottom-append change was made.
+The correction only normalizes the native Step-03 `.place-order` host and injected trust section. It does not change breakpoints, field grids, shared CSS, PHP or JavaScript.
 
-## 5. Locked functional boundary
-
-```text
-- progress remains Address / Shipping / Payment / Confirmed
-- Review input page is removed
-- Confirmed has no client navigation target
-- native WooCommerce billing/contact remains Step 01
-- native WooCommerce shipping remains Step 02
-- native dynamic payment gateways remain Step 03
-- the single real `.place-order` / `#place_order` remains inside Step 03
-- no Place Order cloning or relocation
-- WooCommerce submit, nonce, AJAX, gateway fields and redirects remain authoritative
-- Coupon remains server-backed
-- Crypto V0.2.5 legacy `/crypto-pay/` handoff remains
-- pressing Enter cannot bypass Address or Shipping
-```
-
-## 6. Commerce behavior source audit
-
-```text
-Address-driven shipping/totals refresh: source ownership preserved; runtime transition evidence still required
-updated_checkout payment availability: native payment fragment remains in Step 03; initial runtime rendering passed
-Coupon AJAX and total refresh: unchanged; runtime coupon regression still required later
-error routing: unchanged except Terms/Privacy maps to Step 03
-Terms error: runtime visible and retained in Step 03; passed
-Place Order: single native WooCommerce control, not cloned; initial runtime rendering passed
-Duplicate order: no new submit path found; runtime repeat-click test required
-Crypto redirect: source path unchanged; runtime `/crypto-pay/` test required
-```
-
-## 7. Runtime installation evidence
-
-Authoritative records:
+## 4. Runtime evidence records
 
 ```text
 project2-progress/STEP_4F_R1_V2_FLOW_RUNTIME_INSTALLATION_EVIDENCE.md
 project2-progress/STEP_4F_R1_STEP02_SHIPPING_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1_STEP03_PAYMENT_LAYOUT_REGRESSION.md
 project2-progress/STEP_4F_R1_TERMS_REJECTION_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1_NORMAL_ORDER_RESULT_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1_NORMAL_ORDER_DUPLICATE_CHECK.md
+project2-progress/STEP_4F_R1_CRYPTO_REDIRECT_RUNTIME_EVIDENCE.md
 ```
+
+## 5. Runtime results completed
 
 ### Step 01
 
-Screenshot confirms:
-
 ```text
-- /checkout-2-2/ loads without PHP white screen
-- Address / Shipping / Payment / Confirmed progress is visible
+- /checkout-2-2/ loads
+- Address / Shipping / Payment / Confirmed progress renders
 - Address is active
-- old Review progress label is absent
-- Step 01 billing/contact fields render
-- Order Summary renders
-- Continue to Shipping renders
+- old Review progress is absent
+- billing/contact fields and Order Summary render
 ```
 
 ### Step 02
 
-Screenshot confirms:
-
 ```text
-- Address is marked complete
-- Shipping is active
-- Payment and Confirmed remain pending
-- no Review progress item is present
+- Address becomes complete
+- Shipping becomes active
 - one WooCommerce shipping method renders
-- observed subtotal: $36.00
-- observed shipping: $8.99
-- observed total: $44.99
-- Continue to Payment renders
+- subtotal $36.00 + shipping $8.99 = total $44.99
 ```
 
-The visible total is internally consistent:
+Open strict-V2 copy defect:
 
 ```text
-$36.00 + $8.99 = $44.99
+BACK TO INFORMATION
+must become
+BACK TO ADDRESS
 ```
 
-Confirmed strict-V2 mismatch:
-
-```text
-Current label: BACK TO INFORMATION
-Required label: BACK TO ADDRESS
-```
-
-### Step 03 initial rendering
-
-Initial screenshot confirmed:
+### Step 03
 
 ```text
 - both enabled gateways render: 测试 + Pay with Crypto
-- one native Place Order button renders
-- terms/privacy content renders
+- one native Place Order control renders
+- Terms/privacy content renders
 - Order Summary remains visible
 ```
 
-It also exposed a severe layout regression: the three trust items below Place Order collapsed to min-content width and stretched the page vertically.
-
-After one bounded CSS replacement, a second screenshot confirms:
-
-```text
-- the left column returned to normal height
-- all three trust cards render at normal width
-- trust text no longer wraps character-by-character
-- both gateways remain visible
-- one native Place Order remains visible
-- terms/privacy content remains visible
-- Order Summary remains visible
-- total remains $44.99
-```
-
-Classification:
-
-```text
-Step 03 catastrophic layout regression: corrected
-Step 03 initial layout integrity: passed from screenshot
-Gateway rendering: passed
-Single native Place Order presence: passed
-```
+The initial trust-card min-content collapse was corrected by one bounded CSS replacement. The corrected screenshot shows normal card width and page height.
 
 ### Terms rejection
 
-The user left Terms unchecked and clicked Place Order once.
-
-Screenshot confirms:
-
 ```text
+- unchecked Terms blocks submission
 - Payment remains active
-- Confirmed remains pending
-- no order-received or Crypto navigation occurred
-- Terms remains unchecked
-- the existing visible error notice appears above the Payment area
+- error remains visible in Step 03
+- no Confirmed or Crypto navigation occurs
 ```
 
-Observed notice:
+### Normal test gateway
 
 ```text
-Please read and accept the terms and conditions to proceed with your order.
+Observed order: #3575
+Gateway: 测试
+Total: $44.99
+Status: On hold
+Route: Step 03 → native WooCommerce order-received result
 ```
+
+No separate client Review/Confirmed form appeared. The result page is the real Step 04.
+
+Order-list evidence shows `#3575` as the only new latest order, with the preceding order `#3574` created about 17 hours earlier. No visible same-time duplicate order was created.
+
+### Crypto gateway
+
+```text
+Observed order: #3576
+Route: /crypto-pay/
+Order total: USD 44.99
+Network: TRON Nile Testnet
+Token: Test USDT
+Generate Payment Invoice control: rendered
+```
+
+The WooCommerce order key visible in the screenshot was not recorded in GitHub.
 
 Classification:
 
 ```text
-Terms rejection visibility: passed
-Terms error routing to Step 03: passed
-Payment-stage retention: passed
-Admin/database order count: not independently proven by this screenshot
+Crypto gateway selection: passed
+native Step-03 submit: passed
+legacy /crypto-pay/ redirect: passed
+V0.2.5 initial page render: passed
 ```
 
-## 8. Why the visual appearance remains close to the prior page
+Invoice generation and Sandbox completion were not repeated in this R1 gate; they were already baseline-tested in R0 and belong to the later dedicated Crypto regression group.
 
-The corrected package intentionally completed only the bounded functional shell work.
+## 6. Result-page defect retained for R4
+
+The normal `On hold` order still receives preparation/fulfilment/shipping language on the result page.
 
 ```text
-R1-A/B/C: installed for local validation
-R1-D strict V2 visual migration: not started
+Owner: R4 server-authoritative result-state mapping
 ```
 
-It preserves the existing SAFE5 appearance so that functional risk can be isolated before the full reference-page visual migration. Therefore the main visible changes are progress semantics and removal of Review ownership, not a wholesale visual redesign.
+This does not invalidate the R1 route test, but the Checkout page remains `Not done`.
 
-## 9. Current execution point
+## 7. Remaining R1 gates
 
 ```text
-Corrected V2-flow package: installed
-Step-01 initial render: passed
-Step-02 initial render and visible totals: passed
-Step-03 gateways and single Place Order: passed
-Step-03 layout regression: corrected and screenshot-verified
-Terms rejection and Step-03 error routing: passed
-Strict V2 back-label copy: failed; correction required
-Normal order creation: pending
-Duplicate-order prevention: pending
-Crypto redirect: pending
-Final V2 visual migration: not started
+1. Correct BACK TO INFORMATION → BACK TO ADDRESS.
+2. Recheck malformed-email blocking after the R1 source change.
+3. Directly observe address-driven shipping/totals recalculation.
+4. Observe selected shipping-rate persistence after updated_checkout.
+5. Perform 1366 / 390 / 360 runtime review.
+6. Execute bounded strict V2 visual migration; current SAFE5 visual is not final 1:1.
+```
+
+Coupon code remains source-unchanged and will receive its planned later commerce regression.
+
+## 8. Current stop point
+
+```text
+R1 core three-stage architecture: passed
+normal order route: passed
+visible duplicate-order check: passed
+Crypto /crypto-pay/ redirect: passed
+R1 remaining interaction/copy gates: open
+R1 strict V2 visual migration: not started
 R2: blocked
 Checkout: Not done
 ```
 
-Next gate:
+Next bounded action:
 
 ```text
-Select 测试
-→ check Terms
-→ click Place Order once
-→ capture the resulting WooCommerce result page and order number
+Correct the Step-02 back label with one anchored template replacement,
+then continue the remaining R1 interaction checks before visual migration.
 ```
