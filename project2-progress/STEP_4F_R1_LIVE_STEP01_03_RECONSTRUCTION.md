@@ -125,6 +125,18 @@ production readiness
 
 No bottom CSS append, breakpoint change, field-grid rewrite, design-token rewrite or shared-file change exists.
 
+Post-install bounded CSS correction:
+
+```text
+checkout-safe5.css
+20,931 bytes / 599 lines
+→ 21,238 bytes / 609 lines
+Delta: +307 bytes / +10 lines
+SHA256: adcd779a7e41676096fc40ae75cf67174ee038d156f853c5873c5528807d5d73
+```
+
+The correction normalizes the native Step-03 `.place-order` host and trust section only. No PHP, JavaScript, breakpoint, field-grid or bottom-append change was made.
+
 ## 5. Locked functional boundary
 
 ```text
@@ -149,7 +161,7 @@ Address-driven shipping/totals refresh: source ownership preserved; runtime test
 updated_checkout payment availability: native payment fragment remains in Step 03; runtime test required
 Coupon AJAX and total refresh: unchanged
 error routing: unchanged except Terms/Privacy now maps to Step 03
-Terms error: visible and blocked in Step 03
+Terms error: visible and blocked in Step 03; runtime test required
 Place Order: single native WooCommerce control, not cloned
 Duplicate order: no new submit path found; runtime repeat-click test required
 Crypto redirect: source path unchanged; runtime `/crypto-pay/` test required
@@ -162,9 +174,12 @@ Authoritative records:
 ```text
 project2-progress/STEP_4F_R1_V2_FLOW_RUNTIME_INSTALLATION_EVIDENCE.md
 project2-progress/STEP_4F_R1_STEP02_SHIPPING_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1_STEP03_PAYMENT_LAYOUT_REGRESSION.md
 ```
 
-Step 01 screenshot confirms:
+### Step 01
+
+Screenshot confirms:
 
 ```text
 - /checkout-2-2/ loads without PHP white screen
@@ -176,7 +191,9 @@ Step 01 screenshot confirms:
 - Continue to Shipping renders
 ```
 
-Step 02 screenshot confirms:
+### Step 02
+
+Screenshot confirms:
 
 ```text
 - Address is marked complete
@@ -188,7 +205,6 @@ Step 02 screenshot confirms:
 - observed shipping: $8.99
 - observed total: $44.99
 - Continue to Payment renders
-- no PHP white screen or fatal layout collapse is visible
 ```
 
 The visible total is internally consistent:
@@ -204,7 +220,40 @@ Current label: BACK TO INFORMATION
 Required label: BACK TO ADDRESS
 ```
 
-This mismatch must be corrected before R1 closure. The screenshot does not yet prove a fresh address-driven rate recalculation, Step-03 gateways, the native Place Order path, order creation, duplicate prevention or Crypto redirect.
+### Step 03
+
+Initial screenshot confirmed:
+
+```text
+- both enabled gateways render: 测试 + Pay with Crypto
+- one native Place Order button renders
+- terms/privacy content renders
+- Order Summary remains visible
+```
+
+It also exposed a severe layout regression: the three trust items below Place Order collapsed to min-content width and stretched the page vertically.
+
+After one bounded CSS replacement, a second screenshot confirms:
+
+```text
+- the left column returned to normal height
+- all three trust cards render at normal width
+- trust text no longer wraps character-by-character
+- both gateways remain visible
+- one native Place Order remains visible
+- terms/privacy content remains visible
+- Order Summary remains visible
+- total remains $44.99
+```
+
+Classification:
+
+```text
+Step 03 catastrophic layout regression: corrected
+Step 03 initial layout integrity: passed from screenshot
+Gateway rendering: passed
+Single native Place Order presence: passed
+```
 
 ## 8. Why the visual appearance remains close to the prior page
 
@@ -221,10 +270,15 @@ It preserves the existing SAFE5 appearance so that functional risk can be isolat
 
 ```text
 Corrected V2-flow package: installed
-Step-01 initial render: passed from screenshot
-Step-02 initial render and visible totals: passed from screenshot
+Step-01 initial render: passed
+Step-02 initial render and visible totals: passed
+Step-03 gateways and single Place Order: passed
+Step-03 layout regression: corrected and screenshot-verified
 Strict V2 back-label copy: failed; correction required
-R1 functional browser regression: in progress
+Terms rejection: pending
+Normal order creation: pending
+Duplicate-order prevention: pending
+Crypto redirect: pending
 Final V2 visual migration: not started
 R2: blocked
 Checkout: Not done
@@ -233,7 +287,8 @@ Checkout: Not done
 Next gate:
 
 ```text
-Continue to Payment
-→ capture complete Step 03 screenshot
-→ verify both enabled gateways and exactly one native Place Order control
+Leave Terms unchecked
+→ click Place Order once
+→ confirm the order is not created
+→ confirm the error remains visible in Step 03
 ```
