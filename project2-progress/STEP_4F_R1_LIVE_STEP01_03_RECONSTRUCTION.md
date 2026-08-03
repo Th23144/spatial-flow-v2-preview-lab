@@ -87,6 +87,21 @@ SHA256: adcd779a7e41676096fc40ae75cf67174ee038d156f853c5873c5528807d5d73
 
 The correction only normalizes the native Step-03 `.place-order` host and injected trust section. It does not change breakpoints, field grids, shared CSS, PHP or JavaScript.
 
+Post-install bounded template-copy correction:
+
+```text
+BACK TO INFORMATION
+→ BACK TO ADDRESS
+```
+
+Authoritative record:
+
+```text
+project2-progress/STEP_4F_R1_BACK_TO_ADDRESS_COPY_CORRECTION.md
+```
+
+The user confirmed the corrected label and return behavior passed. A fresh machine-measured post-edit hash was not supplied, so the documented expected hash remains an audit target rather than an independently measured result.
+
 ## 4. Runtime evidence records
 
 ```text
@@ -97,6 +112,7 @@ project2-progress/STEP_4F_R1_TERMS_REJECTION_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1_NORMAL_ORDER_RESULT_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1_NORMAL_ORDER_DUPLICATE_CHECK.md
 project2-progress/STEP_4F_R1_CRYPTO_REDIRECT_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1_BACK_TO_ADDRESS_COPY_CORRECTION.md
 ```
 
 ## 5. Runtime results completed
@@ -118,14 +134,7 @@ project2-progress/STEP_4F_R1_CRYPTO_REDIRECT_RUNTIME_EVIDENCE.md
 - Shipping becomes active
 - one WooCommerce shipping method renders
 - subtotal $36.00 + shipping $8.99 = total $44.99
-```
-
-Open strict-V2 copy defect:
-
-```text
-BACK TO INFORMATION
-must become
-BACK TO ADDRESS
+- BACK TO ADDRESS copy and return behavior passed by user confirmation
 ```
 
 ### Step 03
@@ -199,12 +208,11 @@ This does not invalidate the R1 route test, but the Checkout page remains `Not d
 ## 7. Remaining R1 gates
 
 ```text
-1. Correct BACK TO INFORMATION → BACK TO ADDRESS.
-2. Recheck malformed-email blocking after the R1 source change.
-3. Directly observe address-driven shipping/totals recalculation.
-4. Observe selected shipping-rate persistence after updated_checkout.
-5. Perform 1366 / 390 / 360 runtime review.
-6. Execute bounded strict V2 visual migration; current SAFE5 visual is not final 1:1.
+1. Recheck malformed-email blocking after the R1 source change.
+2. Directly observe address-driven shipping/totals recalculation.
+3. Observe selected shipping-rate persistence after updated_checkout.
+4. Perform 1366 / 390 / 360 runtime review.
+5. Execute bounded strict V2 visual migration; current SAFE5 visual is not final 1:1.
 ```
 
 Coupon code remains source-unchanged and will receive its planned later commerce regression.
@@ -216,7 +224,8 @@ R1 core three-stage architecture: passed
 normal order route: passed
 visible duplicate-order check: passed
 Crypto /crypto-pay/ redirect: passed
-R1 remaining interaction/copy gates: open
+BACK TO ADDRESS correction: passed by user confirmation
+R1 remaining interaction gates: open
 R1 strict V2 visual migration: not started
 R2: blocked
 Checkout: Not done
@@ -225,6 +234,6 @@ Checkout: Not done
 Next bounded action:
 
 ```text
-Correct the Step-02 back label with one anchored template replacement,
-then continue the remaining R1 interaction checks before visual migration.
+Recheck malformed-email blocking on Step 01,
+then continue shipping recalculation/persistence checks before visual migration.
 ```
