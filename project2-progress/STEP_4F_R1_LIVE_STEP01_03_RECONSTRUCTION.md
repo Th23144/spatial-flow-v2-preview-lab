@@ -8,7 +8,7 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 ```text
 R0: completed and closed
 R1-A/B/C functional reconstruction: installed and runtime-validated
-R1-D strict V2 visual migration: started
+R1-D strict V2 visual migration: in progress
 Checkout: Not done
 ```
 
@@ -68,7 +68,7 @@ form-checkout.php
 → BACK TO INFORMATION changed to BACK TO ADDRESS
 ```
 
-Current verified pre-R1-D baseline:
+Verified pre-R1-D baseline:
 
 | File | Bytes | Lines | SHA256 |
 |---|---:|---:|---|
@@ -127,7 +127,7 @@ Implementation rules:
 - validate desktop and mobile after each visual group
 ```
 
-## 7. Active visual group
+## 7. R1-D1 Intro and progress result
 
 Authoritative record:
 
@@ -135,37 +135,44 @@ Authoritative record:
 project2-progress/STEP_4F_R1D1_INTRO_PROGRESS_VISUAL_MIGRATION.md
 ```
 
-R1-D1 scope:
+Installed audited state:
+
+| File | Bytes / lines | SHA256 |
+|---|---:|---|
+| `form-checkout.php` | 7,925 / 240 | `14e58b22966d1c3cb6c713157e5475eb43de102bc271a4e620ddfe14a4da17ec` |
+| `checkout-safe5.js` | 20,744 / 671 | `7b2906a3be0823cc5055db409fe20cc498878d71d479809c7e812174530ae0df` |
+| `checkout-safe5.css` | 22,543 / 654 | `e005cf24b4ced7140627aa04b20ed3cbe2e54583fcfca02dd9864e2e2b489195` |
+
+Live Step-01 desktop screenshot confirms:
 
 ```text
-- warm editorial Checkout background
-- two-column desktop Intro
-- V2 typography hierarchy
-- flat 01 / 02 / 03 / 04 progress treatment
-- active clay number
-- completed trailing check mark
-- all four mobile labels retained
+- warm editorial Checkout surface
+- two-column Intro composition
+- large low-weight serif Checkout title
+- italic explanatory copy
+- flat 01 / 02 / 03 / 04 progression
+- Address active
+- Confirmed visible and non-interactive
+- no rounded progress cards
+- Step-01 fields and Order Summary still render
 ```
 
-Not included in R1-D1:
+Classification:
 
 ```text
-field-grid redesign
-section/panel redesign
-Order Summary redesign
-Shipping option redesign
-Payment host redesign
-Coupon redesign
-result-page changes
+R1-D1 desktop: passed
+R1-D1 mobile 390 / 360: pending
+R1-D2 form/panel/Order Summary visual migration: not started
 ```
+
+The still-old form cards and Order Summary styling are outside D1 scope and remain intentional pending D2.
 
 ## 8. Current stop point
 
 ```text
-R1-D1 candidate: source-audited and issued for manual application
-Runtime application: pending
-Next evidence: Step-01 desktop screenshot after all three coupled replacements
-R1-D2 and later visual groups: blocked until R1-D1 passes
+R1-D1 desktop acceptance: passed
+Next evidence: Step-01 at 390px mobile
+Do not start R1-D2 until the mobile D1 layout is checked
 R2: blocked
 Checkout: Not done
 ```
