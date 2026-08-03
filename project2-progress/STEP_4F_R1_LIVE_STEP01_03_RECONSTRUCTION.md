@@ -7,7 +7,8 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ```text
 R0: completed and closed
-R1: authorized, installed and under local runtime validation
+R1-A/B/C functional reconstruction: installed and runtime-validated
+R1-D strict V2 visual migration: started
 Checkout: Not done
 ```
 
@@ -42,11 +43,11 @@ gateway configuration
 → 04 Confirmed
 ```
 
-Only Address, Shipping and Payment are interactive Checkout views. Confirmed is a visible, non-interactive result stage. The WooCommerce order-received/result page is the real server-owned Step 04. No client Review or Step-04 input page may exist.
+Only Address, Shipping and Payment are interactive Checkout views. Confirmed is visible but non-interactive. The WooCommerce order-received/result page is the real server-owned Step 04. No client Review or Step-04 input page may exist.
 
-All live operation experience must ultimately match the accepted Project 2 V2 repository references strictly.
+All live operation experience and final visual presentation must match the accepted Project 2 V2 repository references strictly.
 
-## 3. Installed source state
+## 3. Installed functional source state
 
 Installed package:
 
@@ -55,15 +56,7 @@ project2-checkout-r1-v2-flow-audited-20260802.zip
 SHA256: c2a7cfce51fd8e404ede7f9854df178169167f55fe666d97b9c0df59bb2c27f4
 ```
 
-Installed source audit:
-
-| File | R0 baseline | Installed candidate |
-|---|---:|---:|
-| `form-checkout.php` | 9,140 bytes / 278 lines | 7,787 bytes / 237 lines |
-| `checkout-safe5.js` | 24,463 bytes / 780 lines | 20,659 bytes / 668 lines |
-| `checkout-safe5.css` | 20,936 bytes / 599 lines | 20,931 bytes / 599 lines |
-
-Post-install bounded corrections:
+Post-install accepted corrections:
 
 ```text
 checkout-safe5.css
@@ -71,108 +64,36 @@ checkout-safe5.css
 → Step-03 native place-order/trust host normalization only
 
 form-checkout.php
+→ 7,783 bytes / 237 lines
 → BACK TO INFORMATION changed to BACK TO ADDRESS
 ```
 
-## 4. Runtime evidence records
+Current verified pre-R1-D baseline:
+
+| File | Bytes | Lines | SHA256 |
+|---|---:|---:|---|
+| `form-checkout.php` | 7,783 | 237 | `7a5d620a6f5526b76a83877f2ee8abb55e6f28f66595609e51dd695935adee2f` |
+| `checkout-safe5.js` | 20,659 | 668 | `48feecd27d3da5a921b822734b48b6885e3ce1fe8b0a195b5ef9af81bc999f04` |
+| `checkout-safe5.css` | 21,238 | 609 | `adcd779a7e41676096fc40ae75cf67174ee038d156f853c5873c5528807d5d73` |
+
+## 4. Functional runtime results completed
 
 ```text
-project2-progress/STEP_4F_R1_V2_FLOW_RUNTIME_INSTALLATION_EVIDENCE.md
-project2-progress/STEP_4F_R1_STEP02_SHIPPING_RUNTIME_EVIDENCE.md
-project2-progress/STEP_4F_R1_STEP03_PAYMENT_LAYOUT_REGRESSION.md
-project2-progress/STEP_4F_R1_TERMS_REJECTION_RUNTIME_EVIDENCE.md
-project2-progress/STEP_4F_R1_NORMAL_ORDER_RESULT_RUNTIME_EVIDENCE.md
-project2-progress/STEP_4F_R1_NORMAL_ORDER_DUPLICATE_CHECK.md
-project2-progress/STEP_4F_R1_CRYPTO_REDIRECT_RUNTIME_EVIDENCE.md
-project2-progress/STEP_4F_R1_BACK_TO_ADDRESS_COPY_CORRECTION.md
-project2-progress/STEP_4F_R1_MALFORMED_EMAIL_RUNTIME_EVIDENCE.md
-project2-progress/STEP_4F_R1_GLOBAL_FLAT_RATE_TEST_DECISION.md
+Step 01 render: passed
+malformed-email blocking: passed
+Step 02 render and $8.99 global flat rate: passed
+BACK TO ADDRESS label and return behavior: passed
+Step 03 gateways and single native Place Order: passed
+Step-03 trust-card collapse: corrected and passed
+Terms rejection and Step-03 error routing: passed
+normal test order route: passed (#3575)
+visible duplicate-order check: passed
+Crypto /crypto-pay/ redirect: passed (#3576)
 ```
 
-## 5. Runtime results completed
+Global flat-rate amount-change and single-rate persistence tests are not R1 blockers because the current business configuration exposes one worldwide `$8.99` method. Multi-rate/address-driven regression remains assigned to R7.
 
-### Step 01
-
-```text
-- Address / Shipping / Payment / Confirmed progress renders
-- old Review progress is absent
-- billing/contact fields and Order Summary render
-- malformed email remains blocked with visible notice
-```
-
-### Step 02
-
-```text
-- Address becomes complete
-- Shipping becomes active
-- one WooCommerce shipping method renders
-- subtotal $36.00 + shipping $8.99 = total $44.99
-- BACK TO ADDRESS copy and return behavior passed
-```
-
-### Step 03
-
-```text
-- both enabled gateways render: 测试 + Pay with Crypto
-- one native Place Order control renders
-- Terms/privacy content renders
-- Order Summary remains visible
-- initial trust-card collapse was corrected by one bounded CSS replacement
-```
-
-### Terms rejection
-
-```text
-- unchecked Terms blocks submission
-- Payment remains active
-- error remains visible in Step 03
-- no Confirmed or Crypto navigation occurs
-```
-
-### Normal test gateway
-
-```text
-Observed order: #3575
-Gateway: 测试
-Total: $44.99
-Status: On hold
-Route: Step 03 → native WooCommerce order-received result
-Visible duplicate-order check: passed
-```
-
-### Crypto gateway
-
-```text
-Observed order: #3576
-Route: /crypto-pay/
-Order total: USD 44.99
-Network: TRON Nile Testnet
-Token: Test USDT
-Legacy Crypto redirect: passed
-```
-
-## 6. Global flat-rate shipping decision
-
-The user confirmed the current business configuration is one global flat rate:
-
-```text
-Shipping: $8.99 worldwide
-```
-
-Therefore a destination change is not expected to change the shipping amount. Requiring a visible price change would be an invalid acceptance criterion.
-
-R1 decision:
-
-```text
-- no country-change test is required to force a different rate
-- unchanged $8.99 is correct under the current configuration
-- selected-rate persistence with only one available global rate is not a discriminating R1 gate
-- address-driven/multiple-rate AJAX behavior is deferred to R7 full WooCommerce regression
-```
-
-This gate must be reactivated if multiple rates, shipping zones, destination taxes, free-shipping thresholds or dynamic shipping plugins are introduced.
-
-## 7. Result-page defect retained for R4
+## 5. Result-page defect retained for R4
 
 The normal `On hold` order still receives preparation/fulfilment/shipping language on the result page.
 
@@ -180,26 +101,71 @@ The normal `On hold` order still receives preparation/fulfilment/shipping langua
 Owner: R4 server-authoritative result-state mapping
 ```
 
+## 6. R1-D visual authority
+
+Accepted references:
+
+```text
+preview/spatial-flow-checkout-v1.html
+preview/spatial-flow-checkout-shipping-v1.html
+preview/spatial-flow-checkout-payment-v1.html
+preview/spatial-flow-checkout-flow-v1.css
+preview/spatial-flow-checkout-context-v1.css
+preview/spatial-flow-checkout-mobile-commerce-v1.css
+project2-progress/STEP_4F_S3_FINAL_STATIC_CHECKOUT_AND_MOBILE_COMMERCE_SURFACE_ACCEPTANCE.md
+```
+
+Implementation rules:
+
+```text
+- bounded selector/DOM groups only
+- manual anchored replacement by default
+- exact before/after bytes, lines and SHA256
+- no broad whole-file rewrite
+- no bottom append as routine method
+- preserve WooCommerce authority and all validated submit paths
+- validate desktop and mobile after each visual group
+```
+
+## 7. Active visual group
+
+Authoritative record:
+
+```text
+project2-progress/STEP_4F_R1D1_INTRO_PROGRESS_VISUAL_MIGRATION.md
+```
+
+R1-D1 scope:
+
+```text
+- warm editorial Checkout background
+- two-column desktop Intro
+- V2 typography hierarchy
+- flat 01 / 02 / 03 / 04 progress treatment
+- active clay number
+- completed trailing check mark
+- all four mobile labels retained
+```
+
+Not included in R1-D1:
+
+```text
+field-grid redesign
+section/panel redesign
+Order Summary redesign
+Shipping option redesign
+Payment host redesign
+Coupon redesign
+result-page changes
+```
+
 ## 8. Current stop point
 
 ```text
-R1 core three-stage architecture: passed
-normal order route: passed
-visible duplicate-order check: passed
-Crypto /crypto-pay/ redirect: passed
-BACK TO ADDRESS correction: passed
-malformed-email blocking: passed
-global flat-rate amount-change test: not required
-single-rate persistence test: not required in R1
-responsive 1366 / 390 / 360 review: open
-strict V2 visual migration: not started
+R1-D1 candidate: source-audited and issued for manual application
+Runtime application: pending
+Next evidence: Step-01 desktop screenshot after all three coupled replacements
+R1-D2 and later visual groups: blocked until R1-D1 passes
 R2: blocked
 Checkout: Not done
-```
-
-Next bounded action:
-
-```text
-Begin R1-D strict V2 visual migration planning from the accepted repository references,
-then validate at 1366 / 390 / 360 after each bounded visual group.
 ```
