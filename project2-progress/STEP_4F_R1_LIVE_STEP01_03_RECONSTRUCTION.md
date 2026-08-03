@@ -47,36 +47,7 @@ Only Address, Shipping and Payment are interactive Checkout views. Confirmed is 
 
 All live operation experience and final visual presentation must match the accepted Project 2 V2 repository references strictly.
 
-## 3. Installed functional source state
-
-Installed package:
-
-```text
-project2-checkout-r1-v2-flow-audited-20260802.zip
-SHA256: c2a7cfce51fd8e404ede7f9854df178169167f55fe666d97b9c0df59bb2c27f4
-```
-
-Post-install accepted corrections:
-
-```text
-checkout-safe5.css
-→ 21,238 bytes / 609 lines
-→ Step-03 native place-order/trust host normalization only
-
-form-checkout.php
-→ 7,783 bytes / 237 lines
-→ BACK TO INFORMATION changed to BACK TO ADDRESS
-```
-
-Verified pre-R1-D baseline:
-
-| File | Bytes | Lines | SHA256 |
-|---|---:|---:|---|
-| `form-checkout.php` | 7,783 | 237 | `7a5d620a6f5526b76a83877f2ee8abb55e6f28f66595609e51dd695935adee2f` |
-| `checkout-safe5.js` | 20,659 | 668 | `48feecd27d3da5a921b822734b48b6885e3ce1fe8b0a195b5ef9af81bc999f04` |
-| `checkout-safe5.css` | 21,238 | 609 | `adcd779a7e41676096fc40ae75cf67174ee038d156f853c5873c5528807d5d73` |
-
-## 4. Functional runtime results completed
+## 3. Functional runtime results completed
 
 ```text
 Step 01 render: passed
@@ -93,7 +64,7 @@ Crypto /crypto-pay/ redirect: passed (#3576)
 
 Global flat-rate amount-change and single-rate persistence tests are not R1 blockers because the current business configuration exposes one worldwide `$8.99` method. Multi-rate/address-driven regression remains assigned to R7.
 
-## 5. Result-page defect retained for R4
+## 4. Result-page defect retained for R4
 
 The normal `On hold` order still receives preparation/fulfilment/shipping language on the result page.
 
@@ -101,7 +72,7 @@ The normal `On hold` order still receives preparation/fulfilment/shipping langua
 Owner: R4 server-authoritative result-state mapping
 ```
 
-## 6. R1-D visual authority
+## 5. R1-D visual authority
 
 Accepted references:
 
@@ -127,12 +98,13 @@ Implementation rules:
 - validate desktop and mobile after each visual group
 ```
 
-## 7. R1-D1 Intro and progress result
+## 6. R1-D1 installed state
 
-Authoritative record:
+Authoritative records:
 
 ```text
 project2-progress/STEP_4F_R1D1_INTRO_PROGRESS_VISUAL_MIGRATION.md
+project2-progress/STEP_4F_R1D1_390PX_RUNTIME_EVIDENCE.md
 ```
 
 Installed audited state:
@@ -143,7 +115,7 @@ Installed audited state:
 | `checkout-safe5.js` | 20,744 / 671 | `7b2906a3be0823cc5055db409fe20cc498878d71d479809c7e812174530ae0df` |
 | `checkout-safe5.css` | 22,543 / 654 | `e005cf24b4ced7140627aa04b20ed3cbe2e54583fcfca02dd9864e2e2b489195` |
 
-Live Step-01 desktop screenshot confirms:
+Desktop evidence confirms:
 
 ```text
 - warm editorial Checkout surface
@@ -154,25 +126,59 @@ Live Step-01 desktop screenshot confirms:
 - Address active
 - Confirmed visible and non-interactive
 - no rounded progress cards
-- Step-01 fields and Order Summary still render
+```
+
+390px evidence confirms:
+
+```text
+- single-column Intro
+- readable title and explanatory copy
+- all four stages remain visible
+- no visible progress-label clipping
+- no visible horizontal page overflow
 ```
 
 Classification:
 
 ```text
 R1-D1 desktop: passed
-R1-D1 mobile 390 / 360: pending
-R1-D2 form/panel/Order Summary visual migration: not started
+R1-D1 390px: passed
+R1-D1 360px: pending
 ```
 
-The still-old form cards and Order Summary styling are outside D1 scope and remain intentional pending D2.
+## 7. Strict-V2 body mismatch assigned to R1-D2
+
+The 390px screenshot exposes the current live body order as:
+
+```text
+Intro → Order Summary → Address form
+```
+
+The accepted Step-01 V2 reference order is:
+
+```text
+Intro → Address form → Order Summary
+```
+
+The reversal is caused by the existing responsive `.sf-safe5-summary { order: -1; }` rule. It was not introduced by D1 but must be corrected in D2.
+
+Other D2-open visual surfaces:
+
+```text
+rounded form/panel treatment
+rounded Order Summary and trust cards
+field surfaces and spacing
+mobile action-button treatment
+```
 
 ## 8. Current stop point
 
 ```text
 R1-D1 desktop acceptance: passed
-Next evidence: Step-01 at 390px mobile
-Do not start R1-D2 until the mobile D1 layout is checked
+R1-D1 390px acceptance: passed
+Next evidence: Step-01 at 360px mobile
+Do not start R1-D2 until 360px D1 is checked
+R1-D2 must restore form-before-Order-Summary mobile order
 R2: blocked
 Checkout: Not done
 ```
