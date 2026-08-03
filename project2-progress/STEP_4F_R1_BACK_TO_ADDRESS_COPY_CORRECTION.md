@@ -5,7 +5,7 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## 1. Defect
 
-The live Step-02 back control currently reads:
+The live Step-02 back control previously read:
 
 ```text
 ← Back to information
@@ -17,13 +17,11 @@ The locked V2 flow is:
 Address → Shipping → Payment → Confirmed
 ```
 
-Therefore the correct label is:
+Required correction:
 
 ```text
 ← Back to address
 ```
-
-This is a visible operation-copy mismatch and must be corrected before R1 closure.
 
 ## 2. Exact target
 
@@ -31,7 +29,7 @@ This is a visible operation-copy mismatch and must be corrected before R1 closur
 woocommerce/checkout/form-checkout.php
 ```
 
-Current installed baseline:
+Pre-edit installed baseline:
 
 ```text
 Bytes: 7,787
@@ -40,31 +38,29 @@ SHA256: c1fc8ca89b17744660fc5c2de893debae89e7141d4661ad6d5cb846b429756e8
 Newline format: CRLF
 ```
 
-## 3. Anchored manual replacement
+## 3. Applied anchored replacement
 
-Search exactly:
+Old text:
 
 ```html
 ← Back to information
 ```
 
-Expected matches:
-
-```text
-1
-```
-
-Stop if the result is not exactly one match.
-
-Replace with:
+New text:
 
 ```html
 ← Back to address
 ```
 
-## 4. Expected integrity result
+Expected replacement count:
 
-The replacement shortens the file by four ASCII bytes and does not change line count or structure.
+```text
+1
+```
+
+The correction changes visible copy only. It does not modify PHP hooks, selectors, data attributes, navigation targets or WooCommerce authority.
+
+## 4. Expected integrity result
 
 ```text
 Expected bytes: 7,783
@@ -72,24 +68,30 @@ Expected lines: unchanged
 Expected SHA256: 7a5d620a6f5526b76a83877f2ee8abb55e6f28f66595609e51dd695935adee2f
 ```
 
-No PHP tag, hook, selector, data attribute or navigation target changes.
+A post-edit file upload or machine hash was not supplied in this turn, so the expected hash is retained as the audit target rather than falsely recorded as independently measured.
 
-## 5. Validation
+## 5. Runtime acceptance
 
-After saving:
+User confirmation:
 
 ```text
-- PHP syntax must remain valid
-- Step 02 must display BACK TO ADDRESS
-- clicking it must return to Step 01 Address
-- no other runtime file changes
+通过
+```
+
+Accepted runtime behavior:
+
+```text
+- Step 02 displays BACK TO ADDRESS
+- the control returns to Step 01 Address
 ```
 
 ## 6. Status
 
 ```text
-Correction: issued
-Runtime application: pending user edit
-R1: open
+Correction: applied
+Visible V2 copy: passed by user confirmation
+Back navigation: passed by user confirmation
+Independent post-edit hash measurement: not supplied
+R1: remains open for remaining interaction and visual gates
 Checkout: Not done
 ```
