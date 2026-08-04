@@ -1,129 +1,101 @@
 # Step 4F · R1-D2A Box-Sizing Gutter Correction
 
-Date: 2026-08-03  
+Date: 2026-08-04  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## 1. Trigger
 
 The 360px D2A runtime screenshot confirmed that mobile body order and action order were corrected, but the expected V2 outer gutter was still visually consumed by the form, action and Order Summary surfaces.
 
-## 2. Root cause
+## 2. Issued hypothesis
 
-The responsive shell width is already correct:
+The responsive shell width was expected to reserve a 22px-class side gutter:
 
 ```css
 width: min(calc(100% - 44px), 1180px) !important;
 ```
 
-At 360px this reserves a 22px-class side gutter.
+The issued hypothesis was that descendant `content-box` sizing caused padding and borders to consume that gutter.
 
-However, the affected descendants still use content-box sizing. Their declared width or stretched grid width excludes padding and border, so the rendered outer width becomes:
+A bounded correction added `box-sizing: border-box`, `min-width: 0` and `max-width: 100%` to the affected Checkout layout surfaces.
 
-```text
-track/content width + left padding + right padding + borders
-```
+## 3. Runtime evidence
 
-This causes the following elements to consume the reserved gutter:
+Authoritative runtime record:
 
 ```text
-.sf-safe5-section-card
-.sf-safe5-summary-card
-.sf-safe5-next / .sf-safe5-back / .sf-safe5-back-link
+project2-progress/STEP_4F_R1D2A_BOX_SIZING_RUNTIME_FAILURE.md
 ```
 
-The accepted V2 reference applies border-box globally. The live correction must reproduce that behavior only for the bounded Checkout layout surfaces rather than changing the entire site.
+The user supplied a new 360px screenshot after applying the correction.
 
-## 3. Scope
-
-Only this runtime file changes:
+Observed:
 
 ```text
-assets/css/checkout-safe5.css
+- mobile body order remains correct
+- action order remains correct
+- no new visible overflow appears
+- Address/form surface remains full-bleed or nearly full-bleed
+- primary Continue action remains full-bleed or nearly full-bleed
+- Order Summary surface remains full-bleed or nearly full-bleed
 ```
 
-No PHP, JavaScript, fields, WooCommerce hooks, gateways, totals, submit behavior or Crypto flow changes.
-
-## 4. Current verified baseline
+## 4. Corrected conclusion
 
 ```text
-Bytes: 23,283
-Lines: 674
-SHA256: e94c0dac13f48bc564166e5de61655547b9c166ef2ab118af37258f18cb2cc09
+Box-sizing root-cause diagnosis: disproved / withdrawn
+Box-sizing correction: did not resolve the target gutter defect
+D2A body gutter: still open
 ```
 
-## 5. Exact anchored replacement
+The earlier wording `Root cause: confirmed` is no longer authoritative.
 
-Search exactly:
+The correction does not appear to introduce visible damage, so screenshot evidence alone does not require an immediate rollback. It must not be represented as the final solution.
 
-```css
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-main,
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-summary-card {
-  min-width: 0;
-}
-```
-
-Expected matches:
+## 5. Applied source target
 
 ```text
-1
-```
-
-Replace with:
-
-```css
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-main,
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-summary,
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-section-card,
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-summary-card,
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-actions,
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-next,
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-back,
-body.woocommerce-checkout:not(.woocommerce-order-received) .sf-safe5-back-link {
-  box-sizing: border-box !important;
-  min-width: 0;
-  max-width: 100%;
-}
-```
-
-## 6. Expected integrity result
-
-```text
-Bytes: 23,816
-Lines: 682
-Delta: +533 bytes / +8 lines
+File: assets/css/checkout-safe5.css
+Expected post-edit state: 23,816 bytes / 682 lines
 SHA256: 395ccd6d3b07e6c03e8f43eb2e812e5f942889f40fa3543f84ded1419cc77fba
 ```
 
-Static validation:
+No PHP, JavaScript, fields, WooCommerce hooks, gateways, totals, submit behavior or Crypto flow were changed.
+
+## 6. Required next diagnostic
+
+No additional CSS correction may be guessed from screenshots alone.
+
+Inspect actual runtime geometry and computed cascade for:
 
 ```text
-CSS parse errors: 0
-Braces: 91 / 91
-Comments: 12 / 12
-Bottom append: no
-New breakpoint: no
+.sf-safe5-shell
+.sf-safe5-main
+.sf-safe5-view.is-active
+.sf-safe5-section-card
+.sf-safe5-actions
+.sf-safe5-summary
+.sf-safe5-summary-card
 ```
 
-## 7. Expected runtime effect
-
-At 390px and 360px:
+Required properties:
 
 ```text
-- the existing 22px-class shell gutter remains visible around the Address/form surface
-- the Continue and Back actions remain within the same gutter
-- the Order Summary surface remains within the same gutter
-- the already-correct form-before-summary order is preserved
-- no horizontal overflow is introduced
+bounding rect left / right / width
+computed width / max-width
+margin-left / margin-right
+padding-left / padding-right
+box-sizing
+position / display
 ```
 
-This correction does not migrate nested Billing Details styling, field surfaces, summary internals or final button colors. Those remain later D2 work.
-
-## 8. Status
+## 7. Status
 
 ```text
-Root cause: confirmed
-Correction: source-audited and issued
-Runtime application: pending
-D2A closure: blocked pending 360px evidence
+Correction application: confirmed by user screenshot
+Runtime target result: failed
+Diagnosis: withdrawn
+D2A body gutter: open
+D2A closure: blocked
 Checkout: Not done
 ```
