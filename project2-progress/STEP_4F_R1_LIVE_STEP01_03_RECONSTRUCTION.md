@@ -202,12 +202,44 @@ R1-D2A mobile body gutter: passed
 R1-D2A: closed
 ```
 
-## 9. Current stop point
+## 9. Active subgroup: R1-D2B
+
+Authoritative record:
+
+```text
+project2-progress/STEP_4F_R1D2B_STEP01_NATIVE_FIELD_DOM_AUDIT.md
+```
+
+D2B scope:
+
+```text
+- replace the single nested Billing Details presentation with accepted Contact / Delivery address / Optional note panels
+- keep every native WooCommerce field node, ID, required state and posted value
+- migrate native input/select/textarea surfaces and field icons
+- preserve country/state behavior and guest validation
+```
+
+Current source baseline:
+
+| File | Bytes / lines | SHA256 |
+|---|---:|---|
+| `form-checkout.php` | 7,925 / 240 | `14e58b22966d1c3cb6c713157e5475eb43de102bc271a4e620ddfe14a4da17ec` |
+| `checkout-safe5.js` | 20,744 / 671 | `7b2906a3be0823cc5055db409fe20cc498878d71d479809c7e812174530ae0df` |
+| `checkout-safe5.css` | 24,022 / 688 | `5c174617e71e1f3b9c2a3319c23c270efbcadbe819f3183ebead42529f99c23b` |
+
+Source/reference audit confirms that WooCommerce billing output must remain authoritative and can only be moved/wrapped visually.
+
+The live screenshot shows the shipping relationship control and Order notes inside visible Step 01 even though the inspected template places `woocommerce_checkout_shipping` in hidden Step 02. Their actual live ancestors must be mapped before any DOM movement.
+
+## 10. Current stop point
 
 ```text
 R1-D1: closed
 R1-D2A: closed
-Next active group: R1-D2B Step-01 form/panel and field-surface migration
+R1-D2B: started
+R1-D2B source/reference audit: completed
+Next bounded evidence: read-only native-field DOM map at Step 01
+D2B implementation: blocked pending DOM evidence
 Still open after D2B: Order Summary internals, trust surfaces and desktop body geometry
 R2: blocked
 Checkout: Not done
