@@ -158,9 +158,10 @@ project2-progress/STEP_4F_R1D2A_360PX_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1D2A_BOX_SIZING_GUTTER_CORRECTION.md
 project2-progress/STEP_4F_R1D2A_BOX_SIZING_RUNTIME_FAILURE.md
 project2-progress/STEP_4F_R1D2A_RUNTIME_GEOMETRY_EVIDENCE.md
+project2-progress/STEP_4F_R1D2A_SHELL_CASCADE_SPECIFICITY_ROOT_CAUSE_AND_CORRECTION.md
 ```
 
-Current CSS target after the issued box-sizing edit:
+Current CSS baseline:
 
 ```text
 assets/css/checkout-safe5.css
@@ -168,7 +169,7 @@ assets/css/checkout-safe5.css
 SHA256: 395ccd6d3b07e6c03e8f43eb2e812e5f942889f40fa3543f84ded1419cc77fba
 ```
 
-Runtime evidence confirms:
+Runtime evidence already confirms:
 
 ```text
 - mobile order is Intro → Address form → actions → Order Summary
@@ -178,27 +179,61 @@ Runtime evidence confirms:
 - R1-D1 Intro/progress remains intact
 ```
 
-The 360px read-only geometry output shows:
+The read-only cascade enumeration identifies the winning rules in:
 
 ```text
-form.checkout.sf-safe5-form: left 0 / width 360
-.sf-safe5-shell: left 0 / width 360 / computed max-width 100%
-.sf-safe5-main: left 0 / width 360
-.sf-safe5-view.is-active: left 0 / width 360
-.sf-safe5-section-card: left 0 / width 360
-.sf-safe5-actions: left 0 / width 360
-.sf-safe5-summary: left 0 / width 360
-.sf-safe5-summary-card: left 0 / width 360
+assets/css/spatial-flow.css
+@media (max-width: 767px)
 ```
 
-Corrected conclusion:
+Legacy selector:
+
+```css
+body.woocommerce-checkout:not(.woocommerce-order-received) form.checkout.woocommerce-checkout > *
+```
+
+Winning declarations:
+
+```css
+width: 100% !important;
+max-width: 100% !important;
+margin-left: 0 !important;
+margin-right: 0 !important;
+```
+
+All competing rules are `!important`, but the legacy wildcard selector is more specific than the existing SAFE5 `.sf-safe5-shell` selector. Therefore it wins despite `checkout-safe5.css` loading later.
+
+Confirmed root cause:
 
 ```text
-- the shell itself is full viewport width
-- descendant cards/actions are following the full-width shell
-- the expected `min(calc(100% - 44px), 1180px)` shell rule is not winning in the final cascade
-- prior content-box root-cause diagnosis is disproved and withdrawn
-- another matching declaration, source order or `!important` rule is overriding shell width/max-width/margins
+legacy shared mobile Checkout rule in spatial-flow.css
++ higher selector specificity
++ !important
+```
+
+R1 ownership decision:
+
+```text
+- do not edit the large shared spatial-flow.css during R1-D2A
+- retain shared-rule removal for the later bounded shared-CSS cleanup phase
+- override only the direct SAFE5 shell child with a stronger narrow selector in checkout-safe5.css
+```
+
+Audited correction target:
+
+```text
+assets/css/checkout-safe5.css
+24,022 bytes / 688 lines
+SHA256: 5c174617e71e1f3b9c2a3319c23c270efbcadbe819f3183ebead42529f99c23b
+Delta: +206 bytes / +6 lines / +0.86%
+```
+
+Expected `360px` geometry after application:
+
+```text
+.sf-safe5-shell width: approximately 316px
+left/right gutter: approximately 22px
+margin-left/right: auto
 ```
 
 Correct classification:
@@ -206,8 +241,8 @@ Correct classification:
 ```text
 D2A mobile body order: passed
 D2A mobile action order: passed
-D2A body outer gutter: failed / open
-D2A actual fault boundary: `.sf-safe5-shell` final CSS cascade
+D2A body outer gutter root cause: confirmed
+D2A specificity correction: source-audited, runtime pending
 D2A overall: partial, not closed
 ```
 
@@ -219,10 +254,9 @@ Nested Billing Details rounding, field surfaces, summary internals, trust cards 
 R1-D1: closed
 R1-D2A body order: passed
 R1-D2A action order: passed
-R1-D2A shell geometry: full viewport width confirmed
-R1-D2A body gutter: unresolved
-No further CSS correction may be issued by inference
-Next bounded action: enumerate all matched shell width/max-width/margin declarations and identify the winning rule
+R1-D2A shell specificity root cause: confirmed
+Next bounded action: apply the one audited checkout-safe5.css selector replacement
+Next evidence: 360px screenshot and shell geometry after refresh
 R1-D2B: blocked
 R2: blocked
 Checkout: Not done
