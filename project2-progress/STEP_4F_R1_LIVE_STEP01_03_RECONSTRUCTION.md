@@ -1,6 +1,6 @@
 # Step 4F · R1 Live Checkout Reconstruction
 
-Date: 2026-08-03  
+Date: 2026-08-04  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## 1. Current authority
@@ -156,37 +156,10 @@ Authoritative records:
 project2-progress/STEP_4F_R1D2A_MOBILE_BODY_ORDER_AND_SURFACE_FOUNDATION.md
 project2-progress/STEP_4F_R1D2A_360PX_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1D2A_BOX_SIZING_GUTTER_CORRECTION.md
+project2-progress/STEP_4F_R1D2A_BOX_SIZING_RUNTIME_FAILURE.md
 ```
 
-Installed D2A CSS state before the gutter correction:
-
-```text
-assets/css/checkout-safe5.css
-23,283 bytes / 674 lines
-SHA256: e94c0dac13f48bc564166e5de61655547b9c166ef2ab118af37258f18cb2cc09
-```
-
-The 360px runtime screenshot confirms:
-
-```text
-- mobile order is now Intro → Address form → actions → Order Summary
-- primary Continue appears before secondary Return to cart
-- old pill-radius is removed from the two navigation controls
-- warm editorial outer-surface direction is active
-- no visible horizontal overflow was introduced
-- R1-D1 Intro/progress remains intact
-```
-
-However, the expected V2 body gutter is still visually consumed by the body surfaces and controls.
-
-Root cause:
-
-```text
-The 22px-class shell width is present, but affected descendants still use content-box sizing.
-Their padding and borders are added outside the stretched grid/100% width and consume the reserved gutter.
-```
-
-Audited correction target:
+Current CSS target after the issued box-sizing edit:
 
 ```text
 assets/css/checkout-safe5.css
@@ -194,18 +167,44 @@ assets/css/checkout-safe5.css
 SHA256: 395ccd6d3b07e6c03e8f43eb2e812e5f942889f40fa3543f84ded1419cc77fba
 ```
 
-The correction scopes `box-sizing: border-box` and `max-width: 100%` to the Checkout main/summary/cards/actions only. It does not change PHP, JavaScript, WooCommerce behavior or gateway content.
+Runtime evidence confirms:
+
+```text
+- mobile order is Intro → Address form → actions → Order Summary
+- primary Continue appears before secondary Return to cart
+- old pill-radius is removed from the two navigation controls
+- no visible horizontal overflow was introduced
+- R1-D1 Intro/progress remains intact
+```
+
+The box-sizing correction did not resolve the body gutter:
+
+```text
+- Address/form warm outer surface remains full-bleed or nearly full-bleed
+- primary Continue action remains full-bleed or nearly full-bleed
+- Order Summary warm outer surface remains full-bleed or nearly full-bleed
+```
+
+Corrected conclusion:
+
+```text
+Prior content-box root-cause diagnosis: disproved / withdrawn
+Box-sizing edit: runtime target failed
+D2A body gutter: unresolved
+```
+
+No additional CSS guess may be issued from screenshot evidence alone. The next step is computed-style and bounding-rectangle inspection of the live shell, view, cards, actions and summary wrappers.
 
 Correct classification:
 
 ```text
 D2A mobile body order: passed
 D2A mobile action order: passed
-D2A body outer gutter: correction issued, runtime pending
+D2A body outer gutter: failed / open
 D2A overall: partial, not closed
 ```
 
-Nested Billing Details rounding, field surfaces, summary internals, trust cards and final button styling remain planned later D2 work and are not newly introduced regressions.
+Nested Billing Details rounding, field surfaces, summary internals, trust cards and final button styling remain planned later D2 work.
 
 ## 9. Current stop point
 
@@ -213,9 +212,9 @@ Nested Billing Details rounding, field surfaces, summary internals, trust cards 
 R1-D1: closed
 R1-D2A body order: passed
 R1-D2A action order: passed
-R1-D2A box-sizing gutter correction: issued, not yet applied/verified
-R1-D2A overall: partial
-Next evidence: 360px Step-01 screenshot after the box-sizing correction
+R1-D2A box-sizing correction: applied but ineffective for target defect
+R1-D2A body gutter: unresolved
+Next bounded action: collect live computed geometry/cascade evidence
 R1-D2B: blocked
 R2: blocked
 Checkout: Not done
