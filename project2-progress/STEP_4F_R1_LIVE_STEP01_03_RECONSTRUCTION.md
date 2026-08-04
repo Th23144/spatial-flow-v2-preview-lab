@@ -148,7 +148,7 @@ R1-D2 must:
 
 R1-D2 must preserve all completed functional gates and must not alter WooCommerce ownership, gateway rendering, Place Order or Crypto redirect behavior.
 
-## 8. Active subgroup: R1-D2A
+## 8. R1-D2A closed result
 
 Authoritative records:
 
@@ -159,105 +159,56 @@ project2-progress/STEP_4F_R1D2A_BOX_SIZING_GUTTER_CORRECTION.md
 project2-progress/STEP_4F_R1D2A_BOX_SIZING_RUNTIME_FAILURE.md
 project2-progress/STEP_4F_R1D2A_RUNTIME_GEOMETRY_EVIDENCE.md
 project2-progress/STEP_4F_R1D2A_SHELL_CASCADE_SPECIFICITY_ROOT_CAUSE_AND_CORRECTION.md
+project2-progress/STEP_4F_R1D2A_360PX_GUTTER_RUNTIME_ACCEPTANCE.md
 ```
 
-Current CSS baseline:
-
-```text
-assets/css/checkout-safe5.css
-23,816 bytes / 682 lines
-SHA256: 395ccd6d3b07e6c03e8f43eb2e812e5f942889f40fa3543f84ded1419cc77fba
-```
-
-Runtime evidence already confirms:
-
-```text
-- mobile order is Intro → Address form → actions → Order Summary
-- primary Continue appears before secondary Return to cart
-- old pill-radius is removed from the two navigation controls
-- no visible horizontal overflow was introduced
-- R1-D1 Intro/progress remains intact
-```
-
-The read-only cascade enumeration identifies the winning rules in:
-
-```text
-assets/css/spatial-flow.css
-@media (max-width: 767px)
-```
-
-Legacy selector:
-
-```css
-body.woocommerce-checkout:not(.woocommerce-order-received) form.checkout.woocommerce-checkout > *
-```
-
-Winning declarations:
-
-```css
-width: 100% !important;
-max-width: 100% !important;
-margin-left: 0 !important;
-margin-right: 0 !important;
-```
-
-All competing rules are `!important`, but the legacy wildcard selector is more specific than the existing SAFE5 `.sf-safe5-shell` selector. Therefore it wins despite `checkout-safe5.css` loading later.
-
-Confirmed root cause:
-
-```text
-legacy shared mobile Checkout rule in spatial-flow.css
-+ higher selector specificity
-+ !important
-```
-
-R1 ownership decision:
-
-```text
-- do not edit the large shared spatial-flow.css during R1-D2A
-- retain shared-rule removal for the later bounded shared-CSS cleanup phase
-- override only the direct SAFE5 shell child with a stronger narrow selector in checkout-safe5.css
-```
-
-Audited correction target:
+Installed CSS state:
 
 ```text
 assets/css/checkout-safe5.css
 24,022 bytes / 688 lines
 SHA256: 5c174617e71e1f3b9c2a3319c23c270efbcadbe819f3183ebead42529f99c23b
-Delta: +206 bytes / +6 lines / +0.86%
 ```
 
-Expected `360px` geometry after application:
+Passed D2A scope:
 
 ```text
-.sf-safe5-shell width: approximately 316px
-left/right gutter: approximately 22px
-margin-left/right: auto
+- mobile order is Intro → Address form → actions → Order Summary
+- primary Continue appears before secondary Return to cart
+- old pill-radius is removed from the two navigation controls
+- Address/form warm panel sits inside the accepted mobile gutter
+- Continue and Return actions align to that gutter
+- Order Summary aligns to that gutter
+- no visible horizontal overflow is introduced
+- R1-D1 Intro/progress remains intact
 ```
 
-Correct classification:
+Confirmed root cause of the former full-width shell:
 
 ```text
-D2A mobile body order: passed
-D2A mobile action order: passed
-D2A body outer gutter root cause: confirmed
-D2A specificity correction: source-audited, runtime pending
-D2A overall: partial, not closed
+assets/css/spatial-flow.css contained a higher-specificity mobile selector:
+body.woocommerce-checkout:not(.woocommerce-order-received) form.checkout.woocommerce-checkout > *
+
+It forced width/max-width 100% and zero side margins with !important.
+A stronger narrow selector for the direct SAFE5 shell child successfully overrode it.
 ```
 
-Nested Billing Details rounding, field surfaces, summary internals, trust cards and final button styling remain planned later D2 work.
+Classification:
+
+```text
+R1-D2A body order: passed
+R1-D2A action order: passed
+R1-D2A mobile body gutter: passed
+R1-D2A: closed
+```
 
 ## 9. Current stop point
 
 ```text
 R1-D1: closed
-R1-D2A body order: passed
-R1-D2A action order: passed
-R1-D2A shell specificity root cause: confirmed
-Next bounded action: apply the one audited checkout-safe5.css selector replacement
-Next evidence: 360px screenshot and shell geometry after refresh
-R1-D2B: blocked
+R1-D2A: closed
+Next active group: R1-D2B Step-01 form/panel and field-surface migration
+Still open after D2B: Order Summary internals, trust surfaces and desktop body geometry
 R2: blocked
 Checkout: Not done
 ```
