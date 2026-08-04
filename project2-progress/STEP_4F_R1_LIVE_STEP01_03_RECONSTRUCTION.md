@@ -202,24 +202,38 @@ R1-D2A mobile body gutter: passed
 R1-D2A: closed
 ```
 
-## 9. Active subgroup: R1-D2B
+## 9. Active subgroup: R1-D2B1
 
-Authoritative record:
+Authoritative records:
 
 ```text
 project2-progress/STEP_4F_R1D2B_STEP01_NATIVE_FIELD_DOM_AUDIT.md
+project2-progress/STEP_4F_R1D2B_NATIVE_FIELD_DOM_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1D2B1_STEP01_NATIVE_PANEL_RECOMPOSITION.md
 ```
 
-D2B scope:
+The live DOM evidence confirms:
 
 ```text
-- replace the single nested Billing Details presentation with accepted Contact / Delivery address / Optional note panels
-- keep every native WooCommerce field node, ID, required state and posted value
-- migrate native input/select/textarea surfaces and field icons
-- preserve country/state behavior and guest validation
+- every inspected billing field exists exactly once
+- .woocommerce-shipping-fields exists exactly once
+- hidden .shipping_address exists exactly once
+- .woocommerce-additional-fields / #order_comments_field exists exactly once
+- all inspected customer nodes currently belong to Step 01
+- there are no duplicate operational IDs
 ```
 
-Current source baseline:
+Safe implementation boundary:
+
+```text
+- create Contact / Delivery address / Optional note mounts
+- move the existing native nodes; never clone fields
+- retain WooCommerce IDs, names, values, validation classes and listeners
+- move unknown/plugin-added billing rows to the end of Delivery
+- rerun placement idempotently on initialization, updated_checkout and country_to_state_changed
+```
+
+Verified current source baseline:
 
 | File | Bytes / lines | SHA256 |
 |---|---:|---|
@@ -227,19 +241,38 @@ Current source baseline:
 | `checkout-safe5.js` | 20,744 / 671 | `7b2906a3be0823cc5055db409fe20cc498878d71d479809c7e812174530ae0df` |
 | `checkout-safe5.css` | 24,022 / 688 | `5c174617e71e1f3b9c2a3319c23c270efbcadbe819f3183ebead42529f99c23b` |
 
-Source/reference audit confirms that WooCommerce billing output must remain authoritative and can only be moved/wrapped visually.
+Audited D2B1 target:
 
-The live screenshot shows the shipping relationship control and Order notes inside visible Step 01 even though the inspected template places `woocommerce_checkout_shipping` in hidden Step 02. Their actual live ancestors must be mapped before any DOM movement.
+| File | Target bytes / lines | Target SHA256 |
+|---|---:|---|
+| `form-checkout.php` | 9,667 / 266 | `5fdfd2d3904bd21cb2cc3a5a81aba33ec1bf708b25d6f22e11125b619ae4e1c8` |
+| `checkout-safe5.js` | 23,834 / 757 | `0a05082d62cffccdac93ffecff4c5eb3f266faf6c409cf70e5f94339f57a6ab7` |
+| `checkout-safe5.css` | 26,921 / 809 | `e08ec831ee0f1d80ddb963dd10c7a8b56c2575e16ae1d24ebe174f23a1175608` |
+
+Static validation:
+
+```text
+PHP syntax: passed
+JavaScript syntax: passed
+CSS parse errors: 0
+CSS braces: 112 / 112
+CSS comments: 13 / 13
+bottom append: no
+new breakpoint: no
+```
+
+D2B1 deliberately stops before field SVG icons and final field-surface pixel tuning. Those remain D2B2 after the native panel structure is runtime-validated.
 
 ## 10. Current stop point
 
 ```text
 R1-D1: closed
 R1-D2A: closed
-R1-D2B: started
-R1-D2B source/reference audit: completed
-Next bounded evidence: read-only native-field DOM map at Step 01
-D2B implementation: blocked pending DOM evidence
+R1-D2B runtime DOM evidence: passed
+R1-D2B1 source design and static audit: passed
+Next bounded action: apply three exact manual replacements for D2B1
+Next evidence: 360px Step-01 panel composition and native-field behavior
+R1-D2B2: blocked pending D2B1 runtime acceptance
 Still open after D2B: Order Summary internals, trust surfaces and desktop body geometry
 R2: blocked
 Checkout: Not done
