@@ -157,6 +157,7 @@ project2-progress/STEP_4F_R1D2A_MOBILE_BODY_ORDER_AND_SURFACE_FOUNDATION.md
 project2-progress/STEP_4F_R1D2A_360PX_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1D2A_BOX_SIZING_GUTTER_CORRECTION.md
 project2-progress/STEP_4F_R1D2A_BOX_SIZING_RUNTIME_FAILURE.md
+project2-progress/STEP_4F_R1D2A_RUNTIME_GEOMETRY_EVIDENCE.md
 ```
 
 Current CSS target after the issued box-sizing edit:
@@ -177,23 +178,28 @@ Runtime evidence confirms:
 - R1-D1 Intro/progress remains intact
 ```
 
-The box-sizing correction did not resolve the body gutter:
+The 360px read-only geometry output shows:
 
 ```text
-- Address/form warm outer surface remains full-bleed or nearly full-bleed
-- primary Continue action remains full-bleed or nearly full-bleed
-- Order Summary warm outer surface remains full-bleed or nearly full-bleed
+form.checkout.sf-safe5-form: left 0 / width 360
+.sf-safe5-shell: left 0 / width 360 / computed max-width 100%
+.sf-safe5-main: left 0 / width 360
+.sf-safe5-view.is-active: left 0 / width 360
+.sf-safe5-section-card: left 0 / width 360
+.sf-safe5-actions: left 0 / width 360
+.sf-safe5-summary: left 0 / width 360
+.sf-safe5-summary-card: left 0 / width 360
 ```
 
 Corrected conclusion:
 
 ```text
-Prior content-box root-cause diagnosis: disproved / withdrawn
-Box-sizing edit: runtime target failed
-D2A body gutter: unresolved
+- the shell itself is full viewport width
+- descendant cards/actions are following the full-width shell
+- the expected `min(calc(100% - 44px), 1180px)` shell rule is not winning in the final cascade
+- prior content-box root-cause diagnosis is disproved and withdrawn
+- another matching declaration, source order or `!important` rule is overriding shell width/max-width/margins
 ```
-
-No additional CSS guess may be issued from screenshot evidence alone. The next step is computed-style and bounding-rectangle inspection of the live shell, view, cards, actions and summary wrappers.
 
 Correct classification:
 
@@ -201,6 +207,7 @@ Correct classification:
 D2A mobile body order: passed
 D2A mobile action order: passed
 D2A body outer gutter: failed / open
+D2A actual fault boundary: `.sf-safe5-shell` final CSS cascade
 D2A overall: partial, not closed
 ```
 
@@ -212,9 +219,10 @@ Nested Billing Details rounding, field surfaces, summary internals, trust cards 
 R1-D1: closed
 R1-D2A body order: passed
 R1-D2A action order: passed
-R1-D2A box-sizing correction: applied but ineffective for target defect
+R1-D2A shell geometry: full viewport width confirmed
 R1-D2A body gutter: unresolved
-Next bounded action: collect live computed geometry/cascade evidence
+No further CSS correction may be issued by inference
+Next bounded action: enumerate all matched shell width/max-width/margin declarations and identify the winning rule
 R1-D2B: blocked
 R2: blocked
 Checkout: Not done
