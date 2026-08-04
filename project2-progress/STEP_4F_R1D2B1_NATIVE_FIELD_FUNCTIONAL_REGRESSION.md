@@ -49,42 +49,60 @@ The following gates must pass before D2B1 can close:
 6. Optional note wrapper remains stable after repeated update_checkout events
 ```
 
-## 4. Active gate
+## 4. Gate 1 runtime evidence
+
+Authoritative evidence record:
 
 ```text
-Gate 1: Country / state dynamic behavior
+project2-progress/STEP_4F_R1D2B1_COUNTRY_STATE_RUNTIME_EVIDENCE.md
 ```
 
-Procedure:
+The user changed:
 
 ```text
-- start on Step 01 at 360px
-- change Country / Region from Hong Kong to United States (US)
-- wait for WooCommerce country/state update to complete
-- verify Region becomes a United States state selector
-- verify no billing field is duplicated
-- verify Optional note blank wrapper does not return
+Country / Region: Hong Kong → United States (US)
 ```
 
-Expected result:
+The live `360px` screenshot confirms:
 
 ```text
-#billing_country remains the original native field
-#billing_state remains one native field and changes its UI/options for US
-field IDs/names remain unchanged
-no duplicate field rows appear
-no blank Optional-note wrapper reappears
+- Country / Region remains present once and displays United States (US)
+- the former Hong Kong Region control becomes a US State selector
+- the selector displays “Select an option...”
+- labels update to Town / City, ZIP Code and State
+- no duplicate Billing fields are visible
+- Contact / Delivery / Optional note composition remains intact
+- the Optional-note blank wrapper does not return
+- mobile gutter and Order Summary remain intact
 ```
 
-## 5. Current stop point
+The screenshot does not prove that a concrete state can be selected and retained after the WooCommerce update cycle.
+
+Gate 1 remaining sub-check:
 
 ```text
-D2B1 visual structure: passed
-Optional-note orphan wrapper: closed
-D2B1 functional regression: started
-Active gate: Country / state dynamic behavior
-Source edits: none
+Select one US state, wait for the update cycle, and confirm it remains selected.
+```
+
+## 5. Current classification
+
+```text
+Country change reaction: passed
+Region → State transformation: passed
+Duplicate-field check after country update: passed visually
+Optional-note wrapper stability after country update: passed visually
+Concrete state selection/retention: pending
+Gate 1: partial, not closed
+Gates 2–6: not started or not independently closed
 D2B1: not closed
 D2B2: blocked
 Checkout: Not done
+```
+
+## 6. Current stop point
+
+```text
+Active action: select and retain one US state
+Source edits: none
+Do not advance to shipping-address toggle until Gate 1 closes
 ```
