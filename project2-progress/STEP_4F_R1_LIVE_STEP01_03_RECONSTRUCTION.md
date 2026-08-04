@@ -129,15 +129,7 @@ It forced width/max-width 100% and zero side margins with !important.
 A stronger narrow selector for the direct SAFE5 shell child corrected it.
 ```
 
-Installed pre-D2B1 CSS baseline:
-
-```text
-assets/css/checkout-safe5.css
-24,022 bytes / 688 lines
-SHA256: 5c174617e71e1f3b9c2a3319c23c270efbcadbe819f3183ebead42529f99c23b
-```
-
-## 7. R1-D2B1 native-field evidence
+## 7. R1-D2B1 source and DOM evidence
 
 Authoritative records:
 
@@ -146,6 +138,9 @@ project2-progress/STEP_4F_R1D2B_STEP01_NATIVE_FIELD_DOM_AUDIT.md
 project2-progress/STEP_4F_R1D2B_NATIVE_FIELD_DOM_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1D2B1_STEP01_NATIVE_PANEL_RECOMPOSITION.md
 project2-progress/STEP_4F_R1D2B1_EXPECTED_SIZE_CORRECTION_AND_UPLOADED_FILE_AUDIT.md
+project2-progress/STEP_4F_R1D2B1_360PX_RUNTIME_EVIDENCE_AND_ORPHAN_SURFACE_DEFECT.md
+project2-progress/STEP_4F_R1D2B1_OPTIONAL_NOTE_ORPHAN_WRAPPER_ROOT_CAUSE_AND_FIX.md
+project2-progress/STEP_4F_R1D2B1_OPTIONAL_NOTE_FIX_RUNTIME_ACCEPTANCE.md
 ```
 
 Live DOM evidence confirms:
@@ -169,7 +164,9 @@ move unknown/plugin-added billing rows to the end of Delivery
 rerun placement idempotently on init, updated_checkout and country_to_state_changed
 ```
 
-## 8. Verified D2B1 pre-change baseline
+## 8. D2B1 source audit correction
+
+Verified pre-change baseline:
 
 | File | Bytes / lines | SHA256 |
 |---|---:|---|
@@ -177,39 +174,9 @@ rerun placement idempotently on init, updated_checkout and country_to_state_chan
 | `checkout-safe5.js` | 20,744 / 671 | `7b2906a3be0823cc5055db409fe20cc498878d71d479809c7e812174530ae0df` |
 | `checkout-safe5.css` | 24,022 / 688 | `5c174617e71e1f3b9c2a3319c23c270efbcadbe819f3183ebead42529f99c23b` |
 
-## 9. Revoked incorrect post-change targets
+The originally issued post-change size targets were incorrect and were revoked. The uploaded user files were reconstructed against the exact baselines and passed replacement-integrity and syntax checks.
 
-The previously issued targets were calculation errors and are invalid:
-
-```text
-PHP: 9,667 bytes / 266 lines / 5fdf...
-JS: 23,834 bytes / 757 lines / 0a05...
-CSS: 26,921 bytes / 809 lines / e08e...
-```
-
-They must not be used for acceptance, rejection or rollback.
-
-The user correctly stopped when the real files did not match those numbers.
-
-## 10. Uploaded D2B1 source audit
-
-The uploaded post-replacement files were reconstructed against the exact verified pre-D2B1 baselines.
-
-Result:
-
-```text
-user replacement accuracy: passed
-unexpected unrelated edit: not found
-duplicate D2B1 insertion: not found
-missed D2B1 replacement: not found
-PHP syntax: passed
-JavaScript syntax: passed
-CSS parse errors: 0
-CSS braces: 112 / 112
-CSS comments: 13 / 13
-```
-
-Correct installed results:
+Audited uploaded D2B1 state before the Optional-note fix:
 
 | File | Bytes / lines | SHA256 |
 |---|---:|---|
@@ -217,28 +184,55 @@ Correct installed results:
 | `checkout-safe5.js` | 24,682 / 819 | `7dc849b92771b2dc3092f4faea77022b4dd558b9695df59edd59b521b75b9dde` |
 | `checkout-safe5.css` | 26,979 / 817 | `42e45a5fe4ecfd78b976c43efef47dd974a3c8e7b2f67b2a70001ccb586c3b1c` |
 
-Correct deltas:
+## 9. D2B1 runtime visual result
 
-| File | Byte delta | Line delta | Growth |
-|---|---:|---:|---:|
-| PHP | +1,922 | +47 | 24.25% |
-| JavaScript | +3,938 | +148 | 18.98% |
-| CSS | +2,957 | +129 | 12.31% |
+The `360px` runtime screenshot confirms:
 
-All three files use CRLF line endings and no terminal newline.
+```text
+Contact panel present
+Delivery address panel present
+Optional note panel present
+native Billing fields visibly recomposed
+native Order notes textarea visible
+form remains before Order Summary
+Continue remains before Return to cart
+mobile outer gutter remains intact
+no visible horizontal overflow
+```
 
-## 11. Current stop point
+The first runtime screenshot exposed an empty white rounded surface above Order notes. Read-only DOM evidence proved that repeated `recomposeAddressFields()` execution moved `#order_comments_field` out of `.woocommerce-additional-fields`, leaving an empty legacy-styled wrapper.
+
+The audited idempotency correction and scoped wrapper normalization were applied. The latest `360px` screenshot confirms:
+
+```text
+blank white wrapper surface: gone
+Optional note sequence: heading → copy → Order notes label → textarea
+Contact and Delivery panels: preserved
+Order Summary and outer gutter: preserved
+```
+
+Classification:
+
+```text
+D2B1 panel composition: visually passed
+D2B1 Optional-note orphan-wrapper defect: closed
+D2B1 functional regression: pending
+D2B1 overall: not closed
+```
+
+The screenshot does not independently prove the final JS/CSS byte hashes after the Optional-note correction. Those hashes remain source expectations until the corrected files are uploaded or otherwise measured.
+
+## 10. Current stop point
 
 ```text
 R1-D1: closed
 R1-D2A: closed
-R1-D2B1 source replacement: audited and accepted
-Rollback: not required
-Further source edit: prohibited until runtime evidence
-Next bounded action: refresh Step 01 at 360px
-Next evidence: Contact through Optional note screenshot
-Then verify one instance of every native field, country/state behavior, shipping-address toggle, malformed email and Step 01 → Step 02
-R1-D2B2: blocked pending D2B1 runtime acceptance
+R1-D2B1 source replacement: audited
+R1-D2B1 360px visual composition: passed
+R1-D2B1 Optional-note defect: closed
+Next bounded gate: Step-01 native-field functional regression
+Required checks: one field instance after updates, country/state behavior, shipping-address toggle, malformed email, Step 01 → Step 02
+R1-D2B2: blocked pending D2B1 functional acceptance
 R2: blocked
 Checkout: Not done
 ```
