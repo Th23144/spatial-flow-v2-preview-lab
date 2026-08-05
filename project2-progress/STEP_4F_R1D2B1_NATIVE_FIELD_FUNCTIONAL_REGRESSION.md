@@ -5,12 +5,6 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## 1. Authorization
 
-User instruction:
-
-```text
-开始
-```
-
 Decision:
 
 ```text
@@ -54,6 +48,7 @@ Authoritative evidence:
 ```text
 project2-progress/STEP_4F_R1D2B1_COUNTRY_STATE_RUNTIME_EVIDENCE.md
 project2-progress/STEP_4F_R1D2B1_STATE_SELECTION_RETENTION_ACCEPTANCE.md
+project2-progress/STEP_4F_R1D2B1_SHIP_TO_DIFFERENT_ADDRESS_EXPANSION_EVIDENCE.md
 ```
 
 Confirmed runtime results:
@@ -61,10 +56,14 @@ Confirmed runtime results:
 ```text
 - Country / Region changes from Hong Kong to United States (US)
 - Region transforms into the native US State selector
-- State option California can be selected
-- California remains displayed after the WooCommerce update cycle
+- California can be selected and remains after the WooCommerce update cycle
 - US labels update to Town / City, ZIP Code and State
 - Billing fields remain visible once after refresh
+- Ship to a Different Address can be checked
+- exactly one native Shipping address field set expands
+- Billing remains present once while Shipping is expanded
+- the user confirms unchecking the same control hides the same Shipping field set
+- the checkbox remains available
 - Contact / Delivery / Optional note composition remains intact
 - Optional-note orphan wrapper does not return
 - mobile gutter and Order Summary remain intact
@@ -74,52 +73,31 @@ Classification:
 
 ```text
 Gate 1 Country/state dynamic behavior: passed
-Gate 2 no duplicate Billing fields after refresh: passed visually
-Gate 6 Optional-note stability after update cycles: passed visually to this point
+Gate 2 no duplicate Billing/Shipping fields after refresh: passed visually
+Gate 3 expansion and collapse: passed
+Gate 6 Optional-note stability after multiple update cycles: passed visually to this point
 ```
 
-## 5. Gate 3 runtime evidence
+## 5. Remaining D2B1 gates
 
-Authoritative evidence:
-
-```text
-project2-progress/STEP_4F_R1D2B1_SHIP_TO_DIFFERENT_ADDRESS_EXPANSION_EVIDENCE.md
-```
-
-The live mobile screenshot confirms:
+The remaining checks will be combined into one user test batch rather than split into separate micro-tests:
 
 ```text
-- Ship to a Different Address? can be checked
-- one native Shipping address field set expands
-- the expanded set contains First name, Last name, Country / Region, Street address, Apartment / suite, Town / City, State and ZIP Code
-- the Billing field set remains visible once above it
-- no duplicate Shipping group is visible
-- the panel structure remains intact
-```
-
-The screenshot does not prove collapse behavior.
-
-Required closure action:
-
-```text
-- uncheck Ship to a Different Address?
-- wait for WooCommerce transition
-- confirm the same Shipping field set disappears
-- confirm the checkbox remains present once
-- confirm Optional note remains stable
+- malformed email remains blocked after field movement
+- valid Step 01 values advance to Step 02
+- moved values remain present and no duplicate field appears after the transition
+- Optional note wrapper remains stable
 ```
 
 ## 6. Current classification
 
 ```text
 Gate 1: passed
-Gate 2 Billing duplicate check: passed visually
-Gate 3 expansion: passed
-Gate 3 collapse: pending
-Gate 3 overall: partial, not closed
+Gate 2: passed visually
+Gate 3: passed
 Gate 4: pending
 Gate 5: pending
-Gate 6: passed visually so far; final stability check remains part of closure
+Gate 6: passed visually so far; final observation included in the combined closure batch
 D2B1: not closed
 D2B2: blocked
 Checkout: Not done
@@ -128,7 +106,6 @@ Checkout: Not done
 ## 7. Current stop point
 
 ```text
-Active action: uncheck Ship to a Different Address and confirm collapse
+Active action: issue one combined D2B1 closure test, not further micro-tests
 Source edits: none
-Do not advance to malformed-email regression until Gate 3 closes
 ```
