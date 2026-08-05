@@ -15,7 +15,7 @@ Decision:
 
 ```text
 R1-D2B1 visual structure remains accepted.
-Begin functional regression for the moved native WooCommerce fields.
+Run functional regression for the moved native WooCommerce fields.
 No source change is authorized during this test group.
 Checkout remains Not done.
 ```
@@ -38,71 +38,91 @@ SHA256: e807b1b63e225d991832e1490c4dfadcec842aeaec6171c85688d58fbe633937
 
 ## 3. Functional gates
 
-The following gates must pass before D2B1 can close:
-
 ```text
 1. Country / state dynamic behavior
-2. No duplicate billing or shipping fields after WooCommerce refresh
+2. No duplicate Billing or Shipping fields after WooCommerce refresh
 3. Ship to a Different Address toggle
 4. Malformed email blocking after field movement
 5. Step 01 → Step 02 navigation with valid native values
 6. Optional note wrapper remains stable after repeated update_checkout events
 ```
 
-## 4. Gate 1 runtime evidence
+## 4. Gates completed
 
-Authoritative evidence record:
+Authoritative evidence:
 
 ```text
 project2-progress/STEP_4F_R1D2B1_COUNTRY_STATE_RUNTIME_EVIDENCE.md
+project2-progress/STEP_4F_R1D2B1_STATE_SELECTION_RETENTION_ACCEPTANCE.md
 ```
 
-The user changed:
+Confirmed runtime results:
 
 ```text
-Country / Region: Hong Kong → United States (US)
-```
-
-The live `360px` screenshot confirms:
-
-```text
-- Country / Region remains present once and displays United States (US)
-- the former Hong Kong Region control becomes a US State selector
-- the selector displays “Select an option...”
-- labels update to Town / City, ZIP Code and State
-- no duplicate Billing fields are visible
+- Country / Region changes from Hong Kong to United States (US)
+- Region transforms into the native US State selector
+- State option California can be selected
+- California remains displayed after the WooCommerce update cycle
+- US labels update to Town / City, ZIP Code and State
+- Billing fields remain visible once after refresh
 - Contact / Delivery / Optional note composition remains intact
-- the Optional-note blank wrapper does not return
+- Optional-note orphan wrapper does not return
 - mobile gutter and Order Summary remain intact
 ```
 
-The screenshot does not prove that a concrete state can be selected and retained after the WooCommerce update cycle.
-
-Gate 1 remaining sub-check:
+Classification:
 
 ```text
-Select one US state, wait for the update cycle, and confirm it remains selected.
+Gate 1 Country/state dynamic behavior: passed
+Gate 2 no duplicate Billing fields after refresh: passed visually
+Gate 6 Optional-note stability after update cycles: passed visually to this point
 ```
 
-## 5. Current classification
+## 5. Active gate
 
 ```text
-Country change reaction: passed
-Region → State transformation: passed
-Duplicate-field check after country update: passed visually
-Optional-note wrapper stability after country update: passed visually
-Concrete state selection/retention: pending
-Gate 1: partial, not closed
-Gates 2–6: not started or not independently closed
+Gate 3: Ship to a Different Address toggle
+```
+
+Procedure:
+
+```text
+- remain on Step 01
+- check Ship to a Different Address
+- wait for WooCommerce to reveal the native shipping-address fields
+- confirm one Shipping field set appears
+- confirm Billing fields remain present once
+- confirm Optional-note blank wrapper does not return
+```
+
+Expected result:
+
+```text
+.woocommerce-shipping-fields remains one native block
+.shipping_address becomes visible
+shipping_first_name, shipping_last_name, shipping_country and related native fields appear once
+unchecking the control hides the same native Shipping field set
+no duplicated Billing or Shipping rows are introduced
+```
+
+## 6. Current classification
+
+```text
+Gate 1: passed
+Gate 2 Billing duplicate check: passed visually
+Gate 3: active
+Gate 4: pending
+Gate 5: pending
+Gate 6: passed visually so far; final stability check remains part of closure
 D2B1: not closed
 D2B2: blocked
 Checkout: Not done
 ```
 
-## 6. Current stop point
+## 7. Current stop point
 
 ```text
-Active action: select and retain one US state
+Active action: test Ship to a Different Address toggle
 Source edits: none
-Do not advance to shipping-address toggle until Gate 1 closes
+Do not advance to malformed-email regression until Gate 3 closes
 ```
