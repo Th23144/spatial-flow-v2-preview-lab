@@ -78,31 +78,35 @@ Gate 2 no duplicate Billing fields after refresh: passed visually
 Gate 6 Optional-note stability after update cycles: passed visually to this point
 ```
 
-## 5. Active gate
+## 5. Gate 3 runtime evidence
+
+Authoritative evidence:
 
 ```text
-Gate 3: Ship to a Different Address toggle
+project2-progress/STEP_4F_R1D2B1_SHIP_TO_DIFFERENT_ADDRESS_EXPANSION_EVIDENCE.md
 ```
 
-Procedure:
+The live mobile screenshot confirms:
 
 ```text
-- remain on Step 01
-- check Ship to a Different Address
-- wait for WooCommerce to reveal the native shipping-address fields
-- confirm one Shipping field set appears
-- confirm Billing fields remain present once
-- confirm Optional-note blank wrapper does not return
+- Ship to a Different Address? can be checked
+- one native Shipping address field set expands
+- the expanded set contains First name, Last name, Country / Region, Street address, Apartment / suite, Town / City, State and ZIP Code
+- the Billing field set remains visible once above it
+- no duplicate Shipping group is visible
+- the panel structure remains intact
 ```
 
-Expected result:
+The screenshot does not prove collapse behavior.
+
+Required closure action:
 
 ```text
-.woocommerce-shipping-fields remains one native block
-.shipping_address becomes visible
-shipping_first_name, shipping_last_name, shipping_country and related native fields appear once
-unchecking the control hides the same native Shipping field set
-no duplicated Billing or Shipping rows are introduced
+- uncheck Ship to a Different Address?
+- wait for WooCommerce transition
+- confirm the same Shipping field set disappears
+- confirm the checkbox remains present once
+- confirm Optional note remains stable
 ```
 
 ## 6. Current classification
@@ -110,7 +114,9 @@ no duplicated Billing or Shipping rows are introduced
 ```text
 Gate 1: passed
 Gate 2 Billing duplicate check: passed visually
-Gate 3: active
+Gate 3 expansion: passed
+Gate 3 collapse: pending
+Gate 3 overall: partial, not closed
 Gate 4: pending
 Gate 5: pending
 Gate 6: passed visually so far; final stability check remains part of closure
@@ -122,7 +128,7 @@ Checkout: Not done
 ## 7. Current stop point
 
 ```text
-Active action: test Ship to a Different Address toggle
+Active action: uncheck Ship to a Different Address and confirm collapse
 Source edits: none
 Do not advance to malformed-email regression until Gate 3 closes
 ```
