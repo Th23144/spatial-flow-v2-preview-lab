@@ -1,6 +1,6 @@
 # Step 4F · Remaining Manual Acceptance Roadmap
 
-Date: 2026-08-04  
+Date: 2026-08-06  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## 1. Purpose
@@ -16,27 +16,35 @@ Counting rule:
 - defect re-tests are not included in the fixed base count because they only occur if a defect is found
 ```
 
-## 2. Fixed remaining count
+## 2. Current remaining count
 
-From the current stop point until Checkout can qualify for Project 2 `Completed 1:1`:
+The original roadmap contained 13 batches. Since then, the following have been completed:
 
 ```text
-13 manual acceptance batches remain
+Batch 1 · D2B1 native-field functional closure
+Batch 2 · D2B2 Step-01 field-surface visual acceptance
+Batch 8 · R3 backend-editable Checkout copy
+```
+
+Current remaining count until Checkout can qualify for Project 2 `Completed 1:1`:
+
+```text
+10 manual acceptance batches remain
 ```
 
 Breakdown:
 
 ```text
-R1 remaining: 6 batches
-R2–R8 remaining: 7 batches
-Total: 13 batches
+R1 remaining: 4 batches
+R2–R8 remaining: 6 batches
+Total: 10 batches
 ```
 
-## 3. R1 remaining manual batches
+## 3. Completed manual batches
 
-### Batch 1 · D2B1 native-field functional closure
+### Batch 1 · D2B1 native-field functional closure — Completed
 
-One combined test session:
+Accepted:
 
 ```text
 - malformed email remains blocked after field movement
@@ -46,9 +54,9 @@ One combined test session:
 - Optional note wrapper remains stable
 ```
 
-### Batch 2 · D2B2 Step-01 field-surface visual acceptance
+### Batch 2 · D2B2 Step-01 field-surface visual acceptance — Completed
 
-After field/icon styling is implemented:
+Accepted:
 
 ```text
 - Contact panel
@@ -58,7 +66,23 @@ After field/icon styling is implemented:
 - desktop 1366
 - mobile 390
 - mobile 360
+- backend-owned strict Step-01 copy and fallback behavior
 ```
+
+### Batch 8 · R3 backend-editable Checkout copy — Completed early
+
+Accepted:
+
+```text
+- one coherent Spatial Flow Checkout Page Customizer section
+- mapped SAFE5 presentation copy changes the intended live surface
+- Intro label survives JavaScript step composition
+- empty values use safe defaults
+- WooCommerce commerce truth remains dynamic
+- no second Checkout backend system introduced
+```
+
+## 4. R1 remaining manual batches
 
 ### Batch 3 · Step-02 Shipping acceptance
 
@@ -112,7 +136,7 @@ One consolidated R1 closure session:
 - full live comparison at 1366×768, 390×844 and 360×800
 ```
 
-## 4. R2–R8 manual batches
+## 5. R2–R8 remaining manual batches
 
 ### Batch 7 · R2 notice/error ownership matrix
 
@@ -129,16 +153,7 @@ repeated updated_checkout / checkout_error
 notice appears once and remains readable on desktop/mobile
 ```
 
-### Batch 8 · R3 backend-editable Checkout copy
-
-One Customizer session:
-
-```text
-change and publish each mapped Checkout copy field
-confirm only intended live text changes
-confirm blank value uses safe fallback
-confirm shipping/payment/order truth remains dynamic
-```
+The user has already reported that the current Step-01 error presentation is visually poor. That defect is mandatory R2 scope and is not dismissed by Step-01 closure.
 
 ### Batch 9 · R4 Step-04 result-status matrix
 
@@ -236,7 +251,7 @@ Only after explicit user approval may status become:
 Checkout: Completed 1:1
 ```
 
-## 5. Interaction rule from this point
+## 6. Interaction rule from this point
 
 ```text
 - do not ask the user to perform isolated micro-tests when they can be safely combined
@@ -246,12 +261,15 @@ Checkout: Completed 1:1
 - do not advance groups without explicit user authorization
 ```
 
-## 6. Current stop point
+## 7. Current stop point
 
 ```text
-Ship-to-different-address expansion: passed
-Ship-to-different-address collapse: user-confirmed passed
-Next manual acceptance: Batch 1, combined D2B1 native-field functional closure
-Remaining manual acceptance batches: 13
+R1 Step-01 D2B1: completed
+R1 Step-01 D2B2: completed and closed
+SAFE5 backend editability: accepted
+Known ugly notice presentation: retained as R2 visual defect
+Next bounded implementation group: Step 02 Shipping V2 migration
+Next manual acceptance after implementation: Batch 3
+Remaining manual acceptance batches: 10
 Checkout: Not done
 ```
