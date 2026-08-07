@@ -1,6 +1,6 @@
 # Step 4F · Remaining Manual Acceptance Roadmap
 
-Date: 2026-08-06  
+Date: 2026-08-07  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## 1. Purpose
@@ -23,21 +23,22 @@ The original roadmap contained 13 batches. Since then, the following have been c
 ```text
 Batch 1 · D2B1 native-field functional closure
 Batch 2 · D2B2 Step-01 field-surface visual acceptance
+Batch 3 · Step-02 Shipping acceptance
 Batch 8 · R3 backend-editable Checkout copy
 ```
 
 Current remaining count until Checkout can qualify for Project 2 `Completed 1:1`:
 
 ```text
-10 manual acceptance batches remain
+9 manual acceptance batches remain
 ```
 
 Breakdown:
 
 ```text
-R1 remaining: 4 batches
+R1 remaining: 3 batches
 R2–R8 remaining: 6 batches
-Total: 10 batches
+Total: 9 batches
 ```
 
 ## 3. Completed manual batches
@@ -69,6 +70,33 @@ Accepted:
 - backend-owned strict Step-01 copy and fallback behavior
 ```
 
+### Batch 3 · Step-02 Shipping acceptance — Completed
+
+Accepted:
+
+```text
+- current real WooCommerce shipping method renders through the SAFE5 dynamic mirror
+- Step-02 Intro and Shipping surfaces match the accepted V2 direction
+- Before it leaves. shows actual Step-01 address/email/phone
+- Edit address and Back to Address return to Step 01
+- customer/address values persist
+- re-entering Step 02 resynchronizes the context card
+- Continue to Payment opens Step 03
+- Step 01 <-> Step 02 Intro switching works
+- desktop 1366 / mobile 390 / mobile 360
+- Step-02 backend-editable presentation copy passes full normal-state runtime coverage
+- clearing tested Step-02 Customizer values restores defaults automatically
+```
+
+Conditional regressions retained without blocking Batch 3 closure:
+
+```text
+- no-method fallback runtime when a legitimate no-shipping condition exists
+- true multi-rate runtime when WooCommerce later exposes multiple simultaneous methods
+```
+
+Source architecture for multiple methods is already accepted as count-agnostic and WooCommerce-authoritative.
+
 ### Batch 8 · R3 backend-editable Checkout copy — Completed early
 
 Accepted:
@@ -83,18 +111,6 @@ Accepted:
 ```
 
 ## 4. R1 remaining manual batches
-
-### Batch 3 · Step-02 Shipping acceptance
-
-After Step-02 V2 migration:
-
-```text
-- one worldwide $8.99 method renders correctly
-- Back to Address and Continue to Payment work
-- customer/address values persist
-- Shipping layout matches accepted V2 reference
-- desktop 1366 / mobile 390 / mobile 360
-```
 
 ### Batch 4 · Step-03 Payment acceptance
 
@@ -153,7 +169,7 @@ repeated updated_checkout / checkout_error
 notice appears once and remains readable on desktop/mobile
 ```
 
-The user has already reported that the current Step-01 error presentation is visually poor. That defect is mandatory R2 scope and is not dismissed by Step-01 closure.
+The user has already reported that the current Step-01 error presentation is visually poor. That defect is mandatory R2 scope and is not dismissed by Step-01 or Step-02 closure.
 
 ### Batch 9 · R4 Step-04 result-status matrix
 
@@ -266,10 +282,12 @@ Checkout: Completed 1:1
 ```text
 R1 Step-01 D2B1: completed
 R1 Step-01 D2B2: completed and closed
-SAFE5 backend editability: accepted
+R1 Step-02 Shipping V2: completed and closed
+SAFE5 backend editability: accepted for Step 01 and normal-state Step 02 surfaces
+Conditional no-method / true multi-rate runtime cases: retained as later regressions only
 Known ugly notice presentation: retained as R2 visual defect
-Next bounded implementation group: Step 02 Shipping V2 migration
-Next manual acceptance after implementation: Batch 3
-Remaining manual acceptance batches: 10
+Next bounded implementation group: Step 03 Payment V2 migration
+Next manual acceptance after implementation: Batch 4
+Remaining manual acceptance batches: 9
 Checkout: Not done
 ```
