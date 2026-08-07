@@ -18,27 +18,28 @@ Counting rule:
 
 ## 2. Current remaining count
 
-The original roadmap contained 13 batches. Since then, the following have been completed:
+The original roadmap contained 13 batches. The following are now completed:
 
 ```text
 Batch 1 · D2B1 native-field functional closure
 Batch 2 · D2B2 Step-01 field-surface visual acceptance
 Batch 3 · Step-02 Shipping acceptance
+Batch 4 · Step-03 Payment acceptance
 Batch 8 · R3 backend-editable Checkout copy
 ```
 
 Current remaining count until Checkout can qualify for Project 2 `Completed 1:1`:
 
 ```text
-9 manual acceptance batches remain
+8 manual acceptance batches remain
 ```
 
 Breakdown:
 
 ```text
-R1 remaining: 3 batches
+R1 remaining: 2 batches
 R2–R8 remaining: 6 batches
-Total: 9 batches
+Total: 8 batches
 ```
 
 ## 3. Completed manual batches
@@ -97,6 +98,31 @@ Conditional regressions retained without blocking Batch 3 closure:
 
 Source architecture for multiple methods is already accepted as count-agnostic and WooCommerce-authoritative.
 
+### Batch 4 · Step-03 Payment acceptance — Completed
+
+Accepted:
+
+```text
+- Payment-specific Step-03 Intro and panel presentation
+- desktop 1366 / mobile 390 / mobile 360
+- all currently enabled native WooCommerce gateways remain visible dynamically
+- current two-gateway runtime survives the visual migration
+- switching between gateways works
+- native payment_box content opens/closes correctly
+- native Terms/privacy remain visible
+- unchecked Terms blocks submission without order creation/redirect
+- native Place Order remains present exactly once
+- Before it leaves. Step-03 context shows live address/contact/shipping method
+- Edit address returns to Step 01
+- Shipping-method Edit and Back to Shipping return to Step 02
+- returning to Step 03 preserves state and re-syncs context
+- all 9 visible Step-03 backend-copy fields save/render correctly
+- heading <em> markup renders correctly
+- clearing tested Step-03 Customizer fields restores defaults automatically
+```
+
+Successful normal-order creation and Crypto redirect remain intentionally deferred to Batch 6, so Batch 4 closure does not make an end-to-end order claim.
+
 ### Batch 8 · R3 backend-editable Checkout copy — Completed early
 
 Accepted:
@@ -106,25 +132,12 @@ Accepted:
 - mapped SAFE5 presentation copy changes the intended live surface
 - Intro label survives JavaScript step composition
 - empty values use safe defaults
+- Step 01, Step 02 and Step 03 normal-state presentation copy has now been runtime-tested
 - WooCommerce commerce truth remains dynamic
 - no second Checkout backend system introduced
 ```
 
 ## 4. R1 remaining manual batches
-
-### Batch 4 · Step-03 Payment acceptance
-
-After Step-03 V2 migration:
-
-```text
-- all enabled native gateways render dynamically
-- gateway switching works
-- native payment boxes/nonces remain usable
-- Terms behavior remains correct
-- Place Order appears once
-- Payment layout matches accepted V2 reference
-- desktop 1366 / mobile 390 / mobile 360
-```
 
 ### Batch 5 · Order Summary / coupon / trust acceptance
 
@@ -169,7 +182,7 @@ repeated updated_checkout / checkout_error
 notice appears once and remains readable on desktop/mobile
 ```
 
-The user has already reported that the current Step-01 error presentation is visually poor. That defect is mandatory R2 scope and is not dismissed by Step-01 or Step-02 closure.
+The user has already reported that the current Step-01 error presentation is visually poor. That defect is mandatory R2 scope and is not dismissed by Step-01/02/03 closure.
 
 ### Batch 9 · R4 Step-04 result-status matrix
 
@@ -283,11 +296,12 @@ Checkout: Completed 1:1
 R1 Step-01 D2B1: completed
 R1 Step-01 D2B2: completed and closed
 R1 Step-02 Shipping V2: completed and closed
-SAFE5 backend editability: accepted for Step 01 and normal-state Step 02 surfaces
-Conditional no-method / true multi-rate runtime cases: retained as later regressions only
-Known ugly notice presentation: retained as R2 visual defect
-Next bounded implementation group: Step 03 Payment V2 migration
-Next manual acceptance after implementation: Batch 4
-Remaining manual acceptance batches: 9
+R1 Step-03 Payment V2: completed and closed
+SAFE5 backend editability: accepted for Step 01 / Step 02 / Step 03 normal-state presentation copy
+Conditional Step-02 no-method / true multi-rate runtime cases: retained as later regressions only
+Known ugly notice presentation: retained as mandatory R2 visual defect
+Next bounded implementation group: Order Summary / coupon / trust migration
+Next manual acceptance after implementation: Batch 5
+Remaining manual acceptance batches: 8
 Checkout: Not done
 ```
