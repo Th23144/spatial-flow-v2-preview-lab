@@ -17,13 +17,18 @@
     window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
   };
 
-  const toggle = document.querySelector('[data-packaging-customize]');
   const workspace = document.querySelector('[data-packaging-workspace]');
   const groupsHost = document.querySelector('[data-packaging-groups]');
+  const customizeButton = document.querySelector('[data-packaging-customize]');
   const addGroupButton = document.querySelector('[data-packaging-add-group]');
   const shippingForm = document.querySelector('[data-shipping-form]');
+  const primaryTierInputs = [...document.querySelectorAll('[data-packaging-primary-tier]')];
+  const standardPrimaryMeta = document.querySelector('[data-standard-primary-meta]');
+  const giftPrimaryMeta = document.querySelector('[data-gift-primary-meta]');
+  const primaryPersonalizedName = document.querySelector('[data-primary-personalized-name]');
+  const primaryGiftMessage = document.querySelector('[data-primary-gift-message]');
 
-  if (!toggle || !workspace || !groupsHost) return;
+  if (!workspace || !groupsHost || !customizeButton || !primaryTierInputs.length) return;
 
   const items = [...document.querySelectorAll('[data-packaging-source-item]')].map((node) => ({
     key: node.dataset.itemKey,
@@ -44,10 +49,19 @@
     assignments: Object.fromEntries(items.map((item) => [item.key, 'package-1']))
   };
 
+  let workspaceOpen = Boolean(state.customized);
+
   const normalizeState = () => {
     if (!Array.isArray(state.groups) || !state.groups.length) {
       state.groups = [{ id: 'package-1', tier: 'standard', personalizedName: '', giftMessage: '' }];
     }
+
+    state.groups = state.groups.map((group, index) => ({
+      id: group.id || `package-${index + 1}`,
+      tier: group.tier === 'gift' ? 'gift' : 'standard',
+      personalizedName: group.personalizedName || '',
+      giftMessage: group.giftMessage || ''
+    }));
 
     if (!state.assignments || typeof state.assignments !== 'object') {
       state.assignments = {};
@@ -79,7 +93,7 @@
   }).length;
 
   const updateTotals = () => {
-    const packagingFee = state.customized ? giftGroupCount() * GIFT_FEE : 0;
+    const packagingFee = giftGroupCount() * GIFT_FEE;
     const shippingPrice = getShippingPrice();
     const packagingRow = document.querySelector('[data-packaging-summary-row]');
     const packagingValue = document.querySelector('[data-packaging-summary-value]');
@@ -98,6 +112,32 @@
       .map((group) => Number(String(group.id).replace(/\D/g, '')))
       .filter(Number.isFinite);
     return `package-${Math.max(0, ...numbers) + 1}`;
+  };
+
+  const renderPrimaryChoice = () => {
+    normalizeState();
+    const singlePackageMode = !state.customized && state.groups.length === 1;
+    const firstGroup = state.groups[0];
+
+    primaryTierInputs.forEach((input) => {
+      input.checked = singlePackageMode && input.value === firstGroup.tier;
+    });
+
+    if (standardPrimaryMeta) {
+      standardPrimaryMeta.hidden = !singlePackageMode || firstGroup.tier !== 'standard';
+    }
+
+    if (giftPrimaryMeta) {
+      giftPrimaryMeta.hidden = !singlePackageMode || firstGroup.tier !== 'gift';
+    }
+
+    if (primaryPersonalizedName && primaryPersonalizedName.value !== firstGroup.personalizedName) {
+      primaryPersonalizedName.value = firstGroup.personalizedName;
+    }
+
+    if (primaryGiftMessage && primaryGiftMessage.value !== firstGroup.giftMessage) {
+      primaryGiftMessage.value = firstGroup.giftMessage;
+    }
   };
 
   const renderGroup = (group, index) => {
@@ -177,28 +217,57 @@
 
   const render = () => {
     normalizeState();
-    workspace.classList.toggle('is-open', state.customized);
-    toggle.setAttribute('aria-expanded', state.customized ? 'true' : 'false');
-    toggle.textContent = state.customized ? 'Use standard default' : 'Customize packaging';
+    workspace.classList.toggle('is-open', workspaceOpen);
+    customizeButton.setAttribute('aria-expanded', workspaceOpen ? 'true' : 'false');
+    customizeButton.textContent = workspaceOpen ? 'Hide group editor' : 'Customize product groups';
 
+    renderPrimaryChoice();
     groupsHost.replaceChildren(...state.groups.map(renderGroup));
     persistDraft();
     updateTotals();
   };
 
-  toggle.addEventListener('click', () => {
-    state.customized = !state.customized;
+  primaryTierInputs.forEach((input) => {
+    input.addEventListener('change', () => {
+      if (!input.checked) return;
 
-    if (!state.customized) {
-      state.groups = [{ id: 'package-1', tier: 'standard', personalizedName: '', giftMessage: '' }];
-      state.assignments = Object.fromEntries(items.map((item) => [item.key, 'package-1']));
-    }
+      const firstGroup = state.groups[0] || {};
+      state = {
+        customized: false,
+        groups: [{
+          id: 'package-1',
+          tier: input.value === 'gift' ? 'gift' : 'standard',
+          personalizedName: firstGroup.personalizedName || '',
+          giftMessage: firstGroup.giftMessage || ''
+        }],
+        assignments: Object.fromEntries(items.map((item) => [item.key, 'package-1']))
+      };
+      workspaceOpen = false;
+      render();
+    });
+  });
 
+  primaryPersonalizedName?.addEventListener('input', () => {
+    normalizeState();
+    state.groups[0].personalizedName = primaryPersonalizedName.value;
+    persistDraft();
+  });
+
+  primaryGiftMessage?.addEventListener('input', () => {
+    normalizeState();
+    state.groups[0].giftMessage = primaryGiftMessage.value;
+    persistDraft();
+  });
+
+  customizeButton.addEventListener('click', () => {
+    workspaceOpen = !workspaceOpen;
+    if (workspaceOpen) state.customized = true;
     render();
   });
 
   addGroupButton?.addEventListener('click', () => {
     state.customized = true;
+    workspaceOpen = true;
     state.groups.push({ id: nextGroupId(), tier: 'standard', personalizedName: '', giftMessage: '' });
     render();
   });
@@ -206,6 +275,7 @@
   groupsHost.addEventListener('change', (event) => {
     const assignment = event.target.closest('[data-packaging-assignment]');
     if (assignment) {
+      state.customized = true;
       state.assignments[assignment.dataset.packagingAssignment] = assignment.value;
       render();
       return;
@@ -213,6 +283,7 @@
 
     const tier = event.target.closest('[data-packaging-tier]');
     if (tier) {
+      state.customized = true;
       const group = state.groups.find((candidate) => candidate.id === tier.dataset.packagingTier);
       if (group) group.tier = tier.value;
       render();
@@ -245,6 +316,7 @@
     if (containsItems) return;
 
     state.groups = state.groups.filter((group) => group.id !== id);
+    state.customized = state.groups.length > 1;
     render();
   });
 
@@ -253,16 +325,9 @@
   });
 
   shippingForm?.addEventListener('submit', () => {
+    normalizeState();
     const current = readState();
-    const committed = state.customized
-      ? state
-      : {
-          customized: false,
-          groups: [{ id: 'package-1', tier: 'standard', personalizedName: '', giftMessage: '' }],
-          assignments: Object.fromEntries(items.map((item) => [item.key, 'package-1']))
-        };
-
-    writeState({ ...current, packaging: committed, packagingDraft: committed });
+    writeState({ ...current, packaging: state, packagingDraft: state });
   });
 
   render();
