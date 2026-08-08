@@ -1,11 +1,11 @@
-/* Step 02 Product Packaging candidate · visible two-column tier cards.
-   Cache-safe visual override for the packaging candidate only. */
+/* Step 02 Product Packaging candidate · stacked tier rows.
+   Standard Packaging and Gift Packaging are always shown as two full-width rows. */
 
 .packaging-primary-options {
   display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  grid-template-columns: 1fr !important;
   align-items: stretch;
-  gap: 18px !important;
+  gap: 14px !important;
 }
 
 .packaging-primary-option {
@@ -13,6 +13,7 @@
   display: flex !important;
   flex-direction: column;
   min-width: 0;
+  width: 100%;
   padding: 0 !important;
   border: 1px solid var(--line) !important;
   background: rgba(250, 247, 243, .34) !important;
@@ -37,8 +38,8 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: start;
-  gap: 0 12px;
-  padding: 20px 20px 18px;
+  gap: 0 14px;
+  padding: 20px 22px 18px;
   cursor: pointer;
 }
 
@@ -71,21 +72,23 @@
 .packaging-primary-option__heading strong {
   display: block;
   font-family: var(--serif);
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 400;
   line-height: 1.05;
 }
 
 .packaging-primary-option__price {
+  align-self: center;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 18px;
+  font-size: 19px;
   white-space: nowrap;
 }
 
 .packaging-primary-option__copy {
   grid-column: 2 / -1;
   display: block;
+  max-width: 68ch;
   margin-top: 14px;
   color: var(--soft);
   font-size: 11px;
@@ -95,7 +98,8 @@
 .packaging-primary-option__facts {
   grid-column: 2 / -1;
   display: grid;
-  gap: 7px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 22px;
   margin-top: 14px;
   padding-top: 13px;
   border-top: 1px solid var(--line-soft);
@@ -121,8 +125,7 @@
 
 .packaging-primary-option__detail {
   display: block;
-  margin-top: auto;
-  padding: 18px 20px 20px;
+  padding: 18px 22px 20px 51px;
   border-top: 1px solid var(--line);
   background: rgba(31, 25, 22, .025);
 }
@@ -140,12 +143,13 @@
   margin-bottom: 5px;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 400;
 }
 
 .packaging-primary-option__detail-copy {
   display: block;
+  max-width: 72ch;
   margin-bottom: 13px;
   color: var(--soft);
   font-size: 10px;
@@ -154,6 +158,7 @@
 
 .packaging-primary-option__detail label {
   display: block;
+  max-width: 760px;
   color: var(--soft);
   font-family: var(--mono);
   font-size: 8px;
@@ -202,15 +207,28 @@
 }
 
 @media (max-width: 620px) {
-  .packaging-primary-options {
-    grid-template-columns: 1fr !important;
-  }
-
   .packaging-primary-option__selector {
+    grid-template-columns: auto minmax(0, 1fr);
     padding: 18px 16px 17px;
   }
 
+  .packaging-primary-option__price {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 7px;
+    font-size: 17px;
+  }
+
+  .packaging-primary-option__copy,
+  .packaging-primary-option__facts {
+    grid-column: 2;
+  }
+
+  .packaging-primary-option__facts {
+    grid-template-columns: 1fr;
+  }
+
   .packaging-primary-option__detail {
-    padding: 17px 16px 18px;
+    padding: 17px 16px 18px 44px;
   }
 }
