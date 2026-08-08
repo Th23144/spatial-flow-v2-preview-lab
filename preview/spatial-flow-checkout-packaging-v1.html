@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css" />
   <link rel="stylesheet" href="spatial-flow-checkout-mobile-commerce-v1.css?v=20260731-0657" />
   <link rel="stylesheet" href="spatial-flow-checkout-packaging-v1.css?v=20260808-0852" />
-  <link rel="stylesheet" href="spatial-flow-checkout-packaging-v3.css?v=20260808-0912" />
+  <link rel="stylesheet" href="spatial-flow-checkout-packaging-v3.css?v=20260808-0929" />
 </head>
 <body class="woocommerce-checkout checkout-step-shipping checkout-step-packaging-candidate">
   <div class="masthead-strip-v1">
@@ -59,7 +59,7 @@
 
     <div>
       <p class="checkout-lede">
-        Select delivery, then decide how the products should be presented inside the parcel. The final amount updates before payment begins.
+        Choose how your order will be delivered and how the products inside should be packaged before payment.
       </p>
 
       <div class="checkout-steps" aria-label="Checkout progress">
@@ -79,7 +79,7 @@
           <h2>How should it <em>travel</em>?</h2>
         </div>
         <p class="panel-note">
-          These methods remain static reference examples. The live Checkout will show only rates returned by WooCommerce for the validated address and cart.
+          Choose one of the delivery methods available for this address and order.
         </p>
 
         <div class="shipping-options" role="radiogroup" aria-label="Shipping methods">
@@ -105,7 +105,7 @@
             <input type="radio" name="shipping_method" value="pickup" />
             <span>
               <strong>Studio collection</strong>
-              <span>Reference-only pickup option. The live method remains hidden unless the store genuinely supports collection.</span>
+              <span>Collect from the studio by appointment when this option is available.</span>
             </span>
             <span class="price">Free</span>
           </label>
@@ -115,14 +115,14 @@
       <section class="checkout-panel packaging-panel" aria-labelledby="packaging-heading">
         <div class="panel-head packaging-panel__head">
           <div>
-            <div class="panel-no">Product packaging · 02B</div>
-            <h2 id="packaging-heading">How should it be <em>presented</em>?</h2>
+            <div class="panel-no">Product packaging</div>
+            <h2 id="packaging-heading">Choose your <em>packaging</em>.</h2>
           </div>
-          <p class="packaging-panel__intro">Choose the presentation first. If this order needs different packaging for different products, you can customize the package groups below.</p>
+          <p class="packaging-panel__intro">Choose Standard or Gift Packaging for the order. If some items need to be packaged separately, you can set that up below.</p>
         </div>
 
         <div class="packaging-boundary-note">
-          Product packaging is separate from courier packaging. Separate product packages may still travel together in the same outer parcel to this address.
+          This choice is for the packaging around your products inside the shipping box. It does not create a separate shipment.
         </div>
 
         <div class="packaging-primary-options" role="radiogroup" aria-label="Product packaging choice">
@@ -130,23 +130,23 @@
             <label class="packaging-primary-option__selector">
               <input type="radio" name="primary_packaging_tier" value="standard" data-packaging-primary-tier checked />
               <span class="packaging-primary-option__heading">
-                <span class="packaging-primary-option__eyebrow">Included</span>
+                <span class="packaging-primary-option__eyebrow">Free</span>
                 <strong>Standard Packaging</strong>
               </span>
-              <span class="packaging-primary-option__price">$0.00</span>
-              <span class="packaging-primary-option__copy">Quiet, protective product presentation for everyday orders.</span>
+              <span class="packaging-primary-option__price">Included</span>
+              <span class="packaging-primary-option__copy">Best for personal orders. Items are packed together in our standard product packaging when suitable.</span>
               <span class="packaging-primary-option__facts">
-                <span>Included for eligible product packages</span>
-                <span>Optional personalized name on the product package</span>
+                <span>Protective everyday packaging</span>
+                <span>Add a name to the package at no extra cost</span>
               </span>
             </label>
 
             <div class="packaging-primary-option__detail" data-standard-primary-meta>
-              <strong class="packaging-primary-option__detail-title">Personalize the standard package.</strong>
-              <span class="packaging-primary-option__detail-copy">Add a name to this product package. This standard-packaging personalization is enabled by default in the current candidate.</span>
+              <strong class="packaging-primary-option__detail-title">Add a name <em>optional</em></strong>
+              <span class="packaging-primary-option__detail-copy">Enter the name you would like added to this package.</span>
               <label>
-                Personalized name <em>optional</em>
-                <input maxlength="24" data-primary-personalized-name placeholder="Name for this product package" />
+                Name on package
+                <input maxlength="24" data-primary-personalized-name placeholder="e.g. Alex" />
               </label>
             </div>
           </article>
@@ -155,23 +155,23 @@
             <label class="packaging-primary-option__selector">
               <input type="radio" name="primary_packaging_tier" value="gift" data-packaging-primary-tier />
               <span class="packaging-primary-option__heading">
-                <span class="packaging-primary-option__eyebrow">Gift-ready</span>
+                <span class="packaging-primary-option__eyebrow">For gifts</span>
                 <strong>Gift Packaging</strong>
               </span>
-              <span class="packaging-primary-option__price">+$9.00</span>
-              <span class="packaging-primary-option__copy">A more refined presentation intended for gifting.</span>
+              <span class="packaging-primary-option__price">+$9.00 / package</span>
+              <span class="packaging-primary-option__copy">Choose this when the package is a gift. It includes upgraded gift presentation and a message card.</span>
               <span class="packaging-primary-option__facts">
-                <span>Refined gift-oriented product presentation</span>
-                <span>Gift card and message included</span>
+                <span>Upgraded gift presentation</span>
+                <span>Gift card included</span>
               </span>
             </label>
 
             <div class="packaging-primary-option__detail" data-gift-primary-meta hidden>
-              <strong class="packaging-primary-option__detail-title">Write the gift card.</strong>
-              <span class="packaging-primary-option__detail-copy">This message belongs to this gift package and is stored separately from standard-package personalization.</span>
+              <strong class="packaging-primary-option__detail-title">Add a gift message <em>optional</em></strong>
+              <span class="packaging-primary-option__detail-copy">We’ll put this message on the card inside this gift package.</span>
               <label>
-                Gift card message <em>optional</em>
-                <textarea maxlength="240" data-primary-gift-message placeholder="Write the message to include with this gift."></textarea>
+                Message for the card
+                <textarea maxlength="240" data-primary-gift-message placeholder="Write your gift message"></textarea>
               </label>
             </div>
           </article>
@@ -179,25 +179,25 @@
 
         <div class="packaging-group-entry">
           <div>
-            <strong>Need different packaging for different products?</strong>
-            <span>Split this order into product packaging groups without creating separate shipments.</span>
+            <strong>Want some items packaged separately?</strong>
+            <span>Choose which items go together, then choose Standard or Gift Packaging for each package.</span>
           </div>
-          <button type="button" class="packaging-customize" data-packaging-customize aria-expanded="false" aria-controls="packaging-workspace">Customize product groups</button>
+          <button type="button" class="packaging-customize" data-packaging-customize aria-expanded="false" aria-controls="packaging-workspace">Separate items into packages</button>
         </div>
 
         <div class="packaging-workspace" id="packaging-workspace" data-packaging-workspace>
           <div class="packaging-workspace-head">
             <div>
-              <h3>Build your product packages.</h3>
-              <p>Assign each purchased item to a package, then choose Standard or Gift presentation independently for every package.</p>
+              <h3>Set up separate packages.</h3>
+              <p>Move each item into the package it belongs in. Each package can use Standard or Gift Packaging.</p>
             </div>
-            <button type="button" class="packaging-add-group" data-packaging-add-group>+ Add product package</button>
+            <button type="button" class="packaging-add-group" data-packaging-add-group>+ Add another package</button>
           </div>
 
           <div class="packaging-groups" data-packaging-groups></div>
 
           <p class="packaging-plan-note">
-            Gift Packaging is charged per physical gift package in this candidate. One gift package containing two products is one fee; two separate gift packages are two fees.
+            Gift Packaging is $9 per gift package. Two items in one gift package cost one $9 fee. Two separate gift packages cost two fees.
           </p>
         </div>
       </section>
@@ -208,7 +208,7 @@
       </div>
 
       <p class="prototype-note">
-        Packaging groups on this page are a static interaction candidate. The live implementation will store grouping, fees and messages in WooCommerce-owned checkout/order data before Payment.
+        In the live checkout, your packaging choices will be saved before you continue to payment.
       </p>
     </form>
 
@@ -281,13 +281,13 @@ United States</div>
         </div>
 
         <p class="summary-note">
-          Shipping and gift-packaging charges are previews on this static candidate. The live totals will remain server-calculated by WooCommerce.
+          Gift packaging will appear here when selected. Final totals are updated before payment.
         </p>
 
         <div class="summary-trust">
-          <div>No payment is attempted in Step 02</div>
-          <div>Shipping remains WooCommerce-controlled</div>
-          <div>Product packaging does not alter shipment consolidation</div>
+          <div>No payment is taken on this step</div>
+          <div>Your shipping method remains unchanged</div>
+          <div>Separate product packages can still ship together</div>
         </div>
       </section>
     </aside>
