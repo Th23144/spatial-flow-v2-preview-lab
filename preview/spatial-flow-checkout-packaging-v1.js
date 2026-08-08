@@ -56,7 +56,7 @@
   };
 
   let workspaceOpen = Boolean(state.customized);
-  let editingGroupId = null;
+  let expandedGroupId = null;
 
   const inferGroupingMode = () => {
     if (['together', 'separate', 'custom'].includes(state.groupingMode)) return state.groupingMode;
@@ -93,7 +93,7 @@
     state.groupingMode = inferGroupingMode();
     state.customized = state.groupingMode !== 'together';
 
-    if (editingGroupId && !validIds.has(editingGroupId)) editingGroupId = null;
+    if (expandedGroupId && !validIds.has(expandedGroupId)) expandedGroupId = null;
   };
 
   const persistDraft = () => {
@@ -146,6 +146,7 @@
     const firstGroup = state.groups[0];
 
     primaryTierInputs.forEach((input) => {
+      input.disabled = !singlePackageMode;
       input.checked = singlePackageMode && input.value === firstGroup.tier;
     });
 
@@ -173,7 +174,7 @@
       }],
       assignments: Object.fromEntries(items.map((item) => [item.key, 'package-1']))
     };
-    editingGroupId = null;
+    expandedGroupId = null;
   };
 
   const setEachItemSeparate = () => {
@@ -189,7 +190,7 @@
       })),
       assignments: Object.fromEntries(items.map((item, index) => [item.key, `package-${index + 1}`]))
     };
-    editingGroupId = null;
+    expandedGroupId = null;
   };
 
   const setCustomGrouping = () => {
@@ -199,7 +200,7 @@
     if (state.groupingMode === 'separate' && state.groups.length > 1) {
       state.groupingMode = 'custom';
       state.customized = true;
-      editingGroupId = state.groups[0]?.id || null;
+      expandedGroupId = null;
       return;
     }
 
@@ -224,7 +225,7 @@
       ],
       assignments: Object.fromEntries(items.map((item) => [item.key, 'package-1']))
     };
-    editingGroupId = 'package-2';
+    expandedGroupId = 'package-2';
   };
 
   const applyGroupingMode = (mode) => {
@@ -248,19 +249,19 @@
       </div>
       <div class="packaging-grouping-modes" role="radiogroup" aria-label="How should these items be packaged?">
         <button type="button" class="packaging-grouping-mode${mode === 'together' ? ' is-selected' : ''}" data-grouping-mode="together">
-          <span class="packaging-grouping-mode__title">Keep everything together</span>
+          <span class="packaging-grouping-mode__title">Keep together</span>
           <span class="packaging-grouping-mode__meta">1 package</span>
-          <span class="packaging-grouping-mode__copy">All items share one product package.</span>
+          <span class="packaging-grouping-mode__copy">All items share one package.</span>
         </button>
         <button type="button" class="packaging-grouping-mode${mode === 'separate' ? ' is-selected' : ''}" data-grouping-mode="separate">
-          <span class="packaging-grouping-mode__title">Package every item separately</span>
+          <span class="packaging-grouping-mode__title">Package separately</span>
           <span class="packaging-grouping-mode__meta">${count} packages</span>
-          <span class="packaging-grouping-mode__copy">Each item gets its own package automatically.</span>
+          <span class="packaging-grouping-mode__copy">One package per item.</span>
         </button>
         <button type="button" class="packaging-grouping-mode${mode === 'custom' ? ' is-selected' : ''}" data-grouping-mode="custom">
-          <span class="packaging-grouping-mode__title">Choose what goes together</span>
-          <span class="packaging-grouping-mode__meta">Custom</span>
-          <span class="packaging-grouping-mode__copy">For example: two items together, one item on its own.</span>
+          <span class="packaging-grouping-mode__title">Custom grouping</span>
+          <span class="packaging-grouping-mode__meta">Choose groups</span>
+          <span class="packaging-grouping-mode__copy">Decide which items stay together.</span>
         </button>
       </div>
     `;
@@ -273,16 +274,16 @@
     manager.className = 'packaging-custom-manager';
     manager.innerHTML = `
       <div>
-        <strong>Build your packages.</strong>
-        <span>Each package below shows exactly what is inside it. Use “Change items” on a package to move products into that package.</span>
+        <strong>Your custom packaging plan</strong>
+        <span>Each row below is one physical product package. Open a package only when you want to edit it.</span>
       </div>
-      <button type="button" class="packaging-custom-manager__add" data-custom-add-package>+ Create another package</button>
+      <button type="button" class="packaging-custom-manager__add" data-custom-add-package>+ New package</button>
     `;
     return manager;
   };
 
   const renderItemPicker = (group) => {
-    if (state.groupingMode !== 'custom' || editingGroupId !== group.id) return '';
+    if (state.groupingMode !== 'custom' || expandedGroupId !== group.id) return '';
 
     const rows = items.map((item) => {
       const currentGroup = state.assignments[item.key];
@@ -303,8 +304,8 @@
     return `
       <div class="packaging-package-picker">
         <div class="packaging-package-picker__head">
-          <strong>Change what’s inside ${packageLabel(group.id)}.</strong>
-          <span>Moving an item here removes it from its current product package. Shipping remains unchanged.</span>
+          <strong>Items in ${packageLabel(group.id)}</strong>
+          <span>Move an item here to place it in this package. It will leave its previous package automatically.</span>
         </div>
         <div class="packaging-package-picker__list">${rows}</div>
       </div>
@@ -313,19 +314,17 @@
 
   const renderGroup = (group, index) => {
     const assignedItems = items.filter((item) => state.assignments[item.key] === group.id);
+    const isExpanded = expandedGroupId === group.id;
     const groupNode = document.createElement('section');
-    groupNode.className = `packaging-group${group.tier === 'gift' ? ' is-gift' : ''}${editingGroupId === group.id ? ' is-editing-items' : ''}`;
+    groupNode.className = `packaging-group${group.tier === 'gift' ? ' is-gift' : ''}${isExpanded ? ' is-expanded' : ''}`;
     groupNode.dataset.groupId = group.id;
 
-    const itemMarkup = assignedItems.length
-      ? assignedItems.map((item) => `
-          <div class="packaging-item packaging-item--static" data-packaging-item="${item.key}">
-            <div>
-              <strong>${item.name}</strong>
-              <small>${item.meta}</small>
-            </div>
-          </div>`).join('')
-      : '<div class="packaging-group__empty">Nothing is in this package yet.</div>';
+    const itemNames = assignedItems.length
+      ? assignedItems.map((item) => item.name).join(' · ')
+      : 'No items assigned yet';
+    const itemCount = `${assignedItems.length} item${assignedItems.length === 1 ? '' : 's'}`;
+    const tierLabel = group.tier === 'gift' ? 'Gift Packaging' : 'Standard Packaging';
+    const feeLabel = group.tier === 'gift' ? `+$${GIFT_FEE.toFixed(2)}` : 'Included';
 
     const metadataMarkup = group.tier === 'gift'
       ? `
@@ -334,7 +333,7 @@
             Gift card message
             <textarea maxlength="240" data-gift-message="${group.id}" placeholder="Write the message to include with this gift.">${group.giftMessage || ''}</textarea>
           </label>
-          <p class="packaging-meta__hint">This message is for this gift package only.</p>
+          <p class="packaging-meta__hint">This message belongs only to this gift package.</p>
         </div>`
       : `
         <div class="packaging-meta">
@@ -345,49 +344,53 @@
           <p class="packaging-meta__hint">Optional and included with Standard Packaging.</p>
         </div>`;
 
-    const itemEditControl = state.groupingMode === 'custom'
+    const expandedMarkup = isExpanded
       ? `
-        <div class="packaging-package-items-control">
-          <div>
-            <strong>${assignedItems.length ? `${assignedItems.length} item${assignedItems.length === 1 ? '' : 's'} in this package` : 'Empty package'}</strong>
-            <span>${assignedItems.length ? 'The items listed above will be packaged together.' : 'Move at least one item here, or remove this empty package.'}</span>
+        <div class="packaging-group__details">
+          <div class="packaging-tier-switch" role="radiogroup" aria-label="Packaging type for package ${index + 1}">
+            <label class="packaging-tier-option">
+              <input type="radio" name="tier-${group.id}" value="standard" data-packaging-tier="${group.id}"${group.tier === 'standard' ? ' checked' : ''} />
+              <span>
+                <strong>Standard</strong>
+                <span>Protective everyday packaging. Included.</span>
+              </span>
+            </label>
+            <label class="packaging-tier-option">
+              <input type="radio" name="tier-${group.id}" value="gift" data-packaging-tier="${group.id}"${group.tier === 'gift' ? ' checked' : ''} />
+              <span>
+                <strong>Gift</strong>
+                <span>Gift-ready packaging with a card message.</span>
+              </span>
+            </label>
           </div>
-          <button type="button" data-edit-package-items="${group.id}">${editingGroupId === group.id ? 'Done' : 'Change items'}</button>
+          ${renderItemPicker(group)}
+          ${metadataMarkup}
+          ${state.groupingMode === 'custom' && state.groups.length > 1 && !assignedItems.length
+            ? `<button type="button" class="packaging-remove-group" data-packaging-remove="${group.id}">Remove empty package</button>`
+            : ''}
         </div>
-        ${renderItemPicker(group)}
       `
       : '';
 
     groupNode.innerHTML = `
-      <div class="packaging-group__head">
-        <div>
-          <div class="packaging-group__eyebrow">Product package · ${String(index + 1).padStart(2, '0')}</div>
-          <h3 class="packaging-group__title">Package ${String(index + 1).padStart(2, '0')}</h3>
+      <div class="packaging-group__summary">
+        <div class="packaging-group__summary-id">
+          <span>Product package · ${String(index + 1).padStart(2, '0')}</span>
+          <strong>Package ${String(index + 1).padStart(2, '0')}</strong>
         </div>
-        <div class="packaging-group__fee">${group.tier === 'gift' ? `+$${GIFT_FEE.toFixed(2)}` : 'Included'}</div>
+        <div class="packaging-group__summary-items">
+          <span>${itemNames}</span>
+          <small>${itemCount}</small>
+        </div>
+        <div class="packaging-group__summary-tier">
+          <span>${tierLabel}</span>
+          <strong>${feeLabel}</strong>
+        </div>
+        <button type="button" class="packaging-group__edit" data-toggle-package="${group.id}" aria-expanded="${isExpanded ? 'true' : 'false'}">
+          ${isExpanded ? 'Close' : 'Edit'}
+        </button>
       </div>
-
-      <div class="packaging-tier-switch" role="radiogroup" aria-label="Packaging type for package ${index + 1}">
-        <label class="packaging-tier-option">
-          <input type="radio" name="tier-${group.id}" value="standard" data-packaging-tier="${group.id}"${group.tier === 'standard' ? ' checked' : ''} />
-          <span>
-            <strong>Standard</strong>
-            <span>Protective everyday packaging. Included.</span>
-          </span>
-        </label>
-        <label class="packaging-tier-option">
-          <input type="radio" name="tier-${group.id}" value="gift" data-packaging-tier="${group.id}"${group.tier === 'gift' ? ' checked' : ''} />
-          <span>
-            <strong>Gift</strong>
-            <span>Gift-ready packaging with a card message.</span>
-          </span>
-        </label>
-      </div>
-
-      <div class="packaging-group__items">${itemMarkup}</div>
-      ${itemEditControl}
-      ${metadataMarkup}
-      ${state.groupingMode === 'custom' && state.groups.length > 1 && !assignedItems.length ? `<button type="button" class="packaging-remove-group" data-packaging-remove="${group.id}">Remove empty package</button>` : ''}
+      ${expandedMarkup}
     `;
 
     return groupNode;
@@ -395,13 +398,22 @@
 
   const renderWorkspace = () => {
     if (workspaceTitle) workspaceTitle.textContent = 'Set up separate packaging.';
-    if (workspaceCopy) workspaceCopy.textContent = 'First choose how the order should be split. Then choose Standard or Gift Packaging for each package.';
+    if (workspaceCopy) workspaceCopy.textContent = 'Choose how the order should be split. Package details stay compact until you open one to edit it.';
     if (addGroupButton) addGroupButton.hidden = true;
 
     const nodes = [renderGroupingModes()];
-    const customManager = renderCustomManager();
-    if (customManager) nodes.push(customManager);
-    state.groups.forEach((group, index) => nodes.push(renderGroup(group, index)));
+
+    if (state.groupingMode === 'together') {
+      const note = document.createElement('div');
+      note.className = 'packaging-together-note';
+      note.textContent = 'Everything will use the packaging choice above. No separate package setup is needed.';
+      nodes.push(note);
+    } else {
+      const customManager = renderCustomManager();
+      if (customManager) nodes.push(customManager);
+      state.groups.forEach((group, index) => nodes.push(renderGroup(group, index)));
+    }
+
     groupsHost.replaceChildren(...nodes);
   };
 
@@ -457,14 +469,14 @@
       state.groupingMode = 'custom';
       state.customized = true;
       state.groups.push({ id, tier: defaultTier, personalizedName: '', giftMessage: '' });
-      editingGroupId = id;
+      expandedGroupId = id;
       render();
       return;
     }
 
-    const editItems = event.target.closest('[data-edit-package-items]');
-    if (editItems) {
-      editingGroupId = editingGroupId === editItems.dataset.editPackageItems ? null : editItems.dataset.editPackageItems;
+    const togglePackage = event.target.closest('[data-toggle-package]');
+    if (togglePackage) {
+      expandedGroupId = expandedGroupId === togglePackage.dataset.togglePackage ? null : togglePackage.dataset.togglePackage;
       render();
       return;
     }
@@ -474,6 +486,7 @@
       state.groupingMode = 'custom';
       state.customized = true;
       state.assignments[moveItem.dataset.moveItem] = moveItem.dataset.targetGroup;
+      expandedGroupId = moveItem.dataset.targetGroup;
       render();
       return;
     }
@@ -485,7 +498,7 @@
       if (containsItems) return;
 
       state.groups = state.groups.filter((group) => group.id !== id);
-      if (editingGroupId === id) editingGroupId = null;
+      if (expandedGroupId === id) expandedGroupId = null;
       if (state.groups.length <= 1) resetToTogether(state.groups[0]?.tier || 'standard');
       render();
     }
