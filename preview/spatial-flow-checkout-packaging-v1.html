@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css" />
   <link rel="stylesheet" href="spatial-flow-checkout-mobile-commerce-v1.css?v=20260731-0657" />
   <link rel="stylesheet" href="spatial-flow-checkout-packaging-v1.css?v=20260808-0852" />
+  <link rel="stylesheet" href="spatial-flow-checkout-packaging-v3.css?v=20260808-0912" />
 </head>
 <body class="woocommerce-checkout checkout-step-shipping checkout-step-packaging-candidate">
   <div class="masthead-strip-v1">
@@ -125,38 +126,55 @@
         </div>
 
         <div class="packaging-primary-options" role="radiogroup" aria-label="Product packaging choice">
-          <label class="packaging-primary-option" data-packaging-primary-card="standard">
-            <input type="radio" name="primary_packaging_tier" value="standard" data-packaging-primary-tier checked />
-            <span class="packaging-primary-option__top">
-              <span class="packaging-primary-option__eyebrow">Included</span>
-              <strong>Standard Packaging</strong>
+          <article class="packaging-primary-option" data-packaging-primary-card="standard">
+            <label class="packaging-primary-option__selector">
+              <input type="radio" name="primary_packaging_tier" value="standard" data-packaging-primary-tier checked />
+              <span class="packaging-primary-option__heading">
+                <span class="packaging-primary-option__eyebrow">Included</span>
+                <strong>Standard Packaging</strong>
+              </span>
               <span class="packaging-primary-option__price">$0.00</span>
-            </span>
-            <span class="packaging-primary-option__copy">Quiet, protective product presentation for everyday orders.</span>
-            <span class="packaging-primary-option__feature">Personalized name available · included</span>
-          </label>
+              <span class="packaging-primary-option__copy">Quiet, protective product presentation for everyday orders.</span>
+              <span class="packaging-primary-option__facts">
+                <span>Included for eligible product packages</span>
+                <span>Optional personalized name on the product package</span>
+              </span>
+            </label>
 
-          <label class="packaging-primary-option packaging-primary-option--gift" data-packaging-primary-card="gift">
-            <input type="radio" name="primary_packaging_tier" value="gift" data-packaging-primary-tier />
-            <span class="packaging-primary-option__top">
-              <span class="packaging-primary-option__eyebrow">Gift-ready</span>
-              <strong>Gift Packaging</strong>
+            <div class="packaging-primary-option__detail" data-standard-primary-meta>
+              <strong class="packaging-primary-option__detail-title">Personalize the standard package.</strong>
+              <span class="packaging-primary-option__detail-copy">Add a name to this product package. This standard-packaging personalization is enabled by default in the current candidate.</span>
+              <label>
+                Personalized name <em>optional</em>
+                <input maxlength="24" data-primary-personalized-name placeholder="Name for this product package" />
+              </label>
+            </div>
+          </article>
+
+          <article class="packaging-primary-option packaging-primary-option--gift" data-packaging-primary-card="gift">
+            <label class="packaging-primary-option__selector">
+              <input type="radio" name="primary_packaging_tier" value="gift" data-packaging-primary-tier />
+              <span class="packaging-primary-option__heading">
+                <span class="packaging-primary-option__eyebrow">Gift-ready</span>
+                <strong>Gift Packaging</strong>
+              </span>
               <span class="packaging-primary-option__price">+$9.00</span>
-            </span>
-            <span class="packaging-primary-option__copy">A more refined presentation intended for gifting.</span>
-            <span class="packaging-primary-option__feature">Gift card message available · included</span>
-          </label>
-        </div>
+              <span class="packaging-primary-option__copy">A more refined presentation intended for gifting.</span>
+              <span class="packaging-primary-option__facts">
+                <span>Refined gift-oriented product presentation</span>
+                <span>Gift card and message included</span>
+              </span>
+            </label>
 
-        <div class="packaging-primary-detail" data-packaging-primary-detail>
-          <label class="packaging-primary-meta" data-standard-primary-meta>
-            <span>Personalized name <em>optional</em></span>
-            <input maxlength="24" data-primary-personalized-name placeholder="Name for this product package" />
-          </label>
-          <label class="packaging-primary-meta" data-gift-primary-meta hidden>
-            <span>Gift card message <em>optional</em></span>
-            <textarea maxlength="240" data-primary-gift-message placeholder="Write the message to include with this gift."></textarea>
-          </label>
+            <div class="packaging-primary-option__detail" data-gift-primary-meta hidden>
+              <strong class="packaging-primary-option__detail-title">Write the gift card.</strong>
+              <span class="packaging-primary-option__detail-copy">This message belongs to this gift package and is stored separately from standard-package personalization.</span>
+              <label>
+                Gift card message <em>optional</em>
+                <textarea maxlength="240" data-primary-gift-message placeholder="Write the message to include with this gift."></textarea>
+              </label>
+            </div>
+          </article>
         </div>
 
         <div class="packaging-group-entry">
