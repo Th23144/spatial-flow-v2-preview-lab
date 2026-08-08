@@ -206,6 +206,216 @@
   margin-top: 20px !important;
 }
 
+/* Grouping workflow correction: users choose the desired outcome first.
+   The UI then creates the necessary package count automatically. */
+.packaging-add-group {
+  display: none !important;
+}
+
+.packaging-grouping-controls {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.packaging-grouping-intro {
+  display: grid;
+  gap: 5px;
+}
+
+.packaging-grouping-intro strong {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.packaging-grouping-intro span {
+  color: var(--soft);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.packaging-grouping-modes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.packaging-grouping-mode {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-height: 132px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: rgba(250, 247, 243, .28);
+  text-align: left;
+  transition: border-color .18s ease, background .18s ease;
+}
+
+.packaging-grouping-mode:hover {
+  border-color: rgba(31, 25, 22, .48);
+}
+
+.packaging-grouping-mode.is-selected {
+  border-color: var(--ink);
+  background: rgba(250, 247, 243, .78);
+}
+
+.packaging-grouping-mode__title,
+.packaging-grouping-mode__meta,
+.packaging-grouping-mode__copy {
+  display: block;
+}
+
+.packaging-grouping-mode__title {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.packaging-grouping-mode__meta {
+  color: var(--clay);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.packaging-grouping-mode__copy {
+  color: var(--soft);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.packaging-assignment-planner {
+  margin-bottom: 22px;
+  border: 1px solid var(--line);
+  background: rgba(250, 247, 243, .22);
+}
+
+.packaging-assignment-planner__head {
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.packaging-assignment-planner__head strong {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.packaging-assignment-planner__head span {
+  color: var(--soft);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.packaging-assignment-list {
+  display: grid;
+}
+
+.packaging-assignment-row {
+  display: grid;
+  grid-template-columns: minmax(180px, .9fr) minmax(0, 1.4fr);
+  align-items: center;
+  gap: 18px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.packaging-assignment-row:last-child {
+  border-bottom: 0;
+}
+
+.packaging-assignment-item strong,
+.packaging-assignment-item span {
+  display: block;
+}
+
+.packaging-assignment-item strong {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.packaging-assignment-item span {
+  margin-top: 3px;
+  color: var(--soft);
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.packaging-assignment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.packaging-assignment-button {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.packaging-assignment-button:hover,
+.packaging-assignment-button.is-selected {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.packaging-assignment-button--new {
+  border-style: dashed;
+  color: var(--soft);
+}
+
+.packaging-assignment-button--new:hover {
+  border-style: solid;
+}
+
+.packaging-item--static {
+  grid-template-columns: minmax(0, 1fr) auto !important;
+}
+
+.packaging-item__package-label {
+  color: var(--soft);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+  .packaging-grouping-modes {
+    grid-template-columns: 1fr;
+  }
+
+  .packaging-grouping-mode {
+    min-height: 0;
+  }
+
+  .packaging-assignment-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .packaging-assignment-actions {
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 620px) {
   .packaging-primary-option__selector {
     grid-template-columns: auto minmax(0, 1fr);
@@ -230,5 +440,11 @@
 
   .packaging-primary-option__detail {
     padding: 17px 16px 18px 44px;
+  }
+
+  .packaging-assignment-row,
+  .packaging-assignment-planner__head {
+    padding-right: 14px;
+    padding-left: 14px;
   }
 }
