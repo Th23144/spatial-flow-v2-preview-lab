@@ -162,13 +162,14 @@ The user currently wants two product-packaging tiers.
 ```text
 Standard / normal product packaging
 Price: Free
+Personalized-name feature: ENABLED by default for the first implementation
 ```
 
-A future optional personalized-name feature must be reserved for this tier.
+Standard Packaging may include a customer-supplied personalized name/signature on the product packaging.
 
-The user has NOT yet decided whether personalized names will be enabled at launch. The implementation must therefore allow the feature to be enabled or disabled from the existing editable commerce/admin configuration without requiring a checkout architecture rewrite.
+This feature must remain administratively switchable so operations can disable it later without a checkout architecture rewrite.
 
-Reserved controls should support, where appropriate:
+Required configurable controls should support, where appropriate:
 
 ```text
 Enabled / disabled
@@ -178,20 +179,29 @@ Character limit
 Optional price policy
 ```
 
-When disabled, the customer-facing input should not appear.
+Initial implementation default:
+
+```text
+Enabled = true
+Price = Free unless later changed by operations
+```
+
+When disabled later, the customer-facing personalized-name input must disappear cleanly while Standard Packaging itself remains available.
 
 ### 2. Gift Packaging
 
 ```text
 More refined gift-oriented product packaging
-Price: TBD
+Initial placeholder price: $9.00 per Gift Packaging Group
 ```
+
+The `$9.00` value is an implementation/testing placeholder only, not a locked commercial price. It must be editable from the existing commerce/admin configuration so operations can replace it later without code changes.
 
 Gift Packaging is expected to support a per-package gift-card / message field.
 
 Each gift packaging group should own its own message so one order can contain multiple gifts for different recipients.
 
-Exact price, message-length limit, and final copy are still open product decisions.
+Final production price, message-length limit, and final copy remain operational/product decisions.
 
 ### Provisional fee semantics
 
@@ -239,6 +249,7 @@ A future front-end pattern may therefore use a simple default such as:
 
 ```text
 Standard packaging included
+Personalized name [input shown by default while feature is enabled]
 [ Customize packaging ]
 ```
 
@@ -258,7 +269,7 @@ Required properties:
 - Batch-5 Order Summary displays packaging fee truth when applicable
 - Step 03 uses the resulting final amount
 - packaging groups are copied into durable WooCommerce order data
-- admin can inspect the selected grouping, tier, quantity allocation and gift message
+- admin can inspect the selected grouping, tier, quantity allocation, personalized name and gift message
 - customer-facing order result/email/order details can expose the durable order truth where semantically appropriate
 - backend presentation labels/options/prices/availability remain editable according to Project 2 backend-editability requirements
 - no second Checkout backend system is introduced
@@ -284,12 +295,13 @@ This does NOT require a complex customer-facing compatibility system in the firs
 The following remain intentionally unresolved:
 
 ```text
-- initial Gift Packaging price
-- whether Standard Packaging personalized-name input is enabled at launch
+- final production Gift Packaging price (current implementation placeholder: $9.00)
 - final personalized-name label / character limit / copy
 - final Gift Message label / character limit / copy
 - any physical capacity or compatibility limits for a single product package
 ```
+
+The Standard Packaging personalized-name feature is now explicitly **enabled by default** for the initial implementation, while retaining an admin on/off control.
 
 The provisional Product Packaging Groups direction may be refined if the user changes product or fulfillment requirements.
 
@@ -304,6 +316,8 @@ After packaging implementation, at minimum revalidate:
 ```text
 - Step 02 packaging UI at 1366 / 390 / 360
 - default Standard Packaging path without customization
+- default personalized-name field when enabled
+- clean disappearance of personalized-name field when admin setting is disabled
 - grouping / regrouping behavior with multiple products
 - same-line quantity splitting across groups
 - selection persistence
@@ -314,7 +328,8 @@ After packaging implementation, at minimum revalidate:
 - Batch-5 Summary packaging fee/total rendering
 - Step 03 final amount
 - normal test order contains durable packaging-group truth exactly once
-- gift messages remain attached to their correct package groups
+- personalized names remain attached to the correct Standard package group
+- gift messages remain attached to their correct Gift package groups
 - Crypto on-hold order contains the same packaging truth and correct total
 - Step-04 result/order details can read the durable order truth later in R4
 ```
