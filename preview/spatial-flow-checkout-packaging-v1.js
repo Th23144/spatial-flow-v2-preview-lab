@@ -46,32 +46,28 @@
   let state = readState().packagingDraft || {
     customized: false,
     groupingMode: 'together',
-    groups: [
-      {
-        id: 'package-1',
-        tier: initialTier(),
-        personalizedName: '',
-        giftMessage: ''
-      }
-    ],
+    groups: [{
+      id: 'package-1',
+      tier: initialTier(),
+      personalizedName: '',
+      giftMessage: ''
+    }],
     assignments: Object.fromEntries(items.map((item) => [item.key, 'package-1']))
   };
 
   let workspaceOpen = Boolean(state.customized);
+  let editingGroupId = null;
 
   const inferGroupingMode = () => {
-    if (state.groupingMode === 'together' || state.groupingMode === 'separate' || state.groupingMode === 'custom') {
-      return state.groupingMode;
-    }
-
+    if (['together', 'separate', 'custom'].includes(state.groupingMode)) return state.groupingMode;
     if (!state.customized || state.groups.length <= 1) return 'together';
 
     const nonEmptyGroups = state.groups.filter((group) => items.some((item) => state.assignments[item.key] === group.id));
-    const eachItemSeparate = nonEmptyGroups.length === items.length && nonEmptyGroups.every((group) => (
+    const everyItemSeparate = nonEmptyGroups.length === items.length && nonEmptyGroups.every((group) => (
       items.filter((item) => state.assignments[item.key] === group.id).length === 1
     ));
 
-    return eachItemSeparate ? 'separate' : 'custom';
+    return everyItemSeparate ? 'separate' : 'custom';
   };
 
   const normalizeState = () => {
@@ -86,19 +82,18 @@
       giftMessage: group.giftMessage || ''
     }));
 
-    if (!state.assignments || typeof state.assignments !== 'object') {
-      state.assignments = {};
-    }
+    if (!state.assignments || typeof state.assignments !== 'object') state.assignments = {};
 
     const validIds = new Set(state.groups.map((group) => group.id));
     const fallbackId = state.groups[0].id;
-
     items.forEach((item) => {
       if (!validIds.has(state.assignments[item.key])) state.assignments[item.key] = fallbackId;
     });
 
     state.groupingMode = inferGroupingMode();
     state.customized = state.groupingMode !== 'together';
+
+    if (editingGroupId && !validIds.has(editingGroupId)) editingGroupId = null;
   };
 
   const persistDraft = () => {
@@ -154,18 +149,12 @@
       input.checked = singlePackageMode && input.value === firstGroup.tier;
     });
 
-    if (standardPrimaryMeta) {
-      standardPrimaryMeta.hidden = !singlePackageMode || firstGroup.tier !== 'standard';
-    }
-
-    if (giftPrimaryMeta) {
-      giftPrimaryMeta.hidden = !singlePackageMode || firstGroup.tier !== 'gift';
-    }
+    if (standardPrimaryMeta) standardPrimaryMeta.hidden = !singlePackageMode || firstGroup.tier !== 'standard';
+    if (giftPrimaryMeta) giftPrimaryMeta.hidden = !singlePackageMode || firstGroup.tier !== 'gift';
 
     if (primaryPersonalizedName && primaryPersonalizedName.value !== firstGroup.personalizedName) {
       primaryPersonalizedName.value = firstGroup.personalizedName;
     }
-
     if (primaryGiftMessage && primaryGiftMessage.value !== firstGroup.giftMessage) {
       primaryGiftMessage.value = firstGroup.giftMessage;
     }
@@ -184,6 +173,7 @@
       }],
       assignments: Object.fromEntries(items.map((item) => [item.key, 'package-1']))
     };
+    editingGroupId = null;
   };
 
   const setEachItemSeparate = () => {
@@ -199,51 +189,48 @@
       })),
       assignments: Object.fromEntries(items.map((item, index) => [item.key, `package-${index + 1}`]))
     };
+    editingGroupId = null;
   };
 
   const setCustomGrouping = () => {
     normalizeState();
+    if (state.groupingMode === 'custom') return;
 
-    if (state.groupingMode !== 'custom') {
-      const defaultTier = state.groups[0]?.tier || initialTier();
-
-      if (state.groupingMode === 'separate' && state.groups.length > 1) {
-        state.groupingMode = 'custom';
-        state.customized = true;
-        return;
-      }
-
-      const groupCount = Math.min(2, Math.max(1, items.length));
-      const groups = Array.from({ length: groupCount }, (_, index) => ({
-        id: `package-${index + 1}`,
-        tier: defaultTier,
-        personalizedName: '',
-        giftMessage: ''
-      }));
-      const splitAt = Math.max(1, Math.ceil(items.length / 2));
-      const assignments = {};
-
-      items.forEach((item, index) => {
-        assignments[item.key] = index < splitAt ? groups[0].id : groups[Math.min(1, groups.length - 1)].id;
-      });
-
-      state = {
-        customized: true,
-        groupingMode: 'custom',
-        groups,
-        assignments
-      };
+    if (state.groupingMode === 'separate' && state.groups.length > 1) {
+      state.groupingMode = 'custom';
+      state.customized = true;
+      editingGroupId = state.groups[0]?.id || null;
+      return;
     }
+
+    const defaultTier = state.groups[0]?.tier || initialTier();
+    const first = state.groups[0] || {};
+    state = {
+      customized: true,
+      groupingMode: 'custom',
+      groups: [
+        {
+          id: 'package-1',
+          tier: defaultTier,
+          personalizedName: first.personalizedName || '',
+          giftMessage: first.giftMessage || ''
+        },
+        {
+          id: 'package-2',
+          tier: defaultTier,
+          personalizedName: '',
+          giftMessage: ''
+        }
+      ],
+      assignments: Object.fromEntries(items.map((item) => [item.key, 'package-1']))
+    };
+    editingGroupId = 'package-2';
   };
 
   const applyGroupingMode = (mode) => {
-    if (mode === 'together') {
-      resetToTogether(state.groups[0]?.tier || initialTier());
-    } else if (mode === 'separate') {
-      setEachItemSeparate();
-    } else {
-      setCustomGrouping();
-    }
+    if (mode === 'together') resetToTogether(state.groups[0]?.tier || initialTier());
+    else if (mode === 'separate') setEachItemSeparate();
+    else setCustomGrouping();
 
     workspaceOpen = true;
     render();
@@ -252,82 +239,82 @@
   const renderGroupingModes = () => {
     const mode = state.groupingMode;
     const count = items.length;
-
     const wrapper = document.createElement('section');
     wrapper.className = 'packaging-grouping-controls';
     wrapper.innerHTML = `
       <div class="packaging-grouping-intro">
         <strong>How should these items be packaged?</strong>
-        <span>Choose one option. We will create the right number of product packages automatically.</span>
+        <span>Choose the result you want. We’ll create the right number of packages automatically.</span>
       </div>
       <div class="packaging-grouping-modes" role="radiogroup" aria-label="How should these items be packaged?">
         <button type="button" class="packaging-grouping-mode${mode === 'together' ? ' is-selected' : ''}" data-grouping-mode="together">
           <span class="packaging-grouping-mode__title">Keep everything together</span>
           <span class="packaging-grouping-mode__meta">1 package</span>
-          <span class="packaging-grouping-mode__copy">All items stay in one product package.</span>
+          <span class="packaging-grouping-mode__copy">All items share one product package.</span>
         </button>
         <button type="button" class="packaging-grouping-mode${mode === 'separate' ? ' is-selected' : ''}" data-grouping-mode="separate">
           <span class="packaging-grouping-mode__title">Package every item separately</span>
-          <span class="packaging-grouping-mode__meta">${count} packages automatically</span>
-          <span class="packaging-grouping-mode__copy">Each item gets its own product package. No extra setup.</span>
+          <span class="packaging-grouping-mode__meta">${count} packages</span>
+          <span class="packaging-grouping-mode__copy">Each item gets its own package automatically.</span>
         </button>
         <button type="button" class="packaging-grouping-mode${mode === 'custom' ? ' is-selected' : ''}" data-grouping-mode="custom">
-          <span class="packaging-grouping-mode__title">Choose which items go together</span>
-          <span class="packaging-grouping-mode__meta">Custom grouping</span>
-          <span class="packaging-grouping-mode__copy">For example: two items together and one item on its own.</span>
+          <span class="packaging-grouping-mode__title">Choose what goes together</span>
+          <span class="packaging-grouping-mode__meta">Custom</span>
+          <span class="packaging-grouping-mode__copy">For example: two items together, one item on its own.</span>
         </button>
       </div>
     `;
-
     return wrapper;
   };
 
-  const renderAssignmentPlanner = () => {
+  const renderCustomManager = () => {
     if (state.groupingMode !== 'custom') return null;
+    const manager = document.createElement('section');
+    manager.className = 'packaging-custom-manager';
+    manager.innerHTML = `
+      <div>
+        <strong>Build your packages.</strong>
+        <span>Each package below shows exactly what is inside it. Use “Change items” on a package to move products into that package.</span>
+      </div>
+      <button type="button" class="packaging-custom-manager__add" data-custom-add-package>+ Create another package</button>
+    `;
+    return manager;
+  };
 
-    const planner = document.createElement('section');
-    planner.className = 'packaging-assignment-planner';
+  const renderItemPicker = (group) => {
+    if (state.groupingMode !== 'custom' || editingGroupId !== group.id) return '';
 
     const rows = items.map((item) => {
       const currentGroup = state.assignments[item.key];
-      const buttons = state.groups.map((group, index) => `
-        <button
-          type="button"
-          class="packaging-assignment-button${currentGroup === group.id ? ' is-selected' : ''}"
-          data-assign-item="${item.key}"
-          data-target-group="${group.id}"
-        >Package ${String(index + 1).padStart(2, '0')}</button>
-      `).join('');
-
+      const isHere = currentGroup === group.id;
       return `
-        <div class="packaging-assignment-row">
-          <div class="packaging-assignment-item">
+        <div class="packaging-package-picker__row">
+          <div>
             <strong>${item.name}</strong>
             <span>${item.meta}</span>
           </div>
-          <div class="packaging-assignment-actions" aria-label="Choose a package for ${item.name}">
-            ${buttons}
-            <button type="button" class="packaging-assignment-button packaging-assignment-button--new" data-new-package-for="${item.key}">+ New package</button>
-          </div>
+          ${isHere
+            ? `<span class="packaging-package-picker__status">✓ In this package</span>`
+            : `<button type="button" class="packaging-package-picker__move" data-move-item="${item.key}" data-target-group="${group.id}">Move here</button>`}
         </div>
       `;
     }).join('');
 
-    planner.innerHTML = `
-      <div class="packaging-assignment-planner__head">
-        <strong>Choose where each item goes.</strong>
-        <span>Click a package number beside each item. Use “New package” only when you want an additional group.</span>
+    return `
+      <div class="packaging-package-picker">
+        <div class="packaging-package-picker__head">
+          <strong>Change what’s inside ${packageLabel(group.id)}.</strong>
+          <span>Moving an item here removes it from its current product package. Shipping remains unchanged.</span>
+        </div>
+        <div class="packaging-package-picker__list">${rows}</div>
       </div>
-      <div class="packaging-assignment-list">${rows}</div>
     `;
-
-    return planner;
   };
 
   const renderGroup = (group, index) => {
     const assignedItems = items.filter((item) => state.assignments[item.key] === group.id);
     const groupNode = document.createElement('section');
-    groupNode.className = `packaging-group${group.tier === 'gift' ? ' is-gift' : ''}`;
+    groupNode.className = `packaging-group${group.tier === 'gift' ? ' is-gift' : ''}${editingGroupId === group.id ? ' is-editing-items' : ''}`;
     groupNode.dataset.groupId = group.id;
 
     const itemMarkup = assignedItems.length
@@ -337,9 +324,8 @@
               <strong>${item.name}</strong>
               <small>${item.meta}</small>
             </div>
-            <span class="packaging-item__package-label">In ${packageLabel(group.id)}</span>
           </div>`).join('')
-      : '<div class="packaging-group__empty">No items are in this package yet.</div>';
+      : '<div class="packaging-group__empty">Nothing is in this package yet.</div>';
 
     const metadataMarkup = group.tier === 'gift'
       ? `
@@ -348,7 +334,7 @@
             Gift card message
             <textarea maxlength="240" data-gift-message="${group.id}" placeholder="Write the message to include with this gift.">${group.giftMessage || ''}</textarea>
           </label>
-          <p class="packaging-meta__hint">This message is printed for this gift package only.</p>
+          <p class="packaging-meta__hint">This message is for this gift package only.</p>
         </div>`
       : `
         <div class="packaging-meta">
@@ -358,6 +344,19 @@
           </label>
           <p class="packaging-meta__hint">Optional and included with Standard Packaging.</p>
         </div>`;
+
+    const itemEditControl = state.groupingMode === 'custom'
+      ? `
+        <div class="packaging-package-items-control">
+          <div>
+            <strong>${assignedItems.length ? `${assignedItems.length} item${assignedItems.length === 1 ? '' : 's'} in this package` : 'Empty package'}</strong>
+            <span>${assignedItems.length ? 'The items listed above will be packaged together.' : 'Move at least one item here, or remove this empty package.'}</span>
+          </div>
+          <button type="button" data-edit-package-items="${group.id}">${editingGroupId === group.id ? 'Done' : 'Change items'}</button>
+        </div>
+        ${renderItemPicker(group)}
+      `
+      : '';
 
     groupNode.innerHTML = `
       <div class="packaging-group__head">
@@ -386,6 +385,7 @@
       </div>
 
       <div class="packaging-group__items">${itemMarkup}</div>
+      ${itemEditControl}
       ${metadataMarkup}
       ${state.groupingMode === 'custom' && state.groups.length > 1 && !assignedItems.length ? `<button type="button" class="packaging-remove-group" data-packaging-remove="${group.id}">Remove empty package</button>` : ''}
     `;
@@ -394,14 +394,13 @@
   };
 
   const renderWorkspace = () => {
-    if (workspaceTitle) workspaceTitle.textContent = 'How should these items be packaged?';
-    if (workspaceCopy) workspaceCopy.textContent = 'Choose a simple grouping option first. The packages below will be created automatically.';
+    if (workspaceTitle) workspaceTitle.textContent = 'Set up separate packaging.';
+    if (workspaceCopy) workspaceCopy.textContent = 'First choose how the order should be split. Then choose Standard or Gift Packaging for each package.';
     if (addGroupButton) addGroupButton.hidden = true;
 
     const nodes = [renderGroupingModes()];
-    const planner = renderAssignmentPlanner();
-    if (planner) nodes.push(planner);
-
+    const customManager = renderCustomManager();
+    if (customManager) nodes.push(customManager);
     state.groups.forEach((group, index) => nodes.push(renderGroup(group, index)));
     groupsHost.replaceChildren(...nodes);
   };
@@ -451,23 +450,30 @@
       return;
     }
 
-    const assignmentButton = event.target.closest('[data-assign-item][data-target-group]');
-    if (assignmentButton) {
-      state.groupingMode = 'custom';
-      state.customized = true;
-      state.assignments[assignmentButton.dataset.assignItem] = assignmentButton.dataset.targetGroup;
-      render();
-      return;
-    }
-
-    const newPackageButton = event.target.closest('[data-new-package-for]');
-    if (newPackageButton) {
+    const addPackage = event.target.closest('[data-custom-add-package]');
+    if (addPackage) {
       const id = nextGroupId();
       const defaultTier = state.groups[0]?.tier || 'standard';
       state.groupingMode = 'custom';
       state.customized = true;
       state.groups.push({ id, tier: defaultTier, personalizedName: '', giftMessage: '' });
-      state.assignments[newPackageButton.dataset.newPackageFor] = id;
+      editingGroupId = id;
+      render();
+      return;
+    }
+
+    const editItems = event.target.closest('[data-edit-package-items]');
+    if (editItems) {
+      editingGroupId = editingGroupId === editItems.dataset.editPackageItems ? null : editItems.dataset.editPackageItems;
+      render();
+      return;
+    }
+
+    const moveItem = event.target.closest('[data-move-item][data-target-group]');
+    if (moveItem) {
+      state.groupingMode = 'custom';
+      state.customized = true;
+      state.assignments[moveItem.dataset.moveItem] = moveItem.dataset.targetGroup;
       render();
       return;
     }
@@ -479,9 +485,8 @@
       if (containsItems) return;
 
       state.groups = state.groups.filter((group) => group.id !== id);
-      if (state.groups.length <= 1) {
-        resetToTogether(state.groups[0]?.tier || 'standard');
-      }
+      if (editingGroupId === id) editingGroupId = null;
+      if (state.groups.length <= 1) resetToTogether(state.groups[0]?.tier || 'standard');
       render();
     }
   });
@@ -489,7 +494,6 @@
   groupsHost.addEventListener('change', (event) => {
     const tier = event.target.closest('[data-packaging-tier]');
     if (!tier) return;
-
     const group = state.groups.find((candidate) => candidate.id === tier.dataset.packagingTier);
     if (group) group.tier = tier.value;
     render();
