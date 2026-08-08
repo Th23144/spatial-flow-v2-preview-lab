@@ -51,82 +51,271 @@ Sandbox Crypto success -> canonical paid result
 
 Browser/query state must never decide real payment success.
 
+Step 04 is intentionally deferred until its later implementation stage. The user may inspect the existing static reference now, but Step 04 design/implementation changes are not part of the current packaging task.
+
 ## Packaging service requirement
 
 New user requirement:
 
 ```text
-The commerce site must allow the customer to choose a packaging service.
+The commerce site must allow the customer to choose product packaging.
 ```
 
 No packaging implementation currently exists in the repository search baseline.
 
-### Recommended owner and placement
+### Critical terminology boundary
 
-Unless the user explicitly wants per-item packaging, the recommended first implementation is an ORDER-LEVEL fulfillment add-on owned by WooCommerce and presented in Step 02 Shipping.
+The current feature is **PRODUCT PACKAGING**, not courier / transport packaging.
+
+```text
+Transport packaging
+= the outer parcel / shipping carton / courier protection used to send the order
+= multiple product packages for one address may still travel together in one outer parcel
+= not customer-configured by this feature
+
+Product packaging
+= the packaging directly around or presenting the purchased products
+= may be standard or gift-oriented
+= customers may decide which purchased units are packaged together or separately
+= this is the feature being specified here
+```
+
+The two layers must remain logically independent. Choosing separate product packages must not imply separate shipments.
+
+## Provisional accepted direction · Product Packaging Groups
+
+On 2026-08-08 the user provisionally accepted the following direction, with the explicit note that it may be adjusted later.
+
+The earlier binary choice:
+
+```text
+A. one packaging choice for the whole order
+B. one packaging choice per cart item
+```
+
+is superseded.
+
+The current provisional model is **Product Packaging Groups**.
+
+A checkout order may contain one or more product packaging groups. Each group may contain one or more purchased units.
+
+Example:
+
+```text
+Order contains products A, B, C, D, E
+
+Package Group 1
+- A
+- B
+- Standard Packaging
+
+Package Group 2
+- C
+- Gift Packaging
+- Gift message
+
+Package Group 3
+- D
+- E
+- Gift Packaging
+- Gift message
+```
+
+All three product packages may still travel together in one transport parcel to the same shipping address.
+
+### Quantity allocation requirement
+
+The model must operate on cart-item quantities, not only product IDs.
+
+Example:
+
+```text
+Ash Quartz Bracelet x3
+
+Package Group 1
+- quantity 2
+- Standard Packaging
+
+Package Group 2
+- quantity 1
+- Gift Packaging
+```
+
+Therefore the durable model must be capable of representing:
+
+```text
+cart item / variation identity
++ quantity allocation
++ package group identity
++ packaging tier
++ optional packaging metadata
+```
+
+A simple `product_id -> packaging choice` mapping is insufficient.
+
+## Packaging tiers
+
+The user currently wants two product-packaging tiers.
+
+### 1. Standard Packaging
+
+```text
+Standard / normal product packaging
+Price: Free
+```
+
+A future optional personalized-name feature must be reserved for this tier.
+
+The user has NOT yet decided whether personalized names will be enabled at launch. The implementation must therefore allow the feature to be enabled or disabled from the existing editable commerce/admin configuration without requiring a checkout architecture rewrite.
+
+Reserved controls should support, where appropriate:
+
+```text
+Enabled / disabled
+Customer-facing label
+Description
+Character limit
+Optional price policy
+```
+
+When disabled, the customer-facing input should not appear.
+
+### 2. Gift Packaging
+
+```text
+More refined gift-oriented product packaging
+Price: TBD
+```
+
+Gift Packaging is expected to support a per-package gift-card / message field.
+
+Each gift packaging group should own its own message so one order can contain multiple gifts for different recipients.
+
+Exact price, message-length limit, and final copy are still open product decisions.
+
+### Provisional fee semantics
+
+The recommended provisional fee model is per **Gift Packaging Group**, not blindly per product quantity.
+
+Example:
+
+```text
+A + B in one Gift Packaging Group
+-> one gift-packaging fee
+
+A in Gift Package 1
+B in Gift Package 2
+-> two gift-packaging fees
+```
+
+This matches the physical packaging unit more closely than charging once per line item. This fee semantic remains adjustable before implementation is locked.
+
+## Recommended owner and placement
+
+Product packaging remains owned by WooCommerce commerce state and is presented in **Step 02 Shipping**, before Step 03 Payment.
 
 Recommended live flow:
 
 ```text
 Step 02 Shipping
   - shipping method
-  - packaging service choice
+  - product packaging
+    - default standard packaging
+    - optional Customize Packaging interaction
+    - package groups when customization is needed
   - Continue to Payment
 ```
 
 Reason:
 
 ```text
-Packaging is a fulfillment/delivery decision, not a payment gateway decision.
-It must be selected before Payment so the final server-backed amount shown in Step 03 is already correct.
+Product packaging is a fulfillment decision, not a payment-gateway decision.
+Any paid Gift Packaging must be known before Payment so Step 03 already shows the final server-backed amount.
 ```
 
-### Required commerce ownership
+For ordinary orders, the default UI should remain lightweight. Customers who do not need special packaging should not be forced through a complex grouping workflow.
+
+A future front-end pattern may therefore use a simple default such as:
+
+```text
+Standard packaging included
+[ Customize packaging ]
+```
+
+and only expose package grouping when customization is requested.
+
+## Required commerce ownership
 
 The packaging choice must not be a browser-only visual toggle.
 
 Required properties:
 
 ```text
-- WooCommerce/session owns selected packaging state
-- optional packaging price is calculated server-side
+- WooCommerce/session owns the active packaging-group state
+- grouping survives Step 02 -> Step 03
+- paid packaging fees are calculated server-side
 - totals refresh through WooCommerce
-- Summary shows the resulting fee/line truth
-- selection persists through Step 02 -> Step 03
-- selection is copied into the WooCommerce order as durable order meta / line truth
-- admin can see the selected packaging service
-- customer-facing order result/email/order details can expose it where semantically appropriate
-- backend presentation labels/options/prices must remain editable according to Project 2 backend-editability requirements
-- no new second Checkout backend system
+- Batch-5 Order Summary displays packaging fee truth when applicable
+- Step 03 uses the resulting final amount
+- packaging groups are copied into durable WooCommerce order data
+- admin can inspect the selected grouping, tier, quantity allocation and gift message
+- customer-facing order result/email/order details can expose the durable order truth where semantically appropriate
+- backend presentation labels/options/prices/availability remain editable according to Project 2 backend-editability requirements
+- no second Checkout backend system is introduced
 ```
 
-### Data-model decision still required
+## Compatibility reserve
 
-Before implementation the user must confirm whether packaging is:
+The commerce site may eventually sell products that cannot physically share the same product package.
+
+The data model should therefore leave room for an internal packaging-compatibility / packaging-class concept, for example:
 
 ```text
-A. one packaging choice for the whole order (recommended default)
-B. packaging selectable separately per cart item
+Jewelry
+Small Object
+Textile
+Oversized
 ```
 
-The user must also supply the actual packaging options and their prices, including whether the default/standard option is free.
+This does NOT require a complex customer-facing compatibility system in the first implementation. It is an architecture reserve so later packaging rules do not require replacing the underlying model.
 
-### Regression impact
+## Decisions still open before live implementation is locked
+
+The following remain intentionally unresolved:
+
+```text
+- initial Gift Packaging price
+- whether Standard Packaging personalized-name input is enabled at launch
+- final personalized-name label / character limit / copy
+- final Gift Message label / character limit / copy
+- any physical capacity or compatibility limits for a single product package
+```
+
+The provisional Product Packaging Groups direction may be refined if the user changes product or fulfillment requirements.
+
+## Regression impact
 
 This feature changes order totals and durable order data, so it must be implemented BEFORE Batch 6 final R1 end-to-end acceptance.
 
-Batch 6 is therefore paused.
+Batch 6 therefore remains paused.
 
 After packaging implementation, at minimum revalidate:
 
 ```text
 - Step 02 packaging UI at 1366 / 390 / 360
+- default Standard Packaging path without customization
+- grouping / regrouping behavior with multiple products
+- same-line quantity splitting across groups
 - selection persistence
 - WooCommerce total recalculation
-- Batch-5 Summary fee/total rendering with and without paid packaging
+- Standard-only order has no unintended fee
+- one Gift Packaging Group charges exactly one configured fee
+- multiple Gift Packaging Groups charge the correct configured fee count
+- Batch-5 Summary packaging fee/total rendering
 - Step 03 final amount
-- normal test order contains packaging selection exactly once
-- Crypto on-hold order contains the same packaging selection and correct total
+- normal test order contains durable packaging-group truth exactly once
+- gift messages remain attached to their correct package groups
+- Crypto on-hold order contains the same packaging truth and correct total
 - Step-04 result/order details can read the durable order truth later in R4
 ```
 
@@ -134,12 +323,12 @@ Batch 5 remains historically closed for the accepted pre-packaging baseline; the
 
 ## Sequence decision
 
-Current sequence is now:
+Current sequence remains:
 
 ```text
 Batch 5: CLOSED
--> Packaging Service specification
--> Packaging Service bounded implementation + targeted runtime acceptance
+-> Product Packaging Groups specification (CURRENT)
+-> Product Packaging Groups bounded implementation + targeted runtime acceptance
 -> Batch 6: R1 final end-to-end acceptance
 -> Batch 7: R2 notice/error ownership
 -> Batch 9: R4 Step-04 live result-status matrix
