@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout · Shipping & Product Packaging — Spatial Flow</title>
+  <meta name="description" content="Spatial Flow static Checkout candidate — Step 02 Shipping with Product Packaging Groups." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="spatial-flow-checkout-flow-v1.css" />
+  <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css" />
+  <link rel="stylesheet" href="spatial-flow-checkout-mobile-commerce-v1.css?v=20260731-0657" />
+  <link rel="stylesheet" href="spatial-flow-checkout-packaging-v1.css?v=20260808-0814" />
+</head>
+<body class="woocommerce-checkout checkout-step-shipping checkout-step-packaging-candidate">
+  <div class="masthead-strip-v1">
+    <div>Volume I · Issue 03 · Spring 2026</div>
+    <div class="center">A Journal of Rooms, Rituals &amp; Quiet Objects</div>
+    <div class="right"><span></span>Free shipping over $80 worldwide</div>
+  </div>
+
+  <header class="site-header-v1">
+    <nav class="primary" aria-label="Primary navigation">
+      <ul>
+        <li><a href="spatial-flow-shop-v1.html" class="current">The Index</a></li>
+        <li><a href="spatial-flow-journal-v1.html">The Journal</a></li>
+        <li><a href="spatial-flow-services-v1.html">Services</a></li>
+        <li><a href="spatial-flow-about-v1.html">About Us</a></li>
+      </ul>
+    </nav>
+
+    <a href="spatial-flow-v1.html" class="wordmark">
+      SPATIAL <em>FLOW</em>
+      <span class="sub">Est. 2026 · Est. in quiet rooms</span>
+    </a>
+
+    <nav class="utilities" aria-label="Utilities">
+      <a href="spatial-flow-search-v1.html">Search</a>
+      <a href="spatial-flow-wishlist-v1.html">Saved</a>
+      <a href="spatial-flow-cart-v1.html" class="bag">Bag <sup>(3)</sup></a>
+    </nav>
+  </header>
+
+  <nav class="woocommerce-breadcrumb" aria-label="Breadcrumb">
+    <a href="spatial-flow-v1.html">Home</a>
+    <span class="sep">/</span>
+    <a href="spatial-flow-cart-v1.html">Your Bag</a>
+    <span class="sep">/</span>
+    <span class="here">Checkout · Shipping</span>
+  </nav>
+
+  <section class="checkout-intro">
+    <div>
+      <div class="checkout-kicker">Secure checkout · Step 02 of 04</div>
+      <h1 class="checkout-title">Choose the <em>journey</em>.</h1>
+    </div>
+
+    <div>
+      <p class="checkout-lede">
+        Select delivery, then decide how the products should be presented inside the parcel. The final amount updates before payment begins.
+      </p>
+
+      <div class="checkout-steps" aria-label="Checkout progress">
+        <a class="checkout-step is-complete" data-step="01" href="spatial-flow-checkout-v1.html">Address</a>
+        <span class="checkout-step is-active" data-step="02">Shipping</span>
+        <span class="checkout-step" data-step="03">Payment</span>
+        <span class="checkout-step" data-step="04">Confirmed</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="checkout-shell">
+    <form class="checkout-main" action="spatial-flow-checkout-payment-v1.html" method="get" data-shipping-form>
+      <section class="checkout-panel">
+        <div class="panel-head">
+          <div class="panel-no">Shipping · 02</div>
+          <h2>How should it <em>travel</em>?</h2>
+        </div>
+        <p class="panel-note">
+          These methods remain static reference examples. The live Checkout will show only rates returned by WooCommerce for the validated address and cart.
+        </p>
+
+        <div class="shipping-options" role="radiogroup" aria-label="Shipping methods">
+          <label class="shipping-option" data-shipping-option data-method="Standard tracked delivery" data-price="0" data-estimate="5–7 business days">
+            <input type="radio" name="shipping_method" value="standard" checked />
+            <span>
+              <strong>Standard tracked delivery</strong>
+              <span>Estimated arrival in 5–7 business days. Tracking is emailed when the order leaves the studio.</span>
+            </span>
+            <span class="price">Free</span>
+          </label>
+
+          <label class="shipping-option" data-shipping-option data-method="Priority tracked delivery" data-price="18" data-estimate="2–4 business days">
+            <input type="radio" name="shipping_method" value="priority" />
+            <span>
+              <strong>Priority tracked delivery</strong>
+              <span>Estimated arrival in 2–4 business days after dispatch, with priority carrier handling.</span>
+            </span>
+            <span class="price">$18.00</span>
+          </label>
+
+          <label class="shipping-option" data-shipping-option data-method="Studio collection" data-price="0" data-estimate="By appointment">
+            <input type="radio" name="shipping_method" value="pickup" />
+            <span>
+              <strong>Studio collection</strong>
+              <span>Reference-only pickup option. The live method remains hidden unless the store genuinely supports collection.</span>
+            </span>
+            <span class="price">Free</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="checkout-panel packaging-panel" aria-labelledby="packaging-heading">
+        <div class="panel-head">
+          <div class="panel-no">Product packaging · Included</div>
+          <h2 id="packaging-heading">How should it be <em>presented</em>?</h2>
+        </div>
+        <p class="panel-note">
+          Product packaging is separate from courier packaging. Products may be presented together or separately while still travelling in the same outer parcel to this address.
+        </p>
+
+        <div class="packaging-boundary-note">
+          Separate product packages do not create separate shipments. This choice controls presentation inside the parcel only.
+        </div>
+
+        <div class="packaging-default-card">
+          <div>
+            <h3>Standard packaging included</h3>
+            <p>By default, compatible items share one quiet, protective product package. A personalized name is available at no extra cost in this candidate.</p>
+            <div class="packaging-price">Included · $0.00</div>
+          </div>
+          <button type="button" class="packaging-customize" data-packaging-customize aria-expanded="false" aria-controls="packaging-workspace">Customize packaging</button>
+        </div>
+
+        <div class="packaging-workspace" id="packaging-workspace" data-packaging-workspace>
+          <div class="packaging-workspace-head">
+            <div>
+              <h3>Build your product packages.</h3>
+              <p>Create as many product packages as needed, assign each purchased item to a package, then choose Standard or Gift presentation independently for every package.</p>
+            </div>
+            <button type="button" class="packaging-add-group" data-packaging-add-group>+ Add product package</button>
+          </div>
+
+          <div class="packaging-groups" data-packaging-groups></div>
+
+          <p class="packaging-plan-note">
+            Gift Packaging is charged per physical gift package in this candidate. One gift package containing two products is one fee; two separate gift packages are two fees.
+          </p>
+        </div>
+      </section>
+
+      <div class="checkout-actions">
+        <a class="checkout-button checkout-button--secondary" href="spatial-flow-checkout-v1.html">← Back to Address</a>
+        <button class="checkout-button checkout-button--primary" type="submit">Continue to Payment →</button>
+      </div>
+
+      <p class="prototype-note">
+        Packaging groups on this page are a static interaction candidate. The live implementation will store grouping, fees and messages in WooCommerce-owned checkout/order data before Payment.
+      </p>
+    </form>
+
+    <aside class="checkout-side" aria-label="Checkout context and order summary">
+      <section class="context-card" aria-label="Delivery and contact confirmation">
+        <div class="context-card__head">
+          <h3>Before it <em>leaves</em>.</h3>
+          <a class="context-card__edit" href="spatial-flow-checkout-v1.html">Edit address →</a>
+        </div>
+
+        <div class="context-card__grid">
+          <section class="context-card__address context-section">
+            <div class="context-section__head"><span class="context-label">Deliver to</span></div>
+            <div class="context-value" data-address-output>Alex Morgan
+123 Quiet Way, Apt 4B
+Brooklyn, NY 11201
+United States</div>
+          </section>
+
+          <div class="context-card__secondary">
+            <section class="context-section">
+              <div class="context-section__head"><span class="context-label">Contact</span></div>
+              <div class="context-value"><span data-contact-email>alex@morgan.com</span><br /><span data-contact-phone>+1 (917) 555-0192</span></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="order-summary" aria-label="Order summary">
+        <div class="order-summary-head">
+          <h3>Order summary</h3>
+          <a href="spatial-flow-cart-v1.html">Edit bag →</a>
+        </div>
+
+        <div class="summary-items">
+          <article class="summary-item" data-packaging-source-item data-item-key="ash-quartz" data-item-name="Ash Quartz · No. 07" data-item-meta="Bracelet · Size M · Qty 1">
+            <div class="summary-thumb"></div>
+            <div class="summary-copy">
+              <h4>Ash Quartz · No. 07</h4>
+              <div class="meta">Bracelet · Size M · Qty 1</div>
+            </div>
+            <div class="summary-price">$42.00</div>
+          </article>
+
+          <article class="summary-item" data-packaging-source-item data-item-key="bluestone-mala" data-item-name="Bluestone Mala" data-item-meta="Bracelet · Size S · Qty 1">
+            <div class="summary-thumb th-2"></div>
+            <div class="summary-copy">
+              <h4>Bluestone Mala</h4>
+              <div class="meta">Bracelet · Size S · Qty 1</div>
+            </div>
+            <div class="summary-price">$42.00</div>
+          </article>
+
+          <article class="summary-item" data-packaging-source-item data-item-key="tussore-throw" data-item-name="Tussore Throw — Clay" data-item-meta="Textile · One size · Qty 1">
+            <div class="summary-thumb th-3"></div>
+            <div class="summary-copy">
+              <h4>Tussore Throw — Clay</h4>
+              <div class="meta">Textile · One size · Qty 1</div>
+            </div>
+            <div class="summary-price">$245.00</div>
+          </article>
+        </div>
+
+        <div class="summary-totals">
+          <div class="summary-row"><span class="label">Subtotal</span><span class="value">$329.00</span></div>
+          <div class="summary-row"><span class="label">Shipping preview</span><span class="value" data-shipping-value>Free</span></div>
+          <div class="summary-row packaging-summary-row" data-packaging-summary-row><span class="label">Gift packaging</span><span class="value" data-packaging-summary-value>Included</span></div>
+          <div class="summary-row"><span class="label">Tax</span><span class="value">Calculated later</span></div>
+          <div class="summary-row total"><span class="label">Estimated total</span><span class="value" data-total-value>$329.00</span></div>
+        </div>
+
+        <p class="summary-note">
+          Shipping and gift-packaging charges are previews on this static candidate. The live totals will remain server-calculated by WooCommerce.
+        </p>
+
+        <div class="summary-trust">
+          <div>No payment is attempted in Step 02</div>
+          <div>Shipping remains WooCommerce-controlled</div>
+          <div>Product packaging does not alter shipment consolidation</div>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="site-footer-v1">
+    <div class="brand-mark">
+      SPATIAL <em>FLOW</em>
+      <span class="sub">A Journal of Rooms, Rituals &amp; Quiet Objects · Est. 2026</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="spatial-flow-v1.html">Home</a>
+      <a href="spatial-flow-shop-v1.html">Shop</a>
+      <a href="spatial-flow-cart-v1.html">Your Bag</a>
+      <a href="spatial-flow-faq-v1.html">FAQ</a>
+      <a href="spatial-flow-contact-v1.html">Contact</a>
+    </nav>
+  </footer>
+
+  <div class="checkout-notice" role="status" aria-live="polite" data-checkout-notice></div>
+  <script src="spatial-flow-checkout-flow-v1.js"></script>
+  <script src="spatial-flow-checkout-packaging-v1.js?v=20260808-0814"></script>
+</body>
+</html>
