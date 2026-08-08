@@ -37,31 +37,77 @@ preview/spatial-flow-checkout-packaging-v1.css
 preview/spatial-flow-checkout-packaging-v1.js
 ```
 
+## Candidate revision 1 · user visual feedback
+
+The first candidate made Standard Packaging visible by default but hid Gift Packaging behind `Customize packaging`.
+
+The user explicitly rejected that presentation and required:
+
+```text
+Standard Packaging and Gift Packaging must both be visible directly in Step 02.
+The customer should immediately understand that two packaging tiers exist.
+Grouping is an advanced customization, not the gate for discovering Gift Packaging.
+```
+
+Therefore the candidate was revised on 2026-08-08.
+
+The new hierarchy is:
+
+```text
+Product Packaging
+
+[ Standard Packaging · $0.00 ]
+[ Gift Packaging · +$9.00 ]
+
+selected tier metadata
+- Standard -> optional personalized name
+- Gift -> optional gift card message
+
+Need different packaging for different products?
+[ Customize product groups ]
+```
+
+The two packaging tiers are now first-class, immediately visible choices.
+
+`Customize product groups` remains available only for orders where different purchased units need different presentation or separate product packages.
+
 ## Candidate behavior
 
 The candidate keeps Shipping as Step 02 and inserts Product Packaging after the shipping-method block and before the existing Continue to Payment action.
 
-Default path stays lightweight:
+Default flow:
 
 ```text
-Standard packaging included
-Compatible products share one product package by default
-Personalized name is available by default
-[ Customize packaging ]
+1. customer sees Standard and Gift side by side on desktop
+2. Standard is selected initially
+3. selecting Gift immediately changes the visible metadata field to Gift card message
+4. Gift fee is reflected in the static Order Summary preview
+5. customer may continue without entering the advanced grouping editor
 ```
 
-The advanced workspace appears only when the user chooses to customize packaging.
+Advanced flow:
+
+```text
+Customize product groups
+-> package-group editor opens
+-> create multiple Product Packaging Groups
+-> assign purchased products to groups
+-> choose Standard or Gift independently per group
+-> each Gift group owns its own gift message
+```
 
 The candidate supports:
 
 ```text
+- Standard tier visible immediately
+- Gift tier visible immediately
+- Standard tier = free
+- Standard tier = personalized-name input enabled by default in this candidate
+- Gift tier = provisional $9.00 fee per non-empty Gift Packaging Group
+- Gift tier = independent gift-card message
 - create multiple Product Packaging Groups
 - assign different purchased products to different product packages
 - choose Standard or Gift independently per package
-- Standard tier = free
-- Standard tier = personalized-name input enabled in this candidate
-- Gift tier = provisional $9.00 fee per non-empty Gift Packaging Group
-- Gift tier = independent gift-card message per package
 - multiple product packages can remain inside one courier / transport parcel
 - Order Summary preview updates Gift Packaging fees and estimated total
 - candidate state is persisted in the existing static checkout sessionStorage prototype state
@@ -118,29 +164,35 @@ Review at least desktop and mobile widths and check:
 A. Placement
 - Product Packaging belongs naturally after Shipping and before Continue to Payment
 
-B. Default simplicity
-- ordinary customer sees Standard packaging included without being forced into a complex editor
-- Customize packaging is understandable
+B. Tier visibility
+- Standard and Gift are both visible without opening another control
+- their free/paid distinction is immediately understandable
+- selected state is clear but not visually heavy
 
-C. Terminology
+C. Default simplicity
+- ordinary customer can choose Standard or Gift and continue without opening grouping
+- grouping feels secondary rather than mandatory
+
+D. Terminology
 - product packaging is not confused with courier / transport packaging
 
-D. Grouping interaction
+E. Metadata
+- Standard personalized name feels correctly placed
+- Gift card message appears when Gift is selected
+
+F. Grouping interaction
+- Customize product groups is understandable
 - Add product package is understandable
 - item assignment between Package 01 / 02 / ... is understandable
 - package grouping feels flexible enough for multiple gifts / mixed standard + gift orders
 
-E. Packaging tiers
-- Standard vs Gift choice is clear
-- personalized name on Standard feels correctly placed
-- Gift message belongs to the correct Gift package
-
-F. Fee semantics
+G. Fee semantics
 - one non-empty Gift package = one provisional $9 fee
 - multiple non-empty Gift packages = multiple fees
 - Summary change is understandable
 
-G. Mobile
+H. Mobile
+- Standard and Gift stack cleanly
 - no horizontal overflow
 - package controls remain usable
 - checkout actions remain reachable
@@ -150,11 +202,12 @@ G. Mobile
 
 ```text
 Product Packaging specification: provisional accepted
-Static candidate: CREATED
+Static candidate: REVISED AFTER USER FEEDBACK
+Standard/Gift direct visibility: IMPLEMENTED IN CANDIDATE
 User visual/interaction acceptance: PENDING
 Live SAFE5/Woo implementation: NOT STARTED
 Batch 6: PAUSED
 Checkout: Not done
 ```
 
-Only after the candidate is accepted should the live implementation unit be constructed against the latest verified four-file SAFE5 baseline.
+Only after the revised candidate is accepted should the live implementation unit be constructed against the latest verified four-file SAFE5 baseline.
