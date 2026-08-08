@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="spatial-flow-checkout-flow-v1.css" />
   <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css" />
   <link rel="stylesheet" href="spatial-flow-checkout-mobile-commerce-v1.css?v=20260731-0657" />
-  <link rel="stylesheet" href="spatial-flow-checkout-packaging-v1.css?v=20260808-0814" />
+  <link rel="stylesheet" href="spatial-flow-checkout-packaging-v1.css?v=20260808-0852" />
 </head>
 <body class="woocommerce-checkout checkout-step-shipping checkout-step-packaging-candidate">
   <div class="masthead-strip-v1">
@@ -112,32 +112,66 @@
       </section>
 
       <section class="checkout-panel packaging-panel" aria-labelledby="packaging-heading">
-        <div class="panel-head">
-          <div class="panel-no">Product packaging · Included</div>
-          <h2 id="packaging-heading">How should it be <em>presented</em>?</h2>
+        <div class="panel-head packaging-panel__head">
+          <div>
+            <div class="panel-no">Product packaging · 02B</div>
+            <h2 id="packaging-heading">How should it be <em>presented</em>?</h2>
+          </div>
+          <p class="packaging-panel__intro">Choose the presentation first. If this order needs different packaging for different products, you can customize the package groups below.</p>
         </div>
-        <p class="panel-note">
-          Product packaging is separate from courier packaging. Products may be presented together or separately while still travelling in the same outer parcel to this address.
-        </p>
 
         <div class="packaging-boundary-note">
-          Separate product packages do not create separate shipments. This choice controls presentation inside the parcel only.
+          Product packaging is separate from courier packaging. Separate product packages may still travel together in the same outer parcel to this address.
         </div>
 
-        <div class="packaging-default-card">
+        <div class="packaging-primary-options" role="radiogroup" aria-label="Product packaging choice">
+          <label class="packaging-primary-option" data-packaging-primary-card="standard">
+            <input type="radio" name="primary_packaging_tier" value="standard" data-packaging-primary-tier checked />
+            <span class="packaging-primary-option__top">
+              <span class="packaging-primary-option__eyebrow">Included</span>
+              <strong>Standard Packaging</strong>
+              <span class="packaging-primary-option__price">$0.00</span>
+            </span>
+            <span class="packaging-primary-option__copy">Quiet, protective product presentation for everyday orders.</span>
+            <span class="packaging-primary-option__feature">Personalized name available · included</span>
+          </label>
+
+          <label class="packaging-primary-option packaging-primary-option--gift" data-packaging-primary-card="gift">
+            <input type="radio" name="primary_packaging_tier" value="gift" data-packaging-primary-tier />
+            <span class="packaging-primary-option__top">
+              <span class="packaging-primary-option__eyebrow">Gift-ready</span>
+              <strong>Gift Packaging</strong>
+              <span class="packaging-primary-option__price">+$9.00</span>
+            </span>
+            <span class="packaging-primary-option__copy">A more refined presentation intended for gifting.</span>
+            <span class="packaging-primary-option__feature">Gift card message available · included</span>
+          </label>
+        </div>
+
+        <div class="packaging-primary-detail" data-packaging-primary-detail>
+          <label class="packaging-primary-meta" data-standard-primary-meta>
+            <span>Personalized name <em>optional</em></span>
+            <input maxlength="24" data-primary-personalized-name placeholder="Name for this product package" />
+          </label>
+          <label class="packaging-primary-meta" data-gift-primary-meta hidden>
+            <span>Gift card message <em>optional</em></span>
+            <textarea maxlength="240" data-primary-gift-message placeholder="Write the message to include with this gift."></textarea>
+          </label>
+        </div>
+
+        <div class="packaging-group-entry">
           <div>
-            <h3>Standard packaging included</h3>
-            <p>By default, compatible items share one quiet, protective product package. A personalized name is available at no extra cost in this candidate.</p>
-            <div class="packaging-price">Included · $0.00</div>
+            <strong>Need different packaging for different products?</strong>
+            <span>Split this order into product packaging groups without creating separate shipments.</span>
           </div>
-          <button type="button" class="packaging-customize" data-packaging-customize aria-expanded="false" aria-controls="packaging-workspace">Customize packaging</button>
+          <button type="button" class="packaging-customize" data-packaging-customize aria-expanded="false" aria-controls="packaging-workspace">Customize product groups</button>
         </div>
 
         <div class="packaging-workspace" id="packaging-workspace" data-packaging-workspace>
           <div class="packaging-workspace-head">
             <div>
               <h3>Build your product packages.</h3>
-              <p>Create as many product packages as needed, assign each purchased item to a package, then choose Standard or Gift presentation independently for every package.</p>
+              <p>Assign each purchased item to a package, then choose Standard or Gift presentation independently for every package.</p>
             </div>
             <button type="button" class="packaging-add-group" data-packaging-add-group>+ Add product package</button>
           </div>
@@ -257,6 +291,6 @@ United States</div>
 
   <div class="checkout-notice" role="status" aria-live="polite" data-checkout-notice></div>
   <script src="spatial-flow-checkout-flow-v1.js"></script>
-  <script src="spatial-flow-checkout-packaging-v1.js?v=20260808-0814"></script>
+  <script src="spatial-flow-checkout-packaging-v1.js?v=20260808-0852"></script>
 </body>
 </html>
