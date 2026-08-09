@@ -1,7 +1,7 @@
 # Step 4F · Product Packaging · Compact Expandable Candidate
 
 Date: 2026-08-08
-Status: STATIC CANDIDATE · USER ACCEPTANCE PENDING
+Status: ACCEPTED STATIC VISUAL CONTRACT
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Trigger
@@ -15,7 +15,7 @@ The user also clarified two visual preferences that must be preserved:
 - the three grouping modes have useful compactness when presented as three desktop columns
 ```
 
-Therefore this pass is not a business-logic rewrite. It is a density / information-hierarchy revision.
+Therefore this pass was a density / information-hierarchy revision, not a business-logic rewrite.
 
 ## Preserved business logic
 
@@ -36,27 +36,11 @@ Grouping modes:
 Custom grouping is package-centric, not item-to-package-number matrix UX
 ```
 
-## Visual / interaction change
-
-### Before
-
-Every generated Package card permanently exposed most of its controls:
-
-```text
-Package heading
-Standard / Gift controls
-item list
-Change items controls
-name or gift-message field
-```
-
-With multiple packages this produced a very tall page.
-
-### Candidate now
+## Accepted visual / interaction contract
 
 Desktop grouping-mode selection remains three compact columns.
 
-Generated packages now default to compact summary rows:
+Generated packages default to compact summary rows:
 
 ```text
 Package 01
@@ -79,23 +63,50 @@ personalized name OR gift-card message
 remove-empty-package control when applicable
 ```
 
-For `Keep together`, the advanced area no longer duplicates a full Package 01 editor. It displays a short confirmation that the packaging choice above is sufficient.
+For `Keep together`, the advanced area does not duplicate a full Package 01 editor. The packaging choice above remains sufficient.
 
-## Files changed
+Custom grouping stays package-centric:
 
 ```text
+Package -> what is inside it -> Change items / Move here
+```
+
+The rejected interaction must not return:
+
+```text
+Item -> choose Package 01 / 02 / 03 from a persistent assignment matrix
+```
+
+## User acceptance
+
+On 2026-08-08, after reviewing the fixed-commit compact candidate, the user explicitly accepted this version with:
+
+```text
+这个可以
+```
+
+This acceptance closes the static visual-candidate loop for Product Packaging.
+
+The accepted candidate now becomes the visual / interaction reference for the later live SAFE5 implementation, subject only to narrow adaptations required for real WooCommerce data, accessibility, backend editability and server-authoritative totals.
+
+## Files in accepted candidate
+
+```text
+preview/spatial-flow-checkout-packaging-v1.html
 preview/spatial-flow-checkout-packaging-v1.js
 preview/spatial-flow-checkout-packaging-v3.css
 ```
 
-Commits in this pass:
+Relevant compact-pass commits:
 
 ```text
 22df773  Compact packaging groups into expandable package summaries
 996d3d3  Compact packaging candidate visual hierarchy
 ```
 
-## Intentionally NOT changed
+Acceptance-record commit is the commit that updates this document to `ACCEPTED STATIC VISUAL CONTRACT`.
+
+## Intentionally NOT changed yet
 
 ```text
 - original accepted Shipping static reference
@@ -109,45 +120,56 @@ Commits in this pass:
 - Batch 6 live order-chain validation
 ```
 
-## Cache / preview rule
+## Locked live-implementation boundaries
 
-For human review, use a fixed-commit raw.githack URL rather than relying on `main`, because earlier packaging-candidate iterations demonstrated stale asset mixing between HTML and CSS/JS.
-
-## Acceptance focus
-
-User should evaluate:
+The live implementation must preserve:
 
 ```text
-1. Is the advanced section materially shorter when packages are collapsed?
-2. Are the three grouping choices compact enough without becoming unclear?
-3. Can Package 01 / 02 / 03 be understood from their collapsed summaries?
-4. Does Edit make the detailed controls discoverable without cluttering the default view?
-5. In Custom grouping, does moving items remain understandable from the package-centric perspective?
-6. Desktop and mobile should remain usable with no clipping / overflow.
+- WooCommerce/server authority for totals and order truth
+- backend editability
+- no browser-only fake fee or fake success state
+- no new fifth Checkout step
+- Step 02 remains the Product Packaging entry point
+- Step 03 receives the already-finalized payable amount
+- Product Packaging remains separate from courier / transport packaging
+- accepted compact visual hierarchy is the 1:1 reference for this new module
+- live edits must follow the manual anchored replacement and file-size audit policies
 ```
 
 ## Current stop point
 
 ```text
 Product Packaging business model: provisional direction accepted
-Package-centric grouping UX: accepted direction
-Compact expandable visual candidate: awaiting user review
-Real SAFE5 implementation: NOT STARTED for packaging
-Batch 6: PAUSED
+Package-centric grouping UX: ACCEPTED
+Compact expandable visual candidate: ACCEPTED
+Static Product Packaging visual contract: CLOSED
+Real SAFE5 Product Packaging implementation: NOT STARTED
+Batch 6: PAUSED until Product Packaging live implementation + dedicated acceptance
 Step 04 live implementation: remains deferred to its planned later stage
 ```
 
 ## Exact next action
 
+Before touching SAFE5, prepare and record a bounded live Product Packaging implementation plan that identifies:
+
 ```text
-User reviews fixed-commit Compact candidate.
-If rejected: revise static candidate only and record the revision.
-If accepted: mark this visual contract accepted, then prepare the bounded live Product Packaging implementation plan before touching SAFE5.
+1. exact live owners / files
+2. Step 02 insertion point
+3. WooCommerce Session model for grouping / tier / messages
+4. server-calculated gift-packaging fee model
+5. persistence into real WooCommerce order data
+6. backend-editable settings / defaults / price source
+7. Order Summary integration
+8. Step 03 amount propagation
+9. later Step 04 / email readability requirements
+10. manual anchored replacement boundaries, expected size deltas and rollback points
 ```
+
+Only after that plan is reviewed should the live SAFE5 files be modified.
 
 ## Recording-policy note
 
-This step is also governed by root policy:
+This step is governed by:
 
 ```text
 PROJECT2_STEP_RECORDING_POLICY.md
