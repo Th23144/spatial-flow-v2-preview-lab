@@ -4,9 +4,9 @@
    Current package-centric candidate remains untouched on its own preview page.
    This layer only changes the Custom grouping presentation. */
 
-.checkout-step-packaging-candidate .packaging-groups.is-itemcentric-custom > .packaging-custom-manager,
-.checkout-step-packaging-candidate .packaging-groups.is-itemcentric-custom > .packaging-group,
-.checkout-step-packaging-candidate .packaging-groups.is-itemcentric-custom > .packaging-custom-rule {
+.checkout-step-packaging-candidate .packaging-groups.is-itemcentric-custom .packaging-custom-manager,
+.checkout-step-packaging-candidate .packaging-groups.is-itemcentric-custom .packaging-group,
+.checkout-step-packaging-candidate .packaging-groups.is-itemcentric-custom .packaging-custom-rule {
   display: none !important;
 }
 
