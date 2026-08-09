@@ -63,9 +63,9 @@ After only Part A is installed correctly:
 
 ```text
 functions.php
-603,506 bytes
+603,520 bytes
 11,574 logical lines
-SHA256 4cd4623fe705947b23ab3e5a8041920b945d6a1df95e442136e32d8dc037a601
+SHA256 537cec4b7fb1dd72494bab9b656002e151c29110351a205d921d749b33e4c150
 LF
 no final newline
 SPATIAL_FLOW_CHILD_VERSION = 2.7.9
@@ -75,7 +75,7 @@ PHP syntax: passed
 Delta from submitted baseline:
 
 ```text
-+23,432 bytes
++23,446 bytes
 +608 logical lines
 ```
 
