@@ -11,7 +11,6 @@
   }));
 
   let scheduled = false;
-  let observerConnected = false;
 
   const readDraft = () => {
     try {
@@ -36,11 +35,10 @@
   const buildPlan = (state) => {
     const rows = state.groups.map((group) => {
       const members = sourceItems.filter((item) => state.assignments[item.key] === group.id);
-      if (!members.length) return '';
       return `
-        <div class="packaging-custom-plan__row">
+        <div class="packaging-custom-plan__row${members.length ? '' : ' is-empty'}">
           <strong>${packageLabel(state, group.id)}</strong>
-          <span>${members.map((item) => item.name).join(' + ')}</span>
+          <span>${members.length ? members.map((item) => item.name).join(' + ') : '—'}</span>
         </div>
       `;
     }).join('');
@@ -49,13 +47,28 @@
       <div class="packaging-custom-rule">
         <div class="packaging-custom-rule__copy">
           <strong>Build combinations here.</strong>
-          <span>Each item belongs to exactly one product package. Moving an item transfers it from its current package — it is never duplicated.</span>
+          <span>Each item belongs to exactly one product package. Selecting it in another package transfers it there automatically.</span>
         </div>
         <div class="packaging-custom-plan" aria-label="Current custom packaging groups">
-          ${rows || '<div class="packaging-custom-plan__empty">Start by moving an item into a package.</div>'}
+          ${rows}
         </div>
       </div>
     `;
+  };
+
+  const ensureFixedPackageSlots = (state) => {
+    if (!state || state.groupingMode !== 'custom') return false;
+    if (state.groups.length >= sourceItems.length) return false;
+
+    const addButton = groupsHost.querySelector('[data-custom-add-package]');
+    if (!addButton) return false;
+
+    observer.disconnect();
+    addButton.hidden = false;
+    addButton.click();
+    observer.observe(groupsHost, { childList: true, subtree: true });
+    window.setTimeout(scheduleEnhance, 0);
+    return true;
   };
 
   const enhanceCustomManager = (state) => {
@@ -66,7 +79,7 @@
     if (copy) {
       copy.innerHTML = `
         <strong>Custom grouping</strong>
-        <span>Decide which products should share the same product package. Packaging style is chosen after the grouping is clear.</span>
+        <span>Use the package slots below to decide which products stay together. Empty package slots are ignored and never add a fee.</span>
       `;
     }
 
@@ -82,11 +95,32 @@
     }
 
     const addButton = manager.querySelector('[data-custom-add-package]');
-    if (addButton) {
-      const usefulLimitReached = state.groups.length >= sourceItems.length;
-      addButton.hidden = usefulLimitReached;
-      addButton.textContent = '+ Create another group';
-    }
+    if (addButton) addButton.hidden = true;
+  };
+
+  const createAssignmentControl = (state, item, groupId, isHere, row) => {
+    const existing = row.querySelector('.packaging-package-picker__assign');
+    if (existing) existing.remove();
+
+    const label = document.createElement('label');
+    label.className = 'packaging-package-picker__assign';
+    label.title = isHere ? packageLabel(state, groupId) : `Assign to ${packageLabel(state, groupId)}`;
+
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = `custom-assignment-${item.key}`;
+    input.checked = isHere;
+    input.dataset.customAssignItem = item.key;
+    input.dataset.customAssignTarget = groupId;
+    input.setAttribute('aria-label', isHere
+      ? `${item.name} is assigned to ${packageLabel(state, groupId)}`
+      : `Assign ${item.name} to ${packageLabel(state, groupId)}`);
+
+    const mark = document.createElement('span');
+    mark.setAttribute('aria-hidden', 'true');
+
+    label.append(input, mark);
+    row.appendChild(label);
   };
 
   const enhanceExpandedPackage = (state, groupNode) => {
@@ -126,7 +160,7 @@
     if (head) {
       head.innerHTML = `
         <strong>${label} contents</strong>
-        <span>An item can appear in one package only. Moving it here removes it from the package shown beside it.</span>
+        <span>Select a product here to assign it to this package. Its selection disappears from the previous package automatically.</span>
       `;
     }
 
@@ -137,16 +171,14 @@
 
       const currentGroupId = state.assignments[item.key];
       const currentLabel = packageLabel(state, currentGroupId);
-      row.dataset.assignment = currentGroupId === groupId ? 'here' : 'elsewhere';
+      const isHere = currentGroupId === groupId;
+      row.dataset.assignment = isHere ? 'here' : 'elsewhere';
 
       const status = row.querySelector('.packaging-package-picker__status');
-      if (status) status.textContent = `✓ Only in ${label}`;
+      if (status) status.hidden = true;
 
       const move = row.querySelector('[data-move-item][data-target-group]');
-      if (move) {
-        move.textContent = `Move from ${currentLabel} → ${label}`;
-        move.setAttribute('aria-label', `Move ${item.name} from ${currentLabel} to ${label}`);
-      }
+      if (move) move.hidden = true;
 
       const itemCopy = row.querySelector('div');
       if (itemCopy) {
@@ -156,8 +188,24 @@
           owner.className = 'packaging-package-picker__owner';
           itemCopy.appendChild(owner);
         }
-        owner.textContent = currentGroupId === groupId ? `Assigned only to ${label}` : `Currently in ${currentLabel}`;
+        owner.textContent = currentLabel.toUpperCase();
       }
+
+      createAssignmentControl(state, item, groupId, isHere, row);
+    });
+
+    const removeButton = details.querySelector('[data-packaging-remove]');
+    if (removeButton) removeButton.hidden = true;
+  };
+
+  const enhanceSummaries = (state) => {
+    groupsHost.querySelectorAll('.packaging-group').forEach((groupNode) => {
+      const groupId = groupNode.dataset.groupId;
+      if (!groupId) return;
+      const members = sourceItems.filter((item) => state.assignments[item.key] === groupId);
+      if (members.length) return;
+      const summary = groupNode.querySelector('.packaging-group__summary-items span');
+      if (summary) summary.textContent = '—';
     });
   };
 
@@ -166,14 +214,13 @@
     const state = readDraft();
     if (!state || state.groupingMode !== 'custom' || !Array.isArray(state.groups)) return;
 
+    if (ensureFixedPackageSlots(state)) return;
+
     observer.disconnect();
-    observerConnected = false;
-
     enhanceCustomManager(state);
+    enhanceSummaries(state);
     groupsHost.querySelectorAll('.packaging-group').forEach((groupNode) => enhanceExpandedPackage(state, groupNode));
-
     observer.observe(groupsHost, { childList: true, subtree: true });
-    observerConnected = true;
   };
 
   const scheduleEnhance = () => {
@@ -184,12 +231,10 @@
 
   const observer = new MutationObserver(scheduleEnhance);
   observer.observe(groupsHost, { childList: true, subtree: true });
-  observerConnected = true;
 
-  // When the user switches directly from Separate to Custom, do not inherit the
-  // already-separated three-package state. Route through Together first so the
-  // main Packaging controller creates Custom from its intended baseline:
-  // Package 01 contains all items, Package 02 starts empty and open for grouping.
+  // Custom is a different grouping model from Separate. When entering Custom
+  // from a fully separated state, route through Together first so Package 01
+  // starts with all items and the remaining fixed package slots start empty.
   groupsHost.addEventListener('click', (event) => {
     const modeButton = event.target.closest('[data-grouping-mode="custom"]');
     if (!modeButton) return;
@@ -206,6 +251,26 @@
     const freshCustomButton = groupsHost.querySelector('[data-grouping-mode="custom"]');
     freshCustomButton?.click();
   }, true);
+
+  // The visible radio selector is only a clearer front end for the main
+  // Packaging controller. Selecting an item in another package triggers the
+  // existing authoritative move action, so one item can never exist in two
+  // product packages at the same time.
+  groupsHost.addEventListener('change', (event) => {
+    const assignment = event.target.closest('[data-custom-assign-item][data-custom-assign-target]');
+    if (!assignment || !assignment.checked) return;
+
+    const draft = readDraft();
+    if (!draft) return;
+
+    const itemKey = assignment.dataset.customAssignItem;
+    const targetGroup = assignment.dataset.customAssignTarget;
+    if (draft.assignments?.[itemKey] === targetGroup) return;
+
+    const row = assignment.closest('.packaging-package-picker__row');
+    const move = row?.querySelector(`[data-move-item="${itemKey}"][data-target-group="${targetGroup}"]`);
+    if (move) move.click();
+  });
 
   groupsHost.addEventListener('click', () => window.setTimeout(scheduleEnhance, 0));
   groupsHost.addEventListener('change', () => window.setTimeout(scheduleEnhance, 0));
