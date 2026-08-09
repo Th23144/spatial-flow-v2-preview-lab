@@ -1,0 +1,267 @@
+@import url("./spatial-flow-checkout-packaging-v3.css?v=20260808-compact-accepted");
+
+/* Step 4F Product Packaging · mobile refinement candidate.
+   Desktop inherits the accepted compact v3 contract unchanged.
+   Mobile keeps the same hierarchy while reducing stacked-form feel. */
+
+@media (max-width: 760px) {
+  .checkout-step-packaging-candidate .packaging-workspace {
+    margin-top: 16px !important;
+    padding-top: 16px !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-workspace-head {
+    margin-bottom: 13px !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-workspace-head h3 {
+    font-size: 22px !important;
+    line-height: 1.08;
+  }
+
+  .checkout-step-packaging-candidate .packaging-workspace-head p {
+    margin-top: 4px !important;
+    font-size: 9px !important;
+    line-height: 1.5 !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-controls {
+    margin-bottom: 14px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-intro {
+    display: block;
+    margin-bottom: 9px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-intro strong {
+    font-size: 17px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-intro span {
+    margin-top: 3px;
+    font-size: 8px;
+    line-height: 1.45;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-modes {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-mode {
+    min-height: 78px !important;
+    padding: 29px 7px 9px !important;
+    gap: 3px;
+    text-align: center;
+    -webkit-tap-highlight-color: rgba(168, 116, 92, .10);
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-mode::before {
+    top: 9px;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    transform: translateX(-50%);
+    border-color: var(--line);
+    background: var(--paper);
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-mode.is-selected {
+    border-color: var(--ink) !important;
+    background: rgba(168, 116, 92, .045) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-mode.is-selected::before {
+    border-color: var(--clay);
+    background: var(--clay);
+    box-shadow: inset 0 0 0 2px var(--paper);
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-mode__title {
+    font-size: 13px;
+    line-height: 1.12;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-mode__meta {
+    color: var(--clay);
+    font-size: 6.5px;
+    line-height: 1.2;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-mode__copy {
+    display: none;
+  }
+
+  .checkout-step-packaging-candidate .packaging-groups {
+    gap: 7px !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group {
+    background: rgba(250, 247, 243, .28) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group.is-expanded {
+    border-color: var(--ink) !important;
+    background: rgba(250, 247, 243, .58) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group.is-gift {
+    border-color: rgba(168, 116, 92, .72) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group__summary {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 5px 10px;
+    min-height: 0;
+    padding: 10px 11px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group__summary-id strong {
+    margin-top: 2px;
+    font-size: 18px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group__summary-items {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group__summary-items span {
+    font-size: 13px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group__summary-items small {
+    margin-top: 2px;
+    font-size: 6.5px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group__summary-tier {
+    display: none;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group__edit {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 54px;
+    min-height: 30px;
+    padding: 0 8px;
+    -webkit-tap-highlight-color: rgba(168, 116, 92, .10);
+  }
+
+  .checkout-step-packaging-candidate .packaging-group__edit[aria-expanded="true"] {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-switch {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-option {
+    min-width: 0;
+    gap: 7px;
+    padding: 10px 10px !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-option + .packaging-tier-option {
+    border-top: 0 !important;
+    border-left: 1px solid var(--line-soft) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-option input {
+    margin-top: 2px;
+    accent-color: var(--ink);
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-option:last-child input {
+    accent-color: var(--clay);
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-option strong {
+    font-size: 14px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-option span span {
+    font-size: 8px;
+    line-height: 1.35;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__head {
+    display: block;
+    padding: 10px 11px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__head strong {
+    font-size: 14px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__head span {
+    margin-top: 3px;
+    font-size: 8px;
+    line-height: 1.4;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 9px 11px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__row strong {
+    font-size: 13px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__move,
+  .checkout-step-packaging-candidate .packaging-package-picker__status {
+    justify-self: end;
+    white-space: nowrap;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__move {
+    min-height: 28px;
+    padding: 0 8px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-meta {
+    padding: 11px 11px 12px !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-meta input,
+  .checkout-step-packaging-candidate .packaging-meta textarea {
+    margin-top: 6px;
+    padding: 9px 10px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-meta textarea {
+    min-height: 62px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-plan-note {
+    margin-top: 11px !important;
+    padding-top: 10px !important;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 390px) {
+  .checkout-step-packaging-candidate .packaging-grouping-mode {
+    min-height: 74px !important;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-mode__title {
+    font-size: 12px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-option {
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-option span span {
+    font-size: 7.5px;
+  }
+}
