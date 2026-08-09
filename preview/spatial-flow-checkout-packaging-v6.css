@@ -1,0 +1,227 @@
+@import url("./spatial-flow-checkout-packaging-v5.css?v=20260808-mobile-inline");
+
+/* Step 4F Product Packaging · Custom grouping clarity candidate.
+   Keeps accepted desktop/mobile base and makes Custom structurally distinct from Separate. */
+
+.checkout-step-packaging-candidate .packaging-custom-manager {
+  margin-bottom: 8px;
+  border-color: rgba(168, 116, 92, .42);
+  background: rgba(168, 116, 92, .045);
+}
+
+.checkout-step-packaging-candidate .packaging-custom-manager strong {
+  color: var(--ink);
+}
+
+.checkout-step-packaging-candidate .packaging-custom-manager span {
+  max-width: 70ch;
+}
+
+.checkout-step-packaging-candidate .packaging-custom-rule {
+  margin: 0 0 12px;
+  padding: 13px 14px;
+  border: 1px solid var(--line-soft);
+  border-left: 3px solid var(--clay);
+  background: rgba(250, 247, 243, .5);
+}
+
+.checkout-step-packaging-candidate .packaging-custom-rule__copy strong,
+.checkout-step-packaging-candidate .packaging-custom-rule__copy span {
+  display: block;
+}
+
+.checkout-step-packaging-candidate .packaging-custom-rule__copy strong {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.checkout-step-packaging-candidate .packaging-custom-rule__copy span {
+  margin-top: 3px;
+  color: var(--soft);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.checkout-step-packaging-candidate .packaging-custom-plan {
+  display: grid;
+  gap: 6px;
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.checkout-step-packaging-candidate .packaging-custom-plan__row {
+  display: grid;
+  grid-template-columns: 105px minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+}
+
+.checkout-step-packaging-candidate .packaging-custom-plan__row strong {
+  color: var(--clay);
+  font-family: var(--mono);
+  font-size: 7px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.checkout-step-packaging-candidate .packaging-custom-plan__row span {
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-group__summary-items span {
+  white-space: normal;
+}
+
+.checkout-step-packaging-candidate .packaging-group.is-custom-group.is-expanded {
+  border-color: var(--clay) !important;
+}
+
+.checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-group__details {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-step-packaging-candidate .packaging-custom-step {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 9px;
+  align-items: baseline;
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid var(--line-soft);
+  background: rgba(168, 116, 92, .028);
+}
+
+.checkout-step-packaging-candidate .packaging-custom-step span {
+  color: var(--clay);
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: .12em;
+}
+
+.checkout-step-packaging-candidate .packaging-custom-step strong {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-package-picker {
+  border-left: 3px solid rgba(168, 116, 92, .62);
+  background: rgba(250, 247, 243, .82);
+}
+
+.checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-package-picker__head {
+  background: rgba(168, 116, 92, .035);
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="here"] {
+  background: rgba(168, 116, 92, .035);
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="elsewhere"] {
+  background: rgba(250, 247, 243, .65);
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__owner {
+  margin-top: 3px !important;
+  color: var(--clay) !important;
+  font-family: var(--mono) !important;
+  font-size: 6.5px !important;
+  letter-spacing: .06em !important;
+  text-transform: uppercase !important;
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__status {
+  color: var(--clay);
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__move {
+  min-width: 178px;
+  border-color: rgba(168, 116, 92, .55);
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__move:hover {
+  border-color: var(--clay);
+  background: var(--clay);
+  color: var(--paper);
+}
+
+.checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-tier-switch {
+  border-top: 0 !important;
+}
+
+@media (max-width: 760px) {
+  .checkout-step-packaging-candidate .packaging-custom-manager {
+    padding: 11px 12px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-manager__add {
+    margin-top: 7px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-rule {
+    margin-bottom: 9px;
+    padding: 11px 11px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-rule__copy strong {
+    font-size: 15px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-rule__copy span {
+    font-size: 8px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-plan__row {
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-plan__row span {
+    font-size: 12px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-step {
+    padding: 9px 10px 7px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-step strong {
+    font-size: 14px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-package-picker__head {
+    padding: 9px 10px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-package-picker__row {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 9px 10px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__move,
+  .checkout-step-packaging-candidate .packaging-package-picker__status {
+    justify-self: stretch;
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__move {
+    min-height: 31px;
+    padding: 0 9px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__status {
+    padding: 7px 9px;
+    border: 1px solid rgba(168, 116, 92, .28);
+    background: rgba(168, 116, 92, .035);
+  }
+}
