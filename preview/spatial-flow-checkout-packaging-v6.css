@@ -257,3 +257,42 @@
     height: 34px;
   }
 }
+
+/* Mobile commerce selected-state parity.
+   Mirrors the exact Shipping selected-surface language so Packaging choices
+   read as active storefront controls rather than flat informational cards. */
+@media (max-width: 720px) {
+  .checkout-step-packaging-candidate .packaging-primary-option:has([data-packaging-primary-tier]:checked),
+  .checkout-step-packaging-candidate .packaging-grouping-mode.is-selected {
+    border-color: var(--stone) !important;
+    background: linear-gradient(90deg, rgba(74, 93, 90, .12), var(--paper) 46%) !important;
+    box-shadow: 0 5px 14px rgba(74, 93, 90, .08) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-mode.is-selected::before {
+    border-color: var(--clay) !important;
+    background: var(--clay) !important;
+    box-shadow: inset 0 0 0 2px var(--paper) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-tier-option:has(input:checked) {
+    background: linear-gradient(90deg, rgba(74, 93, 90, .12), var(--paper) 46%) !important;
+    box-shadow: inset 0 0 0 1px rgba(74, 93, 90, .14), 0 4px 12px rgba(74, 93, 90, .06) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="here"] {
+    background: linear-gradient(90deg, rgba(74, 93, 90, .12), var(--paper) 46%) !important;
+    box-shadow: inset 0 0 0 1px rgba(74, 93, 90, .12) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="elsewhere"] {
+    background: var(--paper) !important;
+    box-shadow: none !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="here"] .packaging-package-picker__assign {
+    border-color: var(--stone) !important;
+    background: rgba(74, 93, 90, .055) !important;
+    box-shadow: 0 3px 10px rgba(74, 93, 90, .07) !important;
+  }
+}
