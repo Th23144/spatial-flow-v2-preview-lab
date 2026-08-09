@@ -17,6 +17,11 @@
   max-width: 70ch;
 }
 
+.checkout-step-packaging-candidate .packaging-custom-manager__add,
+.checkout-step-packaging-candidate .packaging-remove-group {
+  display: none !important;
+}
+
 .checkout-step-packaging-candidate .packaging-custom-rule {
   margin: 0 0 12px;
   padding: 13px 14px;
@@ -74,6 +79,10 @@
   line-height: 1.35;
 }
 
+.checkout-step-packaging-candidate .packaging-custom-plan__row.is-empty span {
+  color: var(--faint);
+}
+
 .checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-group__summary-items span {
   white-space: normal;
 }
@@ -120,7 +129,7 @@
 }
 
 .checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="here"] {
-  background: rgba(168, 116, 92, .035);
+  background: rgba(168, 116, 92, .045);
 }
 
 .checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="elsewhere"] {
@@ -136,21 +145,61 @@
   text-transform: uppercase !important;
 }
 
-.checkout-step-packaging-candidate .packaging-package-picker__status {
-  color: var(--clay);
-}
-
+/* The old Move/Status controls remain in the DOM only as the authoritative
+   action hook for the base Packaging controller. They are no longer shown. */
+.checkout-step-packaging-candidate .packaging-package-picker__status,
 .checkout-step-packaging-candidate .packaging-package-picker__move {
-  min-width: 178px;
-  border-color: rgba(168, 116, 92, .55);
-  color: var(--ink);
-  white-space: nowrap;
+  display: none !important;
 }
 
-.checkout-step-packaging-candidate .packaging-package-picker__move:hover {
+/* Customer-facing assignment selector. Each product has one authoritative
+   assignment; choosing it in another package transfers the selection. */
+.checkout-step-packaging-candidate .packaging-package-picker__assign {
+  position: relative;
+  display: grid;
+  place-items: center;
+  justify-self: end;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(168, 116, 92, .10);
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__assign:hover {
+  border-color: var(--clay);
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__assign input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__assign span {
+  width: 13px;
+  height: 13px;
+  border: 1px solid var(--faint);
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__assign input:checked + span {
   border-color: var(--clay);
   background: var(--clay);
-  color: var(--paper);
+  box-shadow: inset 0 0 0 3px var(--paper);
+}
+
+.checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="here"] .packaging-package-picker__assign {
+  border-color: rgba(168, 116, 92, .48);
+  background: rgba(168, 116, 92, .045);
 }
 
 .checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-tier-switch {
@@ -160,10 +209,6 @@
 @media (max-width: 760px) {
   .checkout-step-packaging-candidate .packaging-custom-manager {
     padding: 11px 12px;
-  }
-
-  .checkout-step-packaging-candidate .packaging-custom-manager__add {
-    margin-top: 7px;
   }
 
   .checkout-step-packaging-candidate .packaging-custom-rule {
@@ -201,27 +246,14 @@
   }
 
   .checkout-step-packaging-candidate .packaging-group.is-custom-group .packaging-package-picker__row {
-    grid-template-columns: 1fr;
-    gap: 7px;
+    grid-template-columns: minmax(0, 1fr) 38px;
+    gap: 8px;
+    align-items: center;
     padding: 9px 10px;
   }
 
-  .checkout-step-packaging-candidate .packaging-package-picker__move,
-  .checkout-step-packaging-candidate .packaging-package-picker__status {
-    justify-self: stretch;
-    width: 100%;
-    min-width: 0;
-    text-align: left;
-  }
-
-  .checkout-step-packaging-candidate .packaging-package-picker__move {
-    min-height: 31px;
-    padding: 0 9px;
-  }
-
-  .checkout-step-packaging-candidate .packaging-package-picker__status {
-    padding: 7px 9px;
-    border: 1px solid rgba(168, 116, 92, .28);
-    background: rgba(168, 116, 92, .035);
+  .checkout-step-packaging-candidate .packaging-package-picker__assign {
+    width: 34px;
+    height: 34px;
   }
 }
