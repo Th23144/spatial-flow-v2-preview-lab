@@ -1,0 +1,218 @@
+@import url("./spatial-flow-checkout-packaging-v8-itemcentric.css?v=20260809-itemcentric-ab");
+
+/* Step 4F Product Packaging · Item-centric B2 refinement.
+   Visual-density pass only. Assignment, package-slot, tier and fee logic stay unchanged. */
+
+.checkout-step-packaging-candidate .packaging-itemcentric__intro {
+  padding: 12px 13px;
+}
+
+.checkout-step-packaging-candidate .packaging-itemcentric__item,
+.checkout-step-packaging-candidate .packaging-itemcentric__head {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.checkout-step-packaging-candidate .packaging-itemcentric__slot,
+.checkout-step-packaging-candidate .packaging-itemcentric__tier button,
+.checkout-step-packaging-candidate .packaging-itemcentric__details-toggle {
+  transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+.checkout-step-packaging-candidate .packaging-itemcentric__slot.is-selected {
+  box-shadow: inset 0 0 0 1px rgba(74, 93, 90, .08), 0 4px 11px rgba(74, 93, 90, .07);
+}
+
+.checkout-step-packaging-candidate .packaging-itemcentric__package-summary {
+  min-height: 54px;
+}
+
+.checkout-step-packaging-candidate .packaging-itemcentric__members strong {
+  line-height: 1.28;
+}
+
+@media (max-width: 760px) {
+  .checkout-step-packaging-candidate .packaging-itemcentric {
+    gap: 9px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__intro {
+    padding: 9px 10px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__intro strong {
+    font-size: 15px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__intro span {
+    margin-top: 2px;
+    font-size: 8px;
+    line-height: 1.42;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__head {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 10px;
+    align-items: baseline;
+    padding: 8px 9px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__head strong {
+    font-size: 13px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__head span {
+    margin: 0;
+    font-size: 7.5px;
+    line-height: 1.35;
+    text-align: right;
+  }
+
+  /* Main B2 change: keep each item's package selector on the same row. */
+  .checkout-step-packaging-candidate .packaging-itemcentric__item {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 9px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__item-copy {
+    min-width: 0;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__item-copy strong {
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__item-copy span {
+    overflow: hidden;
+    margin-top: 2px;
+    max-width: 100%;
+    font-size: 6.5px;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__slots {
+    display: grid;
+    grid-template-columns: repeat(3, 34px);
+    gap: 4px;
+    flex: none;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__slot {
+    width: 34px;
+    min-width: 34px;
+    min-height: 31px;
+    padding: 0;
+    font-size: 7px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__packages {
+    gap: 6px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__packages-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 1px 0 2px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__packages-head strong {
+    font-size: 15px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__packages-head span {
+    max-width: 46%;
+    font-size: 7.5px;
+    line-height: 1.35;
+    text-align: right;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__package-summary {
+    grid-template-columns: minmax(72px, .55fr) minmax(0, 1.35fr) auto;
+    gap: 6px 8px;
+    min-height: 0;
+    padding: 8px 9px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__package-id span {
+    font-size: 6px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__package-id strong {
+    margin-top: 1px;
+    font-size: 14px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__members strong {
+    font-size: 11.5px;
+    line-height: 1.22;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__members span {
+    margin-top: 1px;
+    font-size: 6px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__details-toggle {
+    min-width: 48px;
+    min-height: 28px;
+    padding: 0 6px;
+    font-size: 6.5px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__tier {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    gap: 4px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__tier button {
+    min-height: 28px;
+    padding: 0 7px;
+    font-size: 6.5px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__details {
+    padding: 8px 9px 9px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__details input,
+  .checkout-step-packaging-candidate .packaging-itemcentric__details textarea {
+    margin-top: 5px;
+    padding: 8px 9px;
+    font-size: 10px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__details textarea {
+    min-height: 60px;
+  }
+}
+
+@media (max-width: 390px) {
+  .checkout-step-packaging-candidate .packaging-itemcentric__item-copy strong {
+    font-size: 12.5px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__slots {
+    grid-template-columns: repeat(3, 32px);
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__slot {
+    width: 32px;
+    min-width: 32px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-itemcentric__packages-head span {
+    display: none;
+  }
+}
