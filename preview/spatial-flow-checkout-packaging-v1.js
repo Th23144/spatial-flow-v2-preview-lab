@@ -4,6 +4,7 @@
   const STORAGE_KEY = 'spatialFlowCheckoutPrototype';
   const GIFT_FEE = 9;
   const SUBTOTAL = 329;
+  const mobileInlineQuery = window.matchMedia('(max-width: 760px)');
 
   const readState = () => {
     try {
@@ -92,7 +93,6 @@
 
     state.groupingMode = inferGroupingMode();
     state.customized = state.groupingMode !== 'together';
-
     if (expandedGroupId && !validIds.has(expandedGroupId)) expandedGroupId = null;
   };
 
@@ -242,29 +242,38 @@
     const count = items.length;
     const wrapper = document.createElement('section');
     wrapper.className = 'packaging-grouping-controls';
+
+    const optionMarkup = (id, title, meta, copy) => {
+      const button = `
+        <button type="button" class="packaging-grouping-mode${mode === id ? ' is-selected' : ''}" data-grouping-mode="${id}">
+          <span class="packaging-grouping-mode__title">${title}</span>
+          <span class="packaging-grouping-mode__meta">${meta}</span>
+          <span class="packaging-grouping-mode__copy">${copy}</span>
+        </button>
+      `;
+
+      if (!mobileInlineQuery.matches) return button;
+
+      return `
+        <div class="packaging-grouping-choice${mode === id ? ' is-selected' : ''}" data-grouping-choice="${id}">
+          ${button}
+          <div class="packaging-grouping-inline-host" data-grouping-inline-host="${id}"></div>
+        </div>
+      `;
+    };
+
     wrapper.innerHTML = `
       <div class="packaging-grouping-intro">
         <strong>How should these items be packaged?</strong>
         <span>Choose the result you want. We’ll create the right number of packages automatically.</span>
       </div>
       <div class="packaging-grouping-modes" role="radiogroup" aria-label="How should these items be packaged?">
-        <button type="button" class="packaging-grouping-mode${mode === 'together' ? ' is-selected' : ''}" data-grouping-mode="together">
-          <span class="packaging-grouping-mode__title">Keep together</span>
-          <span class="packaging-grouping-mode__meta">1 package</span>
-          <span class="packaging-grouping-mode__copy">All items share one package.</span>
-        </button>
-        <button type="button" class="packaging-grouping-mode${mode === 'separate' ? ' is-selected' : ''}" data-grouping-mode="separate">
-          <span class="packaging-grouping-mode__title">Package separately</span>
-          <span class="packaging-grouping-mode__meta">${count} packages</span>
-          <span class="packaging-grouping-mode__copy">One package per item.</span>
-        </button>
-        <button type="button" class="packaging-grouping-mode${mode === 'custom' ? ' is-selected' : ''}" data-grouping-mode="custom">
-          <span class="packaging-grouping-mode__title">Custom grouping</span>
-          <span class="packaging-grouping-mode__meta">Choose groups</span>
-          <span class="packaging-grouping-mode__copy">Decide which items stay together.</span>
-        </button>
+        ${optionMarkup('together', 'Keep together', '1 package', 'All items share one package.')}
+        ${optionMarkup('separate', 'Package separately', `${count} packages`, 'One package per item.')}
+        ${optionMarkup('custom', 'Custom grouping', 'Choose groups', 'Decide which items stay together.')}
       </div>
     `;
+
     return wrapper;
   };
 
@@ -396,13 +405,39 @@
     return groupNode;
   };
 
+  const buildModeContent = () => {
+    const content = document.createElement('div');
+    content.className = 'packaging-grouping-inline';
+
+    if (state.groupingMode === 'together') {
+      const note = document.createElement('div');
+      note.className = 'packaging-together-note';
+      note.textContent = 'Everything will use the packaging choice above. No separate package setup is needed.';
+      content.appendChild(note);
+      return content;
+    }
+
+    const customManager = renderCustomManager();
+    if (customManager) content.appendChild(customManager);
+    state.groups.forEach((group, index) => content.appendChild(renderGroup(group, index)));
+    return content;
+  };
+
   const renderWorkspace = () => {
     if (workspaceTitle) workspaceTitle.textContent = 'Set up separate packaging.';
     if (workspaceCopy) workspaceCopy.textContent = 'Choose how the order should be split. Package details stay compact until you open one to edit it.';
     if (addGroupButton) addGroupButton.hidden = true;
 
-    const nodes = [renderGroupingModes()];
+    const groupingModes = renderGroupingModes();
 
+    if (mobileInlineQuery.matches) {
+      const selectedHost = groupingModes.querySelector(`[data-grouping-inline-host="${state.groupingMode}"]`);
+      if (selectedHost) selectedHost.appendChild(buildModeContent());
+      groupsHost.replaceChildren(groupingModes);
+      return;
+    }
+
+    const nodes = [groupingModes];
     if (state.groupingMode === 'together') {
       const note = document.createElement('div');
       note.className = 'packaging-together-note';
@@ -539,5 +574,6 @@
     writeState({ ...current, packaging: state, packagingDraft: state });
   });
 
+  mobileInlineQuery.addEventListener?.('change', () => render());
   render();
 })();
