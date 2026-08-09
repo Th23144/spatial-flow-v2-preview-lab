@@ -11,6 +11,7 @@
   }));
 
   let scheduled = false;
+  let observerConnected = false;
 
   const readDraft = () => {
     try {
@@ -23,6 +24,13 @@
   const packageLabel = (state, groupId) => {
     const index = state.groups.findIndex((group) => group.id === groupId);
     return `Package ${String(Math.max(index, 0) + 1).padStart(2, '0')}`;
+  };
+
+  const isEveryItemAlreadySeparate = (state) => {
+    if (!state || !Array.isArray(state.groups) || state.groups.length !== sourceItems.length) return false;
+    return state.groups.every((group) => (
+      sourceItems.filter((item) => state.assignments?.[item.key] === group.id).length === 1
+    ));
   };
 
   const buildPlan = (state) => {
@@ -62,13 +70,15 @@
       `;
     }
 
+    const nextPlanMarkup = buildPlan(state);
     let rule = groupsHost.querySelector('.packaging-custom-rule');
     if (!rule) {
-      manager.insertAdjacentHTML('afterend', buildPlan(state));
+      manager.insertAdjacentHTML('afterend', nextPlanMarkup);
     } else {
       const temp = document.createElement('div');
-      temp.innerHTML = buildPlan(state);
-      rule.replaceWith(temp.firstElementChild);
+      temp.innerHTML = nextPlanMarkup;
+      const nextRule = temp.firstElementChild;
+      if (nextRule && rule.innerHTML !== nextRule.innerHTML) rule.replaceWith(nextRule);
     }
 
     const addButton = manager.querySelector('[data-custom-add-package]');
@@ -130,9 +140,7 @@
       row.dataset.assignment = currentGroupId === groupId ? 'here' : 'elsewhere';
 
       const status = row.querySelector('.packaging-package-picker__status');
-      if (status) {
-        status.textContent = `✓ Only in ${label}`;
-      }
+      if (status) status.textContent = `✓ Only in ${label}`;
 
       const move = row.querySelector('[data-move-item][data-target-group]');
       if (move) {
@@ -141,14 +149,14 @@
       }
 
       const itemCopy = row.querySelector('div');
-      if (itemCopy && !itemCopy.querySelector('.packaging-package-picker__owner')) {
-        const owner = document.createElement('span');
-        owner.className = 'packaging-package-picker__owner';
+      if (itemCopy) {
+        let owner = itemCopy.querySelector('.packaging-package-picker__owner');
+        if (!owner) {
+          owner = document.createElement('span');
+          owner.className = 'packaging-package-picker__owner';
+          itemCopy.appendChild(owner);
+        }
         owner.textContent = currentGroupId === groupId ? `Assigned only to ${label}` : `Currently in ${currentLabel}`;
-        itemCopy.appendChild(owner);
-      } else if (itemCopy) {
-        const owner = itemCopy.querySelector('.packaging-package-picker__owner');
-        if (owner) owner.textContent = currentGroupId === groupId ? `Assigned only to ${label}` : `Currently in ${currentLabel}`;
       }
     });
   };
@@ -158,8 +166,14 @@
     const state = readDraft();
     if (!state || state.groupingMode !== 'custom' || !Array.isArray(state.groups)) return;
 
+    observer.disconnect();
+    observerConnected = false;
+
     enhanceCustomManager(state);
     groupsHost.querySelectorAll('.packaging-group').forEach((groupNode) => enhanceExpandedPackage(state, groupNode));
+
+    observer.observe(groupsHost, { childList: true, subtree: true });
+    observerConnected = true;
   };
 
   const scheduleEnhance = () => {
@@ -170,6 +184,28 @@
 
   const observer = new MutationObserver(scheduleEnhance);
   observer.observe(groupsHost, { childList: true, subtree: true });
+  observerConnected = true;
+
+  // When the user switches directly from Separate to Custom, do not inherit the
+  // already-separated three-package state. Route through Together first so the
+  // main Packaging controller creates Custom from its intended baseline:
+  // Package 01 contains all items, Package 02 starts empty and open for grouping.
+  groupsHost.addEventListener('click', (event) => {
+    const modeButton = event.target.closest('[data-grouping-mode="custom"]');
+    if (!modeButton) return;
+
+    const draft = readDraft();
+    if (!draft || draft.groupingMode !== 'separate' || !isEveryItemAlreadySeparate(draft)) return;
+
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    const togetherButton = groupsHost.querySelector('[data-grouping-mode="together"]');
+    togetherButton?.click();
+
+    const freshCustomButton = groupsHost.querySelector('[data-grouping-mode="custom"]');
+    freshCustomButton?.click();
+  }, true);
 
   groupsHost.addEventListener('click', () => window.setTimeout(scheduleEnhance, 0));
   groupsHost.addEventListener('change', () => window.setTimeout(scheduleEnhance, 0));
