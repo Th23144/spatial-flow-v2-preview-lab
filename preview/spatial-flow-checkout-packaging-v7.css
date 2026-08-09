@@ -1,0 +1,53 @@
+@import url("./spatial-flow-checkout-packaging-v6.css?v=20260808-custom-assignment-sync");
+
+/* Step 4F Product Packaging · mobile commerce selected-state parity.
+   Reuses the exact Shipping selected-surface language on Packaging controls.
+   Structure and business logic are unchanged. */
+
+@media (max-width: 720px) {
+  /* Primary Standard / Gift packaging choice. */
+  .checkout-step-packaging-candidate .packaging-primary-option:has([data-packaging-primary-tier]:checked) {
+    border-color: var(--stone) !important;
+    background: linear-gradient(90deg, rgba(74, 93, 90, .12), var(--paper) 46%) !important;
+    box-shadow: 0 5px 14px rgba(74, 93, 90, .08) !important;
+  }
+
+  /* Together / Separate / Custom selected mode. */
+  .checkout-step-packaging-candidate .packaging-grouping-mode.is-selected {
+    border-color: var(--stone) !important;
+    background: linear-gradient(90deg, rgba(74, 93, 90, .12), var(--paper) 46%) !important;
+    box-shadow: 0 5px 14px rgba(74, 93, 90, .08) !important;
+  }
+
+  /* Keep the small identity dot in the existing packaging palette while the
+     surrounding commerce surface uses the same stone highlight as Shipping. */
+  .checkout-step-packaging-candidate .packaging-grouping-mode.is-selected::before {
+    border-color: var(--clay) !important;
+    background: var(--clay) !important;
+    box-shadow: inset 0 0 0 2px var(--paper) !important;
+  }
+
+  /* Standard / Gift inside an expanded physical package. */
+  .checkout-step-packaging-candidate .packaging-tier-option:has(input:checked) {
+    background: linear-gradient(90deg, rgba(74, 93, 90, .12), var(--paper) 46%) !important;
+    box-shadow: inset 0 0 0 1px rgba(74, 93, 90, .14), 0 4px 12px rgba(74, 93, 90, .06) !important;
+  }
+
+  /* Custom grouping: the full product row now carries the selected state,
+     not only the small assignment dot. This makes unique ownership obvious. */
+  .checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="here"] {
+    background: linear-gradient(90deg, rgba(74, 93, 90, .12), var(--paper) 46%) !important;
+    box-shadow: inset 0 0 0 1px rgba(74, 93, 90, .12) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="elsewhere"] {
+    background: var(--paper) !important;
+    box-shadow: none !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-package-picker__row[data-assignment="here"] .packaging-package-picker__assign {
+    border-color: var(--stone) !important;
+    background: rgba(74, 93, 90, .055) !important;
+    box-shadow: 0 3px 10px rgba(74, 93, 90, .07) !important;
+  }
+}
