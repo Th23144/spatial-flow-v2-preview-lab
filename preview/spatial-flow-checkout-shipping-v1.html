@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkout · Shipping — Spatial Flow</title>
-  <meta name="description" content="Spatial Flow static Checkout reference — Step 02 Shipping." />
+  <title>Checkout · Shipping & Product Packaging — Spatial Flow</title>
+  <meta name="description" content="Spatial Flow static Checkout candidate — Step 02 Shipping with Product Packaging Groups." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="spatial-flow-checkout-flow-v1.css" />
   <link rel="stylesheet" href="spatial-flow-checkout-context-v1.css" />
   <link rel="stylesheet" href="spatial-flow-checkout-mobile-commerce-v1.css?v=20260731-0657" />
+  <link rel="stylesheet" href="spatial-flow-checkout-packaging-v1.css?v=20260808-0852" />
+  <link rel="stylesheet" href="spatial-flow-checkout-packaging-v8-itemcentric.css?v=20260809-itemcentric-ab" />
 </head>
-<body class="woocommerce-checkout checkout-step-shipping">
+<body class="woocommerce-checkout checkout-step-shipping checkout-step-packaging-candidate">
   <div class="masthead-strip-v1">
     <div>Volume I · Issue 03 · Spring 2026</div>
     <div class="center">A Journal of Rooms, Rituals &amp; Quiet Objects</div>
@@ -57,7 +59,7 @@
 
     <div>
       <p class="checkout-lede">
-        Select the delivery pace that fits this order. The final amount updates before payment begins.
+        Choose how your order will be delivered and how the products inside should be packaged before payment.
       </p>
 
       <div class="checkout-steps" aria-label="Checkout progress">
@@ -77,17 +79,11 @@
           <h2>How should it <em>travel</em>?</h2>
         </div>
         <p class="panel-note">
-          These options are static interaction examples. The live page will later show only methods returned by WooCommerce for the validated address and cart.
+          Choose one of the delivery methods available for this address and order.
         </p>
 
         <div class="shipping-options" role="radiogroup" aria-label="Shipping methods">
-          <label
-            class="shipping-option"
-            data-shipping-option
-            data-method="Standard tracked delivery"
-            data-price="0"
-            data-estimate="5–7 business days"
-          >
+          <label class="shipping-option" data-shipping-option data-method="Standard tracked delivery" data-price="0" data-estimate="5–7 business days">
             <input type="radio" name="shipping_method" value="standard" checked />
             <span>
               <strong>Standard tracked delivery</strong>
@@ -96,13 +92,7 @@
             <span class="price">Free</span>
           </label>
 
-          <label
-            class="shipping-option"
-            data-shipping-option
-            data-method="Priority tracked delivery"
-            data-price="18"
-            data-estimate="2–4 business days"
-          >
+          <label class="shipping-option" data-shipping-option data-method="Priority tracked delivery" data-price="18" data-estimate="2–4 business days">
             <input type="radio" name="shipping_method" value="priority" />
             <span>
               <strong>Priority tracked delivery</strong>
@@ -111,20 +101,104 @@
             <span class="price">$18.00</span>
           </label>
 
-          <label
-            class="shipping-option"
-            data-shipping-option
-            data-method="Studio collection"
-            data-price="0"
-            data-estimate="By appointment"
-          >
+          <label class="shipping-option" data-shipping-option data-method="Studio collection" data-price="0" data-estimate="By appointment">
             <input type="radio" name="shipping_method" value="pickup" />
             <span>
               <strong>Studio collection</strong>
-              <span>Reference-only pickup option. The live method must remain hidden unless the store genuinely supports collection.</span>
+              <span>Collect from the studio by appointment when this option is available.</span>
             </span>
             <span class="price">Free</span>
           </label>
+        </div>
+      </section>
+
+      <section class="checkout-panel packaging-panel" aria-labelledby="packaging-heading">
+        <div class="panel-head packaging-panel__head">
+          <div>
+            <div class="panel-no">Product packaging</div>
+            <h2 id="packaging-heading">Choose your <em>packaging</em>.</h2>
+          </div>
+          <p class="packaging-panel__intro">Choose Standard or Gift Packaging for the order. If some items need to be packaged separately, you can set that up below.</p>
+        </div>
+
+        <div class="packaging-boundary-note">
+          This choice is for the packaging around your products inside the shipping box. It does not create a separate shipment.
+        </div>
+
+        <div class="packaging-primary-options" role="radiogroup" aria-label="Product packaging choice">
+          <article class="packaging-primary-option" data-packaging-primary-card="standard">
+            <label class="packaging-primary-option__selector">
+              <input type="radio" name="primary_packaging_tier" value="standard" data-packaging-primary-tier checked />
+              <span class="packaging-primary-option__heading">
+                <span class="packaging-primary-option__eyebrow">Free</span>
+                <strong>Standard Packaging</strong>
+              </span>
+              <span class="packaging-primary-option__price">Included</span>
+              <span class="packaging-primary-option__copy">Best for personal orders. Items are packed together in our standard product packaging when suitable.</span>
+              <span class="packaging-primary-option__facts">
+                <span>Protective everyday packaging</span>
+                <span>Add a name to the package at no extra cost</span>
+              </span>
+            </label>
+
+            <div class="packaging-primary-option__detail" data-standard-primary-meta>
+              <strong class="packaging-primary-option__detail-title">Add a name <em>optional</em></strong>
+              <span class="packaging-primary-option__detail-copy">Enter the name you would like added to this package.</span>
+              <label>
+                Name on package
+                <input maxlength="24" data-primary-personalized-name placeholder="e.g. Alex" />
+              </label>
+            </div>
+          </article>
+
+          <article class="packaging-primary-option packaging-primary-option--gift" data-packaging-primary-card="gift">
+            <label class="packaging-primary-option__selector">
+              <input type="radio" name="primary_packaging_tier" value="gift" data-packaging-primary-tier />
+              <span class="packaging-primary-option__heading">
+                <span class="packaging-primary-option__eyebrow">For gifts</span>
+                <strong>Gift Packaging</strong>
+              </span>
+              <span class="packaging-primary-option__price">+$9.00 / package</span>
+              <span class="packaging-primary-option__copy">Choose this when the package is a gift. It includes upgraded gift presentation and a message card.</span>
+              <span class="packaging-primary-option__facts">
+                <span>Upgraded gift presentation</span>
+                <span>Gift card included</span>
+              </span>
+            </label>
+
+            <div class="packaging-primary-option__detail" data-gift-primary-meta hidden>
+              <strong class="packaging-primary-option__detail-title">Add a gift message <em>optional</em></strong>
+              <span class="packaging-primary-option__detail-copy">We’ll put this message on the card inside this gift package.</span>
+              <label>
+                Message for the card
+                <textarea maxlength="240" data-primary-gift-message placeholder="Write your gift message"></textarea>
+              </label>
+            </div>
+          </article>
+        </div>
+
+        <div class="packaging-group-entry">
+          <div>
+            <strong>Want some items packaged separately?</strong>
+            <span>Choose which items go together, then choose Standard or Gift Packaging for each package.</span>
+          </div>
+          <button type="button" class="packaging-customize" data-packaging-customize aria-expanded="false" aria-controls="packaging-workspace">Separate items into packages</button>
+        </div>
+
+        <div class="packaging-workspace" id="packaging-workspace" data-packaging-workspace>
+          <div class="packaging-workspace-head">
+            <div>
+              <h3>Set up separate packages.</h3>
+              <p>Move each item into the package it belongs in. Each package can use Standard or Gift Packaging.</p>
+            </div>
+            <button type="button" class="packaging-add-group" data-packaging-add-group>+ Add another package</button>
+          </div>
+
+          <div class="packaging-groups" data-packaging-groups></div>
+
+          <p class="packaging-plan-note">
+            Gift Packaging is $9 per gift package. Two items in one gift package cost one $9 fee. Two separate gift packages cost two fees.
+          </p>
         </div>
       </section>
 
@@ -134,7 +208,7 @@
       </div>
 
       <p class="prototype-note">
-        Selecting a method previews its cost. Continuing commits that prototype selection and opens the linked Payment reference page.
+        In the live checkout, your packaging choices will be saved before you continue to payment.
       </p>
     </form>
 
@@ -147,9 +221,7 @@
 
         <div class="context-card__grid">
           <section class="context-card__address context-section">
-            <div class="context-section__head">
-              <span class="context-label">Deliver to</span>
-            </div>
+            <div class="context-section__head"><span class="context-label">Deliver to</span></div>
             <div class="context-value" data-address-output>Alex Morgan
 123 Quiet Way, Apt 4B
 Brooklyn, NY 11201
@@ -158,9 +230,7 @@ United States</div>
 
           <div class="context-card__secondary">
             <section class="context-section">
-              <div class="context-section__head">
-                <span class="context-label">Contact</span>
-              </div>
+              <div class="context-section__head"><span class="context-label">Contact</span></div>
               <div class="context-value"><span data-contact-email>alex@morgan.com</span><br /><span data-contact-phone>+1 (917) 555-0192</span></div>
             </section>
           </div>
@@ -174,7 +244,7 @@ United States</div>
         </div>
 
         <div class="summary-items">
-          <article class="summary-item">
+          <article class="summary-item" data-packaging-source-item data-item-key="ash-quartz" data-item-name="Ash Quartz · No. 07" data-item-meta="Bracelet · Size M · Qty 1">
             <div class="summary-thumb"></div>
             <div class="summary-copy">
               <h4>Ash Quartz · No. 07</h4>
@@ -183,7 +253,7 @@ United States</div>
             <div class="summary-price">$42.00</div>
           </article>
 
-          <article class="summary-item">
+          <article class="summary-item" data-packaging-source-item data-item-key="bluestone-mala" data-item-name="Bluestone Mala" data-item-meta="Bracelet · Size S · Qty 1">
             <div class="summary-thumb th-2"></div>
             <div class="summary-copy">
               <h4>Bluestone Mala</h4>
@@ -192,7 +262,7 @@ United States</div>
             <div class="summary-price">$42.00</div>
           </article>
 
-          <article class="summary-item">
+          <article class="summary-item" data-packaging-source-item data-item-key="tussore-throw" data-item-name="Tussore Throw — Clay" data-item-meta="Textile · One size · Qty 1">
             <div class="summary-thumb th-3"></div>
             <div class="summary-copy">
               <h4>Tussore Throw — Clay</h4>
@@ -205,18 +275,19 @@ United States</div>
         <div class="summary-totals">
           <div class="summary-row"><span class="label">Subtotal</span><span class="value">$329.00</span></div>
           <div class="summary-row"><span class="label">Shipping preview</span><span class="value" data-shipping-value>Free</span></div>
+          <div class="summary-row packaging-summary-row" data-packaging-summary-row><span class="label">Gift packaging</span><span class="value" data-packaging-summary-value>Included</span></div>
           <div class="summary-row"><span class="label">Tax</span><span class="value">Calculated later</span></div>
           <div class="summary-row total"><span class="label">Estimated total</span><span class="value" data-total-value>$329.00</span></div>
         </div>
 
         <p class="summary-note">
-          The selected shipping cost is a preview until you continue to Payment.
+          Gift packaging will appear here when selected. Final totals are updated before payment.
         </p>
 
         <div class="summary-trust">
-          <div>No payment is attempted in Step 02</div>
-          <div>Live rates will remain WooCommerce-controlled</div>
-          <div>The confirmation card contains only completed Step 01 information</div>
+          <div>No payment is taken on this step</div>
+          <div>Your shipping method remains unchanged</div>
+          <div>Separate product packages can still ship together</div>
         </div>
       </section>
     </aside>
@@ -238,5 +309,7 @@ United States</div>
 
   <div class="checkout-notice" role="status" aria-live="polite" data-checkout-notice></div>
   <script src="spatial-flow-checkout-flow-v1.js"></script>
+  <script src="spatial-flow-checkout-packaging-v1.js?v=20260808-0852"></script>
+  <script src="spatial-flow-checkout-packaging-itemcentric-v1.js?v=20260809-itemcentric-ab"></script>
 </body>
 </html>
