@@ -1,21 +1,21 @@
 @import url("./spatial-flow-checkout-packaging-v3.css?v=20260808-compact-accepted");
 
-/* Step 4F Product Packaging · mobile refinement candidate.
+/* Step 4F Product Packaging · mobile inline-mode candidate.
    Desktop inherits the accepted compact v3 contract unchanged.
-   Mobile keeps the same hierarchy while reducing stacked-form feel. */
+   On phones, the package setup belongs visually to the selected grouping mode. */
 
 @media (max-width: 760px) {
   .checkout-step-packaging-candidate .packaging-workspace {
-    margin-top: 16px !important;
-    padding-top: 16px !important;
+    margin-top: 18px !important;
+    padding-top: 18px !important;
   }
 
   .checkout-step-packaging-candidate .packaging-workspace-head {
-    margin-bottom: 13px !important;
+    margin-bottom: 14px !important;
   }
 
   .checkout-step-packaging-candidate .packaging-workspace-head h3 {
-    font-size: 22px !important;
+    font-size: 23px !important;
     line-height: 1.08;
   }
 
@@ -26,50 +26,57 @@
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-controls {
-    margin-bottom: 14px;
+    margin-bottom: 0;
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-intro {
     display: block;
-    margin-bottom: 9px;
+    margin-bottom: 10px;
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-intro strong {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-intro span {
+    display: block;
     margin-top: 3px;
-    font-size: 8px;
+    font-size: 8.5px;
     line-height: 1.45;
   }
 
+  /* Restore the clearer vertical choices on phones. */
   .checkout-step-packaging-candidate .packaging-grouping-modes {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 6px !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 9px !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-choice {
+    min-width: 0;
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-mode {
-    min-height: 78px !important;
-    padding: 29px 7px 9px !important;
+    width: 100%;
+    min-height: 0 !important;
+    padding: 14px 14px 13px 40px !important;
     gap: 3px;
-    text-align: center;
-    -webkit-tap-highlight-color: rgba(168, 116, 92, .10);
+    text-align: left;
+    -webkit-tap-highlight-color: rgba(168, 116, 92, .08);
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-mode::before {
-    top: 9px;
-    left: 50%;
-    width: 9px;
-    height: 9px;
-    transform: translateX(-50%);
+    top: 17px;
+    left: 15px;
+    width: 10px;
+    height: 10px;
     border-color: var(--line);
     background: var(--paper);
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-mode.is-selected {
     border-color: var(--ink) !important;
-    background: rgba(168, 116, 92, .045) !important;
+    background: rgba(168, 116, 92, .035) !important;
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-mode.is-selected::before {
@@ -79,26 +86,79 @@
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-mode__title {
-    font-size: 13px;
-    line-height: 1.12;
+    font-size: 17px;
+    line-height: 1.15;
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-mode__meta {
     color: var(--clay);
-    font-size: 6.5px;
-    line-height: 1.2;
+    font-size: 7px;
+    line-height: 1.3;
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-mode__copy {
+    display: block;
+    margin-top: 2px;
+    font-size: 8.5px;
+    line-height: 1.4;
+  }
+
+  /* The selected mode owns the result below it. */
+  .checkout-step-packaging-candidate .packaging-grouping-inline-host:empty {
     display: none;
   }
 
-  .checkout-step-packaging-candidate .packaging-groups {
-    gap: 7px !important;
+  .checkout-step-packaging-candidate .packaging-grouping-choice.is-selected > .packaging-grouping-mode {
+    border-bottom-color: var(--line-soft) !important;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-inline-host {
+    margin-top: -1px;
+    padding: 9px;
+    border: 1px solid var(--ink);
+    border-top: 0;
+    background: rgba(250, 247, 243, .42);
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-inline {
+    display: grid;
+    gap: 8px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-inline .packaging-together-note {
+    margin: 0;
+    padding: 11px 12px;
+    border-color: var(--line-soft);
+    background: rgba(250, 247, 243, .38);
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-manager {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 0;
+    padding: 11px 12px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-manager strong {
+    font-size: 15px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-manager span {
+    font-size: 8px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-custom-manager__add {
+    justify-self: start;
+    min-height: 30px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-groups,
+  .checkout-step-packaging-candidate .packaging-grouping-inline {
+    gap: 8px !important;
   }
 
   .checkout-step-packaging-candidate .packaging-group {
-    background: rgba(250, 247, 243, .28) !important;
+    background: rgba(250, 247, 243, .32) !important;
   }
 
   .checkout-step-packaging-candidate .packaging-group.is-expanded {
@@ -146,7 +206,6 @@
     min-width: 54px;
     min-height: 30px;
     padding: 0 8px;
-    -webkit-tap-highlight-color: rgba(168, 116, 92, .10);
   }
 
   .checkout-step-packaging-candidate .packaging-group__edit[aria-expanded="true"] {
@@ -155,6 +214,7 @@
     color: var(--bg);
   }
 
+  /* Keep Standard / Gift side-by-side even after a package is opened. */
   .checkout-step-packaging-candidate .packaging-tier-switch {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
@@ -198,6 +258,7 @@
   }
 
   .checkout-step-packaging-candidate .packaging-package-picker__head span {
+    display: block;
     margin-top: 3px;
     font-size: 8px;
     line-height: 1.4;
@@ -247,13 +308,16 @@
 
 @media (max-width: 390px) {
   .checkout-step-packaging-candidate .packaging-grouping-mode {
-    min-height: 74px !important;
-    padding-right: 5px !important;
-    padding-left: 5px !important;
+    padding-right: 11px !important;
+    padding-left: 37px !important;
   }
 
   .checkout-step-packaging-candidate .packaging-grouping-mode__title {
-    font-size: 12px;
+    font-size: 16px;
+  }
+
+  .checkout-step-packaging-candidate .packaging-grouping-inline-host {
+    padding: 7px;
   }
 
   .checkout-step-packaging-candidate .packaging-tier-option {
