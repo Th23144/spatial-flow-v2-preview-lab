@@ -30,7 +30,7 @@ Strict 1:1 visual acceptance is NOT passed.
 
 User reports widespread detail mismatch against the accepted repository reference, including typography, spacing, component hierarchy, missing explanatory text, package-detail presentation and action-area composition.
 
-Repository comparison confirms live is missing reference details that are independent of global page width, including:
+Repository comparison confirms live is missing reference details including:
 
 ```text
 - Standard detail explanatory copy
@@ -42,22 +42,33 @@ Repository comparison confirms live is missing reference details that are indepe
 - several soft-line / spacing / control-detail differences inside Packaging owner
 ```
 
-## Scope lock for current pass
+## Current visual-refinement scope and sequencing
 
-Current pass = Product Packaging strict 1:1 visual refinement inside existing component geometry.
+Current working pass remains Product Packaging strict 1:1 refinement, but the sequencing of the remaining shared-width / final-geometry refinement is NOT a user-imposed hard lock.
 
-Do NOT change in this pass:
+Historical context:
 
 ```text
-- shared Checkout max width / global page frame
-- main/summary column ratio
-- global shell gap / overall page gutters
-- Step 01 / Step 03 layout
+- shared Checkout shell geometry (1440px / 7fr:5fr / 80px / responsive gutters) was already implemented and runtime-accepted earlier;
+- a later residual/final geometry refinement was kept as a separate planned pass;
+- the user only recalled that planned ordering and did not require that the residual width pass remain later under all circumstances.
+```
+
+Therefore:
+
+```text
+- do not change width casually while fixing unrelated component details;
+- but if strict 1:1 comparison shows that the remaining global frame/width materially prevents accurate visual judgment, the residual geometry pass may be moved forward deliberately;
+- any such resequencing must be explicit, bounded, measured against the accepted reference, and recorded before implementation.
+```
+
+Still protected from casual change:
+
+```text
+- Step 01 / Step 03 business structure
 - Woo payment / shipping / order authority
 - Packaging business logic already functionally passed
 ```
-
-The user's remembered later overall-width / final geometry pass remains separate and must not be pulled forward by this Packaging refinement.
 
 ## Deferred additional observation
 
@@ -67,8 +78,7 @@ Classification:
 
 ```text
 Order Summary item-line cleanup: DEFERRED / RECORDED
-Owner: later Summary visual refinement
-Not part of the current Packaging correction pass
+Owner: later Summary visual refinement unless deliberate resequencing is justified
 ```
 
 ## Current sequence
@@ -76,9 +86,11 @@ Not part of the current Packaging correction pass
 ```text
 Packaging runtime functionality ✅
 -> Packaging strict 1:1 visual refinement  ← CURRENT
+-> same-viewport geometry diagnostic before further micro-polish if width remains visually suspect
+-> if measured global geometry is wrong: bring residual width/frame refinement forward
+-> otherwise: keep residual width refinement at its later planned point
 -> Packaging visual acceptance
 -> continue previously planned Checkout sequence
--> dedicated remaining overall-width / geometry refinement at its planned point
 ```
 
 Status: OPEN — visual only.
