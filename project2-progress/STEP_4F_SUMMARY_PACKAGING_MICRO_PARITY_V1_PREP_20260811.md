@@ -27,7 +27,7 @@ Current canonical Step 02 reference:
 - Match reference item rhythm: 20px item gap, 64px image, 14px image/text gap, 17px title/price, 8px mono meta with 0.14em tracking.
 - Move quantity into compact backend-derived product meta and remove the separate standalone `× N` line.
 - Preserve live/backend product data; constrain it to the reference density rather than inventing static product attributes.
-- Recompose totals to one divider before totals + 13px row rhythm + ink divider before final total.
+- Recompose totals to one divider before totals + 13px row rhythm + explicit ink divider before final total.
 - Add editable Step 02 summary note from the reference.
 - Add editable Step 02-specific trust lines from the reference while preserving the existing generic trust copy for Step 01/03.
 
@@ -72,14 +72,16 @@ Validated offline from the exact accepted files above:
 - `php -l` PASSED
 
 ### checkout-safe5.css target
-- 136,195 bytes
+- 136,199 bytes
 - 4,451 logical lines
-- SHA256 `e1e25f24d812c0e3c2df9b287d5a4c8ccff63d24f9e93191290690d6ad12669f`
+- SHA256 `4c0df0dd8d6c9f9870a361371c1aded2be8e593b5d867472090cdbade64b0128`
 - CRLF
 - no final newline
 - braces 527 / 527
 - comments 24 / 24
 - CSS parser errors 0
+
+The final-total row explicitly owns `border-top: 1px solid var(--sf-safe5-ink) !important;`; an earlier offline draft used only `border-top-color`, which would not draw the line after the generic tfoot row border was removed. That draft identity is invalid and must not be used.
 
 ### checkout-safe5.js
 UNCHANGED:
