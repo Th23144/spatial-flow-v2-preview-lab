@@ -43,19 +43,19 @@ No existing SAFE5 navigation, validation, native checkout submit guard, Terms ha
 - Standard/Gift remains a package-level property;
 - top Standard/Gift selector owns the single Together package only;
 - Separate/Custom active non-empty packages get compact package-level Standard/Gift + Details controls;
-- Standard optional name and Gift message persist in state;
-- state changes trigger native Woo `update_checkout` so Woo remains fee/total authority;
+- Standard optional name and Gift message persist in state without forcing an expensive Woo totals refresh on each keystroke;
+- fee-affecting state changes trigger native Woo `update_checkout` so Woo remains fee/total authority;
 - `updated_checkout` re-renders Packaging without replacing payment or navigation behavior.
 
 ## Exact offline Part C target
 
-The patch was applied to the submitted JS baseline and checked with Node before the tutorial was issued.
+The final Part-C patch was applied to the submitted JS baseline and checked with Node before the tutorial was issued.
 
 ```text
 checkout-safe5.js
-51,303 bytes
+51,307 bytes
 1,520 logical lines
-SHA256 a5d8c42c6b09aa9c9dec279f10ec53a5f63d219b5ee3b1e568080eea19eafc46
+SHA256 385bba50fdfa65ddfdef9cfa9b0b8febfd8c1681b524da469238cbf711141dd9
 CRLF
 no final newline
 node --check: passed
@@ -64,7 +64,7 @@ node --check: passed
 Delta:
 
 ```text
-+18,648 bytes
++18,652 bytes
 +496 logical lines
 ```
 
