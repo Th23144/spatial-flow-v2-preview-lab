@@ -1,7 +1,7 @@
 # Step 4F · Product Packaging · Live Install Part D · checkout-safe5.css
 
 Date: 2026-08-11  
-Status: PART C ACCEPTED · PART D MANUAL INSTALL READY · USER ACTION REQUIRED
+Status: PART D SOURCE-AUDITED · ACCEPTED · A-D READY FOR RUNTIME QA
 
 ## Accepted prerequisites
 
@@ -22,7 +22,7 @@ node --check: passed
 
 Part C reverse-reconstruction to the original SAFE5 JS baseline was exact.
 
-## Part D original submitted baseline
+## Part D original baseline
 
 ```text
 assets/css/checkout-safe5.css
@@ -37,7 +37,7 @@ comments: 22 / 22
 
 ## Part D edit boundary
 
-Part D adds one new bounded feature block only, at the physical end of the existing stylesheet:
+Part D adds one new bounded feature owner only:
 
 ```text
 /* === SAFE5 Product Packaging Visual Ownership START === */
@@ -45,17 +45,52 @@ Part D adds one new bounded feature block only, at the physical end of the exist
 /* === SAFE5 Product Packaging Visual Ownership END === */
 ```
 
-This is a new-selector feature ownership block, not an append-only override of existing Packaging selectors. No pre-existing SAFE5 selector is replaced or edited.
+The prior SAFE5 baseline contained no `sf-safe5-packaging` selectors. Therefore this is the first canonical visual owner for the genuinely new Product Packaging component, not an override layer over an older Packaging implementation.
+
+Per `PROJECT2_CSS_MAINTENANCE_POLICY.md`, this is the allowed new-component exception. The exception is now exhausted: future Packaging visual changes must edit/merge this owner in place and must not create Packaging FIX1/FIX2/FIX3 tail patches.
+
+## User-installed Part D identity
+
+The user supplied the manually edited CSS for source audit.
+
+```text
+checkout-safe5.css
+118,905 bytes
+3,818 logical lines
+3,817 CRLF newline sequences
+SHA256 3f16c8cb31ab33be64257e36dee1b085e4ca76b313aa980d76a5e83348a077bd
+CRLF throughout
+no final newline
+braces: 454 / 454
+comments: 24 / 24
+CSS parser errors: 0
+```
+
+This matches the issued exact target byte-for-byte.
+
+## Reverse reconstruction audit
+
+The complete Product Packaging START/END block plus its single separating blank line was mechanically removed from the submitted file.
+
+The reconstructed file is exactly:
+
+```text
+88,922 bytes
+SHA256 8dcf35e6b850f861bc02c060936ba775ab73ef855d264d6342cfe49860788659
+no final newline
+```
+
+This is an exact match to the accepted pre-Packaging SAFE5 CSS baseline. Therefore no pre-existing CSS was accidentally edited, removed or reformatted by Part D.
 
 ## Visual contract represented
 
-The block maps the accepted static Product Packaging B contract into the real SAFE5 DOM:
+The canonical block maps the accepted static Product Packaging B contract into the real SAFE5 DOM:
 
 - Standard and Gift remain two stacked primary choices;
 - desktop grouping modes remain three columns;
 - mobile grouping modes remain vertically stacked rather than compressed;
 - Custom keeps original B item-centric breathing room on phones;
-- item assignment uses Package 01/02/03 chips, with additional slots wrapping instead of forcing a denser one-line B2 layout;
+- item assignment uses Package 01/02/03 chips, with additional slots wrapping instead of forcing the rejected denser B2 layout;
 - only non-empty packages render package-style rows;
 - package-level Standard/Gift and Details controls remain compact;
 - Standard name and Gift message fields remain collapsed behind Details where applicable;
@@ -66,33 +101,23 @@ The block maps the accepted static Product Packaging B contract into the real SA
 
 ## Specificity audit
 
-The existing SAFE5 stylesheet has global Checkout textarea/input surface rules. The Packaging detail-field selectors therefore deliberately include `.sf-safe5-checkout` in their selector chain so square Packaging fields are not overridden by the older generic textarea surface.
+The existing SAFE5 stylesheet has generic Checkout input/textarea surface rules. Packaging detail-field selectors deliberately include `.sf-safe5-checkout` in their selector chain so the new square Packaging fields are not unintentionally restyled by the older generic field surface.
 
-## Exact offline Part D target
-
-The final block was appended to the exact submitted CSS baseline using CRLF and no final newline.
+## Audit conclusion
 
 ```text
-checkout-safe5.css
-118,905 bytes
-3,818 logical lines
-SHA256 3f16c8cb31ab33be64257e36dee1b085e4ca76b313aa980d76a5e83348a077bd
-CRLF
-no final newline
-braces: 454 / 454
-comments: 24 / 24
-CSS parser errors: 0
+Part D manual edit: ACCEPTED
+exact target match: YES
+reverse reconstruction to original baseline: EXACT
+brace balance: PASSED
+comment balance: PASSED
+CSS parser: PASSED
+old Packaging selector collision found: NO
+unauthorized old CSS mutation found: NO
 ```
 
-Delta:
+## Next gate
 
-```text
-+29,983 bytes
-+1,105 logical lines
-```
+Parts A-D are now source-audited and eligible for the first real browser/runtime Product Packaging QA.
 
-The exact target assumes the issued block is pasted verbatim after exactly one blank line and the editor preserves CRLF. If the editor reformats whitespace, source-level acceptance will use bounded-diff reconstruction and parser checks instead of forcing the byte target.
-
-## Safety gate
-
-After Part D is saved, do not immediately begin feature acceptance from appearance alone. Upload the resulting CSS for source audit first. Once Part D passes, the coordinated A-D source set is eligible for browser/runtime Packaging QA.
+Do not declare Product Packaging complete from source audit alone. Runtime QA must verify real Woo cart units, grouping semantics, Gift fee calculation, `update_checkout`, totals, Step 02 → Step 03 continuity, mobile layout and order persistence before closing the Packaging stage.
