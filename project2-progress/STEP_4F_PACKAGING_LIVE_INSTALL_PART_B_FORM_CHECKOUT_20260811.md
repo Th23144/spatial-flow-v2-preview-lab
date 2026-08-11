@@ -1,7 +1,7 @@
 # Step 4F · Product Packaging · Live Install Part B · form-checkout.php
 
 Date: 2026-08-11  
-Status: PART B SOURCE-AUDITED · ACCEPTED · DO NOT BROWSER-TEST YET
+Status: PART B SOURCE-AUDITED · DEEP RE-VERIFIED · ACCEPTED · DO NOT BROWSER-TEST YET
 
 ## Accepted prerequisite
 
@@ -127,11 +127,36 @@ active non-empty package settings mount: 1
 
 HTML hierarchy was also parsed after neutralizing PHP blocks. The Packaging section is a direct Step-02 child, after Shipping and before the existing Step-02 actions; Step 03 still contains its payment mount.
 
+## Deep re-verification after user requested certainty
+
+The accepted user file was rechecked against both the untouched submitted baseline and the compact offline Part-B target.
+
+### Baseline -> user file diff
+
+```text
+237 inserted lines
+0 deleted lines
+0 existing source lines rewritten
+```
+
+This proves the manual Part-B edit did not alter or delete pre-existing Step 01 / Shipping / Step 02 navigation / Step 03 / Order Summary template source; it only added the two authorized blocks.
+
+### User file -> compact offline target equivalence
+
+After removing whitespace only from both complete files, the resulting source byte streams have the same SHA256:
+
+```text
+8c53a60260fc4a99dbc1092daed19010377aae5b577ab1d8e9f66634591ea6b4
+```
+
+Therefore the 32,100-byte user-formatted file and the 30,810-byte compact offline target differ only by whitespace / line wrapping. No non-whitespace PHP or HTML token/content difference was found.
+
 ## Audit conclusion
 
 ```text
-Part B manual edit: ACCEPTED
+Part B manual edit: ACCEPTED · DEEP RE-VERIFIED
 manual copy/paste corruption found: NO
+non-whitespace mismatch vs intended target: NO
 PHP syntax error: NO
 Packaging duplicated: NO
 Step 01 damaged: NO evidence
@@ -141,7 +166,7 @@ Step 03 payment owner damaged: NO evidence
 Order Summary owner damaged: NO evidence
 ```
 
-Part B is therefore accepted as the current live-install source baseline.
+Part B is therefore accepted as the current live-install source baseline and should not be edited again during Parts C-D unless a later runtime test reveals an actual issue.
 
 ## Safety gate
 
