@@ -86,14 +86,30 @@ CRLF / no final newline
 node --check PASS
 
 assets/css/checkout-safe5.css
-133,879 bytes
+133,885 bytes
 4,373 logical lines
-SHA256 5002a16bba078fca49c12c17e0add93347700587fa67843713a57742aa61ab41
+SHA256 5221bfd175a5425cb34eb732b64a67c3d2595d1de1332cf0e02fa7e873a4d6e7
 CRLF / no final newline
 braces 516 / 516
 comments 24 / 24
 tinycss2 parse errors 0
 ```
+
+## CSS target re-audit correction
+
+Before manual delivery, the generated CSS diff was re-audited against the canonical static sources. One broad internal replacement had incorrectly softened the Packaging panel's outer bottom divider. That was corrected before installation instructions were issued.
+
+Final V1 CSS now preserves the reference-strength outer panel divider while using `line-soft` only for the intended internal surfaces:
+
+```text
+- Packaging panel outer bottom divider: reference line strength retained
+- item-to-item internal dividers: softened to reference line-soft
+- expanded tier-switch divider: softened to reference line-soft
+- Standard/Gift internal divider: softened to reference line-soft
+- package details divider: softened to reference line-soft
+```
+
+The corrected CSS identity above supersedes the earlier prepared value `133,879 / 5002a16b...`.
 
 ## Change ownership
 
