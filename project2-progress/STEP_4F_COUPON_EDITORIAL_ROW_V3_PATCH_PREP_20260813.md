@@ -24,7 +24,7 @@ Do not reintroduce box/border treatment. Keep Coupon as a non-reference function
 
 ## Prepared target
 - bytes: 137,690
-- logical lines: 4,492
+- logical lines: 4,493
 - SHA256: `cfe1a06961b437797b80c27751c0c90e5e9bdd8ec65e05cc77632bbf7b6477fb`
 - braces: 530 / 530
 - comments: 24 / 24
