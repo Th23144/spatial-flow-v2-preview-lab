@@ -10,18 +10,20 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 2. PROJECT2_STEP_RECORDING_POLICY.md
 3. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
 4. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-5. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-6. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-7. PROJECT2_CSS_MAINTENANCE_POLICY.md
-8. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-9. project2-progress/STEP_4F_FULL_REPOSITORY_DOCUMENT_INHERITANCE_COMPLETE_20260816.md
-10. project2-progress/STEP_4F_SELECTED_PAYMENT_THEME_ROLLBACK_VALIDATION_20260816.md
-11. project2-progress/STEP_4F_CRYPTO_V030_BIG_BATCH_B_FINAL_ACCEPTED_20260816.md
-12. project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_FINAL_ACCEPTED_20260816.md
-13. project2-progress/STEP_4F_STEP04_ORDER_RESULT_FULL_AUDIT_AND_IMPLEMENTATION_GATE_20260816.md
-14. project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_IMPLEMENTATION_LOCK_20260816.md
-15. project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_SOURCE_STATIC_CANDIDATE_2715_20260816.md
-16. project2-progress/STEP_4F_CRYPTO_V030_TRANSFER_BUTTON_TYPOGRAPHY_REOPEN_20260816.md
+5. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+6. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+7. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+8. PROJECT2_CSS_MAINTENANCE_POLICY.md
+9. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+10. project2-progress/STEP_4F_FULL_REPOSITORY_DOCUMENT_INHERITANCE_COMPLETE_20260816.md
+11. project2-progress/STEP_4F_SELECTED_PAYMENT_THEME_ROLLBACK_VALIDATION_20260816.md
+12. project2-progress/STEP_4F_CRYPTO_V030_BIG_BATCH_B_FINAL_ACCEPTED_20260816.md
+13. project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_FINAL_ACCEPTED_20260816.md
+14. project2-progress/STEP_4F_STEP04_ORDER_RESULT_FULL_AUDIT_AND_IMPLEMENTATION_GATE_20260816.md
+15. project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_IMPLEMENTATION_LOCK_20260816.md
+16. project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_SOURCE_STATIC_CANDIDATE_2715_20260816.md
+17. project2-progress/STEP_4F_CRYPTO_V030_TRANSFER_BUTTON_TYPOGRAPHY_REOPEN_20260816.md
+18. project2-progress/STEP_4F_STEP04_WHOLE_FILE_DEPLOYMENT_WITHDRAWN_20260816.md
 ```
 
 Historical precedence:
@@ -29,8 +31,8 @@ Historical precedence:
 ```text
 later explicit correction/rejection/rollback
 > later formal runtime/source/user acceptance
-> standing policy
-> older plan/candidate/snapshot
+> later standing policy
+> older policy/plan/candidate/snapshot
 ```
 
 ## Mandatory execution rule
@@ -42,6 +44,32 @@ meaningful Project-2 action
 ```
 
 For one coherent runtime acceptance batch, give the user the entire safe checklist at once. Split only when a genuine destructive/safety dependency requires it.
+
+## Deployment method precedence
+
+The user explicitly authorised a later exception on 2026-08-16:
+
+```text
+Verified complete-file replacement is allowed when and only when
+PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md passes every gate.
+```
+
+This later policy supersedes the older blanket prohibition on whole-file delivery **only for batches that prove**:
+
+```text
+exact live-base SHA match
++ candidate generated from that exact base
++ full-diff authorised-scope audit
++ timestamped rollback backup
++ published candidate SHA
++ post-replacement SHA identity
++ syntax/parser/structure PASS
++ whole-batch rollback on any failure
+```
+
+If any gate cannot be satisfied, fall back to the older manual anchored replacement policy.
+
+This changes deployment mechanics only; strict 1:1 remains mandatory.
 
 ## Binary page status
 
@@ -198,7 +226,7 @@ SHA256 4d54dcfc1bee2f55bbdd93df1e31cc0e155d6b9cdff917f141086bc25a2bb4b3
 
 ## Step 04 candidate 2.7.15
 
-Source/static candidate: PASS / READY FOR CONTROLLED MANUAL DEPLOYMENT.
+The existing full-file candidate remains an **internal comparison artifact** until it is explicitly requalified under `PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md`.
 
 ```text
 functions.php
@@ -221,7 +249,7 @@ SHA256 cba94f9615248a86f8d8d23b806621ed04f7b664e8c3a47727036510a33efef9
 CSS braces/comments PASS
 ```
 
-Candidate properties:
+Candidate properties previously established:
 
 ```text
 - reconstructs live Step04 with the reference result-* composition
@@ -234,6 +262,8 @@ Candidate properties:
 - no hardcoded spatial_flow_crypto / USDT / TRON in theme
 - same-order Woo payment recovery used where needs_payment() is true
 ```
+
+Before this candidate may be reissued for complete-file deployment, the new VFR policy requires a formal manifest, authorised full-diff boundary audit, rollback package/backup method, and postflight verifier.
 
 ### Backend editability
 
@@ -255,7 +285,9 @@ Legacy saved Shop/Contact URLs remain safe fallback values until new V3 URLs are
 Step 04 audit: COMPLETE
 Strict 1:1 lock: ACTIVE
 fresh live source identity: VERIFIED
-Step 04 candidate 2.7.15: SOURCE/STATIC PASS
+Step 04 candidate 2.7.15: INTERNAL SOURCE/STATIC CANDIDATE ONLY
+previous blind whole-file deployment instruction: WITHDRAWN
+verified full-file replacement policy: ACTIVE
 runtime deployment: NOT YET PERFORMED
 runtime/status/visual acceptance: NOT YET STARTED
 Crypto transfer-button typography defect: OPEN / DEFERRED UNTIL AFTER STEP04
@@ -264,17 +296,20 @@ Checkout: Not done
 
 ## Exact next action
 
-Deploy exactly these three candidate files to the current local child theme:
+Requalify the Step 04 2.7.15 candidate under `PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md`:
 
 ```text
-functions.php
-woocommerce/checkout/thankyou.php
-assets/css/spatial-flow.css
+1. prove current live SHA values equal the candidate base
+2. record complete authorised diff boundaries for all three files
+3. create a baseline/candidate manifest
+4. prepare timestamped backup + automatic abort/rollback verification method
+5. publish candidate SHA values
+6. only then reissue complete candidate files for deployment
 ```
 
-Then return-source verify exact bytes/SHA/version before runtime acceptance.
+If any gate fails, fall back to anchored manual replacement.
 
-After verification, run one consolidated Step04 runtime batch covering real order states and strict visual comparisons at:
+After postflight identity/syntax PASS, run one consolidated Step04 runtime batch at:
 
 ```text
 1366 desktop
@@ -295,7 +330,9 @@ After Step04 closes, immediately fix and re-accept the V0.3.0 `I HAVE COMPLETED 
 - no duplicate order/invoice
 - no theme-side Crypto gateway registry
 - exactly one native Place Order remains in Step03
-- no blind whole-file deployment without recorded fingerprints
+- no unverified whole-file deployment
+- verified whole-file replacement allowed only under the VFR policy
+- manual anchored replacement is mandatory fallback when VFR gates fail
 - no append-only CSS patch pile
 - Product Packaging remains closed
 - V0.3.0 remains accepted payment baseline
