@@ -18,6 +18,7 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 10. project2-progress/STEP_4F_SELECTED_PAYMENT_THEME_ROLLBACK_VALIDATION_20260816.md
 11. project2-progress/STEP_4F_CRYPTO_V030_BIG_BATCH_B_FINAL_ACCEPTED_20260816.md
 12. project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_FINAL_ACCEPTED_20260816.md
+13. project2-progress/STEP_4F_STEP04_ORDER_RESULT_FULL_AUDIT_AND_IMPLEMENTATION_GATE_20260816.md
 ```
 
 Older `PROJECT2_CURRENT_STATE.md`, `PROJECT2_DOCS_INDEX.md`, historical `PROGRESS_LOG.md`, and earlier Step 4F records remain evidence/history. When they conflict with later dated explicit correction/acceptance records, use the precedence below.
@@ -224,6 +225,44 @@ Do not roll back to V0.2.9 merely because the final local feature-flag state is 
 
 Production quote/rate-lock for arbitrary non-USD shop currency remains unresolved.
 
+## Step 04 production Order Result audit
+
+```text
+Audit: COMPLETE
+Implementation contract: LOCKED
+Historical S7 static confirmed/pending reference: retained as semantic/visual evidence only
+Live owner: woocommerce/checkout/thankyou.php
+Editable-copy owner: functions.php sf_order_received_* Customizer controls
+Visual owner: assets/css/spatial-flow.css .sf-order-received-* layer
+```
+
+Confirmed production gap:
+
+```text
+historical live template distinguishes failed vs all non-failed
+pending/on-hold therefore inherit success/fulfilment-oriented copy
+cancelled/refunded are also not given dedicated truthful semantics
+```
+
+Locked production matrix:
+
+```text
+processing/completed -> confirmed/fulfilment family
+pending/on-hold -> pending/unconfirmed family
+failed -> retry/support family
+cancelled -> cancelled family
+refunded -> refunded family
+custom/unknown -> neutral server-status fallback
+```
+
+Do not redesign the mature live Result page from scratch. Preserve its current Project-2 information architecture and real Woo order data; make the presentation status-aware and server-authoritative.
+
+Implementation gate record:
+
+```text
+project2-progress/STEP_4F_STEP04_ORDER_RESULT_FULL_AUDIT_AND_IMPLEMENTATION_GATE_20260816.md
+```
+
 ## Cross-window payment ownership
 
 Dedicated payment-development window remains long-term owner of payment-plugin evolution, future methods, provider/wallet integration, quote/rate policy, payment security/regression, and production rollout.
@@ -256,19 +295,31 @@ Four-file manual rollback: BYTE-EXACT VALIDATED
 V0.3.0 BIG BATCH B: FINAL ACCEPTED / CLOSED
 Project 2 Crypto Workspace final local state: OFF
 Checkout Step 03 payment system: accepted in current scope
-Checkout Step 04 production Order Result/status matrix: NEXT MAJOR SYSTEM
+Step 04 production audit: COMPLETE
+Step 04 implementation contract: LOCKED
+Current functions.php: AVAILABLE / VERIFIED at 2.7.13 baseline
+Current thankyou.php: fresh live copy required
+Current spatial-flow.css: fresh live copy required
 Checkout binary page status: Not done
 ```
 
 ## Exact next action
 
 ```text
-Open Step 04 — real WooCommerce Order Result / status matrix.
+User supplies fresh current copies of:
+- woocommerce/checkout/thankyou.php
+- assets/css/spatial-flow.css
+
+Project 2 fingerprints both files and confirms they match the actual live theme.
+Then build/review one consolidated three-file Step-04 implementation using:
+- thankyou.php
+- functions.php
+- spatial-flow.css
 ```
 
-Step 04 must be based on actual server/WooCommerce order truth and cover the required result-state matrix without manufacturing state in the browser.
+The candidate theme cache version should move from 2.7.13 to 2.7.15 rather than reusing rejected/previously-exposed 2.7.14.
 
-Before implementation, audit the existing Thank You / Order Result source, accepted static/reference expectations, WooCommerce statuses, Crypto/non-Crypto result ownership, and existing status-specific behavior. Then provide the user one consolidated safe acceptance/test checklist per the runtime batching policy whenever possible.
+After source acceptance, provide one consolidated safe runtime status-matrix checklist wherever dependencies permit.
 
 ## Hard boundaries
 
@@ -289,5 +340,6 @@ Before implementation, audit the existing Thank You / Order Result source, accep
 - V0.3.0 is the accepted payment-plugin baseline
 - final local Crypto Workspace flag state OFF does not mean plugin rejection
 - Step 03 must not be reopened for Step 04 visual work
+- Step 04 state truth must come from WooCommerce/server order status
 - Checkout remains Not done until the complete Step 04/result scope closes
 ```
