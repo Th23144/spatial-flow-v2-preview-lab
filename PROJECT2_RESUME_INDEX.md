@@ -9,13 +9,15 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 1. PROJECT2_RESUME_INDEX.md
 2. PROJECT2_STEP_RECORDING_POLICY.md
 3. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-4. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-5. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-6. PROJECT2_CSS_MAINTENANCE_POLICY.md
-7. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-8. project2-progress/STEP_4F_FULL_REPOSITORY_DOCUMENT_INHERITANCE_COMPLETE_20260816.md
-9. project2-progress/STEP_4F_SELECTED_PAYMENT_THEME_ROLLBACK_VALIDATION_20260816.md
-10. project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_20260816.md
+4. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+5. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+6. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+7. PROJECT2_CSS_MAINTENANCE_POLICY.md
+8. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+9. project2-progress/STEP_4F_FULL_REPOSITORY_DOCUMENT_INHERITANCE_COMPLETE_20260816.md
+10. project2-progress/STEP_4F_SELECTED_PAYMENT_THEME_ROLLBACK_VALIDATION_20260816.md
+11. project2-progress/STEP_4F_CRYPTO_V030_BIG_BATCH_B_FINAL_ACCEPTED_20260816.md
+12. project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_FINAL_ACCEPTED_20260816.md
 ```
 
 Older `PROJECT2_CURRENT_STATE.md`, `PROJECT2_DOCS_INDEX.md`, historical `PROGRESS_LOG.md`, and earlier Step 4F records remain evidence/history. When they conflict with later dated explicit correction/acceptance records, use the precedence below.
@@ -38,6 +40,12 @@ meaningful Project-2 action
 ```
 
 Do not rely on conversation memory as the execution ledger.
+
+## Runtime-test delivery preference
+
+For one coherent acceptance batch, give the user the full safe checklist at once instead of unnecessarily splitting it into multiple feedback rounds.
+
+Split only when a real safety/destructive dependency requires it. The GitHub recording rule still applies internally between meaningful actions.
 
 ## Binary page status
 
@@ -78,7 +86,18 @@ Crypto legacy one-order/on-hold redirect regression: accepted
 1366 / 390 / 360 normal flow regression: accepted
 ```
 
-The later expanded **full payment-system / Crypto Workspace** scope remains open; this does not erase the bounded Batch-6 Step-03 closure.
+### Expanded Crypto Workspace / BIG BATCH B
+
+```text
+Spatial Flow Crypto Pay Trial V0.3.0: FINAL ACCEPTED
+V0.2.9 backend/security contract: FINAL ACCEPTED / retained
+V0.3.0 customer order-pay Workspace: FINAL ACCEPTED
+Feature Flag rollback to legacy /crypto-pay/: PASS
+normal non-Crypto gateway isolation/regression: PASS
+Project 2 Crypto Workspace final local state: OFF
+```
+
+The accepted Step-03 payment system must not be reopened without a concrete regression or later explicit requirement.
 
 ## Product Packaging locked state
 
@@ -101,11 +120,11 @@ Gift fee = per non-empty Gift package
 Woo totals/session/order metadata remain authoritative
 ```
 
-## Step 03 architecture after rollback
+## Step 03 architecture after rollback + BIG BATCH B acceptance
 
 The rejected theme-side `Selected Payment` experiment has been completely rolled back and byte-exact validated.
 
-Current Step 03 theme architecture is again:
+Final accepted main Step 03 theme architecture is:
 
 ```text
 real eligible WooCommerce gateway list
@@ -115,7 +134,16 @@ real eligible WooCommerce gateway list
 → exactly one native Place Order
 ```
 
-The Project-2 theme must remain gateway-agnostic and must not become a second payment gateway registry.
+The Project-2 theme remains gateway-agnostic and is not a second payment gateway registry.
+
+Crypto-specific customer UX begins only after WooCommerce creates the order:
+
+```text
+native Step 03 Place Order
+→ one Woo order
+→ official WooCommerce order-pay boundary
+→ plugin-owned V0.3.0 Crypto Workspace
+```
 
 ### Restored theme baseline
 
@@ -159,9 +187,9 @@ rejected Selected-Payment markers: 0
 spatial_flow_crypto in four theme files: 0
 ```
 
-## Crypto backend / plugin state
+## Crypto plugin state
 
-### V0.2.9
+### V0.2.9 backend/security baseline
 
 ```text
 BIG BATCH A backend/security: FINAL ACCEPTED / CLOSED
@@ -171,21 +199,30 @@ d85028a0bfc92cd15aec5ace8892119f3cd9ff35083e65c3c70990de56cdf56a
 
 Accepted backend includes Workspace Token, REST, Create/Reuse Invoice, server-authoritative fixed USDT/TRON invoice truth, advisory locking, transaction-hash verification, rate limiting, duplicate protection, manual-review/retryable states, `payment_complete()` at-most-once settlement boundary, Sandbox authorization, recovery, and Feature Flag rollback.
 
-Production quote/rate-lock for arbitrary non-USD shop currency remains unresolved.
-
 ### V0.3.0 / BIG BATCH B
 
 ```text
-V0.3.0 customer Workspace candidate: KEEP
-V0.3.0 static/source integration: BUILT / VALIDATED
-V0.3.0 BIG BATCH B customer runtime: NOT YET FINAL ACCEPTED
-Project 2 Crypto Workspace feature flag: OFF until controlled runtime enable step
-Legacy /crypto-pay/ rollback path: KEEP
+Plugin: Spatial Flow Crypto Pay Trial V0.3.0
+ZIP SHA256: d7227f52ddd4f1949b1860348b56a956f47723f3d64d5c052f34a2c1ab58fdb9
+BIG BATCH B source/static: PASS
+B1 Waiting/recovery/responsive: PASS
+B2 malformed Hash + Sandbox settlement: PASS
+B3 Feature Flag rollback + normal gateway regression: PASS
+FINAL STATUS: ACCEPTED / CLOSED
+Project 2 Crypto Workspace: OFF after local acceptance
 ```
 
-Do **not** roll back the plugin to V0.2.9 because the theme Selected-Payment experiment was rejected.
+Runtime evidence includes:
 
-Do **not** independently rewrite the V0.3.0 Workspace files while Project-2 BIG BATCH B runtime acceptance is pending.
+```text
+#3618 — V0.3.0 Waiting + Sandbox -> Processing -> canonical result
+#3619 — unpaid Workspace order -> Feature Flag OFF -> same legacy Crypto order/path
+#3620 — non-Crypto Test Payment gateway -> provider-owned settlement -> canonical Thank You
+```
+
+Do not roll back to V0.2.9 merely because the final local feature-flag state is OFF. V0.3.0 is the accepted plugin baseline; OFF is runtime exposure control.
+
+Production quote/rate-lock for arbitrary non-USD shop currency remains unresolved.
 
 ## Cross-window payment ownership
 
@@ -204,10 +241,10 @@ Project 2 records subsystem overlap internally
 
 The payment window is not expected to broadly read or continuously monitor this repository.
 
-Current standalone handoff:
+Current authoritative standalone handoff:
 
 ```text
-project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_20260816.md
+project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_FINAL_ACCEPTED_20260816.md
 ```
 
 ## Current exact stop point
@@ -216,20 +253,22 @@ project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_20260816.md
 Full documentation inheritance: COMPLETE
 Selected-Payment theme experiment: REJECTED / CLOSED
 Four-file manual rollback: BYTE-EXACT VALIDATED
-V0.3.0 plugin candidate: KEEP
-Project 2 Crypto Workspace: OFF
-V0.3.0 BIG BATCH B customer runtime acceptance: NOT YET CLOSED
+V0.3.0 BIG BATCH B: FINAL ACCEPTED / CLOSED
+Project 2 Crypto Workspace final local state: OFF
+Checkout Step 03 payment system: accepted in current scope
+Checkout Step 04 production Order Result/status matrix: NEXT MAJOR SYSTEM
 Checkout binary page status: Not done
 ```
 
 ## Exact next action
 
 ```text
-Open the consolidated Spatial Flow Crypto Pay Trial V0.3.0
-Project-2 Crypto Workspace BIG BATCH B controlled runtime acceptance cycle.
+Open Step 04 — real WooCommerce Order Result / status matrix.
 ```
 
-The runtime cycle must explicitly control when the feature flag is enabled, test the accepted V0.3.0 Workspace states/recovery paths, re-check Feature Flag OFF rollback, record the result in GitHub, and only then decide whether BIG BATCH B is accepted or rejected.
+Step 04 must be based on actual server/WooCommerce order truth and cover the required result-state matrix without manufacturing state in the browser.
+
+Before implementation, audit the existing Thank You / Order Result source, accepted static/reference expectations, WooCommerce statuses, Crypto/non-Crypto result ownership, and existing status-specific behavior. Then provide the user one consolidated safe acceptance/test checklist per the runtime batching policy whenever possible.
 
 ## Hard boundaries
 
@@ -246,7 +285,9 @@ The runtime cycle must explicitly control when the feature flag is enabled, test
 - mandatory before/after file-size/SHA audit for manual source edits
 - no append-only CSS patch pile
 - Product Packaging remains closed unless evidence reopens it
-- V0.2.9 backend/security remains accepted
-- V0.3.0 plugin is not rolled back by the theme correction
-- Checkout remains Not done until the complete system scope closes
+- V0.2.9 backend/security invariants remain accepted
+- V0.3.0 is the accepted payment-plugin baseline
+- final local Crypto Workspace flag state OFF does not mean plugin rejection
+- Step 03 must not be reopened for Step 04 visual work
+- Checkout remains Not done until the complete Step 04/result scope closes
 ```
