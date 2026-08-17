@@ -13,32 +13,77 @@ Previous user-facing whole-file overwrite instruction: WITHDRAWN
 Step04 deployment-method A/B test: COMPLETE
 User-selected default deployment method: MANUAL ANCHORED REPLACEMENT
 Automated Patch/VFR method: NOT SELECTED AS DEFAULT; use only after new explicit user authorisation
-A/B test touched test copies only; live Step04 remains undeployed
+Step04 manual anchored deployment: APPLIED BY USER
+Step04 returned-source validation: PASS
+Step04 runtime/status matrix: OPEN
+Step04 strict 1:1 runtime visual acceptance: OPEN
 Checkout binary status: Not done
 ```
 
-## Mandatory next action
+## Accepted returned live source fingerprints
+
+### `functions.php`
 
 ```text
-Deploy Step04 to the verified live 2.7.13 baselines using the user-selected manual anchored replacement method.
+bytes: 612013
+logical lines: 11689
+SHA256: 568a904d67e2b2ed2c099b8c64e6b15a0f59c344d8f59253083bba742940f741
+PHP syntax: PASS
+SPATIAL_FLOW_CHILD_VERSION: 2.7.15
+```
 
-Delivery format:
-- replacement code directly in chat
-- one coherent batch at a time; do not micro-split independent edits
-- do not package ordinary manual replacement code into ZIP/download bundles
+This differs from the internal audited candidate only by two removed empty lines between the Step5F END marker and the next Track Order block. Formatting-only; accepted.
 
-For each part provide:
-- exact runtime path
-- current bytes / lines / SHA256 / syntax state
-- exact old code or START/END anchors
-- expected unique match count
-- STOP if count differs
-- exact replacement code
-- expected byte / line delta
-- save instruction
-- consolidated returned live-file validation
-- actual bytes / lines / SHA256 / parser state
-- exact rollback/reverse replacement
+### `woocommerce/checkout/thankyou.php`
+
+```text
+bytes: 43715
+logical lines: 579
+SHA256: 47f5b9e4e1bdd063eb7c0dddc8b6b8ce7e3e726ab394abcb660a5c91ca6f68ee
+PHP syntax: PASS
+```
+
+This differs from the internal audited candidate only by the absence of the final trailing LF. Formatting-only; accepted.
+
+### `assets/css/spatial-flow.css`
+
+```text
+bytes: 587216
+logical lines: 20639
+SHA256: cba94f9615248a86f8d8d23b806621ed04f7b664e8c3a47727036510a33efef9
+brace balance: 3283 / 3283
+comment balance: 275 / 275
+tinycss2 errors: 0
+```
+
+This exactly matches the audited strict-reference candidate.
+
+Detailed result record:
+
+`project2-progress/STEP_4F_STEP04_MANUAL_DEPLOYMENT_SOURCE_VALIDATION_PASS_20260816.md`
+
+## Mandatory next action
+
+Run Step04 runtime/status/strict-1:1 validation as **one consolidated batch**.
+
+Do not split Processing, Pending, Failed, Cancelled, Refunded, desktop/mobile, or recovery checks into separate conversational rounds unless a real blocking defect makes later tests unsafe.
+
+Runtime batch must cover:
+
+```text
+processing / confirmed
+completed
+pending
+on-hold
+failed
+cancelled
+refunded
+needs_payment same-order recovery CTA
+gateway/general Woo Thank You hook preservation
+real Woo order data rendering
+desktop strict-reference parity for Confirmed and Pending
+mobile strict-reference parity for Confirmed and Pending
+browser/query cannot manufacture paid state
 ```
 
 ## Explicit prohibition / default boundary
@@ -55,14 +100,10 @@ Complete candidates may be used internally for comparison, diff derivation, audi
 
 Automated Patch / Verified Full-File Replacement remains an archived optional mechanism. It must not be used for a future Project 2 deployment unless the user explicitly changes the final A/B decision.
 
-## CSS-specific requirement
-
-Replace the currently-owned Step-5F Result block in `assets/css/spatial-flow.css` in place using exact START/END anchors. Do not append a second result visual layer and do not overwrite the full stylesheet.
-
 ## Strict 1:1 requirement
 
-The approved static Step-04 reference remains the visual contract. Manual deployment method does not relax 1:1 requirements for geometry, typography, spacing, responsive breakpoints or hierarchy.
+The approved static Step-04 reference remains the visual contract. Source validation does not equal visual acceptance. Geometry, typography, spacing, responsive breakpoints and hierarchy must still be runtime-compared.
 
 ## Crypto visual follow-up
 
-After Step 04 closes, the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch must be fixed and revalidated before Checkout may be marked Completed 1:1.
+After Step 04 runtime/visual acceptance closes, the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch must be fixed and revalidated before Checkout may be marked Completed 1:1.
