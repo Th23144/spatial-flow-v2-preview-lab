@@ -10,14 +10,22 @@ Step 04 Strict 1:1 visual contract: LOCKED
 Current live baselines: VERIFIED
 Generated 2.7.15 full-file candidates: INTERNAL AUDIT ARTIFACTS ONLY
 Previous user-facing whole-file overwrite instruction: WITHDRAWN
-User has NOT authorised full-file replacement
+Step04 deployment-method A/B test: COMPLETE
+User-selected default deployment method: MANUAL ANCHORED REPLACEMENT
+Automated Patch/VFR method: NOT SELECTED AS DEFAULT; use only after new explicit user authorisation
+A/B test touched test copies only; live Step04 remains undeployed
 Checkout binary status: Not done
 ```
 
 ## Mandatory next action
 
 ```text
-Derive bounded manual anchored replacements from the verified live baselines and the internal 2.7.15 candidate diff.
+Deploy Step04 to the verified live 2.7.13 baselines using the user-selected manual anchored replacement method.
+
+Delivery format:
+- replacement code directly in chat
+- one coherent batch at a time; do not micro-split independent edits
+- do not package ordinary manual replacement code into ZIP/download bundles
 
 For each part provide:
 - exact runtime path
@@ -28,15 +36,14 @@ For each part provide:
 - exact replacement code
 - expected byte / line delta
 - save instruction
-- returned live-file validation
+- consolidated returned live-file validation
 - actual bytes / lines / SHA256 / parser state
 - exact rollback/reverse replacement
-- STOP before advancing
 ```
 
-## Explicit prohibition
+## Explicit prohibition / default boundary
 
-Do NOT instruct the user to overwrite any of these with generated complete candidates:
+Do NOT instruct the user to overwrite any of these with generated complete candidates under the default workflow:
 
 ```text
 functions.php
@@ -44,7 +51,9 @@ woocommerce/checkout/thankyou.php
 assets/css/spatial-flow.css
 ```
 
-Complete candidates may be used only internally for comparison, diff derivation, audit and expected-output verification.
+Complete candidates may be used internally for comparison, diff derivation, audit and expected-output verification.
+
+Automated Patch / Verified Full-File Replacement remains an archived optional mechanism. It must not be used for a future Project 2 deployment unless the user explicitly changes the final A/B decision.
 
 ## CSS-specific requirement
 
