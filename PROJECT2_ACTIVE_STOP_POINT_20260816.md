@@ -17,6 +17,8 @@ Step04 manual anchored deployment: APPLIED BY USER
 Step04 returned-source validation: PASS
 Step04 runtime/status matrix: MOSTLY ACCEPTED; one clean recovery sanity check remains
 Step04 strict 1:1 runtime visual acceptance: REOPENED / NOT PASSED
+Step04 strict 1:1 delta audit: COMPLETE
+Step04 strict 1:1 correction batch: READY FOR USER MANUAL APPLICATION
 Checkout binary status: Not done
 ```
 
@@ -32,8 +34,6 @@ PHP syntax: PASS
 SPATIAL_FLOW_CHILD_VERSION: 2.7.15
 ```
 
-This differs from the internal audited candidate only by two removed empty lines between the Step5F END marker and the next Track Order block. Formatting-only; accepted.
-
 ### `woocommerce/checkout/thankyou.php`
 
 ```text
@@ -43,24 +43,16 @@ SHA256: 47f5b9e4e1bdd063eb7c0dddc8b6b8ce7e3e726ab394abcb660a5c91ca6f68ee
 PHP syntax: PASS
 ```
 
-This differs from the internal audited candidate only by the absence of the final trailing LF. Formatting-only; accepted.
-
 ### `assets/css/spatial-flow.css`
 
 ```text
 bytes: 587216
 logical lines: 20639
 SHA256: cba94f9615248a86f8d8d23b806621ed04f7b664e8c3a47727036510a33efef9
-brace balance: 3283 / 3283
+brace balance: 3281 / 3281
 comment balance: 275 / 275
 tinycss2 errors: 0
 ```
-
-This exactly matches the audited strict-reference candidate.
-
-Detailed source result record:
-
-`project2-progress/STEP_4F_STEP04_MANUAL_DEPLOYMENT_SOURCE_VALIDATION_PASS_20260816.md`
 
 ## Runtime evidence accepted so far
 
@@ -78,95 +70,71 @@ no duplicate native Woo order-details table: PASS
 gateway-owned Thank You output preservation: PASS
 ```
 
-The prior labels that marked Confirmed/Pending desktop+mobile and the five additional state captures as strict visual PASS are WITHDRAWN. Those screenshots proved structural/responsive coherence and state-family correctness, but not strict 1:1 parity.
-
-Strict 1:1 visual acceptance is now formally REOPENED.
-
-Evidence / correction records:
-
-- `project2-progress/STEP_4F_STEP04_RUNTIME_PARTIAL_REVIEW_REFUND_LEDGER_CORRECTION_20260826.md`
-- `project2-progress/STEP_4F_STEP04_RUNTIME_TEST15_17_AND_TEST12_REVIEW_20260826.md`
-- `project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_VISUAL_ACCEPTANCE_REOPENED_20260826.md`
+Strict 1:1 visual acceptance remains reopened. Structural/responsive coherence is not strict parity.
 
 ## Refund-ledger correction
 
-The original reusable order #3621 entered `Refunded`. WooCommerce core created a refund ledger object for the remaining refundable amount. Later changing only the order status back to Pending/Processing does not delete that refund object, so both Step04 and order-pay correctly continue to show the refund and effective 0.00 amount.
+Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Later changing only the order status back to Pending/Processing does not delete that refund object. Therefore #3621 remains unsuitable for clean payable-amount/recovery assertions.
 
-Therefore:
+## Strict 1:1 delta audit result
 
-```text
-Order #3621 is permanently unsuitable for clean payable-amount/recovery assertions.
-The old instruction to cycle one reusable order through Refunded and then reuse it is withdrawn.
-Refunded should use a separate disposable order and be performed last.
-```
+Authoritative record:
 
-This is WooCommerce ledger behavior, not a Step04 arithmetic defect.
+`project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_DELTA_AUDIT_COMPLETE_AND_CORRECTION_BATCH_20260826.md`
 
-## Test 12 final clarification
-
-Test 12 exists to verify that the custom Thank You template does not suppress gateway/plugin-owned Thank You output. It is not a Crypto settlement test.
-
-The live Pending screenshot visibly renders gateway-owned `Our Bank Details` content exactly once, while source validation confirms the template dynamically invokes both the selected gateway-specific `woocommerce_thankyou_{gateway}` hook and the general `woocommerce_thankyou` hook.
-
-Therefore Test 12 is accepted as PASS. A separate Crypto payment/replay is not required solely for Test 12 unless an actual Crypto Thank You regression is later observed.
-
-## Mandatory next action — strict 1:1 delta audit
-
-Do NOT start a fresh order or the remaining clean-order recovery sanity check yet.
-
-First perform a dedicated Step04 strict 1:1 delta audit against the approved static reference using the current live screenshots and the exact static HTML/CSS source.
-
-At minimum audit:
+Deterministic blockers identified:
 
 ```text
-page transition below accepted live header / unexpected blank band
-breadcrumb placement
-result intro vertical spacing
-max-width and horizontal gutters
-intro grid ratio and gap
-title typography/scale/line-height
-lede and authority-note geometry
-4-step progress geometry
-result-shell grid ratio and gap
-status box dimensions/padding
-five-item overview geometry
-main panel spacing and borders
-right receipt-summary width/padding/sticky behavior
-mobile gutter/title/overview/facts/summary collapse behavior
+1. legacy Order Received wrapper top/bottom padding survives and creates white transition bands
+2. production Woo/Astra `.woocommerce-order-details` surface collides with the transparent reference result panel
+3. global `.woocommerce-checkout table.shop_table` 22px !important radius can beat the lower-specificity strict receipt-table selector
+4. legacy Order Received `.woocommerce-customer-details address` 14px typography beats the strict 11px address rule
 ```
 
-Known visible blocker from supplied screenshots:
-- a substantial blank white band is present between the accepted live header and the Step04 result surface; the approved static result reference does not contain this extra transition band.
+Current core Step04 source already matches the static reference for intro/shell ratios, 72px gaps, major typography targets, overview/facts/timeline grids, summary target, and responsive breakpoints. Those values are not to be speculatively changed before the deterministic cascade blockers are removed and re-screened.
 
-Do not edit source until the audit identifies the exact owning selectors and exact target values.
+## Mandatory next action — manual strict-parity correction batch
 
-After strict 1:1 correction and revalidation, run the one remaining narrow clean-order sanity check using a fresh order that has never entered Refunded:
+Do NOT start the remaining clean-order recovery sanity check yet.
+
+Deliver/apply one same-batch manual anchored correction set:
 
 ```text
-1. confirm original non-zero payable total on Pending/Processing Step04
-2. on Pending or Failed, use Return to payment / Retry payment
-3. confirm order-pay keeps the same order number and same non-zero payable amount
-4. do not complete payment and do not set that clean order to Refunded
+A. spatial-flow.css — authoritative host wrapper margin/padding reset
+B. spatial-flow.css — authoritative result-panel surface reset
+C. spatial-flow.css — receipt-table specificity/overflow reset
+D. spatial-flow.css — customer-address specificity/typography reset
+E. functions.php — cache version 2.7.15 -> 2.7.16
 ```
+
+Expected corrected CSS internal audit fingerprint:
+
+```text
+bytes: 587405
+logical lines: 20635
+SHA256: 307958483ead674b91799908d5e64b3a4407154cc0fd1d394354dac4fdc013f8
+brace balance: 3281 / 3281
+comment balance: 275 / 275
+tinycss2 errors: 0
+```
+
+After the user returns both edited files, validate source once. Then re-capture only:
+
+```text
+Confirmed desktop
+Confirmed mobile 390px
+Pending desktop
+Pending mobile 390px
+```
+
+for strict 1:1 reacceptance.
+
+Only after strict visual parity closes should the one clean-order recovery sanity check run.
 
 ## Explicit prohibition / default boundary
 
-Do NOT instruct the user to overwrite any of these with generated complete candidates under the default workflow:
-
-```text
-functions.php
-woocommerce/checkout/thankyou.php
-assets/css/spatial-flow.css
-```
-
-Complete candidates may be used internally for comparison, diff derivation, audit and expected-output verification.
-
-Automated Patch / Verified Full-File Replacement remains an archived optional mechanism. It must not be used for a future Project 2 deployment unless the user explicitly changes the final A/B decision.
-
-## Strict 1:1 requirement
-
-The approved static Step-04 reference remains the visual contract. Dynamic Woo order values/refund rows are business-data differences and do not themselves satisfy or invalidate visual parity. Geometry, typography, spacing, responsive breakpoints and hierarchy must be compared exactly.
+Do NOT instruct the user to overwrite full generated `functions.php`, `thankyou.php`, or `spatial-flow.css` files under the default workflow. Continue manual anchored replacements unless the user explicitly changes that decision.
 
 ## Crypto visual follow-up
 
-After Step04 strict 1:1 correction and the remaining clean recovery sanity check close, the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch must be fixed and revalidated before Checkout may be marked Completed 1:1.
+After Step04 strict 1:1 correction and the remaining clean recovery sanity check close, fix and revalidate the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
