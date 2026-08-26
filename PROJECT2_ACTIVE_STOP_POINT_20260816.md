@@ -1,4 +1,4 @@
-# Project 2 · Active Stop Point · 2026-08-16
+# Project 2 · Active Stop Point · 2026-08-26
 
 This file is the current execution override for the active Step-04 implementation gate.
 
@@ -15,8 +15,8 @@ User-selected default deployment method: MANUAL ANCHORED REPLACEMENT
 Automated Patch/VFR method: NOT SELECTED AS DEFAULT; use only after new explicit user authorisation
 Step04 manual anchored deployment: APPLIED BY USER
 Step04 returned-source validation: PASS
-Step04 runtime/status matrix: OPEN
-Step04 strict 1:1 runtime visual acceptance: OPEN
+Step04 runtime/status matrix: MOSTLY ACCEPTED; one clean recovery sanity check remains
+Step04 strict 1:1 runtime visual acceptance: PASS for Confirmed/Pending desktop+mobile and five additional state-family captures
 Checkout binary status: Not done
 ```
 
@@ -58,33 +58,74 @@ tinycss2 errors: 0
 
 This exactly matches the audited strict-reference candidate.
 
-Detailed result record:
+Detailed source result record:
 
 `project2-progress/STEP_4F_STEP04_MANUAL_DEPLOYMENT_SOURCE_VALIDATION_PASS_20260816.md`
 
-## Mandatory next action
-
-Run Step04 runtime/status/strict-1:1 validation as **one consolidated batch**.
-
-Do not split Processing, Pending, Failed, Cancelled, Refunded, desktop/mobile, or recovery checks into separate conversational rounds unless a real blocking defect makes later tests unsafe.
-
-Runtime batch must cover:
+## Runtime evidence accepted so far
 
 ```text
-processing / confirmed
-completed
-pending
-on-hold
-failed
-cancelled
-refunded
-needs_payment same-order recovery CTA
-gateway/general Woo Thank You hook preservation
-real Woo order data rendering
-desktop strict-reference parity for Confirmed and Pending
-mobile strict-reference parity for Confirmed and Pending
-browser/query cannot manufacture paid state
+Processing / confirmed state semantics: PASS
+Completed state semantics: PASS
+Pending state semantics: PASS
+On-hold state semantics: PASS
+Failed state semantics: PASS
+Cancelled state semantics: PASS
+Refunded state semantics: PASS
+browser/query prototype_result cannot manufacture paid state: PASS
+real Woo data rendering / server-authoritative status: PASS
+no duplicate native Woo order-details table: PASS
+gateway-owned Thank You output preservation: PASS
+Confirmed desktop live visual composition: PASS
+Confirmed mobile live responsive composition: PASS
+Pending desktop live visual composition: PASS
+Pending mobile live responsive composition: PASS
+Completed / On-hold / Failed / Cancelled / Refunded first-screen visual family: PASS
 ```
+
+Evidence records:
+
+- `project2-progress/STEP_4F_STEP04_RUNTIME_PARTIAL_REVIEW_REFUND_LEDGER_CORRECTION_20260826.md`
+- `project2-progress/STEP_4F_STEP04_RUNTIME_TEST15_17_AND_TEST12_REVIEW_20260826.md`
+
+## Refund-ledger correction
+
+The original reusable order #3621 entered `Refunded`. WooCommerce core created a refund ledger object for the remaining refundable amount. Later changing only the order status back to Pending/Processing does not delete that refund object, so both Step04 and order-pay correctly continue to show the refund and effective 0.00 amount.
+
+Therefore:
+
+```text
+Order #3621 is permanently unsuitable for clean payable-amount/recovery assertions.
+The old instruction to cycle one reusable order through Refunded and then reuse it is withdrawn.
+Refunded should use a separate disposable order and be performed last.
+```
+
+This is WooCommerce ledger behavior, not a Step04 arithmetic defect.
+
+## Test 12 final clarification
+
+Test 12 exists to verify that the custom Thank You template does not suppress gateway/plugin-owned Thank You output. It is not a Crypto settlement test.
+
+The live Pending screenshot visibly renders gateway-owned `Our Bank Details` content exactly once, while source validation confirms the template dynamically invokes both the selected gateway-specific `woocommerce_thankyou_{gateway}` hook and the general `woocommerce_thankyou` hook.
+
+Therefore Test 12 is accepted as PASS. A separate Crypto payment/replay is not required solely for Test 12 unless an actual Crypto Thank You regression is later observed.
+
+## Mandatory next action — NOT STARTED YET
+
+Do not restart the 17-test suite.
+
+When the user authorizes continuation, run only one narrow clean-order sanity check using a fresh order that has never entered Refunded:
+
+```text
+1. confirm original non-zero payable total on Pending/Processing Step04
+2. on Pending or Failed, use Return to payment / Retry payment
+3. confirm order-pay keeps the same order number and same non-zero payable amount
+4. do not complete payment and do not set that clean order to Refunded
+```
+
+This remaining check exists only because the original recovery evidence was collected after the reused order had already been financially mutated by Refunded.
+
+No new test is started merely by documenting this stop point.
 
 ## Explicit prohibition / default boundary
 
@@ -102,8 +143,8 @@ Automated Patch / Verified Full-File Replacement remains an archived optional me
 
 ## Strict 1:1 requirement
 
-The approved static Step-04 reference remains the visual contract. Source validation does not equal visual acceptance. Geometry, typography, spacing, responsive breakpoints and hierarchy must still be runtime-compared.
+The approved static Step-04 reference remains the visual contract. Dynamic Woo order values/refund rows are business-data differences and do not by themselves invalidate visual 1:1 acceptance.
 
 ## Crypto visual follow-up
 
-After Step 04 runtime/visual acceptance closes, the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch must be fixed and revalidated before Checkout may be marked Completed 1:1.
+After the remaining Step 04 clean recovery sanity check closes, the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch must be fixed and revalidated before Checkout may be marked Completed 1:1.
