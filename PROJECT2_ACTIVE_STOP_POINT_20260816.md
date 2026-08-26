@@ -16,7 +16,7 @@ Automated Patch/VFR method: NOT SELECTED AS DEFAULT; use only after new explicit
 Step04 manual anchored deployment: APPLIED BY USER
 Step04 returned-source validation: PASS
 Step04 runtime/status matrix: MOSTLY ACCEPTED; one clean recovery sanity check remains
-Step04 strict 1:1 runtime visual acceptance: PASS for Confirmed/Pending desktop+mobile and five additional state-family captures
+Step04 strict 1:1 runtime visual acceptance: REOPENED / NOT PASSED
 Checkout binary status: Not done
 ```
 
@@ -76,17 +76,17 @@ browser/query prototype_result cannot manufacture paid state: PASS
 real Woo data rendering / server-authoritative status: PASS
 no duplicate native Woo order-details table: PASS
 gateway-owned Thank You output preservation: PASS
-Confirmed desktop live visual composition: PASS
-Confirmed mobile live responsive composition: PASS
-Pending desktop live visual composition: PASS
-Pending mobile live responsive composition: PASS
-Completed / On-hold / Failed / Cancelled / Refunded first-screen visual family: PASS
 ```
 
-Evidence records:
+The prior labels that marked Confirmed/Pending desktop+mobile and the five additional state captures as strict visual PASS are WITHDRAWN. Those screenshots proved structural/responsive coherence and state-family correctness, but not strict 1:1 parity.
+
+Strict 1:1 visual acceptance is now formally REOPENED.
+
+Evidence / correction records:
 
 - `project2-progress/STEP_4F_STEP04_RUNTIME_PARTIAL_REVIEW_REFUND_LEDGER_CORRECTION_20260826.md`
 - `project2-progress/STEP_4F_STEP04_RUNTIME_TEST15_17_AND_TEST12_REVIEW_20260826.md`
+- `project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_VISUAL_ACCEPTANCE_REOPENED_20260826.md`
 
 ## Refund-ledger correction
 
@@ -110,11 +110,37 @@ The live Pending screenshot visibly renders gateway-owned `Our Bank Details` con
 
 Therefore Test 12 is accepted as PASS. A separate Crypto payment/replay is not required solely for Test 12 unless an actual Crypto Thank You regression is later observed.
 
-## Mandatory next action — NOT STARTED YET
+## Mandatory next action — strict 1:1 delta audit
 
-Do not restart the 17-test suite.
+Do NOT start a fresh order or the remaining clean-order recovery sanity check yet.
 
-When the user authorizes continuation, run only one narrow clean-order sanity check using a fresh order that has never entered Refunded:
+First perform a dedicated Step04 strict 1:1 delta audit against the approved static reference using the current live screenshots and the exact static HTML/CSS source.
+
+At minimum audit:
+
+```text
+page transition below accepted live header / unexpected blank band
+breadcrumb placement
+result intro vertical spacing
+max-width and horizontal gutters
+intro grid ratio and gap
+title typography/scale/line-height
+lede and authority-note geometry
+4-step progress geometry
+result-shell grid ratio and gap
+status box dimensions/padding
+five-item overview geometry
+main panel spacing and borders
+right receipt-summary width/padding/sticky behavior
+mobile gutter/title/overview/facts/summary collapse behavior
+```
+
+Known visible blocker from supplied screenshots:
+- a substantial blank white band is present between the accepted live header and the Step04 result surface; the approved static result reference does not contain this extra transition band.
+
+Do not edit source until the audit identifies the exact owning selectors and exact target values.
+
+After strict 1:1 correction and revalidation, run the one remaining narrow clean-order sanity check using a fresh order that has never entered Refunded:
 
 ```text
 1. confirm original non-zero payable total on Pending/Processing Step04
@@ -122,10 +148,6 @@ When the user authorizes continuation, run only one narrow clean-order sanity ch
 3. confirm order-pay keeps the same order number and same non-zero payable amount
 4. do not complete payment and do not set that clean order to Refunded
 ```
-
-This remaining check exists only because the original recovery evidence was collected after the reused order had already been financially mutated by Refunded.
-
-No new test is started merely by documenting this stop point.
 
 ## Explicit prohibition / default boundary
 
@@ -143,8 +165,8 @@ Automated Patch / Verified Full-File Replacement remains an archived optional me
 
 ## Strict 1:1 requirement
 
-The approved static Step-04 reference remains the visual contract. Dynamic Woo order values/refund rows are business-data differences and do not by themselves invalidate visual 1:1 acceptance.
+The approved static Step-04 reference remains the visual contract. Dynamic Woo order values/refund rows are business-data differences and do not themselves satisfy or invalidate visual parity. Geometry, typography, spacing, responsive breakpoints and hierarchy must be compared exactly.
 
 ## Crypto visual follow-up
 
-After the remaining Step 04 clean recovery sanity check closes, the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch must be fixed and revalidated before Checkout may be marked Completed 1:1.
+After Step04 strict 1:1 correction and the remaining clean recovery sanity check close, the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch must be fixed and revalidated before Checkout may be marked Completed 1:1.
