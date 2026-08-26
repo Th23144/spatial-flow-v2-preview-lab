@@ -16,11 +16,11 @@ Automated Patch/VFR method: NOT SELECTED AS DEFAULT; use only after new explicit
 Step04 manual anchored deployment: APPLIED BY USER
 Step04 returned-source validation: PASS
 Step04 runtime/status matrix: MOSTLY ACCEPTED; one clean recovery sanity check remains
-Step04 strict 1:1 runtime visual acceptance: REOPENED / NOT PASSED
 Step04 strict 1:1 delta audit: COMPLETE
 Step04 strict 1:1 correction batch: APPLIED BY USER
 Step04 strict 1:1 correction source validation: PASS
-Step04 strict 1:1 runtime revalidation: NEXT
+Step04 strict 1:1 round-2 structural visual regression: PASS
+Step04 strict 1:1 final acceptance: PENDING PAIRED SAME-VIEWPORT REFERENCE COMPARISON
 Checkout binary status: Not done
 ```
 
@@ -56,10 +56,6 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-Strict-parity cascade-fix source validation record:
-
-`project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_CASCADE_FIX_SOURCE_VALIDATION_PASS_20260826.md`
-
 ## Runtime evidence accepted so far
 
 ```text
@@ -76,54 +72,73 @@ no duplicate native Woo order-details table: PASS
 gateway-owned Thank You output preservation: PASS
 ```
 
-Strict 1:1 visual acceptance remains reopened until the four post-fix captures are reviewed. Structural/responsive coherence alone is not strict parity.
+## Strict 1:1 correction and round-2 review
+
+Authoritative audit/correction record:
+
+`project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_DELTA_AUDIT_COMPLETE_AND_CORRECTION_BATCH_20260826.md`
+
+Round-2 runtime review record:
+
+`project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_RUNTIME_REVALIDATION_ROUND2_20260826.md`
+
+The four post-fix live captures show that the deterministic cascade blockers are corrected:
+
+```text
+- legacy white transition band removed
+- old opaque Woo/Astra Order Receipt card surface removed
+- receipt table visually follows flat/square reference geometry
+- billing/shipping address typography follows the smaller reference treatment
+- desktop main/summary composition remains coherent
+- 390px overview/facts/timeline/address/summary collapse remains coherent
+```
+
+No new deterministic source-owner defect is established from these captures.
+
+However, strict 1:1 is not yet formally accepted because the live captures include the WordPress logged-in admin toolbar and there is not yet paired same-viewport visual evidence from the actual approved static reference.
+
+## Mandatory next action — paired same-viewport strict comparison
+
+Do NOT modify source and do NOT rerun the full 17-step runtime matrix.
+
+Capture both the approved static reference and live Step04 under the same conditions:
+
+```text
+- public/logged-out or incognito view: no WordPress admin toolbar
+- browser zoom 100%
+- same desktop viewport for reference and live
+- same mobile viewport 390x844 for reference and live
+```
+
+Required pairs:
+
+```text
+1. Confirmed reference desktop + Confirmed live desktop
+2. Confirmed reference mobile + Confirmed live mobile
+3. Pending reference desktop + Pending live desktop
+4. Pending reference mobile + Pending live mobile
+```
+
+Reference URLs:
+
+Confirmed:
+`https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html`
+
+Pending:
+`https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html?prototype_result=pending`
+
+Allowed production deviations that do not by themselves fail strict visual parity:
+
+- real WooCommerce order values/items/totals/addresses;
+- gateway-owned Thank You output;
+- already-accepted site-wide live header/footer components;
+- production-only state semantics outside S7 Confirmed/Pending.
+
+Only after paired strict visual parity closes should the one clean-order recovery sanity check run.
 
 ## Refund-ledger correction
 
 Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Later changing only the order status back to Pending/Processing does not delete that refund object. Therefore #3621 remains unsuitable for clean payable-amount/recovery assertions.
-
-## Strict 1:1 delta audit and correction
-
-Authoritative audit record:
-
-`project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_DELTA_AUDIT_COMPLETE_AND_CORRECTION_BATCH_20260826.md`
-
-The manual correction batch removed/isolate-owned four deterministic cascade blockers:
-
-```text
-1. legacy Order Received wrapper top/bottom padding white bands
-2. production Woo/Astra `.woocommerce-order-details` card surface collision
-3. global `.woocommerce-checkout table.shop_table` 22px radius precedence
-4. legacy `.woocommerce-customer-details address` 14px typography precedence
-```
-
-The returned source exactly matches the expected bounded CSS candidate fingerprint and cache version 2.7.16. No further source edits should be made before runtime visual re-screening.
-
-## Mandatory next action — narrow strict-parity runtime revalidation
-
-Do NOT rerun the full 17-step status matrix and do NOT start the remaining clean-order recovery sanity check yet.
-
-First hard-refresh the live Step04 page so the 2.7.16 stylesheet is loaded, then capture only:
-
-```text
-1. Confirmed / Processing desktop full page, 100% zoom
-2. Confirmed / Processing mobile 390x844 full page
-3. Pending desktop full page, 100% zoom
-4. Pending mobile 390x844 full page
-```
-
-Compare them against the locked S7 static Step04 reference. The expected visible corrections are:
-
-```text
-- no legacy white transition band above/below the Step04 result surface
-- Your Order Receipt is no longer a separate opaque white card
-- receipt table follows square/flat reference geometry
-- billing/shipping address copy follows the 11px reference typography
-```
-
-If any strict-parity delta remains, isolate its exact computed/source owner before issuing more CSS.
-
-Only after strict visual parity closes should the one clean-order recovery sanity check run.
 
 ## Explicit prohibition / default boundary
 
@@ -131,4 +146,4 @@ Do NOT instruct the user to overwrite full generated `functions.php`, `thankyou.
 
 ## Crypto visual follow-up
 
-After Step04 strict 1:1 correction and the remaining clean recovery sanity check close, fix and revalidate the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
+After Step04 strict 1:1 acceptance and the remaining clean recovery sanity check close, fix and revalidate the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
