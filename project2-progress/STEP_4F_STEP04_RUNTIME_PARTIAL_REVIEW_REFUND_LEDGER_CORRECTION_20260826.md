@@ -58,10 +58,17 @@ Corrected runtime method:
 
 Processing / Confirmed desktop and mobile screenshots were supplied.
 
-Initial visual result:
-- desktop composition follows the accepted S7 family: intro, 4-step progress, status panel, five-item overview, detailed receipt, payment facts, timeline, addresses, sticky/side receipt summary
+Visual inspection result:
+- desktop composition follows the accepted S7 family: intro, 4-step progress, status panel, five-item overview, detailed receipt, payment facts, timeline, addresses, side receipt summary
 - mobile composition collapses correctly to one-column flow, moves receipt summary below main content, and shows no obvious horizontal page overflow or clipped controls in the supplied full-page capture
-- exact final 1:1 closure remains subject to the ongoing screenshot-by-screenshot acceptance, including Pending desktop/mobile and the remaining state first-screen captures
+- this matches the static responsive contract where the result intro/shell collapse below 1120px, receipt summary becomes static, and below 420px the overview/payment facts become one column
+
+However, the screenshots were produced from the same order after it had already entered Refunded. They visibly contain `Refund -$29.99`, `Order fully refunded.` and net total `0.00` while the status presentation is Processing/Confirmed. That is a contaminated test fixture, not a valid clean Processing financial state.
+
+Therefore:
+- Test 13 desktop structural/visual composition: provisional PASS, but clean evidence must be retaken before final strict 1:1 closure
+- Test 14 mobile structural/responsive composition: provisional PASS, but clean evidence must be retaken before final strict 1:1 closure
+- only the canonical clean Processing desktop/mobile and clean Pending desktop/mobile screenshots need to be retaken on a fresh order; there is no need to rerun the entire 17-test batch from zero
 
 ## Current status
 
@@ -72,8 +79,8 @@ Test 12 generic gateway hook: PASS
 Test 12 Crypto-specific hook: pending/unavailable until old Crypto result is checked
 Refund 0.00 behavior: explained by WooCommerce refund object creation; not a Step04 defect
 Single-order-through-Refunded test method: WITHDRAWN
-Test 13 Processing desktop: runtime evidence received, no blocking structural defect seen
-Test 14 Processing mobile: runtime evidence received, no blocking structural defect seen
+Test 13 Processing desktop: provisional visual PASS; clean-order retake required for final closure
+Test 14 Processing mobile: provisional visual PASS; clean-order retake required for final closure
 Step04 final runtime acceptance: NOT YET CLOSED
 Checkout: Not done
 ```
