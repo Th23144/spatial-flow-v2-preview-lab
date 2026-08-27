@@ -20,7 +20,7 @@ Step04 strict 1:1 delta audit: COMPLETE
 Step04 strict 1:1 correction batch: APPLIED BY USER
 Step04 strict 1:1 correction source validation: PASS
 Step04 strict 1:1 round-2 structural visual regression: PASS
-Step04 strict 1:1 final acceptance: PENDING PAIRED SAME-VIEWPORT REFERENCE COMPARISON
+Step04 strict 1:1 final acceptance: REOPENED FOR CODE-FIRST COMPUTED PARITY AUDIT
 Checkout binary status: Not done
 ```
 
@@ -93,39 +93,45 @@ The four post-fix live captures show that the deterministic cascade blockers are
 - 390px overview/facts/timeline/address/summary collapse remains coherent
 ```
 
-No new deterministic source-owner defect is established from these captures.
+These observations are structural regression evidence only. They are NOT strict 1:1 acceptance.
 
-However, strict 1:1 is not yet formally accepted because the live captures include the WordPress logged-in admin toolbar and there is not yet paired same-viewport visual evidence from the actual approved static reference.
+## Strict 1:1 acceptance methodology — CODE-FIRST
 
-## Mandatory next action — paired same-viewport strict comparison
+Authoritative correction record:
+
+`project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_CODE_FIRST_ACCEPTANCE_METHOD_CORRECTION_20260826.md`
+
+Strict 1:1 must not be accepted by visual inspection alone. Required order:
+
+```text
+1. extract reference source contract
+2. normalized reference-vs-production CSS property diff
+3. same-viewport runtime getComputedStyle + getBoundingClientRect capture
+4. numeric computed-style / geometry diff
+5. screenshot/pixel review only as final residual check
+6. PASS only if remaining deltas are zero or explicitly allowed production deviations
+```
+
+The already supplied paired screenshots remain useful evidence, but do not close strict 1:1 by themselves.
+
+## Mandatory next action — code/computed parity audit
 
 Do NOT modify source and do NOT rerun the full 17-step runtime matrix.
 
-Capture both the approved static reference and live Step04 under the same conditions:
+Compare the approved S7 reference and live Step04 at desktop and mobile 390x844 using a deterministic runtime diagnostic that captures, for the same target selectors:
 
 ```text
-- public/logged-out or incognito view: no WordPress admin toolbar
-- browser zoom 100%
-- same desktop viewport for reference and live
-- same mobile viewport 390x844 for reference and live
+bounding rect x/y/width/height
+computed display/position/grid-template-columns/gap/align-items
+margin/padding
+font-family/font-size/font-weight/font-style/line-height/letter-spacing
+color/background/border/border-radius/box-shadow
+sticky top and responsive state
 ```
 
-Required pairs:
+Target selectors include breadcrumb, result-intro/title/lede/authority, checkout steps, result-shell/status/overview, panels/table/facts/timeline/addresses, result-side/summary/actions.
 
-```text
-1. Confirmed reference desktop + Confirmed live desktop
-2. Confirmed reference mobile + Confirmed live mobile
-3. Pending reference desktop + Pending live desktop
-4. Pending reference mobile + Pending live mobile
-```
-
-Reference URLs:
-
-Confirmed:
-`https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html`
-
-Pending:
-`https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html?prototype_result=pending`
+Only after a concrete numeric/source delta is identified may another CSS correction batch be issued.
 
 Allowed production deviations that do not by themselves fail strict visual parity:
 
@@ -134,7 +140,7 @@ Allowed production deviations that do not by themselves fail strict visual parit
 - already-accepted site-wide live header/footer components;
 - production-only state semantics outside S7 Confirmed/Pending.
 
-Only after paired strict visual parity closes should the one clean-order recovery sanity check run.
+These deviations do not waive Step04-owned geometry/typography/style parity.
 
 ## Refund-ledger correction
 
