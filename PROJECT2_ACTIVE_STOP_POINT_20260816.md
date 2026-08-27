@@ -21,10 +21,12 @@ Step04 code-first computed parity audit: COMPLETE
 Step04 first strict 1:1 computed result: FAIL — deterministic CSS deltas identified
 Step04 bounded computed-parity CSS correction: APPLIED BY USER
 Step04 computed-parity correction returned-source validation: PASS EXACT
-Step04 visible blocker A white band: OWNER PROVEN — #main.site-main has 20px top / 44px bottom padding and white background
-Step04 visible blocker B cancelled gateway instructions: SOURCE OWNER PROVEN — gateway-specific Thank You hook rendered without status gating
-Step04 eight-capture computed rerun: PAUSED until both visible blockers are fixed/revalidated
-Step04 next action: one consolidated manual anchored correction batch for CSS + thankyou.php + cache version bump
+Step04 visible blocker A white band: OWNER PROVEN — #main.site-main 20px/44px padding + white background
+Step04 visible blocker B cancelled gateway instructions: SOURCE OWNER PROVEN — ungated gateway-specific Thank You hook output
+Step04 visible-blocker correction batch: APPLIED BY USER
+Step04 visible-blocker correction returned-source validation: PASS
+Step04 eight-capture computed rerun: PAUSED
+Step04 next action: narrow runtime recheck of white band + Cancelled gateway output + On-hold gateway preservation
 Checkout binary status: Not done
 ```
 
@@ -35,75 +37,60 @@ Checkout binary status: Not done
 ```text
 bytes: 612013
 logical lines: 11689
-SHA256: c93ddf3ea896ff32d4904a8ef41e0a85923e1dc49a09542e99989a89faf67b3b
+SHA256: 4d5e807a75a5f5548ee69639f6bc6070eef4d1c30d80f54970d3057a7dae6125
 PHP syntax: PASS
-SPATIAL_FLOW_CHILD_VERSION: 2.7.17
+SPATIAL_FLOW_CHILD_VERSION: 2.7.18
 ```
 
 ### `woocommerce/checkout/thankyou.php`
 
 ```text
-bytes: 43715
-logical lines: 579
-SHA256: 47f5b9e4e1bdd063eb7c0dddc8b6b8ce7e3e726ab394abcb660a5c91ca6f68ee
+bytes: 43932
+logical lines: 584
+SHA256: 69ea915ddbe1e3f6132715d9bfd0bf1dfde6725eca545d7c39f4916162e087fb
 PHP syntax: PASS
 ```
 
 ### `assets/css/spatial-flow.css`
 
 ```text
-bytes: 588493
-logical lines: 20661
-SHA256: e1cf15a54e9d34e3ae1fea144398f4ef9187227e3aff23b16863bf6fdc9708bc
-brace balance: 3281 / 3281
+bytes: 588629
+logical lines: 20666
+SHA256: 7cad3472f4ee53b672b4ce1d2d27bb2641b9b34e5541b48e39f145fcb956a8d8
+brace balance: 3282 / 3282
 comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Latest white-band diagnostic
+## Latest accepted source correction
 
 Authoritative record:
 
-`project2-progress/STEP_4F_STEP04_WHITE_BAND_OWNER_DIAGNOSTIC_PASS_AND_GATEWAY_OUTPUT_FIX_GATE_20260827.md`
+`project2-progress/STEP_4F_STEP04_VISIBLE_BLOCKER_CORRECTION_RETURNED_SOURCE_VALIDATION_20260827.md`
 
-Runtime proof:
+Commit:
 
-```text
-#primary top: 166px
-#main.site-main top: 166px
-article top: 186px
-.sf-order-result-v3 top: 186px
-```
+`0824e4a77602f3933fd43b9b949cb0699c20d032`
 
-`#main.site-main` computed:
+Validated source ownership:
 
 ```text
-padding-top: 20px
-padding-bottom: 44px
-background-color: rgb(255,255,255)
-```
+White-band owner:
+#main.site-main is now part of the Step5F page-frame reset and has Step04 beige background ownership.
 
-The 20px white band therefore comes from `#main.site-main`. The 44px bottom padding is the same unowned wrapper behavior and should be reset at the same time.
-
-## Gateway-output status gate
-
-Current template preserves the gateway-specific `woocommerce_thankyou_{gateway}` hook but renders its captured output for all order states. That is why a Cancelled BACS order still shows `Our Bank Details`.
-
-Required gate:
-
-```text
+Gateway-output gate:
 show gateway-specific payment instructions when:
 - $order->needs_payment() is true; OR
 - status is on-hold
 
-hide gateway-specific payment instructions for terminal/settled states such as:
+hide gateway-specific payment instructions for settled/terminal states including:
 - processing
 - completed
 - cancelled
 - refunded
-```
 
-Keep general `woocommerce_thankyou` output preserved independently.
+General woocommerce_thankyou output remains preserved independently.
+```
 
 ## Runtime/status evidence accepted so far
 
@@ -113,12 +100,12 @@ Completed state semantics: PASS
 Pending state semantics: PASS
 On-hold state semantics: PASS
 Failed state semantics: PASS
-Cancelled state main copy: PASS; stale gateway payment instructions: REOPENED
+Cancelled state main copy: PASS; gateway-output fix source-validated, runtime recheck pending
 Refunded state semantics: PASS
 browser/query prototype_result cannot manufacture paid state: PASS
 real Woo data rendering / server-authoritative status: PASS
 no duplicate native Woo order-details table: PASS
-gateway hook preservation: preserved; state-appropriate gateway instruction rendering awaiting correction
+gateway hook preservation: source-preserved; state-appropriate runtime recheck pending
 ```
 
 ## Strict 1:1 method
@@ -135,29 +122,26 @@ Strict parity remains CODE-FIRST:
 
 ## Mandatory next action
 
-Issue one consolidated manual anchored correction batch:
+Do NOT rerun the full 17-step matrix or the eight computed-parity captures yet.
+
+Run one narrow visible-blocker runtime recheck after hard refresh / cache-version 2.7.18 load:
 
 ```text
-A. assets/css/spatial-flow.css
-   - add #main.site-main to Step5F page-frame reset
-   - remove its inherited 20px top / 44px bottom padding
-   - make its background #f6f1eb
+A. Any Step04 desktop page:
+   - confirm the white horizontal band below the accepted header is gone.
 
-B. woocommerce/checkout/thankyou.php
-   - gate gateway-specific payment hook capture using needs_payment() OR on-hold
-   - preserve general woocommerce_thankyou output
+B. Cancelled BACS order:
+   - confirm `Our Bank Details` / gateway-specific payment instructions are absent.
 
-C. functions.php
-   - bump 2.7.17 → 2.7.18
+C. On-hold BACS order:
+   - confirm `Our Bank Details` / gateway-specific payment instructions are still present.
 ```
 
-After the user returns all three edited files, validate size/lines/SHA/syntax/parser together. Then visually recheck only the white band and Cancelled gateway-output blocker. Resume the eight computed parity captures only after those two blockers pass.
-
-Do not rerun the full 17-step matrix.
+Return these three observations/screenshots together. If all pass, record the visible blockers CLOSED and resume the same eight computed-parity captures.
 
 ## Refund-ledger correction
 
-Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Changing only its status later does not remove that refund object. #3621 is unsuitable for the remaining clean payable-amount/recovery sanity check.
+Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Changing only its status later does not remove that refund object. #3621 remains unsuitable for the remaining clean payable-amount/recovery sanity check.
 
 ## Explicit deployment boundary
 
