@@ -16,11 +16,10 @@ Automated Patch/VFR method: NOT SELECTED AS DEFAULT; use only after new explicit
 Step04 manual anchored deployment: APPLIED BY USER
 Step04 returned-source validation: PASS
 Step04 runtime/status matrix: MOSTLY ACCEPTED; one clean recovery sanity check remains
-Step04 strict 1:1 delta audit: COMPLETE
-Step04 strict 1:1 correction batch: APPLIED BY USER
-Step04 strict 1:1 correction source validation: PASS
-Step04 strict 1:1 round-2 structural visual regression: PASS
-Step04 strict 1:1 final acceptance: REOPENED FOR CODE-FIRST COMPUTED PARITY AUDIT
+Step04 strict 1:1 round-2 structural visual regression: PASS AS STRUCTURAL EVIDENCE ONLY
+Step04 code-first computed parity audit: COMPLETE
+Step04 strict 1:1 computed result: FAIL — deterministic CSS deltas remain
+Step04 next action: bounded CSS parity correction + cache version bump
 Checkout binary status: Not done
 ```
 
@@ -56,7 +55,7 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Runtime evidence accepted so far
+## Runtime/status evidence accepted so far
 
 ```text
 Processing / confirmed state semantics: PASS
@@ -72,84 +71,68 @@ no duplicate native Woo order-details table: PASS
 gateway-owned Thank You output preservation: PASS
 ```
 
-## Strict 1:1 correction and round-2 review
+## Strict 1:1 method
 
-Authoritative audit/correction record:
-
-`project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_DELTA_AUDIT_COMPLETE_AND_CORRECTION_BATCH_20260826.md`
-
-Round-2 runtime review record:
-
-`project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_RUNTIME_REVALIDATION_ROUND2_20260826.md`
-
-The four post-fix live captures show that the deterministic cascade blockers are corrected:
+Strict parity is CODE-FIRST:
 
 ```text
-- legacy white transition band removed
-- old opaque Woo/Astra Order Receipt card surface removed
-- receipt table visually follows flat/square reference geometry
-- billing/shipping address typography follows the smaller reference treatment
-- desktop main/summary composition remains coherent
-- 390px overview/facts/timeline/address/summary collapse remains coherent
+1. reference source contract
+2. runtime getComputedStyle / getBoundingClientRect
+3. numeric diff
+4. screenshots only as residual evidence
 ```
 
-These observations are structural regression evidence only. They are NOT strict 1:1 acceptance.
+Authoritative computed audit record:
 
-## Strict 1:1 acceptance methodology — CODE-FIRST
+`project2-progress/STEP_4F_STEP04_COMPUTED_PARITY_AUDIT_FAIL_AND_CSS_CORRECTION_GATE_20260826.md`
 
-Authoritative correction record:
-
-`project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_CODE_FIRST_ACCEPTANCE_METHOD_CORRECTION_20260826.md`
-
-Strict 1:1 must not be accepted by visual inspection alone. Required order:
+Eight supplied JSON captures were sorted into:
 
 ```text
-1. extract reference source contract
-2. normalized reference-vs-production CSS property diff
-3. same-viewport runtime getComputedStyle + getBoundingClientRect capture
-4. numeric computed-style / geometry diff
-5. screenshot/pixel review only as final residual check
-6. PASS only if remaining deltas are zero or explicitly allowed production deviations
+Confirmed reference desktop ↔ Processing production desktop
+Confirmed reference 390x844 ↔ Processing production 390x844
+Pending reference desktop ↔ Pending production desktop
+Pending reference 390x844 ↔ Pending production 390x844
 ```
 
-The already supplied paired screenshots remain useful evidence, but do not close strict 1:1 by themselves.
+Viewport/DPR/scale and all Step04 CSS variables match. Core max-width, gutters, desktop intro columns, 72px gaps, title metrics, shell ratio and mobile one-column breakpoints are substantially aligned.
 
-## Mandatory next action — code/computed parity audit
-
-Do NOT modify source and do NOT rerun the full 17-step runtime matrix.
-
-Compare the approved S7 reference and live Step04 at desktop and mobile 390x844 using a deterministic runtime diagnostic that captures, for the same target selectors:
+However strict 1:1 is NOT passed because deterministic computed CSS mismatches remain:
 
 ```text
-bounding rect x/y/width/height
-computed display/position/grid-template-columns/gap/align-items
-margin/padding
-font-family/font-size/font-weight/font-style/line-height/letter-spacing
-color/background/border/border-radius/box-shadow
-sticky top and responsive state
+A. Step04 root font-size/line-height: reference 16px/24.8px; live desktop 14px/21.7px; live mobile 12.768px/19.7904px
+B. result-overview li font metrics leak from Woo order_details
+C. result-title and panel h2 text-transform: reference none; live capitalize
+D. theme paragraph bottom margins leak into lede/authority/panel copy/summary note
+E. first Receipt panel inherits Woo/system font family instead of Inter
+F. order-table footer cells inherit Woo/system font and weight 500 instead of Inter/400
+G. result-action line-height is coded 1.2; reference computes from 1.55
 ```
 
-Target selectors include breadcrumb, result-intro/title/lede/authority, checkout steps, result-shell/status/overview, panels/table/facts/timeline/addresses, result-side/summary/actions.
+These are CSS-owned. No PHP status/business logic or `thankyou.php` semantic change is required.
 
-Only after a concrete numeric/source delta is identified may another CSS correction batch be issued.
+## Mandatory next action
 
-Allowed production deviations that do not by themselves fail strict visual parity:
+Issue one consolidated manual anchored correction batch for `assets/css/spatial-flow.css`, followed only by a cache-version bump in `functions.php`.
 
-- real WooCommerce order values/items/totals/addresses;
+Do not overwrite whole files. Do not rerun the full 17-step matrix.
+
+After returned-source validation, rerun the same eight computed parity captures. PASS requires zero remaining deterministic Step04-owned computed deltas, except explicitly allowed dynamic production deviations.
+
+Allowed deviations:
+- real WooCommerce values/items/totals/addresses;
 - gateway-owned Thank You output;
-- already-accepted site-wide live header/footer components;
-- production-only state semantics outside S7 Confirmed/Pending.
-
-These deviations do not waive Step04-owned geometry/typography/style parity.
+- already-accepted live global header/footer;
+- production-only status semantics outside static Confirmed/Pending.
 
 ## Refund-ledger correction
 
-Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Later changing only the order status back to Pending/Processing does not delete that refund object. Therefore #3621 remains unsuitable for clean payable-amount/recovery assertions.
+Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Changing only its status later does not remove that refund object. #3621 is unsuitable for the remaining clean payable-amount/recovery sanity check.
 
-## Explicit prohibition / default boundary
+## Explicit deployment boundary
 
-Do NOT instruct the user to overwrite full generated `functions.php`, `thankyou.php`, or `spatial-flow.css` files under the default workflow. Continue manual anchored replacements unless the user explicitly changes that decision.
+Do NOT instruct whole-file replacement for `functions.php`, `thankyou.php`, or `spatial-flow.css` under the default workflow. Continue manual anchored replacement unless the user explicitly changes that decision.
 
 ## Crypto visual follow-up
 
-After Step04 strict 1:1 acceptance and the remaining clean recovery sanity check close, fix and revalidate the reopened V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
+After Step04 strict 1:1 computed parity and the clean recovery sanity check close, fix/revalidate the V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
