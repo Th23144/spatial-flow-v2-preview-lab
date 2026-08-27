@@ -1,4 +1,4 @@
-# Project 2 · Active Stop Point · 2026-08-26
+# Project 2 · Active Stop Point · 2026-08-27
 
 This file is the current execution override for the active Step-04 implementation gate.
 
@@ -14,12 +14,14 @@ Step04 deployment-method A/B test: COMPLETE
 User-selected default deployment method: MANUAL ANCHORED REPLACEMENT
 Automated Patch/VFR method: NOT SELECTED AS DEFAULT; use only after new explicit user authorisation
 Step04 manual anchored deployment: APPLIED BY USER
-Step04 returned-source validation: PASS
+Step04 initial returned-source validation: PASS
 Step04 runtime/status matrix: MOSTLY ACCEPTED; one clean recovery sanity check remains
 Step04 strict 1:1 round-2 structural visual regression: PASS AS STRUCTURAL EVIDENCE ONLY
 Step04 code-first computed parity audit: COMPLETE
-Step04 strict 1:1 computed result: FAIL — deterministic CSS deltas remain
-Step04 next action: bounded CSS parity correction + cache version bump
+Step04 first strict 1:1 computed result: FAIL — deterministic CSS deltas identified
+Step04 bounded computed-parity CSS correction: APPLIED BY USER
+Step04 computed-parity correction returned-source validation: PASS EXACT
+Step04 next action: rerun the same 8 computed parity captures only
 Checkout binary status: Not done
 ```
 
@@ -30,9 +32,9 @@ Checkout binary status: Not done
 ```text
 bytes: 612013
 logical lines: 11689
-SHA256: ef28d7c51ec8e03649b75a2f1183420e14d1a9c139568353f9509673739770ed
+SHA256: c93ddf3ea896ff32d4904a8ef41e0a85923e1dc49a09542e99989a89faf67b3b
 PHP syntax: PASS
-SPATIAL_FLOW_CHILD_VERSION: 2.7.16
+SPATIAL_FLOW_CHILD_VERSION: 2.7.17
 ```
 
 ### `woocommerce/checkout/thankyou.php`
@@ -47,13 +49,23 @@ PHP syntax: PASS
 ### `assets/css/spatial-flow.css`
 
 ```text
-bytes: 587405
-logical lines: 20635
-SHA256: 307958483ead674b91799908d5e64b3a4407154cc0fd1d394354dac4fdc013f8
+bytes: 588493
+logical lines: 20661
+SHA256: e1cf15a54e9d34e3ae1fea144398f4ef9187227e3aff23b16863bf6fdc9708bc
 brace balance: 3281 / 3281
 comment balance: 275 / 275
 tinycss2 errors: 0
 ```
+
+## Returned-source validation result
+
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_COMPUTED_PARITY_CORRECTION_RETURNED_SOURCE_VALIDATION_PASS_20260827.md`
+
+The user-returned `functions.php` and `spatial-flow.css` match the previously predicted post-edit fingerprints exactly. No unexpected source delta was found.
+
+The Step5F canonical owner now contains the intended computed-parity corrections, including explicit ownership for root typography, Order Overview typography, Receipt panel/table typography, heading text-transform, paragraph margins, summary heading ownership, footer weight, and result-action line-height.
 
 ## Runtime/status evidence accepted so far
 
@@ -73,7 +85,7 @@ gateway-owned Thank You output preservation: PASS
 
 ## Strict 1:1 method
 
-Strict parity is CODE-FIRST:
+Strict parity remains CODE-FIRST:
 
 ```text
 1. reference source contract
@@ -82,42 +94,28 @@ Strict parity is CODE-FIRST:
 4. screenshots only as residual evidence
 ```
 
-Authoritative computed audit record:
-
-`project2-progress/STEP_4F_STEP04_COMPUTED_PARITY_AUDIT_FAIL_AND_CSS_CORRECTION_GATE_20260826.md`
-
-Eight supplied JSON captures were sorted into:
-
-```text
-Confirmed reference desktop ↔ Processing production desktop
-Confirmed reference 390x844 ↔ Processing production 390x844
-Pending reference desktop ↔ Pending production desktop
-Pending reference 390x844 ↔ Pending production 390x844
-```
-
-Viewport/DPR/scale and all Step04 CSS variables match. Core max-width, gutters, desktop intro columns, 72px gaps, title metrics, shell ratio and mobile one-column breakpoints are substantially aligned.
-
-However strict 1:1 is NOT passed because deterministic computed CSS mismatches remain:
-
-```text
-A. Step04 root font-size/line-height: reference 16px/24.8px; live desktop 14px/21.7px; live mobile 12.768px/19.7904px
-B. result-overview li font metrics leak from Woo order_details
-C. result-title and panel h2 text-transform: reference none; live capitalize
-D. theme paragraph bottom margins leak into lede/authority/panel copy/summary note
-E. first Receipt panel inherits Woo/system font family instead of Inter
-F. order-table footer cells inherit Woo/system font and weight 500 instead of Inter/400
-G. result-action line-height is coded 1.2; reference computes from 1.55
-```
-
-These are CSS-owned. No PHP status/business logic or `thankyou.php` semantic change is required.
+The previous 8-capture computed audit identified deterministic CSS-owned mismatches. Those source corrections are now applied and source-validated exactly.
 
 ## Mandatory next action
 
-Issue one consolidated manual anchored correction batch for `assets/css/spatial-flow.css`, followed only by a cache-version bump in `functions.php`.
+Do NOT modify source and do NOT rerun the full 17-step matrix.
 
-Do not overwrite whole files. Do not rerun the full 17-step matrix.
+Rerun only the same eight computed parity captures:
 
-After returned-source validation, rerun the same eight computed parity captures. PASS requires zero remaining deterministic Step04-owned computed deltas, except explicitly allowed dynamic production deviations.
+```text
+1. Confirmed reference desktop
+2. Processing production desktop
+3. Confirmed reference mobile 390x844
+4. Processing production mobile 390x844
+5. Pending reference desktop
+6. Pending production desktop
+7. Pending reference mobile 390x844
+8. Pending production mobile 390x844
+```
+
+Then perform numeric source/computed comparison using the same selector set and same-viewport geometry/typography/style fields.
+
+PASS requires zero remaining deterministic Step04-owned computed deltas, except explicitly allowed dynamic production deviations.
 
 Allowed deviations:
 - real WooCommerce values/items/totals/addresses;
