@@ -21,7 +21,10 @@ Step04 code-first computed parity audit: COMPLETE
 Step04 first strict 1:1 computed result: FAIL — deterministic CSS deltas identified
 Step04 bounded computed-parity CSS correction: APPLIED BY USER
 Step04 computed-parity correction returned-source validation: PASS EXACT
-Step04 next action: rerun the same 8 computed parity captures only
+Step04 visible blocker A: REOPENED — white horizontal band below accepted header
+Step04 visible blocker B: REOPENED — cancelled order still renders gateway-specific bank-transfer instructions
+Step04 eight-capture computed rerun: PAUSED until both visible blockers are fixed/revalidated
+Step04 next action: one targeted wrapper-chain diagnostic for white-band owner, then one consolidated manual anchored correction batch
 Checkout binary status: Not done
 ```
 
@@ -57,15 +60,20 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Returned-source validation result
+## Latest visible blocker evidence
 
 Authoritative record:
 
-`project2-progress/STEP_4F_STEP04_COMPUTED_PARITY_CORRECTION_RETURNED_SOURCE_VALIDATION_PASS_20260827.md`
+`project2-progress/STEP_4F_STEP04_VISIBLE_BLOCKERS_REOPEN_WHITE_BAND_AND_CANCELLED_GATEWAY_OUTPUT_20260827.md`
 
-The user-returned `functions.php` and `spatial-flow.css` match the previously predicted post-edit fingerprints exactly. No unexpected source delta was found.
+The user supplied current desktop screenshots showing two blockers that are visible before any fine computed-parity rerun:
 
-The Step5F canonical owner now contains the intended computed-parity corrections, including explicit ownership for root typography, Order Overview typography, Receipt panel/table typography, heading text-transform, paragraph margins, summary heading ownership, footer weight, and result-action line-height.
+1. a white horizontal band between the accepted global header and the beige Step04 surface;
+2. `Our Bank Details` still rendered on a Cancelled order.
+
+The second issue is a semantic/business-state defect. Current Step04 captures `woocommerce_thankyou_{gateway}` output and renders the resulting gateway-specific content whenever non-empty, even for terminal states. Hook preservation remains required, but terminal states must not display stale/actionable payment instructions.
+
+The white-band owner is not yet proven. Current Step5F resets descendants including `.site-content .ast-container`, `#primary`, `.entry-content` and `.entry-content > .woocommerce`, but the screenshot indicates a residual parent-wrapper surface/gap. Do not patch by guesswork.
 
 ## Runtime/status evidence accepted so far
 
@@ -75,12 +83,12 @@ Completed state semantics: PASS
 Pending state semantics: PASS
 On-hold state semantics: PASS
 Failed state semantics: PASS
-Cancelled state semantics: PASS
+Cancelled state semantics: PASS for main Step04 state copy, but gateway-output appropriateness REOPENED
 Refunded state semantics: PASS
 browser/query prototype_result cannot manufacture paid state: PASS
 real Woo data rendering / server-authoritative status: PASS
 no duplicate native Woo order-details table: PASS
-gateway-owned Thank You output preservation: PASS
+gateway hook preservation: preserved, but state-appropriate rendering REOPENED
 ```
 
 ## Strict 1:1 method
@@ -94,34 +102,39 @@ Strict parity remains CODE-FIRST:
 4. screenshots only as residual evidence
 ```
 
-The previous 8-capture computed audit identified deterministic CSS-owned mismatches. Those source corrections are now applied and source-validated exactly.
+However, obvious visible blockers take precedence over rerunning the full eight computed captures. The eight-capture gate is paused until these blockers are resolved.
 
 ## Mandatory next action
 
-Do NOT modify source and do NOT rerun the full 17-step matrix.
+Do NOT modify source blindly and do NOT rerun the full 17-step matrix or the eight computed-parity captures yet.
 
-Rerun only the same eight computed parity captures:
+Run one targeted console diagnostic on the current production Step04 page for the wrapper chain:
 
 ```text
-1. Confirmed reference desktop
-2. Processing production desktop
-3. Confirmed reference mobile 390x844
-4. Processing production mobile 390x844
-5. Pending reference desktop
-6. Pending production desktop
-7. Pending reference mobile 390x844
-8. Pending production mobile 390x844
+#page
+.site
+.site-content
+.site-content > .ast-container
+#primary
+#main
+.site-main
+article
+.ast-article-single
+.entry-content
+.entry-content > .woocommerce
+.sf-order-result-v3
+.woocommerce-breadcrumb
 ```
 
-Then perform numeric source/computed comparison using the same selector set and same-viewport geometry/typography/style fields.
+Capture rect top/bottom/height plus margin/padding/background/display. Use this to prove the exact white-band owner.
 
-PASS requires zero remaining deterministic Step04-owned computed deltas, except explicitly allowed dynamic production deviations.
+Then issue one consolidated manual anchored correction batch covering:
 
-Allowed deviations:
-- real WooCommerce values/items/totals/addresses;
-- gateway-owned Thank You output;
-- already-accepted live global header/footer;
-- production-only status semantics outside static Confirmed/Pending.
+1. the proven white-band CSS owner in `assets/css/spatial-flow.css`;
+2. state-gated gateway-specific payment output in `woocommerce/checkout/thankyou.php`, while preserving general non-payment Thank You hook output;
+3. one cache/version bump in `functions.php`.
+
+After returned-source validation, recheck these two visible blockers first. Only then resume the same eight computed parity captures.
 
 ## Refund-ledger correction
 
