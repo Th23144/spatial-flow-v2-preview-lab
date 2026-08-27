@@ -21,10 +21,10 @@ Step04 code-first computed parity audit: COMPLETE
 Step04 first strict 1:1 computed result: FAIL — deterministic CSS deltas identified
 Step04 bounded computed-parity CSS correction: APPLIED BY USER
 Step04 computed-parity correction returned-source validation: PASS EXACT
-Step04 visible blocker A: REOPENED — white horizontal band below accepted header
-Step04 visible blocker B: REOPENED — cancelled order still renders gateway-specific bank-transfer instructions
+Step04 visible blocker A white band: OWNER PROVEN — #main.site-main has 20px top / 44px bottom padding and white background
+Step04 visible blocker B cancelled gateway instructions: SOURCE OWNER PROVEN — gateway-specific Thank You hook rendered without status gating
 Step04 eight-capture computed rerun: PAUSED until both visible blockers are fixed/revalidated
-Step04 next action: one targeted wrapper-chain diagnostic for white-band owner, then one consolidated manual anchored correction batch
+Step04 next action: one consolidated manual anchored correction batch for CSS + thankyou.php + cache version bump
 Checkout binary status: Not done
 ```
 
@@ -60,20 +60,50 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Latest visible blocker evidence
+## Latest white-band diagnostic
 
 Authoritative record:
 
-`project2-progress/STEP_4F_STEP04_VISIBLE_BLOCKERS_REOPEN_WHITE_BAND_AND_CANCELLED_GATEWAY_OUTPUT_20260827.md`
+`project2-progress/STEP_4F_STEP04_WHITE_BAND_OWNER_DIAGNOSTIC_PASS_AND_GATEWAY_OUTPUT_FIX_GATE_20260827.md`
 
-The user supplied current desktop screenshots showing two blockers that are visible before any fine computed-parity rerun:
+Runtime proof:
 
-1. a white horizontal band between the accepted global header and the beige Step04 surface;
-2. `Our Bank Details` still rendered on a Cancelled order.
+```text
+#primary top: 166px
+#main.site-main top: 166px
+article top: 186px
+.sf-order-result-v3 top: 186px
+```
 
-The second issue is a semantic/business-state defect. Current Step04 captures `woocommerce_thankyou_{gateway}` output and renders the resulting gateway-specific content whenever non-empty, even for terminal states. Hook preservation remains required, but terminal states must not display stale/actionable payment instructions.
+`#main.site-main` computed:
 
-The white-band owner is not yet proven. Current Step5F resets descendants including `.site-content .ast-container`, `#primary`, `.entry-content` and `.entry-content > .woocommerce`, but the screenshot indicates a residual parent-wrapper surface/gap. Do not patch by guesswork.
+```text
+padding-top: 20px
+padding-bottom: 44px
+background-color: rgb(255,255,255)
+```
+
+The 20px white band therefore comes from `#main.site-main`. The 44px bottom padding is the same unowned wrapper behavior and should be reset at the same time.
+
+## Gateway-output status gate
+
+Current template preserves the gateway-specific `woocommerce_thankyou_{gateway}` hook but renders its captured output for all order states. That is why a Cancelled BACS order still shows `Our Bank Details`.
+
+Required gate:
+
+```text
+show gateway-specific payment instructions when:
+- $order->needs_payment() is true; OR
+- status is on-hold
+
+hide gateway-specific payment instructions for terminal/settled states such as:
+- processing
+- completed
+- cancelled
+- refunded
+```
+
+Keep general `woocommerce_thankyou` output preserved independently.
 
 ## Runtime/status evidence accepted so far
 
@@ -83,12 +113,12 @@ Completed state semantics: PASS
 Pending state semantics: PASS
 On-hold state semantics: PASS
 Failed state semantics: PASS
-Cancelled state semantics: PASS for main Step04 state copy, but gateway-output appropriateness REOPENED
+Cancelled state main copy: PASS; stale gateway payment instructions: REOPENED
 Refunded state semantics: PASS
 browser/query prototype_result cannot manufacture paid state: PASS
 real Woo data rendering / server-authoritative status: PASS
 no duplicate native Woo order-details table: PASS
-gateway hook preservation: preserved, but state-appropriate rendering REOPENED
+gateway hook preservation: preserved; state-appropriate gateway instruction rendering awaiting correction
 ```
 
 ## Strict 1:1 method
@@ -96,45 +126,34 @@ gateway hook preservation: preserved, but state-appropriate rendering REOPENED
 Strict parity remains CODE-FIRST:
 
 ```text
-1. reference source contract
-2. runtime getComputedStyle / getBoundingClientRect
-3. numeric diff
-4. screenshots only as residual evidence
+1. obvious blocker elimination and owner proof
+2. reference source contract
+3. runtime getComputedStyle / getBoundingClientRect
+4. numeric diff
+5. screenshots only as residual evidence
 ```
-
-However, obvious visible blockers take precedence over rerunning the full eight computed captures. The eight-capture gate is paused until these blockers are resolved.
 
 ## Mandatory next action
 
-Do NOT modify source blindly and do NOT rerun the full 17-step matrix or the eight computed-parity captures yet.
-
-Run one targeted console diagnostic on the current production Step04 page for the wrapper chain:
+Issue one consolidated manual anchored correction batch:
 
 ```text
-#page
-.site
-.site-content
-.site-content > .ast-container
-#primary
-#main
-.site-main
-article
-.ast-article-single
-.entry-content
-.entry-content > .woocommerce
-.sf-order-result-v3
-.woocommerce-breadcrumb
+A. assets/css/spatial-flow.css
+   - add #main.site-main to Step5F page-frame reset
+   - remove its inherited 20px top / 44px bottom padding
+   - make its background #f6f1eb
+
+B. woocommerce/checkout/thankyou.php
+   - gate gateway-specific payment hook capture using needs_payment() OR on-hold
+   - preserve general woocommerce_thankyou output
+
+C. functions.php
+   - bump 2.7.17 → 2.7.18
 ```
 
-Capture rect top/bottom/height plus margin/padding/background/display. Use this to prove the exact white-band owner.
+After the user returns all three edited files, validate size/lines/SHA/syntax/parser together. Then visually recheck only the white band and Cancelled gateway-output blocker. Resume the eight computed parity captures only after those two blockers pass.
 
-Then issue one consolidated manual anchored correction batch covering:
-
-1. the proven white-band CSS owner in `assets/css/spatial-flow.css`;
-2. state-gated gateway-specific payment output in `woocommerce/checkout/thankyou.php`, while preserving general non-payment Thank You hook output;
-3. one cache/version bump in `functions.php`.
-
-After returned-source validation, recheck these two visible blockers first. Only then resume the same eight computed parity captures.
+Do not rerun the full 17-step matrix.
 
 ## Refund-ledger correction
 
