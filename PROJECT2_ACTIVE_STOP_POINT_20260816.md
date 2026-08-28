@@ -23,8 +23,9 @@ Step04 bounded computed-parity CSS correction: APPLIED BY USER
 Step04 computed-parity correction returned-source validation: PASS EXACT
 Step04 visible blocker A white band: CLOSED — runtime PASS after #main.site-main ownership correction
 Step04 visible blocker B cancelled gateway instructions: CLOSED — runtime PASS; Cancelled hidden and On-hold preserved
-Step04 eight-capture computed rerun: RESUMED
-Step04 next action: collect the same eight reference/production computed JSON captures and run numeric selector/property diff
+Step04 strict-parity V2 eight captures: RECEIVED AND NUMERICALLY AUDITED
+Step04 strict-parity V2 result: FAIL — bounded deterministic CSS/cascade deltas remain
+Step04 next action: one consolidated manual anchored CSS correction batch + cache version bump
 Checkout binary status: Not done
 ```
 
@@ -60,6 +61,76 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
+## Latest strict-parity V2 audit
+
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_STRICT_PARITY_V2_EIGHT_CAPTURE_NUMERIC_AUDIT_FAIL_20260827.md`
+
+Commit:
+
+`9e0ed18d214e07e9b49f9dafad2e1714f85a711a`
+
+All eight captures used the same diagnostic version and matched viewport/DPR/visualViewport conditions.
+
+Confirmed reference is paired to Processing production. Pending reference is paired to On-hold production only for the shared Pending-family visual contract; state-copy differences are excluded.
+
+### Deterministic remaining blockers
+
+```text
+1. .result-overview li strong
+   REF 18px / 20.88px
+   LIVE 22.4px / 33.6px
+
+2. .result-facts dt
+   REF weight 400
+   LIVE weight 600
+
+3. .result-timeline h3
+   REF 23px / 24.84px
+   LIVE desktop 15.4px / 16.632px
+   LIVE mobile 14.0448px / 15.1684px
+
+4. .result-address-card h3
+   REF 8px / 12.4px / letter 1.44px
+   LIVE desktop 15.4px / 17.71px / 2.772px
+   LIVE mobile 14.0448px / 16.1515px / 2.52806px
+
+5. .result-summary__head h3
+   REF line-height 48.05px
+   LIVE 35.65px
+
+6. .result-panel
+   REF max-width none
+   LIVE max-width 800px
+
+7. <=420px final Overview item
+   REF grid-column 1 / -1
+   LIVE auto
+
+8. .result-summary__price
+   REF white-space normal
+   LIVE nowrap
+```
+
+### Excluded dynamic differences
+
+Do not treat these as CSS failures:
+
+```text
+- 3 static reference products vs 1 real Woo product
+- real product title/meta wrapping
+- different real totals rows including Gift Packaging / Refund
+- real Payment Facts field values/order
+- real Shipping summary row
+- real product image vs static radial placeholder
+- On-hold gateway output
+- copy-length-dependent heights
+- table column widths driven by real content
+```
+
+LTR `left` vs logical `start` is not promoted to a blocker in this correction batch unless it remains as the only final residual.
+
 ## Latest visible-blocker runtime closure
 
 Authoritative record:
@@ -77,8 +148,6 @@ A. White band below header: GONE
 B. Cancelled order gateway-specific payment instructions: ABSENT
 C. On-hold BACS gateway-specific payment instructions: PRESERVED
 ```
-
-Both previously reopened visible blockers are CLOSED.
 
 ## Runtime/status evidence accepted so far
 
@@ -109,26 +178,32 @@ Strict parity remains CODE-FIRST:
 5. screenshots only as residual evidence
 ```
 
-The user explicitly reports that many smaller visual/detail deltas remain, so Step04 strict 1:1 is still FAIL/PENDING despite the two visible blockers being closed.
+Step04 strict 1:1 remains FAIL/PENDING until deterministic computed deltas are eliminated or explicitly documented as permitted production-only deviations.
 
 ## Mandatory next action
 
-Do NOT rerun the full 17-step matrix.
+Do NOT rerun the full 17-step matrix and do NOT regenerate the eight captures yet.
 
-Resume the same eight computed-parity captures using the same diagnostic script and viewport conditions as the first computed audit:
+Issue one coherent manual anchored source batch:
 
 ```text
-1. Confirmed Reference Desktop
-2. Processing Production Desktop
-3. Confirmed Reference Mobile 390×844
-4. Processing Production Mobile 390×844
-5. Pending Reference Desktop
-6. Pending Production Desktop
-7. Pending Reference Mobile 390×844
-8. Pending Production Mobile 390×844
+A. assets/css/spatial-flow.css
+   - reclaim Overview strong font-size/line-height
+   - set Facts dt weight 400
+   - reclaim Timeline h3 23px/1.08
+   - reclaim Address-card h3 8px/root-like line-height
+   - set Summary heading line-height 1.55
+   - remove result-panel max-width:800 leak
+   - restore <=420 Overview last item grid-column 1/-1
+   - remove production-only Summary price nowrap
+
+B. functions.php
+   - cache version bump 2.7.18 → 2.7.19
 ```
 
-Return all eight JSON files together. Then perform a programmatic selector/property diff over `getComputedStyle()` and `getBoundingClientRect()` output. Remaining deterministic deltas must be enumerated and corrected before strict 1:1 may pass.
+No `thankyou.php` change is required by this numeric audit.
+
+After the user returns both edited files, validate size/lines/SHA/syntax/parser together. Then rerun the same eight captures and perform the next numeric diff.
 
 ## Refund-ledger correction
 
