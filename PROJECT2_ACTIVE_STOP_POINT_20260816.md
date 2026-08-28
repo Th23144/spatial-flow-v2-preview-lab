@@ -14,7 +14,8 @@ Step04 strict-parity V2 eight captures: RECEIVED AND NUMERICALLY AUDITED
 Step04 strict-parity V2 result: FAIL — deterministic CSS/cascade deltas identified
 Step04 bounded computed-parity 2.7.19 correction batch: APPLIED BY USER
 Step04 2.7.19 returned-source validation: PASS EXACT
-Step04 next action: hard refresh 2.7.19 and rerun the same eight computed-parity JSON captures as one batch
+Step04 unchanged reference JSON baseline: REUSED
+Step04 next action: hard refresh 2.7.19 and rerun only four production computed-parity JSON captures
 Checkout binary status: Not done
 ```
 
@@ -87,6 +88,18 @@ The eight-capture environment was valid: desktop reference/production matched vi
 
 Confirmed reference is paired to Processing production. Pending reference may be paired to On-hold production only for the shared Pending-family visual contract; state-copy/gateway-content differences are excluded.
 
+## Reference JSON reuse decision
+
+The static Step04 reference page has not changed since the prior strict-parity V2 reference captures, so the four reference JSON files remain authoritative and must be reused rather than regenerated.
+
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_2719_REFERENCE_JSON_REUSE_AND_PRODUCTION_ONLY_RERUN_20260828.md`
+
+Commit:
+
+`a7e921e63e9b36f9808cf25268f42db30ff8fb97`
+
 ## Dynamic differences excluded from strict CSS parity
 
 Do not force these to match static reference values:
@@ -131,26 +144,31 @@ Strict parity remains CODE-FIRST:
 5. screenshots only as residual evidence
 ```
 
-Step04 strict 1:1 remains FAIL/PENDING until the 2.7.19 runtime rerun proves the deterministic deltas have converged and any remaining differences are either corrected or documented as permitted production-only deviations.
+Step04 strict 1:1 remains FAIL/PENDING until the 2.7.19 production-side runtime rerun proves the deterministic deltas have converged and any remaining differences are either corrected or documented as permitted production-only deviations.
 
 ## Mandatory next action
 
-Do NOT rerun the full 17-step matrix.
+Do NOT rerun the full 17-step matrix and do NOT regenerate unchanged reference JSON files.
 
-Hard refresh actual production Step04 and verify `spatial-flow.css?ver=2.7.19` is loaded. Then capture the same eight JSON files with the same diagnostic script and viewport conditions:
+Hard refresh actual production Step04 and verify `spatial-flow.css?ver=2.7.19` is loaded. Then capture only these four production JSON files with the same diagnostic script and viewport conditions:
 
 ```text
-1. Confirmed Reference Desktop
-2. Processing Production Desktop
-3. Confirmed Reference Mobile 390×844
-4. Processing Production Mobile 390×844
-5. Pending Reference Desktop
-6. Pending-family Production Desktop
-7. Pending Reference Mobile 390×844
-8. Pending-family Production Mobile 390×844
+1. Processing Production Desktop
+2. Processing Production Mobile 390×844
+3. Pending-family Production Desktop
+4. Pending-family Production Mobile 390×844
 ```
 
-Return all eight together. The next audit must first verify the eight corrected deterministic properties, then enumerate residual computed/geometric deltas. Do not make further source edits before this rerun.
+Pair them against the retained prior reference JSON files:
+
+```text
+Confirmed Reference Desktop
+Confirmed Reference Mobile 390×844
+Pending Reference Desktop
+Pending Reference Mobile 390×844
+```
+
+The next audit must first verify the eight corrected deterministic properties, then enumerate residual computed/geometric deltas. Do not make further source edits before this rerun.
 
 ## Refund-ledger correction
 
