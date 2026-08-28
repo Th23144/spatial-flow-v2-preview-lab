@@ -11,11 +11,13 @@ Step04 runtime/status matrix: MOSTLY ACCEPTED; one clean recovery sanity check r
 Step04 visible blocker A white band: CLOSED — runtime PASS
 Step04 visible blocker B cancelled gateway instructions: CLOSED — runtime PASS; On-hold preserved
 Step04 strict-parity V2 eight captures: RECEIVED AND NUMERICALLY AUDITED
-Step04 strict-parity V2 result: FAIL — deterministic CSS/cascade deltas identified
 Step04 bounded computed-parity 2.7.19 correction batch: APPLIED BY USER
 Step04 2.7.19 returned-source validation: PASS EXACT
 Step04 unchanged reference JSON baseline: REUSED
-Step04 next action: hard refresh 2.7.19 and rerun only four production computed-parity JSON captures
+Step04 2.7.19 production-only four captures: RECEIVED AND NUMERICALLY RE-AUDITED
+Step04 2.7.19 targeted eight deterministic deltas: ALL RUNTIME PASS
+Step04 remaining strict micro-deltas: 3 computed-style ownership issues
+Step04 next action: one final consolidated manual anchored CSS correction + cache version 2.7.20
 Checkout binary status: Not done
 ```
 
@@ -51,54 +53,56 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-The returned 2.7.19 CSS is byte-for-byte identical to an independently reconstructed candidate produced by applying only the issued A-H bounded replacements to the accepted previous baseline. Actual CSS delta is exactly `+290 bytes / +4 logical lines`.
+## Latest production-only 2.7.19 numeric re-audit
 
-## 2.7.19 correction targets now in source
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_2719_PRODUCTION_ONLY_FOUR_CAPTURE_NUMERIC_REAUDIT_AND_FINAL_MICRO_DELTA_20260828.md`
+
+Commit:
+
+`1eb32942fe0f1d91822ef4f1923732b7bb70eb36`
+
+The four production captures match the locked reference environment:
 
 ```text
-1. Overview strong -> 18px / 1.16 / weight 400 with stronger Woo selector
-2. Result panel -> max-width none
-3. Facts dt -> weight 400
-4. Timeline h3 -> 23px / 1.08
-5. Address h3 -> 8px / 1.55 / .18em
-6. Receipt Summary heading -> line-height 1.55
-7. Summary price -> production-only nowrap removed
-8. <=420 Overview final item -> grid-column 1 / -1
+Desktop: 1920×991, document client width 1905, DPR1, visualViewport scale 1
+Mobile: 390×844, DPR3, visualViewport scale 1
 ```
 
-Authoritative validation record:
+Reference JSON remains unchanged and is reused.
 
-`project2-progress/STEP_4F_STEP04_COMPUTED_PARITY_2719_RETURNED_SOURCE_VALIDATION_PASS_20260828.md`
+### 2.7.19 targeted corrections — runtime convergence
 
-Commit:
+```text
+1. Overview strong 18px / 20.88px: PASS
+2. Facts dt weight 400: PASS
+3. Timeline h3 23px / 24.84px: PASS
+4. Address h3 8px / 12.4px / 1.44px: PASS
+5. Receipt Summary heading line-height 48.05px: PASS
+6. Result Panel max-width none: PASS
+7. <=420 final Overview item grid-column 1 / -1: PASS
+8. Summary price white-space normal: PASS
+```
 
-`923845e4639b156c1ba4184b8d59201a50dd9686`
+### Remaining deterministic micro-deltas
 
-## Prior strict-parity V2 audit
+```text
+A. .result-overview li span
+   REF line-height 10.85px
+   LIVE line-height 8.12px
 
-Authoritative record:
+B. Receipt table logical alignment
+   REF table/thead/tbody/tfoot/non-final td/product copy computed text-align: start
+   LIVE computed text-align: left
+   th remains intentionally left; final column remains intentionally right
 
-`project2-progress/STEP_4F_STEP04_STRICT_PARITY_V2_EIGHT_CAPTURE_NUMERIC_AUDIT_FAIL_20260827.md`
+C. .result-address-card address
+   REF text-align: start
+   LIVE text-align: left
+```
 
-Commit:
-
-`9e0ed18d214e07e9b49f9dafad2e1714f85a711a`
-
-The eight-capture environment was valid: desktop reference/production matched viewport conditions and mobile reference/production matched `390×844 / DPR3 / visualViewport scale 1`.
-
-Confirmed reference is paired to Processing production. Pending reference may be paired to On-hold production only for the shared Pending-family visual contract; state-copy/gateway-content differences are excluded.
-
-## Reference JSON reuse decision
-
-The static Step04 reference page has not changed since the prior strict-parity V2 reference captures, so the four reference JSON files remain authoritative and must be reused rather than regenerated.
-
-Authoritative record:
-
-`project2-progress/STEP_4F_STEP04_2719_REFERENCE_JSON_REUSE_AND_PRODUCTION_ONLY_RERUN_20260828.md`
-
-Commit:
-
-`a7e921e63e9b36f9808cf25268f42db30ff8fb97`
+Because the user requires microscopic computed 1:1, logical `start` vs physical `left` is now treated as a strict residual even though current LTR visual output is equivalent.
 
 ## Dynamic differences excluded from strict CSS parity
 
@@ -113,7 +117,47 @@ Do not force these to match static reference values:
 - state-appropriate On-hold gateway output
 - copy-length-dependent heights
 - table column widths driven by real content
+- absolute page Y differences caused by production site/header shell; Step04 geometry is compared relative to breadcrumb
 ```
+
+Raw index-based differences in table cells, Payment Facts borders, and Summary rows were rechecked by semantic role and are not CSS failures.
+
+## Final bounded correction candidate
+
+Manual anchored source batch only:
+
+```text
+A. spatial-flow.css
+   1. Overview span -> line-height:1.55 !important
+   2. result-order-table root -> text-align:start !important
+   3. receipt last-column rule -> text-align:right !important
+   4. receipt td -> text-align:start !important
+   5. address address/p block -> text-align:start !important
+
+B. functions.php
+   2.7.19 -> 2.7.20
+```
+
+Expected exact candidate fingerprints:
+
+```text
+spatial-flow.css
+bytes 589058
+logical lines 20674
+delta +139 bytes / +4 lines
+SHA256 27ccdfb39e70f8a0a037e7d85756eb7179e535273ac26bb30bf96cfb4f9a9cf6
+braces 3282/3282
+comments 275/275
+tinycss2 errors 0
+
+functions.php
+bytes 612013
+logical lines 11689
+SHA256 e45991fa5795c2a9403bf3ef12b3634db709616c3b0189ccd63ffb21585bb1a3
+version 2.7.20
+```
+
+No `thankyou.php` change is required.
 
 ## Runtime/status evidence already accepted
 
@@ -140,35 +184,16 @@ Strict parity remains CODE-FIRST:
 1. source/reference contract
 2. runtime getComputedStyle / getBoundingClientRect
 3. numeric selector/property diff
-4. owner/cascade isolation
-5. screenshots only as residual evidence
+4. semantic-role alignment for dynamic Woo content
+5. owner/cascade isolation
+6. screenshots only as residual evidence
 ```
 
-Step04 strict 1:1 remains FAIL/PENDING until the 2.7.19 production-side runtime rerun proves the deterministic deltas have converged and any remaining differences are either corrected or documented as permitted production-only deviations.
+Step04 strict 1:1 remains FAIL/PENDING until the final micro batch is applied, returned-source validation passes, and the four production JSON captures prove convergence against the retained reference baseline.
 
 ## Mandatory next action
 
-Do NOT rerun the full 17-step matrix and do NOT regenerate unchanged reference JSON files.
-
-Hard refresh actual production Step04 and verify `spatial-flow.css?ver=2.7.19` is loaded. Then capture only these four production JSON files with the same diagnostic script and viewport conditions:
-
-```text
-1. Processing Production Desktop
-2. Processing Production Mobile 390×844
-3. Pending-family Production Desktop
-4. Pending-family Production Mobile 390×844
-```
-
-Pair them against the retained prior reference JSON files:
-
-```text
-Confirmed Reference Desktop
-Confirmed Reference Mobile 390×844
-Pending Reference Desktop
-Pending Reference Mobile 390×844
-```
-
-The next audit must first verify the eight corrected deterministic properties, then enumerate residual computed/geometric deltas. Do not make further source edits before this rerun.
+Issue the final one-batch manual anchored replacements for `spatial-flow.css` and `functions.php`. Do not touch `thankyou.php`. After the user returns both edited files, validate exact fingerprints and parser/syntax. Then rerun only the four production JSON captures; do not regenerate reference JSON and do not rerun the 17-step matrix.
 
 ## Refund-ledger correction
 
