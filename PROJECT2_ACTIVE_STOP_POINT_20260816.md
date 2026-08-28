@@ -21,12 +21,10 @@ Step04 code-first computed parity audit: COMPLETE
 Step04 first strict 1:1 computed result: FAIL — deterministic CSS deltas identified
 Step04 bounded computed-parity CSS correction: APPLIED BY USER
 Step04 computed-parity correction returned-source validation: PASS EXACT
-Step04 visible blocker A white band: OWNER PROVEN — #main.site-main 20px/44px padding + white background
-Step04 visible blocker B cancelled gateway instructions: SOURCE OWNER PROVEN — ungated gateway-specific Thank You hook output
-Step04 visible-blocker correction batch: APPLIED BY USER
-Step04 visible-blocker correction returned-source validation: PASS
-Step04 eight-capture computed rerun: PAUSED
-Step04 next action: narrow runtime recheck of white band + Cancelled gateway output + On-hold gateway preservation
+Step04 visible blocker A white band: CLOSED — runtime PASS after #main.site-main ownership correction
+Step04 visible blocker B cancelled gateway instructions: CLOSED — runtime PASS; Cancelled hidden and On-hold preserved
+Step04 eight-capture computed rerun: RESUMED
+Step04 next action: collect the same eight reference/production computed JSON captures and run numeric selector/property diff
 Checkout binary status: Not done
 ```
 
@@ -62,35 +60,25 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Latest accepted source correction
+## Latest visible-blocker runtime closure
 
 Authoritative record:
 
-`project2-progress/STEP_4F_STEP04_VISIBLE_BLOCKER_CORRECTION_RETURNED_SOURCE_VALIDATION_20260827.md`
+`project2-progress/STEP_4F_STEP04_VISIBLE_BLOCKERS_RUNTIME_PASS_AND_COMPUTED_PARITY_RESUME_20260827.md`
 
 Commit:
 
-`0824e4a77602f3933fd43b9b949cb0699c20d032`
+`53d6fa8e438dafe7d3559cebc240368ee9953d6c`
 
-Validated source ownership:
+Runtime PASS:
 
 ```text
-White-band owner:
-#main.site-main is now part of the Step5F page-frame reset and has Step04 beige background ownership.
-
-Gateway-output gate:
-show gateway-specific payment instructions when:
-- $order->needs_payment() is true; OR
-- status is on-hold
-
-hide gateway-specific payment instructions for settled/terminal states including:
-- processing
-- completed
-- cancelled
-- refunded
-
-General woocommerce_thankyou output remains preserved independently.
+A. White band below header: GONE
+B. Cancelled order gateway-specific payment instructions: ABSENT
+C. On-hold BACS gateway-specific payment instructions: PRESERVED
 ```
+
+Both previously reopened visible blockers are CLOSED.
 
 ## Runtime/status evidence accepted so far
 
@@ -100,12 +88,13 @@ Completed state semantics: PASS
 Pending state semantics: PASS
 On-hold state semantics: PASS
 Failed state semantics: PASS
-Cancelled state main copy: PASS; gateway-output fix source-validated, runtime recheck pending
+Cancelled state main copy: PASS
+Cancelled gateway-output appropriateness: PASS
 Refunded state semantics: PASS
 browser/query prototype_result cannot manufacture paid state: PASS
 real Woo data rendering / server-authoritative status: PASS
 no duplicate native Woo order-details table: PASS
-gateway hook preservation: source-preserved; state-appropriate runtime recheck pending
+gateway hook preservation and state-appropriate rendering: PASS
 ```
 
 ## Strict 1:1 method
@@ -120,24 +109,26 @@ Strict parity remains CODE-FIRST:
 5. screenshots only as residual evidence
 ```
 
+The user explicitly reports that many smaller visual/detail deltas remain, so Step04 strict 1:1 is still FAIL/PENDING despite the two visible blockers being closed.
+
 ## Mandatory next action
 
-Do NOT rerun the full 17-step matrix or the eight computed-parity captures yet.
+Do NOT rerun the full 17-step matrix.
 
-Run one narrow visible-blocker runtime recheck after hard refresh / cache-version 2.7.18 load:
+Resume the same eight computed-parity captures using the same diagnostic script and viewport conditions as the first computed audit:
 
 ```text
-A. Any Step04 desktop page:
-   - confirm the white horizontal band below the accepted header is gone.
-
-B. Cancelled BACS order:
-   - confirm `Our Bank Details` / gateway-specific payment instructions are absent.
-
-C. On-hold BACS order:
-   - confirm `Our Bank Details` / gateway-specific payment instructions are still present.
+1. Confirmed Reference Desktop
+2. Processing Production Desktop
+3. Confirmed Reference Mobile 390×844
+4. Processing Production Mobile 390×844
+5. Pending Reference Desktop
+6. Pending Production Desktop
+7. Pending Reference Mobile 390×844
+8. Pending Production Mobile 390×844
 ```
 
-Return these three observations/screenshots together. If all pass, record the visible blockers CLOSED and resume the same eight computed-parity captures.
+Return all eight JSON files together. Then perform a programmatic selector/property diff over `getComputedStyle()` and `getBoundingClientRect()` output. Remaining deterministic deltas must be enumerated and corrected before strict 1:1 may pass.
 
 ## Refund-ledger correction
 
