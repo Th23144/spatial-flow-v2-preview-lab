@@ -16,8 +16,9 @@ Step04 2.7.19 returned-source validation: PASS EXACT
 Step04 unchanged reference JSON baseline: REUSED
 Step04 2.7.19 production-only four captures: RECEIVED AND NUMERICALLY RE-AUDITED
 Step04 2.7.19 targeted eight deterministic deltas: ALL RUNTIME PASS
-Step04 remaining strict micro-deltas: 3 computed-style ownership issues
-Step04 next action: one final consolidated manual anchored CSS correction + cache version 2.7.20
+Step04 final 2.7.20 micro-parity source batch: APPLIED BY USER
+Step04 2.7.20 returned-source validation: PASS EXACT
+Step04 next action: rerun only four production computed-parity JSON captures against retained reference baseline
 Checkout binary status: Not done
 ```
 
@@ -28,9 +29,9 @@ Checkout binary status: Not done
 ```text
 bytes: 612013
 logical lines: 11689
-SHA256: f36e767387f0306eeae6744c6d17d99f4451999916f1c8d87df6797a183a736c
+SHA256: e45991fa5795c2a9403bf3ef12b3634db709616c3b0189ccd63ffb21585bb1a3
 PHP syntax: PASS
-SPATIAL_FLOW_CHILD_VERSION: 2.7.19
+SPATIAL_FLOW_CHILD_VERSION: 2.7.20
 ```
 
 ### `woocommerce/checkout/thankyou.php`
@@ -45,15 +46,45 @@ PHP syntax: PASS
 ### `assets/css/spatial-flow.css`
 
 ```text
-bytes: 588919
-logical lines: 20670
-SHA256: cc7d4a91ede6ff9297e0a7c6f03e4f079d2705798d567895de86034fc120b3b2
+bytes: 589058
+logical lines: 20674
+SHA256: 27ccdfb39e70f8a0a037e7d85756eb7179e535273ac26bb30bf96cfb4f9a9cf6
 brace balance: 3282 / 3282
 comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Latest production-only 2.7.19 numeric re-audit
+## 2.7.20 returned-source validation
+
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_2720_RETURNED_SOURCE_VALIDATION_PASS_EXACT_20260828.md`
+
+Commit:
+
+`7cb0966533a862e5cae6308be281764274eabdfa`
+
+Returned source matches the exact predicted candidate:
+
+```text
+CSS actual delta from 2.7.19: +139 bytes / +4 logical lines
+CSS predicted delta: +139 bytes / +4 logical lines
+functions version: exactly one 2.7.20; old 2.7.19 absent
+PHP lint: PASS
+CSS parser/structure: PASS
+```
+
+Exact intended bounded edits verified new 1 / old 0:
+
+```text
+A. Overview label line-height -> 1.55 !important
+B. Receipt table root -> text-align:start !important
+C. Receipt last column -> text-align:right !important
+D. Normal receipt td -> text-align:start !important
+E. Billing/shipping address copy -> text-align:start !important
+```
+
+## Prior 2.7.19 runtime convergence
 
 Authoritative record:
 
@@ -63,16 +94,7 @@ Commit:
 
 `1eb32942fe0f1d91822ef4f1923732b7bb70eb36`
 
-The four production captures match the locked reference environment:
-
-```text
-Desktop: 1920×991, document client width 1905, DPR1, visualViewport scale 1
-Mobile: 390×844, DPR3, visualViewport scale 1
-```
-
-Reference JSON remains unchanged and is reused.
-
-### 2.7.19 targeted corrections — runtime convergence
+The previous four production captures proved all earlier eight deterministic deltas converged:
 
 ```text
 1. Overview strong 18px / 20.88px: PASS
@@ -85,24 +107,15 @@ Reference JSON remains unchanged and is reused.
 8. Summary price white-space normal: PASS
 ```
 
-### Remaining deterministic micro-deltas
+The only remaining strict residuals at that point were:
 
 ```text
-A. .result-overview li span
-   REF line-height 10.85px
-   LIVE line-height 8.12px
-
-B. Receipt table logical alignment
-   REF table/thead/tbody/tfoot/non-final td/product copy computed text-align: start
-   LIVE computed text-align: left
-   th remains intentionally left; final column remains intentionally right
-
-C. .result-address-card address
-   REF text-align: start
-   LIVE text-align: left
+A. Overview label line-height
+B. Receipt-table logical start/right alignment ownership
+C. Billing/shipping address logical start alignment ownership
 ```
 
-Because the user requires microscopic computed 1:1, logical `start` vs physical `left` is now treated as a strict residual even though current LTR visual output is equivalent.
+These are now present in accepted 2.7.20 source and require runtime confirmation only.
 
 ## Dynamic differences excluded from strict CSS parity
 
@@ -120,44 +133,7 @@ Do not force these to match static reference values:
 - absolute page Y differences caused by production site/header shell; Step04 geometry is compared relative to breadcrumb
 ```
 
-Raw index-based differences in table cells, Payment Facts borders, and Summary rows were rechecked by semantic role and are not CSS failures.
-
-## Final bounded correction candidate
-
-Manual anchored source batch only:
-
-```text
-A. spatial-flow.css
-   1. Overview span -> line-height:1.55 !important
-   2. result-order-table root -> text-align:start !important
-   3. receipt last-column rule -> text-align:right !important
-   4. receipt td -> text-align:start !important
-   5. address address/p block -> text-align:start !important
-
-B. functions.php
-   2.7.19 -> 2.7.20
-```
-
-Expected exact candidate fingerprints:
-
-```text
-spatial-flow.css
-bytes 589058
-logical lines 20674
-delta +139 bytes / +4 lines
-SHA256 27ccdfb39e70f8a0a037e7d85756eb7179e535273ac26bb30bf96cfb4f9a9cf6
-braces 3282/3282
-comments 275/275
-tinycss2 errors 0
-
-functions.php
-bytes 612013
-logical lines 11689
-SHA256 e45991fa5795c2a9403bf3ef12b3634db709616c3b0189ccd63ffb21585bb1a3
-version 2.7.20
-```
-
-No `thankyou.php` change is required.
+Raw index-based differences in table cells, Payment Facts borders, and Summary rows must be compared by semantic role rather than array position.
 
 ## Runtime/status evidence already accepted
 
@@ -189,11 +165,22 @@ Strict parity remains CODE-FIRST:
 6. screenshots only as residual evidence
 ```
 
-Step04 strict 1:1 remains FAIL/PENDING until the final micro batch is applied, returned-source validation passes, and the four production JSON captures prove convergence against the retained reference baseline.
+Step04 strict 1:1 remains FAIL/PENDING until the 2.7.20 four-capture production rerun proves the final three computed-style residual classes have converged against the retained reference baseline.
 
 ## Mandatory next action
 
-Issue the final one-batch manual anchored replacements for `spatial-flow.css` and `functions.php`. Do not touch `thankyou.php`. After the user returns both edited files, validate exact fingerprints and parser/syntax. Then rerun only the four production JSON captures; do not regenerate reference JSON and do not rerun the 17-step matrix.
+Do not modify source again now.
+
+Hard refresh actual production Step04 and confirm `spatial-flow.css?ver=2.7.20` is loaded. Then rerun only these four production JSON captures with the unchanged diagnostic and viewport conditions:
+
+```text
+1. Processing Production Desktop
+2. Processing Production Mobile 390×844
+3. Pending-family Production Desktop
+4. Pending-family Production Mobile 390×844
+```
+
+Reuse the existing four reference JSON files. Do not regenerate reference JSON and do not rerun the 17-step runtime matrix.
 
 ## Refund-ledger correction
 
