@@ -13,14 +13,15 @@ Step04 visible blocker B cancelled gateway instructions: CLOSED — runtime PASS
 Step04 strict-parity V2 eight captures: RECEIVED AND NUMERICALLY AUDITED
 Step04 bounded computed-parity 2.7.19 correction batch: APPLIED BY USER
 Step04 2.7.19 returned-source validation: PASS EXACT
-Step04 unchanged reference JSON baseline: REUSED
-Step04 2.7.19 production-only four captures: RECEIVED AND NUMERICALLY RE-AUDITED
 Step04 2.7.19 targeted eight deterministic deltas: ALL RUNTIME PASS
 Step04 final 2.7.20 micro-parity source batch: APPLIED BY USER
 Step04 2.7.20 returned-source validation: PASS EXACT
-Step04 2.7.20 production-only four captures: RECEIVED; numeric final audit pending
+Step04 2.7.20 production-only four captures: FINAL NUMERIC AUDIT PASS
+Step04 2.7.20 final three micro residual classes: ALL PASS
+Step04 final full computed-style scan: PASS — no unexplained Step04-owned delta
+Step04 computed-style strict parity: PASS
+Step04 final residual screenshot review: PENDING
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
-Step04 next action: audit the four new 2.7.20 production captures against retained reference baseline
 Checkout binary status: Not done
 ```
 
@@ -56,35 +57,71 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## 2.7.20 returned-source validation
+## 2.7.20 final four-production JSON audit
 
 Authoritative record:
 
-`project2-progress/STEP_4F_STEP04_2720_RETURNED_SOURCE_VALIDATION_PASS_EXACT_20260828.md`
+`project2-progress/STEP_4F_STEP04_2720_FOUR_PRODUCTION_JSON_FINAL_AUDIT_PASS_20260828.md`
 
 Commit:
 
-`7cb0966533a862e5cae6308be281764274eabdfa`
+`4be92dea07e214674eab2adfc40ffa92348c5559`
 
-Returned source matches the exact predicted candidate:
-
-```text
-CSS actual delta from 2.7.19: +139 bytes / +4 logical lines
-CSS predicted delta: +139 bytes / +4 logical lines
-functions version: exactly one 2.7.20; old 2.7.19 absent
-PHP lint: PASS
-CSS parser/structure: PASS
-```
-
-Exact intended bounded edits verified new 1 / old 0:
+Environment gate:
 
 ```text
-A. Overview label line-height -> 1.55 !important
-B. Receipt table root -> text-align:start !important
-C. Receipt last column -> text-align:right !important
-D. Normal receipt td -> text-align:start !important
-E. Billing/shipping address copy -> text-align:start !important
+Desktop: 1920×991, document client width 1905, DPR1, visualViewport scale 1
+Mobile: 390×844, DPR3, visualViewport scale 1
+Reference baseline unchanged and reused
 ```
+
+Final 2.7.20 residual convergence:
+
+```text
+A. .result-overview li span line-height
+   REF 10.85px
+   LIVE 10.85px
+   PASS
+
+B. Receipt table logical alignment
+   root / thead / tbody / tfoot / non-final td: start == start
+   final value column: right == right
+   PASS
+
+C. Billing/shipping address logical alignment
+   REF start
+   LIVE start
+   PASS
+```
+
+Final full computed-style sweep:
+
+```text
+PASS — no unexplained Step04-owned computed-style property mismatch remains in the captured selector/property contract.
+```
+
+Stable/static selectors outside dynamic Woo data regions have zero unexplained non-geometry style-property deltas.
+
+Dynamic regions were compared by semantic role rather than raw index. Common Receipt, Payment Facts, Receipt Summary and payment/status roles show no style-property mismatch.
+
+## Dynamic differences excluded from strict CSS parity
+
+Do not force these to match static reference values:
+
+```text
+- static reference product count vs real Woo order product count
+- real product title/meta wrapping
+- different real totals rows, fees, refund ledger or shipping rows
+- actual Payment Facts values/order where driven by Woo data
+- real product image vs static placeholder
+- state-appropriate On-hold gateway output, including BACS bank instructions
+- copy-length-dependent heights
+- table column widths driven by real content
+- cumulative downstream Y positions driven by preceding real-content height
+- absolute page Y differences caused by production site/header shell; Step04 geometry is compared relative to breadcrumb
+```
+
+Order #3621 remains financially polluted by a real refund ledger and is not suitable for the remaining clean payable/recovery sanity check.
 
 ## BACS On-hold gateway output decision
 
@@ -102,61 +139,9 @@ Decision:
 - Do not modify Step04 theme/template/CSS for the current `Our Bank Details` block.
 - On-hold payment instructions are semantically appropriate and must remain gateway-owned.
 - Direct Bank Transfer/BACS is a temporary test gateway and will be disabled before production launch.
-- If the BACS account-name value is an admin-centric placeholder (`我的账户` / `测试账户`), optionally change only the WooCommerce BACS setting to a neutral test label; do not create Step04 code for it.
-- Before production launch, disable BACS and remove/replace test-only account details if retained test/staging orders could remain reachable.
-- Gateway-owned BACS content is excluded from strict static S7 parity scoring, except for Step04-owned surrounding container/boundary behavior.
+- If the BACS account-name value is an admin-centric placeholder, optionally change only the WooCommerce BACS setting.
+- Gateway-owned BACS content is excluded from strict static S7 parity scoring except for Step04-owned surrounding container/boundary behavior.
 ```
-
-## Prior 2.7.19 runtime convergence
-
-Authoritative record:
-
-`project2-progress/STEP_4F_STEP04_2719_PRODUCTION_ONLY_FOUR_CAPTURE_NUMERIC_REAUDIT_AND_FINAL_MICRO_DELTA_20260828.md`
-
-Commit:
-
-`1eb32942fe0f1d91822ef4f1923732b7bb70eb36`
-
-The previous four production captures proved all earlier eight deterministic deltas converged:
-
-```text
-1. Overview strong 18px / 20.88px: PASS
-2. Facts dt weight 400: PASS
-3. Timeline h3 23px / 24.84px: PASS
-4. Address h3 8px / 12.4px / 1.44px: PASS
-5. Receipt Summary heading line-height 48.05px: PASS
-6. Result Panel max-width none: PASS
-7. <=420 final Overview item grid-column 1 / -1: PASS
-8. Summary price white-space normal: PASS
-```
-
-The only remaining strict residuals at that point were:
-
-```text
-A. Overview label line-height
-B. Receipt-table logical start/right alignment ownership
-C. Billing/shipping address logical start alignment ownership
-```
-
-These are now present in accepted 2.7.20 source and require runtime confirmation only.
-
-## Dynamic differences excluded from strict CSS parity
-
-Do not force these to match static reference values:
-
-```text
-- static reference product count vs real Woo order product count
-- real product title/meta wrapping
-- different real totals rows, fees, refund ledger or shipping rows
-- actual Payment Facts values/order where driven by Woo data
-- real product image vs static placeholder
-- state-appropriate On-hold gateway output, including BACS bank instructions
-- copy-length-dependent heights
-- table column widths driven by real content
-- absolute page Y differences caused by production site/header shell; Step04 geometry is compared relative to breadcrumb
-```
-
-Raw index-based differences in table cells, Payment Facts borders, and Summary rows must be compared by semantic role rather than array position.
 
 ## Runtime/status evidence already accepted
 
@@ -188,24 +173,18 @@ Strict parity remains CODE-FIRST:
 6. screenshots only as residual evidence
 ```
 
-Step04 strict 1:1 remains FAIL/PENDING until the 2.7.20 four-capture production audit proves the final three computed-style residual classes have converged against the retained reference baseline and a final full computed scan finds no unexplained Step04-owned delta.
+Computed-style strict parity is now PASS. Step04 strict 1:1 is not formally closed until the final residual screenshot review confirms no remaining visible defect outside the locked dynamic-data/gateway exclusions.
 
 ## Mandatory next action
 
-Do not modify source now.
+Do not modify source.
 
-The four new 2.7.20 production JSON captures have been received. Audit them against the retained four reference JSON files. First verify the final three residual classes; then perform one final full computed scan. Do not regenerate reference JSON and do not rerun the 17-step runtime matrix.
+Perform the final current-version screenshot residual review against the unchanged Confirmed/Pending references. This is not another 17-step matrix and does not require new reference captures. Only if a visible mismatch remains should the exact selector/property owner be isolated before any correction.
 
-## Refund-ledger correction
+After Step04 visual closure, perform only one clean-order recovery sanity check using a fresh order that was never Refunded. Do not use #3621.
 
-Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Changing only its status later does not remove that refund object. #3621 remains unsuitable for the remaining clean payable-amount/recovery sanity check.
-
-After strict visual parity closes, perform only one clean-order recovery sanity check with a fresh order that was never Refunded.
+Then fix/revalidate the Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
 
 ## Explicit deployment boundary
 
 Do NOT instruct whole-file replacement for `functions.php`, `thankyou.php`, or `spatial-flow.css` under the default workflow. Continue manual anchored replacement unless the user explicitly changes that decision.
-
-## Crypto visual follow-up
-
-After Step04 strict 1:1 computed parity and the clean recovery sanity check close, fix/revalidate the V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
