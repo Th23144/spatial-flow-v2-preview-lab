@@ -20,8 +20,10 @@ Step04 2.7.20 production-only four captures: FINAL NUMERIC AUDIT PASS
 Step04 2.7.20 final three micro residual classes: ALL PASS
 Step04 final full computed-style scan: PASS — no unexplained Step04-owned delta
 Step04 computed-style strict parity: PASS
-Step04 final residual screenshot review: PENDING
+Step04 final residual screenshot review: PASS
+Step04 Strict 1:1: CLOSED
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
+Checkout next action: one clean-order recovery sanity check with a fresh never-Refunded order
 Checkout binary status: Not done
 ```
 
@@ -56,6 +58,35 @@ brace balance: 3282 / 3282
 comment balance: 275 / 275
 tinycss2 errors: 0
 ```
+
+## Step04 final visual closure
+
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_FINAL_SCREENSHOT_RESIDUAL_REVIEW_PASS_AND_STRICT_1_TO_1_CLOSE_20260828.md`
+
+Commit:
+
+`3c8b4b63a267da7456ce22e53a8a75b0ca3c4968`
+
+Final conclusion:
+
+```text
+Step04 computed-style strict parity: PASS
+Step04 final screenshot residual review: PASS
+Step04 Strict 1:1: CLOSED
+```
+
+The four current-version production full-page screenshots were reviewed:
+
+- Processing Desktop
+- Processing Mobile
+- On-hold Desktop
+- On-hold Mobile
+
+No unexplained Step04-owned visible residual remained. The unrelated mistakenly uploaded image was excluded.
+
+Allowed dynamic Woo/gateway differences remain excluded from strict static parity scoring, including real order values, refund/shipping/gift-packaging rows, real addresses, copy-length-driven heights, real product assets and state-appropriate On-hold BACS output.
 
 ## 2.7.20 final four-production JSON audit
 
@@ -100,29 +131,6 @@ Final full computed-style sweep:
 PASS — no unexplained Step04-owned computed-style property mismatch remains in the captured selector/property contract.
 ```
 
-Stable/static selectors outside dynamic Woo data regions have zero unexplained non-geometry style-property deltas.
-
-Dynamic regions were compared by semantic role rather than raw index. Common Receipt, Payment Facts, Receipt Summary and payment/status roles show no style-property mismatch.
-
-## Dynamic differences excluded from strict CSS parity
-
-Do not force these to match static reference values:
-
-```text
-- static reference product count vs real Woo order product count
-- real product title/meta wrapping
-- different real totals rows, fees, refund ledger or shipping rows
-- actual Payment Facts values/order where driven by Woo data
-- real product image vs static placeholder
-- state-appropriate On-hold gateway output, including BACS bank instructions
-- copy-length-dependent heights
-- table column widths driven by real content
-- cumulative downstream Y positions driven by preceding real-content height
-- absolute page Y differences caused by production site/header shell; Step04 geometry is compared relative to breadcrumb
-```
-
-Order #3621 remains financially polluted by a real refund ledger and is not suitable for the remaining clean payable/recovery sanity check.
-
 ## BACS On-hold gateway output decision
 
 Authoritative record:
@@ -137,9 +145,8 @@ Decision:
 
 ```text
 - Do not modify Step04 theme/template/CSS for the current `Our Bank Details` block.
-- On-hold payment instructions are semantically appropriate and must remain gateway-owned.
+- On-hold payment instructions are semantically appropriate and remain gateway-owned.
 - Direct Bank Transfer/BACS is a temporary test gateway and will be disabled before production launch.
-- If the BACS account-name value is an admin-centric placeholder, optionally change only the WooCommerce BACS setting.
 - Gateway-owned BACS content is excluded from strict static S7 parity scoring except for Step04-owned surrounding container/boundary behavior.
 ```
 
@@ -160,31 +167,38 @@ no duplicate native Woo order-details table: PASS
 gateway hook preservation and state-appropriate rendering: PASS
 ```
 
-## Strict 1:1 method
-
-Strict parity remains CODE-FIRST:
-
-```text
-1. source/reference contract
-2. runtime getComputedStyle / getBoundingClientRect
-3. numeric selector/property diff
-4. semantic-role alignment for dynamic Woo content
-5. owner/cascade isolation
-6. screenshots only as residual evidence
-```
-
-Computed-style strict parity is now PASS. Step04 strict 1:1 is not formally closed until the final residual screenshot review confirms no remaining visible defect outside the locked dynamic-data/gateway exclusions.
-
-## Mandatory next action
+## Mandatory next action — one clean-order recovery sanity check
 
 Do not modify source.
 
-Perform the final current-version screenshot residual review against the unchanged Confirmed/Pending references. This is not another 17-step matrix and does not require new reference captures. Only if a visible mismatch remains should the exact selector/property owner be isolated before any correction.
+Create/use one fresh order that has never entered `Refunded` and whose payable total is non-zero. Do not use #3621.
 
-After Step04 visual closure, perform only one clean-order recovery sanity check using a fresh order that was never Refunded. Do not use #3621.
+Verify only this bounded flow:
 
-Then fix/revalidate the Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
+```text
+1. Fresh order exists with a non-zero payable total.
+2. Put/leave the order in a payment-required state that makes WooCommerce `needs_payment()` true (Pending is preferred; Failed is acceptable if Woo exposes recovery).
+3. Open the Step04 Order Result page for that same order.
+4. Confirm Step04 shows the recovery CTA (`Return to payment` / `Retry payment`).
+5. Use that CTA.
+6. Confirm WooCommerce opens the canonical order-pay route for the same order.
+7. Confirm the same order number is retained.
+8. Confirm the payable amount remains the same non-zero amount.
+9. Stop. Do not complete payment. Do not set this clean order to Refunded.
+```
+
+Do not rerun the 17-step matrix.
+
+After this clean recovery sanity check passes, proceed to the already-open Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch on desktop/mobile.
+
+## Refund-ledger correction
+
+Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Changing only its status later does not remove that refund object. #3621 remains unsuitable for the clean payable/recovery sanity check.
 
 ## Explicit deployment boundary
 
 Do NOT instruct whole-file replacement for `functions.php`, `thankyou.php`, or `spatial-flow.css` under the default workflow. Continue manual anchored replacement unless the user explicitly changes that decision.
+
+## Crypto visual follow-up
+
+After the clean recovery sanity check closes, fix/revalidate the V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
