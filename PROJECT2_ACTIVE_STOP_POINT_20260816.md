@@ -18,7 +18,9 @@ Step04 2.7.19 production-only four captures: RECEIVED AND NUMERICALLY RE-AUDITED
 Step04 2.7.19 targeted eight deterministic deltas: ALL RUNTIME PASS
 Step04 final 2.7.20 micro-parity source batch: APPLIED BY USER
 Step04 2.7.20 returned-source validation: PASS EXACT
-Step04 next action: rerun only four production computed-parity JSON captures against retained reference baseline
+Step04 2.7.20 production-only four captures: RECEIVED; numeric final audit pending
+Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
+Step04 next action: audit the four new 2.7.20 production captures against retained reference baseline
 Checkout binary status: Not done
 ```
 
@@ -84,6 +86,27 @@ D. Normal receipt td -> text-align:start !important
 E. Billing/shipping address copy -> text-align:start !important
 ```
 
+## BACS On-hold gateway output decision
+
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_BACS_BANK_DETAILS_PRESENTATION_DECISION_20260828.md`
+
+Commit:
+
+`f4d25fd1cd1772589ee5fd6c6f2044ce7ae54886`
+
+Decision:
+
+```text
+- Do not modify Step04 theme/template/CSS for the current `Our Bank Details` block.
+- On-hold payment instructions are semantically appropriate and must remain gateway-owned.
+- Direct Bank Transfer/BACS is a temporary test gateway and will be disabled before production launch.
+- If the BACS account-name value is an admin-centric placeholder (`我的账户` / `测试账户`), optionally change only the WooCommerce BACS setting to a neutral test label; do not create Step04 code for it.
+- Before production launch, disable BACS and remove/replace test-only account details if retained test/staging orders could remain reachable.
+- Gateway-owned BACS content is excluded from strict static S7 parity scoring, except for Step04-owned surrounding container/boundary behavior.
+```
+
 ## Prior 2.7.19 runtime convergence
 
 Authoritative record:
@@ -127,7 +150,7 @@ Do not force these to match static reference values:
 - different real totals rows, fees, refund ledger or shipping rows
 - actual Payment Facts values/order where driven by Woo data
 - real product image vs static placeholder
-- state-appropriate On-hold gateway output
+- state-appropriate On-hold gateway output, including BACS bank instructions
 - copy-length-dependent heights
 - table column widths driven by real content
 - absolute page Y differences caused by production site/header shell; Step04 geometry is compared relative to breadcrumb
@@ -165,22 +188,13 @@ Strict parity remains CODE-FIRST:
 6. screenshots only as residual evidence
 ```
 
-Step04 strict 1:1 remains FAIL/PENDING until the 2.7.20 four-capture production rerun proves the final three computed-style residual classes have converged against the retained reference baseline.
+Step04 strict 1:1 remains FAIL/PENDING until the 2.7.20 four-capture production audit proves the final three computed-style residual classes have converged against the retained reference baseline and a final full computed scan finds no unexplained Step04-owned delta.
 
 ## Mandatory next action
 
-Do not modify source again now.
+Do not modify source now.
 
-Hard refresh actual production Step04 and confirm `spatial-flow.css?ver=2.7.20` is loaded. Then rerun only these four production JSON captures with the unchanged diagnostic and viewport conditions:
-
-```text
-1. Processing Production Desktop
-2. Processing Production Mobile 390×844
-3. Pending-family Production Desktop
-4. Pending-family Production Mobile 390×844
-```
-
-Reuse the existing four reference JSON files. Do not regenerate reference JSON and do not rerun the 17-step runtime matrix.
+The four new 2.7.20 production JSON captures have been received. Audit them against the retained four reference JSON files. First verify the final three residual classes; then perform one final full computed scan. Do not regenerate reference JSON and do not rerun the 17-step runtime matrix.
 
 ## Refund-ledger correction
 
