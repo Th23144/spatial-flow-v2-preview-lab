@@ -1,4 +1,4 @@
-# Project 2 · Active Stop Point · 2026-08-27
+# Project 2 · Active Stop Point · 2026-08-28
 
 This file is the current execution override for the active Step-04 implementation gate.
 
@@ -7,25 +7,14 @@ This file is the current execution override for the active Step-04 implementatio
 ```text
 Step 04 production audit: COMPLETE
 Step 04 Strict 1:1 visual contract: LOCKED
-Current live baselines: VERIFIED
-Generated 2.7.15 full-file candidates: INTERNAL AUDIT ARTIFACTS ONLY
-Previous user-facing whole-file overwrite instruction: WITHDRAWN
-Step04 deployment-method A/B test: COMPLETE
-User-selected default deployment method: MANUAL ANCHORED REPLACEMENT
-Automated Patch/VFR method: NOT SELECTED AS DEFAULT; use only after new explicit user authorisation
-Step04 manual anchored deployment: APPLIED BY USER
-Step04 initial returned-source validation: PASS
 Step04 runtime/status matrix: MOSTLY ACCEPTED; one clean recovery sanity check remains
-Step04 strict 1:1 round-2 structural visual regression: PASS AS STRUCTURAL EVIDENCE ONLY
-Step04 code-first computed parity audit: COMPLETE
-Step04 first strict 1:1 computed result: FAIL — deterministic CSS deltas identified
-Step04 bounded computed-parity CSS correction: APPLIED BY USER
-Step04 computed-parity correction returned-source validation: PASS EXACT
-Step04 visible blocker A white band: CLOSED — runtime PASS after #main.site-main ownership correction
-Step04 visible blocker B cancelled gateway instructions: CLOSED — runtime PASS; Cancelled hidden and On-hold preserved
+Step04 visible blocker A white band: CLOSED — runtime PASS
+Step04 visible blocker B cancelled gateway instructions: CLOSED — runtime PASS; On-hold preserved
 Step04 strict-parity V2 eight captures: RECEIVED AND NUMERICALLY AUDITED
-Step04 strict-parity V2 result: FAIL — bounded deterministic CSS/cascade deltas remain
-Step04 next action: one consolidated manual anchored CSS correction batch + cache version bump
+Step04 strict-parity V2 result: FAIL — deterministic CSS/cascade deltas identified
+Step04 bounded computed-parity 2.7.19 correction batch: APPLIED BY USER
+Step04 2.7.19 returned-source validation: PASS EXACT
+Step04 next action: hard refresh 2.7.19 and rerun the same eight computed-parity JSON captures as one batch
 Checkout binary status: Not done
 ```
 
@@ -36,9 +25,9 @@ Checkout binary status: Not done
 ```text
 bytes: 612013
 logical lines: 11689
-SHA256: 4d5e807a75a5f5548ee69639f6bc6070eef4d1c30d80f54970d3057a7dae6125
+SHA256: f36e767387f0306eeae6744c6d17d99f4451999916f1c8d87df6797a183a736c
 PHP syntax: PASS
-SPATIAL_FLOW_CHILD_VERSION: 2.7.18
+SPATIAL_FLOW_CHILD_VERSION: 2.7.19
 ```
 
 ### `woocommerce/checkout/thankyou.php`
@@ -53,15 +42,38 @@ PHP syntax: PASS
 ### `assets/css/spatial-flow.css`
 
 ```text
-bytes: 588629
-logical lines: 20666
-SHA256: 7cad3472f4ee53b672b4ce1d2d27bb2641b9b34e5541b48e39f145fcb956a8d8
+bytes: 588919
+logical lines: 20670
+SHA256: cc7d4a91ede6ff9297e0a7c6f03e4f079d2705798d567895de86034fc120b3b2
 brace balance: 3282 / 3282
 comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Latest strict-parity V2 audit
+The returned 2.7.19 CSS is byte-for-byte identical to an independently reconstructed candidate produced by applying only the issued A-H bounded replacements to the accepted previous baseline. Actual CSS delta is exactly `+290 bytes / +4 logical lines`.
+
+## 2.7.19 correction targets now in source
+
+```text
+1. Overview strong -> 18px / 1.16 / weight 400 with stronger Woo selector
+2. Result panel -> max-width none
+3. Facts dt -> weight 400
+4. Timeline h3 -> 23px / 1.08
+5. Address h3 -> 8px / 1.55 / .18em
+6. Receipt Summary heading -> line-height 1.55
+7. Summary price -> production-only nowrap removed
+8. <=420 Overview final item -> grid-column 1 / -1
+```
+
+Authoritative validation record:
+
+`project2-progress/STEP_4F_STEP04_COMPUTED_PARITY_2719_RETURNED_SOURCE_VALIDATION_PASS_20260828.md`
+
+Commit:
+
+`923845e4639b156c1ba4184b8d59201a50dd9686`
+
+## Prior strict-parity V2 audit
 
 Authoritative record:
 
@@ -71,85 +83,26 @@ Commit:
 
 `9e0ed18d214e07e9b49f9dafad2e1714f85a711a`
 
-All eight captures used the same diagnostic version and matched viewport/DPR/visualViewport conditions.
+The eight-capture environment was valid: desktop reference/production matched viewport conditions and mobile reference/production matched `390×844 / DPR3 / visualViewport scale 1`.
 
-Confirmed reference is paired to Processing production. Pending reference is paired to On-hold production only for the shared Pending-family visual contract; state-copy differences are excluded.
+Confirmed reference is paired to Processing production. Pending reference may be paired to On-hold production only for the shared Pending-family visual contract; state-copy/gateway-content differences are excluded.
 
-### Deterministic remaining blockers
+## Dynamic differences excluded from strict CSS parity
 
-```text
-1. .result-overview li strong
-   REF 18px / 20.88px
-   LIVE 22.4px / 33.6px
-
-2. .result-facts dt
-   REF weight 400
-   LIVE weight 600
-
-3. .result-timeline h3
-   REF 23px / 24.84px
-   LIVE desktop 15.4px / 16.632px
-   LIVE mobile 14.0448px / 15.1684px
-
-4. .result-address-card h3
-   REF 8px / 12.4px / letter 1.44px
-   LIVE desktop 15.4px / 17.71px / 2.772px
-   LIVE mobile 14.0448px / 16.1515px / 2.52806px
-
-5. .result-summary__head h3
-   REF line-height 48.05px
-   LIVE 35.65px
-
-6. .result-panel
-   REF max-width none
-   LIVE max-width 800px
-
-7. <=420px final Overview item
-   REF grid-column 1 / -1
-   LIVE auto
-
-8. .result-summary__price
-   REF white-space normal
-   LIVE nowrap
-```
-
-### Excluded dynamic differences
-
-Do not treat these as CSS failures:
+Do not force these to match static reference values:
 
 ```text
-- 3 static reference products vs 1 real Woo product
+- static reference product count vs real Woo order product count
 - real product title/meta wrapping
-- different real totals rows including Gift Packaging / Refund
-- real Payment Facts field values/order
-- real Shipping summary row
-- real product image vs static radial placeholder
-- On-hold gateway output
+- different real totals rows, fees, refund ledger or shipping rows
+- actual Payment Facts values/order where driven by Woo data
+- real product image vs static placeholder
+- state-appropriate On-hold gateway output
 - copy-length-dependent heights
 - table column widths driven by real content
 ```
 
-LTR `left` vs logical `start` is not promoted to a blocker in this correction batch unless it remains as the only final residual.
-
-## Latest visible-blocker runtime closure
-
-Authoritative record:
-
-`project2-progress/STEP_4F_STEP04_VISIBLE_BLOCKERS_RUNTIME_PASS_AND_COMPUTED_PARITY_RESUME_20260827.md`
-
-Commit:
-
-`53d6fa8e438dafe7d3559cebc240368ee9953d6c`
-
-Runtime PASS:
-
-```text
-A. White band below header: GONE
-B. Cancelled order gateway-specific payment instructions: ABSENT
-C. On-hold BACS gateway-specific payment instructions: PRESERVED
-```
-
-## Runtime/status evidence accepted so far
+## Runtime/status evidence already accepted
 
 ```text
 Processing / confirmed state semantics: PASS
@@ -171,43 +124,39 @@ gateway hook preservation and state-appropriate rendering: PASS
 Strict parity remains CODE-FIRST:
 
 ```text
-1. obvious blocker elimination and owner proof
-2. reference source contract
-3. runtime getComputedStyle / getBoundingClientRect
-4. numeric diff
+1. source/reference contract
+2. runtime getComputedStyle / getBoundingClientRect
+3. numeric selector/property diff
+4. owner/cascade isolation
 5. screenshots only as residual evidence
 ```
 
-Step04 strict 1:1 remains FAIL/PENDING until deterministic computed deltas are eliminated or explicitly documented as permitted production-only deviations.
+Step04 strict 1:1 remains FAIL/PENDING until the 2.7.19 runtime rerun proves the deterministic deltas have converged and any remaining differences are either corrected or documented as permitted production-only deviations.
 
 ## Mandatory next action
 
-Do NOT rerun the full 17-step matrix and do NOT regenerate the eight captures yet.
+Do NOT rerun the full 17-step matrix.
 
-Issue one coherent manual anchored source batch:
+Hard refresh actual production Step04 and verify `spatial-flow.css?ver=2.7.19` is loaded. Then capture the same eight JSON files with the same diagnostic script and viewport conditions:
 
 ```text
-A. assets/css/spatial-flow.css
-   - reclaim Overview strong font-size/line-height
-   - set Facts dt weight 400
-   - reclaim Timeline h3 23px/1.08
-   - reclaim Address-card h3 8px/root-like line-height
-   - set Summary heading line-height 1.55
-   - remove result-panel max-width:800 leak
-   - restore <=420 Overview last item grid-column 1/-1
-   - remove production-only Summary price nowrap
-
-B. functions.php
-   - cache version bump 2.7.18 → 2.7.19
+1. Confirmed Reference Desktop
+2. Processing Production Desktop
+3. Confirmed Reference Mobile 390×844
+4. Processing Production Mobile 390×844
+5. Pending Reference Desktop
+6. Pending-family Production Desktop
+7. Pending Reference Mobile 390×844
+8. Pending-family Production Mobile 390×844
 ```
 
-No `thankyou.php` change is required by this numeric audit.
-
-After the user returns both edited files, validate size/lines/SHA/syntax/parser together. Then rerun the same eight captures and perform the next numeric diff.
+Return all eight together. The next audit must first verify the eight corrected deterministic properties, then enumerate residual computed/geometric deltas. Do not make further source edits before this rerun.
 
 ## Refund-ledger correction
 
 Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Changing only its status later does not remove that refund object. #3621 remains unsuitable for the remaining clean payable-amount/recovery sanity check.
+
+After strict visual parity closes, perform only one clean-order recovery sanity check with a fresh order that was never Refunded.
 
 ## Explicit deployment boundary
 
