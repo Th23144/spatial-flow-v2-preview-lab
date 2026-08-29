@@ -13,13 +13,44 @@ Step04 desktop result-side sticky runtime behavior: FAIL — non-activation prov
 Step04 sticky diagnostic: COMPLETE
 Step02 working-control sticky diagnostic: PASS
 Step02 vs Step04 differential diagnosis: COMPLETE
-Step04 zero-stick root cause: narrowed to missing body-level sticky ancestor unlock in the order-received scope
-Step04 proposed source correction: NOT YET APPLIED
+Step04 zero-stick root cause: body-level sticky ancestor unlock missing in order-received scope
+Step04 2.7.21 body-only correction batch: ISSUED / AWAITING USER APPLY
 Step04 overall closure: REOPENED narrowly for real-scroll sticky behavior
 Step03 sidebar sticky investigation: DEFERRED BY USER until Step04 is finished
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
-Checkout next action: apply one bounded Step04 body-level Sticky Ancestor Unlock, validate source, then rerun the exact Step04 sticky runtime diagnostic
+Checkout next action: user applies bounded body-only Sticky Ancestor Unlock + 2.7.21 cache bump, returns both files for exact source validation, then rerun the exact Step04 sticky runtime diagnostic
 Checkout binary status: Not done
+```
+
+## Active correction batch
+
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_RESULT_SIDE_STICKY_2721_BODY_ONLY_CORRECTION_BATCH_20260829.md`
+
+Commit:
+
+`aa94a7a7f55526f684ffeaa5dfbd36eb49b53b5e`
+
+The corrected first-pass change is intentionally body-only. Do not add an html-level Step04 selector in this batch because the Step02 working control proves `html` may remain `overflow:hidden auto` while native sticky works. Do not alter align-self, max-height, internal scroll, Step03, or Crypto.
+
+Predicted returned-source fingerprints:
+
+```text
+spatial-flow.css
+bytes: 589104
+logical lines: 20675
+SHA256: 45e50011b043b6141bbd3bf242c64e12efa9529d2251ebdd25bf2e94357d36b6
+brace balance: 3282/3282
+comment balance: 275/275
+tinycss2 errors: 0
+
+functions.php
+bytes: 612013
+logical lines: 11689
+SHA256: 82d31604ebd298fa3182ffaa800c07b2dae7db1fe456dc71042fcd6f54eb4d6f
+SPATIAL_FLOW_CHILD_VERSION: 2.7.21
+PHP syntax expected: PASS
 ```
 
 ## Differential result — Step02 working control versus Step04 failure
@@ -157,19 +188,64 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Mandatory next action
+## Clean recovery closure retained
 
-When the user proceeds, apply one bounded Step04 desktop sticky correction only:
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_CLEAN_ORDER_RECOVERY_SANITY_PASS_20260829.md`
+
+Commit:
+
+`68576bcaa1db34c1c73d038e44824978ed820e06`
+
+Locked result:
 
 ```text
-1. Extend the existing page-scoped Sticky Ancestor Unlock to the Step04 order-result body scope.
-2. Preserve `.result-side { position: sticky; top: 132px; }`.
-3. Do not add max-height/internal scroll.
-4. Do not alter align-self in the same first correction.
-5. Do not modify mobile behavior, Woo order semantics, BACS output, or Crypto.
-6. Validate returned source.
-7. Rerun the exact Step04 sticky runtime diagnostic and require a valid middle scroll range with sideTop ≈132px / lockedToTop:true, followed by normal release at the shell boundary.
+Status tested: WooCommerce Pending payment (`pending` / 待付款)
+Fresh never-Refunded order: yes
+Original payable total: non-zero
+Step04 recovery CTA: present
+Recovery target: canonical WooCommerce order-pay
+Same order number: preserved
+Same non-zero payable amount: preserved
+Payment completed: no
+Refund mutation: no
 ```
+
+`On-hold` (`on-hold` / 保留) remains a separate accepted Step04 state and is not expected to expose the recovery CTA.
+
+## BACS On-hold gateway output decision retained
+
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_BACS_BANK_DETAILS_PRESENTATION_DECISION_20260828.md`
+
+Commit:
+
+`f4d25fd1cd1772589ee5fd6c6f2044ce7ae54886`
+
+Decision remains:
+
+```text
+- Do not modify Step04 theme/template/CSS merely to restyle/remove `Our Bank Details`.
+- On-hold payment instructions are gateway-owned and semantically appropriate.
+- Direct Bank Transfer/BACS is temporary test-only and will be disabled before production launch.
+```
+
+## Mandatory next action
+
+User applies the issued body-only correction and returns `spatial-flow.css` + `functions.php` together. Validate exact source before runtime testing.
+
+After source validation, rerun `SF_STEP04_RESULT_SIDE_STICKY_RUNTIME_20260829` and require:
+
+```text
+body overflow -> clip visible
+.result-side -> position:sticky; top:132px retained
+valid middle scroll range -> sideTop ≈132px / lockedToTop:true
+release near result-shell bottom -> normal native sticky boundary behavior
+```
+
+If body unlock alone does not activate sticky, stop and diagnose the next differential. Do not stack speculative changes.
 
 Step03 sticky investigation remains deferred until Step04 is closed.
 
