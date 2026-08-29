@@ -11,10 +11,32 @@ Step04 final screenshot residual review: PASS for the captured static/residual c
 Step04 clean Pending-payment recovery sanity: PASS
 Step04 desktop result-side sticky runtime behavior: FAIL — owner isolated
 Step04 sticky diagnostic: COMPLETE
+Step04 sticky source correction: PAUSED BY USER pending cross-step architecture clarification
 Step04 overall closure: REOPENED narrowly for real-scroll sticky behavior
+Step03 sidebar sticky investigation: DEFERRED BY USER until Step04 is finished
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
-Checkout next action: apply one bounded CSS ancestor-overflow unlock for Step04 desktop sticky, validate source, then rerun sticky runtime diagnostic
+Checkout next action after user resumes: apply one bounded CSS ancestor-overflow unlock for Step04 desktop sticky, validate source, then rerun sticky runtime diagnostic
 Checkout binary status: Not done
+```
+
+## Cross-step sticky architecture clarification
+
+Authoritative record:
+
+`project2-progress/STEP_4F_CHECKOUT_STICKY_BEHAVIOR_CROSS_STEP_ARCHITECTURE_CLARIFICATION_20260829.md`
+
+Commit:
+
+`64a868685b5235fa276d0e69342ce7cb204d91f4`
+
+Locked clarification:
+
+```text
+Step01/Step02 use the ordinary Checkout shell and current runtime allows the canonical `.order-summary` sticky behavior to activate.
+Step04 is a separate WooCommerce order-received/result runtime shell (`.sf-order-result-v3 > .result-shell > .result-side`).
+Step04 has its own correct `position:sticky; top:132px` declaration, but live html/body overflow ownership prevents sticky activation.
+Same sticky declaration does not guarantee same runtime sticky behavior because sticky depends on ancestor overflow/scroll context.
+Step03 is not diagnosed here and is explicitly deferred until Step04 closes.
 ```
 
 ## Sticky runtime diagnosis
@@ -164,9 +186,11 @@ Decision remains:
 - Direct Bank Transfer/BACS is temporary test-only and will be disabled before production launch.
 ```
 
-## Mandatory next action — bounded desktop sticky correction
+## Mandatory next action — only after user resumes
 
-Apply one CSS-only, desktop-only, page-scoped correction using the already-established Sticky Ancestor Unlock pattern:
+Do not modify source until the user explicitly resumes Step04 correction.
+
+Then apply one CSS-only, desktop-only, page-scoped correction using the already-established Sticky Ancestor Unlock pattern:
 
 ```text
 - include Step04 `.sf-order-result-v3` in html/body overflow unlock
@@ -180,7 +204,9 @@ After returned-source validation, rerun `SF_STEP04_RESULT_SIDE_STICKY_RUNTIME_20
 
 Only after actual sticky activation is proven may dynamic-height usability be assessed separately.
 
-After sticky runtime passes, return to the already-open Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch. Checkout cannot be marked `Completed 1:1` until both are closed.
+Step03 sticky investigation remains deferred until Step04 is closed.
+
+After Step04 sticky runtime passes and Step04 closes again, return to the already-open Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch. Checkout cannot be marked `Completed 1:1` until both are closed.
 
 ## Explicit deployment boundary
 
