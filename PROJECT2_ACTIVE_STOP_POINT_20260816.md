@@ -11,14 +11,81 @@ Step04 final screenshot residual review: PASS for the captured static/residual c
 Step04 clean Pending-payment recovery sanity: PASS
 Step04 desktop result-side sticky runtime behavior: FAIL — non-activation proven
 Step04 sticky diagnostic: COMPLETE
-Step04 proposed source correction: PAUSED
-Step01/Step02 vs Step04 differential diagnosis: ACTIVE — one known-working Step01/02 control capture required before final root-cause lock
+Step02 working-control sticky diagnostic: PASS
+Step02 vs Step04 differential diagnosis: COMPLETE
+Step04 zero-stick root cause: narrowed to missing body-level sticky ancestor unlock in the order-received scope
+Step04 proposed source correction: NOT YET APPLIED
 Step04 overall closure: REOPENED narrowly for real-scroll sticky behavior
 Step03 sidebar sticky investigation: DEFERRED BY USER until Step04 is finished
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
-Checkout next action: capture one working Step01/Step02 desktop sticky control and diff its runtime/ancestor conditions against failing Step04
+Checkout next action: apply one bounded Step04 body-level Sticky Ancestor Unlock, validate source, then rerun the exact Step04 sticky runtime diagnostic
 Checkout binary status: Not done
 ```
+
+## Differential result — Step02 working control versus Step04 failure
+
+Authoritative result:
+
+`project2-progress/STEP_4F_STEP02_VS_STEP04_STICKY_DIFFERENTIAL_RESULT_20260829.md`
+
+Commit:
+
+`c1fbe610c36a34b507a66584c219a9b842767041`
+
+Working Step02 runtime:
+
+```text
+sticky owner: aside.sf-safe5-summary
+position: sticky
+top: 136px
+align-self: start
+owner height: 866.75px
+usable viewport below top: 855px
+body overflow: clip visible
+html overflow: hidden auto
+```
+
+Actual sticky activation:
+
+```text
+scrollY 511 -> ownerTop 136 -> locked true
+scrollY 791 -> ownerTop 136 -> locked true
+```
+
+The owner later releases at the containing shell boundary, which is correct native sticky behavior.
+
+Failing Step04 runtime:
+
+```text
+sticky owner: .result-side
+position: sticky
+top: 132px
+align-self: auto
+side height: 891.75px
+usable viewport below top: 859px
+body overflow: hidden auto
+html overflow: hidden auto
+```
+
+All Step04 samples remain unlocked and the side moves one-for-one with normal document flow.
+
+Decisive tested differential:
+
+```text
+working Step02 body: overflow-x: clip; overflow-y: visible
+failing Step04 body: overflow-x: hidden; overflow-y: auto
+```
+
+Important narrowing:
+
+```text
+html remains hidden/auto even on the working Step02 page, so html is not the decisive current-runtime differentiator.
+The working control proves that body-level Sticky Ancestor Unlock is sufficient for native sticky to activate in the current Chromium runtime.
+```
+
+Sidebar height is also not the zero-stick blocker: Step02's owner is slightly taller than its nominal usable viewport region yet still sticks correctly.
+
+`align-self:start` versus `auto` is not the current leading cause because Step04 `.result-side` is not stretched to shell height. Do not alter it speculatively in the first correction.
 
 ## Architectural clarification — Step01/02 versus Step04
 
@@ -40,63 +107,6 @@ They share a visual contract/information architecture, but the right-side panel 
 Therefore sticky/ancestor/runtime behavior can differ by step even when the panels look intentionally consistent.
 Step03 remains deferred until Step04 closes.
 ```
-
-## Differential diagnostic start
-
-Authoritative start record:
-
-`project2-progress/STEP_4F_STEP01_VS_STEP04_STICKY_DIFFERENTIAL_DIAGNOSTIC_START_20260829.md`
-
-Commit:
-
-`2162d6929abc2f1aa80d88b305a48b549885d12a`
-
-Use one known-working Step01 or Step02 desktop page as control, preferably Step02 if convenient. Capture its sticky owner, ancestor overflow/transform/contain, sidebar/shell geometry and actual locked viewport positions. Compare to the already-captured Step04 failure before any source correction.
-
-## Step04 sticky runtime evidence already proven
-
-Authoritative diagnostic conclusion:
-
-`project2-progress/STEP_4F_STEP04_RESULT_SIDE_STICKY_RUNTIME_DIAGNOSTIC_CONCLUSION_20260829.md`
-
-Commit:
-
-`ed13c31b469f0eacbe15c0e7115130b96904e0b5`
-
-Live runtime evidence on 1920×991 desktop:
-
-```text
-.result-side computed position: sticky
-.result-side computed top: 132px
-.result-side height: 891.75px
-usable viewport below top inset: 859px
-```
-
-Yet every scroll sample remained unlocked:
-
-```text
-scrollY 314  -> sideTop 358.281 -> locked false
-scrollY 402  -> sideTop 270.281 -> locked false
-scrollY 502  -> sideTop 170.281 -> locked false
-scrollY 827  -> sideTop -154.719 -> locked false
-scrollY 1171 -> sideTop -498.719 -> locked false
-scrollY 1466 -> sideTop -793.719 -> locked false
-```
-
-The sidebar moves one-for-one with `.result-shell`, so native sticky never activates.
-
-The Step04 ancestor audit found:
-
-```text
-body -> overflow: hidden auto
-html -> overflow: hidden auto
-```
-
-with ordinary Step04/Astra ancestors otherwise `overflow:visible`, `transform:none`, `contain:none`.
-
-Important correction: because the user confirms Step01/Step02 sticky currently works on the same site, html/body overflow is now treated as a candidate/participating condition rather than the final unique root cause until a working Step01/02 control is captured and compared.
-
-Do not apply the previously prepared 2.7.21 overflow-unlock change until this differential is resolved.
 
 ## Retained accepted Step04 evidence
 
@@ -147,55 +157,19 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Clean recovery closure retained
-
-Authoritative record:
-
-`project2-progress/STEP_4F_STEP04_CLEAN_ORDER_RECOVERY_SANITY_PASS_20260829.md`
-
-Commit:
-
-`68576bcaa1db34c1c73d038e44824978ed820e06`
-
-Locked result:
-
-```text
-Status tested: WooCommerce Pending payment (`pending` / 待付款)
-Fresh never-Refunded order: yes
-Original payable total: non-zero
-Step04 recovery CTA: present
-Recovery target: canonical WooCommerce order-pay
-Same order number: preserved
-Same non-zero payable amount: preserved
-Payment completed: no
-Refund mutation: no
-```
-
-`On-hold` (`on-hold` / 保留) remains a separate accepted Step04 state and is not expected to expose the recovery CTA.
-
-## BACS On-hold gateway output decision retained
-
-Authoritative record:
-
-`project2-progress/STEP_4F_STEP04_BACS_BANK_DETAILS_PRESENTATION_DECISION_20260828.md`
-
-Commit:
-
-`f4d25fd1cd1772589ee5fd6c6f2044ce7ae54886`
-
-Decision remains:
-
-```text
-- Do not modify Step04 theme/template/CSS merely to restyle/remove `Our Bank Details`.
-- On-hold payment instructions are gateway-owned and semantically appropriate.
-- Direct Bank Transfer/BACS is temporary test-only and will be disabled before production launch.
-```
-
 ## Mandatory next action
 
-Do not modify source.
+When the user proceeds, apply one bounded Step04 desktop sticky correction only:
 
-Run one working-control sticky diagnostic on Step01 or Step02 desktop at 1920×991 / 100% zoom. Compare against Step04. Only after that comparison may the Step04 root cause and correction be locked.
+```text
+1. Extend the existing page-scoped Sticky Ancestor Unlock to the Step04 order-result body scope.
+2. Preserve `.result-side { position: sticky; top: 132px; }`.
+3. Do not add max-height/internal scroll.
+4. Do not alter align-self in the same first correction.
+5. Do not modify mobile behavior, Woo order semantics, BACS output, or Crypto.
+6. Validate returned source.
+7. Rerun the exact Step04 sticky runtime diagnostic and require a valid middle scroll range with sideTop ≈132px / lockedToTop:true, followed by normal release at the shell boundary.
+```
 
 Step03 sticky investigation remains deferred until Step04 is closed.
 
