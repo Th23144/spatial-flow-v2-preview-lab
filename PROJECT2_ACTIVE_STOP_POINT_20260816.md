@@ -1,4 +1,4 @@
-# Project 2 · Active Stop Point · 2026-08-28
+# Project 2 · Active Stop Point · 2026-08-29
 
 This file is the current execution override for the active Step-04 implementation gate.
 
@@ -23,7 +23,7 @@ Step04 computed-style strict parity: PASS
 Step04 final residual screenshot review: PASS
 Step04 Strict 1:1: CLOSED
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
-Checkout next action: one clean-order recovery sanity check with a fresh never-Refunded order
+Checkout next action: one clean-order recovery sanity check using WooCommerce Pending payment (`pending` / 待付款) only; do not use On-hold (`on-hold` / 保留)
 Checkout binary status: Not done
 ```
 
@@ -167,6 +167,22 @@ no duplicate native Woo order-details table: PASS
 gateway hook preservation and state-appropriate rendering: PASS
 ```
 
+## Clean recovery status clarification
+
+Authoritative record:
+
+`project2-progress/STEP_4F_STEP04_CLEAN_RECOVERY_STATUS_CLARIFICATION_20260829.md`
+
+Commit:
+
+`df60a0b936038b519952283ddb7219cab0d4d489`
+
+The remaining clean recovery sanity check is specifically for WooCommerce `Pending payment` (`pending` / 待付款), not `On-hold` (`on-hold` / 保留).
+
+`On-hold` is a separate accepted Step04 state. Its lack of `Return to payment` / `Retry payment` is expected and is not a defect. The clean recovery test exists to validate the `$order->needs_payment()` path and canonical same-order `order-pay` route.
+
+For this final sanity check, use only `Pending payment` to avoid ambiguity. Do not use `Failed` even if a particular configuration also exposes recovery there.
+
 ## Mandatory next action — one clean-order recovery sanity check
 
 Do not modify source.
@@ -177,9 +193,9 @@ Verify only this bounded flow:
 
 ```text
 1. Fresh order exists with a non-zero payable total.
-2. Put/leave the order in a payment-required state that makes WooCommerce `needs_payment()` true (Pending is preferred; Failed is acceptable if Woo exposes recovery).
+2. Set/leave the order status specifically as WooCommerce Pending payment (`pending` / 待付款).
 3. Open the Step04 Order Result page for that same order.
-4. Confirm Step04 shows the recovery CTA (`Return to payment` / `Retry payment`).
+4. Confirm Step04 shows the recovery CTA (`Return to payment` or `Retry payment`).
 5. Use that CTA.
 6. Confirm WooCommerce opens the canonical order-pay route for the same order.
 7. Confirm the same order number is retained.
@@ -187,7 +203,7 @@ Verify only this bounded flow:
 9. Stop. Do not complete payment. Do not set this clean order to Refunded.
 ```
 
-Do not rerun the 17-step matrix.
+Do not use `On-hold` / `保留` for this test. Do not rerun the 17-step matrix.
 
 After this clean recovery sanity check passes, proceed to the already-open Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch on desktop/mobile.
 
