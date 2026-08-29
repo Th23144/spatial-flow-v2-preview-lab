@@ -9,19 +9,20 @@ Step 04 production audit: COMPLETE
 Step04 computed-style strict parity: PASS
 Step04 final screenshot residual review: PASS for the captured static/residual contract
 Step04 clean Pending-payment recovery sanity: PASS
-Step04 desktop result-side sticky runtime behavior: FAIL — owner isolated
+Step04 desktop result-side sticky runtime behavior: FAIL — non-activation proven
 Step04 sticky diagnostic: COMPLETE
-Step04 sticky source correction: PAUSED BY USER pending cross-step architecture clarification
+Step04 proposed source correction: PAUSED
+Step01/Step02 vs Step04 differential diagnosis: ACTIVE — one known-working Step01/02 control capture required before final root-cause lock
 Step04 overall closure: REOPENED narrowly for real-scroll sticky behavior
 Step03 sidebar sticky investigation: DEFERRED BY USER until Step04 is finished
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
-Checkout next action after user resumes: apply one bounded CSS ancestor-overflow unlock for Step04 desktop sticky, validate source, then rerun sticky runtime diagnostic
+Checkout next action: capture one working Step01/Step02 desktop sticky control and diff its runtime/ancestor conditions against failing Step04
 Checkout binary status: Not done
 ```
 
-## Cross-step sticky architecture clarification
+## Architectural clarification — Step01/02 versus Step04
 
-Authoritative record:
+Authoritative clarification:
 
 `project2-progress/STEP_4F_CHECKOUT_STICKY_BEHAVIOR_CROSS_STEP_ARCHITECTURE_CLARIFICATION_20260829.md`
 
@@ -32,14 +33,27 @@ Commit:
 Locked clarification:
 
 ```text
-Step01/Step02 use the ordinary Checkout shell and current runtime allows the canonical `.order-summary` sticky behavior to activate.
-Step04 is a separate WooCommerce order-received/result runtime shell (`.sf-order-result-v3 > .result-shell > .result-side`).
-Step04 has its own correct `position:sticky; top:132px` declaration, but live html/body overflow ownership prevents sticky activation.
-Same sticky declaration does not guarantee same runtime sticky behavior because sticky depends on ancestor overflow/scroll context.
-Step03 is not diagnosed here and is explicitly deferred until Step04 closes.
+Step01/Step02 and Step04 are not the same runtime page/template.
+Step01/Step02 are ordinary Checkout form states and use the normal Checkout shell/right summary implementation.
+Step04 is the WooCommerce order-received/result endpoint and uses `.sf-order-result-v3 > .result-shell > .result-side`.
+They share a visual contract/information architecture, but the right-side panel is not one single DOM/component instance reused through all four steps.
+Therefore sticky/ancestor/runtime behavior can differ by step even when the panels look intentionally consistent.
+Step03 remains deferred until Step04 closes.
 ```
 
-## Sticky runtime diagnosis
+## Differential diagnostic start
+
+Authoritative start record:
+
+`project2-progress/STEP_4F_STEP01_VS_STEP04_STICKY_DIFFERENTIAL_DIAGNOSTIC_START_20260829.md`
+
+Commit:
+
+`2162d6929abc2f1aa80d88b305a48b549885d12a`
+
+Use one known-working Step01 or Step02 desktop page as control, preferably Step02 if convenient. Capture its sticky owner, ancestor overflow/transform/contain, sidebar/shell geometry and actual locked viewport positions. Compare to the already-captured Step04 failure before any source correction.
+
+## Step04 sticky runtime evidence already proven
 
 Authoritative diagnostic conclusion:
 
@@ -71,27 +85,18 @@ scrollY 1466 -> sideTop -793.719 -> locked false
 
 The sidebar moves one-for-one with `.result-shell`, so native sticky never activates.
 
-Ancestor audit isolated the first non-visible overflow owners:
+The Step04 ancestor audit found:
 
 ```text
 body -> overflow: hidden auto
 html -> overflow: hidden auto
 ```
 
-All ordinary Step04/Astra ancestors between `.result-side` and body are `overflow:visible`, `transform:none`, `contain:none`.
+with ordinary Step04/Astra ancestors otherwise `overflow:visible`, `transform:none`, `contain:none`.
 
-Current root stylesheet has `html,body { overflow-x:hidden; }`, which computes the other axis to `auto` and creates the sticky ancestor failure mode.
+Important correction: because the user confirms Step01/Step02 sticky currently works on the same site, html/body overflow is now treated as a candidate/participating condition rather than the final unique root cause until a working Step01/02 control is captured and compared.
 
-This same project-wide failure mode is already solved elsewhere by `Spatial Flow Step 5O-B SAFE 2 · Sticky Ancestor Unlock`, which uses page-scoped:
-
-```css
-overflow-x: clip !important;
-overflow-y: visible !important;
-```
-
-for html/body and visible overflow / contain:none for wrappers.
-
-The tested sidebar being slightly taller than the usable viewport is a separate dynamic-content usability concern. It does not explain complete zero-stick behavior and must not trigger speculative max-height/internal-scroll changes before the ancestor unlock is tested.
+Do not apply the previously prepared 2.7.21 overflow-unlock change until this differential is resolved.
 
 ## Retained accepted Step04 evidence
 
@@ -186,23 +191,11 @@ Decision remains:
 - Direct Bank Transfer/BACS is temporary test-only and will be disabled before production launch.
 ```
 
-## Mandatory next action — only after user resumes
+## Mandatory next action
 
-Do not modify source until the user explicitly resumes Step04 correction.
+Do not modify source.
 
-Then apply one CSS-only, desktop-only, page-scoped correction using the already-established Sticky Ancestor Unlock pattern:
-
-```text
-- include Step04 `.sf-order-result-v3` in html/body overflow unlock
-- keep intermediate Step04/Astra wrappers visible / contain:none only as needed
-- preserve canonical `.result-side { position:sticky; top:132px; }`
-- do not change mobile/static behavior
-- do not add max-height/internal scrolling yet
-```
-
-After returned-source validation, rerun `SF_STEP04_RESULT_SIDE_STICKY_RUNTIME_20260829` and require `.result-side` to lock at approximately 132px through the valid middle scroll range.
-
-Only after actual sticky activation is proven may dynamic-height usability be assessed separately.
+Run one working-control sticky diagnostic on Step01 or Step02 desktop at 1920×991 / 100% zoom. Compare against Step04. Only after that comparison may the Step04 root cause and correction be locked.
 
 Step03 sticky investigation remains deferred until Step04 is closed.
 
