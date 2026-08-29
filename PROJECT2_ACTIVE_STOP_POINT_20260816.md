@@ -9,55 +9,44 @@ Step04 final screenshot residual review: PASS
 Step04 clean Pending-payment recovery sanity: PASS
 Step04 desktop result-side sticky runtime: PASS / USER ACCEPTED
 Step04 2.7.21 body-only Sticky Ancestor Unlock: PASS
-Step04 overall: CLOSED
+Step04 full-state 1:1 regression after sticky fix: REQUIRED / ACTIVE NEXT
+Step04 overall final closure: PENDING the consolidated status-family sweep
 
-Step03 sidebar sticky issue: ACTIVE NEXT TASK
+Step03 sidebar sticky issue: DEFERRED until Step04 state-family sweep passes
 Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
 Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
 
-## Step04 sticky acceptance
+## Step04 full-state regression correction
 
 Authoritative record:
 
-`project2-progress/STEP_4F_STEP04_STICKY_ACCEPTED_NEXT_ACTION_20260829.md`
+`project2-progress/STEP_4F_STEP04_FULL_STATE_1_TO_1_REGRESSION_REQUIRED_AFTER_STICKY_20260829.md`
 
 Commit:
 
-`347a6039c593e070dfe7bd8bd6ae93f6b3b5ec24`
+`53513501111e7893974a2894696e880433646c69`
 
-The user explicitly accepted the Step04 sticky correction. Do not require another bottom-boundary diagnostic unless a concrete regression is observed.
+The user clarified that “full 1:1 test” means the multiple Step04 order-result status variants. Because the 2.7.21 sticky correction is shared across the Step04 result family, run one consolidated state-family visual/runtime regression before Step04 is finally closed.
 
-The 2.7.21 correction only changes the desktop page-scoped body overflow environment required for native sticky activation. It does not change Step04 typography, grid, spacing, dimensions, content, CTA placement, status semantics, order data, or mobile rules. Therefore do not repeat the already-passed full Step04 1:1 audit now.
+Required practical state family:
+- Processing
+- Completed
+- Pending payment
+- On-hold
+- Failed
+- Cancelled
+- Refunded
+- safe unknown/custom fallback only if an existing reproducible fixture is available
 
-## Immediate next action
+Do not repeat the historical deep 17-test functional/security suite by default. This is a compact post-fix presentation/runtime regression focused on 1:1 layout, status-specific output, sticky behavior, overflow/clipping, duplicate output, and mobile stacking.
 
-Per the user's earlier explicit instruction, diagnose and fix the Step03 sidebar sticky issue now that Step04 is closed.
+## Step04 sticky acceptance retained
 
-Do not assume Step03 shares the Step04 root cause. Audit Step03 runtime independently because Step03 normal Payment and Crypto/order-pay Workspace may use different shells.
+The sticky correction itself remains accepted. Do not reopen its source implementation unless the state-family sweep exposes a concrete regression.
 
-After Step03 sticky closes:
-
-1. fix/revalidate Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch on desktop/mobile;
-2. run one consolidated final Checkout 01-04 visual 1:1 regression sweep;
-3. perform final Checkout closure review;
-4. only if no blocker remains, change binary label to `Completed 1:1`.
-
-## Final 1:1 sweep policy
-
-The final 01-04 visual sweep is necessary, but run it once at the end rather than repeating full audits after every narrow correction.
-
-Scope:
-- Step01 desktop/mobile reference parity + right-summary sticky sanity;
-- Step02 desktop/mobile reference parity + right-summary sticky sanity;
-- Step03 desktop/mobile parity + sticky + payment/Crypto presentation;
-- Step04 desktop/mobile parity + result-side sticky sanity;
-- shared frame, gutters, progress/header, typography, spacing, clipping/overflow consistency.
-
-Do not rerun the historical Step04 17-test status matrix or other already-accepted functional suites unless a concrete regression appears.
-
-## Accepted live Step04 source fingerprints
+Accepted live source fingerprints:
 
 ### `functions.php`
 ```text
@@ -77,6 +66,17 @@ brace balance: 3282/3282
 comment balance: 275/275
 tinycss2 errors: 0
 ```
+
+## Immediate next action
+
+Prepare and execute one consolidated Step04 status-family 1:1 regression package. Do not drip-feed one state at a time unless fixture mutation makes batching unsafe.
+
+After the Step04 family sweep passes:
+1. close Step04 formally;
+2. diagnose/fix Step03 sidebar sticky independently;
+3. fix/revalidate Crypto V0.3.0 transfer-button typography;
+4. run one final Checkout 01-04 consolidated visual 1:1 sweep;
+5. only if no blocker remains, change Checkout binary label to `Completed 1:1`.
 
 ## Explicit deployment boundary
 
