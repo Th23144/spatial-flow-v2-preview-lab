@@ -1,13 +1,13 @@
 # Project 2 · Active Stop Point · 2026-08-29
 
-This file is the current execution override for the active Step-04 implementation gate.
+This file is the current execution override for the active Step-04 / Checkout closure gate.
 
 ## Current authoritative stop point
 
 ```text
 Step 04 production audit: COMPLETE
 Step 04 Strict 1:1 visual contract: LOCKED
-Step04 runtime/status matrix: MOSTLY ACCEPTED; one clean recovery sanity check remains
+Step04 runtime/status matrix: CLOSED
 Step04 visible blocker A white band: CLOSED — runtime PASS
 Step04 visible blocker B cancelled gateway instructions: CLOSED — runtime PASS; On-hold preserved
 Step04 strict-parity V2 eight captures: RECEIVED AND NUMERICALLY AUDITED
@@ -22,8 +22,10 @@ Step04 final full computed-style scan: PASS — no unexplained Step04-owned delt
 Step04 computed-style strict parity: PASS
 Step04 final residual screenshot review: PASS
 Step04 Strict 1:1: CLOSED
+Step04 clean-order recovery sanity: PASS — fresh never-Refunded Pending-payment order; same order-pay route/order/amount preserved
+Step04: CLOSED
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
-Checkout next action: one clean-order recovery sanity check using WooCommerce Pending payment (`pending` / 待付款) only; do not use On-hold (`on-hold` / 保留)
+Checkout next action: fix/revalidate Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch on desktop/mobile
 Checkout binary status: Not done
 ```
 
@@ -77,16 +79,31 @@ Step04 final screenshot residual review: PASS
 Step04 Strict 1:1: CLOSED
 ```
 
-The four current-version production full-page screenshots were reviewed:
+## Step04 clean recovery closure
 
-- Processing Desktop
-- Processing Mobile
-- On-hold Desktop
-- On-hold Mobile
+Authoritative record:
 
-No unexplained Step04-owned visible residual remained. The unrelated mistakenly uploaded image was excluded.
+`project2-progress/STEP_4F_STEP04_CLEAN_ORDER_RECOVERY_SANITY_PASS_20260829.md`
 
-Allowed dynamic Woo/gateway differences remain excluded from strict static parity scoring, including real order values, refund/shipping/gift-packaging rows, real addresses, copy-length-driven heights, real product assets and state-appropriate On-hold BACS output.
+Commit:
+
+`68576bcaa1db34c1c73d038e44824978ed820e06`
+
+Locked result:
+
+```text
+Status tested: WooCommerce Pending payment (`pending` / 待付款)
+Fresh never-Refunded order: yes
+Original payable total: non-zero
+Step04 recovery CTA: present
+Recovery target: canonical WooCommerce order-pay
+Same order number: preserved
+Same non-zero payable amount: preserved
+Payment completed: no
+Refund mutation: no
+```
+
+`On-hold` (`on-hold` / 保留) remains a separate accepted Step04 state and is not expected to expose the recovery CTA.
 
 ## 2.7.20 final four-production JSON audit
 
@@ -104,25 +121,6 @@ Environment gate:
 Desktop: 1920×991, document client width 1905, DPR1, visualViewport scale 1
 Mobile: 390×844, DPR3, visualViewport scale 1
 Reference baseline unchanged and reused
-```
-
-Final 2.7.20 residual convergence:
-
-```text
-A. .result-overview li span line-height
-   REF 10.85px
-   LIVE 10.85px
-   PASS
-
-B. Receipt table logical alignment
-   root / thead / tbody / tfoot / non-final td: start == start
-   final value column: right == right
-   PASS
-
-C. Billing/shipping address logical alignment
-   REF start
-   LIVE start
-   PASS
 ```
 
 Final full computed-style sweep:
@@ -150,7 +148,7 @@ Decision:
 - Gateway-owned BACS content is excluded from strict static S7 parity scoring except for Step04-owned surrounding container/boundary behavior.
 ```
 
-## Runtime/status evidence already accepted
+## Runtime/status evidence accepted
 
 ```text
 Processing / confirmed state semantics: PASS
@@ -165,56 +163,45 @@ browser/query prototype_result cannot manufacture paid state: PASS
 real Woo data rendering / server-authoritative status: PASS
 no duplicate native Woo order-details table: PASS
 gateway hook preservation and state-appropriate rendering: PASS
+clean Pending-payment recovery to same order-pay/order/amount: PASS
 ```
 
-## Clean recovery status clarification
+## Mandatory next action — Crypto V0.3.0 visual follow-up
 
-Authoritative record:
+Do not reopen Step04 absent a concrete regression.
 
-`project2-progress/STEP_4F_STEP04_CLEAN_RECOVERY_STATUS_CLARIFICATION_20260829.md`
-
-Commit:
-
-`df60a0b936038b519952283ddb7219cab0d4d489`
-
-The remaining clean recovery sanity check is specifically for WooCommerce `Pending payment` (`pending` / 待付款), not `On-hold` (`on-hold` / 保留).
-
-`On-hold` is a separate accepted Step04 state. Its lack of `Return to payment` / `Retry payment` is expected and is not a defect. The clean recovery test exists to validate the `$order->needs_payment()` path and canonical same-order `order-pay` route.
-
-For this final sanity check, use only `Pending payment` to avoid ambiguity. Do not use `Failed` even if a particular configuration also exposes recovery there.
-
-## Mandatory next action — one clean-order recovery sanity check
-
-Do not modify source.
-
-Create/use one fresh order that has never entered `Refunded` and whose payable total is non-zero. Do not use #3621.
-
-Verify only this bounded flow:
+Audit the accepted V0.3.0 Crypto Workspace presentation owner for the button:
 
 ```text
-1. Fresh order exists with a non-zero payable total.
-2. Set/leave the order status specifically as WooCommerce Pending payment (`pending` / 待付款).
-3. Open the Step04 Order Result page for that same order.
-4. Confirm Step04 shows the recovery CTA (`Return to payment` or `Retry payment`).
-5. Use that CTA.
-6. Confirm WooCommerce opens the canonical order-pay route for the same order.
-7. Confirm the same order number is retained.
-8. Confirm the payable amount remains the same non-zero amount.
-9. Stop. Do not complete payment. Do not set this clean order to Refunded.
+I HAVE COMPLETED THE TRANSFER
 ```
 
-Do not use `On-hold` / `保留` for this test. Do not rerun the 17-step matrix.
+The already-open defect is typography-only. Compare at minimum:
 
-After this clean recovery sanity check passes, proceed to the already-open Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch on desktop/mobile.
+```text
+font-size
+font-weight
+letter-spacing
+line-height
+```
+
+Inspect vertical centering / padding only if computed/runtime ownership evidence requires it.
+
+Required acceptance:
+
+```text
+Desktop strict visual parity
+Mobile strict visual parity
+```
+
+Do not alter Crypto business logic, REST endpoints, hash validation, settlement, feature flag, order-pay routing, invoice/recovery behavior, sandbox logic or previously accepted backend/security behavior.
+
+After this typography defect passes, perform Checkout final closure review and only then change the Checkout binary label from `Not done` to `Completed 1:1` if no other open blocker remains.
 
 ## Refund-ledger correction
 
-Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Changing only its status later does not remove that refund object. #3621 remains unsuitable for the clean payable/recovery sanity check.
+Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Changing only its status later does not remove that refund object. #3621 must not be reused for clean payable/recovery assertions.
 
 ## Explicit deployment boundary
 
-Do NOT instruct whole-file replacement for `functions.php`, `thankyou.php`, or `spatial-flow.css` under the default workflow. Continue manual anchored replacement unless the user explicitly changes that decision.
-
-## Crypto visual follow-up
-
-After the clean recovery sanity check closes, fix/revalidate the V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch before Checkout may be marked Completed 1:1.
+Do NOT instruct whole-file replacement for `functions.php`, `thankyou.php`, `spatial-flow.css`, or plugin-owned large assets under the default workflow. Continue manual anchored replacement unless the user explicitly changes that decision.
