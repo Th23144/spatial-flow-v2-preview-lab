@@ -9,8 +9,9 @@ Step04 final screenshot residual review: PASS
 Step04 clean Pending-payment recovery sanity: PASS
 Step04 desktop result-side sticky runtime: PASS / USER ACCEPTED
 Step04 2.7.21 body-only Sticky Ancestor Unlock: PASS
-Step04 full-state 1:1 regression after sticky fix: REQUIRED / ACTIVE NEXT
-Step04 overall final closure: PENDING the consolidated status-family sweep
+Step04 reference variant audit: COMPLETE
+Step04 full-state 1:1 regression after sticky fix: ACTIVE NOW
+Step04 overall final closure: PENDING consolidated status-family sweep
 
 Step03 sidebar sticky issue: DEFERRED until Step04 state-family sweep passes
 Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
@@ -18,33 +19,62 @@ Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRES
 Checkout binary status: Not done
 ```
 
-## Step04 full-state regression correction
+## Step04 authoritative static references
 
-Authoritative record:
-
-`project2-progress/STEP_4F_STEP04_FULL_STATE_1_TO_1_REGRESSION_REQUIRED_AFTER_STICKY_20260829.md`
+Audit record:
+`project2-progress/STEP_4F_STEP04_REFERENCE_VARIANT_AUDIT_AND_FULL_STATE_REGRESSION_PLAN_20260829.md`
 
 Commit:
+`c9f25ddece348941b3d6d4ff4ae35bd365411c4f`
 
-`53513501111e7893974a2894696e880433646c69`
+The repository contains one authoritative S7 Step04 HTML page:
+`preview/spatial-flow-thank-you-v1.html`
 
-The user clarified that “full 1:1 test” means the multiple Step04 order-result status variants. Because the 2.7.21 sticky correction is shared across the Step04 result family, run one consolidated state-family visual/runtime regression before Step04 is finally closed.
+Its JS exposes only two static review states:
+- default / confirmed
+- `?prototype_result=pending`
+
+There are no dedicated static HTML variants for Completed, Failed, Cancelled, Refunded, or custom/unknown. Those production states use the shared Step04 visual contract plus their accepted Woo/server semantics.
+
+Important semantic precedence:
+- `pending` / Pending payment = recovery state; recovery CTA only when Woo `needs_payment()`.
+- `on-hold` / On-hold = separate awaiting-confirmation state; no recovery CTA expected merely from On-hold.
+- The older S7 pending static reference is structural/visual guidance and must not override this later production semantic correction.
+
+Rendered references:
+- Confirmed: `https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html`
+- Pending-family: `https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html?prototype_result=pending`
+
+## Active Step04 state-family regression
 
 Required practical state family:
-- Processing
-- Completed
-- Pending payment
-- On-hold
-- Failed
-- Cancelled
-- Refunded
-- safe unknown/custom fallback only if an existing reproducible fixture is available
+1. Processing
+2. Completed
+3. Pending payment — fresh never-refunded order
+4. On-hold
+5. Failed
+6. Cancelled
+7. Refunded — disposable order with real Woo refund ledger
+8. safe unknown/custom fallback only if an existing reproducible fixture is available
 
-Do not repeat the historical deep 17-test functional/security suite by default. This is a compact post-fix presentation/runtime regression focused on 1:1 layout, status-specific output, sticky behavior, overflow/clipping, duplicate output, and mobile stacking.
+Viewports:
+- Desktop 1920×991 at 100% zoom
+- Mobile 390×844 at scale 1 / previously accepted mobile environment
+
+For each state inspect:
+- shared 1:1 geometry and typography
+- state block / overview / receipt / facts / timeline / address panels
+- right summary and CTA placement
+- no horizontal clipping/overflow
+- mobile stacking/gutters
+- desktop right-side sticky activation and containment
+- state-specific Woo semantics
+
+Do not repeat the historical deep 17-test functional/security matrix unless this sweep exposes a concrete functional regression.
 
 ## Step04 sticky acceptance retained
 
-The sticky correction itself remains accepted. Do not reopen its source implementation unless the state-family sweep exposes a concrete regression.
+The sticky correction remains accepted. Do not reopen source unless this state-family sweep exposes a concrete regression.
 
 Accepted live source fingerprints:
 
@@ -69,7 +99,7 @@ tinycss2 errors: 0
 
 ## Immediate next action
 
-Prepare and execute one consolidated Step04 status-family 1:1 regression package. Do not drip-feed one state at a time unless fixture mutation makes batching unsafe.
+Execute the complete Step04 status-family comparison in one batch. Do not drip-feed states.
 
 After the Step04 family sweep passes:
 1. close Step04 formally;
