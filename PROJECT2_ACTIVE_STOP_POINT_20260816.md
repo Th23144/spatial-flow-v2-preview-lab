@@ -9,43 +9,67 @@ Step 04 production audit: COMPLETE
 Step04 computed-style strict parity: PASS
 Step04 final screenshot residual review: PASS for the captured static/residual contract
 Step04 clean Pending-payment recovery sanity: PASS
-Step04 desktop result-side sticky runtime behavior: REOPENED / FAIL-PENDING-DIAGNOSIS
+Step04 desktop result-side sticky runtime behavior: FAIL — owner isolated
+Step04 sticky diagnostic: COMPLETE
 Step04 overall closure: REOPENED narrowly for real-scroll sticky behavior
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
-Checkout next action: diagnose/fix Step04 desktop result-side sticky behavior before returning to Crypto V0.3.0 typography follow-up
+Checkout next action: apply one bounded CSS ancestor-overflow unlock for Step04 desktop sticky, validate source, then rerun sticky runtime diagnostic
 Checkout binary status: Not done
 ```
 
-## Why Step04 was narrowly reopened
+## Sticky runtime diagnosis
 
-The user reported that the desktop right Receipt Summary sidebar does not actually remain pinned/sticky at the top while scrolling.
+Authoritative diagnostic conclusion:
 
-Prior JSON/computed audits proved the declared style contract, not live scroll behavior. Retained evidence shows:
-
-```text
-.result-side {
-  position: sticky;
-  top: 132px;
-}
-```
-
-but real live content can make the sidebar taller than the usable viewport sticky region. Example retained On-hold desktop capture:
-
-```text
-viewport height: 991px
-.result-side height: about 1105px
-sticky top inset: 132px
-```
-
-Therefore `position: sticky` in computed style is not sufficient acceptance evidence.
-
-Authoritative reopen record:
-
-`project2-progress/STEP_4F_STEP04_RESULT_SIDE_STICKY_RUNTIME_REOPEN_20260829.md`
+`project2-progress/STEP_4F_STEP04_RESULT_SIDE_STICKY_RUNTIME_DIAGNOSTIC_CONCLUSION_20260829.md`
 
 Commit:
 
-`cfc4a83c706045f4bf9719aad9d23a2d84e4f627`
+`ed13c31b469f0eacbe15c0e7115130b96904e0b5`
+
+Live runtime evidence on 1920×991 desktop:
+
+```text
+.result-side computed position: sticky
+.result-side computed top: 132px
+.result-side height: 891.75px
+usable viewport below top inset: 859px
+```
+
+Yet every scroll sample remained unlocked:
+
+```text
+scrollY 314  -> sideTop 358.281 -> locked false
+scrollY 402  -> sideTop 270.281 -> locked false
+scrollY 502  -> sideTop 170.281 -> locked false
+scrollY 827  -> sideTop -154.719 -> locked false
+scrollY 1171 -> sideTop -498.719 -> locked false
+scrollY 1466 -> sideTop -793.719 -> locked false
+```
+
+The sidebar moves one-for-one with `.result-shell`, so native sticky never activates.
+
+Ancestor audit isolated the first non-visible overflow owners:
+
+```text
+body -> overflow: hidden auto
+html -> overflow: hidden auto
+```
+
+All ordinary Step04/Astra ancestors between `.result-side` and body are `overflow:visible`, `transform:none`, `contain:none`.
+
+Current root stylesheet has `html,body { overflow-x:hidden; }`, which computes the other axis to `auto` and creates the sticky ancestor failure mode.
+
+This same project-wide failure mode is already solved elsewhere by `Spatial Flow Step 5O-B SAFE 2 · Sticky Ancestor Unlock`, which uses page-scoped:
+
+```css
+overflow-x: clip !important;
+overflow-y: visible !important;
+```
+
+for html/body and visible overflow / contain:none for wrappers.
+
+The tested sidebar being slightly taller than the usable viewport is a separate dynamic-content usability concern. It does not explain complete zero-stick behavior and must not trigger speculative max-height/internal-scroll changes before the ancestor unlock is tested.
 
 ## Retained accepted Step04 evidence
 
@@ -63,8 +87,6 @@ These remain accepted and must not be reopened without a separate concrete regre
 - final three computed micro-residuals: PASS
 - clean Pending-payment recovery to same order-pay/order/amount: PASS
 ```
-
-The final screenshot review is no longer sufficient to close the whole Step04 because it did not exercise real scroll positions of the desktop sidebar.
 
 ## Current accepted live source fingerprints
 
@@ -142,25 +164,23 @@ Decision remains:
 - Direct Bank Transfer/BACS is temporary test-only and will be disabled before production launch.
 ```
 
-## Mandatory next action — desktop sticky runtime diagnostic
+## Mandatory next action — bounded desktop sticky correction
 
-Do not modify source yet.
-
-Run one bounded desktop diagnostic on a real Step04 page and capture:
+Apply one CSS-only, desktop-only, page-scoped correction using the already-established Sticky Ancestor Unlock pattern:
 
 ```text
-- viewport height/width and scrollY
-- `.result-side` height and computed position/top/bottom
-- `.result-summary` height
-- `.result-shell` bounds
-- ancestor overflow / transform / contain
-- `.result-side` viewport top at multiple scroll positions
-- whether it ever locks to the intended top inset
+- include Step04 `.sf-order-result-v3` in html/body overflow unlock
+- keep intermediate Step04/Astra wrappers visible / contain:none only as needed
+- preserve canonical `.result-side { position:sticky; top:132px; }`
+- do not change mobile/static behavior
+- do not add max-height/internal scrolling yet
 ```
 
-The current leading hypothesis is that the live sidebar is too tall for the available sticky viewport, particularly when gateway-owned content is present. Confirm before choosing a fix.
+After returned-source validation, rerun `SF_STEP04_RESULT_SIDE_STICKY_RUNTIME_20260829` and require `.result-side` to lock at approximately 132px through the valid middle scroll range.
 
-After the sticky behavior is fixed and runtime-accepted, return to the already-open Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch. Checkout cannot be marked `Completed 1:1` until both are closed.
+Only after actual sticky activation is proven may dynamic-height usability be assessed separately.
+
+After sticky runtime passes, return to the already-open Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch. Checkout cannot be marked `Completed 1:1` until both are closed.
 
 ## Explicit deployment boundary
 
