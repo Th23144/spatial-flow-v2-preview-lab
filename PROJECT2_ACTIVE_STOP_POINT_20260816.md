@@ -6,28 +6,65 @@ This file is the current execution override for the active Step-04 / Checkout cl
 
 ```text
 Step 04 production audit: COMPLETE
-Step 04 Strict 1:1 visual contract: LOCKED
-Step04 runtime/status matrix: CLOSED
-Step04 visible blocker A white band: CLOSED — runtime PASS
-Step04 visible blocker B cancelled gateway instructions: CLOSED — runtime PASS; On-hold preserved
-Step04 strict-parity V2 eight captures: RECEIVED AND NUMERICALLY AUDITED
-Step04 bounded computed-parity 2.7.19 correction batch: APPLIED BY USER
-Step04 2.7.19 returned-source validation: PASS EXACT
-Step04 2.7.19 targeted eight deterministic deltas: ALL RUNTIME PASS
-Step04 final 2.7.20 micro-parity source batch: APPLIED BY USER
-Step04 2.7.20 returned-source validation: PASS EXACT
-Step04 2.7.20 production-only four captures: FINAL NUMERIC AUDIT PASS
-Step04 2.7.20 final three micro residual classes: ALL PASS
-Step04 final full computed-style scan: PASS — no unexplained Step04-owned delta
 Step04 computed-style strict parity: PASS
-Step04 final residual screenshot review: PASS
-Step04 Strict 1:1: CLOSED
-Step04 clean-order recovery sanity: PASS — fresh never-Refunded Pending-payment order; same order-pay route/order/amount preserved
-Step04: CLOSED
+Step04 final screenshot residual review: PASS for the captured static/residual contract
+Step04 clean Pending-payment recovery sanity: PASS
+Step04 desktop result-side sticky runtime behavior: REOPENED / FAIL-PENDING-DIAGNOSIS
+Step04 overall closure: REOPENED narrowly for real-scroll sticky behavior
 Step04 BACS On-hold bank-details output: NO THEME CHANGE — gateway-owned, test-only, allowed dynamic output
-Checkout next action: fix/revalidate Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch on desktop/mobile
+Checkout next action: diagnose/fix Step04 desktop result-side sticky behavior before returning to Crypto V0.3.0 typography follow-up
 Checkout binary status: Not done
 ```
+
+## Why Step04 was narrowly reopened
+
+The user reported that the desktop right Receipt Summary sidebar does not actually remain pinned/sticky at the top while scrolling.
+
+Prior JSON/computed audits proved the declared style contract, not live scroll behavior. Retained evidence shows:
+
+```text
+.result-side {
+  position: sticky;
+  top: 132px;
+}
+```
+
+but real live content can make the sidebar taller than the usable viewport sticky region. Example retained On-hold desktop capture:
+
+```text
+viewport height: 991px
+.result-side height: about 1105px
+sticky top inset: 132px
+```
+
+Therefore `position: sticky` in computed style is not sufficient acceptance evidence.
+
+Authoritative reopen record:
+
+`project2-progress/STEP_4F_STEP04_RESULT_SIDE_STICKY_RUNTIME_REOPEN_20260829.md`
+
+Commit:
+
+`cfc4a83c706045f4bf9719aad9d23a2d84e4f627`
+
+## Retained accepted Step04 evidence
+
+These remain accepted and must not be reopened without a separate concrete regression:
+
+```text
+- white-band blocker: CLOSED / PASS
+- cancelled gateway instructions blocker: CLOSED / PASS
+- Processing / Completed / Pending / On-hold / Failed / Cancelled / Refunded semantics: PASS
+- browser/query tamper cannot manufacture paid state: PASS
+- real Woo data rendering: PASS
+- no duplicate Woo order-details table: PASS
+- gateway hook preservation: PASS
+- 2.7.20 final computed-style scan: PASS
+- final three computed micro-residuals: PASS
+- clean Pending-payment recovery to same order-pay/order/amount: PASS
+```
+
+The final screenshot review is no longer sufficient to close the whole Step04 because it did not exercise real scroll positions of the desktop sidebar.
 
 ## Current accepted live source fingerprints
 
@@ -61,25 +98,7 @@ comment balance: 275 / 275
 tinycss2 errors: 0
 ```
 
-## Step04 final visual closure
-
-Authoritative record:
-
-`project2-progress/STEP_4F_STEP04_FINAL_SCREENSHOT_RESIDUAL_REVIEW_PASS_AND_STRICT_1_TO_1_CLOSE_20260828.md`
-
-Commit:
-
-`3c8b4b63a267da7456ce22e53a8a75b0ca3c4968`
-
-Final conclusion:
-
-```text
-Step04 computed-style strict parity: PASS
-Step04 final screenshot residual review: PASS
-Step04 Strict 1:1: CLOSED
-```
-
-## Step04 clean recovery closure
+## Clean recovery closure retained
 
 Authoritative record:
 
@@ -105,31 +124,7 @@ Refund mutation: no
 
 `On-hold` (`on-hold` / 保留) remains a separate accepted Step04 state and is not expected to expose the recovery CTA.
 
-## 2.7.20 final four-production JSON audit
-
-Authoritative record:
-
-`project2-progress/STEP_4F_STEP04_2720_FOUR_PRODUCTION_JSON_FINAL_AUDIT_PASS_20260828.md`
-
-Commit:
-
-`4be92dea07e214674eab2adfc40ffa92348c5559`
-
-Environment gate:
-
-```text
-Desktop: 1920×991, document client width 1905, DPR1, visualViewport scale 1
-Mobile: 390×844, DPR3, visualViewport scale 1
-Reference baseline unchanged and reused
-```
-
-Final full computed-style sweep:
-
-```text
-PASS — no unexplained Step04-owned computed-style property mismatch remains in the captured selector/property contract.
-```
-
-## BACS On-hold gateway output decision
+## BACS On-hold gateway output decision retained
 
 Authoritative record:
 
@@ -139,68 +134,33 @@ Commit:
 
 `f4d25fd1cd1772589ee5fd6c6f2044ce7ae54886`
 
-Decision:
+Decision remains:
 
 ```text
-- Do not modify Step04 theme/template/CSS for the current `Our Bank Details` block.
-- On-hold payment instructions are semantically appropriate and remain gateway-owned.
-- Direct Bank Transfer/BACS is a temporary test gateway and will be disabled before production launch.
-- Gateway-owned BACS content is excluded from strict static S7 parity scoring except for Step04-owned surrounding container/boundary behavior.
+- Do not modify Step04 theme/template/CSS merely to restyle/remove `Our Bank Details`.
+- On-hold payment instructions are gateway-owned and semantically appropriate.
+- Direct Bank Transfer/BACS is temporary test-only and will be disabled before production launch.
 ```
 
-## Runtime/status evidence accepted
+## Mandatory next action — desktop sticky runtime diagnostic
+
+Do not modify source yet.
+
+Run one bounded desktop diagnostic on a real Step04 page and capture:
 
 ```text
-Processing / confirmed state semantics: PASS
-Completed state semantics: PASS
-Pending state semantics: PASS
-On-hold state semantics: PASS
-Failed state semantics: PASS
-Cancelled state main copy: PASS
-Cancelled gateway-output appropriateness: PASS
-Refunded state semantics: PASS
-browser/query prototype_result cannot manufacture paid state: PASS
-real Woo data rendering / server-authoritative status: PASS
-no duplicate native Woo order-details table: PASS
-gateway hook preservation and state-appropriate rendering: PASS
-clean Pending-payment recovery to same order-pay/order/amount: PASS
+- viewport height/width and scrollY
+- `.result-side` height and computed position/top/bottom
+- `.result-summary` height
+- `.result-shell` bounds
+- ancestor overflow / transform / contain
+- `.result-side` viewport top at multiple scroll positions
+- whether it ever locks to the intended top inset
 ```
 
-## Mandatory next action — Crypto V0.3.0 visual follow-up
+The current leading hypothesis is that the live sidebar is too tall for the available sticky viewport, particularly when gateway-owned content is present. Confirm before choosing a fix.
 
-Do not reopen Step04 absent a concrete regression.
-
-Audit the accepted V0.3.0 Crypto Workspace presentation owner for the button:
-
-```text
-I HAVE COMPLETED THE TRANSFER
-```
-
-The already-open defect is typography-only. Compare at minimum:
-
-```text
-font-size
-font-weight
-letter-spacing
-line-height
-```
-
-Inspect vertical centering / padding only if computed/runtime ownership evidence requires it.
-
-Required acceptance:
-
-```text
-Desktop strict visual parity
-Mobile strict visual parity
-```
-
-Do not alter Crypto business logic, REST endpoints, hash validation, settlement, feature flag, order-pay routing, invoice/recovery behavior, sandbox logic or previously accepted backend/security behavior.
-
-After this typography defect passes, perform Checkout final closure review and only then change the Checkout binary label from `Not done` to `Completed 1:1` if no other open blocker remains.
-
-## Refund-ledger correction
-
-Order #3621 entered `Refunded`, so WooCommerce created a real refund ledger object. Changing only its status later does not remove that refund object. #3621 must not be reused for clean payable/recovery assertions.
+After the sticky behavior is fixed and runtime-accepted, return to the already-open Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch. Checkout cannot be marked `Completed 1:1` until both are closed.
 
 ## Explicit deployment boundary
 
