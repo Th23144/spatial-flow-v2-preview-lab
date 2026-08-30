@@ -7,29 +7,29 @@ Step04 full-state visual/runtime regression: FINAL PASS
 Step04 overall: CLOSED
 Step04 status-icon micro visual polish: DEFERRED BY USER; non-blocking later optimization
 
-Step03 sidebar sticky issue: ACTIVE DIAGNOSTIC NOW
+Step03 sidebar sticky issue: ROOT CAUSE LOCKED
 Step03 reference sticky owner: whole right-side wrapper `.checkout-side` / top 136px
 Step03 production sticky owner: CORRECT — `aside.sf-safe5-summary`
 Step03 production child order-review: CORRECT — static
 Step03 body ancestor unlock: ALREADY CORRECT — body clip/visible
 Step03 ancestor overflow/transform/contain blockers: NONE FOUND
-Step03 runtime sticky activation: FAIL
-Step03 leading differential: shell/sidebar vertical runway is extremely small
-Step03 causation: NOT YET LOCKED — one reversible console-only shell-runway A/B required
+Step03 baseline sticky activation: FAIL
+Step03 shell/sidebar runway A/B: CONFIRMED CAUSAL
+Step03 production fix: NOT YET AUTHORIZED — focused source/architecture audit required first
 Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
 Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
 
-## Step03 diagnostic result
+## Step03 runway A/B root-cause confirmation
 
-Authoritative result record:
-`project2-progress/STEP_4F_STEP03_SIDEBAR_STICKY_DIAGNOSTIC_RESULT_AND_RUNWAY_HYPOTHESIS_20260830.md`
+Authoritative record:
+`project2-progress/STEP_4F_STEP03_STICKY_RUNWAY_AB_CONFIRMED_20260830.md`
 
 Commit:
-`39f12af312795d57cd66f96c694c37dc46767471`
+`1addec88cde2503f7cb50f7c7c095a7bf1410944`
 
-Runtime facts from current production Step03 desktop:
+Current live baseline:
 
 ```text
 owner: aside.sf-safe5-summary
@@ -37,41 +37,57 @@ position: sticky
 top: 136px
 align-self: start
 owner height: 1012.047px
-
-child #order_review: static
 shell height: 1166.047px
-shell-owner delta: 154px
-
+shell minus owner: 154px
+viewport height: 991px
+usable below sticky top: 855px
 body overflow: clip visible
-html overflow: hidden auto
-all intermediate ancestors: overflow visible / transform none / contain none
 ```
 
-Scroll samples never lock to 136px; the owner moves with the shell/document despite the correct computed sticky contract.
+Baseline scroll never locked to 136px:
 
-This proves Step03 is not currently blocked by the same immediate body-overflow condition that originally blocked Step04. Do not reapply the Step04 body fix and do not move sticky ownership into the inner order review.
+```text
+baselineLockCount = 0
+baselineEverLocked = false
+```
 
-## Leading hypothesis
+Console-only diagnostic then enlarged only `.sf-safe5-shell` min-height to 2413px, preserving sticky owner, top, body overflow, child order-review ownership and actual content.
 
-The production Payment main column is short while the right Context + Order Summary stack is tall. The containing shell is only 154px taller than the 1012px sticky owner, leaving almost no vertical runway for the whole-column sticky contract.
+Result:
 
-This is the strongest remaining differential but is not yet sufficient causal proof.
+```text
+scrollY 512  -> ownerTop 136 -> locked true
+scrollY 642  -> ownerTop 136 -> locked true
+scrollY 1070 -> ownerTop 136 -> locked true
+scrollY 1470 -> ownerTop 136 -> locked true
+expandedLockCount = 4
+expandedEverLocked = true
+interpretation = RUNWAY_HYPOTHESIS_CONFIRMED
+restored = true
+```
+
+Therefore insufficient containing-block vertical runway is proven causal for the current Step03 whole-right-column sticky failure.
+
+## Important implementation boundary
+
+The diagnostic min-height is NOT a production fix. Do not ship an arbitrary large `.sf-safe5-shell { min-height: ... }` because it would create artificial blank space and violate strict 1:1 / Product Truth.
+
+The correct production fix must preserve the approved Step03 architecture and determine the smallest bounded way to provide real sticky runway or equivalent whole-right-column ownership behavior without:
+- fake empty vertical space
+- moving sticky ownership into `#order_review`
+- duplicating payment UI
+- changing Woo gateway/business logic
+- breaking mobile layout
 
 ## Immediate next action
 
-Run one reversible console-only A/B on Step03 desktop:
+Perform a focused source/architecture audit of the live Step03 layout owner(s):
+- identify the exact production CSS/PHP/JS rules that define `.sf-safe5-shell`, `.sf-safe5-summary`, payment-main height/content flow, and Step03-only variants;
+- compare them with the static Step03 reference geometry;
+- determine whether the left Payment column is unintentionally too short relative to the approved reference or whether sticky ownership/layout should be adjusted in another bounded way;
+- only after the audit, prepare one manual anchored source correction batch with exact file fingerprints/deltas.
 
-1. baseline current geometry/scroll behavior;
-2. temporarily enlarge only `.sf-safe5-shell` vertical runway with inline `min-height`;
-3. preserve owner `position:sticky`, `top:136px`, child order-review static, body overflow and content;
-4. rerun scroll samples;
-5. automatically restore the original inline style.
-
-Interpretation:
-- if the same owner begins locking at ~136px only after shell runway is enlarged, shell runway is proven causal;
-- if it still does not lock, reject this hypothesis and continue diagnosis without source changes.
-
-No source modification before this A/B result.
+No more runtime diagnosis is required before that source audit.
 
 After Step03 sticky closes:
 1. fix/revalidate Crypto V0.3.0 transfer-button typography;
