@@ -3,91 +3,57 @@
 ## Current authoritative stop point
 
 ```text
-Step04 production audit: COMPLETE
-Step04 computed-style strict parity: PASS
-Step04 final screenshot residual review: PASS
-Step04 clean Pending-payment recovery sanity: PASS
-Step04 desktop result-side sticky runtime: PASS / USER ACCEPTED
-Step04 2.7.21 body-only Sticky Ancestor Unlock: PASS
-Step04 reference variant audit: COMPLETE
-Step04 seven-state desktop/mobile screenshot sweep: PASS
-Step04 seven-state semantics screenshot sweep: PASS
-Step04 representative tall-family sticky runtime proof: PASS (Failed + Refunded)
 Step04 full-state visual/runtime regression: FINAL PASS
 Step04 overall: CLOSED
 Step04 status-icon micro visual polish: DEFERRED BY USER; non-blocking later optimization
 
-Step03 sidebar sticky issue: ACTIVE NEXT TASK
+Step03 sidebar sticky issue: ACTIVE DIAGNOSTIC NOW
+Step03 reference sticky owner: `.checkout-side` / top 136px
+Step03 production sticky owner/root cause: NOT YET LOCKED — awaiting live runtime diagnostic
 Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
 Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
 
-## Step04 final closure
+## Step03 diagnostic start
 
-Authoritative record:
-`project2-progress/STEP_4F_STEP04_TALL_FAMILY_STICKY_FINAL_PASS_AND_FORMAL_CLOSE_20260830.md`
+Authoritative start record:
+`project2-progress/STEP_4F_STEP03_SIDEBAR_STICKY_DIAGNOSTIC_START_20260830.md`
 
 Commit:
-`b655a2d45314df049c69b51d1dcdc05703b1afed`
+`68b77470d9140b932a3eec0e48f6a3405499a98f`
 
-Final representative sticky evidence:
+Reference architecture:
 
-### Failed
 ```text
-body overflow: clip visible
-position: sticky
-top: 132px
-side height: 1105.125px
-scrollY 559  -> sideTop 132 -> locked true
-scrollY 907  -> sideTop 132 -> locked true
-scrollY 1308 -> sideTop 132 -> locked true
-all samples insideShell: true
-near-shell-end samples release from top lock without crossing shell
+.checkout-shell
+├─ .checkout-main
+└─ aside.checkout-side
+   ├─ .context-card
+   └─ .order-summary
 ```
 
-### Refunded
-```text
-body overflow: clip visible
-position: sticky
-top: 132px
-side height: 978.125px
-scrollY 559  -> sideTop 132 -> locked true
-scrollY 915  -> sideTop 132 -> locked true
-scrollY 1302 -> sideTop 132 -> locked true
-all samples insideShell: true
-near-shell-end samples release from top lock without crossing shell
+Reference desktop sticky contract:
+
+```css
+.checkout-side {
+  position: sticky;
+  top: 136px;
+}
+
+.checkout-side .order-summary {
+  position: static;
+  top: auto;
+}
 ```
 
-This closes the tall BACS/recovery family and refund-ledger family. The earlier normal/short Step04 family sticky proof remains accepted.
-
-## Step04 architecture clarification
-
-Failed, Refunded, Processing, Completed, Pending payment, On-hold and Cancelled are not separate theme page implementations. They are server-authoritative state variants of the same Step04 WooCommerce `order-received` result architecture.
-
-Shared across the family:
-- same Step04 template family
-- `.sf-order-result-v3`
-- `.result-shell`
-- `.result-side`
-- same 2.7.21 body-level Sticky Ancestor Unlock
-
-What varies by Woo order state is rendered content and therefore height: title/status copy, timeline, recovery CTA, BACS gateway-owned instructions, refund-ledger rows, payment facts, etc. This is why the same sticky implementation still needed representative tall-state runtime proof after the normal state passed.
-
-## Deferred Step04 icon micro-visual item
-
-Retain for later micro-polish only:
-- checkmark: acceptable
-- refunded/return arrow: acceptable
-- ellipsis/waiting mark: visually weak
-- X/failure/cancel mark: visually weak
-- Step03 payment-status mark is preferred visual-language reference
-
-Do not reopen Step04 mainline for this now.
+This is materially different from Step01/02, where the order-summary itself is the sticky object. Do not apply the Step04 body-overflow fix or the Step01/02 owner model by assumption.
 
 ## Immediate next action
 
-Diagnose the Step03 sidebar sticky issue independently. Do not assume it shares the Step04 root cause until runtime evidence proves it.
+Run one consolidated non-destructive runtime diagnostic on the current production Step03 desktop Payment page. Capture candidate right-side nodes, computed sticky owner, body/html overflow, ancestor chain, element/shell heights and scroll-lock samples.
+
+No source modification before the runtime result.
 
 After Step03 sticky closes:
 1. fix/revalidate Crypto V0.3.0 transfer-button typography;
