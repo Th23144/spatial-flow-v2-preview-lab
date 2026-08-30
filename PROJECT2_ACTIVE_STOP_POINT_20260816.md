@@ -8,52 +8,70 @@ Step04 overall: CLOSED
 Step04 status-icon micro visual polish: DEFERRED BY USER; non-blocking later optimization
 
 Step03 sidebar sticky issue: ACTIVE DIAGNOSTIC NOW
-Step03 reference sticky owner: `.checkout-side` / top 136px
-Step03 production sticky owner/root cause: NOT YET LOCKED — awaiting live runtime diagnostic
+Step03 reference sticky owner: whole right-side wrapper `.checkout-side` / top 136px
+Step03 production sticky owner: CORRECT — `aside.sf-safe5-summary`
+Step03 production child order-review: CORRECT — static
+Step03 body ancestor unlock: ALREADY CORRECT — body clip/visible
+Step03 ancestor overflow/transform/contain blockers: NONE FOUND
+Step03 runtime sticky activation: FAIL
+Step03 leading differential: shell/sidebar vertical runway is extremely small
+Step03 causation: NOT YET LOCKED — one reversible console-only shell-runway A/B required
 Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
 Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
 
-## Step03 diagnostic start
+## Step03 diagnostic result
 
-Authoritative start record:
-`project2-progress/STEP_4F_STEP03_SIDEBAR_STICKY_DIAGNOSTIC_START_20260830.md`
+Authoritative result record:
+`project2-progress/STEP_4F_STEP03_SIDEBAR_STICKY_DIAGNOSTIC_RESULT_AND_RUNWAY_HYPOTHESIS_20260830.md`
 
 Commit:
-`68b77470d9140b932a3eec0e48f6a3405499a98f`
+`39f12af312795d57cd66f96c694c37dc46767471`
 
-Reference architecture:
+Runtime facts from current production Step03 desktop:
 
 ```text
-.checkout-shell
-├─ .checkout-main
-└─ aside.checkout-side
-   ├─ .context-card
-   └─ .order-summary
+owner: aside.sf-safe5-summary
+position: sticky
+top: 136px
+align-self: start
+owner height: 1012.047px
+
+child #order_review: static
+shell height: 1166.047px
+shell-owner delta: 154px
+
+body overflow: clip visible
+html overflow: hidden auto
+all intermediate ancestors: overflow visible / transform none / contain none
 ```
 
-Reference desktop sticky contract:
+Scroll samples never lock to 136px; the owner moves with the shell/document despite the correct computed sticky contract.
 
-```css
-.checkout-side {
-  position: sticky;
-  top: 136px;
-}
+This proves Step03 is not currently blocked by the same immediate body-overflow condition that originally blocked Step04. Do not reapply the Step04 body fix and do not move sticky ownership into the inner order review.
 
-.checkout-side .order-summary {
-  position: static;
-  top: auto;
-}
-```
+## Leading hypothesis
 
-This is materially different from Step01/02, where the order-summary itself is the sticky object. Do not apply the Step04 body-overflow fix or the Step01/02 owner model by assumption.
+The production Payment main column is short while the right Context + Order Summary stack is tall. The containing shell is only 154px taller than the 1012px sticky owner, leaving almost no vertical runway for the whole-column sticky contract.
+
+This is the strongest remaining differential but is not yet sufficient causal proof.
 
 ## Immediate next action
 
-Run one consolidated non-destructive runtime diagnostic on the current production Step03 desktop Payment page. Capture candidate right-side nodes, computed sticky owner, body/html overflow, ancestor chain, element/shell heights and scroll-lock samples.
+Run one reversible console-only A/B on Step03 desktop:
 
-No source modification before the runtime result.
+1. baseline current geometry/scroll behavior;
+2. temporarily enlarge only `.sf-safe5-shell` vertical runway with inline `min-height`;
+3. preserve owner `position:sticky`, `top:136px`, child order-review static, body overflow and content;
+4. rerun scroll samples;
+5. automatically restore the original inline style.
+
+Interpretation:
+- if the same owner begins locking at ~136px only after shell runway is enlarged, shell runway is proven causal;
+- if it still does not lock, reject this hypothesis and continue diagnosis without source changes.
+
+No source modification before this A/B result.
 
 After Step03 sticky closes:
 1. fix/revalidate Crypto V0.3.0 transfer-button typography;
