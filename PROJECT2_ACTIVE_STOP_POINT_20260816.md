@@ -1,4 +1,4 @@
-# Project 2 · Active Stop Point · 2026-08-29
+# Project 2 · Active Stop Point · 2026-08-30
 
 ## Current authoritative stop point
 
@@ -10,22 +10,71 @@ Step04 clean Pending-payment recovery sanity: PASS
 Step04 desktop result-side sticky runtime: PASS / USER ACCEPTED
 Step04 2.7.21 body-only Sticky Ancestor Unlock: PASS
 Step04 reference variant audit: COMPLETE
-Step04 full-state 1:1 regression after sticky fix: ACTIVE NOW
-Step04 overall final closure: PENDING consolidated status-family sweep
+Step04 seven-state desktop/mobile screenshot sweep: PASS
+Step04 seven-state semantics screenshot sweep: PASS
+Step04 representative tall-family sticky runtime proof: PENDING (Failed + Refunded only)
+Step04 overall final closure: PENDING only the bounded representative tall-family sticky proof
 
-Step03 sidebar sticky issue: DEFERRED until Step04 state-family sweep passes
+Step03 sidebar sticky issue: DEFERRED until Step04 family sweep formally closes
 Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
 Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
 
-## Step04 authoritative static references
+## Step04 full-state screenshot result
 
-Audit record:
-`project2-progress/STEP_4F_STEP04_REFERENCE_VARIANT_AUDIT_AND_FULL_STATE_REGRESSION_PLAN_20260829.md`
+Authoritative review:
+`project2-progress/STEP_4F_STEP04_FULL_STATE_SCREENSHOT_REVIEW_PASS_RUNTIME_STICKY_REPRESENTATIVE_CHECK_PENDING_20260830.md`
 
 Commit:
-`c9f25ddece348941b3d6d4ff4ae35bd365411c4f`
+`905feecec2c26279b499b709580a01ecc217eadd`
+
+The user supplied fourteen current production screenshots, seven states × desktop/mobile. Sorting:
+
+- no suffix = Processing
+- `(1)` = Completed
+- `(2)` = Pending payment
+- `(3)` = On-hold
+- `(4)` = Failed
+- `(5)` = Cancelled
+- `(6)` = Refunded
+
+Static visual and state-semantic review: PASS across all seven state pairs. No new Step04-owned 1:1 blocker is visible.
+
+State-specific retained conclusions:
+- Processing: confirmed family, PASS.
+- Completed: completed semantics retained, PASS.
+- Pending payment: recovery CTA present, PASS.
+- On-hold: no Return/Retry CTA; BACS instructions retained, PASS.
+- Failed: failure semantics + Retry Payment recovery fixture, PASS for screenshot review.
+- Cancelled: no payment instructions/recovery; cancelled boundary retained, PASS.
+- Refunded: real refund-ledger truth and $0/refund presentation retained without false external-funds claim, PASS.
+
+Temporary BACS output in Pending/Failed is treated as gateway-owned test-fixture output for this screenshot review because it remains contained and does not create a Step04-owned geometry defect. No source change is authorized from it.
+
+## Why one small runtime gate remains
+
+Full-page screenshots cannot prove sticky motion. Normal Step04 sticky activation has already passed after the 2.7.21 body unlock, but this batch contains materially taller side-summary families:
+
+1. BACS/recovery tall family (Pending / On-hold / Failed)
+2. Refund-ledger tall family (Refunded)
+
+Do not rerun all seven sticky tests. Use only two representative desktop states:
+
+- Failed: covers tall BACS + recovery CTA family
+- Refunded: covers refund-ledger tall family
+
+Require in each:
+- body overflow `clip visible`
+- `.result-side` `position:sticky; top:132px`
+- valid middle-scroll lock near 132px
+- no containing-shell/footer overlap
+
+Processing already provides accepted normal-family sticky proof. Completed/Cancelled are shorter/simple families; Pending/On-hold share the same gateway-output tall class represented by Failed.
+
+If Failed + Refunded pass, formally close Step04 full-state regression without rerunning the historical 17-test functional matrix.
+
+## Step04 authoritative static references
 
 The repository contains one authoritative S7 Step04 HTML page:
 `preview/spatial-flow-thank-you-v1.html`
@@ -36,47 +85,11 @@ Its JS exposes only two static review states:
 
 There are no dedicated static HTML variants for Completed, Failed, Cancelled, Refunded, or custom/unknown. Those production states use the shared Step04 visual contract plus their accepted Woo/server semantics.
 
-Important semantic precedence:
-- `pending` / Pending payment = recovery state; recovery CTA only when Woo `needs_payment()`.
-- `on-hold` / On-hold = separate awaiting-confirmation state; no recovery CTA expected merely from On-hold.
-- The older S7 pending static reference is structural/visual guidance and must not override this later production semantic correction.
-
 Rendered references:
 - Confirmed: `https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html`
 - Pending-family: `https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html?prototype_result=pending`
 
-## Active Step04 state-family regression
-
-Required practical state family:
-1. Processing
-2. Completed
-3. Pending payment — fresh never-refunded order
-4. On-hold
-5. Failed
-6. Cancelled
-7. Refunded — disposable order with real Woo refund ledger
-8. safe unknown/custom fallback only if an existing reproducible fixture is available
-
-Viewports:
-- Desktop 1920×991 at 100% zoom
-- Mobile 390×844 at scale 1 / previously accepted mobile environment
-
-For each state inspect:
-- shared 1:1 geometry and typography
-- state block / overview / receipt / facts / timeline / address panels
-- right summary and CTA placement
-- no horizontal clipping/overflow
-- mobile stacking/gutters
-- desktop right-side sticky activation and containment
-- state-specific Woo semantics
-
-Do not repeat the historical deep 17-test functional/security matrix unless this sweep exposes a concrete functional regression.
-
-## Step04 sticky acceptance retained
-
-The sticky correction remains accepted. Do not reopen source unless this state-family sweep exposes a concrete regression.
-
-Accepted live source fingerprints:
+## Accepted live Step04 source fingerprints
 
 ### `functions.php`
 ```text
@@ -99,10 +112,10 @@ tinycss2 errors: 0
 
 ## Immediate next action
 
-Execute the complete Step04 status-family comparison in one batch. Do not drip-feed states.
+Run the two representative non-destructive Step04 desktop sticky checks in one batch: Failed + Refunded. Do not modify source before the result.
 
-After the Step04 family sweep passes:
-1. close Step04 formally;
+After both pass:
+1. formally close Step04;
 2. diagnose/fix Step03 sidebar sticky independently;
 3. fix/revalidate Crypto V0.3.0 transfer-button typography;
 4. run one final Checkout 01-04 consolidated visual 1:1 sweep;
