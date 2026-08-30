@@ -12,96 +12,88 @@ Step04 2.7.21 body-only Sticky Ancestor Unlock: PASS
 Step04 reference variant audit: COMPLETE
 Step04 seven-state desktop/mobile screenshot sweep: PASS
 Step04 seven-state semantics screenshot sweep: PASS
-Step04 status-icon micro visual polish: DEFERRED BY USER; not a current blocker
-Step04 representative tall-family sticky runtime proof: ACTIVE NEXT (Failed + Refunded only)
-Step04 overall final closure: PENDING only the bounded representative tall-family sticky proof
+Step04 representative tall-family sticky runtime proof: PASS (Failed + Refunded)
+Step04 full-state visual/runtime regression: FINAL PASS
+Step04 overall: CLOSED
+Step04 status-icon micro visual polish: DEFERRED BY USER; non-blocking later optimization
 
-Step03 sidebar sticky issue: DEFERRED until Step04 family sweep formally closes
+Step03 sidebar sticky issue: ACTIVE NEXT TASK
 Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
 Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
 
+## Step04 final closure
+
+Authoritative record:
+`project2-progress/STEP_4F_STEP04_TALL_FAMILY_STICKY_FINAL_PASS_AND_FORMAL_CLOSE_20260830.md`
+
+Commit:
+`b655a2d45314df049c69b51d1dcdc05703b1afed`
+
+Final representative sticky evidence:
+
+### Failed
+```text
+body overflow: clip visible
+position: sticky
+top: 132px
+side height: 1105.125px
+scrollY 559  -> sideTop 132 -> locked true
+scrollY 907  -> sideTop 132 -> locked true
+scrollY 1308 -> sideTop 132 -> locked true
+all samples insideShell: true
+near-shell-end samples release from top lock without crossing shell
+```
+
+### Refunded
+```text
+body overflow: clip visible
+position: sticky
+top: 132px
+side height: 978.125px
+scrollY 559  -> sideTop 132 -> locked true
+scrollY 915  -> sideTop 132 -> locked true
+scrollY 1302 -> sideTop 132 -> locked true
+all samples insideShell: true
+near-shell-end samples release from top lock without crossing shell
+```
+
+This closes the tall BACS/recovery family and refund-ledger family. The earlier normal/short Step04 family sticky proof remains accepted.
+
+## Step04 architecture clarification
+
+Failed, Refunded, Processing, Completed, Pending payment, On-hold and Cancelled are not separate theme page implementations. They are server-authoritative state variants of the same Step04 WooCommerce `order-received` result architecture.
+
+Shared across the family:
+- same Step04 template family
+- `.sf-order-result-v3`
+- `.result-shell`
+- `.result-side`
+- same 2.7.21 body-level Sticky Ancestor Unlock
+
+What varies by Woo order state is rendered content and therefore height: title/status copy, timeline, recovery CTA, BACS gateway-owned instructions, refund-ledger rows, payment facts, etc. This is why the same sticky implementation still needed representative tall-state runtime proof after the normal state passed.
+
 ## Deferred Step04 icon micro-visual item
 
-Record:
-`project2-progress/STEP_4F_STEP04_STATUS_ICON_MICRO_VISUAL_OPTIMIZATION_DEFERRED_MAINLINE_CONTINUES_20260830.md`
-
-Commit:
-`0f280ca822ab296f58651d7dc8d38bef367a081c`
-
-The user chose not to interrupt the mainline for the Step04 status-mark aesthetic issue. Retain it for later micro-visual optimization:
+Retain for later micro-polish only:
 - checkmark: acceptable
 - refunded/return arrow: acceptable
-- ellipsis/waiting mark: visually weak, revisit later
-- X/failure/cancel mark: visually weak, revisit later
-- Step03 payment-status mark is the preferred visual-language reference
+- ellipsis/waiting mark: visually weak
+- X/failure/cancel mark: visually weak
+- Step03 payment-status mark is preferred visual-language reference
 
-This is not a current strict 1:1 blocker because the authoritative Step04 static reference itself contains the weak marks.
-
-## Step04 full-state screenshot result
-
-Authoritative review:
-`project2-progress/STEP_4F_STEP04_FULL_STATE_SCREENSHOT_REVIEW_PASS_RUNTIME_STICKY_REPRESENTATIVE_CHECK_PENDING_20260830.md`
-
-Commit:
-`905feecec2c26279b499b709580a01ecc217eadd`
-
-The user supplied fourteen current production screenshots, seven states × desktop/mobile. Static visual and state-semantic review: PASS across all seven state pairs. No new Step04-owned 1:1 blocker is visible.
-
-## Why one small runtime gate remains
-
-Full-page screenshots cannot prove sticky motion. Normal Step04 sticky activation has already passed after the 2.7.21 body unlock, but this batch contains materially taller side-summary families:
-
-1. BACS/recovery tall family (Pending / On-hold / Failed)
-2. Refund-ledger tall family (Refunded)
-
-Do not rerun all seven sticky tests. Use only two representative desktop states:
-
-- Failed: covers tall BACS + recovery CTA family
-- Refunded: covers refund-ledger tall family
-
-Require in each:
-- body overflow `clip visible`
-- `.result-side` `position:sticky; top:132px`
-- valid middle-scroll lock near 132px
-- no containing-shell/footer overlap
-
-Processing already provides accepted normal-family sticky proof. Completed/Cancelled are shorter/simple families; Pending/On-hold share the same gateway-output tall class represented by Failed.
-
-If Failed + Refunded pass, formally close Step04 full-state regression without rerunning the historical 17-test functional matrix.
-
-## Accepted live Step04 source fingerprints
-
-### `functions.php`
-```text
-bytes: 612013
-logical lines: 11689
-SHA256: 82d31604ebd298fa3182ffaa800c07b2dae7db1fe456dc71042fcd6f54eb4d6f
-SPATIAL_FLOW_CHILD_VERSION: 2.7.21
-PHP syntax: PASS
-```
-
-### `assets/css/spatial-flow.css`
-```text
-bytes: 589104
-logical lines: 20675
-SHA256: 45e50011b043b6141bbd3bf242c64e12efa9529d2251ebdd25bf2e94357d36b6
-brace balance: 3282/3282
-comment balance: 275/275
-tinycss2 errors: 0
-```
+Do not reopen Step04 mainline for this now.
 
 ## Immediate next action
 
-Run the two representative non-destructive Step04 desktop sticky checks in one batch: Failed + Refunded. Do not modify source before the result.
+Diagnose the Step03 sidebar sticky issue independently. Do not assume it shares the Step04 root cause until runtime evidence proves it.
 
-After both pass:
-1. formally close Step04;
-2. diagnose/fix Step03 sidebar sticky independently;
-3. fix/revalidate Crypto V0.3.0 transfer-button typography;
-4. run one final Checkout 01-04 consolidated visual 1:1 sweep;
-5. only if no blocker remains, change Checkout binary label to `Completed 1:1`.
+After Step03 sticky closes:
+1. fix/revalidate Crypto V0.3.0 transfer-button typography;
+2. run final Checkout 01-04 consolidated visual 1:1 sweep;
+3. perform final Checkout closure review;
+4. only if no blocker remains, change Checkout binary label to `Completed 1:1`.
 
 ## Explicit deployment boundary
 
