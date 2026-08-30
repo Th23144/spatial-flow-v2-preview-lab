@@ -10,34 +10,46 @@ Step04 status-icon micro visual polish: DEFERRED BY USER; non-blocking later opt
 Step03 sidebar sticky issue: ROOT CAUSE LOCKED
 Step03 shell/sidebar runway A/B: CONFIRMED CAUSAL
 Step03 source / architecture audit: COMPLETE
-Step03 missing sticky CSS / JS geometry bug: NOT FOUND
-Step03 production correction: ARCHITECTURE DECISION REQUIRED before source edit
-Recommended direction: adaptive no-fake-space context-card sticky fallback when whole-rail runway is unavailable
-No source modification authorized until that deliberate reference deviation is accepted
+Step03 adaptive production behavior: USER ACCEPTED
+Step03 2.7.22 manual source batch: READY TO APPLY
+No runtime acceptance until returned saved source is validated
 
 Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
 Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
 
-## Step03 authoritative audit
+## Accepted Step03 production behavior
 
-Record:
-`project2-progress/STEP_4F_STEP03_STICKY_SOURCE_ARCHITECTURE_AUDIT_COMPLETE_DESIGN_DECISION_REQUIRED_20260830.md`
+The user accepted the adaptive desktop behavior:
+
+- when the real left Payment column supplies genuine vertical runway, preserve the reference behavior: whole `.sf-safe5-summary` sticky at 136px;
+- when the full right rail itself defines the grid height and therefore cannot meaningfully lock, do not add fake shell height and do not restore the rejected duplicate Selected Payment panel;
+- in that no-runway state, release the whole rail and keep only `.sf-safe5-context-card--payment` sticky at 136px while Order Summary remains in normal flow;
+- `<=1040px` retains the existing static/stacked mobile/tablet behavior.
+
+Authoritative implementation record:
+`project2-progress/STEP_4F_STEP03_ADAPTIVE_STICKY_DECISION_ACCEPTED_AND_2722_MANUAL_BATCH_20260830.md`
 
 Commit:
-`c3727ff8ffb060b2809ebd167d3da206d2e069c5`
+`6bb3937373ed42e4d064623c2bd34bbaea53ba82`
 
-Current live SAFE5 asset fingerprints:
+## Current source baselines
+
+### `functions.php`
+```text
+bytes: 612013
+logical lines: 11689
+SHA256: 82d31604ebd298fa3182ffaa800c07b2dae7db1fe456dc71042fcd6f54eb4d6f
+version: 2.7.21
+```
 
 ### `assets/css/checkout-safe5.css`
 ```text
 bytes: 148983
 logical lines: 4855
 SHA256: c1f5835297adf28f2509c9138f785007fd9b180d52bd83643c298fe3a999f87a
-brace balance: 581 / 581
-comment balance: 24 / 24
-tinycss2 errors: 0
+line endings: CRLF
 ```
 
 ### `assets/js/checkout-safe5.js`
@@ -45,71 +57,91 @@ tinycss2 errors: 0
 bytes: 59007
 logical lines: 1768
 SHA256: b672ab9c643bc0e4008b0bb9215c0fdc6a2c777c9a18d3f2a1be48ff2cbe5af0
+line endings: CRLF
+```
+
+## Ready 2.7.22 manual batch
+
+Modify all three files in one coherent save batch:
+
+1. `functions.php`: version `2.7.21 -> 2.7.22` only, to cache-bust SAFE5 CSS/JS asset URLs.
+2. `checkout-safe5.css`: add one desktop-only fallback class block before the existing Step03 `@media (max-width:1040px)` block.
+3. `checkout-safe5.js`: add adaptive geometry sync/binding, call sync on Step changes, and bind once during init.
+
+The runtime class is:
+
+```text
+.sf-safe5-step3-context-sticky
+```
+
+It is set only when:
+
+```text
+current step == 3
+viewport > 1040px
+mainHeight < summaryHeight + 2px
+```
+
+The 2px tolerance only prevents sub-pixel mode flipping.
+
+Re-evaluation happens on Step changes, resize, payment-method change, ResizeObserver main/summary size changes, and Woo `updated_checkout`.
+
+## Simulated post-edit fingerprints
+
+If line endings are preserved exactly:
+
+### `functions.php`
+```text
+bytes: 612013
+logical lines: 11689
+SHA256: 9e7e942a56c44ddff521d653e8f9cf7ed14e77678d71a3e450a73c2beeee8410
+PHP syntax: PASS
+```
+
+### `checkout-safe5.css`
+```text
+bytes: 149798
+logical lines: 4878
+SHA256: 28b2e89c3fb966e57863a9adfe18edfe2a40559b4ca9b142dedaf0f2d853a499
+brace balance: 584/584
+comment balance: 25/25
+tinycss2 errors: 0
+```
+
+### `checkout-safe5.js`
+```text
+bytes: 61494
+logical lines: 1860
+SHA256: ba71dcff2629094e465fb68ada2502ef6d5a96b1d0b6d7eaa1912f54b40bd69c
 node --check: PASS
 ```
 
-Parent/global source remains:
+If the local editor normalizes CRLF/LF, byte/SHA mismatch alone is not failure; validate exact anchors, syntax and semantic block counts.
 
-```text
-functions.php: 612013 bytes / SHA256 82d31604ebd298fa3182ffaa800c07b2dae7db1fe456dc71042fcd6f54eb4d6f / v2.7.21
-spatial-flow.css: 589104 bytes / SHA256 45e50011b043b6141bbd3bf242c64e12efa9529d2251ebdd25bf2e94357d36b6
-spatial-flow.js: 78143 bytes / SHA256 7442ee92167ae383b933c6db0281f14ea56a75733339818c3e4858d77d52651b
-```
+## Immediate next action
 
-## Locked Step03 source conclusion
+User applies the full 2.7.22 manual batch once, then returns all three saved files together:
 
-Current CSS already matches reference sticky ownership:
+- `functions.php`
+- `assets/css/checkout-safe5.css`
+- `assets/js/checkout-safe5.js`
 
-```text
-.sf-safe5-summary = sticky / top 136px / align-self start
-#order_review = static
-body desktop overflow = clip visible
-```
+Do not run runtime acceptance before source validation.
 
-Current Checkout JS does not touch `.sf-safe5-shell` or `.sf-safe5-summary` geometry. It hides inactive views, synchronizes context, and reacts to Woo checkout updates.
+After source validation PASS, run one consolidated runtime batch:
 
-Current live geometry:
+1. current Step03 short-left desktop state: fallback class present, whole rail static, payment context card sticky/locks at 136px;
+2. a temporary console-only tall-left proof: fallback class clears and whole rail resumes sticky ownership;
+3. Step02 desktop sticky regression PASS;
+4. Step03 mobile static/stacked regression PASS.
 
-```text
-right rail: 1012.047px
-shell:      1166.047px
-shell padding total: 154px
-whole-rail sticky locks: 0
-```
+Then close Step03 sticky if no blocker remains.
 
-A/B enlarging only the shell creates repeated native sticky locks. Therefore real containing-block runway is the causal variable.
-
-The Step03 static reference also has no separate mechanism guaranteeing runway when the right stack is taller than the payment main. Production made this limitation visible after the later-correct rollback of the duplicate theme-side Selected Payment panel. That panel must not be restored merely to manufacture height.
-
-## Rejected fixes
-
-Do not:
-- add a large Step03 min-height / fake blank area;
-- reintroduce duplicate Selected Payment UI;
-- add nested scroll to the whole right rail;
-- replace native sticky with a fixed-position clone.
-
-## Recommended decision
-
-Adaptive Step03 fallback:
-
-- keep whole `.sf-safe5-summary` sticky when genuine main-column runway exists;
-- after entering Step03 and after `updated_checkout`, compare real main/right geometry;
-- when the right rail is height-dominant and whole-rail sticky cannot meaningfully activate, make the wrapper static and make only the first payment context card sticky at 136px;
-- Order Summary remains in normal flow;
-- desktop only; mobile remains static;
-- no Woo gateway/payment/order semantics change.
-
-This is a deliberate production adaptation beyond the literal static-reference whole-side sticky ownership and therefore needs explicit user acceptance before editing source.
-
-## After Step03 decision/fix
-
-1. source validation;
-2. one consolidated desktop + mobile + gateway-update regression;
-3. close Step03 sticky;
-4. fix Crypto V0.3.0 transfer-button typography;
-5. final Checkout 01-04 consolidated visual 1:1 sweep;
-6. final Checkout closure review.
+After Step03 closes:
+1. fix/revalidate Crypto V0.3.0 transfer-button typography;
+2. run final Checkout 01-04 consolidated visual 1:1 sweep;
+3. perform final Checkout closure review;
+4. only if no blocker remains, change Checkout binary label to `Completed 1:1`.
 
 ## Explicit deployment boundary
 
