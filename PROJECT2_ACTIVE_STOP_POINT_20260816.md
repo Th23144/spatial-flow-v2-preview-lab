@@ -12,7 +12,8 @@ Step04 2.7.21 body-only Sticky Ancestor Unlock: PASS
 Step04 reference variant audit: COMPLETE
 Step04 seven-state desktop/mobile screenshot sweep: PASS
 Step04 seven-state semantics screenshot sweep: PASS
-Step04 representative tall-family sticky runtime proof: PENDING (Failed + Refunded only)
+Step04 status-icon micro visual polish: DEFERRED BY USER; not a current blocker
+Step04 representative tall-family sticky runtime proof: ACTIVE NEXT (Failed + Refunded only)
 Step04 overall final closure: PENDING only the bounded representative tall-family sticky proof
 
 Step03 sidebar sticky issue: DEFERRED until Step04 family sweep formally closes
@@ -20,6 +21,23 @@ Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER ST
 Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
+
+## Deferred Step04 icon micro-visual item
+
+Record:
+`project2-progress/STEP_4F_STEP04_STATUS_ICON_MICRO_VISUAL_OPTIMIZATION_DEFERRED_MAINLINE_CONTINUES_20260830.md`
+
+Commit:
+`0f280ca822ab296f58651d7dc8d38bef367a081c`
+
+The user chose not to interrupt the mainline for the Step04 status-mark aesthetic issue. Retain it for later micro-visual optimization:
+- checkmark: acceptable
+- refunded/return arrow: acceptable
+- ellipsis/waiting mark: visually weak, revisit later
+- X/failure/cancel mark: visually weak, revisit later
+- Step03 payment-status mark is the preferred visual-language reference
+
+This is not a current strict 1:1 blocker because the authoritative Step04 static reference itself contains the weak marks.
 
 ## Step04 full-state screenshot result
 
@@ -29,28 +47,7 @@ Authoritative review:
 Commit:
 `905feecec2c26279b499b709580a01ecc217eadd`
 
-The user supplied fourteen current production screenshots, seven states × desktop/mobile. Sorting:
-
-- no suffix = Processing
-- `(1)` = Completed
-- `(2)` = Pending payment
-- `(3)` = On-hold
-- `(4)` = Failed
-- `(5)` = Cancelled
-- `(6)` = Refunded
-
-Static visual and state-semantic review: PASS across all seven state pairs. No new Step04-owned 1:1 blocker is visible.
-
-State-specific retained conclusions:
-- Processing: confirmed family, PASS.
-- Completed: completed semantics retained, PASS.
-- Pending payment: recovery CTA present, PASS.
-- On-hold: no Return/Retry CTA; BACS instructions retained, PASS.
-- Failed: failure semantics + Retry Payment recovery fixture, PASS for screenshot review.
-- Cancelled: no payment instructions/recovery; cancelled boundary retained, PASS.
-- Refunded: real refund-ledger truth and $0/refund presentation retained without false external-funds claim, PASS.
-
-Temporary BACS output in Pending/Failed is treated as gateway-owned test-fixture output for this screenshot review because it remains contained and does not create a Step04-owned geometry defect. No source change is authorized from it.
+The user supplied fourteen current production screenshots, seven states × desktop/mobile. Static visual and state-semantic review: PASS across all seven state pairs. No new Step04-owned 1:1 blocker is visible.
 
 ## Why one small runtime gate remains
 
@@ -73,21 +70,6 @@ Require in each:
 Processing already provides accepted normal-family sticky proof. Completed/Cancelled are shorter/simple families; Pending/On-hold share the same gateway-output tall class represented by Failed.
 
 If Failed + Refunded pass, formally close Step04 full-state regression without rerunning the historical 17-test functional matrix.
-
-## Step04 authoritative static references
-
-The repository contains one authoritative S7 Step04 HTML page:
-`preview/spatial-flow-thank-you-v1.html`
-
-Its JS exposes only two static review states:
-- default / confirmed
-- `?prototype_result=pending`
-
-There are no dedicated static HTML variants for Completed, Failed, Cancelled, Refunded, or custom/unknown. Those production states use the shared Step04 visual contract plus their accepted Woo/server semantics.
-
-Rendered references:
-- Confirmed: `https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html`
-- Pending-family: `https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/main/preview/spatial-flow-thank-you-v1.html?prototype_result=pending`
 
 ## Accepted live Step04 source fingerprints
 
