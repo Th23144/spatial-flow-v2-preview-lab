@@ -8,26 +8,16 @@ Step04 overall: CLOSED
 Step04 status-icon micro visual polish: DEFERRED BY USER; non-blocking later optimization
 
 Step03 sidebar sticky issue: ROOT CAUSE LOCKED
-Step03 reference sticky owner: whole right-side wrapper `.checkout-side` / top 136px
-Step03 production sticky owner: CORRECT — `aside.sf-safe5-summary`
-Step03 production child order-review: CORRECT — static
-Step03 body ancestor unlock: ALREADY CORRECT — body clip/visible
-Step03 ancestor overflow/transform/contain blockers: NONE FOUND
-Step03 baseline sticky activation: FAIL
 Step03 shell/sidebar runway A/B: CONFIRMED CAUSAL
-Step03 production fix: NOT YET AUTHORIZED — focused source/architecture audit required first
+Step03 production fix: SOURCE / ARCHITECTURE AUDIT STARTED
+Step03 source files required from current live child theme: functions.php + assets/css/spatial-flow.css + assets/js/spatial-flow.js
+No source modification authorized until uploaded live files are fingerprinted and audited
 Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
 Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
 
-## Step03 runway A/B root-cause confirmation
-
-Authoritative record:
-`project2-progress/STEP_4F_STEP03_STICKY_RUNWAY_AB_CONFIRMED_20260830.md`
-
-Commit:
-`1addec88cde2503f7cb50f7c7c095a7bf1410944`
+## Step03 root cause retained
 
 Current live baseline:
 
@@ -35,59 +25,61 @@ Current live baseline:
 owner: aside.sf-safe5-summary
 position: sticky
 top: 136px
-align-self: start
 owner height: 1012.047px
 shell height: 1166.047px
 shell minus owner: 154px
-viewport height: 991px
-usable below sticky top: 855px
-body overflow: clip visible
+baseline sticky lock count: 0
 ```
 
-Baseline scroll never locked to 136px:
+Console-only A/B enlarged only the containing shell and immediately produced repeated native sticky locks at 136px, then restored the page. Therefore insufficient real containing-block vertical runway is confirmed causal.
 
+The diagnostic min-height is not a production fix. Do not manufacture large fake blank space.
+
+## Source audit start
+
+Authoritative record:
+`project2-progress/STEP_4F_STEP03_STICKY_SOURCE_ARCHITECTURE_AUDIT_START_20260830.md`
+
+Commit:
+`bd701f18f9f8f9624db88c4c834ea30a62a26a70`
+
+Request the three current live child-theme files together:
+
+1. `functions.php`
+2. `assets/css/spatial-flow.css`
+3. `assets/js/spatial-flow.js`
+
+Do not request a ZIP or unrelated templates initially.
+
+Audit goals:
+- locate PHP ownership/markup for `.sf-safe5-checkout`, `.sf-safe5-shell`, `.sf-safe5-summary`, payment context card and summary card;
+- locate desktop grid, sticky, height/min-height and Step03-specific CSS;
+- inspect JS for fragment refresh, DOM relocation, class toggles or payment-method behavior affecting real column heights;
+- compare production structure to the accepted Step03 static reference;
+- preserve whole-right-wrapper sticky ownership and inner order review static ownership;
+- preserve native Woo gateway/Place Order/Terms/privacy behavior;
+- prepare one bounded manual anchored source correction only after the audit.
+
+Known comparison fingerprints from the latest accepted 2.7.21 state:
+
+### `functions.php`
 ```text
-baselineLockCount = 0
-baselineEverLocked = false
+bytes: 612013
+SHA256: 82d31604ebd298fa3182ffaa800c07b2dae7db1fe456dc71042fcd6f54eb4d6f
+version: 2.7.21
 ```
 
-Console-only diagnostic then enlarged only `.sf-safe5-shell` min-height to 2413px, preserving sticky owner, top, body overflow, child order-review ownership and actual content.
-
-Result:
-
+### `assets/css/spatial-flow.css`
 ```text
-scrollY 512  -> ownerTop 136 -> locked true
-scrollY 642  -> ownerTop 136 -> locked true
-scrollY 1070 -> ownerTop 136 -> locked true
-scrollY 1470 -> ownerTop 136 -> locked true
-expandedLockCount = 4
-expandedEverLocked = true
-interpretation = RUNWAY_HYPOTHESIS_CONFIRMED
-restored = true
+bytes: 589104
+SHA256: 45e50011b043b6141bbd3bf242c64e12efa9529d2251ebdd25bf2e94357d36b6
 ```
 
-Therefore insufficient containing-block vertical runway is proven causal for the current Step03 whole-right-column sticky failure.
-
-## Important implementation boundary
-
-The diagnostic min-height is NOT a production fix. Do not ship an arbitrary large `.sf-safe5-shell { min-height: ... }` because it would create artificial blank space and violate strict 1:1 / Product Truth.
-
-The correct production fix must preserve the approved Step03 architecture and determine the smallest bounded way to provide real sticky runway or equivalent whole-right-column ownership behavior without:
-- fake empty vertical space
-- moving sticky ownership into `#order_review`
-- duplicating payment UI
-- changing Woo gateway/business logic
-- breaking mobile layout
+The newly uploaded live files are source of truth and must be re-fingerprinted before edits.
 
 ## Immediate next action
 
-Perform a focused source/architecture audit of the live Step03 layout owner(s):
-- identify the exact production CSS/PHP/JS rules that define `.sf-safe5-shell`, `.sf-safe5-summary`, payment-main height/content flow, and Step03-only variants;
-- compare them with the static Step03 reference geometry;
-- determine whether the left Payment column is unintentionally too short relative to the approved reference or whether sticky ownership/layout should be adjusted in another bounded way;
-- only after the audit, prepare one manual anchored source correction batch with exact file fingerprints/deltas.
-
-No more runtime diagnosis is required before that source audit.
+Await all three current live source files in one batch, then perform the source/architecture audit. No further runtime test is needed before that audit.
 
 After Step03 sticky closes:
 1. fix/revalidate Crypto V0.3.0 transfer-button typography;
