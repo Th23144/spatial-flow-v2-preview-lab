@@ -15,12 +15,17 @@ Step03 Step02 sticky regression: PASS
 Step03 mobile stacked/static regression: PASS
 Step03 sticky issue: CLOSED
 
-Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: CURRENT ACTIVE TASK
-Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER CRYPTO TYPOGRAPHY CLOSES
+Step03 native gateway-card / payment_box visual parity: REOPENED / CURRENT ACTIVE TASK
+Historical status: old R1 structural/functional migration accepted; final strict 1:1 gateway-host skin was never proven
+User-approved deferral of current white-card look: NOT FOUND
+Do not reintroduce duplicate theme-side Selected Payment panel
+
+Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN IMMEDIATELY AFTER STEP03 GATEWAY-HOST VISUAL BLOCKER
+Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
 Checkout binary status: Not done
 ```
 
-## Step03 final acceptance
+## Step03 sticky final acceptance
 
 Authoritative closure record:
 `project2-progress/STEP_4F_STEP03_ADAPTIVE_STICKY_2722_RUNTIME_FINAL_PASS_AND_CLOSE_20260901.md`
@@ -28,98 +33,76 @@ Authoritative closure record:
 Commit:
 `cab5aa6644dbd2f871632fe7e0b00c8bd1e84477`
 
-### Desktop final
+The Step03 adaptive sticky behavior remains accepted and must not be reopened absent a new concrete sticky defect.
 
-Diagnostic:
-`SF_STEP03_ADAPTIVE_STICKY_2722_DESKTOP_FINAL_20260830`
+## Newly reopened Step03 gateway-host visual parity
 
-Viewport:
-- 1920 × 991
-- DPR 1
-- scale 1
+Authoritative history audit:
+`project2-progress/STEP_4F_STEP03_GATEWAY_CARD_VISUAL_PARITY_REOPEN_HISTORY_AUDIT_20260901.md`
 
-Accepted behavior:
-- current short-left/tall-right Step03 activates `sf-safe5-step3-context-sticky`;
-- whole `.sf-safe5-summary` becomes static;
-- `.sf-safe5-context-card--payment` becomes sticky at `top:136px` and actually locks during scroll;
-- no fake shell min-height is introduced;
-- `updated_checkout` and payment-method changes retain correct mode;
-- Step03 -> Step02 clears fallback;
-- Step02 whole summary remains sticky at 136px and actual sticky lock passes;
-- Step02 -> Step03 restores fallback;
-- reversible tall-left proof clears fallback and restores whole-rail sticky at 136px;
-- temporary inline style restores exactly afterward.
+Commit:
+`ff0b04c76ba41b741f284a3ed528016c200b5b42`
 
-All desktop assertions: TRUE
-`finalPass: true`
+Fresh user screenshot shows the native WooCommerce gateway region as large bright white rows/payment boxes that are visually discordant with the accepted editorial Step03 reference and fail the current strict 1:1 standard.
 
-### Mobile final
+Repository chronology proves:
 
-Diagnostic:
-`SF_STEP03_ADAPTIVE_STICKY_2722_MOBILE_FINAL_20260830`
+```text
+2026-08-07 old R1 Step03:
+- visual runtime acceptance: passed
+- native multi-gateway presence: passed
+- gateway switching / native payment_box interaction: passed
+- Step03 R1 structural/functional migration still in progress at that point
 
-Viewport:
-- 390 × 844
-- DPR 3
-- scale 1
-
-Accepted behavior:
-- adaptive fallback class absent;
-- shell is flex column;
-- summary uses `display:contents` / static behavior;
-- payment context card is not sticky;
-- context -> main -> summary visual order is correct;
-- no fake shell min-height;
-- no horizontal overflow.
-
-All mobile assertions: TRUE
-`finalPass: true`
-
-## Current active task: Crypto V0.3.0 transfer-button typography
-
-Known presentation-only defect:
-`I HAVE COMPLETED THE TRANSFER` does not match the accepted/reference typography.
-
-Do not change:
-- plugin payment logic;
-- REST/AJAX;
-- transaction-hash handling;
-- settlement verification;
-- order status transitions;
-- order-pay flow;
-- feature flags.
-
-Reference button contract previously audited:
-
-```css
-.crypto-transfer-complete {
-  display: flex;
-  width: 100%;
-  min-height: 54px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 0 17px;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--bg);
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: .17em;
-  text-transform: uppercase;
-}
+2026-08-14 full inheritance re-audit:
+- old R1 structural/functional migration: completed
+- final Step03 strict visual/source/computed 1:1 closure: NOT COMPLETE
 ```
 
-No explicit line-height in the reference rule.
+There is no source-supported record that the user knowingly accepted or deferred the current white gateway-card treatment as a final visual state.
+
+Later rollback of the duplicate theme-side `Selected Payment` panel only preserved correct Product Truth:
+
+```text
+Woo selected gateway + native payment_box = authoritative payment-information owner
+```
+
+It did not certify the native gateway rows as visually complete.
+
+## Current execution boundary
+
+The native gateway-host visual correction may change only presentation around the real WooCommerce gateway output.
+
+Preserve:
+- WooCommerce gateway registry/eligibility;
+- native gateway labels;
+- native selected `payment_box` fields/content/iframe/nonce;
+- Terms/privacy;
+- exactly one native Place Order;
+- current Step03 adaptive sticky behavior;
+- future-gateway safe fallback.
+
+Do not:
+- create a fake permanent gateway list;
+- hardcode Crypto into theme UI;
+- reintroduce duplicate Selected Payment panel;
+- move or duplicate Place Order;
+- change gateway logic/security/order creation.
 
 ## Immediate next action
 
-Continue the already-open Crypto typography source audit using the current live plugin files. If current plugin source is not available in-repo, request only the minimum current files required for the presentation-only correction.
+Audit current `assets/css/checkout-safe5.css` payment-host rules against:
+- `preview/spatial-flow-checkout-payment-v1.html`
+- `preview/spatial-flow-checkout-payment-host-v1.css`
+- current live screenshot / Woo DOM
 
-After Crypto typography closes:
-1. run final consolidated Checkout 01-04 strict visual 1:1 sweep;
-2. perform final Checkout closure review;
-3. only if no blocker remains, change Checkout binary label to `Completed 1:1`.
+Then prepare one coherent visual-only manual correction batch for native gateway rows and selected `payment_box` surfaces.
+
+After Step03 gateway-host visual parity closes:
+1. fix/revalidate Crypto V0.3.0 transfer-button typography;
+2. run final consolidated Checkout 01-04 strict visual 1:1 sweep;
+3. perform final Checkout closure review;
+4. only if no blocker remains, change Checkout binary label to `Completed 1:1`.
 
 ## Explicit deployment boundary
 
