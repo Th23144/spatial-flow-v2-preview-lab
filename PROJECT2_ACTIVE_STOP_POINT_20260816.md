@@ -1,4 +1,4 @@
-# Project 2 · Active Stop Point · 2026-08-30
+# Project 2 · Active Stop Point · 2026-09-01
 
 ## Current authoritative stop point
 
@@ -7,85 +7,119 @@ Step04 full-state visual/runtime regression: FINAL PASS
 Step04 overall: CLOSED
 Step04 status-icon micro visual polish: DEFERRED BY USER; non-blocking later optimization
 
-Step03 sidebar sticky issue: ROOT CAUSE LOCKED
-Step03 shell/sidebar runway A/B: CONFIRMED CAUSAL
-Step03 source / architecture audit: COMPLETE
-Step03 adaptive production behavior: USER ACCEPTED
-Step03 2.7.22 manual source batch: APPLIED
-Step03 2.7.22 returned source validation: PASS
-Step03 adaptive sticky runtime acceptance: PENDING
+Step03 sidebar sticky root cause: CLOSED
+Step03 adaptive sticky 2.7.22 source: PASS
+Step03 desktop runtime: PASS
+Step03 Woo updated_checkout/payment-change re-evaluation: PASS
+Step03 Step02 sticky regression: PASS
+Step03 mobile stacked/static regression: PASS
+Step03 sticky issue: CLOSED
 
-Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN AFTER STEP03
-Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
+Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: CURRENT ACTIVE TASK
+Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER CRYPTO TYPOGRAPHY CLOSES
 Checkout binary status: Not done
 ```
 
-## Accepted Step03 production behavior
+## Step03 final acceptance
 
-- when the real left Payment column supplies genuine vertical runway, preserve the reference behavior: whole `.sf-safe5-summary` sticky at 136px;
-- when the full right rail itself defines the grid height and cannot meaningfully lock, do not add fake shell height and do not restore the rejected duplicate Selected Payment panel;
-- in that no-runway state, release the whole rail and keep only `.sf-safe5-context-card--payment` sticky at 136px while Order Summary remains in normal flow;
-- `<=1040px` retains the existing static/stacked mobile/tablet behavior.
-
-## Returned source validation PASS
-
-Record:
-`project2-progress/STEP_4F_STEP03_ADAPTIVE_STICKY_2722_RETURNED_SOURCE_VALIDATION_PASS_20260830.md`
+Authoritative closure record:
+`project2-progress/STEP_4F_STEP03_ADAPTIVE_STICKY_2722_RUNTIME_FINAL_PASS_AND_CLOSE_20260901.md`
 
 Commit:
-`4bcd930c22b5de5895bde8802d1680fc84475977`
+`cab5aa6644dbd2f871632fe7e0b00c8bd1e84477`
 
-### `functions.php`
-```text
-bytes: 612013
-logical lines: 11689
-SHA256: 9e7e942a56c44ddff521d653e8f9cf7ed14e77678d71a3e450a73c2beeee8410
-version: 2.7.22
-PHP syntax: PASS
+### Desktop final
+
+Diagnostic:
+`SF_STEP03_ADAPTIVE_STICKY_2722_DESKTOP_FINAL_20260830`
+
+Viewport:
+- 1920 × 991
+- DPR 1
+- scale 1
+
+Accepted behavior:
+- current short-left/tall-right Step03 activates `sf-safe5-step3-context-sticky`;
+- whole `.sf-safe5-summary` becomes static;
+- `.sf-safe5-context-card--payment` becomes sticky at `top:136px` and actually locks during scroll;
+- no fake shell min-height is introduced;
+- `updated_checkout` and payment-method changes retain correct mode;
+- Step03 -> Step02 clears fallback;
+- Step02 whole summary remains sticky at 136px and actual sticky lock passes;
+- Step02 -> Step03 restores fallback;
+- reversible tall-left proof clears fallback and restores whole-rail sticky at 136px;
+- temporary inline style restores exactly afterward.
+
+All desktop assertions: TRUE
+`finalPass: true`
+
+### Mobile final
+
+Diagnostic:
+`SF_STEP03_ADAPTIVE_STICKY_2722_MOBILE_FINAL_20260830`
+
+Viewport:
+- 390 × 844
+- DPR 3
+- scale 1
+
+Accepted behavior:
+- adaptive fallback class absent;
+- shell is flex column;
+- summary uses `display:contents` / static behavior;
+- payment context card is not sticky;
+- context -> main -> summary visual order is correct;
+- no fake shell min-height;
+- no horizontal overflow.
+
+All mobile assertions: TRUE
+`finalPass: true`
+
+## Current active task: Crypto V0.3.0 transfer-button typography
+
+Known presentation-only defect:
+`I HAVE COMPLETED THE TRANSFER` does not match the accepted/reference typography.
+
+Do not change:
+- plugin payment logic;
+- REST/AJAX;
+- transaction-hash handling;
+- settlement verification;
+- order status transitions;
+- order-pay flow;
+- feature flags.
+
+Reference button contract previously audited:
+
+```css
+.crypto-transfer-complete {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 17px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
 ```
 
-### `assets/css/checkout-safe5.css`
-```text
-bytes: 149798
-logical lines: 4878
-SHA256: 28b2e89c3fb966e57863a9adfe18edfe2a40559b4ca9b142dedaf0f2d853a499
-brace balance: 584/584
-comment balance: 25/25
-tinycss2 errors: 0
-```
-
-### `assets/js/checkout-safe5.js`
-```text
-bytes: 61494
-logical lines: 1860
-SHA256: ba71dcff2629094e465fb68ada2502ef6d5a96b1d0b6d7eaa1912f54b40bd69c
-node --check: PASS
-```
-
-All three returned SHA256 values exactly match the simulated expected 2.7.22 outputs. There is no unrelated source drift relative to the accepted manual batch.
+No explicit line-height in the reference rule.
 
 ## Immediate next action
 
-Run one consolidated runtime acceptance batch. It must prove together:
+Continue the already-open Crypto typography source audit using the current live plugin files. If current plugin source is not available in-repo, request only the minimum current files required for the presentation-only correction.
 
-1. current Step03 short-left / tall-right desktop state activates `.sf-safe5-step3-context-sticky`;
-2. whole `.sf-safe5-summary` becomes static and `.sf-safe5-context-card--payment` becomes sticky at 136px;
-3. the context card actually locks during scroll while Order Summary remains normal-flow;
-4. Woo `updated_checkout` / payment-method changes retain the correct adaptive mode;
-5. Step navigation clears/reapplies the fallback correctly;
-6. desktop resize across 1040/1041 does not leave stale mode;
-7. Step03 mobile remains static/stacked;
-8. Step02 desktop sticky remains working;
-9. no fake shell min-height / blank-space regression appears.
-
-No source change before this runtime result unless a concrete defect appears.
-
-After Step03 runtime PASS:
-1. formally close Step03 sticky;
-2. fix/revalidate Crypto V0.3.0 transfer-button typography;
-3. run final Checkout 01-04 consolidated visual 1:1 sweep;
-4. perform final Checkout closure review;
-5. only if no blocker remains, change Checkout binary label to `Completed 1:1`.
+After Crypto typography closes:
+1. run final consolidated Checkout 01-04 strict visual 1:1 sweep;
+2. perform final Checkout closure review;
+3. only if no blocker remains, change Checkout binary label to `Completed 1:1`.
 
 ## Explicit deployment boundary
 
