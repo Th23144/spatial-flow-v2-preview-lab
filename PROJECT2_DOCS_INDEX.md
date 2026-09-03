@@ -1,27 +1,33 @@
 # Project 2 · Documentation Index & Synchronized Status Map
 
-Last updated: 2026-08-02  
+Last updated: 2026-09-03  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Authoritative read order
 
+For a new Project-2 window, read in this order:
+
 ```text
 1. PROJECT2_RESUME_INDEX.md
-2. PROJECT2_DOCS_INDEX.md
-3. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-4. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-5. PROJECT2_CSS_MAINTENANCE_POLICY.md
-6. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-7. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
-8. project2-progress/STEP_4F_LIVE_CHECKOUT_BOUNDED_RECONSTRUCTION_PLAN.md
-9. project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
-10. project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
-11. project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
-12. project2-progress/STEP_4F_R1_LIVE_STEP01_03_RECONSTRUCTION.md
-13. project2-progress/STEP_4F_CHECKOUT_STATIC_FLOW_COMPLETION_PLAN.md
+2. PROJECT2_ACTIVE_STOP_POINT_20260816.md
+3. PROJECT2_DOCS_INDEX.md
+4. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
+5. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+6. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+7. PROJECT2_STEP_RECORDING_POLICY.md
+8. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+9. PROJECT2_CSS_MAINTENANCE_POLICY.md
+10. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+11. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+12. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+13. project2-progress/STEP_4F_FULL_REPOSITORY_DOCUMENT_INHERITANCE_COMPLETE_20260816.md
+14. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+15. project2-progress/PROJECT2_POST_CHECKOUT_PAGE_INVENTORY_RECONCILIATION_20260903.md
 ```
 
-## Page status
+Do not use older plan/snapshot text to override a later explicit correction or final acceptance.
+
+## Current binary page status
 
 ```text
 Main-site Header: Completed 1:1
@@ -29,121 +35,133 @@ Main-site Footer: Completed 1:1
 Shop archive: Completed 1:1
 Single Product: Completed 1:1
 Cart: Completed 1:1
-Checkout: Not done
+Checkout: Completed 1:1
+Thank You / WooCommerce Order Result: Completed 1:1
+
+Home: Not done
+Wishlist: Not done
+Track Order: Not done
+Account: Not done
+Search: Not done
+404: Not done
+About Us: Not done
+Services: Not done
+FAQ / Help: Not done
+Contact: Not done
+Utility / policy pages: Not done
+Blog Header/Footer branch: Not done
+Blog home: Not done
+Blog issue: Not done
+Blog article: Not done
 ```
 
-## Locked Checkout architecture
+Authoritative full matrix:
 
 ```text
-01 Contact / Address
-02 Shipping
-03 Payment
-04 Order Confirmed / Thank You / Receipt
+project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 ```
 
-Step 04 is WooCommerce-owned result truth. It is not Review and never requests payment again.
-
-## R0 closure
+## Completed commerce chain
 
 ```text
-R0 file/config/smoke baseline: completed and closed
-Runtime source changes during R0: none
+Shop
+→ Single Product
+→ Cart
+→ Checkout Step01 Address
+→ Step02 Shipping + Product Packaging
+→ Step03 Payment
+→ Crypto Workspace where applicable
+→ Step04 WooCommerce Order Result / Thank You
 ```
 
-Authoritative records:
+All of the above is closed at the Project-2 1:1 layer.
+
+Do not reopen the completed commerce chain without new concrete evidence of a visual, functional, data-truth, backend-editability, mobile, payment or security regression.
+
+## Checkout retained boundaries
 
 ```text
-project2-progress/STEP_4F_R0_BASELINE_CAPTURE_AND_ROLLBACK.md
-project2-progress/STEP_4F_R0_CONFIGURATION_SNAPSHOT.md
-project2-progress/STEP_4F_R0_FUNCTIONAL_SMOKE_TEST.md
+WPCode 1706 `收款页`: DISABLED / DO NOT DELETE during current cleanup horizon
+No Review/fifth Checkout input step
+Exactly one native WooCommerce Place Order
+WooCommerce remains transaction/status authority
+Theme remains gateway-agnostic
 ```
 
-## R1 delivery policy
-
-Project 2 implementation must use manual anchored replacement and mandatory before/after file-size auditing.
+Final Checkout correction chain and non-blocking future items are documented in:
 
 ```text
-exact old code
-→ expected match count
-→ exact replacement code
-→ expected byte/line delta
-→ user saves manually
-→ actual byte/line/hash validation
-→ syntax/parser validation
-→ stop
+PROJECT2_RESUME_INDEX.md
+PROJECT2_ACTIVE_STOP_POINT_20260816.md
+project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
-Prohibited by default:
+## Explicit deferred / backlog items
+
+Keep these deferred unless the user explicitly reopens them:
 
 ```text
-replacement ZIP deployment
-complete-file overwrite
-unanchored broad replacement
-skipping file-size review
-routine append-only CSS patching
+Single Product optional Story Behind module
+Single Product optional Care Ritual module
+Single Product real WooCommerce Reviews / Quiet Notes module
+Step04 status-icon micro visual polish
+conditional Step02 no-method / true multi-rate regression
+future Crypto product/payment evolution
+Crypto Workspace rollout flag choice
+Project2-CLEAN-CSS global historical CSS consolidation
 ```
 
-Authoritative policy:
+Detailed backlog:
 
 ```text
-PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+project2-progress/DEFERRED_PLANS.md
 ```
 
-## R1 candidate audit
+## Current next implementation task
 
-The first complete R1 candidate is not approved for deployment.
-
-| File | Baseline | Candidate delta | Decision |
-|---|---|---:|---|
-| `form-checkout.php` | 9,140 bytes / 278 lines | -33 bytes / -9 lines | decompose into anchored parts |
-| `checkout-safe5.js` | 24,463 bytes / 780 lines | -453 bytes / -156 lines | function-by-function audit required |
-| `checkout-safe5.css` | 20,936 bytes / 599 lines | +13,657 bytes / +387 lines | blocked; +65.23% growth |
-
-The artifact:
+Recommended next page:
 
 ```text
-project2-checkout-r1-candidate-20260802.zip
+Home
 ```
 
-is withdrawn as a deployment method and must not be applied.
-
-## R1 sequence
+Static visual truth:
 
 ```text
-R1-A template navigation and Review DOM removal
-R1-B JavaScript three-step conversion and relocation removal
-R1-C minimal CSS functional conversion
-R1-D bounded approved visual migration
+preview/spatial-flow-v1.html
 ```
 
-Every part must include exact anchors, expected match count, expected size delta, actual size/hash check, syntax validation and an independent rollback.
-
-## Current execution point
+First executable step is read-only, not implementation:
 
 ```text
-Ownership audit: closed
-Bounded reconstruction plan: accepted
-R0: closed
-R1: authorized
-First complete R1 candidate: blocked from deployment
-Runtime source modification: none
-Next: R1-A manual replacement instructions
-R2: blocked
-Checkout: Not done
+Step 4G-A · Home current live source + ownership audit
 ```
 
-## Locked boundaries
+Before changing Home source, verify:
 
 ```text
-- preserve WooCommerce and gateway authority
-- preserve backend editability
-- no fifth Checkout step
-- no fake/browser-authoritative success
-- no duplicate order or invoice
-- no whole-file replacement package
-- mandatory file-size review
-- no append-only CSS patch pile
-- V0.2.6.1/Workspace integration remains deferred
-- one bounded part at a time
-- Checkout remains Not done
+- actual WordPress page/template owning `/`
+- Home-specific PHP/template/shortcode/page-builder ownership
+- Home-specific CSS/JS ownership
+- current backend-editable copy/media/menu/product sources
+- exact live-vs-static structural/visual delta
 ```
+
+Then define one bounded implementation plan. Do not start by appending broad CSS.
+
+## Core execution rules
+
+```text
+meaningful Project-2 action
+→ record it in GitHub
+→ then advance
+
+new user-uploaded current-server file
+→ treat as the live source baseline
+→ inspect size/lines/structure
+→ compare with static reference
+→ issue exact bounded replacement
+→ validate returned file before runtime testing
+```
+
+Backend editability remains a hard boundary. Preserve `theme_mod`, options, menus, shortcodes, template parts, WooCommerce dynamic output and real data sources wherever they already exist.
