@@ -1,127 +1,164 @@
 # Project 2 · Active Stop Point · 2026-09-03
 
-> Historical filename retained for cross-window compatibility. This content is the current authoritative stop point and supersedes older Resume Index / snapshot text that still says `Checkout: Not done`.
+> Historical filename retained for cross-window compatibility. This content is the current authoritative stop point.
 
 ## Current authoritative state
 
 ```text
+Main-site Header: Completed 1:1
+Main-site Footer: Completed 1:1
+Shop archive: Completed 1:1
+Single Product: Completed 1:1
+Cart: Completed 1:1
 Checkout: Completed 1:1
-Step01 Address: CLOSED / PASS
-Step02 Shipping: CLOSED / PASS
-Product Packaging: FINAL ACCEPTED / CLOSED
-Step03 Payment: CLOSED / PASS
-Crypto V0.3.0 Workspace presentation: CLOSED / PASS
-Step04 WooCommerce Order Result / Thank You: FINAL PASS / CLOSED
+Thank You / WooCommerce Order Result: Completed 1:1
+
+Current next page: Home
+Home binary status: Not done
+Current executable step: Step 4G-A · Home current live source + ownership audit
+Source modification authorized: NO — audit first
 ```
 
-Authoritative Checkout closure record:
-
-`project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md`
-
-Commit that created the closure record:
-
-`45da6d306564c85daa3a048d20b8c9e75f3ec2ed`
-
-## Final 2026-09-01 to 2026-09-03 closure chain
-
-The final closure was not based only on happy-path screenshots. The following reopened issues were diagnosed, corrected, source-audited and runtime/user accepted before the binary status changed:
+Authoritative inventory reconciliation:
 
 ```text
-Step03 legacy gateway-card visual override from WPCode 1706 -> CLOSED
-Step01 native-field full-refresh FOUC -> CLOSED
-Order Summary AJAX white loading wash -> CLOSED
-Step03 Payment AJAX white loading wash -> CLOSED
-Crypto transfer-button typography mismatch -> CLOSED
-Step03 Terms/validation notice legacy visual -> CLOSED
-Processing Payment transient visual mismatch -> CLOSED
-direct mini-cart -> Checkout carried success-notice flash -> CLOSED
-Crypto Refresh Status missing visible acknowledgement -> CLOSED
+project2-progress/PROJECT2_POST_CHECKOUT_PAGE_INVENTORY_RECONCILIATION_20260903.md
+project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 ```
 
-## Final visual/regression evidence
+## Completed Checkout chain retained
 
-Desktop consolidated sweep on 2026-09-03:
+The final Checkout closure included more than happy-path screenshots. The following are all closed:
 
 ```text
-Step01 PASS
-Step02 PASS
-Step03 PASS
-Step04 PASS
-Crypto supporting Workspace state PASS
+Step01 Address
+Step02 Shipping
+Product Packaging
+Step03 Payment
+Order Summary / Coupon / Trust
+Step03 native gateway-host presentation
+Step01 full-refresh native-field FOUC
+Order Summary AJAX white wash
+Step03 Payment AJAX white wash
+Crypto V0.3.0 transfer-button typography
+Step03 Terms/validation notice presentation
+Processing Payment transient presentation + submit lock
+direct mini-cart -> Checkout carried success-notice flash
+Crypto Refresh Status manual acknowledgement
+Step04 full WooCommerce status/result family
+final desktop + current 390px mobile regression sweeps
 ```
 
-Current 390px mobile regression evidence:
+Checkout architecture remains:
 
 ```text
-Step01 PASS
-Step02 PASS
-Step03 PASS
-Step04 supplied Pending state: no new structural regression
-prior Step04 full-state family acceptance remains authoritative
+01 Address
+→ 02 Shipping
+→ 03 Payment
+→ 04 server-authoritative WooCommerce Order Result / Thank You
 ```
 
-The mobile review policy treats ~360px as a narrower fallback when relevant. Historical 360 acceptance remains available; the final bounded corrections produced no concrete new 360-specific blocker requiring another full flow rerun.
+No Review/fifth input step. Exactly one native WooCommerce Place Order.
 
-## Crypto V0.3.0 final polish retained
-
-Transfer-button runtime typography:
+## WPCode 1706 boundary
 
 ```text
-JetBrains Mono
-9px
-letter-spacing 1.53px (.17em)
-uppercase
-54px button height preserved
-```
-
-Refresh Status manual UX:
-
-```text
-REFRESH STATUS
--> REFRESHING…
--> UP TO DATE
--> REFRESH STATUS
-```
-
-Focus-triggered recovery refresh remains silent.
-
-## Runtime configuration boundary
-
-WPCode snippet 1706 `收款页`:
-
-```text
+1706 — 收款页
 DISABLED
-DO NOT DELETE during this closure
+DO NOT DELETE during the current cleanup horizon
 ```
 
-Its old Checkout CSS is the proven source of the rejected rounded/light gateway-card override. Re-enabling it can regress Step03 visual parity.
+Enabling it can restore the rejected rounded/light legacy Step03 gateway-card override.
 
-## Explicit non-blocking / deferred items
-
-These do not reopen Checkout:
+## Remaining `Not done` pages/page families
 
 ```text
-Step04 status-icon micro visual polish: explicitly deferred by user
-conditional Step02 no-method / true multi-rate cases: later regression only when such runtime configuration exists
-future Crypto production features (rate lock, QR, countdown/expiry, monitoring, WalletConnect, multi-asset/network): payment-product roadmap, not Project-2 1:1 blocker
-Crypto Workspace feature-flag exposure state: deployment decision, not visual acceptance status
+Home
+Wishlist
+Track Order
+Account
+Search
+404
+About Us
+Services
+FAQ / Help
+Contact
+Utility / policy pages
+Blog Header/Footer branch
+Blog home
+Blog issue
+Blog article
 ```
 
-## Reopen rule
+Older records describing Wishlist, Track Order, About Us, Services, FAQ or Search as rebuilt/passed are implementation history only; no later strict binary closure was found. Under the user's rule, if strict 1:1 was not completed, it remains `Not done`.
 
-Do not reopen Checkout because an older plan/candidate/snapshot says `Not done`.
+## Explicit deferred / non-blocking work
 
-Reopen only on new concrete evidence of:
-- strict visual regression;
-- WooCommerce functional regression;
-- incorrect native data/status truth;
-- duplicate/missing Place Order or order creation;
-- payment/security regression;
-- backend-editability regression;
-- clipping/overflow/mobile defect.
+Do not reopen completed pages merely because these remain deferred:
 
-## Next Project-2 action
+```text
+Single Product Story Behind optional module
+Single Product Care Ritual optional module
+Single Product real WooCommerce Reviews / Quiet Notes
+Step04 status-icon micro visual polish
+conditional Step02 no-method / true multi-rate regression
+future Crypto rate lock / QR / expiry / monitoring / WalletConnect / multi-asset/network
+Crypto Workspace rollout flag
+Project2-CLEAN-CSS global CSS consolidation
+```
 
-Checkout is no longer the active incomplete page.
+Detailed backlog:
 
-Before beginning another page/task, reconcile the Project-2 page inventory against the newest closure records and choose the next page whose binary status is still `Not done`. Do not reopen already closed Checkout work without new evidence.
+```text
+project2-progress/DEFERRED_PLANS.md
+```
+
+## Current next action — Home
+
+Recommended next implementation system:
+
+```text
+Step 4G · Home strict 1:1 rework
+```
+
+Static visual truth:
+
+```text
+preview/spatial-flow-v1.html
+```
+
+Do **not** start by editing CSS/PHP.
+
+First execute:
+
+```text
+Step 4G-A · Home current live source + ownership audit
+```
+
+Audit requirements:
+
+```text
+1. identify the actual WordPress page/template owning `/`;
+2. identify current Home PHP/template/shortcode/page-builder ownership;
+3. identify Home CSS and JavaScript owners;
+4. inventory current backend-editable Home copy/media/menu/product/category sources;
+5. compare current live Home structure against `preview/spatial-flow-v1.html`;
+6. classify each delta as visual, structural, dynamic-data, backend-editability or native-function ownership;
+7. only then define the bounded implementation plan.
+```
+
+The user should not be asked to make source changes until this audit has identified the current live owner files.
+
+## Execution rules retained
+
+```text
+- user's newly uploaded server-current file is the live source baseline
+- inspect size/lines/structure before edits
+- prefer anchored/in-place canonical replacement over append-only patches
+- backend editability is mandatory
+- preserve WordPress/WooCommerce/plugin real data and behavior
+- record meaningful steps in GitHub before advancing
+- issue an entire safe runtime test batch at once; do not surprise the user with foreseeable extra rounds afterward
+```
+
+Do not reopen Header/Footer/Shop/Single Product/Cart/Checkout/Thank You without new concrete regression evidence.
