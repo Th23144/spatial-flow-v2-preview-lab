@@ -13,92 +13,66 @@ Last updated: 2026-09-03
 2. PROJECT2_ACTIVE_STOP_POINT_20260816.md
 3. PROJECT2_DOCS_INDEX.md
 4. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
-5. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-6. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-7. PROJECT2_CSS_MAINTENANCE_POLICY.md
-8. PROJECT2_STEP_RECORDING_POLICY.md
-9. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-10. project2-progress/PROJECT2_POST_CHECKOUT_PAGE_INVENTORY_RECONCILIATION_20260903.md
+5. project2-progress/PROJECT2_USER_REOPEN_HEADER_FOOTER_SHOP_SINGLE_PRODUCT_20260903.md
+6. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+7. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+8. PROJECT2_CSS_MAINTENANCE_POLICY.md
+9. PROJECT2_STEP_RECORDING_POLICY.md
+10. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
 
 历史优先级：
-later explicit correction/rejection/rollback
+later explicit user correction/reopen
 > later formal runtime/source/user acceptance
-> later standing policy
-> older plan/snapshot
+> standing policy
+> older plan/snapshot/pass record
 
 当前 binary 状态：
-- Header: Completed 1:1
-- Footer: Completed 1:1
-- Shop archive: Completed 1:1
-- Single Product: Completed 1:1
+- Header: Not done
+- Footer: Not done
+- Shop archive: Not done
+- Single Product: Not done
 - Cart: Completed 1:1
 - Checkout: Completed 1:1
 - Thank You / WooCommerce Order Result: Completed 1:1
 
-仍然 Not done：
-- Home
-- Wishlist
-- Track Order
-- Account
-- Search
-- 404
-- About Us
-- Services
-- FAQ / Help
-- Contact
-- Utility / policy pages
-- Blog Header/Footer branch
-- Blog home
-- Blog issue
-- Blog article
+其余 Home / Wishlist / Track Order / Account / Search / 404 / About Us / Services / FAQ / Contact / Utility pages / Blog family 等均仍是 Not done。
 
-注意：Wishlist / Track Order / About Us / Services / FAQ 等过去存在“完成、通过、原生重做”等历史记录，但没有后来严格 `Completed 1:1` 的 binary closure，因此按用户规则仍视为 `Not done`。不要因为旧的局部 pass 自动宣布完成。
+2026-09-03 用户明确纠正：
+- Header 仍有需要调整的地方；部分细节可能只在用户自己的记录里，仓库不完整，不要猜。
+- Footer 仍有需要调整的地方；旧记录只能证明后台可编辑 owner 仍存在，不能替代最终真实后台可编辑性验收。
+- Shop 明确未完成；仓库还记录了商品卡 Editorial Place Note 因缺少真实后台字段而刻意未实现。
+- Single Product 旧的 Completed 1:1 结论被用户重新质疑并正式 reopen。已知 Story Behind / Care Ritual / Quiet Notes-Reviews 延期；静态稿还有 Closing Editor's Note，需要重新判定；必须做整页严格 1:1 总审。
 
-Checkout 已正式封版，不要继续找 Checkout 子任务：
-- Step01/02/03/04 均闭环
-- Product Packaging 闭环
-- Step03 gateway host 闭环
-- Step01 refresh FOUC 闭环
-- Order Summary / Payment AJAX white wash 闭环
-- Terms notice / Processing Payment / direct mini-cart Checkout notice 闭环
-- Crypto transfer button typography 闭环
-- Crypto Refresh Status 手动反馈闭环
-- WPCode 1706 `收款页` 必须保持 disabled，不删除
+不要为了补齐静态稿伪造商品故事、maker/origin、客户评论或 place note。需要真实内容时必须建立后台可编辑数据源并动态输出。
 
-明确 deferred / non-blocking：
-- Single Product Story Behind
-- Single Product Care Ritual
-- Single Product real WooCommerce Reviews / Quiet Notes
-- Step04 status icon micro polish
-- conditional Step02 no-method / true multi-rate regression
-- future Crypto rate lock / QR / expiry / monitoring / WalletConnect / multi-asset/network
-- Crypto Workspace rollout flag
-- Project2-CLEAN-CSS global CSS consolidation
+Checkout 已封版，不受此次 reopen 影响：
+- Step01/02/03/04 已闭环
+- Product Packaging 已闭环
+- transient/error states 已闭环
+- Crypto Workspace / Refresh Status 已闭环
+- WPCode 1706 `收款页` 保持 disabled，不删除
 
-当前推荐下一页：Home。
-静态视觉参考：`preview/spatial-flow-v1.html`。
+此前准备进入 Home 的计划暂停。
 
-不要直接改 Home。先执行：
-`Step 4G-A · Home current live source + ownership audit`
+当前下一步：
+`Step 4D-REOPEN-A · Single Product whole-page strict 1:1 re-audit`
 
-第一步只读检查：
-- 找出 `/` 实际由哪个 WordPress 页面/模板负责
-- 检查 Home 当前 PHP/template/shortcode/page-builder ownership
-- 检查 Home CSS/JS ownership
-- 检查后台可编辑文案、媒体、菜单、商品/分类数据来源
-- 对照 `preview/spatial-flow-v1.html` 做 live-vs-static delta
-- 再给出 bounded implementation plan
+推荐顺序：
+1. Single Product 整页严格复审
+2. Header 严格复审
+3. Footer 严格复审
+4. Shop 严格复审
+5. Home
+
+除非用户明确改变顺序。
 
 执行原则：
-- 用户重新上传的服务器当前文件 = 唯一当前真实基准
-- 修改前先检查文件大小、行数、关键结构
-- 不默认整文件覆盖
-- 不在 CSS 末尾无限追加
-- 优先原位替换/合并 canonical owner
+- 用户最新服务器源文件是唯一 live baseline
+- 先审计再改代码
+- 先区分：已完成 / 合理延期 / 真遗漏 / 用户新增调整
 - 后台可编辑性是硬边界
-- WooCommerce/WordPress/插件真实数据与业务逻辑不能被静态假数据替换
-- 每个有意义的步骤先写 GitHub 再推进
-- 一个测试 batch 一次性把需要用户做的检查说完整，不要做完后再临时追加可预见的截图/测试轮次
-
-不要重新打开 Header/Footer/Shop/Single Product/Cart/Checkout/Thank You，除非出现新的具体回归证据。
+- 不硬编码动态商业数据或虚构 editorial 内容
+- CSS 优先 canonical 原位修正，不堆补丁
+- 每个有意义步骤写 GitHub
+- 一次性给完整可预见测试清单，不临时追加重复测试
 ```
