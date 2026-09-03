@@ -1,15 +1,15 @@
 # Project 2 · Deferred Plans / Backlog
 
-Last updated: 2026-07-04
+Last updated: 2026-09-03  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
-This file records deferred or extra plans that should not be forgotten.
+This file records deferred, optional or later-regression work that must not be lost.
 
-When the user asks to search the repository for delayed plans, backlog, or forgotten tasks, include this file.
+Deferred work does **not** reopen a page already marked `Completed 1:1` unless the user explicitly reopens it or new concrete regression evidence appears.
 
 ---
 
-## 1. Single Product long editorial sections
+## 1. Single Product optional long editorial sections
 
 Source static reference:
 
@@ -17,13 +17,19 @@ Source static reference:
 preview/spatial-flow-product-v1.html
 ```
 
-The static product page contains several long editorial sections between Product Attributes and Related Products.
-
-Current decision:
+Current accepted model:
 
 ```text
-Only The Piece was implemented now.
-Other long editorial sections remain deferred because they require real content operations and should not force fabricated stories.
+The Piece: implemented and accepted
+Story Behind: deferred
+Care Ritual: deferred
+Quiet Notes / Reviews: deferred
+```
+
+The page itself remains:
+
+```text
+Single Product: Completed 1:1
 ```
 
 ### 1.1 The Piece — implemented, not deferred
@@ -48,30 +54,28 @@ Potential future step:
 Step 4D-LATER-STORY · Story Behind optional editorial module
 ```
 
-Reason for deferral:
+Reason:
 
 ```text
-This block is article-like and product-specific. It should not force the user to invent a background story for every product.
+This block is article-like and product-specific. It should not force fabricated background stories for every product.
 ```
 
-Future operational model:
+Future model:
 
 ```text
-Use only for hero products, series-core products, high-ticket products, or products with real origin/selection/design notes.
-Do not display on ordinary products unless real content exists.
-Do not hardcode fake makers, fake origins, fake stories, or fake locations.
+Use only when real origin/selection/design notes exist.
+Do not hardcode fake makers, origins, locations or stories.
 ```
 
-Recommended future data source:
+Recommended optional per-product sources:
 
 ```text
-Optional per-product fields:
-- story heading
-- story image
-- origin / selection note
-- material/design note
-- source/location note
-- optional meta rows
+story heading
+story image
+origin / selection note
+material/design note
+source/location note
+optional meta rows
 ```
 
 ### 1.3 Care Ritual — deferred
@@ -82,26 +86,24 @@ Potential future step:
 Step 4D-LATER-CARE-RITUAL · Care Ritual optional usage guide module
 ```
 
-Reason for deferral:
+Reason:
 
 ```text
-The current page already has Trust Strip and Product Attributes care fields. A separate care ritual block must not duplicate those fields.
+Current page already has Trust Strip and Product Attributes care fields. A richer ritual module must not merely duplicate those fields.
 ```
 
-Future operational model:
+Potential structure:
 
 ```text
-Use as a richer usage/ritual guide, not as basic care text.
-Recommended structure:
-- Daily use
-- Seasonal reset
-- Storage / repair / recharge
+Daily use
+Seasonal reset
+Storage / repair / recharge
 ```
 
-Recommended future data source:
+Recommended source:
 
 ```text
-Global default template + optional per-product override.
+Global default template + optional per-product override
 ```
 
 ### 1.4 Quiet Notes / Reviews — deferred
@@ -112,57 +114,37 @@ Potential future step:
 Step 4D-LATER-REVIEWS · Verified WooCommerce Reviews editorial display
 ```
 
-Reason for deferral:
+Reason:
 
 ```text
-The site is new and does not yet have real reviews. Fake reviews must not be written or displayed.
+The site does not yet have enough real review content. Fake reviews must never be created.
 ```
 
-Future operational model:
+Future model:
 
 ```text
-- Read real WooCommerce approved / verified reviews.
-- If no reviews exist, hide the reviews module or show a restrained 'Be the first to leave a note' entry point.
-- Do not fabricate customer quotes, names, locations, ratings, or dates.
-```
-
-Future review collection idea:
-
-```text
-After order completion, ask buyers questions such as:
-- Where did you place it?
-- Was it a gift or for yourself?
-- What made you choose this piece?
-- How does it feel in daily use?
+Read real approved / verified WooCommerce reviews.
+If none exist, hide the module or show a restrained real review-entry path.
+Do not fabricate quotes, names, locations, ratings or dates.
 ```
 
 ---
 
-## 2. CSS cleanup plans
+## 2. CSS cleanup backlog
 
 ### 2.1 Single Product CSS consolidation — completed
 
 ```text
-Step 4D-CLEAN1 · Single Product CSS consolidation：Passed
+Step 4D-CLEAN1 · Single Product CSS consolidation: Passed
 ```
 
-Result:
-
-```text
-- Removed legacy `.sf-product-story-*` CSS.
-- Kept one `.sf-product-spatial-grid--summary` hiding guard.
-- Moved Step 4D-1-A / Step 4D-1-B desktop override blocks into the Single Product Visual 1 area.
-- Did not restore The Piece `::first-letter`.
-- Did not touch SAFE5 Checkout CSS.
-```
-
-Audit file:
+Audit:
 
 ```text
 project2-progress/STEP_4D_CLEAN1_AUDIT.md
 ```
 
-### 2.2 Global CSS consolidation pass — deferred
+### 2.2 Global CSS consolidation — deferred
 
 Potential future step:
 
@@ -173,60 +155,157 @@ Project2-CLEAN-CSS · Global CSS consolidation pass
 Purpose:
 
 ```text
-Clean historical append-only patches across Header, Footer, Shop, Product, Cart, Checkout, Blog, and utility pages after visual work stabilizes.
+Clean historical append-only/overlapping rules across Header, Footer, Shop, Product, Cart, Checkout, Blog and utility pages only after visual work is sufficiently stable.
 ```
 
-Known historical blocks to revisit include:
+Known historical owners to revisit include:
 
 ```text
-- Step 4B-R2-B Footer Dark Editorial
-- Step 4C-B Shop Hero Editorial
-- Product Archive Visual Scope Fix
-- Phase Shop Visual 1 / 2 / 2.1 overlap
-- Remaining unscoped related-products repair blocks
+Step 4B-R2-B Footer Dark Editorial
+Step 4C-B Shop Hero Editorial
+Product Archive Visual Scope Fix
+Phase Shop Visual 1 / 2 / 2.1 overlap
+remaining unscoped related-products repair blocks
+other historical Project-2 append-only rules found during final audit
+```
+
+Do not use the cleanup pass as permission to reopen accepted visuals or change native behavior.
+
+---
+
+## 3. Shop status correction
+
+Historical text in this file previously said:
+
+```text
+Step 4C-REWORK1 · Shop desktop + mobile 1:1 rework: In progress
+```
+
+That is now stale.
+
+Current authoritative status:
+
+```text
+Shop archive: Completed 1:1
+```
+
+The full controlled desktop/mobile rework, pagination follow-up and accepted mobile treatment are closed.
+
+Any old note about first-screen product exposure is historical/non-blocking unless the user explicitly reopens it with current evidence.
+
+---
+
+## 4. Checkout / Step04 deferred or later-regression items
+
+Checkout itself is now:
+
+```text
+Checkout: Completed 1:1
+Thank You / WooCommerce Order Result: Completed 1:1
+```
+
+The following remain deferred/non-blocking:
+
+### 4.1 Step04 status-icon micro polish
+
+```text
+Deferred explicitly by user.
+```
+
+The current Step04 visual/status family remains accepted. Do not reopen it merely to optimize the waiting/failed/cancelled icon family.
+
+### 4.2 Conditional Step02 shipping regressions
+
+```text
+No-method case
+true multi-rate case
+```
+
+Run only when the actual WooCommerce configuration exposes those states. Current absence is not a Checkout blocker.
+
+### 4.3 Crypto production evolution
+
+Outside current Project-2 visual closure:
+
+```text
+real-time fiat -> USDT quote / rate lock
+QR
+countdown / invoice expiry enforcement
+replacement-invoice lifecycle
+automatic chain/address monitoring
+Cron / Worker / Webhook
+WalletConnect
+multi-asset selection
+multi-network selection
+```
+
+### 4.4 Crypto Workspace rollout flag
+
+Workspace ON/OFF is a rollout/deployment decision, not a strict 1:1 completion issue.
+
+### 4.5 WPCode 1706 retained rollback material
+
+```text
+1706 `收款页`
+DISABLED
+DO NOT DELETE during current closure/cleanup horizon
+```
+
+It is not a feature backlog item, but this state must not be forgotten because enabling it regresses the accepted Step03 gateway-host visual.
+
+---
+
+## 5. Current `Not done` page backlog
+
+These are not optional enhancements; they are still incomplete Project-2 pages/page families:
+
+```text
+Home
+Wishlist
+Track Order
+Account
+Search
+404
+About Us
+Services
+FAQ / Help
+Contact
+Utility / policy pages
+Blog Header/Footer branch
+Blog home
+Blog issue
+Blog article
+```
+
+Current recommended next page:
+
+```text
+Home
+```
+
+First step:
+
+```text
+Step 4G-A · Home current live source + ownership audit
+```
+
+Reference:
+
+```text
+preview/spatial-flow-v1.html
 ```
 
 ---
 
-## 3. Shop work status correction
-
-### 3.1 Shop full desktop + mobile 1:1 rework — active
-
-Current active step:
+## 6. Backlog policy
 
 ```text
-Step 4C-REWORK1 · Shop desktop + mobile 1:1 rework audit：In progress
+Any future delayed plan, optional enhancement, cleanup pass or paused idea should be written here or linked from here.
+A deferred item must not silently become a blocker to a page already formally closed unless the user explicitly reopens it or new concrete evidence requires reopening.
 ```
 
-Correction:
+Inventory reconciliation:
 
 ```text
-The earlier Shop work should not be treated as final 1:1 acceptance. The user clarified that desktop Shop is also far from 1:1 and was only lightly reformatted.
-```
-
-Audit file:
-
-```text
-project2-progress/STEP_4C_SHOP_REWORK_AUDIT.md
-```
-
-Original mobile concern:
-
-```text
-Shop mobile currently does not break, but first-screen product exposure is not ideal because the V2 static visual was not mobile-optimized.
-```
-
-Current status:
-
-```text
-The mobile concern is now part of the full Shop desktop + mobile rework instead of a standalone mobile-only cleanup.
-```
-
----
-
-## 4. General backlog policy
-
-```text
-Any future delayed plan, optional enhancement, cleanup pass, or paused idea should be written here or linked from here.
-The user wants future repository searches to recover these tasks.
+project2-progress/PROJECT2_POST_CHECKOUT_PAGE_INVENTORY_RECONCILIATION_20260903.md
 ```
