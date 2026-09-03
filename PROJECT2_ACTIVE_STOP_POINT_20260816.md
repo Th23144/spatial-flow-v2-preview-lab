@@ -1,109 +1,127 @@
-# Project 2 · Active Stop Point · 2026-09-01
+# Project 2 · Active Stop Point · 2026-09-03
 
-## Current authoritative stop point
+> Historical filename retained for cross-window compatibility. This content is the current authoritative stop point and supersedes older Resume Index / snapshot text that still says `Checkout: Not done`.
 
-```text
-Step04 full-state visual/runtime regression: FINAL PASS
-Step04 overall: CLOSED
-Step04 status-icon micro visual polish: DEFERRED BY USER; non-blocking later optimization
-
-Step03 sidebar sticky root cause: CLOSED
-Step03 adaptive sticky 2.7.22 source: PASS
-Step03 desktop runtime: PASS
-Step03 Woo updated_checkout/payment-change re-evaluation: PASS
-Step03 Step02 sticky regression: PASS
-Step03 mobile stacked/static regression: PASS
-Step03 sticky issue: CLOSED
-
-Step03 native gateway-card / payment_box visual parity: REOPENED / CURRENT ACTIVE TASK
-Historical status: old R1 structural/functional migration accepted; final strict 1:1 gateway-host skin was never proven
-User-approved deferral of current white-card look: NOT FOUND
-Do not reintroduce duplicate theme-side Selected Payment panel
-
-Crypto V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography mismatch: OPEN IMMEDIATELY AFTER STEP03 GATEWAY-HOST VISUAL BLOCKER
-Final Checkout 01-04 consolidated visual 1:1 sweep: REQUIRED AFTER ALL OPEN PRESENTATION BLOCKERS CLOSE
-Checkout binary status: Not done
-```
-
-## Step03 sticky final acceptance
-
-Authoritative closure record:
-`project2-progress/STEP_4F_STEP03_ADAPTIVE_STICKY_2722_RUNTIME_FINAL_PASS_AND_CLOSE_20260901.md`
-
-Commit:
-`cab5aa6644dbd2f871632fe7e0b00c8bd1e84477`
-
-The Step03 adaptive sticky behavior remains accepted and must not be reopened absent a new concrete sticky defect.
-
-## Newly reopened Step03 gateway-host visual parity
-
-Authoritative history audit:
-`project2-progress/STEP_4F_STEP03_GATEWAY_CARD_VISUAL_PARITY_REOPEN_HISTORY_AUDIT_20260901.md`
-
-Commit:
-`ff0b04c76ba41b741f284a3ed528016c200b5b42`
-
-Fresh user screenshot shows the native WooCommerce gateway region as large bright white rows/payment boxes that are visually discordant with the accepted editorial Step03 reference and fail the current strict 1:1 standard.
-
-Repository chronology proves:
+## Current authoritative state
 
 ```text
-2026-08-07 old R1 Step03:
-- visual runtime acceptance: passed
-- native multi-gateway presence: passed
-- gateway switching / native payment_box interaction: passed
-- Step03 R1 structural/functional migration still in progress at that point
-
-2026-08-14 full inheritance re-audit:
-- old R1 structural/functional migration: completed
-- final Step03 strict visual/source/computed 1:1 closure: NOT COMPLETE
+Checkout: Completed 1:1
+Step01 Address: CLOSED / PASS
+Step02 Shipping: CLOSED / PASS
+Product Packaging: FINAL ACCEPTED / CLOSED
+Step03 Payment: CLOSED / PASS
+Crypto V0.3.0 Workspace presentation: CLOSED / PASS
+Step04 WooCommerce Order Result / Thank You: FINAL PASS / CLOSED
 ```
 
-There is no source-supported record that the user knowingly accepted or deferred the current white gateway-card treatment as a final visual state.
+Authoritative Checkout closure record:
 
-Later rollback of the duplicate theme-side `Selected Payment` panel only preserved correct Product Truth:
+`project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md`
+
+Commit that created the closure record:
+
+`45da6d306564c85daa3a048d20b8c9e75f3ec2ed`
+
+## Final 2026-09-01 to 2026-09-03 closure chain
+
+The final closure was not based only on happy-path screenshots. The following reopened issues were diagnosed, corrected, source-audited and runtime/user accepted before the binary status changed:
 
 ```text
-Woo selected gateway + native payment_box = authoritative payment-information owner
+Step03 legacy gateway-card visual override from WPCode 1706 -> CLOSED
+Step01 native-field full-refresh FOUC -> CLOSED
+Order Summary AJAX white loading wash -> CLOSED
+Step03 Payment AJAX white loading wash -> CLOSED
+Crypto transfer-button typography mismatch -> CLOSED
+Step03 Terms/validation notice legacy visual -> CLOSED
+Processing Payment transient visual mismatch -> CLOSED
+direct mini-cart -> Checkout carried success-notice flash -> CLOSED
+Crypto Refresh Status missing visible acknowledgement -> CLOSED
 ```
 
-It did not certify the native gateway rows as visually complete.
+## Final visual/regression evidence
 
-## Current execution boundary
+Desktop consolidated sweep on 2026-09-03:
 
-The native gateway-host visual correction may change only presentation around the real WooCommerce gateway output.
+```text
+Step01 PASS
+Step02 PASS
+Step03 PASS
+Step04 PASS
+Crypto supporting Workspace state PASS
+```
 
-Preserve:
-- WooCommerce gateway registry/eligibility;
-- native gateway labels;
-- native selected `payment_box` fields/content/iframe/nonce;
-- Terms/privacy;
-- exactly one native Place Order;
-- current Step03 adaptive sticky behavior;
-- future-gateway safe fallback.
+Current 390px mobile regression evidence:
 
-Do not:
-- create a fake permanent gateway list;
-- hardcode Crypto into theme UI;
-- reintroduce duplicate Selected Payment panel;
-- move or duplicate Place Order;
-- change gateway logic/security/order creation.
+```text
+Step01 PASS
+Step02 PASS
+Step03 PASS
+Step04 supplied Pending state: no new structural regression
+prior Step04 full-state family acceptance remains authoritative
+```
 
-## Immediate next action
+The mobile review policy treats ~360px as a narrower fallback when relevant. Historical 360 acceptance remains available; the final bounded corrections produced no concrete new 360-specific blocker requiring another full flow rerun.
 
-Audit current `assets/css/checkout-safe5.css` payment-host rules against:
-- `preview/spatial-flow-checkout-payment-v1.html`
-- `preview/spatial-flow-checkout-payment-host-v1.css`
-- current live screenshot / Woo DOM
+## Crypto V0.3.0 final polish retained
 
-Then prepare one coherent visual-only manual correction batch for native gateway rows and selected `payment_box` surfaces.
+Transfer-button runtime typography:
 
-After Step03 gateway-host visual parity closes:
-1. fix/revalidate Crypto V0.3.0 transfer-button typography;
-2. run final consolidated Checkout 01-04 strict visual 1:1 sweep;
-3. perform final Checkout closure review;
-4. only if no blocker remains, change Checkout binary label to `Completed 1:1`.
+```text
+JetBrains Mono
+9px
+letter-spacing 1.53px (.17em)
+uppercase
+54px button height preserved
+```
 
-## Explicit deployment boundary
+Refresh Status manual UX:
 
-Continue manual anchored replacement for large theme/plugin files unless the user explicitly changes that decision.
+```text
+REFRESH STATUS
+-> REFRESHING…
+-> UP TO DATE
+-> REFRESH STATUS
+```
+
+Focus-triggered recovery refresh remains silent.
+
+## Runtime configuration boundary
+
+WPCode snippet 1706 `收款页`:
+
+```text
+DISABLED
+DO NOT DELETE during this closure
+```
+
+Its old Checkout CSS is the proven source of the rejected rounded/light gateway-card override. Re-enabling it can regress Step03 visual parity.
+
+## Explicit non-blocking / deferred items
+
+These do not reopen Checkout:
+
+```text
+Step04 status-icon micro visual polish: explicitly deferred by user
+conditional Step02 no-method / true multi-rate cases: later regression only when such runtime configuration exists
+future Crypto production features (rate lock, QR, countdown/expiry, monitoring, WalletConnect, multi-asset/network): payment-product roadmap, not Project-2 1:1 blocker
+Crypto Workspace feature-flag exposure state: deployment decision, not visual acceptance status
+```
+
+## Reopen rule
+
+Do not reopen Checkout because an older plan/candidate/snapshot says `Not done`.
+
+Reopen only on new concrete evidence of:
+- strict visual regression;
+- WooCommerce functional regression;
+- incorrect native data/status truth;
+- duplicate/missing Place Order or order creation;
+- payment/security regression;
+- backend-editability regression;
+- clipping/overflow/mobile defect.
+
+## Next Project-2 action
+
+Checkout is no longer the active incomplete page.
+
+Before beginning another page/task, reconcile the Project-2 page inventory against the newest closure records and choose the next page whose binary status is still `Not done`. Do not reopen already closed Checkout work without new evidence.
