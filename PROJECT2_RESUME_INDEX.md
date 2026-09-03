@@ -1,32 +1,30 @@
 # Project 2 · Resume Index
 
-Last updated: 2026-08-16
+Last updated: 2026-09-03
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Read these first
 
+For a new Project-2 window, read in this order:
+
 ```text
 1. PROJECT2_RESUME_INDEX.md
-2. PROJECT2_STEP_RECORDING_POLICY.md
-3. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-4. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-5. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-6. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-7. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-8. PROJECT2_CSS_MAINTENANCE_POLICY.md
-9. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-10. project2-progress/STEP_4F_FULL_REPOSITORY_DOCUMENT_INHERITANCE_COMPLETE_20260816.md
-11. project2-progress/STEP_4F_SELECTED_PAYMENT_THEME_ROLLBACK_VALIDATION_20260816.md
-12. project2-progress/STEP_4F_CRYPTO_V030_BIG_BATCH_B_FINAL_ACCEPTED_20260816.md
-13. project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_FINAL_ACCEPTED_20260816.md
-14. project2-progress/STEP_4F_STEP04_ORDER_RESULT_FULL_AUDIT_AND_IMPLEMENTATION_GATE_20260816.md
-15. project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_IMPLEMENTATION_LOCK_20260816.md
-16. project2-progress/STEP_4F_STEP04_STRICT_1_TO_1_SOURCE_STATIC_CANDIDATE_2715_20260816.md
-17. project2-progress/STEP_4F_CRYPTO_V030_TRANSFER_BUTTON_TYPOGRAPHY_REOPEN_20260816.md
-18. project2-progress/STEP_4F_STEP04_WHOLE_FILE_DEPLOYMENT_WITHDRAWN_20260816.md
+2. PROJECT2_ACTIVE_STOP_POINT_20260816.md
+3. PROJECT2_STEP_RECORDING_POLICY.md
+4. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+5. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+6. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+7. PROJECT2_CSS_MAINTENANCE_POLICY.md
+8. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+9. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+10. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+11. project2-progress/STEP_4F_FULL_REPOSITORY_DOCUMENT_INHERITANCE_COMPLETE_20260816.md
+12. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
-Historical precedence:
+The historical corpus remains in `project2-progress/`; do not delete or rewrite history merely to shorten the index.
+
+## Historical precedence
 
 ```text
 later explicit correction/rejection/rollback
@@ -34,6 +32,8 @@ later explicit correction/rejection/rollback
 > later standing policy
 > older policy/plan/candidate/snapshot
 ```
+
+This is critical because many older Checkout documents correctly said `Not done` at their historical stop point. They do not override the 2026-09-03 final closure.
 
 ## Mandatory execution rule
 
@@ -43,35 +43,9 @@ meaningful Project-2 action
 → only then advance
 ```
 
-For one coherent runtime acceptance batch, give the user the entire safe checklist at once. Split only when a genuine destructive/safety dependency requires it.
+For one coherent runtime acceptance batch, give the user the entire safe checklist at once. Do not surprise the user with avoidable extra screenshot/test rounds after they finish a batch.
 
-## Deployment method precedence
-
-The user explicitly authorised a later exception on 2026-08-16:
-
-```text
-Verified complete-file replacement is allowed when and only when
-PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md passes every gate.
-```
-
-This later policy supersedes the older blanket prohibition on whole-file delivery **only for batches that prove**:
-
-```text
-exact live-base SHA match
-+ candidate generated from that exact base
-+ full-diff authorised-scope audit
-+ timestamped rollback backup
-+ published candidate SHA
-+ post-replacement SHA identity
-+ syntax/parser/structure PASS
-+ whole-batch rollback on any failure
-```
-
-If any gate cannot be satisfied, fall back to the older manual anchored replacement policy.
-
-This changes deployment mechanics only; strict 1:1 remains mandatory.
-
-## Binary page status
+## Current binary page status
 
 ```text
 Header: Completed 1:1
@@ -79,10 +53,22 @@ Footer: Completed 1:1
 Shop archive: Completed 1:1
 Single Product: Completed 1:1
 Cart: Completed 1:1
-Checkout: Not done
+Checkout: Completed 1:1
 ```
 
-Checkout remains `Not done` until Step 04 production result acceptance and the reopened V0.3.0 transfer-button typography 1:1 defect are both closed.
+Checkout authoritative closure:
+
+```text
+project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+```
+
+Current authoritative stop point:
+
+```text
+PROJECT2_ACTIVE_STOP_POINT_20260816.md
+```
+
+The filename is historical; its content is updated and authoritative.
 
 ## Locked Checkout progression
 
@@ -90,24 +76,28 @@ Checkout remains `Not done` until Step 04 production result acceptance and the r
 01 Contact / Address
 → 02 Shipping
 → 03 Payment
-→ 04 server-authoritative Order Result / Thank You / Receipt
+→ 04 server-authoritative WooCommerce Order Result / Thank You / Receipt
 ```
 
 No Review/fifth input step.
 
-## Accepted Checkout contracts
+## Final accepted Checkout contracts
 
 ```text
-Step 01 Address: accepted
-Step 02 Shipping: accepted
+Step01 Address: PASS / CLOSED
+Step02 Shipping: PASS / CLOSED
 Product Packaging: FINAL ACCEPTED / CLOSED
-Step 03 native Woo dynamic payment structure/function: accepted
-Order Summary / Coupon / Trust normal flow: accepted
-normal non-Crypto order flow: accepted
-Checkout normal desktop/mobile regression: accepted
+Step03 Payment: PASS / CLOSED
+Order Summary / Coupon / Trust: PASS / CLOSED
+normal non-Crypto order flow: PASS
+Crypto V0.3.0 Workspace presentation: PASS / CLOSED
+Step04 full result/status family: FINAL PASS / CLOSED
+final desktop regression sweep: PASS
+final current 390px mobile regression sweep: PASS
+Checkout transient/error states: PASS
 ```
 
-Step 03 final architecture:
+Step03 architecture remains:
 
 ```text
 Woo eligible gateways
@@ -116,226 +106,147 @@ Woo eligible gateways
 → exactly one native Place Order
 ```
 
-Theme remains gateway-agnostic.
+Theme remains gateway-agnostic. Do not reintroduce the rejected duplicate `Selected Payment` theme panel.
 
-The rejected theme-side Selected Payment experiment was byte-exact rolled back and is permanently closed.
+WooCommerce remains authoritative for:
+- customer fields;
+- shipping;
+- totals/coupons;
+- gateways/provider controls/nonces;
+- validation;
+- order creation/status;
+- stock/emails where environment supports them;
+- Step04 server status truth.
 
-## Crypto payment state
+## Final Checkout correction chain
 
-```text
-Spatial Flow Crypto Pay Trial V0.3.0: FINAL ACCEPTED
-V0.2.9 backend/security invariants: retained/accepted
-V0.3.0 order-pay customer Workspace: accepted
-Feature Flag rollback bridge: PASS
-normal gateway isolation: PASS
-local Project 2 Crypto Workspace final state: OFF
-```
-
-Important: OFF is runtime exposure control. It does not mean V0.3.0 was rejected.
-
-Payment window standalone continuation:
+The final closure included later fixes beyond the older happy-path acceptance:
 
 ```text
-project2-progress/PAYMENT_WINDOW_STANDALONE_HANDOFF_V030_FINAL_ACCEPTED_20260816.md
+Step03 WPCode 1706 legacy gateway-card override -> CLOSED
+Step01 native-field refresh FOUC -> CLOSED
+Order Summary AJAX white wash -> CLOSED
+Step03 Payment AJAX white wash -> CLOSED
+Crypto transfer-button typography -> CLOSED
+Step03 Terms/validation notice legacy visual -> CLOSED
+Processing Payment transient visual mismatch -> CLOSED
+direct mini-cart -> Checkout carried success-notice flash -> CLOSED
+Crypto Refresh Status invisible acknowledgement -> CLOSED
 ```
 
-## Reopened V0.3.0 visual-only defect
+Do not reopen these without new concrete runtime evidence.
 
-User reported that the V0.3.0 Workspace button:
+## WPCode 1706 boundary
+
+Snippet:
 
 ```text
-I HAVE COMPLETED THE TRANSFER
+1706 — 收款页
 ```
 
-has incorrect typography/font sizing and does not meet strict 1:1.
-
-Status:
+Required current state:
 
 ```text
-functional/security acceptance: remains CLOSED/PASS
-visual typography parity: REOPENED
-fix timing: immediately after Step 04 runtime acceptance
-Checkout cannot close until this visual defect passes desktop/mobile 1:1
+DISABLED
+DO NOT DELETE as part of Checkout closure
 ```
 
-Record:
+Its legacy Checkout CSS was proven to override the accepted Step03 gateway-host presentation when enabled.
+
+## Crypto V0.3.0 accepted state
+
+Functional/security baseline remains accepted.
+
+Transfer-button final runtime typography:
 
 ```text
-project2-progress/STEP_4F_CRYPTO_V030_TRANSFER_BUTTON_TYPOGRAPHY_REOPEN_20260816.md
+JetBrains Mono
+9px
+letter-spacing 1.53px (.17em)
+uppercase
+54px button height preserved
 ```
 
-## Step 04 visual truth
-
-The only current Thank You static-reference trio in `preview/` is:
+Refresh Status final manual feedback:
 
 ```text
-preview/spatial-flow-thank-you-v1.html
-preview/spatial-flow-thank-you-v1.css
-preview/spatial-flow-thank-you-v1.js
+REFRESH STATUS
+→ REFRESHING…
+→ UP TO DATE
+→ REFRESH STATUS
 ```
 
-No later Thank You v2/v3 static reference exists.
+Focus-triggered recovery refresh remains silent.
 
-The user explicitly reconfirmed strict 1:1 on 2026-08-16.
+Feature-flag exposure (Workspace ON/OFF) is a rollout/deployment decision, not a Project-2 1:1 visual-status decision. Do not change payment/security behavior merely to alter visual exposure.
 
-Therefore:
+## Step04 final state
+
+Step04 full-state visual/runtime regression is closed.
+
+Server-status truth remains authoritative for:
 
 ```text
-static Step-04 reference = visual truth
-WooCommerce order = data/status truth
+processing / confirmed
+completed
+pending
+on-hold
+failed
+cancelled
+refunded
+custom/unknown fallback
 ```
 
-Production implementation may recompose live markup/CSS wherever required to match the reference. Existing live visual deviations are not protected merely because they are already implemented.
+The user explicitly deferred one Step04 status-icon micro visual polish item. That item is non-blocking and does not reopen Step04 or Checkout.
 
-Header/Footer remain their separately accepted global 1:1 implementation and are not duplicated from the standalone preview shell.
+## Mobile acceptance rule
 
-## Step 04 production state matrix
+Follow `PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md`.
+
+Final review must inspect common phone widths around 390–430 CSS px. A narrower ~360 CSS px fallback is required when relevant to a concrete risk or when a batch specifically owns width-sensitive behavior; do not invent repetitive viewport rounds without evidence.
+
+Historical 360 Checkout acceptance remains available. The final 2026-09-03 bounded corrections produced no concrete new 360-specific blocker.
+
+## Backend editability
+
+Backend editability remains a hard boundary.
+
+SAFE5 normal-state Step01 / Step02 / Step03 presentation copy was accepted as backend-editable. Dynamic WooCommerce commerce truth must remain native rather than hardcoded into editable presentation fields.
+
+Do not remove existing `theme_mod`, option, menu, shortcode, template-part or WooCommerce dynamic sources merely for visual simplification.
+
+## Explicit non-blocking / future items
+
+Do not confuse these with an incomplete Checkout reskin:
 
 ```text
-processing -> confirmed / fulfilment in progress
-completed -> completed
-pending -> payment pending
-on-hold -> payment confirmation pending
-failed -> retry/support
-cancelled -> cancelled
-refunded -> refunded
-custom/unknown -> neutral server-status fallback
+- Step04 status-icon micro visual polish: deferred by user
+- Step02 no-method / true multi-rate runtime cases: later regression only when such configuration exists
+- Crypto production evolution: real-time fiat->USDT quote/rate lock, QR, countdown/expiry, automatic monitoring, WalletConnect, multi-asset/network selection
+- Crypto Workspace rollout flag choice
 ```
 
-Browser/query/session values may not manufacture these states.
+These are future configuration/product/payment tasks, not blockers to `Checkout: Completed 1:1`.
 
-## Current verified live rollback baseline
+## Deployment method precedence
+
+Verified complete-file replacement is allowed only when `PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md` passes every gate.
+
+Otherwise use manual anchored replacement.
+
+This changes deployment mechanics only; strict 1:1 and backend editability remain mandatory.
+
+## Current next action
+
+Checkout is closed. Do not automatically continue into another Checkout subtask.
+
+Before selecting the next Project-2 implementation task:
 
 ```text
-functions.php
-609,465 bytes
-11,657 logical lines
-version 2.7.13
-SHA256 62b13f9acb69838bae1543a196e3bd4497faf02e1f30f04f197f7c0fb6575631
-
-woocommerce/checkout/thankyou.php
-23,174 bytes
-341 logical lines
-SHA256 6556ba6faf6fd6d687b69e5d38cd2910dd89805405d842dc27a2caab4fec7cfa
-
-assets/css/spatial-flow.css
-577,717 bytes
-20,284 logical lines
-SHA256 4d54dcfc1bee2f55bbdd93df1e31cc0e155d6b9cdff917f141086bc25a2bb4b3
+1. reconcile the current page/task inventory against newest closure records;
+2. identify pages/tasks whose binary status is still Not done;
+3. preserve explicitly deferred work as deferred unless the user chooses to reopen it;
+4. present the next recommended task to the user before modifying source.
 ```
 
-## Step 04 candidate 2.7.15
-
-The existing full-file candidate remains an **internal comparison artifact** until it is explicitly requalified under `PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md`.
-
-```text
-functions.php
-612,015 bytes
-11,691 logical lines
-version 2.7.15
-SHA256 e1b4842345d7ccfa5057f4dc568dbd1705cf13f86606b78c81c009c3a521891f
-php -l PASS
-
-woocommerce/checkout/thankyou.php
-43,716 bytes
-579 logical lines
-SHA256 4aee09c6f26420c388d15da9a4a12fe247b49a70bdb065725f5d705553ab90cc
-php -l PASS
-
-assets/css/spatial-flow.css
-587,216 bytes
-20,639 logical lines
-SHA256 cba94f9615248a86f8d8d23b806621ed04f7b664e8c3a47727036510a33efef9
-CSS braces/comments PASS
-```
-
-Candidate properties previously established:
-
-```text
-- reconstructs live Step04 with the reference result-* composition
-- CSS replaces only the existing Step5F block; prefix/suffix byte-identical
-- functions.php changes only version + Step5F Customizer/helpers
-- Woo thank-you and gateway hooks preserved
-- all production statuses server-driven
-- no prototype_result / sessionStorage / browser state switching
-- no update_status / payment_complete / Place Order in theme
-- no hardcoded spatial_flow_crypto / USDT / TRON in theme
-- same-order Woo payment recovery used where needs_payment() is true
-```
-
-Before this candidate may be reissued for complete-file deployment, the new VFR policy requires a formal manifest, authorised full-diff boundary audit, rollback package/backup method, and postflight verifier.
-
-### Backend editability
-
-Legacy `sf_order_received_*` theme mods remain stored for rollback/history but no longer override strict-reference copy.
-
-Step04 V3 uses:
-
-```text
-sf_order_result_v3_*
-```
-
-with strict-reference defaults and backend editable state/common copy.
-
-Legacy saved Shop/Contact URLs remain safe fallback values until new V3 URLs are explicitly saved.
-
-## Current exact stop point
-
-```text
-Step 04 audit: COMPLETE
-Strict 1:1 lock: ACTIVE
-fresh live source identity: VERIFIED
-Step 04 candidate 2.7.15: INTERNAL SOURCE/STATIC CANDIDATE ONLY
-previous blind whole-file deployment instruction: WITHDRAWN
-verified full-file replacement policy: ACTIVE
-runtime deployment: NOT YET PERFORMED
-runtime/status/visual acceptance: NOT YET STARTED
-Crypto transfer-button typography defect: OPEN / DEFERRED UNTIL AFTER STEP04
-Checkout: Not done
-```
-
-## Exact next action
-
-Requalify the Step 04 2.7.15 candidate under `PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md`:
-
-```text
-1. prove current live SHA values equal the candidate base
-2. record complete authorised diff boundaries for all three files
-3. create a baseline/candidate manifest
-4. prepare timestamped backup + automatic abort/rollback verification method
-5. publish candidate SHA values
-6. only then reissue complete candidate files for deployment
-```
-
-If any gate fails, fall back to anchored manual replacement.
-
-After postflight identity/syntax PASS, run one consolidated Step04 runtime batch at:
-
-```text
-1366 desktop
-390 mobile
-360 mobile
-```
-
-After Step04 closes, immediately fix and re-accept the V0.3.0 `I HAVE COMPLETED THE TRANSFER` typography before declaring Checkout complete.
-
-## Hard boundaries
-
-```text
-- strict 1:1 visual parity is mandatory
-- preserve WooCommerce order/payment authority
-- preserve backend editability
-- no browser-authoritative result state
-- no fifth Checkout input step
-- no duplicate order/invoice
-- no theme-side Crypto gateway registry
-- exactly one native Place Order remains in Step03
-- no unverified whole-file deployment
-- verified whole-file replacement allowed only under the VFR policy
-- manual anchored replacement is mandatory fallback when VFR gates fail
-- no append-only CSS patch pile
-- Product Packaging remains closed
-- V0.3.0 remains accepted payment baseline
-- Step03 must not be reopened for Step04 visual work
-- Checkout remains Not done until Step04 + reopened Crypto typography defect both close
-```
+Do not reopen Header/Footer/Shop/Single Product/Cart/Checkout merely because an older progress document predates their final acceptance.
