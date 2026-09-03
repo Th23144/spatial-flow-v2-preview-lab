@@ -2,163 +2,81 @@
 
 > Historical filename retained for cross-window compatibility. This content is the current authoritative stop point.
 
-## Current authoritative state
+## Current binary state
 
 ```text
-Main-site Header: Completed 1:1
-Main-site Footer: Completed 1:1
-Shop archive: Completed 1:1
-Single Product: Completed 1:1
+Main-site Header: Not done
+Main-site Footer: Not done
+Shop archive: Not done
+Single Product: Not done
 Cart: Completed 1:1
 Checkout: Completed 1:1
 Thank You / WooCommerce Order Result: Completed 1:1
-
-Current next page: Home
-Home binary status: Not done
-Current executable step: Step 4G-A · Home current live source + ownership audit
-Source modification authorized: NO — audit first
 ```
 
-Authoritative inventory reconciliation:
+All previously unfinished main-site, utility and Blog pages remain `Not done`.
+
+Authoritative correction:
 
 ```text
-project2-progress/PROJECT2_POST_CHECKOUT_PAGE_INVENTORY_RECONCILIATION_20260903.md
-project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
+project2-progress/PROJECT2_USER_REOPEN_HEADER_FOOTER_SHOP_SINGLE_PRODUCT_20260903.md
 ```
 
-## Completed Checkout chain retained
-
-The final Checkout closure included more than happy-path screenshots. The following are all closed:
+## Why the four surfaces reopened
 
 ```text
-Step01 Address
-Step02 Shipping
-Product Packaging
-Step03 Payment
-Order Summary / Coupon / Trust
-Step03 native gateway-host presentation
-Step01 full-refresh native-field FOUC
-Order Summary AJAX white wash
-Step03 Payment AJAX white wash
-Crypto V0.3.0 transfer-button typography
-Step03 Terms/validation notice presentation
-Processing Payment transient presentation + submit lock
-direct mini-cart -> Checkout carried success-notice flash
-Crypto Refresh Status manual acknowledgement
-Step04 full WooCommerce status/result family
-final desktop + current 390px mobile regression sweeps
+Header:
+- user explicitly says it still requires adjustment;
+- exact remaining list may partly exist outside repository.
+
+Footer:
+- user explicitly says it still requires adjustment;
+- historical audit also questioned sufficiency of final actual backend-editability verification.
+
+Shop:
+- user explicitly says it is not complete;
+- per-product Editorial Place Note remains a known unimplemented reference layer pending real backend-editable product data.
+
+Single Product:
+- user questions the prior Completed 1:1 conclusion;
+- Story Behind / Care Ritual / Quiet Notes-Reviews remain deferred;
+- Closing Editor's Note is present in the static reference but lacks a clean final implementation/defer decision in the historical closure;
+- whole long-page strict 1:1 status must be re-audited.
 ```
 
-Checkout architecture remains:
+## Protected completed work
 
 ```text
-01 Address
-→ 02 Shipping
-→ 03 Payment
-→ 04 server-authoritative WooCommerce Order Result / Thank You
+Cart: Completed 1:1
+Checkout: Completed 1:1
+Thank You / Order Result: Completed 1:1
 ```
 
-No Review/fifth input step. Exactly one native WooCommerce Place Order.
+Checkout remains fully closed, including Step01/02/03/04, Product Packaging, Crypto Workspace visual closure, transient/error states and Refresh Status feedback.
 
-## WPCode 1706 boundary
+WPCode 1706 `收款页` remains disabled and must not be deleted during the current cleanup horizon.
+
+## Current executable step
+
+The previously announced Home audit is suspended.
+
+Current next step:
 
 ```text
-1706 — 收款页
-DISABLED
-DO NOT DELETE during the current cleanup horizon
+Step 4D-REOPEN-A · Single Product whole-page strict 1:1 re-audit
 ```
 
-Enabling it can restore the rejected rounded/light legacy Step03 gateway-card override.
+This first pass is audit-only. Do not edit source until the current live page and reference are reconciled.
 
-## Remaining `Not done` pages/page families
+Audit must classify:
 
 ```text
-Home
-Wishlist
-Track Order
-Account
-Search
-404
-About Us
-Services
-FAQ / Help
-Contact
-Utility / policy pages
-Blog Header/Footer branch
-Blog home
-Blog issue
-Blog article
+- already implemented and still acceptable
+- intentionally optional/deferred
+- actually missing from strict reference parity
+- current user-requested adjustments
+- backend-editability/data-source requirements
+- desktop/mobile visual regressions
 ```
 
-Older records describing Wishlist, Track Order, About Us, Services, FAQ or Search as rebuilt/passed are implementation history only; no later strict binary closure was found. Under the user's rule, if strict 1:1 was not completed, it remains `Not done`.
-
-## Explicit deferred / non-blocking work
-
-Do not reopen completed pages merely because these remain deferred:
-
-```text
-Single Product Story Behind optional module
-Single Product Care Ritual optional module
-Single Product real WooCommerce Reviews / Quiet Notes
-Step04 status-icon micro visual polish
-conditional Step02 no-method / true multi-rate regression
-future Crypto rate lock / QR / expiry / monitoring / WalletConnect / multi-asset/network
-Crypto Workspace rollout flag
-Project2-CLEAN-CSS global CSS consolidation
-```
-
-Detailed backlog:
-
-```text
-project2-progress/DEFERRED_PLANS.md
-```
-
-## Current next action — Home
-
-Recommended next implementation system:
-
-```text
-Step 4G · Home strict 1:1 rework
-```
-
-Static visual truth:
-
-```text
-preview/spatial-flow-v1.html
-```
-
-Do **not** start by editing CSS/PHP.
-
-First execute:
-
-```text
-Step 4G-A · Home current live source + ownership audit
-```
-
-Audit requirements:
-
-```text
-1. identify the actual WordPress page/template owning `/`;
-2. identify current Home PHP/template/shortcode/page-builder ownership;
-3. identify Home CSS and JavaScript owners;
-4. inventory current backend-editable Home copy/media/menu/product/category sources;
-5. compare current live Home structure against `preview/spatial-flow-v1.html`;
-6. classify each delta as visual, structural, dynamic-data, backend-editability or native-function ownership;
-7. only then define the bounded implementation plan.
-```
-
-The user should not be asked to make source changes until this audit has identified the current live owner files.
-
-## Execution rules retained
-
-```text
-- user's newly uploaded server-current file is the live source baseline
-- inspect size/lines/structure before edits
-- prefer anchored/in-place canonical replacement over append-only patches
-- backend editability is mandatory
-- preserve WordPress/WooCommerce/plugin real data and behavior
-- record meaningful steps in GitHub before advancing
-- issue an entire safe runtime test batch at once; do not surprise the user with foreseeable extra rounds afterward
-```
-
-Do not reopen Header/Footer/Shop/Single Product/Cart/Checkout/Thank You without new concrete regression evidence.
+After Single Product, recommended sequence is Header → Footer → Shop → Home unless the user explicitly changes it.
