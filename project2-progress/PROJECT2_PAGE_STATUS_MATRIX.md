@@ -1,6 +1,6 @@
 # Project 2 · Page Status Matrix
 
-Last updated: 2026-08-02  
+Last updated: 2026-09-03  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Status rule
@@ -12,9 +12,18 @@ Completed 1:1
 Not done
 ```
 
-`Completed 1:1` requires live WordPress/WooCommerce implementation, desktop/mobile validation, functional regression and backend-editability validation.
+`Completed 1:1` requires live WordPress/WooCommerce implementation, desktop/mobile validation, functional regression and backend-editability validation, subject to explicitly documented narrow exceptions/deferred items approved by the user.
 
-Accepted static HTML, visual approval or partial functionality do not count as page completion.
+Static HTML acceptance, partial functionality, an earlier rebuild, or a page that merely “looks okay” does not count as completion.
+
+Historical precedence:
+
+```text
+later explicit correction/rejection/rollback
+> later formal runtime/source/user acceptance
+> later standing policy
+> older plan/snapshot
+```
 
 ## 1. Shared global shell
 
@@ -22,38 +31,44 @@ Accepted static HTML, visual approval or partial functionality do not count as p
 |---|---|---|
 | Main-site Header | Completed 1:1 | Editorial header replacement and dynamic navigation behavior passed. |
 | Main-site Footer | Completed 1:1 | Editorial footer replacement and backend-editable content passed. |
-| Blog Header/Footer branch | Not done | No independent current 1:1 acceptance. |
+| Blog Header/Footer branch | Not done | No independent current strict 1:1 closure. |
 
 ## 2. Main commerce pages
 
 | Page | Static reference | Status | Notes |
 |---|---|---|---|
-| Home | `preview/spatial-flow-v1.html` | Not done | Earlier work does not count as current closure. |
+| Home | `preview/spatial-flow-v1.html` | Not done | Earlier work does not count as current strict closure. |
 | Shop archive | `preview/spatial-flow-shop-v1.html` | Completed 1:1 | Desktop/mobile, filters, product grid, pagination, regression and backend editability passed. |
-| Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Gallery, summary, options, attributes, related products, regression and backend mappings passed. |
+| Single Product | `preview/spatial-flow-product-v1.html` | Completed 1:1 | Gallery, summary, options, attributes, related products, regression and backend mappings passed. Optional Story Behind / Care Ritual / real Reviews remain explicitly deferred and do not reopen the page. |
 | Cart | `preview/spatial-flow-cart-v1.html` | Completed 1:1 | Strict geometry, mobile review, native regression, backend editability and invisible-frame removal passed. |
-| Checkout | Step 01/02/03, Crypto Workspace and Step-04 static references | Not done | S3–S9 static gates are accepted and closed. Repository ownership evidence is audited; current local-source verification, live reconstruction, gateway integration, regression and final backend-editability closure remain incomplete. |
-| Thank You / result system | `preview/spatial-flow-thank-you-v1.html` | Not done | S7 confirmed/pending static result family is accepted, but the live WooCommerce order-received implementation and server-state regression are not complete. |
+| Checkout | Step01/02/03, Crypto Workspace and Step04 result references | Completed 1:1 | Final closure 2026-09-03 after desktop/mobile sweeps plus transient/error-state closure. |
+| Thank You / Order Result system | `preview/spatial-flow-thank-you-v1.html` | Completed 1:1 | Step04 full-state strict visual/runtime regression FINAL PASS / CLOSED. Server status remains authoritative. |
+
+Checkout authoritative closure:
+
+```text
+project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+```
 
 ## 3. Account and utility pages
 
-| Page | Status |
-|---|---|
-| Wishlist | Not done |
-| Track Order | Not done |
-| Account | Not done |
-| Search | Not done |
-| 404 | Not done |
+| Page | Status | Notes |
+|---|---|---|
+| Wishlist | Not done | Earlier implementation/pass history does not contain a later strict binary closure. |
+| Track Order | Not done | Earlier native rebuild/pass history does not contain a later strict binary closure. |
+| Account | Not done | No strict final closure. |
+| Search | Not done | Earlier search fixes do not equal current page-level strict closure. |
+| 404 | Not done | No strict final closure. |
 
 ## 4. Brand, service and support pages
 
-| Page | Status |
-|---|---|
-| About Us | Not done |
-| Services | Not done |
-| FAQ / Help | Not done |
-| Contact | Not done |
-| Utility / policy pages | Not done |
+| Page | Status | Notes |
+|---|---|---|
+| About Us | Not done | Earlier implementation/pass history does not contain a later strict binary closure. |
+| Services | Not done | Earlier native rebuild/pass history does not contain a later strict binary closure. |
+| FAQ / Help | Not done | Earlier implementation/pass history does not contain a later strict binary closure. |
+| Contact | Not done | No strict final closure. |
+| Utility / policy pages | Not done | No family-level strict final closure. |
 
 ## 5. Blog / Journal pages
 
@@ -63,7 +78,7 @@ Accepted static HTML, visual approval or partial functionality do not count as p
 | Blog issue | Not done |
 | Blog article | Not done |
 
-## 6. Completed page count
+## 6. Current completed page/surface count
 
 ```text
 Main-site Header
@@ -71,142 +86,69 @@ Main-site Footer
 Shop archive
 Single Product
 Cart
+Checkout
+Thank You / Order Result system
 ```
 
-All other pages and page families remain:
+All other pages/page families listed above remain:
 
 ```text
 Not done
 ```
 
-## 7. Checkout static references
+## 7. Explicit deferred / non-blocking backlog
+
+These do not change the completed binary status of their owning pages unless the user later reopens them:
 
 ```text
-preview/spatial-flow-checkout-v1.html
-preview/spatial-flow-checkout-shipping-v1.html
-preview/spatial-flow-checkout-payment-v1.html
-preview/spatial-flow-checkout-crypto-invoice-v1.html
-preview/spatial-flow-checkout-crypto-invoice-v1.css
-preview/spatial-flow-checkout-crypto-invoice-v1.js
-preview/spatial-flow-checkout-crypto-states-v1.css
-preview/spatial-flow-checkout-crypto-states-v1.js
-preview/spatial-flow-thank-you-v1.html
-preview/spatial-flow-thank-you-v1.css
-preview/spatial-flow-thank-you-v1.js
+Single Product: Story Behind optional module
+Single Product: Care Ritual optional module
+Single Product: real WooCommerce Reviews / Quiet Notes module
+Step04: status-icon micro visual polish
+Step02: no-method / true multi-rate regression when such runtime configuration exists
+Crypto: production evolution (rate lock, QR, expiry/countdown, automatic monitoring, WalletConnect, multi-asset/network)
+Crypto Workspace rollout flag decision
+Project2-CLEAN-CSS global historical CSS consolidation
 ```
 
-Isolated future references:
+Backlog source:
 
 ```text
-preview/spatial-flow-checkout-crypto-select-v1.html
-preview/spatial-flow-checkout-crypto-workspace-future-v1.html
+project2-progress/DEFERRED_PLANS.md
 ```
 
-## 8. Approved Checkout semantics
+## 8. Current next page
+
+Recommended next implementation page:
 
 ```text
-01 Contact / Address
-02 Shipping
-03 Payment
-04 Order Confirmed / Thank You / Receipt
+Home
 ```
 
-Boundaries:
+First step is read-only:
 
 ```text
-- current confirmed method is Cryptocurrency
-- current plugin capability is fixed USDT on TRON / TRC20
-- Crypto uses a dedicated Step-03 Workspace in the accepted target architecture
-- one final Checkout commitment action
-- no redundant Crypto confirmation page
-- Step 04 never asks the customer to pay or confirm again
-- browser state never decides payment success
+Step 4G-A · Home current live source + ownership audit
 ```
 
-## 9. Accepted static gates
+Do not modify Home until the actual WordPress owner/template, Home-specific CSS/JS ownership and backend-editable sources are verified against:
 
 ```text
-S3 main Payment surface
-Step-03 reusable payment host
-S4A future selector reference
-S4B capability/integration contract
-S5 Waiting / Preparing / bootstrap-failure state family
-S6 verification / recovery state family
-S7 confirmed / pending Step-04 result family
-S8 active-flow link/session continuity
-S9 1366 / 390 / 360 responsive static acceptance
-future multi-asset integrated Workspace remains isolated
+preview/spatial-flow-v1.html
 ```
 
-## 10. Current live ownership gate
-
-Repository evidence confirms:
-
-```text
-- WooCommerce owns Checkout/order/payment truth
-- checkout-safe5.css is the Checkout-only visual/notice layer
-- functions.php contains at least one shared Cart/Checkout item-context filter
-- spatial-flow.js exact Checkout event ownership still requires current-source review
-- spatial_flow_crypto owns fixed USDT/TRON verification and payment_complete()
-- V0.2.6.1 does not activate REST/order-pay Workspace behavior
-```
-
-Current local-source verification is required for:
-
-```text
-functions.php
-spatial-flow.js
-checkout-safe5.css
-spatial-flow.css
-child-theme woocommerce/checkout/ files
-/checkout-2-2/ page/template assignment
-CartFlows configuration
-active payment plugins
-installed Crypto-plugin source/version
-```
-
-Record:
-
-```text
-project2-progress/STEP_4F_LIVE_CHECKOUT_OWNERSHIP_AUDIT.md
-```
-
-## 11. Current Checkout execution order
-
-```text
-current local-source verification
-→ exact ownership matrix
-→ bounded reconstruction plan
-→ plugin/workspace integration
-→ Sandbox and unfinished-payment recovery testing
-→ server-authoritative result tests
-→ production replacement
-→ backend-editability verification
-→ final Checkout 1:1 closure
-```
-
-## 12. Current deployed Cart baseline
-
-```text
-functions.php
-Version: 2.7.8
-SHA256: 5bd9f8b307d1b59eaa92bf31d3640e2d4ba48bca6de7a640b705d5e75f9ef00b
-
-assets/js/spatial-flow.js
-SHA256: 7442ee92167ae383b933c6db0281f14ea56a75733339818c3e4858d77d52651b
-
-assets/css/spatial-flow.css
-SHA256: 79ab7e08308903f0e1693076b4817402515ada52944c575c1e827324cc6161fd
-```
-
-These hashes do not replace a current Checkout source read.
-
-## 13. Hard boundary
+## 9. Hard boundaries
 
 ```text
 - preserve backend editability
-- WooCommerce/plugin remain the transaction authority
-- do not hardcode dynamic commerce data in production
-- do not modify live Checkout, CartFlows, theme or gateway before current ownership is verified
-- do not mark Checkout Completed 1:1 before live implementation, regression and backend-editability closure
+- preserve WordPress/WooCommerce/plugin data authority
+- do not hardcode dynamic commerce data
+- do not reopen completed Header/Footer/Shop/Single Product/Cart/Checkout/Step04 without new concrete evidence
+- do not promote any remaining page to Completed 1:1 without strict current live acceptance
+```
+
+Reconciliation record:
+
+```text
+project2-progress/PROJECT2_POST_CHECKOUT_PAGE_INVENTORY_RECONCILIATION_20260903.md
 ```
