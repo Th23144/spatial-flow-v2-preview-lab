@@ -3,264 +3,189 @@
 Last updated: 2026-09-03  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
-This file records deferred, optional or later-regression work that must not be lost.
+This file records deferred, optional, unresolved or later-regression work that must not be lost.
 
-Deferred work does **not** reopen a page already marked `Completed 1:1` unless the user explicitly reopens it or new concrete regression evidence appears.
+Important 2026-09-03 correction:
+
+```text
+Header: Not done
+Footer: Not done
+Shop: Not done
+Single Product: Not done
+```
+
+The user explicitly reopened these surfaces. Therefore older language saying their deferred items are automatically non-blocking no longer controls the current binary page status.
+
+Authoritative correction:
+
+```text
+project2-progress/PROJECT2_USER_REOPEN_HEADER_FOOTER_SHOP_SINGLE_PRODUCT_20260903.md
+```
 
 ---
 
-## 1. Single Product optional long editorial sections
+## 1. Single Product whole-page reopen backlog
 
-Source static reference:
+Reference:
 
 ```text
 preview/spatial-flow-product-v1.html
 ```
 
-Current accepted model:
+Known state:
 
 ```text
-The Piece: implemented and accepted
+The Piece: implemented and previously accepted
 Story Behind: deferred
 Care Ritual: deferred
 Quiet Notes / Reviews: deferred
+Closing Editor's Note: unresolved audit item
+whole long-page strict 1:1 status: REOPENED
 ```
 
-The page itself remains:
-
-```text
-Single Product: Completed 1:1
-```
-
-### 1.1 The Piece — implemented, not deferred
-
-```text
-Step 4D-1-F · The Piece 商品正文 editorial 区接入：Passed
-```
-
-Operational model:
-
-```text
-Use WooCommerce product long description / the_content.
-Treat it as the real product detail introduction.
-No fictional story required.
-```
-
-### 1.2 Story Behind — deferred
-
-Potential future step:
+### 1.1 Story Behind
 
 ```text
 Step 4D-LATER-STORY · Story Behind optional editorial module
 ```
 
-Reason:
+Do not fabricate maker/origin/location/story content. A future implementation must use real product-specific editable data where content exists.
 
-```text
-This block is article-like and product-specific. It should not force fabricated background stories for every product.
-```
-
-Future model:
-
-```text
-Use only when real origin/selection/design notes exist.
-Do not hardcode fake makers, origins, locations or stories.
-```
-
-Recommended optional per-product sources:
-
-```text
-story heading
-story image
-origin / selection note
-material/design note
-source/location note
-optional meta rows
-```
-
-### 1.3 Care Ritual — deferred
-
-Potential future step:
+### 1.2 Care Ritual
 
 ```text
 Step 4D-LATER-CARE-RITUAL · Care Ritual optional usage guide module
 ```
 
-Reason:
+Must not merely duplicate Trust Strip/Product Attributes care text. If retained, use a genuine operational data model.
 
-```text
-Current page already has Trust Strip and Product Attributes care fields. A richer ritual module must not merely duplicate those fields.
-```
-
-Potential structure:
-
-```text
-Daily use
-Seasonal reset
-Storage / repair / recharge
-```
-
-Recommended source:
-
-```text
-Global default template + optional per-product override
-```
-
-### 1.4 Quiet Notes / Reviews — deferred
-
-Potential future step:
+### 1.3 Quiet Notes / Reviews
 
 ```text
 Step 4D-LATER-REVIEWS · Verified WooCommerce Reviews editorial display
 ```
 
-Reason:
+Use real approved/verified WooCommerce reviews only. If none exist, hide or use a truthful review-entry path. Never fabricate quotes, names, ratings or dates.
+
+### 1.4 Closing Editor's Note
+
+The static reference contains a Closing Editor's Note section. Historical Project-2 records do not provide a sufficiently clean final decision proving that this section was either implemented or explicitly/validly deferred at whole-page closure.
+
+It must be included in the new Single Product whole-page audit.
+
+### 1.5 Whole-page closure question
+
+The old page closure coexisted with multiple deferred long-form reference sections. The user has now explicitly questioned that conclusion. The new audit must decide which sections are legitimately optional operational deviations and which are actual strict-reference omissions.
+
+Until then:
 
 ```text
-The site does not yet have enough real review content. Fake reviews must never be created.
-```
-
-Future model:
-
-```text
-Read real approved / verified WooCommerce reviews.
-If none exist, hide the module or show a restrained real review-entry path.
-Do not fabricate quotes, names, locations, ratings or dates.
+Single Product: Not done
 ```
 
 ---
 
-## 2. CSS cleanup backlog
+## 2. Shop reopen backlog
 
-### 2.1 Single Product CSS consolidation — completed
-
-```text
-Step 4D-CLEAN1 · Single Product CSS consolidation: Passed
-```
-
-Audit:
+Reference:
 
 ```text
-project2-progress/STEP_4D_CLEAN1_AUDIT.md
+preview/spatial-flow-shop-v1.html
 ```
 
-### 2.2 Global CSS consolidation — deferred
+### 2.1 Per-product Editorial Place Note
 
-Potential future step:
+Historical Shop rework intentionally did not fake the reference's per-product place note because the product-card template lacked a dedicated real backend source.
+
+If implemented, use a backend-editable per-product field (historically suggested example: `_sf_placement`) and dynamic output from `content-product.php`.
+
+Do not hardcode reference/sample place-note text.
+
+### 2.2 Other user-recorded Shop adjustments
+
+The user explicitly states Shop still has additional adjustments. Some may exist only in the user's own notes and were not fully captured in GitHub. Capture them during the fresh Shop audit rather than guessing.
+
+Current status:
+
+```text
+Shop: Not done
+```
+
+---
+
+## 3. Header / Footer reopened work
+
+### Header
+
+User explicitly says Header still requires adjustment. Exact remaining details are not fully available in GitHub.
+
+```text
+Header: Not done
+```
+
+### Footer
+
+User explicitly says Footer still requires adjustment.
+
+Existing menu/theme_mod helper ownership demonstrates preservation intent, but final actual backend-editability/visual closure must be revalidated rather than inferred from source presence.
+
+```text
+Footer: Not done
+```
+
+---
+
+## 4. CSS cleanup backlog
+
+### Single Product CSS consolidation — historical completed cleanup
+
+`Step 4D-CLEAN1` itself passed as a bounded cleanup action. That does not mean the reopened Single Product page is currently complete.
+
+### Global CSS consolidation — deferred
 
 ```text
 Project2-CLEAN-CSS · Global CSS consolidation pass
 ```
 
-Purpose:
-
-```text
-Clean historical append-only/overlapping rules across Header, Footer, Shop, Product, Cart, Checkout, Blog and utility pages only after visual work is sufficiently stable.
-```
-
-Known historical owners to revisit include:
-
-```text
-Step 4B-R2-B Footer Dark Editorial
-Step 4C-B Shop Hero Editorial
-Product Archive Visual Scope Fix
-Phase Shop Visual 1 / 2 / 2.1 overlap
-remaining unscoped related-products repair blocks
-other historical Project-2 append-only rules found during final audit
-```
-
-Do not use the cleanup pass as permission to reopen accepted visuals or change native behavior.
+Known historical owners include Footer Dark Editorial, Shop rework remnants/overlap, related-products repair rules and other old Project-2 patches. Run only after page-specific visual work is stable enough.
 
 ---
 
-## 3. Shop status correction
+## 5. Checkout / Step04 future items
 
-Historical text in this file previously said:
-
-```text
-Step 4C-REWORK1 · Shop desktop + mobile 1:1 rework: In progress
-```
-
-That is now stale.
-
-Current authoritative status:
-
-```text
-Shop archive: Completed 1:1
-```
-
-The full controlled desktop/mobile rework, pagination follow-up and accepted mobile treatment are closed.
-
-Any old note about first-screen product exposure is historical/non-blocking unless the user explicitly reopens it with current evidence.
-
----
-
-## 4. Checkout / Step04 deferred or later-regression items
-
-Checkout itself is now:
+Checkout and Thank You / Order Result remain:
 
 ```text
 Checkout: Completed 1:1
-Thank You / WooCommerce Order Result: Completed 1:1
+Thank You / Order Result: Completed 1:1
 ```
 
-The following remain deferred/non-blocking:
-
-### 4.1 Step04 status-icon micro polish
+Deferred/non-blocking items remain:
 
 ```text
-Deferred explicitly by user.
+Step04 status-icon micro polish
+conditional Step02 no-method / true multi-rate regression
+future Crypto quote/rate lock, QR, expiry, monitoring, WalletConnect, multi-asset/network
+Crypto Workspace rollout flag decision
 ```
 
-The current Step04 visual/status family remains accepted. Do not reopen it merely to optimize the waiting/failed/cancelled icon family.
-
-### 4.2 Conditional Step02 shipping regressions
+WPCode 1706 `收款页`:
 
 ```text
-No-method case
-true multi-rate case
-```
-
-Run only when the actual WooCommerce configuration exposes those states. Current absence is not a Checkout blocker.
-
-### 4.3 Crypto production evolution
-
-Outside current Project-2 visual closure:
-
-```text
-real-time fiat -> USDT quote / rate lock
-QR
-countdown / invoice expiry enforcement
-replacement-invoice lifecycle
-automatic chain/address monitoring
-Cron / Worker / Webhook
-WalletConnect
-multi-asset selection
-multi-network selection
-```
-
-### 4.4 Crypto Workspace rollout flag
-
-Workspace ON/OFF is a rollout/deployment decision, not a strict 1:1 completion issue.
-
-### 4.5 WPCode 1706 retained rollback material
-
-```text
-1706 `收款页`
 DISABLED
-DO NOT DELETE during current closure/cleanup horizon
+DO NOT DELETE during current cleanup horizon
 ```
-
-It is not a feature backlog item, but this state must not be forgotten because enabling it regresses the accepted Step03 gateway-host visual.
 
 ---
 
-## 5. Current `Not done` page backlog
-
-These are not optional enhancements; they are still incomplete Project-2 pages/page families:
+## 6. Current remaining page backlog
 
 ```text
+Header
+Footer
 Home
+Shop
+Single Product
 Wishlist
 Track Order
 Account
@@ -277,35 +202,18 @@ Blog issue
 Blog article
 ```
 
-Current recommended next page:
+Protected completed surfaces:
 
 ```text
-Home
+Cart
+Checkout
+Thank You / Order Result
 ```
 
-First step:
+Current recommended next step:
 
 ```text
-Step 4G-A · Home current live source + ownership audit
+Step 4D-REOPEN-A · Single Product whole-page strict 1:1 re-audit
 ```
 
-Reference:
-
-```text
-preview/spatial-flow-v1.html
-```
-
----
-
-## 6. Backlog policy
-
-```text
-Any future delayed plan, optional enhancement, cleanup pass or paused idea should be written here or linked from here.
-A deferred item must not silently become a blocker to a page already formally closed unless the user explicitly reopens it or new concrete evidence requires reopening.
-```
-
-Inventory reconciliation:
-
-```text
-project2-progress/PROJECT2_POST_CHECKOUT_PAGE_INVENTORY_RECONCILIATION_20260903.md
-```
+Recommended after that: Header → Footer → Shop → Home, unless the user explicitly changes the order.
