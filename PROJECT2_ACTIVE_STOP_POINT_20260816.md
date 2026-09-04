@@ -1,4 +1,4 @@
-# Project 2 · Active Stop Point · 2026-09-03
+# Project 2 · Active Stop Point · 2026-09-04
 
 > Historical filename retained for cross-window compatibility. This content is the current authoritative stop point.
 
@@ -16,32 +16,10 @@ Thank You / WooCommerce Order Result: Completed 1:1
 
 All previously unfinished main-site, utility and Blog pages remain `Not done`.
 
-Authoritative correction:
+Authoritative reopen correction:
 
 ```text
 project2-progress/PROJECT2_USER_REOPEN_HEADER_FOOTER_SHOP_SINGLE_PRODUCT_20260903.md
-```
-
-## Why the four surfaces reopened
-
-```text
-Header:
-- user explicitly says it still requires adjustment;
-- exact remaining list may partly exist outside repository.
-
-Footer:
-- user explicitly says it still requires adjustment;
-- historical audit also questioned sufficiency of final actual backend-editability verification.
-
-Shop:
-- user explicitly says it is not complete;
-- per-product Editorial Place Note remains a known unimplemented reference layer pending real backend-editable product data.
-
-Single Product:
-- user questions the prior Completed 1:1 conclusion;
-- Story Behind / Care Ritual / Quiet Notes-Reviews remain deferred;
-- Closing Editor's Note is present in the static reference but lacks a clean final implementation/defer decision in the historical closure;
-- whole long-page strict 1:1 status must be re-audited.
 ```
 
 ## Protected completed work
@@ -58,46 +36,82 @@ WPCode 1706 `收款页` remains disabled and must not be deleted during the curr
 
 ## Current executable step
 
-The previously announced Home audit is suspended.
+The previously announced Home audit remains suspended.
 
 Current step:
 
 ```text
-Step 4D-REOPEN-A · Single Product whole-page strict 1:1 re-audit
+Step 4D-REOPEN · Single Product remediation
 ```
 
-Repository/history side of this audit is now complete and recorded in:
+Repository/history re-audit:
 
 ```text
 project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_WHOLE_PAGE_REAUDIT_20260903.md
 ```
 
-Current gate:
+User-supplemented remediation inventory:
 
 ```text
-WAITING FOR USER SUPPLEMENT
+project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_FINAL_REMEDIATION_PLAN_20260904.md
+project2-progress/STEP_4D_REOPEN_A_SECTION02_EDITORIAL_READING_DIRECTION_20260904.md
 ```
 
-The user will first supply their own current Single Product adjustment/cleanup list. Do not request files, screenshots, runtime tests or source edits before that supplement is merged with the repository findings.
-
-After the user supplement:
+Current returned-source audit:
 
 ```text
-merge user list + repository audit
-→ freeze one authoritative remediation inventory
-→ decide Story Behind / Care Ritual / Quiet Notes-Reviews / Closing Editor's Note disposition
-→ request one complete current-live evidence/source batch
-→ bounded implementation + regression
+project2-progress/STEP_4D_REOPEN_B_SINGLE_PRODUCT_CURRENT_SOURCE_AUDIT_20260904.md
 ```
 
-Repository audit classification already includes:
+## Locked Single Product direction
 
 ```text
-- historically implemented/passed Hero, Summary, Gallery, Placement Suggestion, Trust Strip, Product Attributes, The Piece, Related Products
-- explicitly deferred Story Behind / Care Ritual / Quiet Notes-Reviews
-- unresolved Closing Editor's Note
-- known unscoped .sf-related-products CSS cleanup risk
-- need for fresh current-live desktop/mobile/backend/source verification only after scope freeze
+1. Remove the unwanted white/card frame from the options/add-to-cart area while preserving native WooCommerce variation/quantity/cart logic.
+2. Restore a real Wishlist action by reusing the existing YITH Wishlist owner; do not create a second wishlist state system.
+3. Add a real Share action; do not render a decorative fake control.
+4. Flatten Product Attributes toward the reference information band and remove the oversized frontend heading treatment.
+5. Section 01 = The Piece / product long description. It is already implemented and renders only when WooCommerce long description content exists.
+6. Section 02 = editorial reading / wearing interpretation. Keep it as a real visual section with product-specific → category → global fallback ownership rather than fabricated maker biographies.
+7. Section 03 = care & ritual. Keep it as a required useful content layer distinct from the short Product Attributes care field.
+8. Section 04 = real WooCommerce reviews only; no fabricated names, ratings or quotes.
+9. Rebuild Complete The Room cards so image and text read as separate editorial surfaces rather than a white card frame; preserve dynamic recommendation logic.
+10. Restore a reference-like gift CTA above the footer, aligned with the real Checkout packaging system rather than a fake gift flow.
+11. Clean old unscoped `.sf-related-products` cascade debt instead of stacking another repair patch.
 ```
 
-After Single Product, recommended sequence is Header → Footer → Shop → Home unless the user explicitly changes it.
+## Current source facts
+
+Returned current-live files passed source checks:
+
+```text
+woocommerce/single-product.php
+- php -l PASS
+
+functions.php
+- SPATIAL_FLOW_CHILD_VERSION 2.7.22
+- php -l PASS
+
+assets/css/spatial-flow.css
+- braces balanced
+- CSS parser errors 0
+```
+
+Important Section 01 finding:
+
+```text
+It is not CSS-hidden.
+The template only renders it when WooCommerce product long description / post_content is non-empty.
+```
+
+## Current gate
+
+```text
+SOURCE AUDIT COMPLETE
+READY TO DEFINE / EXECUTE BOUNDED REMEDIATION BATCHES
+```
+
+Do not request full-page regression screenshots yet. Implement and source-verify bounded Single Product batches first, then run one consolidated desktop + mobile + function/backend regression at the end.
+
+Do not reopen Cart, Checkout or Step04 during this Single Product pass.
+
+After Single Product, recommended sequence remains Header → Footer → Shop → Home unless the user explicitly changes it.
