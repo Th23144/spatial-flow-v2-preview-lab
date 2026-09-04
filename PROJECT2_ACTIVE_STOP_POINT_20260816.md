@@ -60,23 +60,44 @@ WPCode 1706 `收款页` remains disabled and must not be deleted during the curr
 
 The previously announced Home audit is suspended.
 
-Current next step:
+Current step:
 
 ```text
 Step 4D-REOPEN-A · Single Product whole-page strict 1:1 re-audit
 ```
 
-This first pass is audit-only. Do not edit source until the current live page and reference are reconciled.
-
-Audit must classify:
+Repository/history side of this audit is now complete and recorded in:
 
 ```text
-- already implemented and still acceptable
-- intentionally optional/deferred
-- actually missing from strict reference parity
-- current user-requested adjustments
-- backend-editability/data-source requirements
-- desktop/mobile visual regressions
+project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_WHOLE_PAGE_REAUDIT_20260903.md
+```
+
+Current gate:
+
+```text
+WAITING FOR USER SUPPLEMENT
+```
+
+The user will first supply their own current Single Product adjustment/cleanup list. Do not request files, screenshots, runtime tests or source edits before that supplement is merged with the repository findings.
+
+After the user supplement:
+
+```text
+merge user list + repository audit
+→ freeze one authoritative remediation inventory
+→ decide Story Behind / Care Ritual / Quiet Notes-Reviews / Closing Editor's Note disposition
+→ request one complete current-live evidence/source batch
+→ bounded implementation + regression
+```
+
+Repository audit classification already includes:
+
+```text
+- historically implemented/passed Hero, Summary, Gallery, Placement Suggestion, Trust Strip, Product Attributes, The Piece, Related Products
+- explicitly deferred Story Behind / Care Ritual / Quiet Notes-Reviews
+- unresolved Closing Editor's Note
+- known unscoped .sf-related-products CSS cleanup risk
+- need for fresh current-live desktop/mobile/backend/source verification only after scope freeze
 ```
 
 After Single Product, recommended sequence is Header → Footer → Shop → Home unless the user explicitly changes it.
