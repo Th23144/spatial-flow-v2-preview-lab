@@ -11,15 +11,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 3. PROJECT2_DOCS_INDEX.md
 4. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 5. project2-progress/PROJECT2_USER_REOPEN_HEADER_FOOTER_SHOP_SINGLE_PRODUCT_20260903.md
-6. PROJECT2_STEP_RECORDING_POLICY.md
-7. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-8. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-9. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-10. PROJECT2_CSS_MAINTENANCE_POLICY.md
-11. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-12. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-13. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-14. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+6. project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_WHOLE_PAGE_REAUDIT_20260903.md
+7. PROJECT2_STEP_RECORDING_POLICY.md
+8. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+9. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+10. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+11. PROJECT2_CSS_MAINTENANCE_POLICY.md
+12. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+13. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+14. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+15. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -71,16 +72,43 @@ The user explicitly reopened Header, Footer and Shop on 2026-09-03 and stated th
 
 ### Single Product
 
-Repository-backed unresolved/deferred scope:
+Repository-side whole-page re-audit is recorded in:
 
 ```text
-The Piece: implemented
-Story Behind: deferred
-Care Ritual: deferred
-Quiet Notes / Reviews: deferred
-Closing Editor's Note: present in the static reference and requires explicit closure decision/audit
-whole long-page strict 1:1 completion: must be re-audited
+project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_WHOLE_PAGE_REAUDIT_20260903.md
 ```
+
+Repository-backed classification:
+
+```text
+Historically implemented/passed:
+- Hero / Summary
+- Gallery + mobile fill behavior
+- Placement Suggestion editable ownership
+- Trust Strip editable ownership
+- Product Attributes editable ownership
+- The Piece via WooCommerce long description / the_content
+- Related Products / Complete The Room
+
+Explicitly deferred:
+- Story Behind
+- Care Ritual
+- Quiet Notes / Reviews
+
+Unresolved:
+- Closing Editor's Note
+- whole long-page current strict 1:1 status
+- present-day desktop/mobile/backend/source drift
+- unscoped legacy .sf-related-products CSS ownership risk
+```
+
+The repository-first audit is complete. Current gate is:
+
+```text
+WAITING FOR USER SUPPLEMENT
+```
+
+Do not request Single Product files/screenshots/tests yet. First merge the user's own current adjustment/cleanup list with the repository audit, then request one complete current-live evidence/source batch.
 
 Do not fabricate Story/Review content merely to fill the reference.
 
@@ -120,20 +148,39 @@ DO NOT DELETE during current cleanup horizon
 
 The previously announced Home audit is suspended.
 
-Current recommended next step:
+Current step:
 
 ```text
 Step 4D-REOPEN-A · Single Product whole-page strict 1:1 re-audit
 ```
 
-Recommended order after that:
+Current sub-state:
 
 ```text
-1. Single Product whole-page strict re-audit
-2. Main-site Header strict re-audit
-3. Main-site Footer strict re-audit
-4. Shop strict re-audit
-5. Home strict 1:1 work
+Repository/history audit complete
+Awaiting user's own Single Product adjustment/cleanup supplement
+No source modification authorized
+No runtime/manual test batch requested yet
+```
+
+After the user supplement:
+
+```text
+merge user list + repository audit
+→ one authoritative remediation inventory
+→ explicit decision on deferred/unresolved long-form sections
+→ one batched current-live source/evidence request
+→ bounded implementation
+→ desktop/mobile/function/backend regression
+```
+
+Recommended order after Single Product:
+
+```text
+1. Main-site Header strict re-audit
+2. Main-site Footer strict re-audit
+3. Shop strict re-audit
+4. Home strict 1:1 work
 ```
 
 This order can be changed by a later explicit user instruction.
@@ -149,4 +196,5 @@ This order can be changed by a later explicit user instruction.
 - do not fabricate dynamic/editorial content
 - do not reopen Cart/Checkout/Thank You without new concrete evidence
 - mobile remains an independent production-quality state
+- batch foreseeable manual work only after the combined remediation scope is frozen
 ```
