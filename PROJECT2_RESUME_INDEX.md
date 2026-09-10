@@ -1,6 +1,6 @@
 # Project 2 · Resume Index
 
-Last updated: 2026-09-03  
+Last updated: 2026-09-10  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Read these first
@@ -12,15 +12,18 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 4. project2-progress/PROJECT2_PAGE_STATUS_MATRIX.md
 5. project2-progress/PROJECT2_USER_REOPEN_HEADER_FOOTER_SHOP_SINGLE_PRODUCT_20260903.md
 6. project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_WHOLE_PAGE_REAUDIT_20260903.md
-7. PROJECT2_STEP_RECORDING_POLICY.md
-8. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-9. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-10. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-11. PROJECT2_CSS_MAINTENANCE_POLICY.md
-12. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-13. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-14. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-15. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+7. project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_FINAL_REMEDIATION_PLAN_20260904.md
+8. project2-progress/STEP_4D_REOPEN_SECTION03_CARE_RITUAL_IMPLEMENTATION_SPEC_20260910.md
+9. project2-progress/STEP_4D_REOPEN_SECTION03_RETURNED_SOURCE_REAUDIT_PASS_20260910.md
+10. PROJECT2_STEP_RECORDING_POLICY.md
+11. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+12. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+13. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+14. PROJECT2_CSS_MAINTENANCE_POLICY.md
+15. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+16. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+17. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+18. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -66,7 +69,7 @@ Blog issue
 Blog article
 ```
 
-The user explicitly reopened Header, Footer and Shop on 2026-09-03 and stated they still require adjustment. The user also reopened Single Product because its whole-page completion is uncertain and further adjustments/omissions remain.
+The user explicitly reopened Header, Footer and Shop on 2026-09-03 and stated they still require adjustment. The user also reopened Single Product because its whole-page completion was uncertain and further adjustments/omissions remained.
 
 ## Reopened-surface evidence
 
@@ -78,7 +81,13 @@ Repository-side whole-page re-audit is recorded in:
 project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_WHOLE_PAGE_REAUDIT_20260903.md
 ```
 
-Repository-backed classification:
+Authoritative remediation direction is recorded in:
+
+```text
+project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_FINAL_REMEDIATION_PLAN_20260904.md
+```
+
+Historical classification at reopen time:
 
 ```text
 Historically implemented/passed:
@@ -90,27 +99,51 @@ Historically implemented/passed:
 - The Piece via WooCommerce long description / the_content
 - Related Products / Complete The Room
 
-Explicitly deferred:
+Historically deferred:
 - Story Behind
 - Care Ritual
 - Quiet Notes / Reviews
 
-Unresolved:
+Historically unresolved:
 - Closing Editor's Note
 - whole long-page current strict 1:1 status
 - present-day desktop/mobile/backend/source drift
 - unscoped legacy .sf-related-products CSS ownership risk
 ```
 
-The repository-first audit is complete. Current gate is:
+Do not read those historical deferred/unresolved labels as the current stop point. Later dated remediation records supersede them where applicable.
+
+Current later state:
 
 ```text
-WAITING FOR USER SUPPLEMENT
+- B5 Hero metadata / subtitle / shipping-note work is closed after backend-to-frontend verification on desktop and 390px mobile.
+- Section 03 · Care & Ritual implementation contract is frozen.
+- The returned Section 03 three-file source set has passed source inspection.
+- Corrected functions.php is byte-identical to the previously validated bounded correction candidate.
+- Section 03 is SOURCE VALIDATED but NOT YET RUNTIME / USER ACCEPTED.
 ```
 
-Do not request Single Product files/screenshots/tests yet. First merge the user's own current adjustment/cleanup list with the repository audit, then request one complete current-live evidence/source batch.
+Current Section 03 source identity for corrected `functions.php`:
 
-Do not fabricate Story/Review content merely to fill the reference.
+```text
+bytes: 622,421
+logical lines: 11,891
+SHA256: 805b701cfdbeca27982bf20725922b4013281e512cd53494672230fb73fb9706
+child version: 2.7.39
+PHP syntax: PASS
+```
+
+Current Section 03 runtime gate:
+
+```text
+1. Product Data → General → Section 03 fields: enter explicit test content and save.
+2. Desktop: verify Section 03 heading and three columns.
+3. 390px mobile: verify one-column editorial stack and no framing/overflow regression.
+4. Clear Everyday / Seasonal / Repair bodies and save: verify the entire Section 03 disappears.
+5. Restore desired content afterward if needed.
+```
+
+Do not fabricate Section 04 / review content. Section 04 remains real WooCommerce reviews only.
 
 ### Shop
 
@@ -146,32 +179,33 @@ DO NOT DELETE during current cleanup horizon
 
 ## Current exact stop point
 
-The previously announced Home audit is suspended.
+The previously announced Home audit remains suspended while the reopened Single Product remediation is active.
 
 Current step:
 
 ```text
-Step 4D-REOPEN-A · Single Product whole-page strict 1:1 re-audit
+Step 4D-REOPEN · Single Product remediation
 ```
 
 Current sub-state:
 
 ```text
-Repository/history audit complete
-Awaiting user's own Single Product adjustment/cleanup supplement
-No source modification authorized
-No runtime/manual test batch requested yet
+Section 03 · Care & Ritual
+SOURCE GATE: PASS
+RUNTIME / VISUAL / USER ACCEPTANCE: PENDING
 ```
 
-After the user supplement:
+Exact next action:
 
 ```text
-merge user list + repository audit
-→ one authoritative remediation inventory
-→ explicit decision on deferred/unresolved long-form sections
-→ one batched current-live source/evidence request
-→ bounded implementation
-→ desktop/mobile/function/backend regression
+install the source-validated Section 03 implementation set if not already installed
+→ Product Data backend field/save test
+→ desktop three-column visual test
+→ 390px one-column mobile test
+→ all-three-bodies-empty disappearance test
+→ restore desired content if needed
+→ record PASS / FAIL in GitHub
+→ only then advance to the next Single Product remediation item
 ```
 
 Recommended order after Single Product:
@@ -197,4 +231,5 @@ This order can be changed by a later explicit user instruction.
 - do not reopen Cart/Checkout/Thank You without new concrete evidence
 - mobile remains an independent production-quality state
 - batch foreseeable manual work only after the combined remediation scope is frozen
+- every meaningful action/state/result must be recorded in GitHub before the next meaningful action begins
 ```
