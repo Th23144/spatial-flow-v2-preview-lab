@@ -20,15 +20,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 12. project2-progress/STEP_4D_REOPEN_SECTION03_EMPTY_CONTENT_ACCEPTANCE_AND_CLOSURE_20260911.md
 13. project2-progress/STEP_4D_REOPEN_SECTION03_NUMBERING_REFINEMENT_DECISION_C_20260911.md
 14. project2-progress/STEP_4D_REOPEN_SECTION03_OPTION_C_RUNTIME_REFERENCE_CORRECTION_20260911.md
-15. PROJECT2_STEP_RECORDING_POLICY.md
-16. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-17. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-18. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-19. PROJECT2_CSS_MAINTENANCE_POLICY.md
-20. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-21. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-22. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-23. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+15. project2-progress/STEP_4D_REOPEN_SECTION03_BORDER_1TO1_RETURNED_SOURCE_AUDIT_PASS_20260911.md
+16. PROJECT2_STEP_RECORDING_POLICY.md
+17. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+18. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+19. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+20. PROJECT2_CSS_MAINTENANCE_POLICY.md
+21. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+22. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+23. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+24. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -130,8 +131,9 @@ Current later state:
 - The user later selected refinement Option C: remove i. / ii. / iii. unit numbering entirely.
 - Option C source edit passed and the live screenshots confirm the numbering is removed successfully.
 - A later strict-reference audit found border drift around Section 03 / Related Products and on mobile unit separators.
-- Static reference supports Section 03 bottom border only; current live CSS incorrectly adds Section 03 top border, Related Products top border, and mobile per-unit top borders.
-- Therefore the Option C refinement is NOT YET FULLY CLOSED; bounded CSS correction is required before final runtime acceptance.
+- Static reference supports Section 03 bottom border only; the live CSS had added a Section 03 top border, Related Products top border, and mobile per-unit top borders.
+- The bounded border correction has now returned and passed whole-file source diff / syntax / structure audit.
+- Final desktop + 390px runtime confirmation of the corrected border state is still pending before the Option C refinement can be closed.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -144,21 +146,36 @@ child version: 2.7.39
 PHP syntax: PASS
 ```
 
-Current Option C live/source version:
+Current Option C + strict-reference border-correction source:
 
 ```text
-child version: 2.7.40
-numbering output removed from single-product.php
-numbering CSS rule removed from spatial-flow.css
-strict reference border correction still pending
+functions.php bytes: 622,421
+logical lines: 11,891
+SHA256: 1f83346ca54910c2972dac1e3c6514022b54199ec03bfb21431a548c23f160ee
+child version: 2.7.41
+PHP syntax: PASS
+
+spatial-flow.css bytes: 605,895
+logical lines: 21,392
+SHA256: 7c4eba175f6b77eec3dc225879a39465d86cbcb2e604c92a4b19fd87eae48b27
+brace balance: 3358 / 3358
+comment balance: 280 / 280
+
+numbering output remains removed
+Section 03 top border removed
+mobile per-unit separator borders removed
+Related Products top border removed
+Section 03 bottom border retained
+runtime confirmation of this corrected state: PENDING
 ```
 
-Section 03 closure / later correction records:
+Section 03 closure / later refinement records:
 
 ```text
 project2-progress/STEP_4D_REOPEN_SECTION03_EMPTY_CONTENT_ACCEPTANCE_AND_CLOSURE_20260911.md
 project2-progress/STEP_4D_REOPEN_SECTION03_NUMBERING_REFINEMENT_DECISION_C_20260911.md
 project2-progress/STEP_4D_REOPEN_SECTION03_OPTION_C_RUNTIME_REFERENCE_CORRECTION_20260911.md
+project2-progress/STEP_4D_REOPEN_SECTION03_BORDER_1TO1_RETURNED_SOURCE_AUDIT_PASS_20260911.md
 ```
 
 Do not fabricate Section 04 / review content. Section 04 remains real WooCommerce reviews only.
@@ -210,22 +227,19 @@ Current sub-state:
 ```text
 Section 03 · Care & Ritual core implementation: ACCEPTED / CLOSED
 Option C numbering removal: LIVE / NUMBERING VISUALLY PASS
-Strict 1:1 border transition: FAIL / CORRECTION PENDING
+Strict 1:1 border correction: SOURCE PASS / RUNTIME PENDING
 Single Product overall binary page status: Not done
 ```
 
 Exact next action:
 
 ```text
-bounded CSS-only correction
-→ remove Section 03 border-top
-→ keep Section 03 border-bottom
-→ remove mobile care-unit separator borders while preserving spacing
-→ remove Related Products border-top
-→ bump child version for deterministic CSS refresh
-→ return edited CSS + functions.php for source audit
-→ desktop + 390px runtime recheck
-→ only then close Option C refinement and advance
+install/use the validated 2.7.41 functions.php + corrected spatial-flow.css
+→ desktop runtime recheck: no Section 03 top border, one bottom divider only
+→ 390px runtime recheck: no per-unit separator borders, spacing preserved
+→ confirm Option C numbering remains absent
+→ record user/runtime acceptance
+→ only then close the Option C refinement and resume the next unresolved Single Product item
 ```
 
 Recommended order after Single Product:
