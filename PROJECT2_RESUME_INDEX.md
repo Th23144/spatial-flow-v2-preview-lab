@@ -16,15 +16,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 8. project2-progress/STEP_4D_REOPEN_SECTION03_CARE_RITUAL_IMPLEMENTATION_SPEC_20260910.md
 9. project2-progress/STEP_4D_REOPEN_SECTION03_RETURNED_SOURCE_REAUDIT_PASS_20260910.md
 10. project2-progress/STEP_4D_REOPEN_SECTION03_DESKTOP_RUNTIME_ACCEPTANCE_20260911.md
-11. PROJECT2_STEP_RECORDING_POLICY.md
-12. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-13. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-14. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-15. PROJECT2_CSS_MAINTENANCE_POLICY.md
-16. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-17. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-18. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-19. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+11. project2-progress/STEP_4D_REOPEN_SECTION03_MOBILE_RUNTIME_ACCEPTANCE_20260911.md
+12. PROJECT2_STEP_RECORDING_POLICY.md
+13. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+14. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+15. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+16. PROJECT2_CSS_MAINTENANCE_POLICY.md
+17. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+18. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+19. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+20. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -121,9 +122,10 @@ Current later state:
 - Section 03 · Care & Ritual implementation contract is frozen.
 - The returned Section 03 three-file source set has passed source inspection.
 - Corrected functions.php is byte-identical to the previously validated bounded correction candidate.
-- Section 03 desktop runtime / structure checkpoint has passed using backend-entered test values.
+- Section 03 desktop runtime / structure checkpoint passed using backend-entered test values.
+- Section 03 390px mobile runtime / visual checkpoint passed: one-column stack, correct unit order, no visible horizontal overflow, no clipped framing, and normal transition into Complete The Room.
 - The reference-faithful i. / ii. / iii. markers were judged visually awkward by the user, but the user explicitly deferred that refinement until after Section 03 acceptance.
-- Section 03 is SOURCE VALIDATED and DESKTOP RUNTIME VALIDATED, but NOT YET FULLY RUNTIME / USER ACCEPTED.
+- Section 03 is SOURCE VALIDATED, DESKTOP RUNTIME VALIDATED and MOBILE RUNTIME VALIDATED, but NOT YET FULLY USER ACCEPTED.
 ```
 
 Current Section 03 source identity for corrected `functions.php`:
@@ -142,12 +144,13 @@ Current Section 03 runtime gate:
 Completed:
 1. Product Data → General → Section 03 fields: explicit test content entered and saved.
 2. Desktop: heading + three columns + backend-to-frontend persistence verified.
+3. 390px mobile: one-column editorial stack and no framing/overflow regression verified.
 
 Pending:
-3. 390px mobile: verify one-column editorial stack and no framing/overflow regression.
 4. Clear Everyday / Seasonal / Repair bodies and save: verify the entire Section 03 disappears.
 5. Restore desired content afterward if needed.
-6. After Section 03 closure, optionally revisit i. / ii. / iii. numbering as a separate bounded visual refinement.
+6. Record final Section 03 PASS / FAIL / user acceptance in GitHub.
+7. After Section 03 closure, optionally revisit i. / ii. / iii. numbering as a separate bounded visual refinement.
 ```
 
 Do not fabricate Section 04 / review content. Section 04 remains real WooCommerce reviews only.
@@ -200,7 +203,7 @@ Current sub-state:
 Section 03 · Care & Ritual
 SOURCE GATE: PASS
 DESKTOP RUNTIME / STRUCTURE: PASS
-390px MOBILE RUNTIME / VISUAL: PENDING
+390px MOBILE RUNTIME / VISUAL: PASS
 EMPTY-CONTENT DISAPPEARANCE: PENDING
 FULL USER ACCEPTANCE: PENDING
 ```
@@ -208,11 +211,13 @@ FULL USER ACCEPTANCE: PENDING
 Exact next action:
 
 ```text
-390px one-column mobile test
+clear all three Section 03 body fields (Everyday / Seasonal / Repair)
+→ save/update the product
+→ reload the live Single Product page
+→ verify the entire Section 03 block disappears with no empty heading/numbering/frame left behind
 → record PASS / FAIL in GitHub
-→ all-three-bodies-empty disappearance test
 → restore desired content if needed
-→ record final Section 03 PASS / FAIL / user acceptance in GitHub
+→ record final Section 03 user acceptance
 → only then revisit the deferred numbering refinement or advance to the next Single Product remediation item
 ```
 
