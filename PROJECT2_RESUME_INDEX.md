@@ -25,15 +25,17 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 17. project2-progress/STEP_4D_REOPEN_SECTION04_WOOCOMMERCE_REVIEWS_NO_ACCOUNT_POLICY_20260911.md
 18. project2-progress/STEP_4D_REOPEN_SECTION04_REVIEWS_OMITTED_CURRENT_VERSION_DECISION_20260911.md
 19. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_STRICT_1TO1_REOPEN_20260911.md
-20. PROJECT2_STEP_RECORDING_POLICY.md
-21. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-22. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-23. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-24. PROJECT2_CSS_MAINTENANCE_POLICY.md
-25. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-26. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-27. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-28. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+20. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_STRICT_1TO1_EXECUTION_START_20260911.md
+21. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_STRICT_1TO1_SOURCE_MAP_AND_EDIT_DELTA_20260911.md
+22. PROJECT2_STEP_RECORDING_POLICY.md
+23. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+24. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+25. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+26. PROJECT2_CSS_MAINTENANCE_POLICY.md
+27. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+28. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+29. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+30. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -146,7 +148,9 @@ Current later state:
 - WooCommerce review capability is not deleted and may be reconsidered in a later phase, but no review UI/workflow is authorized now.
 - Before proceeding to Gift CTA, the user supplied fresh reference-vs-live screenshots and explicitly reopened Related Products / Complete The Room because it still materially diverges from the static reference.
 - Related Products is therefore no longer treated as historically passed for current strict 1:1 acceptance; it is REOPENED / NOT 1:1 pending fresh source/runtime remediation.
-- Gift CTA / Closing Editor's Note planning is paused until this earlier Related Products mismatch is resolved.
+- Fresh source mapping confirms the current block is structurally different from the reference, while real dynamic owners already exist for product image/title/permalink/price/SKU plus `_sf_piece_edition` and `_sf_placement`.
+- A bounded three-file correction is now authorized: replace only the Related Products markup, replace the existing scoped `Step 4D-1-E` CSS block in place, and bump the child version to 2.7.42.
+- Gift CTA / Closing Editor's Note planning remains paused until this earlier Related Products mismatch is resolved.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -207,6 +211,8 @@ Related Products current strict-1:1 state:
 
 ```text
 Related Products / Complete The Room: REOPENED / NOT 1:1
+Manual source edit: AUTHORIZED
+Returned source audit: PENDING
 ```
 
 Fresh user screenshots establish that the current live block materially differs from the static reference in heading treatment, ancillary copy, card framing, product-item composition, controls, proportions and overall editorial rhythm. Preserve WooCommerce dynamic ownership; do not hardcode reference products or fabricate unavailable edition/editorial metadata.
@@ -260,6 +266,8 @@ Section 03 · Care & Ritual core implementation: ACCEPTED / CLOSED
 Option C numbering removal + strict-reference border refinement: USER / RUNTIME ACCEPTED / CLOSED
 Section 04 · Reviews: CURRENT-VERSION INTENTIONAL OMISSION / CLOSED AS PRODUCT DECISION
 Related Products / Complete The Room: REOPENED / NOT 1:1
+Related Products strict 1:1 source map: COMPLETE
+Related Products bounded manual edit: AUTHORIZED / RETURNED SOURCE PENDING
 Gift CTA / Closing Editor's Note: PAUSED pending Related Products remediation
 Single Product overall binary page status: Not done
 ```
@@ -267,11 +275,13 @@ Single Product overall binary page status: Not done
 Exact next action:
 
 ```text
-audit static-reference Related Products markup/CSS against current live/source ownership
-→ classify visual-only mismatches versus data-model-dependent fields
-→ freeze a bounded strict-1:1 remediation plan
-→ preserve WooCommerce dynamic products/links/prices/images
-→ do not proceed to Gift CTA until Related Products is accepted
+user applies the recorded bounded Related Products edit to:
+- woocommerce/single-product.php
+- assets/css/spatial-flow.css
+- functions.php (version only)
+→ return all three files
+→ whole-file diff + syntax/structure audit
+→ only after SOURCE PASS proceed to desktop + 390px runtime acceptance
 ```
 
 Recommended order after Single Product:
