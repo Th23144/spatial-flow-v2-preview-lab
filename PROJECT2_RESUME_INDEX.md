@@ -18,15 +18,17 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 10. project2-progress/STEP_4D_REOPEN_SECTION03_DESKTOP_RUNTIME_ACCEPTANCE_20260911.md
 11. project2-progress/STEP_4D_REOPEN_SECTION03_MOBILE_RUNTIME_ACCEPTANCE_20260911.md
 12. project2-progress/STEP_4D_REOPEN_SECTION03_EMPTY_CONTENT_ACCEPTANCE_AND_CLOSURE_20260911.md
-13. PROJECT2_STEP_RECORDING_POLICY.md
-14. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-15. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-16. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-17. PROJECT2_CSS_MAINTENANCE_POLICY.md
-18. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-19. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-20. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-21. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+13. project2-progress/STEP_4D_REOPEN_SECTION03_NUMBERING_REFINEMENT_DECISION_C_20260911.md
+14. project2-progress/STEP_4D_REOPEN_SECTION03_OPTION_C_RUNTIME_REFERENCE_CORRECTION_20260911.md
+15. PROJECT2_STEP_RECORDING_POLICY.md
+16. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+17. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+18. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+19. PROJECT2_CSS_MAINTENANCE_POLICY.md
+20. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+21. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+22. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+23. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -124,24 +126,39 @@ Current later state:
 - Section 03 desktop runtime / structure passed.
 - Section 03 390px mobile runtime / visual passed.
 - Section 03 hide-when-all-three-bodies-empty behavior passed; the user confirmed the entire section disappeared.
-- Section 03 · Care & Ritual is ACCEPTED / CLOSED as an implementation milestone.
-- The reference-faithful i. / ii. / iii. markers were judged visually awkward by the user and are preserved as a separate deferred visual-refinement task.
+- Section 03 · Care & Ritual implementation milestone was accepted and closed.
+- The user later selected refinement Option C: remove i. / ii. / iii. unit numbering entirely.
+- Option C source edit passed and the live screenshots confirm the numbering is removed successfully.
+- A later strict-reference audit found border drift around Section 03 / Related Products and on mobile unit separators.
+- Static reference supports Section 03 bottom border only; current live CSS incorrectly adds Section 03 top border, Related Products top border, and mobile per-unit top borders.
+- Therefore the Option C refinement is NOT YET FULLY CLOSED; bounded CSS correction is required before final runtime acceptance.
 ```
 
-Current accepted Section 03 source identity for corrected `functions.php`:
+Protected accepted Section 03 baseline before Option C refinement:
 
 ```text
-bytes: 622,421
+functions.php bytes: 622,421
 logical lines: 11,891
 SHA256: 805b701cfdbeca27982bf20725922b4013281e512cd53494672230fb73fb9706
 child version: 2.7.39
 PHP syntax: PASS
 ```
 
-Section 03 closure record:
+Current Option C live/source version:
+
+```text
+child version: 2.7.40
+numbering output removed from single-product.php
+numbering CSS rule removed from spatial-flow.css
+strict reference border correction still pending
+```
+
+Section 03 closure / later correction records:
 
 ```text
 project2-progress/STEP_4D_REOPEN_SECTION03_EMPTY_CONTENT_ACCEPTANCE_AND_CLOSURE_20260911.md
+project2-progress/STEP_4D_REOPEN_SECTION03_NUMBERING_REFINEMENT_DECISION_C_20260911.md
+project2-progress/STEP_4D_REOPEN_SECTION03_OPTION_C_RUNTIME_REFERENCE_CORRECTION_20260911.md
 ```
 
 Do not fabricate Section 04 / review content. Section 04 remains real WooCommerce reviews only.
@@ -191,20 +208,25 @@ Step 4D-REOPEN · Single Product remediation
 Current sub-state:
 
 ```text
-Section 03 · Care & Ritual: ACCEPTED / CLOSED
-Deferred bounded refinement: i. / ii. / iii. numbering visual treatment
+Section 03 · Care & Ritual core implementation: ACCEPTED / CLOSED
+Option C numbering removal: LIVE / NUMBERING VISUALLY PASS
+Strict 1:1 border transition: FAIL / CORRECTION PENDING
 Single Product overall binary page status: Not done
 ```
 
 Exact next action:
 
 ```text
-plan the deferred Section 03 numbering refinement as a separate visual decision
-→ compare alternatives against the accepted Section 03 layout
-→ implement only after user direction is selected
+bounded CSS-only correction
+→ remove Section 03 border-top
+→ keep Section 03 border-bottom
+→ remove mobile care-unit separator borders while preserving spacing
+→ remove Related Products border-top
+→ bump child version for deterministic CSS refresh
+→ return edited CSS + functions.php for source audit
+→ desktop + 390px runtime recheck
+→ only then close Option C refinement and advance
 ```
-
-If the user explicitly skips the numbering refinement, resume the authoritative Single Product remediation plan at the next unresolved Single Product item.
 
 Recommended order after Single Product:
 
