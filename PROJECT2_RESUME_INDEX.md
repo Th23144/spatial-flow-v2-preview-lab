@@ -21,15 +21,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 13. project2-progress/STEP_4D_REOPEN_SECTION03_NUMBERING_REFINEMENT_DECISION_C_20260911.md
 14. project2-progress/STEP_4D_REOPEN_SECTION03_OPTION_C_RUNTIME_REFERENCE_CORRECTION_20260911.md
 15. project2-progress/STEP_4D_REOPEN_SECTION03_BORDER_1TO1_RETURNED_SOURCE_AUDIT_PASS_20260911.md
-16. PROJECT2_STEP_RECORDING_POLICY.md
-17. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-18. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-19. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-20. PROJECT2_CSS_MAINTENANCE_POLICY.md
-21. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-22. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-23. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-24. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+16. project2-progress/STEP_4D_REOPEN_SECTION03_OPTION_C_FINAL_RUNTIME_ACCEPTANCE_20260911.md
+17. PROJECT2_STEP_RECORDING_POLICY.md
+18. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+19. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+20. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+21. PROJECT2_CSS_MAINTENANCE_POLICY.md
+22. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+23. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+24. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+25. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -129,11 +130,12 @@ Current later state:
 - Section 03 hide-when-all-three-bodies-empty behavior passed; the user confirmed the entire section disappeared.
 - Section 03 · Care & Ritual implementation milestone was accepted and closed.
 - The user later selected refinement Option C: remove i. / ii. / iii. unit numbering entirely.
-- Option C source edit passed and the live screenshots confirm the numbering is removed successfully.
-- A later strict-reference audit found border drift around Section 03 / Related Products and on mobile unit separators.
-- Static reference supports Section 03 bottom border only; the live CSS had added a Section 03 top border, Related Products top border, and mobile per-unit top borders.
-- The bounded border correction has now returned and passed whole-file source diff / syntax / structure audit.
-- Final desktop + 390px runtime confirmation of the corrected border state is still pending before the Option C refinement can be closed.
+- Option C source edit passed and live screenshots confirmed the numbering removal.
+- A strict-reference audit then identified border drift: Section 03 top border, Related Products top border, and mobile per-unit separator borders were not present in the static reference.
+- The bounded correction removed those extra borders while retaining the single Section 03 bottom divider.
+- Returned `functions.php` v2.7.41 and corrected `spatial-flow.css` passed whole-file source diff / syntax / structure audit.
+- Fresh desktop and 390px live screenshots now pass: no Section 03 top border, no mobile per-unit separator borders, one bottom divider only, no duplicate Related Products top border, numbering remains absent.
+- Therefore Section 03 Option C + strict-reference border refinement is USER / RUNTIME ACCEPTED and CLOSED.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -146,7 +148,7 @@ child version: 2.7.39
 PHP syntax: PASS
 ```
 
-Current Option C + strict-reference border-correction source:
+Current accepted Section 03 refined source:
 
 ```text
 functions.php bytes: 622,421
@@ -161,21 +163,25 @@ SHA256: 7c4eba175f6b77eec3dc225879a39465d86cbcb2e604c92a4b19fd87eae48b27
 brace balance: 3358 / 3358
 comment balance: 280 / 280
 
-numbering output remains removed
-Section 03 top border removed
-mobile per-unit separator borders removed
-Related Products top border removed
-Section 03 bottom border retained
-runtime confirmation of this corrected state: PENDING
+accepted live behavior:
+- numbering absent
+- no Section 03 top border
+- no mobile per-unit separator borders
+- no Related Products top border
+- one Section 03 bottom divider retained
+- desktop three-column layout retained
+- mobile one-column stack retained
+- previously accepted all-three-bodies-empty full-section hide behavior remains protected because its predicate/save/render logic was untouched by the bounded visual refinements
 ```
 
-Section 03 closure / later refinement records:
+Section 03 closure / refinement records:
 
 ```text
 project2-progress/STEP_4D_REOPEN_SECTION03_EMPTY_CONTENT_ACCEPTANCE_AND_CLOSURE_20260911.md
 project2-progress/STEP_4D_REOPEN_SECTION03_NUMBERING_REFINEMENT_DECISION_C_20260911.md
 project2-progress/STEP_4D_REOPEN_SECTION03_OPTION_C_RUNTIME_REFERENCE_CORRECTION_20260911.md
 project2-progress/STEP_4D_REOPEN_SECTION03_BORDER_1TO1_RETURNED_SOURCE_AUDIT_PASS_20260911.md
+project2-progress/STEP_4D_REOPEN_SECTION03_OPTION_C_FINAL_RUNTIME_ACCEPTANCE_20260911.md
 ```
 
 Do not fabricate Section 04 / review content. Section 04 remains real WooCommerce reviews only.
@@ -226,20 +232,18 @@ Current sub-state:
 
 ```text
 Section 03 · Care & Ritual core implementation: ACCEPTED / CLOSED
-Option C numbering removal: LIVE / NUMBERING VISUALLY PASS
-Strict 1:1 border correction: SOURCE PASS / RUNTIME PENDING
+Option C numbering removal + strict-reference border refinement: USER / RUNTIME ACCEPTED / CLOSED
 Single Product overall binary page status: Not done
 ```
 
 Exact next action:
 
 ```text
-install/use the validated 2.7.41 functions.php + corrected spatial-flow.css
-→ desktop runtime recheck: no Section 03 top border, one bottom divider only
-→ 390px runtime recheck: no per-unit separator borders, spacing preserved
-→ confirm Option C numbering remains absent
-→ record user/runtime acceptance
-→ only then close the Option C refinement and resume the next unresolved Single Product item
+re-open the authoritative Single Product remediation plan
+→ identify the next unresolved item after Section 03
+→ audit current live/source ownership before editing
+→ do not fabricate Section 04 reviews; Section 04 remains real WooCommerce reviews only
+→ record the next bounded step before implementation begins
 ```
 
 Recommended order after Single Product:
