@@ -1,6 +1,6 @@
 # Project 2 · Resume Index
 
-Last updated: 2026-09-10  
+Last updated: 2026-09-11  
 Repository: `Th23144/spatial-flow-v2-preview-lab`
 
 ## Read these first
@@ -15,15 +15,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 7. project2-progress/STEP_4D_REOPEN_A_SINGLE_PRODUCT_FINAL_REMEDIATION_PLAN_20260904.md
 8. project2-progress/STEP_4D_REOPEN_SECTION03_CARE_RITUAL_IMPLEMENTATION_SPEC_20260910.md
 9. project2-progress/STEP_4D_REOPEN_SECTION03_RETURNED_SOURCE_REAUDIT_PASS_20260910.md
-10. PROJECT2_STEP_RECORDING_POLICY.md
-11. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-12. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-13. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-14. PROJECT2_CSS_MAINTENANCE_POLICY.md
-15. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-16. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-17. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-18. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+10. project2-progress/STEP_4D_REOPEN_SECTION03_DESKTOP_RUNTIME_ACCEPTANCE_20260911.md
+11. PROJECT2_STEP_RECORDING_POLICY.md
+12. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+13. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+14. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+15. PROJECT2_CSS_MAINTENANCE_POLICY.md
+16. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+17. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+18. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+19. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -32,7 +33,7 @@ Historical precedence:
 later explicit user correction/reopen
 > later formal runtime/source/user acceptance
 > standing policy
-> older plan/snapshot/pass record
+> older plan/snapshot/pass record as historical evidence
 ```
 
 ## Current binary page status
@@ -120,7 +121,9 @@ Current later state:
 - Section 03 · Care & Ritual implementation contract is frozen.
 - The returned Section 03 three-file source set has passed source inspection.
 - Corrected functions.php is byte-identical to the previously validated bounded correction candidate.
-- Section 03 is SOURCE VALIDATED but NOT YET RUNTIME / USER ACCEPTED.
+- Section 03 desktop runtime / structure checkpoint has passed using backend-entered test values.
+- The reference-faithful i. / ii. / iii. markers were judged visually awkward by the user, but the user explicitly deferred that refinement until after Section 03 acceptance.
+- Section 03 is SOURCE VALIDATED and DESKTOP RUNTIME VALIDATED, but NOT YET FULLY RUNTIME / USER ACCEPTED.
 ```
 
 Current Section 03 source identity for corrected `functions.php`:
@@ -136,11 +139,15 @@ PHP syntax: PASS
 Current Section 03 runtime gate:
 
 ```text
-1. Product Data → General → Section 03 fields: enter explicit test content and save.
-2. Desktop: verify Section 03 heading and three columns.
+Completed:
+1. Product Data → General → Section 03 fields: explicit test content entered and saved.
+2. Desktop: heading + three columns + backend-to-frontend persistence verified.
+
+Pending:
 3. 390px mobile: verify one-column editorial stack and no framing/overflow regression.
 4. Clear Everyday / Seasonal / Repair bodies and save: verify the entire Section 03 disappears.
 5. Restore desired content afterward if needed.
+6. After Section 03 closure, optionally revisit i. / ii. / iii. numbering as a separate bounded visual refinement.
 ```
 
 Do not fabricate Section 04 / review content. Section 04 remains real WooCommerce reviews only.
@@ -192,20 +199,21 @@ Current sub-state:
 ```text
 Section 03 · Care & Ritual
 SOURCE GATE: PASS
-RUNTIME / VISUAL / USER ACCEPTANCE: PENDING
+DESKTOP RUNTIME / STRUCTURE: PASS
+390px MOBILE RUNTIME / VISUAL: PENDING
+EMPTY-CONTENT DISAPPEARANCE: PENDING
+FULL USER ACCEPTANCE: PENDING
 ```
 
 Exact next action:
 
 ```text
-install the source-validated Section 03 implementation set if not already installed
-→ Product Data backend field/save test
-→ desktop three-column visual test
-→ 390px one-column mobile test
+390px one-column mobile test
+→ record PASS / FAIL in GitHub
 → all-three-bodies-empty disappearance test
 → restore desired content if needed
-→ record PASS / FAIL in GitHub
-→ only then advance to the next Single Product remediation item
+→ record final Section 03 PASS / FAIL / user acceptance in GitHub
+→ only then revisit the deferred numbering refinement or advance to the next Single Product remediation item
 ```
 
 Recommended order after Single Product:
