@@ -29,15 +29,17 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 21. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_STRICT_1TO1_SOURCE_MAP_AND_EDIT_DELTA_20260911.md
 22. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_RETURNED_SOURCE_AUDIT_START_20260911.md
 23. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_RETURNED_SOURCE_AUDIT_PASS_20260911.md
-24. PROJECT2_STEP_RECORDING_POLICY.md
-25. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-26. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-27. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-28. PROJECT2_CSS_MAINTENANCE_POLICY.md
-29. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-30. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-31. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-32. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+24. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_REFERENCE_CODE_IMPLEMENTATION_DELTA_20260911.md
+25. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_FINAL_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260911.md
+26. PROJECT2_STEP_RECORDING_POLICY.md
+27. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+28. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+29. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+30. PROJECT2_CSS_MAINTENANCE_POLICY.md
+31. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+32. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+33. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+34. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -141,21 +143,26 @@ Current later state:
 - A strict-reference audit then identified border drift: Section 03 top border, Related Products top border, and mobile per-unit separator borders were not present in the static reference.
 - The bounded correction removed those extra borders while retaining the single Section 03 bottom divider.
 - Returned `functions.php` v2.7.41 and corrected `spatial-flow.css` passed whole-file source diff / syntax / structure audit.
-- Fresh desktop and 390px live screenshots now pass: no Section 03 top border, no mobile per-unit separator borders, one bottom divider only, no duplicate Related Products top border, numbering remains absent.
+- Fresh desktop and 390px live screenshots pass: no Section 03 top border, no mobile per-unit separator borders, one bottom divider only, no duplicate Related Products top border, numbering remains absent.
 - Therefore Section 03 Option C + strict-reference border refinement is USER / RUNTIME ACCEPTED and CLOSED.
-- Section 04 · Quiet Notes / Reviews was then reconsidered as a product-level feature decision.
+- Section 04 · Quiet Notes / Reviews was reconsidered as a product-level feature decision.
 - The user explicitly decided that the current storefront version will not include the Reviews feature/section.
 - Section 04 is therefore an INTENTIONAL CURRENT-VERSION OMISSION, not an unfinished implementation gap.
-- The static reference's Reviews section is now an explicit exception from strict 1:1 duplication for this current product architecture.
-- WooCommerce review capability is not deleted and may be reconsidered in a later phase, but no review UI/workflow is authorized now.
-- Before proceeding to Gift CTA, the user supplied fresh reference-vs-live screenshots and explicitly reopened Related Products / Complete The Room because it still materially diverges from the static reference.
-- Related Products is therefore no longer treated as historically passed for current strict 1:1 acceptance; it is REOPENED / NOT 1:1 pending fresh runtime remediation.
-- Fresh source mapping confirms the current block is structurally different from the reference, while real dynamic owners already exist for product image/title/permalink/price/SKU plus `_sf_piece_edition` and `_sf_placement`.
-- The bounded three-file correction was returned by the user and passed the required source gate.
-- `functions.php` changed only `2.7.41 -> 2.7.42`; `single-product.php` changed only the Related Products output block; `spatial-flow.css` changed only the existing scoped Step 4D-1-E Related Products block in one contiguous hunk.
-- Both PHP files lint PASS; CSS brace/comment balance passes and tinycss2 reports zero top-level parse errors.
-- Runtime/visual acceptance is now authorized for fresh desktop + 390px evidence.
-- Gift CTA / Closing Editor's Note planning remains paused until this earlier Related Products mismatch is resolved.
+- The static reference's Reviews section is an explicit exception from strict 1:1 duplication for the current product architecture.
+- WooCommerce review capability is not deleted and may be reconsidered later, but no review UI/workflow is authorized now.
+- Before proceeding to Gift CTA, the user supplied fresh reference-vs-live screenshots and explicitly reopened Related Products because it materially diverged from the static reference.
+- Related Products was rebuilt toward the static editorial composition using real WooCommerce image/title/price/permalink data plus optional product-specific editorial metadata.
+- Desktop geometry was corrected to the reference 1440px container with 56px internal left/right gutters, yielding approximately 302px-wide four-column product images with 40px gaps.
+- The heading now renders as `Pieces of a similar weight.` and the `View the full edit →` action is present.
+- Framed Woo-style cards / category labels / Explore buttons were removed in favor of the reference-style open editorial product presentation.
+- The initial SKU mapping was corrected: WooCommerce SKU remains an inventory/operations identifier, while a separate public `_sf_piece_reference` field now owns the front-end Spatial Flow Reference / Piece Code.
+- Optional Edition remains owned by `_sf_piece_edition`; optional Placement Note remains owned by `_sf_placement`; empty fields are hidden and no fake values are fabricated.
+- The user-provided desktop evidence confirms the reference-style `VIEW PIECE →` image interaction works.
+- The user-provided 390px mobile evidence confirms the one-column layout, optional placement-note composition, long-title wrapping and no horizontal overflow.
+- The user explicitly confirmed mobile navigation is one-tap: the first tap on a Related Products image navigates directly to the product page; the visible `VIEW PIECE →` state is only transient tap/focus feedback, not a two-tap defect.
+- Therefore Related Products / `Pieces of a similar weight.` is USER / RUNTIME ACCEPTED and CLOSED.
+- This closure does not mark the whole Single Product page Completed 1:1.
+- Because the user explicitly identified earlier historical PASS areas that may still contain strict-reference drift, the next step is a fresh top-to-bottom back-audit of already-implemented Single Product surfaces before any Gift CTA / Closing Editor's Note implementation resumes.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -215,38 +222,31 @@ Do not classify the missing Reviews block as a strict 1:1 defect in the current 
 Related Products current strict-1:1 state:
 
 ```text
-Related Products / Complete The Room: REOPENED / NOT 1:1
-Returned source gate: PASS
-Desktop runtime/visual acceptance: PENDING
-390px mobile runtime/visual acceptance: PENDING
+Related Products / Pieces of a similar weight.: USER / RUNTIME ACCEPTED / CLOSED
+Desktop runtime/visual acceptance: PASS
+390px mobile runtime/visual acceptance: PASS
+Desktop hover VIEW PIECE →: PASS
+Mobile one-tap navigation: PASS
+Public Reference / Piece Code ownership: PASS
+WooCommerce native SKU separation: PASS
 ```
 
-Current returned source identities:
+Latest accepted ownership / runtime notes:
 
 ```text
-functions.php
-- bytes: 622,421
-- logical lines: 11,891
-- SHA256: 837a9a3f574f57292725e22074e44d8470e864017ce138c13edda69e048a73e5
-- child version: 2.7.42
-- PHP syntax: PASS
-
-woocommerce/single-product.php
-- bytes: 38,460
-- logical lines: 765
-- SHA256: e3a25b490179861f7b32bea093c99be65a9c69f4d8fb00c848ff9fa8899d996f
-- PHP syntax: PASS
-
-assets/css/spatial-flow.css
-- bytes: 603,308
-- logical lines: 21,348
-- SHA256: 2b947f8e9cdb7341293a63c21e24828f11651430587701865b987374c860b353
-- brace balance: 3352 / 3352
-- comment balance: 280 / 280
-- tinycss2 top-level parse errors: 0
+functions.php child version: 2.7.44
+Reference / Piece Code meta: _sf_piece_reference
+WooCommerce native SKU: inventory / operations only for this Related Products presentation
+Edition meta: _sf_piece_edition
+Placement meta: _sf_placement
+empty optional editorial fields: hidden; never fabricate values
 ```
 
-Fresh user screenshots established that the pre-remediation live block materially differed from the static reference in heading treatment, ancillary copy, card framing, product-item composition, controls, proportions and overall editorial rhythm. The returned source now maps the reference composition to real WooCommerce product ownership without hardcoding reference products or fabricating unavailable edition/editorial metadata. Runtime acceptance is still required before closure.
+Closure record:
+
+```text
+project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_FINAL_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260911.md
+```
 
 ### Shop
 
@@ -296,23 +296,21 @@ Current sub-state:
 Section 03 · Care & Ritual core implementation: ACCEPTED / CLOSED
 Option C numbering removal + strict-reference border refinement: USER / RUNTIME ACCEPTED / CLOSED
 Section 04 · Reviews: CURRENT-VERSION INTENTIONAL OMISSION / CLOSED AS PRODUCT DECISION
-Related Products / Complete The Room: REOPENED / NOT 1:1
-Related Products strict 1:1 source map: COMPLETE
-Related Products returned source gate: PASS
-Related Products runtime acceptance: PENDING
-Gift CTA / Closing Editor's Note: PAUSED pending Related Products remediation
+Related Products / Pieces of a similar weight.: USER / RUNTIME ACCEPTED / CLOSED
+Gift CTA / Closing Editor's Note: STILL PAUSED
+Single Product historical-PASS back-audit: NEXT
 Single Product overall binary page status: Not done
 ```
 
 Exact next action:
 
 ```text
-install the returned v2.7.42 Related Products source on the live/local WordPress test site
-→ capture fresh desktop screenshot of the full Related Products block
-→ capture fresh 390px mobile screenshot of the Related Products block
-→ verify real dynamic title/image/price/link plus available SKU/edition/placement behavior
-→ compare against preview/spatial-flow-product-v1.html
-→ record PASS/FAIL before any Gift CTA or later Single Product work
+re-read the authoritative Single Product whole-page re-audit and final remediation plan
+→ compare the current live Single Product from the top against preview/spatial-flow-product-v1.html
+→ re-check historically passed surfaces (Hero / Summary, Gallery, Placement Suggestion, Trust Strip, Product Attributes, Section 01 / The Piece, Section 02 and transitions) for actual present-day strict 1:1 drift
+→ preserve later explicit product decisions (Section 03 numbering Option C; Reviews omitted)
+→ record each discovered mismatch before editing
+→ do not resume Gift CTA / Closing Editor's Note until this back-audit is complete
 ```
 
 Recommended order after Single Product:
