@@ -27,15 +27,17 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 19. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_STRICT_1TO1_REOPEN_20260911.md
 20. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_STRICT_1TO1_EXECUTION_START_20260911.md
 21. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_STRICT_1TO1_SOURCE_MAP_AND_EDIT_DELTA_20260911.md
-22. PROJECT2_STEP_RECORDING_POLICY.md
-23. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-24. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-25. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-26. PROJECT2_CSS_MAINTENANCE_POLICY.md
-27. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-28. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-29. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-30. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+22. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_RETURNED_SOURCE_AUDIT_START_20260911.md
+23. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_RETURNED_SOURCE_AUDIT_PASS_20260911.md
+24. PROJECT2_STEP_RECORDING_POLICY.md
+25. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+26. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+27. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+28. PROJECT2_CSS_MAINTENANCE_POLICY.md
+29. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+30. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+31. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+32. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -147,9 +149,12 @@ Current later state:
 - The static reference's Reviews section is now an explicit exception from strict 1:1 duplication for this current product architecture.
 - WooCommerce review capability is not deleted and may be reconsidered in a later phase, but no review UI/workflow is authorized now.
 - Before proceeding to Gift CTA, the user supplied fresh reference-vs-live screenshots and explicitly reopened Related Products / Complete The Room because it still materially diverges from the static reference.
-- Related Products is therefore no longer treated as historically passed for current strict 1:1 acceptance; it is REOPENED / NOT 1:1 pending fresh source/runtime remediation.
+- Related Products is therefore no longer treated as historically passed for current strict 1:1 acceptance; it is REOPENED / NOT 1:1 pending fresh runtime remediation.
 - Fresh source mapping confirms the current block is structurally different from the reference, while real dynamic owners already exist for product image/title/permalink/price/SKU plus `_sf_piece_edition` and `_sf_placement`.
-- A bounded three-file correction is now authorized: replace only the Related Products markup, replace the existing scoped `Step 4D-1-E` CSS block in place, and bump the child version to 2.7.42.
+- The bounded three-file correction was returned by the user and passed the required source gate.
+- `functions.php` changed only `2.7.41 -> 2.7.42`; `single-product.php` changed only the Related Products output block; `spatial-flow.css` changed only the existing scoped Step 4D-1-E Related Products block in one contiguous hunk.
+- Both PHP files lint PASS; CSS brace/comment balance passes and tinycss2 reports zero top-level parse errors.
+- Runtime/visual acceptance is now authorized for fresh desktop + 390px evidence.
 - Gift CTA / Closing Editor's Note planning remains paused until this earlier Related Products mismatch is resolved.
 ```
 
@@ -211,11 +216,37 @@ Related Products current strict-1:1 state:
 
 ```text
 Related Products / Complete The Room: REOPENED / NOT 1:1
-Manual source edit: AUTHORIZED
-Returned source audit: PENDING
+Returned source gate: PASS
+Desktop runtime/visual acceptance: PENDING
+390px mobile runtime/visual acceptance: PENDING
 ```
 
-Fresh user screenshots establish that the current live block materially differs from the static reference in heading treatment, ancillary copy, card framing, product-item composition, controls, proportions and overall editorial rhythm. Preserve WooCommerce dynamic ownership; do not hardcode reference products or fabricate unavailable edition/editorial metadata.
+Current returned source identities:
+
+```text
+functions.php
+- bytes: 622,421
+- logical lines: 11,891
+- SHA256: 837a9a3f574f57292725e22074e44d8470e864017ce138c13edda69e048a73e5
+- child version: 2.7.42
+- PHP syntax: PASS
+
+woocommerce/single-product.php
+- bytes: 38,460
+- logical lines: 765
+- SHA256: e3a25b490179861f7b32bea093c99be65a9c69f4d8fb00c848ff9fa8899d996f
+- PHP syntax: PASS
+
+assets/css/spatial-flow.css
+- bytes: 603,308
+- logical lines: 21,348
+- SHA256: 2b947f8e9cdb7341293a63c21e24828f11651430587701865b987374c860b353
+- brace balance: 3352 / 3352
+- comment balance: 280 / 280
+- tinycss2 top-level parse errors: 0
+```
+
+Fresh user screenshots established that the pre-remediation live block materially differed from the static reference in heading treatment, ancillary copy, card framing, product-item composition, controls, proportions and overall editorial rhythm. The returned source now maps the reference composition to real WooCommerce product ownership without hardcoding reference products or fabricating unavailable edition/editorial metadata. Runtime acceptance is still required before closure.
 
 ### Shop
 
@@ -267,7 +298,8 @@ Option C numbering removal + strict-reference border refinement: USER / RUNTIME 
 Section 04 · Reviews: CURRENT-VERSION INTENTIONAL OMISSION / CLOSED AS PRODUCT DECISION
 Related Products / Complete The Room: REOPENED / NOT 1:1
 Related Products strict 1:1 source map: COMPLETE
-Related Products bounded manual edit: AUTHORIZED / RETURNED SOURCE PENDING
+Related Products returned source gate: PASS
+Related Products runtime acceptance: PENDING
 Gift CTA / Closing Editor's Note: PAUSED pending Related Products remediation
 Single Product overall binary page status: Not done
 ```
@@ -275,13 +307,12 @@ Single Product overall binary page status: Not done
 Exact next action:
 
 ```text
-user applies the recorded bounded Related Products edit to:
-- woocommerce/single-product.php
-- assets/css/spatial-flow.css
-- functions.php (version only)
-→ return all three files
-→ whole-file diff + syntax/structure audit
-→ only after SOURCE PASS proceed to desktop + 390px runtime acceptance
+install the returned v2.7.42 Related Products source on the live/local WordPress test site
+→ capture fresh desktop screenshot of the full Related Products block
+→ capture fresh 390px mobile screenshot of the Related Products block
+→ verify real dynamic title/image/price/link plus available SKU/edition/placement behavior
+→ compare against preview/spatial-flow-product-v1.html
+→ record PASS/FAIL before any Gift CTA or later Single Product work
 ```
 
 Recommended order after Single Product:
