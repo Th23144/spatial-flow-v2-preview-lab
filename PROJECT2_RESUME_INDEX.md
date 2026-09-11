@@ -24,15 +24,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 16. project2-progress/STEP_4D_REOPEN_SECTION03_OPTION_C_FINAL_RUNTIME_ACCEPTANCE_20260911.md
 17. project2-progress/STEP_4D_REOPEN_SECTION04_WOOCOMMERCE_REVIEWS_NO_ACCOUNT_POLICY_20260911.md
 18. project2-progress/STEP_4D_REOPEN_SECTION04_REVIEWS_OMITTED_CURRENT_VERSION_DECISION_20260911.md
-19. PROJECT2_STEP_RECORDING_POLICY.md
-20. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-21. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-22. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-23. PROJECT2_CSS_MAINTENANCE_POLICY.md
-24. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-25. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-26. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-27. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+19. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_STRICT_1TO1_REOPEN_20260911.md
+20. PROJECT2_STEP_RECORDING_POLICY.md
+21. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+22. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+23. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+24. PROJECT2_CSS_MAINTENANCE_POLICY.md
+25. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+26. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+27. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+28. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -143,6 +144,9 @@ Current later state:
 - Section 04 is therefore an INTENTIONAL CURRENT-VERSION OMISSION, not an unfinished implementation gap.
 - The static reference's Reviews section is now an explicit exception from strict 1:1 duplication for this current product architecture.
 - WooCommerce review capability is not deleted and may be reconsidered in a later phase, but no review UI/workflow is authorized now.
+- Before proceeding to Gift CTA, the user supplied fresh reference-vs-live screenshots and explicitly reopened Related Products / Complete The Room because it still materially diverges from the static reference.
+- Related Products is therefore no longer treated as historically passed for current strict 1:1 acceptance; it is REOPENED / NOT 1:1 pending fresh source/runtime remediation.
+- Gift CTA / Closing Editor's Note planning is paused until this earlier Related Products mismatch is resolved.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -199,6 +203,14 @@ Section 04 · Quiet Notes / Reviews: INTENTIONALLY OMITTED / CLOSED AS PRODUCT D
 
 Do not classify the missing Reviews block as a strict 1:1 defect in the current Single Product target. If Reviews are reopened in a future phase, use real WooCommerce review data only and do not fabricate review content.
 
+Related Products current strict-1:1 state:
+
+```text
+Related Products / Complete The Room: REOPENED / NOT 1:1
+```
+
+Fresh user screenshots establish that the current live block materially differs from the static reference in heading treatment, ancillary copy, card framing, product-item composition, controls, proportions and overall editorial rhythm. Preserve WooCommerce dynamic ownership; do not hardcode reference products or fabricate unavailable edition/editorial metadata.
+
 ### Shop
 
 The prior controlled rework deliberately left the static product-card Editorial Place Note unimplemented because a real backend-editable per-product source was not yet available. A future implementation must use dynamic product data, not hardcoded sample copy.
@@ -247,17 +259,19 @@ Current sub-state:
 Section 03 · Care & Ritual core implementation: ACCEPTED / CLOSED
 Option C numbering removal + strict-reference border refinement: USER / RUNTIME ACCEPTED / CLOSED
 Section 04 · Reviews: CURRENT-VERSION INTENTIONAL OMISSION / CLOSED AS PRODUCT DECISION
+Related Products / Complete The Room: REOPENED / NOT 1:1
+Gift CTA / Closing Editor's Note: PAUSED pending Related Products remediation
 Single Product overall binary page status: Not done
 ```
 
 Exact next action:
 
 ```text
-re-open the authoritative Single Product remediation plan after Section 04
-→ audit the next unresolved current-version item before editing
-→ first expected product-level items are Closing Gift CTA and the explicit Closing Editor's Note decision
-→ then continue utility controls / whole-page desktop-mobile-backend-WooCommerce regression as required
-→ record the next bounded step before implementation begins
+audit static-reference Related Products markup/CSS against current live/source ownership
+→ classify visual-only mismatches versus data-model-dependent fields
+→ freeze a bounded strict-1:1 remediation plan
+→ preserve WooCommerce dynamic products/links/prices/images
+→ do not proceed to Gift CTA until Related Products is accepted
 ```
 
 Recommended order after Single Product:
