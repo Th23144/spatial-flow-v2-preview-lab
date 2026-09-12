@@ -34,15 +34,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 26. project2-progress/STEP_4D_REOPEN_HERO_GALLERY_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
 27. project2-progress/STEP_4D_REOPEN_HERO_SUMMARY_REMAINING_BACKAUDIT_PASS_AND_CLOSURE_20260912.md
 28. project2-progress/STEP_4D_REOPEN_SECTION01_FRESH_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
-29. PROJECT2_STEP_RECORDING_POLICY.md
-30. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-31. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-32. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-33. PROJECT2_CSS_MAINTENANCE_POLICY.md
-34. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-35. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-36. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-37. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+29. project2-progress/STEP_4D_REOPEN_SECTION02_FRESH_RUNTIME_REVALIDATION_AND_CLOSURE_20260912.md
+30. PROJECT2_STEP_RECORDING_POLICY.md
+31. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+32. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+33. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+34. PROJECT2_CSS_MAINTENANCE_POLICY.md
+35. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+36. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+37. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+38. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -186,8 +187,15 @@ Current later state:
 - Fresh desktop evidence confirms the editorial left/right composition, drop cap, body paragraphs, pull quote, and Product Attributes → Section 01 → Section 02 transitions.
 - Fresh 390px evidence confirms the single-column stack, contained drop cap, centered pull quote, clean paragraph wrapping, no horizontal overflow, and clean Section 02 entry.
 - Therefore Section 01 / The Piece fresh historical-PASS back-audit is USER / RUNTIME ACCEPTED / CLOSED.
+- Section 02 / Editorial Reading was then fresh-audited against its accepted product architecture and reference-derived visual language.
+- The explicit product decision remains authoritative: Section 02 is an editable Editorial Reading block rather than fabricated Maker Biography.
+- Fresh desktop evidence confirms the paper-deep section treatment, Section 02 heading hierarchy, 5fr / 7fr image-copy composition, 4:5 image, lead/context hierarchy, accepted fixed-height internal narrative reading area, metadata row, and clean transition into Section 03.
+- The visible desktop narrative scrollbar is intentional and remains the previously user-approved desktop treatment, not a defect.
+- Fresh 390px evidence confirms the one-column stack, correct heading wrap, full-width 4:5 image, long-form collapsed preview, soft fade + centered `↓ CONTINUE READING` affordance, visible metadata row outside the collapsed narrative, no horizontal overflow, and clean Section 03 entry.
+- The previously accepted mobile expanded / `COLLAPSE ↑` interaction remains preserved; the latest bounded Gallery / Product Attributes corrections did not modify Section 02 interaction ownership and there is no new regression evidence.
+- Therefore Section 02 / Editorial Reading fresh historical-PASS back-audit is USER / RUNTIME REVALIDATED / CLOSED.
+- Product Attributes → Section 01 → Section 02 → Section 03 historical-PASS back-audit is now complete.
 - This closure does not mark the whole Single Product page Completed 1:1.
-- The historical-PASS back-audit now continues to Section 02 / Editorial Reading and the Section 02 → Section 03 transition.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -295,8 +303,11 @@ Fresh back-audit closures:
 ```text
 Product Attributes mobile 2×2: USER / RUNTIME ACCEPTED / CLOSED
 Section 01 / The Piece: USER / RUNTIME ACCEPTED / CLOSED
+Section 02 / Editorial Reading: USER / RUNTIME REVALIDATED / CLOSED
 Product Attributes → Section 01 transition: PASS
 Section 01 → Section 02 transition: PASS
+Section 02 → Section 03 transition: PASS
+Historical-PASS back-audit below Hero / Summary: COMPLETE
 ```
 
 Closure records:
@@ -306,6 +317,7 @@ project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_FINAL_RUNTIME_ACCEPTANCE_AND_C
 project2-progress/STEP_4D_REOPEN_HERO_GALLERY_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
 project2-progress/STEP_4D_REOPEN_HERO_SUMMARY_REMAINING_BACKAUDIT_PASS_AND_CLOSURE_20260912.md
 project2-progress/STEP_4D_REOPEN_SECTION01_FRESH_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
+project2-progress/STEP_4D_REOPEN_SECTION02_FRESH_RUNTIME_REVALIDATION_AND_CLOSURE_20260912.md
 ```
 
 ### Shop
@@ -361,21 +373,20 @@ Hero Gallery: USER / RUNTIME ACCEPTED / CLOSED
 Hero / Summary overall: ACCEPTED / CLOSED
 Product Attributes fresh back-audit: USER / RUNTIME ACCEPTED / CLOSED
 Section 01 / The Piece fresh back-audit: USER / RUNTIME ACCEPTED / CLOSED
-Section 02 / Editorial Reading fresh back-audit: NEXT
-Gift CTA / Closing Editor's Note: STILL PAUSED
+Section 02 / Editorial Reading fresh back-audit: USER / RUNTIME REVALIDATED / CLOSED
+Historical-PASS back-audit below Hero / Summary: COMPLETE
+Gift CTA / Closing Editor's Note: NEXT
 Single Product overall binary page status: Not done
 ```
 
 Exact next action:
 
 ```text
-fresh strict back-audit of Section 02 / Editorial Reading
-→ preserve the explicit product decision that Section 02 is an Editorial Reading block rather than fabricated Maker Biography
-→ compare current desktop + 390px Section 02 composition against its accepted direction and reference-derived visual language
-→ verify real editable ownership and hide-when-empty behavior remain intact
-→ inspect the Section 02 → Section 03 transition
-→ record each concrete mismatch before editing
-→ do not resume Gift CTA / Closing Editor's Note until this historical-PASS back-audit is complete
+re-read the authoritative Single Product final remediation plan for the still-unresolved forward scope
+→ audit the current static-reference target and current live/source ownership for Gift CTA / Closing Editor's Note
+→ preserve all accepted Hero / Summary, Product Attributes, Section 01, Section 02, Section 03, Reviews-omission and Related Products decisions
+→ record the concrete Gift CTA / Closing Editor's Note target and ownership before any edit
+→ do not mark Single Product Completed 1:1 until that unresolved forward scope is explicitly resolved and runtime accepted
 ```
 
 Recommended order after Single Product:
