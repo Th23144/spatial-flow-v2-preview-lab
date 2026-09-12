@@ -37,15 +37,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 29. project2-progress/STEP_4D_REOPEN_SECTION02_FRESH_RUNTIME_REVALIDATION_AND_CLOSURE_20260912.md
 30. project2-progress/STEP_4D_REOPEN_GIFT_SURFACE_FINAL_DECISION_AUDIT_START_20260912.md
 31. project2-progress/STEP_4D_REOPEN_GIFT_SURFACE_FINAL_OMISSION_DECISION_20260912.md
-32. PROJECT2_STEP_RECORDING_POLICY.md
-33. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-34. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-35. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-36. PROJECT2_CSS_MAINTENANCE_POLICY.md
-37. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-38. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-39. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-40. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+32. project2-progress/STEP_4D_REOPEN_SINGLE_PRODUCT_FINAL_WHOLE_PAGE_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
+33. PROJECT2_STEP_RECORDING_POLICY.md
+34. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+35. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+36. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+37. PROJECT2_CSS_MAINTENANCE_POLICY.md
+38. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+39. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+40. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+41. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -62,6 +63,7 @@ later explicit user correction/reopen
 Completed:
 
 ```text
+Single Product: Completed 1:1
 Cart: Completed 1:1
 Checkout: Completed 1:1
 Thank You / WooCommerce Order Result: Completed 1:1
@@ -74,7 +76,6 @@ Main-site Header
 Main-site Footer
 Home
 Shop archive
-Single Product
 Wishlist
 Track Order
 Account
@@ -91,7 +92,7 @@ Blog issue
 Blog article
 ```
 
-The user explicitly reopened Header, Footer and Shop on 2026-09-03 and stated they still require adjustment. The user also reopened Single Product because its whole-page completion was uncertain and further adjustments/omissions remained.
+The user explicitly reopened Header, Footer and Shop on 2026-09-03 and stated they still require adjustment. Single Product was also reopened at that time, but its fresh strict re-audit and final integrated closure are now complete as of 2026-09-12.
 
 ## Reopened-surface evidence
 
@@ -206,7 +207,11 @@ Current later state:
 - Checkout remains the authoritative place for actual packaging selection, personalization, fee and order truth; Single Product should not duplicate or preselect that workflow.
 - Therefore the missing static `closing-note` is an intentional product-architecture exception, not a strict 1:1 defect.
 - No code change or version bump is required for this decision.
-- This resolution clears the last previously unresolved forward content scope, but does not yet mark the whole Single Product page Completed 1:1; a final integrated whole-page closure/regression gate remains.
+- Fresh final whole-page desktop evidence then confirmed the accepted page architecture as one continuous composition from Hero through Related Products and into Footer, with no new blocking width, spacing, frame/card, divider or transition regression.
+- Two overlapping fresh 390px long screenshots together confirmed the full mobile page through Related Products and Footer entry, with no horizontal overflow and no reappearance of previously corrected mobile defects.
+- The current sticky `SELECT OPTIONS` mobile affordance does not obscure the reviewed content and remains compatible with the product purchase flow.
+- The data-dependent placeholder image on the last Related Products item remains real product-media truth and is not to be replaced with fabricated imagery.
+- Therefore the final integrated whole-page closure/regression gate PASSES and Single Product is now `Completed 1:1`.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -323,6 +328,9 @@ Historical-PASS back-audit below Hero / Summary: COMPLETE
 Large Closing Gift CTA: INTENTIONALLY OMITTED / CLOSED AS PRODUCT DECISION
 Separate Closing Editor's Note: OMITTED / NOT A SEPARATE REFERENCE BLOCK
 Additional gift reminder: NOT REQUIRED
+Final integrated whole-page desktop: PASS
+Final integrated whole-page 390px mobile: PASS
+Single Product: Completed 1:1
 ```
 
 Closure records:
@@ -334,6 +342,7 @@ project2-progress/STEP_4D_REOPEN_HERO_SUMMARY_REMAINING_BACKAUDIT_PASS_AND_CLOSU
 project2-progress/STEP_4D_REOPEN_SECTION01_FRESH_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
 project2-progress/STEP_4D_REOPEN_SECTION02_FRESH_RUNTIME_REVALIDATION_AND_CLOSURE_20260912.md
 project2-progress/STEP_4D_REOPEN_GIFT_SURFACE_FINAL_OMISSION_DECISION_20260912.md
+project2-progress/STEP_4D_REOPEN_SINGLE_PRODUCT_FINAL_WHOLE_PAGE_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
 ```
 
 ### Shop
@@ -370,44 +379,24 @@ DO NOT DELETE during current cleanup horizon
 
 ## Current exact stop point
 
-The previously announced Home audit remains suspended while the reopened Single Product remediation is active.
+Single Product remediation is now closed.
 
-Current step:
-
-```text
-Step 4D-REOPEN · Single Product remediation
-```
-
-Current sub-state:
+Current state:
 
 ```text
-Section 03 · Care & Ritual core implementation: ACCEPTED / CLOSED
-Option C numbering removal + strict-reference border refinement: USER / RUNTIME ACCEPTED / CLOSED
-Section 04 · Reviews: CURRENT-VERSION INTENTIONAL OMISSION / CLOSED AS PRODUCT DECISION
-Related Products / Pieces of a similar weight.: USER / RUNTIME ACCEPTED / CLOSED
-Hero Gallery: USER / RUNTIME ACCEPTED / CLOSED
-Hero / Summary overall: ACCEPTED / CLOSED
-Product Attributes fresh back-audit: USER / RUNTIME ACCEPTED / CLOSED
-Section 01 / The Piece fresh back-audit: USER / RUNTIME ACCEPTED / CLOSED
-Section 02 / Editorial Reading fresh back-audit: USER / RUNTIME REVALIDATED / CLOSED
-Historical-PASS back-audit below Hero / Summary: COMPLETE
-Large Closing Gift CTA: CURRENT-VERSION INTENTIONAL OMISSION / CLOSED AS PRODUCT DECISION
-Closing Editor's Note: OMITTED / NOT A SEPARATE REFERENCE BLOCK
-Additional gift reminder: NOT REQUIRED
-Single Product final whole-page closure/regression gate: NEXT
-Single Product overall binary page status: Not done
+Step 4D-REOPEN · Single Product remediation: CLOSED
+Single Product overall binary page status: Completed 1:1
 ```
 
 Exact next action:
 
 ```text
-perform the final integrated Single Product whole-page closure/regression audit
-→ treat the current production target as the accepted page architecture plus explicit exceptions, not literal static-reference duplication
-→ preserve Reviews omission, Closing Gift CTA omission, no separate Closing Editor's Note, Section 03 Option C, Editorial Reading Section 02, and all accepted Gallery/Related enhancements
-→ re-check current desktop, 1024px/tablet where relevant, and 390px mobile as one continuous page
-→ re-check backend-editable ownership of the key per-product/editorial fields and WooCommerce authority without rebuilding accepted sections
-→ re-check critical product interactions / purchase path only where not already covered by the latest accepted runtime evidence
-→ record PASS/FAIL before any binary `Completed 1:1` declaration
+Main-site Header strict re-audit
+→ capture any remaining user-known adjustments and compare current live/source against the approved reference
+→ preserve the newly closed Single Product body; do not reopen it without new concrete evidence
+→ after Header closure, continue Main-site Footer strict re-audit
+→ then Shop archive strict re-audit
+→ then resume Home strict 1:1 work
 ```
 
 Recommended order after Single Product:
@@ -431,6 +420,7 @@ This order can be changed by a later explicit user instruction.
 - prefer canonical in-place replacement over append-only patches
 - do not fabricate dynamic/editorial content
 - do not reopen Cart/Checkout/Thank You without new concrete evidence
+- do not reopen Single Product without new concrete evidence or an explicit user decision
 - mobile remains an independent production-quality state
 - batch foreseeable manual work only after the combined remediation scope is frozen
 - every meaningful action/state/result must be recorded in GitHub before the next meaningful action begins
