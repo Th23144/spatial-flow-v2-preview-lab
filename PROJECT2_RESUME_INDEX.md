@@ -35,15 +35,17 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 27. project2-progress/STEP_4D_REOPEN_HERO_SUMMARY_REMAINING_BACKAUDIT_PASS_AND_CLOSURE_20260912.md
 28. project2-progress/STEP_4D_REOPEN_SECTION01_FRESH_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
 29. project2-progress/STEP_4D_REOPEN_SECTION02_FRESH_RUNTIME_REVALIDATION_AND_CLOSURE_20260912.md
-30. PROJECT2_STEP_RECORDING_POLICY.md
-31. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-32. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-33. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-34. PROJECT2_CSS_MAINTENANCE_POLICY.md
-35. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-36. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-37. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-38. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+30. project2-progress/STEP_4D_REOPEN_GIFT_SURFACE_FINAL_DECISION_AUDIT_START_20260912.md
+31. project2-progress/STEP_4D_REOPEN_GIFT_SURFACE_FINAL_OMISSION_DECISION_20260912.md
+32. PROJECT2_STEP_RECORDING_POLICY.md
+33. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+34. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+35. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+36. PROJECT2_CSS_MAINTENANCE_POLICY.md
+37. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+38. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+39. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+40. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -195,7 +197,16 @@ Current later state:
 - The previously accepted mobile expanded / `COLLAPSE ↑` interaction remains preserved; the latest bounded Gallery / Product Attributes corrections did not modify Section 02 interaction ownership and there is no new regression evidence.
 - Therefore Section 02 / Editorial Reading fresh historical-PASS back-audit is USER / RUNTIME REVALIDATED / CLOSED.
 - Product Attributes → Section 01 → Section 02 → Section 03 historical-PASS back-audit is now complete.
-- This closure does not mark the whole Single Product page Completed 1:1.
+- The static reference's bottom `closing-note` was re-audited and clarified: it is a gift-conversion block, not a separate second Closing Editor's Note.
+- Current production architecture already exposes Gift Service messaging before checkout and has a fully implemented Checkout Product Packaging workflow for Standard / Gift Packaging and personalization.
+- The per-product `_sf_gift_service` owner remains backend-editable; global/service-level labels and trust-strip copy remain editable through the existing owner model.
+- Fresh current live screenshots show gift awareness already present in the product-area service/trust surface and Product Attributes.
+- The user approved reassessing necessity rather than mechanically copying the static reference.
+- Final current-version decision: omit the large Closing Gift CTA, omit any separate Closing Editor's Note, and do not add another small gift reminder because current gift awareness is already sufficient.
+- Checkout remains the authoritative place for actual packaging selection, personalization, fee and order truth; Single Product should not duplicate or preselect that workflow.
+- Therefore the missing static `closing-note` is an intentional product-architecture exception, not a strict 1:1 defect.
+- No code change or version bump is required for this decision.
+- This resolution clears the last previously unresolved forward content scope, but does not yet mark the whole Single Product page Completed 1:1; a final integrated whole-page closure/regression gate remains.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -275,6 +286,7 @@ Placement meta: _sf_placement
 Section 01 Material: _sf_material
 Section 01 Made: _sf_piece_made
 Section 01 Studio: _sf_piece_studio
+Gift Service per-product owner: _sf_gift_service
 empty optional editorial fields: hidden; never fabricate values
 ```
 
@@ -308,6 +320,9 @@ Product Attributes → Section 01 transition: PASS
 Section 01 → Section 02 transition: PASS
 Section 02 → Section 03 transition: PASS
 Historical-PASS back-audit below Hero / Summary: COMPLETE
+Large Closing Gift CTA: INTENTIONALLY OMITTED / CLOSED AS PRODUCT DECISION
+Separate Closing Editor's Note: OMITTED / NOT A SEPARATE REFERENCE BLOCK
+Additional gift reminder: NOT REQUIRED
 ```
 
 Closure records:
@@ -318,6 +333,7 @@ project2-progress/STEP_4D_REOPEN_HERO_GALLERY_RUNTIME_ACCEPTANCE_AND_CLOSURE_202
 project2-progress/STEP_4D_REOPEN_HERO_SUMMARY_REMAINING_BACKAUDIT_PASS_AND_CLOSURE_20260912.md
 project2-progress/STEP_4D_REOPEN_SECTION01_FRESH_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
 project2-progress/STEP_4D_REOPEN_SECTION02_FRESH_RUNTIME_REVALIDATION_AND_CLOSURE_20260912.md
+project2-progress/STEP_4D_REOPEN_GIFT_SURFACE_FINAL_OMISSION_DECISION_20260912.md
 ```
 
 ### Shop
@@ -375,18 +391,23 @@ Product Attributes fresh back-audit: USER / RUNTIME ACCEPTED / CLOSED
 Section 01 / The Piece fresh back-audit: USER / RUNTIME ACCEPTED / CLOSED
 Section 02 / Editorial Reading fresh back-audit: USER / RUNTIME REVALIDATED / CLOSED
 Historical-PASS back-audit below Hero / Summary: COMPLETE
-Gift CTA / Closing Editor's Note: NEXT
+Large Closing Gift CTA: CURRENT-VERSION INTENTIONAL OMISSION / CLOSED AS PRODUCT DECISION
+Closing Editor's Note: OMITTED / NOT A SEPARATE REFERENCE BLOCK
+Additional gift reminder: NOT REQUIRED
+Single Product final whole-page closure/regression gate: NEXT
 Single Product overall binary page status: Not done
 ```
 
 Exact next action:
 
 ```text
-re-read the authoritative Single Product final remediation plan for the still-unresolved forward scope
-→ audit the current static-reference target and current live/source ownership for Gift CTA / Closing Editor's Note
-→ preserve all accepted Hero / Summary, Product Attributes, Section 01, Section 02, Section 03, Reviews-omission and Related Products decisions
-→ record the concrete Gift CTA / Closing Editor's Note target and ownership before any edit
-→ do not mark Single Product Completed 1:1 until that unresolved forward scope is explicitly resolved and runtime accepted
+perform the final integrated Single Product whole-page closure/regression audit
+→ treat the current production target as the accepted page architecture plus explicit exceptions, not literal static-reference duplication
+→ preserve Reviews omission, Closing Gift CTA omission, no separate Closing Editor's Note, Section 03 Option C, Editorial Reading Section 02, and all accepted Gallery/Related enhancements
+→ re-check current desktop, 1024px/tablet where relevant, and 390px mobile as one continuous page
+→ re-check backend-editable ownership of the key per-product/editorial fields and WooCommerce authority without rebuilding accepted sections
+→ re-check critical product interactions / purchase path only where not already covered by the latest accepted runtime evidence
+→ record PASS/FAIL before any binary `Completed 1:1` declaration
 ```
 
 Recommended order after Single Product:
