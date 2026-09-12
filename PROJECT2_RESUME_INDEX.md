@@ -32,15 +32,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 24. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_REFERENCE_CODE_IMPLEMENTATION_DELTA_20260911.md
 25. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_FINAL_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260911.md
 26. project2-progress/STEP_4D_REOPEN_HERO_GALLERY_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
-27. PROJECT2_STEP_RECORDING_POLICY.md
-28. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-29. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-30. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-31. PROJECT2_CSS_MAINTENANCE_POLICY.md
-32. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-33. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-34. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-35. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+27. project2-progress/STEP_4D_REOPEN_HERO_SUMMARY_REMAINING_BACKAUDIT_PASS_AND_CLOSURE_20260912.md
+28. PROJECT2_STEP_RECORDING_POLICY.md
+29. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+30. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+31. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+32. PROJECT2_CSS_MAINTENANCE_POLICY.md
+33. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+34. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+35. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+36. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -169,8 +170,12 @@ Current later state:
 - The Gallery source gate passed after removing two stale CSS overrides and correcting variation-reset synchronization.
 - The user then confirmed the bounded runtime batch is normal: four-image state, five-image one-step thumbnail-window navigation, image 05 selection, variable-product reset back to image/thumbnail/window 01, desktop behavior, and 390px mobile behavior all pass.
 - Therefore Hero Gallery is USER / RUNTIME ACCEPTED and CLOSED.
-- This Gallery closure does not close the whole Hero / Summary or mark the Single Product page Completed 1:1.
-- The remaining Summary-side historically-passed surfaces must now continue through the fresh strict back-audit before moving farther down the page.
+- The remaining Summary-side fresh back-audit found no additional concrete defect after the two isolated Hero issues above were resolved.
+- Current title hierarchy, optional subtitle, live Woo price, shipping note, Placement Suggestion, excerpt, visual variation controls, quantity + Add to Cart geometry, Wishlist / Share, Trust Strip, desktop composition and mobile stack are accepted for the current product state.
+- WooCommerce state remains authoritative; for example, Add to Cart being disabled before required variation selection is valid behavior and is not a strict-reference defect.
+- Therefore Hero / Summary overall is ACCEPTED / CLOSED for the current Single Product back-audit.
+- This closure does not mark the whole Single Product page Completed 1:1.
+- The historical-PASS back-audit now continues downward to Product Attributes, Section 01 / The Piece, Section 02 and the transitions between them.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -250,10 +255,11 @@ Placement meta: _sf_placement
 empty optional editorial fields: hidden; never fabricate values
 ```
 
-Hero Gallery current accepted state:
+Hero / Summary current accepted state:
 
 ```text
 Hero Gallery: USER / RUNTIME ACCEPTED / CLOSED
+Hero / Summary overall: ACCEPTED / CLOSED for current back-audit
 large-image round prev/next controls: removed
 large-image 1 / N counter: removed
 CLICK THUMB TO VIEW hint: accepted
@@ -262,6 +268,8 @@ visible thumbnail viewport: fixed at four
 >4 images: subtle thumbnail-window prev/next controls
 navigation behavior: one-thumbnail sliding window
 variation reset: restores image 01 + active thumbnail 01 + thumbnail viewport 01 02 03 04
+public Hero Reference ownership: _sf_piece_reference
+WooCommerce SKU as public Hero identifier: removed
 desktop: PASS
 390px mobile: PASS
 ```
@@ -271,6 +279,7 @@ Closure records:
 ```text
 project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_FINAL_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260911.md
 project2-progress/STEP_4D_REOPEN_HERO_GALLERY_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
+project2-progress/STEP_4D_REOPEN_HERO_SUMMARY_REMAINING_BACKAUDIT_PASS_AND_CLOSURE_20260912.md
 ```
 
 ### Shop
@@ -323,7 +332,8 @@ Option C numbering removal + strict-reference border refinement: USER / RUNTIME 
 Section 04 · Reviews: CURRENT-VERSION INTENTIONAL OMISSION / CLOSED AS PRODUCT DECISION
 Related Products / Pieces of a similar weight.: USER / RUNTIME ACCEPTED / CLOSED
 Hero Gallery: USER / RUNTIME ACCEPTED / CLOSED
-Hero / Summary remaining strict back-audit: ACTIVE / NEXT
+Hero / Summary overall: ACCEPTED / CLOSED
+Product Attributes / Section 01 / Section 02 historical-PASS back-audit: NEXT
 Gift CTA / Closing Editor's Note: STILL PAUSED
 Single Product overall binary page status: Not done
 ```
@@ -331,13 +341,13 @@ Single Product overall binary page status: Not done
 Exact next action:
 
 ```text
-continue the fresh Hero / Summary back-audit on the remaining Summary-side surfaces
-→ compare current live metadata / title / subtitle / price / shipping / Placement Suggestion / excerpt / variation controls / quantity + Add to Cart / Wishlist + Share / Trust Strip against preview/spatial-flow-product-v1.html
-→ distinguish real WooCommerce state from visual drift (for example disabled Add to Cart before required variation selection is not a 1:1 defect)
-→ preserve the accepted Hero Gallery implementation and public Reference / Piece Code ownership
-→ record each discovered mismatch before editing
-→ only after Hero / Summary is closed, continue downward to Product Attributes / Section 01 / Section 02 transitions
-→ do not resume Gift CTA / Closing Editor's Note until the whole historical-PASS back-audit is complete
+continue the fresh top-to-bottom historical-PASS back-audit below Hero / Summary
+→ compare Product Attributes against preview/spatial-flow-product-v1.html
+→ compare Section 01 / The Piece against the current reference and accepted dynamic ownership
+→ compare Section 02 and the transitions into/out of it
+→ preserve accepted Hero / Summary, Section 03 Option C, Reviews omission and Related Products closure
+→ record each concrete mismatch before editing
+→ do not resume Gift CTA / Closing Editor's Note until this historical-PASS back-audit is complete
 ```
 
 Recommended order after Single Product:
