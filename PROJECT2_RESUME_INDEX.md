@@ -33,15 +33,16 @@ Repository: `Th23144/spatial-flow-v2-preview-lab`
 25. project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_FINAL_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260911.md
 26. project2-progress/STEP_4D_REOPEN_HERO_GALLERY_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
 27. project2-progress/STEP_4D_REOPEN_HERO_SUMMARY_REMAINING_BACKAUDIT_PASS_AND_CLOSURE_20260912.md
-28. PROJECT2_STEP_RECORDING_POLICY.md
-29. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
-30. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
-31. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
-32. PROJECT2_CSS_MAINTENANCE_POLICY.md
-33. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
-34. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
-35. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
-36. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
+28. project2-progress/STEP_4D_REOPEN_SECTION01_FRESH_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
+29. PROJECT2_STEP_RECORDING_POLICY.md
+30. PROJECT2_RUNTIME_TEST_BATCHING_POLICY.md
+31. PROJECT2_STRICT_1_TO_1_ACCEPTANCE_POLICY.md
+32. PROJECT2_MOBILE_DESIGN_REVIEW_POLICY.md
+33. PROJECT2_CSS_MAINTENANCE_POLICY.md
+34. PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md
+35. PROJECT2_VERIFIED_FULL_FILE_REPLACEMENT_POLICY.md
+36. PROJECT2_CROSS_WINDOW_OWNERSHIP_HANDOFF_POLICY.md
+37. project2-progress/STEP_4F_CHECKOUT_FINAL_CLOSURE_COMPLETED_1_TO_1_20260903.md
 ```
 
 Historical precedence:
@@ -166,16 +167,27 @@ Current later state:
 - The fresh Hero / Summary back-audit then reopened the historical Gallery presentation because the live page still used large-image round arrows and a `1 / N` counter that were not aligned with the target editorial language.
 - The user approved a production enhancement for future products with more than four images: remove large-image navigation controls, retain a fixed four-thumbnail viewport, and show subtle thumbnail-window previous/next controls only when the product has more than four gallery images.
 - Hero public identity ownership was also corrected so `_sf_piece_reference` is the public editorial Reference / Piece Code; native WooCommerce SKU is no longer exposed as that public identifier in the Hero.
-- `functions.php` child version is now 2.7.45 for this Hero Gallery batch.
 - The Gallery source gate passed after removing two stale CSS overrides and correcting variation-reset synchronization.
-- The user then confirmed the bounded runtime batch is normal: four-image state, five-image one-step thumbnail-window navigation, image 05 selection, variable-product reset back to image/thumbnail/window 01, desktop behavior, and 390px mobile behavior all pass.
-- Therefore Hero Gallery is USER / RUNTIME ACCEPTED and CLOSED.
-- The remaining Summary-side fresh back-audit found no additional concrete defect after the two isolated Hero issues above were resolved.
+- The user then confirmed the bounded Gallery runtime batch is normal: four-image state, five-image one-step thumbnail-window navigation, image 05 selection, variable-product reset back to image/thumbnail/window 01, desktop behavior, and 390px mobile behavior all pass.
+- A later fresh width sweep found a real 768–1024px regression: a stale `height: min(76vw, 640px)` rule caused the 4:5 Gallery container to expose a large blank area below the image.
+- That tablet-only height cap was removed; the 4:5 container remains authoritative and the image now fills it with `width: 100%`, `height: 100%`, and `object-fit: cover`.
+- Fresh 1024px runtime evidence confirms the blank area is gone and the Gallery controls/thumbnails remain intact.
+- Therefore Hero Gallery remains USER / RUNTIME ACCEPTED / CLOSED across desktop, 768–1024px tablet, and 390px mobile.
+- The remaining Summary-side fresh back-audit found no additional concrete defect after the isolated Hero issues above were resolved.
 - Current title hierarchy, optional subtitle, live Woo price, shipping note, Placement Suggestion, excerpt, visual variation controls, quantity + Add to Cart geometry, Wishlist / Share, Trust Strip, desktop composition and mobile stack are accepted for the current product state.
 - WooCommerce state remains authoritative; for example, Add to Cart being disabled before required variation selection is valid behavior and is not a strict-reference defect.
 - Therefore Hero / Summary overall is ACCEPTED / CLOSED for the current Single Product back-audit.
+- Product Attributes was re-audited against the static reference. Desktop four-column behavior remained valid, but the 390px layout had drifted to a 1×4 list with separator rules instead of the reference 2×2 editorial grid.
+- The bounded mobile correction restored Product Attributes to `repeat(2, minmax(0, 1fr))` with a 24px gap and removed the list-style per-item separators/padding.
+- Fresh 390px evidence confirms the 2×2 geometry, no horizontal overflow, and a clean transition into Section 01.
+- `functions.php` child version is now 2.7.46 for the combined tablet Gallery + mobile Product Attributes correction batch.
+- Section 01 / `The piece, slowly.` was then fresh-audited against the reference and the existing accepted dynamic ownership.
+- Source structure remains correct: desktop 5fr / 7fr composition, 80px gap, left mono editorial aside, Material / Edition / Made / Studio rows, WooCommerce long-description ownership, 88px drop cap, and bilingual pull-quote styling.
+- Fresh desktop evidence confirms the editorial left/right composition, drop cap, body paragraphs, pull quote, and Product Attributes → Section 01 → Section 02 transitions.
+- Fresh 390px evidence confirms the single-column stack, contained drop cap, centered pull quote, clean paragraph wrapping, no horizontal overflow, and clean Section 02 entry.
+- Therefore Section 01 / The Piece fresh historical-PASS back-audit is USER / RUNTIME ACCEPTED / CLOSED.
 - This closure does not mark the whole Single Product page Completed 1:1.
-- The historical-PASS back-audit now continues downward to Product Attributes, Section 01 / The Piece, Section 02 and the transitions between them.
+- The historical-PASS back-audit now continues to Section 02 / Editorial Reading and the Section 02 → Section 03 transition.
 ```
 
 Protected accepted Section 03 baseline before Option C refinement:
@@ -247,11 +259,14 @@ WooCommerce native SKU separation: PASS
 Latest accepted ownership / runtime notes:
 
 ```text
-functions.php child version: 2.7.45
+functions.php child version: 2.7.46
 Reference / Piece Code meta: _sf_piece_reference
 WooCommerce native SKU: inventory / operations only; not the Hero or Related public editorial reference
 Edition meta: _sf_piece_edition
 Placement meta: _sf_placement
+Section 01 Material: _sf_material
+Section 01 Made: _sf_piece_made
+Section 01 Studio: _sf_piece_studio
 empty optional editorial fields: hidden; never fabricate values
 ```
 
@@ -268,10 +283,20 @@ visible thumbnail viewport: fixed at four
 >4 images: subtle thumbnail-window prev/next controls
 navigation behavior: one-thumbnail sliding window
 variation reset: restores image 01 + active thumbnail 01 + thumbnail viewport 01 02 03 04
+768–1024px image fill: PASS
 public Hero Reference ownership: _sf_piece_reference
 WooCommerce SKU as public Hero identifier: removed
 desktop: PASS
 390px mobile: PASS
+```
+
+Fresh back-audit closures:
+
+```text
+Product Attributes mobile 2×2: USER / RUNTIME ACCEPTED / CLOSED
+Section 01 / The Piece: USER / RUNTIME ACCEPTED / CLOSED
+Product Attributes → Section 01 transition: PASS
+Section 01 → Section 02 transition: PASS
 ```
 
 Closure records:
@@ -280,6 +305,7 @@ Closure records:
 project2-progress/STEP_4D_REOPEN_RELATED_PRODUCTS_FINAL_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260911.md
 project2-progress/STEP_4D_REOPEN_HERO_GALLERY_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
 project2-progress/STEP_4D_REOPEN_HERO_SUMMARY_REMAINING_BACKAUDIT_PASS_AND_CLOSURE_20260912.md
+project2-progress/STEP_4D_REOPEN_SECTION01_FRESH_RUNTIME_ACCEPTANCE_AND_CLOSURE_20260912.md
 ```
 
 ### Shop
@@ -333,7 +359,9 @@ Section 04 · Reviews: CURRENT-VERSION INTENTIONAL OMISSION / CLOSED AS PRODUCT 
 Related Products / Pieces of a similar weight.: USER / RUNTIME ACCEPTED / CLOSED
 Hero Gallery: USER / RUNTIME ACCEPTED / CLOSED
 Hero / Summary overall: ACCEPTED / CLOSED
-Product Attributes / Section 01 / Section 02 historical-PASS back-audit: NEXT
+Product Attributes fresh back-audit: USER / RUNTIME ACCEPTED / CLOSED
+Section 01 / The Piece fresh back-audit: USER / RUNTIME ACCEPTED / CLOSED
+Section 02 / Editorial Reading fresh back-audit: NEXT
 Gift CTA / Closing Editor's Note: STILL PAUSED
 Single Product overall binary page status: Not done
 ```
@@ -341,11 +369,11 @@ Single Product overall binary page status: Not done
 Exact next action:
 
 ```text
-continue the fresh top-to-bottom historical-PASS back-audit below Hero / Summary
-→ compare Product Attributes against preview/spatial-flow-product-v1.html
-→ compare Section 01 / The Piece against the current reference and accepted dynamic ownership
-→ compare Section 02 and the transitions into/out of it
-→ preserve accepted Hero / Summary, Section 03 Option C, Reviews omission and Related Products closure
+fresh strict back-audit of Section 02 / Editorial Reading
+→ preserve the explicit product decision that Section 02 is an Editorial Reading block rather than fabricated Maker Biography
+→ compare current desktop + 390px Section 02 composition against its accepted direction and reference-derived visual language
+→ verify real editable ownership and hide-when-empty behavior remain intact
+→ inspect the Section 02 → Section 03 transition
 → record each concrete mismatch before editing
 → do not resume Gift CTA / Closing Editor's Note until this historical-PASS back-audit is complete
 ```
