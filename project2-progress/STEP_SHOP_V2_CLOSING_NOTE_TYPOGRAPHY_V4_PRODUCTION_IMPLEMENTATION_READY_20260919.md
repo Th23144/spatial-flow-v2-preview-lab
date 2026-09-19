@@ -38,14 +38,14 @@ Current desktop Closing Note CSS still contains the temporary `padding-left:48px
 
 ### archive-product.php
 
-Add only one rendered backend-owned kicker before the existing left paragraph:
+Add only one rendered backend-owned kicker before the existing left paragraph.
 
-`sf_shop_v2_closing-note__kicker <- closing_kicker / Before you choose fallback`
+Use a `div.sf-shop-v2-closing-note__kicker` so the existing mobile `.sf-shop-v2-closing-note__left span` owner cannot accidentally capture the kicker.
 
 No CTA owner, URL owner, Woo loop, pagination, filtering, product data or footer code changes.
 
 Expected textual delta for the bounded markup replacement:
-- approximately +142 UTF-8 bytes;
+- approximately +140 UTF-8 bytes;
 - +1 logical line.
 
 ### spatial-flow.css
