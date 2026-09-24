@@ -134,7 +134,8 @@ TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1 AS THE TEMPORARY DESIGN S
 → Search typography / sage-accent direction is aligned
 → 404 Type Correction 02 rechecked and passed
 → Contact Wishlist-led 01 has been user visually accepted
-→ Utility / Policy Wishlist-led 01 has been produced and is awaiting user visual review
+→ Utility / Policy Wishlist-led 01 visual direction is acceptable
+→ Policy Long-form Stress Test 01 has been produced and is awaiting user visual review
 → then lightly harmonize Services / FAQ / Track Order
 → the earlier 1360px shared-lane test is superseded
 → only after the visual batch is locked, begin production mapping
@@ -158,6 +159,6 @@ Production mapping has NOT started for Wishlist or Search.
 
 NEW WINDOW INHERITANCE AUDIT = COMPLETE.
 
-CURRENT ACTIVE REVIEW GATE = UTILITY / POLICY WISHLIST-LED 01 VISUAL REVIEW. TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
+CURRENT ACTIVE REVIEW GATE = POLICY LONG-FORM STRESS TEST 01 VISUAL REVIEW. TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
 
 No implementation action is authorized by this inheritance record alone.
