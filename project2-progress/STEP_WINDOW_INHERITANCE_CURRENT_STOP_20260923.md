@@ -132,8 +132,9 @@ TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1 AS THE TEMPORARY DESIGN S
 → page body uses 1480px + internal horizontal padding
 → Wishlist + Search visual-system audit passed after minor Search shell correction
 → Search typography / sage-accent direction is aligned
-→ 404 Wishlist-led 01 has been produced and is awaiting user visual review
-→ after 404 acceptance continue Contact / Utility-Policy
+→ 404 Type Correction 02 rechecked and passed
+→ Contact Wishlist-led 01 has been produced and is awaiting user visual review
+→ after Contact acceptance continue Utility-Policy
 → then lightly harmonize Services / FAQ / Track Order
 → the earlier 1360px shared-lane test is superseded
 → only after the visual batch is locked, begin production mapping
@@ -157,6 +158,6 @@ Production mapping has NOT started for Wishlist or Search.
 
 NEW WINDOW INHERITANCE AUDIT = COMPLETE.
 
-CURRENT ACTIVE REVIEW GATE = 404 WISHLIST-LED 01 VISUAL REVIEW. TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
+CURRENT ACTIVE REVIEW GATE = CONTACT WISHLIST-LED 01 VISUAL REVIEW. TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
 
 No implementation action is authorized by this inheritance record alone.
