@@ -94,6 +94,12 @@ Design-first scope:
 6. light harmonization of FAQ / Help
 7. light harmonization of Track Order
 
+Temporary batch design authority:
+- use the accepted Wishlist Harmonized V1 as the current visual-language reference;
+- Header / Footer use the broader 1720px shell system;
+- main body uses 1480px + internal horizontal padding;
+- adapt composition to each page function rather than literally cloning Wishlist layout.
+
 Account remains optional / future-only.
 About remains a separate brand-expression candidate and does not block this batch.
 
@@ -121,13 +127,14 @@ This does NOT establish 1480px as a universal width token for every Project-2 pa
 The project is currently stopped at:
 
 ```text
-WISHLIST BODY WIDTH BASELINE RESTORED TO 1480px
+TASK / INFORMATION PAGES NOW FOLLOW WISHLIST HARMONIZED V1 AS THE TEMPORARY DESIGN SYSTEM
 → Header / Footer remain on the broader 1720px shell system
-→ Wishlist Intro / Toolbar / Collection Index / product body use --max: 1480px + internal padding
-→ the earlier 1360px Wishlist/Search shared-lane test is superseded
-→ do not merge the rejected 1720px full Wishlist-body experiment
-→ continue Search / 404 / Contact / Utility-Policy design harmonization
+→ page body uses 1480px + internal horizontal padding
+→ Search is the first page to be rebuilt/harmonized to this same generation
+→ then continue 404 / Contact / Utility-Policy
 → then lightly harmonize Services / FAQ / Track Order
+→ the earlier 1360px shared-lane test is superseded
+→ do not merge the rejected 1720px full-body Wishlist experiment
 → only after the visual batch is locked, begin production mapping
 ```
 
@@ -149,6 +156,6 @@ Production mapping has NOT started for Wishlist or Search.
 
 NEW WINDOW INHERITANCE AUDIT = COMPLETE.
 
-CURRENT ACTIVE WIDTH AUTHORITY = WISHLIST BODY RESTORED TO 1480px; HEADER / FOOTER REMAIN ON THE 1720px SHELL SYSTEM.
+CURRENT ACTIVE DESIGN AUTHORITY = TASK / INFORMATION PAGES TEMPORARILY FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
 
 No implementation action is authorized by this inheritance record alone.
