@@ -140,7 +140,8 @@ TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1 AS THE TEMPORARY DESIGN S
 → Policy Standard Extended 03 is abandoned as the active direction
 → Policy Long-form Reading Mode 02 has been handed off to an external AI for the unresolved right-side article composition
 → Services Wishlist-led 01 has been user visually accepted
-→ FAQ / Help Wishlist-led 01 has been produced and is awaiting user visual review
+→ FAQ / Help has been user visually accepted after typography correction
+→ Track Order Wishlist-led 01 has been produced and is awaiting user visual review
 → then lightly harmonize Services / FAQ / Track Order
 → the earlier 1360px shared-lane test is superseded
 → only after the visual batch is locked, begin production mapping
@@ -164,6 +165,6 @@ Production mapping has NOT started for Wishlist or Search.
 
 NEW WINDOW INHERITANCE AUDIT = COMPLETE.
 
-CURRENT ACTIVE REVIEW GATE = FAQ / HELP WISHLIST-LED 01 VISUAL REVIEW. TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
+CURRENT ACTIVE REVIEW GATE = TRACK ORDER WISHLIST-LED 01 VISUAL REVIEW. TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
 
 No implementation action is authorized by this inheritance record alone.
