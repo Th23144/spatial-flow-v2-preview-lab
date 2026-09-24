@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F6F1EB">
+<title>Returns & Refunds — Spatial Flow · Standard Extended 03</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F1EB;--paper2:#EDE7DF;--ink:#1F1916;
+  --mute:rgba(31,25,22,.62);--faint:rgba(31,25,22,.38);
+  --rule:rgba(31,25,22,.13);--rule-soft:rgba(31,25,22,.08);
+  --clay:#A8745C;--claydeep:#8B5D49;--sage:#4A5D5A;
+  --pad:clamp(22px,4.2vw,64px);--max:1480px;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font:300 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body.menu-open{overflow:hidden}
+h1,h2,h3,p,ul,ol{margin:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+::selection{background:#C5AD98;color:var(--ink)}
+.skip{position:absolute;top:-80px;left:20px;z-index:100;padding:10px 14px;background:var(--ink);color:var(--paper)}
+.skip:focus{top:10px}
+
+.sf-info-bar{min-height:34px;padding:0 40px;border-bottom:1px solid var(--rule-soft);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;font:500 9px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--paper)}
+.sf-info-bar__center{justify-self:center;color:var(--ink);letter-spacing:.18em}
+.sf-info-bar__right{justify-self:end}
+.sf-info-dot{width:5px;height:5px;display:inline-block;margin-right:8px;background:var(--clay);vertical-align:1px}
+
+.site-head{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 96%,transparent);border-bottom:1px solid var(--ink);backdrop-filter:blur(8px)}
+.site-head__in{width:min(1720px,calc(100% - 80px));height:82px;margin:auto;display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center}
+.mark{font:500 clamp(27px,2.5vw,38px)/.9 var(--serif);letter-spacing:.075em;white-space:nowrap;justify-self:center;text-align:center}
+.mark em{font-style:italic;font-weight:400}
+.mark small{display:block;margin-top:9px;font:500 8px/1 var(--mono);letter-spacing:.27em;text-transform:uppercase;color:var(--mute)}
+.nav-main,.nav-util{display:flex;align-items:center;gap:clamp(18px,2.1vw,34px);font:500 10px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
+.nav-main{justify-self:start}.nav-util{justify-self:end}
+.nav-main a,.nav-util a,.nav-util button{display:inline-flex;align-items:center;min-height:44px}
+.nav-main a:hover,.nav-util a:hover,.nav-util button:hover,.sf-footer a:hover{color:var(--clay)}
+.mobile-nav{display:none}
+
+.wrap{width:100%;max-width:calc(var(--max) + var(--pad)*2);padding-left:var(--pad);padding-right:var(--pad);margin-left:auto;margin-right:auto}
+.kicker{font:500 10px/1.5 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--clay)}
+
+.policy-intro{padding-top:46px;padding-bottom:28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,34em);gap:40px;align-items:end}
+.policy-intro .kicker{margin-bottom:14px}
+.policy-intro h1{font:400 clamp(40px,5.2vw,64px)/.95 var(--serif);letter-spacing:-.03em}
+.policy-intro h1 em{font-style:italic;font-weight:300;color:var(--sage)}
+.policy-intro__side{text-align:right;font:italic 300 17px/1.45 var(--serif);color:var(--mute);padding-bottom:6px}
+
+.policy-toolbar{padding-top:8px;padding-bottom:8px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;gap:18px;font:400 11px/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.policy-toolbar strong{font-weight:400;color:var(--ink)}
+.policy-toolbar__links{display:flex;gap:22px;flex-wrap:wrap;justify-content:flex-end}
+.policy-toolbar a{min-height:44px;display:inline-flex;align-items:center;border-bottom:1px solid transparent}
+.policy-toolbar a:hover{color:var(--clay);border-color:var(--clay)}
+
+.policy-shell{padding-top:54px;padding-bottom:94px;display:grid;grid-template-columns:230px minmax(0,1fr);gap:clamp(52px,7vw,110px);align-items:start}
+.policy-index{position:sticky;top:118px;border-top:1px solid var(--ink)}
+.policy-index__head{padding:18px 0 15px;border-bottom:1px solid var(--rule)}
+.policy-index__head p{font:400 10px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--clay)}
+.policy-index__head h2{margin-top:8px;font:300 25px/1.05 var(--serif);letter-spacing:-.015em}
+.policy-index ol{list-style:none;padding:0;margin:0}
+.policy-index li{border-bottom:1px solid var(--rule)}
+.policy-index a{display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;align-items:center;min-height:54px;font:400 11px/1.35 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.policy-index a span:first-child{font:400 9px/1 var(--mono);letter-spacing:.1em;color:var(--clay)}
+.policy-index a:hover{color:var(--ink)}
+
+.policy-document{max-width:900px}
+.document-head{display:flex;justify-content:space-between;gap:30px;align-items:end;padding-bottom:22px;border-bottom:1px solid var(--ink)}
+.document-head h2{font:300 clamp(30px,3.4vw,44px)/1.03 var(--serif);letter-spacing:-.025em}
+.document-head h2 em{font-style:italic;color:var(--sage)}
+.document-meta{text-align:right;font:400 10px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+
+.policy-section{padding:38px 0 42px;border-bottom:1px solid var(--rule)}
+.section-label{margin-bottom:12px;font:500 10px/1.4 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--clay)}
+.policy-section h3{font:300 clamp(25px,2.5vw,32px)/1.08 var(--serif);letter-spacing:-.018em;margin-bottom:14px}
+.policy-section h4{margin:26px 0 10px;font:500 11px/1.4 var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--ink)}
+.policy-section h3 em{font-style:italic;color:var(--sage)}
+.policy-section p{font-size:15px;line-height:1.72;color:var(--mute);max-width:72ch}
+.policy-section p+p{margin-top:16px}
+.policy-section ul,.policy-section ol{padding-left:20px;margin-top:18px;display:grid;gap:10px;max-width:70ch;color:var(--mute);font-size:14px;line-height:1.65}
+.policy-section li::marker{color:var(--clay)}
+
+.callout{margin-top:26px;padding:20px 22px;background:var(--paper2);display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.callout__mark{font:300 34px/1 var(--serif);color:var(--clay)}
+.callout p{font:italic 300 16px/1.5 var(--serif);color:var(--mute)}
+
+.table-wrap{margin-top:22px;overflow-x:auto;border-top:1px solid var(--ink)}
+.policy-table{width:100%;border-collapse:collapse;min-width:620px}
+.policy-table th,.policy-table td{padding:15px 14px 15px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+.policy-table th{font:500 10px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.policy-table td{font-size:13px;line-height:1.55;color:var(--mute)}
+.policy-table td:first-child{color:var(--ink)}
+
+.contact-route{margin-top:28px;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:18px 0;border-top:1px solid var(--ink)}
+.contact-route p{font-size:13px;line-height:1.55;color:var(--mute)}
+.text-link{min-height:44px;display:inline-flex;align-items:center;flex:none;font:500 10px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;border-bottom:1px solid var(--ink)}
+.text-link:hover{color:var(--clay);border-color:var(--clay)}
+
+.sf-footer{margin-top:0;background:var(--ink);color:var(--paper)}
+.sf-footer__inner{width:min(1720px,calc(100% - 80px));margin:0 auto;padding:64px 0 28px}
+.sf-footer__brand{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding-bottom:42px;border-bottom:1px solid rgba(246,241,235,.14)}
+.sf-footer__mark{font:500 clamp(38px,5.2vw,78px)/.86 var(--serif);letter-spacing:.045em}
+.sf-footer__mark em{font-style:italic;font-weight:400}
+.sf-footer__statement{max-width:37ch;text-align:right;font:italic 300 20px/1.45 var(--serif);color:rgba(246,241,235,.68)}
+.sf-footer__grid{display:grid;grid-template-columns:1.35fr repeat(4,minmax(130px,1fr));gap:clamp(28px,4vw,70px);padding:46px 0;border-bottom:1px solid rgba(246,241,235,.14)}
+.sf-footer__intro{max-width:34ch;color:rgba(246,241,235,.64);font-size:13px;line-height:1.85}
+.sf-footer h3{margin-bottom:16px;font:500 9px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--clay)}
+.sf-footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.sf-footer a{color:rgba(246,241,235,.72);font-size:12px}
+.sf-footer__trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid rgba(246,241,235,.14)}
+.sf-trust-item{padding:18px 22px 18px 0;font-size:11px;color:rgba(246,241,235,.58)}
+.sf-trust-item+.sf-trust-item{padding-left:22px;border-left:1px solid rgba(246,241,235,.14)}
+.sf-trust-item strong{display:block;margin-bottom:4px;color:var(--paper);font-weight:400}
+.sf-footer__bottom{display:flex;justify-content:space-between;gap:24px;padding-top:24px;font:500 8px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,235,.42)}
+.sf-footer__legal{display:flex;gap:18px;flex-wrap:wrap}
+.sf-footer__legal a{font:inherit;color:inherit}
+
+@media(max-width:1040px){
+  .sf-info-bar{grid-template-columns:1fr auto;padding:0 20px}.sf-info-bar__center{display:none}
+  .site-head__in,.sf-footer__inner{width:calc(100% - 40px)}
+  .site-head__in{height:66px;grid-template-columns:1fr auto}
+  .nav-main{display:none}.nav-util{gap:12px}.nav-util .saved-link{display:none}.nav-util .menu-toggle{display:flex}
+  .mark{justify-self:start;text-align:left;font-size:29px}.mark small{display:none}
+  .mobile-nav{border-top:1px solid var(--rule);padding:12px 20px 22px;background:var(--paper);max-height:calc(100dvh - 66px);overflow:auto}
+  .mobile-nav[hidden]{display:none}.mobile-nav:not([hidden]){display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
+  .mobile-nav a{min-height:52px;display:flex;align-items:center;border-bottom:1px solid var(--rule);font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase}
+  .policy-shell{grid-template-columns:1fr;gap:34px}
+  .policy-index{position:static;display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start}
+  .policy-index ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}
+  .policy-document{max-width:none}
+  .sf-footer__brand{grid-template-columns:1fr;gap:20px}.sf-footer__statement{text-align:left}
+  .sf-footer__grid{grid-template-columns:1fr 1fr 1fr}.sf-footer__intro{grid-column:1/-1}
+}
+@media(max-width:600px){
+  .sf-info-bar{min-height:30px;font-size:8px}.sf-info-bar__right{font-size:0}.sf-info-bar__right:after{content:"Policies";font-size:8px}
+  .site-head__in{width:calc(100% - 40px);height:62px;gap:12px}
+  .mark{font-size:27px}.nav-util{font-size:10px;gap:4px}.nav-util a{letter-spacing:.1em}
+  .wrap{max-width:none;padding-left:20px;padding-right:20px}
+  .policy-intro{padding-top:28px;display:block}.policy-intro h1{font-size:44px}.policy-intro__side{text-align:left;max-width:36em;font-size:16px;margin-top:18px;padding-bottom:0}
+  .policy-toolbar{font-size:10px;letter-spacing:.1em;align-items:flex-start}.policy-toolbar__links{gap:12px}
+  .policy-shell{padding-top:34px;padding-bottom:58px}
+  .policy-index{display:block}.policy-index__head{padding-top:0}.policy-index ol{grid-template-columns:1fr}
+  .document-head{display:block}.document-meta{text-align:left;margin-top:14px}
+  .policy-section{padding:30px 0 34px}
+  .callout{grid-template-columns:1fr;gap:4px;padding:18px 20px}
+  .contact-route{align-items:flex-start;flex-direction:column}
+  .sf-footer__inner{width:calc(100% - 40px);padding-top:46px}
+  .sf-footer__mark{font-size:48px}.sf-footer__statement{font-size:18px}
+  .sf-footer__grid{grid-template-columns:1fr 1fr;gap:34px 26px;padding:36px 0}.sf-footer__intro{grid-column:1/-1}
+  .sf-footer__trust{grid-template-columns:1fr}.sf-trust-item,.sf-trust-item+.sf-trust-item{padding:16px 0;border-left:0;border-top:1px solid rgba(246,241,235,.14)}.sf-trust-item:first-child{border-top:0}
+  .sf-footer__bottom{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sf-info-bar">
+  <span>Spatial Flow · Main site</span>
+  <span class="sf-info-bar__center">Objects · Space · Material</span>
+  <span class="sf-info-bar__right"><i class="sf-info-dot"></i>Policies / Information</span>
+</div>
+
+<header class="site-head">
+  <div class="site-head__in">
+    <nav class="nav-main" aria-label="Primary">
+      <a href="#">Shop</a><a href="#">Journal</a><a href="#">Services</a><a href="#">About Us</a>
+    </nav>
+    <a class="mark" href="#" aria-label="Spatial Flow home">SPATIAL <em>FLOW</em><small>Objects · Space · Material</small></a>
+    <nav class="nav-util" aria-label="Utilities">
+      <a href="#">Search</a><a class="saved-link" href="#">Saved</a><a href="#">Bag</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </nav>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+    <a href="#">Shop</a><a href="#">Journal</a><a href="#">Services</a><a href="#">About Us</a>
+    <a href="#">Search</a><a href="#">Saved collection</a><a href="#">Bag</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="policy-intro wrap">
+    <div>
+      <p class="kicker">Returns &amp; Refunds</p>
+      <h1>Clear terms, with enough <em>air.</em></h1>
+    </div>
+    <p class="policy-intro__side">A longer policy page using the exact same reading structure as the short template — extended only by content, not by a second visual system.</p>
+  </section>
+
+  <div class="policy-toolbar wrap">
+    <p><strong>Returns &amp; Refunds</strong> · standard policy layout</p>
+    <div class="policy-toolbar__links">
+      <a href="#eligibility">Eligibility</a><a href="#refunds">Refunds</a><a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <section class="policy-shell wrap">
+    <aside class="policy-index" aria-label="On this page">
+      <div class="policy-index__head">
+        <p>Contents</p>
+        <h2>On this page</h2>
+      </div>
+      <ol>
+        <li><a href="#overview"><span>01</span><span>Overview</span></a></li>
+        <li><a href="#eligibility"><span>02</span><span>Eligibility</span></a></li>
+        <li><a href="#window"><span>03</span><span>Return window</span></a></li>
+        <li><a href="#condition"><span>04</span><span>Condition</span></a></li>
+        <li><a href="#exceptions"><span>05</span><span>Exceptions</span></a></li>
+        <li><a href="#process"><span>06</span><span>Return process</span></a></li>
+        <li><a href="#refunds"><span>07</span><span>Refunds</span></a></li>
+        <li><a href="#international"><span>08</span><span>International</span></a></li>
+        <li><a href="#contact"><span>09</span><span>Contact</span></a></li>
+      </ol>
+    </aside>
+
+    <article class="policy-document">
+      <header class="document-head">
+        <h2>Returns &amp; Refunds <em>Policy.</em></h2>
+        <div class="document-meta">Last updated<br>Preserve original page date</div>
+      </header>
+
+      <section class="policy-section" id="overview">
+        <div class="section-label">01 · Overview</div>
+        <h3>A practical route when something is <em>not right.</em></h3>
+        <p>This extended page is a visual stress test only. It uses the same composition, width, hierarchy and spacing rules as the accepted short policy template. The wording below is illustrative and should not replace approved production policy copy.</p>
+        <p>A real returns page usually needs to explain eligibility, timing, item condition, exclusions, shipping, refunds and support. The purpose of this version is to see whether the existing policy template remains visually stable when those sections simply continue down the page.</p>
+        <div class="callout">
+          <div class="callout__mark">↳</div>
+          <p>The layout is intentionally unchanged from the short template. Only the amount of content has increased.</p>
+        </div>
+      </section>
+
+      <section class="policy-section" id="eligibility">
+        <div class="section-label">02 · Eligibility</div>
+        <h3>What may be <em>returned.</em></h3>
+        <p>Standard merchandise may be eligible for return when the request is made within the applicable return window and the item is returned in a condition that allows it to be inspected. Exact time limits, fees and exceptions belong to the approved production policy.</p>
+        <p>Eligibility may depend on the product category, whether the item was customized, whether it was sold as final sale, and whether the required return process was followed.</p>
+        <h4>Typical checks</h4>
+        <ul>
+          <li>The purchase can be located and verified.</li>
+          <li>The request is made within the applicable return period.</li>
+          <li>The product is not excluded by a product-specific restriction.</li>
+          <li>The item has not been materially altered or damaged after delivery.</li>
+        </ul>
+      </section>
+
+      <section class="policy-section" id="window">
+        <div class="section-label">03 · Return window</div>
+        <h3>State the timing <em>plainly.</em></h3>
+        <p>A complete policy may need to distinguish the deadline for opening a return request from the deadline for actually handing the parcel to the carrier. It should also make clear which date begins the return period.</p>
+        <p>Delivery delays, split shipments and parcels marked delivered before receipt can create edge cases. If the business allows discretion in those situations, the production policy should describe that discretion directly.</p>
+      </section>
+
+      <section class="policy-section" id="condition">
+        <div class="section-label">04 · Condition</div>
+        <h3>Inspection should remain <em>reasonable.</em></h3>
+        <p>Opening a package to inspect color, finish, size or fit is different from extended use. A long-form policy may need to explain the difference without turning the page into a wall of warnings.</p>
+        <p>Packaging, inserts, pouches, certificates and accessories may all matter when a return is reviewed. Product-specific condition standards should remain readable within the same hierarchy.</p>
+        <h4>Examples</h4>
+        <ul>
+          <li>Visible wear, scratches, chips, stains or residue.</li>
+          <li>Missing packaging, accessories or included documentation.</li>
+          <li>Alterations, repairs, restringing or resizing after delivery.</li>
+          <li>Damage caused by improper care, storage, impact, chemicals or heat.</li>
+        </ul>
+      </section>
+
+      <section class="policy-section" id="exceptions">
+        <div class="section-label">05 · Exceptions</div>
+        <h3>Some categories need a more specific <em>rule.</em></h3>
+        <p>Customized, made-to-order, final-sale or otherwise restricted products may follow different return conditions. The policy should keep those exceptions visible without forcing the customer to search across multiple pages.</p>
+        <ul>
+          <li>Customized, engraved, resized or otherwise personalized pieces.</li>
+          <li>Items clearly identified as final sale before checkout.</li>
+          <li>Products that cannot safely be resold after use.</li>
+          <li>Items materially changed after delivery.</li>
+        </ul>
+        <p>An item that is ordinarily non-returnable may still require a separate remedy if it arrived damaged, incomplete or materially different from what was ordered.</p>
+      </section>
+
+      <section class="policy-section" id="process">
+        <div class="section-label">06 · Return process</div>
+        <h3>Keep the steps <em>obvious.</em></h3>
+        <p>The return process should explain what information is needed, whether authorization is required, where the item should be sent and what the customer should keep for reference.</p>
+        <ol>
+          <li>Locate the order number and checkout email.</li>
+          <li>Open the approved return or support request.</li>
+          <li>Identify the item and the reason for the request.</li>
+          <li>Wait for instructions if authorization is required.</li>
+          <li>Pack the item securely with the required components.</li>
+          <li>Keep the shipment receipt and tracking information.</li>
+        </ol>
+      </section>
+
+      <section class="policy-section" id="refunds">
+        <div class="section-label">07 · Refunds</div>
+        <h3>Timing should remain <em>scannable.</em></h3>
+        <p>A refund often involves several separate events: the parcel is received, the item is inspected, the refund is approved, the refund is initiated, and the bank or payment provider posts the credit.</p>
+        <p>The production policy should distinguish those stages rather than presenting a single vague processing time.</p>
+        <div class="table-wrap">
+          <table class="policy-table">
+            <thead>
+              <tr><th>Stage</th><th>What happens</th><th>Illustrative timing</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Return received</td><td>The parcel reaches the designated return location.</td><td>Carrier dependent</td></tr>
+              <tr><td>Inspection</td><td>The item is checked against the applicable return conditions.</td><td>Several business days</td></tr>
+              <tr><td>Refund initiated</td><td>The approved amount is sent to the applicable payment method.</td><td>After approval</td></tr>
+              <tr><td>Provider posting</td><td>The bank or provider posts the credit to the account.</td><td>Provider dependent</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>Payment methods</h4>
+        <p>Cards, wallets and cryptocurrency can have different settlement and refund mechanics. The final policy should describe the actual approved process for each supported method.</p>
+      </section>
+
+      <section class="policy-section" id="international">
+        <div class="section-label">08 · International</div>
+        <h3>Cross-border returns need more <em>detail.</em></h3>
+        <p>International orders can involve duties, import taxes, brokerage charges, customs declarations, longer transit times and country-specific restrictions. This section intentionally adds several consecutive paragraphs to test sustained reading.</p>
+        <p>Where duties or taxes were paid to a government, carrier or third-party service, the store may not be able to refund those amounts directly. The production policy should explain the actual treatment.</p>
+        <p>Customers may also need instructions for customs declarations, prepaid labels, refused parcels or packages returned because local charges were not paid.</p>
+      </section>
+
+      <section class="policy-section" id="contact">
+        <div class="section-label">09 · Contact</div>
+        <h3>End with a clear <em>route.</em></h3>
+        <p>If the customer is unsure whether an item is eligible, cannot locate the order, received the wrong item, or needs help with a return already in transit, the page should end with a simple support path.</p>
+        <div class="contact-route">
+          <p>For production, contact details, response expectations and operational instructions must come from the real WordPress content.</p>
+          <a class="text-link" href="#">Contact support ↗</a>
+        </div>
+      </section>
+    </article>
+  </section>
+</main>
+
+<footer class="sf-footer">
+  <div class="sf-footer__inner">
+    <div class="sf-footer__brand">
+      <div class="sf-footer__mark">SPATIAL <em>FLOW</em></div>
+      <p class="sf-footer__statement">Objects, materials and quiet rituals for spaces that ask for less noise.</p>
+    </div>
+    <div class="sf-footer__grid">
+      <p class="sf-footer__intro">Spatial Flow is a commerce-led study of objects, rooms and material atmosphere. The live site keeps navigation, support and policy content editable in WordPress.</p>
+      <div><h3>Shop</h3><ul><li><a href="#">All objects</a></li><li><a href="#">Bracelets</a></li><li><a href="#">Necklaces</a></li><li><a href="#">Saved objects</a></li></ul></div>
+      <div><h3>Journal</h3><ul><li><a href="#">Journal home</a></li><li><a href="#">Space &amp; energy</a></li><li><a href="#">Materials</a></li><li><a href="#">Buying guides</a></li></ul></div>
+      <div><h3>About &amp; Services</h3><ul><li><a href="#">About Us</a></li><li><a href="#">Services</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div><h3>Customer Care</h3><ul><li><a href="#">FAQ / Help</a></li><li><a href="#">Track Order</a></li><li><a href="#">Shipping Policy</a></li><li><a href="#">Returns &amp; Refunds</a></li></ul></div>
+    </div>
+    <div class="sf-footer__trust">
+      <div class="sf-trust-item"><strong>Secure checkout</strong>WooCommerce-owned payment and order flow.</div>
+      <div class="sf-trust-item"><strong>Guest-first commerce</strong>No account required for the current shopping path.</div>
+      <div class="sf-trust-item"><strong>Saved by the store</strong>Production wishlist state remains YITH / WooCommerce-owned.</div>
+    </div>
+    <div class="sf-footer__bottom">
+      <span>© 2026 Spatial Flow · Returns & Refunds · Standard Extended 03</span>
+      <div class="sf-footer__legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const menu=document.querySelector('.menu-toggle');
+const mobileNav=document.querySelector('.mobile-nav');
+function setMenu(open){
+  if(!menu||!mobileNav)return;
+  menu.setAttribute('aria-expanded',String(open));
+  menu.textContent=open?'Close':'Menu';
+  mobileNav.hidden=!open;
+  document.body.classList.toggle('menu-open',open);
+}
+if(menu&&mobileNav){
+  menu.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!=='true'));
+  mobileNav.addEventListener('click',e=>{if(e.target.closest('a'))setMenu(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+  matchMedia('(min-width:1041px)').addEventListener('change',e=>{if(e.matches)setMenu(false)});
+}
+</script>
+</body>
+</html>
