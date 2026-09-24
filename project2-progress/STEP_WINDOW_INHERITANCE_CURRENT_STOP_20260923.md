@@ -101,31 +101,31 @@ Production mapping remains deferred until this visual batch is locked.
 
 ## Width-system correction — current latest authority
 
-The temporary universal 1720px body-width assumption is withdrawn.
+The temporary universal 1720px body-width assumption remains withdrawn.
 
-Current width hierarchy:
-1. Header / Footer = near-full-width global shell.
-2. Standard task / information body lane = 1360px candidate for visual validation.
-3. Specialized commerce/task geometry = Cart / Checkout retain purpose-specific widths.
-4. Shop = controlled wider exception where already explicitly accepted.
+A later explicit user correction restores the Wishlist body baseline to:
 
-The temporary 1720-wide Wishlist body experiment must NOT be merged.
+- Header / Footer = 1720px system / broad global shell.
+- Wishlist Intro / Toolbar / Collection Index / product body = `--max: 1480px` plus internal horizontal padding.
 
-Current validation artifacts exist on branch:
-`temp-task-width-audit-01`
+Therefore on wide screens the Wishlist body remains visibly narrower than Search. This is intentional as the restored current baseline and reflects the user's correction that the prior compromise had not fully unified the widths.
 
-- `temp-preview/Spatial-Flow-Wishlist-Width-Audit-1360.html`
-- `temp-preview/Spatial-Flow-Search-Width-Audit-1360.html`
+The earlier 1360px Wishlist/Search shared-body-lane candidate is superseded and is no longer the active decision gate.
+
+The temporary 1720-wide Wishlist body experiment remains rejected and must NOT be merged.
+
+This does NOT establish 1480px as a universal width token for every Project-2 page.
 
 ## Exact current stop point
 
 The project is currently stopped at:
 
 ```text
-VISUAL VALIDATION OF THE SHARED 1360px TASK / INFORMATION BODY LANE
-→ compare Wishlist 1360 and Search 1360
-→ do not merge the withdrawn 1720 experiment
-→ if the shared lane is visually accepted, lock the width tier
+WISHLIST BODY WIDTH BASELINE RESTORED TO 1480px
+→ Header / Footer remain on the broader 1720px shell system
+→ Wishlist Intro / Toolbar / Collection Index / product body use --max: 1480px + internal padding
+→ the earlier 1360px Wishlist/Search shared-lane test is superseded
+→ do not merge the rejected 1720px full Wishlist-body experiment
 → continue Search / 404 / Contact / Utility-Policy design harmonization
 → then lightly harmonize Services / FAQ / Track Order
 → only after the visual batch is locked, begin production mapping
@@ -149,6 +149,6 @@ Production mapping has NOT started for Wishlist or Search.
 
 NEW WINDOW INHERITANCE AUDIT = COMPLETE.
 
-CURRENT ACTIVE DECISION GATE = USER VISUAL REVIEW OF THE 1360px WISHLIST / SEARCH WIDTH-AUDIT PAIR.
+CURRENT ACTIVE WIDTH AUTHORITY = WISHLIST BODY RESTORED TO 1480px; HEADER / FOOTER REMAIN ON THE 1720px SHELL SYSTEM.
 
 No implementation action is authorized by this inheritance record alone.
