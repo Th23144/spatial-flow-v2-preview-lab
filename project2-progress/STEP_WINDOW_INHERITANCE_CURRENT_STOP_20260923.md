@@ -138,7 +138,7 @@ TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1 AS THE TEMPORARY DESIGN S
 → Policy Long-form Stress Test 01 was rejected as visually awkward
 → Policy Long-form Reading Mode 02 was judged visually strange and its special layout concept is abandoned
 → Policy Standard Extended 03 is abandoned as the active direction
-→ Policy Long-form Reading Mode 02 has been handed off to an external AI for the unresolved right-side article composition
+→ Policy Long-form Reading Mode 03 external-AI candidate has returned, received five cleanup-only fixes, and is ready for final visual confirmation
 → Services Wishlist-led 01 has been user visually accepted
 → FAQ / Help has been user visually accepted after typography correction
 → Track Order Wishlist-led 06 has been user visually accepted and closed for this design batch
@@ -165,6 +165,6 @@ Production mapping has NOT started for Wishlist or Search.
 
 NEW WINDOW INHERITANCE AUDIT = COMPLETE.
 
-CURRENT ACTIVE REVIEW GATE = POLICY EXTERNAL-AI FINAL HANDOFF / VISUAL BATCH CLOSURE. TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
+CURRENT ACTIVE REVIEW GATE = POLICY LONG-FORM READING 03 FINAL VISUAL CONFIRMATION. TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
 
 No implementation action is authorized by this inheritance record alone.
