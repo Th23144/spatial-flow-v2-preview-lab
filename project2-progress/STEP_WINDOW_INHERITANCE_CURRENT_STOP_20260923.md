@@ -127,14 +127,15 @@ This does NOT establish 1480px as a universal width token for every Project-2 pa
 The project is currently stopped at:
 
 ```text
-TASK / INFORMATION PAGES NOW FOLLOW WISHLIST HARMONIZED V1 AS THE TEMPORARY DESIGN SYSTEM
+TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1 AS THE TEMPORARY DESIGN SYSTEM
 → Header / Footer remain on the broader 1720px shell system
 → page body uses 1480px + internal horizontal padding
-→ Search is the first page to be rebuilt/harmonized to this same generation
-→ then continue 404 / Contact / Utility-Policy
+→ Wishlist + Search visual-system audit passed after minor Search shell correction
+→ Search typography / sage-accent direction is aligned
+→ 404 Wishlist-led 01 has been produced and is awaiting user visual review
+→ after 404 acceptance continue Contact / Utility-Policy
 → then lightly harmonize Services / FAQ / Track Order
 → the earlier 1360px shared-lane test is superseded
-→ do not merge the rejected 1720px full-body Wishlist experiment
 → only after the visual batch is locked, begin production mapping
 ```
 
@@ -156,6 +157,6 @@ Production mapping has NOT started for Wishlist or Search.
 
 NEW WINDOW INHERITANCE AUDIT = COMPLETE.
 
-CURRENT ACTIVE DESIGN AUTHORITY = TASK / INFORMATION PAGES TEMPORARILY FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
+CURRENT ACTIVE REVIEW GATE = 404 WISHLIST-LED 01 VISUAL REVIEW. TASK / INFORMATION PAGES FOLLOW WISHLIST HARMONIZED V1; HEADER / FOOTER = 1720px SHELL, BODY = 1480px + INTERNAL PADDING.
 
 No implementation action is authorized by this inheritance record alone.
