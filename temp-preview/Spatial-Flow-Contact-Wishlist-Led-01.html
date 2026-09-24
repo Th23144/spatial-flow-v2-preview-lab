@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#F6F1EB">
+<title>Contact — Spatial Flow · Wishlist-led 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F1EB;--paper2:#EDE7DF;--ink:#1F1916;
+  --mute:rgba(31,25,22,.62);--faint:rgba(31,25,22,.38);
+  --rule:rgba(31,25,22,.13);--rule-soft:rgba(31,25,22,.08);
+  --clay:#A8745C;--claydeep:#8B5D49;--sage:#4A5D5A;
+  --pad:clamp(22px,4.2vw,64px);--max:1480px;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font:300 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body.menu-open{overflow:hidden}
+h1,h2,h3,p,ul{margin:0}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a,button{touch-action:manipulation}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+::selection{background:#C5AD98;color:var(--ink)}
+.skip{position:absolute;top:-80px;left:20px;z-index:100;padding:10px 14px;background:var(--ink);color:var(--paper)}
+.skip:focus{top:10px}
+
+.sf-info-bar{min-height:34px;padding:0 40px;border-bottom:1px solid var(--rule-soft);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;font:500 9px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);background:var(--paper)}
+.sf-info-bar__center{justify-self:center;color:var(--ink);letter-spacing:.18em}
+.sf-info-bar__right{justify-self:end}
+.sf-info-dot{width:5px;height:5px;display:inline-block;margin-right:8px;background:var(--clay);vertical-align:1px}
+
+.site-head{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 96%,transparent);border-bottom:1px solid var(--ink);backdrop-filter:blur(8px)}
+.site-head__in{width:min(1720px,calc(100% - 80px));max-width:none;height:82px;padding:0;margin:auto;display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center}
+.mark{font:500 clamp(27px,2.5vw,38px)/.9 var(--serif);letter-spacing:.075em;white-space:nowrap;justify-self:center;text-align:center}
+.mark em{font-style:italic;font-weight:400}
+.mark small{display:block;margin-top:9px;font:500 8px/1 var(--mono);letter-spacing:.27em;text-transform:uppercase;color:var(--mute)}
+.nav-main,.nav-util{display:flex;align-items:center;gap:clamp(18px,2.1vw,34px);font:500 10px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;white-space:nowrap}
+.nav-main{justify-self:start}.nav-util{justify-self:end}
+.nav-main a,.nav-util a,.nav-util button{display:inline-flex;align-items:center;min-height:44px}
+.nav-main a:hover,.nav-util a:hover,.nav-util button:hover,.sf-footer a:hover{color:var(--clay)}
+.mobile-nav{display:none}
+
+.wrap{width:100%;max-width:calc(var(--max) + var(--pad)*2);padding-left:var(--pad);padding-right:var(--pad);margin-left:auto;margin-right:auto}
+.kicker{font:500 10px/1.5 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--clay)}
+
+.contact-intro{padding-top:46px;padding-bottom:28px;display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,34em);gap:40px;align-items:end}
+.contact-intro .kicker{margin-bottom:14px}
+.contact-intro h1{font:400 clamp(40px,5.2vw,64px)/.95 var(--serif);letter-spacing:-.03em}
+.contact-intro h1 em{font-style:italic;font-weight:300;color:var(--sage)}
+.contact-intro__side{text-align:right;font:italic 300 17px/1.45 var(--serif);color:var(--mute);padding-bottom:6px}
+
+.contact-toolbar{padding-top:8px;padding-bottom:8px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;gap:18px;font:400 11px/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.contact-toolbar strong{font-weight:400;color:var(--ink)}
+.contact-toolbar__links{display:flex;gap:22px;flex-wrap:wrap;justify-content:flex-end}
+.contact-toolbar a{min-height:44px;display:inline-flex;align-items:center;border-bottom:1px solid transparent}
+.contact-toolbar a:hover{color:var(--clay);border-color:var(--clay)}
+
+.contact-main{padding-top:52px;padding-bottom:88px;display:grid;grid-template-columns:minmax(0,1.14fr) minmax(320px,.86fr);gap:clamp(54px,7vw,110px);align-items:start}
+
+.form-panel{border-top:1px solid var(--ink);padding-top:24px}
+.form-head{display:grid;grid-template-columns:1fr auto;gap:26px;align-items:end;padding-bottom:24px;border-bottom:1px solid var(--rule)}
+.form-head h2{font:300 clamp(28px,3.2vw,40px)/1.05 var(--serif);letter-spacing:-.025em}
+.form-head h2 em{font-style:italic;color:var(--sage)}
+.form-head p{max-width:31ch;text-align:right;font-size:13px;line-height:1.6;color:var(--mute)}
+.contact-form{padding-top:22px}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 30px}
+.field{padding:18px 0 15px;border-bottom:1px solid var(--rule)}
+.field.full{grid-column:1/-1}
+.field label{display:block;margin-bottom:8px;font:500 10px/1.3 var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--ink)}
+.field small{display:block;margin-top:6px;font:400 10px/1.45 var(--mono);letter-spacing:.03em;color:var(--faint)}
+.field input,.field select,.field textarea{width:100%;border:0;border-radius:0;background:transparent;outline:0;padding:0;font:300 15px/1.55 var(--sans)}
+.field input,.field select{min-height:36px}
+.field textarea{min-height:138px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:rgba(31,25,22,.4)}
+.field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 1px 0 var(--clay)}
+.form-actions{padding-top:24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.form-note{max-width:42ch;font-size:12px;line-height:1.55;color:var(--mute)}
+.submit-btn{min-height:46px;padding:0 20px;background:var(--ink);color:var(--paper);font:500 10px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase}
+.submit-btn:hover{background:var(--claydeep)}
+
+.contact-aside{border-top:1px solid var(--ink)}
+.aside-head{padding:18px 0 16px;display:flex;justify-content:space-between;gap:20px;align-items:center;border-bottom:1px solid var(--rule)}
+.aside-head h2{font:300 25px/1.05 var(--serif);letter-spacing:-.015em}
+.aside-head p{font:400 10px/1.3 var(--mono);letter-spacing:.11em;color:var(--mute);text-transform:uppercase}
+
+.route-row{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:22px;align-items:center;padding:24px 0;border-bottom:1px solid var(--rule)}
+.route-num{font:400 10px/1 var(--mono);letter-spacing:.13em;color:var(--clay)}
+.route-copy h3{font:300 clamp(25px,2.5vw,32px)/1.08 var(--serif);letter-spacing:-.018em;margin-bottom:7px}
+.route-copy h3 em{font-style:italic;color:var(--sage)}
+.route-copy p{font-size:13px;line-height:1.65;color:var(--mute);max-width:42em}
+.route-link{min-height:44px;display:inline-flex;align-items:center;font:500 10px/1 var(--sans);letter-spacing:.13em;text-transform:uppercase;border-bottom:1px solid var(--ink)}
+.route-link:hover{color:var(--clay);border-color:var(--clay)}
+
+.context-note{margin-top:26px;padding:22px 24px;background:var(--paper2)}
+.context-note .kicker{margin-bottom:9px}
+.context-note p{font:italic 300 16px/1.5 var(--serif);color:var(--mute)}
+.context-note strong{font-style:normal;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+
+.sf-footer{margin-top:0;background:var(--ink);color:var(--paper)}
+.sf-footer__inner{width:min(1720px,calc(100% - 80px));margin:0 auto;padding:64px 0 28px}
+.sf-footer__brand{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding-bottom:42px;border-bottom:1px solid rgba(246,241,235,.14)}
+.sf-footer__mark{font:500 clamp(38px,5.2vw,78px)/.86 var(--serif);letter-spacing:.045em}
+.sf-footer__mark em{font-style:italic;font-weight:400}
+.sf-footer__statement{max-width:37ch;text-align:right;font:italic 300 20px/1.45 var(--serif);color:rgba(246,241,235,.68)}
+.sf-footer__grid{display:grid;grid-template-columns:1.35fr repeat(4,minmax(130px,1fr));gap:clamp(28px,4vw,70px);padding:46px 0;border-bottom:1px solid rgba(246,241,235,.14)}
+.sf-footer__intro{max-width:34ch;color:rgba(246,241,235,.64);font-size:13px;line-height:1.85}
+.sf-footer h3{margin-bottom:16px;font:500 9px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--clay)}
+.sf-footer ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.sf-footer a{color:rgba(246,241,235,.72);font-size:12px}
+.sf-footer__trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-bottom:1px solid rgba(246,241,235,.14)}
+.sf-trust-item{padding:18px 22px 18px 0;font-size:11px;color:rgba(246,241,235,.58)}
+.sf-trust-item+.sf-trust-item{padding-left:22px;border-left:1px solid rgba(246,241,235,.14)}
+.sf-trust-item strong{display:block;margin-bottom:4px;color:var(--paper);font-weight:400}
+.sf-footer__bottom{display:flex;justify-content:space-between;gap:24px;padding-top:24px;font:500 8px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(246,241,235,.42)}
+.sf-footer__legal{display:flex;gap:18px;flex-wrap:wrap}
+.sf-footer__legal a{font:inherit;color:inherit}
+
+@media(max-width:1040px){
+  .sf-info-bar{grid-template-columns:1fr auto;padding:0 20px}.sf-info-bar__center{display:none}
+  .site-head__in,.sf-footer__inner{width:calc(100% - 40px)}
+  .site-head__in{height:66px;grid-template-columns:1fr auto}
+  .nav-main{display:none}.nav-util{gap:12px}.nav-util .saved-link{display:none}.nav-util .menu-toggle{display:flex}
+  .mark{justify-self:start;text-align:left;font-size:29px}.mark small{display:none}
+  .mobile-nav{border-top:1px solid var(--rule);padding:12px 20px 22px;background:var(--paper);max-height:calc(100dvh - 66px);overflow:auto}
+  .mobile-nav[hidden]{display:none}.mobile-nav:not([hidden]){display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
+  .mobile-nav a{min-height:52px;display:flex;align-items:center;border-bottom:1px solid var(--rule);font:400 12px var(--sans);letter-spacing:.12em;text-transform:uppercase}
+  .contact-main{grid-template-columns:1fr;gap:54px}
+  .contact-aside{max-width:840px}
+  .sf-footer__brand{grid-template-columns:1fr;gap:20px}.sf-footer__statement{text-align:left}
+  .sf-footer__grid{grid-template-columns:1fr 1fr 1fr}.sf-footer__intro{grid-column:1/-1}
+}
+@media(max-width:600px){
+  .sf-info-bar{min-height:30px;font-size:8px}.sf-info-bar__right{font-size:0}.sf-info-bar__right:after{content:"Contact";font-size:8px}
+  .site-head__in{width:calc(100% - 40px);height:62px;gap:12px}
+  .mark{font-size:27px}.nav-util{font-size:10px;gap:4px}.nav-util a{letter-spacing:.1em}
+  .wrap{max-width:none;padding-left:20px;padding-right:20px}
+  .contact-intro{padding-top:28px;display:block}.contact-intro h1{font-size:44px}.contact-intro__side{text-align:left;max-width:36em;font-size:16px;margin-top:18px;padding-bottom:0}
+  .contact-toolbar{font-size:10px;letter-spacing:.1em;align-items:flex-start}.contact-toolbar__links{gap:12px}
+  .contact-main{padding-top:34px;padding-bottom:54px;gap:42px}
+  .form-head{grid-template-columns:1fr;gap:10px}.form-head p{text-align:left;max-width:44ch}
+  .field-grid{grid-template-columns:1fr;gap:0}.field.full{grid-column:auto}
+  .form-actions{align-items:stretch;flex-direction:column}.submit-btn{width:100%}
+  .route-row{grid-template-columns:34px minmax(0,1fr);gap:14px}.route-link{grid-column:2;justify-self:start}.route-copy h3{font-size:29px}
+  .sf-footer__inner{width:calc(100% - 40px);padding-top:46px}
+  .sf-footer__mark{font-size:48px}.sf-footer__statement{font-size:18px}
+  .sf-footer__grid{grid-template-columns:1fr 1fr;gap:34px 26px;padding:36px 0}.sf-footer__intro{grid-column:1/-1}
+  .sf-footer__trust{grid-template-columns:1fr}.sf-trust-item,.sf-trust-item+.sf-trust-item{padding:16px 0;border-left:0;border-top:1px solid rgba(246,241,235,.14)}.sf-trust-item:first-child{border-top:0}
+  .sf-footer__bottom{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="sf-info-bar">
+  <span>Spatial Flow · Main site</span>
+  <span class="sf-info-bar__center">Objects · Space · Material</span>
+  <span class="sf-info-bar__right"><i class="sf-info-dot"></i>Contact / Support</span>
+</div>
+
+<header class="site-head">
+  <div class="site-head__in">
+    <nav class="nav-main" aria-label="Primary">
+      <a href="#">Shop</a><a href="#">Journal</a><a href="#">Services</a><a href="#">About Us</a>
+    </nav>
+    <a class="mark" href="#" aria-label="Spatial Flow home">SPATIAL <em>FLOW</em><small>Objects · Space · Material</small></a>
+    <nav class="nav-util" aria-label="Utilities">
+      <a href="#">Search</a><a class="saved-link" href="#">Saved</a><a href="#">Bag</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
+    </nav>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+    <a href="#">Shop</a><a href="#">Journal</a><a href="#">Services</a><a href="#">About Us</a>
+    <a href="#">Search</a><a href="#">Saved collection</a><a href="#">Bag</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="contact-intro wrap">
+    <div>
+      <p class="kicker">Contact / Support</p>
+      <h1>Send a <em>clear note.</em></h1>
+    </div>
+    <p class="contact-intro__side">Order questions, product details and service inquiries all begin in the same place — with enough context to answer clearly.</p>
+  </section>
+
+  <div class="contact-toolbar wrap">
+    <p><strong>Contact</strong> · support and service inquiries</p>
+    <div class="contact-toolbar__links"><a href="#">Track order</a><a href="#">FAQ / Help</a></div>
+  </div>
+
+  <section class="contact-main wrap">
+    <section class="form-panel" aria-labelledby="contact-form-title">
+      <div class="form-head">
+        <div>
+          <p class="kicker">Message form</p>
+          <h2 id="contact-form-title">Write with <em>context.</em></h2>
+        </div>
+        <p>Production should map this visual layer onto the existing WordPress form owner rather than creating a second submission system.</p>
+      </div>
+
+      <form class="contact-form" action="#" method="post">
+        <div class="field-grid">
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" autocomplete="name" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="contact-topic">Topic</label>
+            <select id="contact-topic" name="topic">
+              <option>Order support</option>
+              <option>Product question</option>
+              <option>Service inquiry</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="contact-order">Order number <span aria-hidden="true">·</span> optional</label>
+            <input id="contact-order" name="order" inputmode="text" placeholder="If this is about an order">
+          </div>
+          <div class="field full">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" placeholder="Include the product, order, room context, or question you need help with."></textarea>
+            <small>Do not include payment-card details or passwords.</small>
+          </div>
+        </div>
+        <div class="form-actions">
+          <p class="form-note">This prototype does not send email, create tickets, change orders or store customer information.</p>
+          <button class="submit-btn" type="submit">Send message ↗</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="contact-aside" aria-label="Support routes">
+      <div class="aside-head">
+        <h2>Before you write</h2>
+        <p>Useful routes</p>
+      </div>
+
+      <article class="route-row">
+        <div class="route-num">01</div>
+        <div class="route-copy">
+          <h3>Looking for an <em>order?</em></h3>
+          <p>Use Track Order when you already have the order number and billing email.</p>
+        </div>
+        <a class="route-link" href="#">Track ↗</a>
+      </article>
+
+      <article class="route-row">
+        <div class="route-num">02</div>
+        <div class="route-copy">
+          <h3>Need a quick <em>answer?</em></h3>
+          <p>Shipping, returns, care and practical support questions may already be covered in FAQ.</p>
+        </div>
+        <a class="route-link" href="#">FAQ ↗</a>
+      </article>
+
+      <article class="route-row">
+        <div class="route-num">03</div>
+        <div class="route-copy">
+          <h3>Need product <em>guidance?</em></h3>
+          <p>For placement or product guidance, include the object and the room context rather than a vague request.</p>
+        </div>
+        <a class="route-link" href="#">Services ↗</a>
+      </article>
+
+      <div class="context-note">
+        <p class="kicker">Implementation note</p>
+        <p><strong>Keep the real owner.</strong> Form submission, routing, validation and email delivery stay with the production WordPress form system.</p>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<footer class="sf-footer">
+  <div class="sf-footer__inner">
+    <div class="sf-footer__brand">
+      <div class="sf-footer__mark">SPATIAL <em>FLOW</em></div>
+      <p class="sf-footer__statement">Objects, materials and quiet rituals for spaces that ask for less noise.</p>
+    </div>
+    <div class="sf-footer__grid">
+      <p class="sf-footer__intro">Spatial Flow is a commerce-led study of objects, rooms and material atmosphere. The live site keeps navigation, support and policy content editable in WordPress.</p>
+      <div><h3>Shop</h3><ul><li><a href="#">All objects</a></li><li><a href="#">Bracelets</a></li><li><a href="#">Necklaces</a></li><li><a href="#">Saved objects</a></li></ul></div>
+      <div><h3>Journal</h3><ul><li><a href="#">Journal home</a></li><li><a href="#">Space &amp; energy</a></li><li><a href="#">Materials</a></li><li><a href="#">Buying guides</a></li></ul></div>
+      <div><h3>About &amp; Services</h3><ul><li><a href="#">About Us</a></li><li><a href="#">Services</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div><h3>Customer Care</h3><ul><li><a href="#">FAQ / Help</a></li><li><a href="#">Track Order</a></li><li><a href="#">Shipping Policy</a></li><li><a href="#">Returns &amp; Refunds</a></li></ul></div>
+    </div>
+    <div class="sf-footer__trust">
+      <div class="sf-trust-item"><strong>Secure checkout</strong>WooCommerce-owned payment and order flow.</div>
+      <div class="sf-trust-item"><strong>Guest-first commerce</strong>No account required for the current shopping path.</div>
+      <div class="sf-trust-item"><strong>Saved by the store</strong>Production wishlist state remains YITH / WooCommerce-owned.</div>
+    </div>
+    <div class="sf-footer__bottom">
+      <span>© 2026 Spatial Flow · Contact · Wishlist-led study</span>
+      <div class="sf-footer__legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const menu=document.querySelector('.menu-toggle');
+const mobileNav=document.querySelector('.mobile-nav');
+function setMenu(open){
+  if(!menu||!mobileNav)return;
+  menu.setAttribute('aria-expanded',String(open));
+  menu.textContent=open?'Close':'Menu';
+  mobileNav.hidden=!open;
+  document.body.classList.toggle('menu-open',open);
+}
+if(menu&&mobileNav){
+  menu.addEventListener('click',()=>setMenu(menu.getAttribute('aria-expanded')!=='true'));
+  mobileNav.addEventListener('click',e=>{if(e.target.closest('a'))setMenu(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+  matchMedia('(min-width:1041px)').addEventListener('change',e=>{if(e.matches)setMenu(false)});
+}
+document.querySelector('.contact-form')?.addEventListener('submit',e=>e.preventDefault());
+</script>
+</body>
+</html>
