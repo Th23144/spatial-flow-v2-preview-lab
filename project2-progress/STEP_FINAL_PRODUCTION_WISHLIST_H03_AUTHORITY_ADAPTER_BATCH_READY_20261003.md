@@ -31,7 +31,7 @@ YITH / WooCommerce remain the state and action owners, but the visible Wishlist 
 ### functions.php
 - bump version 2.7.51 -> 2.7.52;
 - add one-time migration for known legacy Wishlist Customizer copy, so saved old values cannot override the accepted authority defaults;
-- derive real Woo product metadata (image/category/short description/permalink) from YITH row product IDs;
+- derive real Woo product metadata (image/category/short description/permalink) from YITH row product IDs; if short description is empty, use a trimmed real product description rather than fabricated copy;
 - replace H02 shell with H03 shell containing:
   - authority intro/toolbar/index/jump;
   - visible authority room;
@@ -54,9 +54,9 @@ YITH / WooCommerce remain the state and action owners, but the visible Wishlist 
 ## Simulated output
 
 `functions.php`
-- bytes: 639,859
-- lines: 12,254
-- SHA256: `bc905fdf9748400bf927749d2e610ee2de8fecfccb3720d0f8320cabe8378858`
+- bytes: 640,285
+- lines: 12,261
+- SHA256: `1daf5cce2d68daeb0cc37bd5d914020721615670948d0aaba75e0e62557f8aef`
 - `php -l`: PASS
 
 `assets/css/spatial-flow.css`
