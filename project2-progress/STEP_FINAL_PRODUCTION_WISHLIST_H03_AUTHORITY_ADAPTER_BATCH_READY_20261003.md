@@ -55,19 +55,19 @@ YITH / WooCommerce remain the state and action owners, but the visible Wishlist 
 
 `functions.php`
 - bytes: 640,285
-- lines: 12,261
+- logical lines (splitlines): 12,261
 - SHA256: `1daf5cce2d68daeb0cc37bd5d914020721615670948d0aaba75e0e62557f8aef`
 - `php -l`: PASS
 
 `assets/css/spatial-flow.css`
 - bytes: 608,459
-- lines: 21,650
+- logical lines (splitlines): 21,649
 - SHA256: `9d0d9edaa44cb50ffe34d15d58f59b37c179bc0d5537d605af6b96a0f0d73672`
 - CSS brace delta: 0
 
 `assets/js/spatial-flow.js`
 - bytes: 103,389
-- lines: 3,105
+- logical lines (splitlines): 3,105
 - SHA256: `7f26c420fa2ad8ec010cea17e06e715edf737361c288385a722c5012fb0646fe`
 - Node syntax: PASS
 
