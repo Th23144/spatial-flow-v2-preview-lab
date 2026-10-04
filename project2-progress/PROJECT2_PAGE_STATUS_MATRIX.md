@@ -64,7 +64,7 @@ project2-progress/STEP_4D_REOPEN_SINGLE_PRODUCT_FINAL_WHOLE_PAGE_RUNTIME_ACCEPTA
 
 | Page | Status |
 |---|---|
-| Wishlist | Not done |
+| Wishlist | Completed 1:1 |
 | Track Order | Not done |
 | Account | Not done |
 | Search | Not done |
@@ -95,13 +95,10 @@ Single Product
 Cart
 Checkout
 Thank You / WooCommerce Order Result system
+Wishlist
 ```
 
-All other surfaces listed above are currently:
-
-```text
-Not done
-```
+All other surfaces listed above, except Wishlist as closed above, remain subject to the binary status table in this document.
 
 ## 7. Known reopened/deferred items to reconcile
 
