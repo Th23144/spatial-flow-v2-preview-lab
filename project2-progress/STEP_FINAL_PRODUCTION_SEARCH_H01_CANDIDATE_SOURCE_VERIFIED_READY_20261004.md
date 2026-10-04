@@ -119,12 +119,25 @@ Existing saved Customizer values remain authoritative. New defaults do not silen
 
 Therefore runtime may legitimately show older user-saved Search copy until the user chooses to edit/reset those fields. That is backend-owner preservation, not a source failure.
 
-## Deployment batch
+## User-facing deployment method correction
 
-Deploy all three H01 files together:
-1. `page-templates/global-search.php`
-2. `functions.php`
-3. `assets/css/spatial-flow.css`
+The generated H01 full-file candidates are **internal comparison artifacts only**.
+They must NOT be used as the user-facing deployment method.
+
+Per `PROJECT2_MANUAL_REPLACEMENT_AND_FILE_SIZE_AUDIT_POLICY.md`:
+- default delivery = bounded manual anchored replacement;
+- no downloadable ZIP / complete-file replacement / broad overwrite unless the user explicitly requests that method for the current step;
+- large files such as `functions.php` and `spatial-flow.css` must not be routine whole-file overwrites;
+- one coherent multi-file feature should still be issued as one complete bounded multi-file batch.
+
+For this Search H01 step, the next user-facing output must therefore be:
+1. exact target file path for every part;
+2. exact old code / START-END anchors;
+3. expected match count;
+4. exact replacement code;
+5. expected byte and line delta;
+6. stop-on-mismatch instruction;
+7. combined post-edit source gate after the user returns all modified files.
 
 No Search JavaScript file change is required.
 
@@ -142,4 +155,4 @@ After exact deployment:
 9. 390–430px mobile review;
 10. confirm no Header/Footer or protected-commerce regression.
 
-Status: H01 CANDIDATE SOURCE VERIFIED / READY FOR DEPLOYMENT.
+Status: H01 CANDIDATE SOURCE VERIFIED AS INTERNAL AUDIT ARTIFACT / USER-FACING MANUAL ANCHORED BATCH REQUIRED.
