@@ -149,3 +149,23 @@ After all three files are edited, return all three modified files together.
 Do not runtime-test Search before the combined returned-file Source Gate passes.
 
 Status: MANUAL ANCHORED H01 MULTI-FILE BATCH READY.
+
+
+## Execution simplification correction
+
+For the user-facing manual batch, the functions.php edits are consolidated into three bounded operations while preserving the same final candidate identity:
+
+1. version constant 2.7.55 -> 2.7.56;
+2. replace the entire unique `spatial_flow_global_search_defaults()` owner block, from its `if ( ! function_exists... )` line up to but not including `spatial_flow_global_search_mod()`;
+3. within the unique `spatial_flow_global_search_customizer()` owner, replace its `$labels = array(...);` block up to but not including the following `foreach ( $labels as $key => $label )`.
+
+Exact region metrics:
+- defaults old: 7,229 bytes / SHA256 `fc71aa01ddd2cef0b6da61a0ba6c32131abc617db696a66372e5707d4a32f3e0`
+- defaults new: 8,332 bytes / SHA256 `77e4201f41b04d2843dbd9f0b40dd0240355dafe5be4194b1b9358db67776a24`
+- defaults delta: +1,103 bytes / +16 lines
+- labels old: 5,796 bytes / SHA256 `5d8509e925cabd75f172467cd7b0a9eb1bf832aa29021d9513309b37fb617683`
+- labels new: 6,928 bytes / SHA256 `75a0dea8252ade74b34938b1cebcaf4936021e0b3d09cc9015fd6b18f14ff06c`
+- labels delta: +1,132 bytes / +16 lines
+
+This simplification is byte-equivalent to the previously verified H01 functions candidate and retains expected whole-file SHA256:
+`ed1ba9d79c9020a8ba6069267bf80a160cb2a1f388c281d841ca4e1f7b2c6db9`.
