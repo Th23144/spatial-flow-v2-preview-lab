@@ -105,9 +105,9 @@ functions.php:
 - PHP syntax PASS
 
 CSS:
-- 627,691 bytes
+- 627,735 bytes
 - 22,533 logical lines
-- SHA256 `77829fc9ca6e7520e75a2f44e76b65cc0528923bbb32fb69b37361eb35cb351a`
+- SHA256 `b4ff06d7736a3b71af76c4cb731a9f4cb92ef4228ca3430e5743f8203227cd7a`
 - braces 3543 / 3543
 - comments 241 / 241
 - top-level CSS parse errors 0
