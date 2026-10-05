@@ -60,3 +60,34 @@ Bump child version:
 This is a bounded runtime parity correction only.
 
 Status: FUNCTION PASS / ARROW EMOJI FALLBACK CONFIRMED / SMALL THREE-FILE MANUAL FIX READY.
+
+
+## Implementation simplification correction
+
+After checking the exact current template, CSS is not required for this correction.
+
+The browser is rendering the bare U+2197 glyph with emoji presentation. The smallest reliable fix is to request Unicode text presentation explicitly in the template by replacing each literal:
+
+`↗`
+
+with:
+
+`&#8599;&#65038;`
+
+This decodes to:
+- U+2197 NORTH EAST ARROW
+- U+FE0E VARIATION SELECTOR-15 (text presentation)
+
+Current `global-search(2).php` contains exactly 6 literal U+2197 occurrences.
+
+No CSS change is required.
+No functions.php version bump is required because the correction is server-rendered template markup, not a cached asset.
+
+Expected template target:
+- 17,463 bytes
+- 287 logical lines
+- SHA256 `78f791fedba5ef51a0e74251b509ad8319d2da1bdabb57def3f4c9204f6ad5dc`
+- PHP syntax PASS
+- trailing LF preserved
+
+The earlier three-file fix direction is withdrawn in favor of this smaller one-file source correction.
