@@ -77,7 +77,7 @@ project2-progress/STEP_4D_REOPEN_SINGLE_PRODUCT_FINAL_WHOLE_PAGE_RUNTIME_ACCEPTA
 | About Us | Not done |
 | Services | Not done |
 | FAQ / Help | Not done |
-| Contact | Not done |
+| Contact | Completed 1:1 |
 | Utility / policy pages | Not done |
 
 ## 5. Blog / Journal pages
@@ -98,6 +98,7 @@ Thank You / WooCommerce Order Result system
 Wishlist
 Search
 404
+Contact
 ```
 
 All other surfaces listed above, except Wishlist as closed above, remain subject to the binary status table in this document.
@@ -133,16 +134,17 @@ Single Product no longer belongs to the unresolved list. Its current-version exc
 
 Do not begin Home yet.
 
-Current recommended next step:
+Current production sequence follows the later explicit user instruction:
 
 ```text
-Main-site Header strict re-audit
-→ Main-site Footer strict re-audit
-→ Shop archive strict re-audit
-→ Home strict 1:1 work
+Utility / policy pages
+→ Services
+→ FAQ / Help
+→ Track Order
+→ Care Guide
 ```
 
-This order may be changed by a later explicit user instruction.
+This sequence supersedes the older Header/Footer/Shop/Home recommendation for the current workstream.
 
 ## 9. Hard boundaries
 
