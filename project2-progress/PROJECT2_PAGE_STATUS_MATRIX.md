@@ -68,7 +68,7 @@ project2-progress/STEP_4D_REOPEN_SINGLE_PRODUCT_FINAL_WHOLE_PAGE_RUNTIME_ACCEPTA
 | Track Order | Not done |
 | Account | Not done |
 | Search | Completed 1:1 |
-| 404 | Not done |
+| 404 | Completed 1:1 |
 
 ## 4. Brand, service and support pages
 
@@ -97,6 +97,7 @@ Checkout
 Thank You / WooCommerce Order Result system
 Wishlist
 Search
+404
 ```
 
 All other surfaces listed above, except Wishlist as closed above, remain subject to the binary status table in this document.
