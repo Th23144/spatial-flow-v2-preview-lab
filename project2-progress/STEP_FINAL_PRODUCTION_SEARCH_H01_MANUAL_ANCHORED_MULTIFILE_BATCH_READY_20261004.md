@@ -52,14 +52,14 @@ Old selected region:
 - 152 logical lines
 - SHA256 `03f098a929caa6544022f9363aae8b77253d0d5345d3abfba47ddfb64fe18eeb`
 
-Replacement region:
-- 15,042 bytes
-- 218 logical lines
-- SHA256 `770523a117010b6b41e6af4b44b10a8620133b4516ba625918bc538a0a1494c5`
+Replacement region (includes the single leading LF required to preserve the blank line before `$product_count`):
+- 15,043 bytes
+- 219 logical lines
+- SHA256 `67c9768d687dda94e8d5a8301421bb622d09b0785d7e87246de7cfde089f7ae3`
 
 Delta:
-- +4,352 bytes
-- +66 lines
+- +4,353 bytes
+- +67 lines
 
 Expected whole file:
 - 17,391 bytes
@@ -169,3 +169,16 @@ Exact region metrics:
 
 This simplification is byte-equivalent to the previously verified H01 functions candidate and retains expected whole-file SHA256:
 `ed1ba9d79c9020a8ba6069267bf80a160cb2a1f388c281d841ca4e1f7b2c6db9`.
+
+
+## A-region off-by-one correction
+
+A prior internal extraction omitted the single LF immediately before `$product_count`, which would have produced a functionally similar but SHA-different file.
+
+Correct exact manual replacement:
+- old region begins at the unique `?>` immediately before the current Search `<main>` and ends at `get_footer();`;
+- new region begins with **one leading blank line**, then `$product_count = ...`;
+- exact new region: 15,043 bytes / SHA256 `67c9768d687dda94e8d5a8301421bb622d09b0785d7e87246de7cfde089f7ae3`;
+- expected whole-file target remains 17,391 bytes / 287 logical lines / SHA256 `df3f752f39e59e501b3ee19c53949a7692b59330f15a6ba4ae8939e910f7d54e`.
+
+This correction is mandatory for byte-identical H01 output.
