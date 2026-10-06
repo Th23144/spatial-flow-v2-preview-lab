@@ -818,3 +818,31 @@ runtime mobile screenshot check only for the toolbar refinement. If accepted, H0
 
 Status:
 H01A MOBILE TOOLBAR SOURCE PASS / RUNTIME VISUAL ACCEPTANCE PENDING.
+
+
+## H01A mobile toolbar runtime visual acceptance — 2026-10-06
+
+Runtime screenshot reviewed after the <=600px toolbar refinement.
+
+Findings:
+- policy identity remains readable on the left
+- Contact Spatial Flow / Track Your Order are now grouped vertically on the right
+- excessive blank vertical space is removed
+- mobile toolbar no longer reads as three disconnected anchors
+- no visual regression is visible in the immediately adjacent Contents block or page intro
+
+Verdict:
+**H01A MOBILE TOOLBAR RUNTIME VISUAL PASS**
+
+Final locked status:
+**H01A REFUND / RETURNS POLICY COMPLETE AND FROZEN**
+- Source PASS
+- Desktop runtime PASS
+- Mobile runtime PASS
+- Mobile toolbar refinement PASS
+
+Do not reopen H01A unless a concrete regression is later discovered.
+
+Next locked step:
+**H01B — Privacy Policy + Shipping Policy + Terms & Conditions reusable Policy shell mapping.**
+
