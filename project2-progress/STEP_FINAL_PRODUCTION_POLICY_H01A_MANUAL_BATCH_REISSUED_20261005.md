@@ -776,3 +776,45 @@ Files in one batch:
 
 Status:
 H01A MOBILE TOOLBAR REFINEMENT READY / SOURCE GATE PENDING.
+
+
+## H01A mobile toolbar refinement returned-file Source Gate — 2026-10-06
+
+Returned files:
+- functions(20261006-122908).php
+- spatial-flow(20261006-122908).css
+
+functions.php:
+- version 2.7.78
+- 665,555 bytes
+- 12,716 physical lines
+- SHA256 `02b468d01e7b4fde7a96fd73ad5c79da1065058e372d093c67cb30e3727baa14`
+- PHP lint PASS
+- diff vs accepted 2.7.77: exactly one changed line, version constant only
+
+CSS:
+- 632,114 bytes
+- 22,759 physical lines
+- SHA256 `d48b99eee9e5cdbb57c795902d0488394f8b4b9e9f274cb1d897357a1d1714c1`
+- braces 3572 / 3572
+- comments 252 / 252
+- tinycss2 top-level parse errors: 0
+
+Diff vs accepted 2.7.76/H01A CSS baseline:
+- only the <=600px Policy toolbar block changed
+- toolbar switched from flex behavior to a fixed two-column grid
+- left policy identity constrained to 18ch
+- right actions stacked in one column and right-aligned
+- mobile toolbar links min-height 44px override neutralized to 0 and compact vertical padding added
+- no desktop rule changes
+- no Contents rule changes
+- no document/read/rail/footer rule changes
+
+Verdict:
+**H01A MOBILE TOOLBAR REFINEMENT SOURCE GATE PASS**
+
+Next:
+runtime mobile screenshot check only for the toolbar refinement. If accepted, H01A returns to fully complete/frozen status.
+
+Status:
+H01A MOBILE TOOLBAR SOURCE PASS / RUNTIME VISUAL ACCEPTANCE PENDING.
