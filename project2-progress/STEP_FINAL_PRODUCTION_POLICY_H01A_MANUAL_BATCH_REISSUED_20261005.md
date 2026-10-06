@@ -168,3 +168,63 @@ This is a standing Project 2 execution rule, not a one-window preference:
 The previous H01A delivery that sent functions.php before the CSS was a process error. It is corrected here so later windows do not repeat it.
 
 Status: H01A FUNCTIONS PASS / CSS MANUAL REPLACEMENT PENDING / COMBINED WHOLE-FILE SOURCE GATE PENDING.
+
+
+## CSS returned-file Source Gate — 2026-10-06
+
+User returned:
+`spatial-flow(20261006-073926).css`
+
+Whole-file verification:
+- 629,705 bytes
+- 22,646 physical lines
+- SHA256 `c19efa63fac28512d9337414fed4461d64cb8dc988837092d904fe38e8e35a41`
+- trailing LF present
+- braces 3556 / 3556
+- comments 251 / 251
+- tinycss2 top-level parse errors: 0
+
+H01A owner verification:
+- new H01A START marker: 1
+- new H01A END marker: 1
+- old Step 5I START marker: 0
+- old Step 5I SAFE2 END marker: 0
+- replacement payload including trailing LF: 16,257 bytes
+- replacement payload SHA256: `785fe00261404ad0ecc8997360dfc234e64c211bc902b8a1bc455c3f673c34a6`
+- replacement payload matches the issued user-facing CSS exactly
+
+Target-region integrity:
+- baseline whole CSS: 628,207 bytes
+- old inclusive Step 5I + SAFE2 region including following LF: 14,759 bytes
+- new H01A region including following LF: 16,257 bytes
+- exact expected delta: +1,498 bytes
+- returned whole CSS: 629,705 bytes = exact expected whole-file size
+- old region 675 lines -> new region 766 lines = +91 lines
+- returned file line delta matches exactly
+- boundary before replacement remains `Project2 Header V2 Production — Attached Shop Mega END`
+- boundary after replacement remains `Spatial Flow Step 5K: FAQ / Help Native Rebuild START`
+
+Preserved later owner:
+- `Spatial Flow Step 5K SAFE 2: FAQ Sticky + Refund Top Gap Hotfix` remains present
+- Refund/Astra top-gap neutralizer remains active pending runtime review
+
+## H01A combined Source Gate
+
+Accepted functions.php:
+- `functions(20261006-055325).php`
+- version 2.7.70
+- PHP syntax PASS
+- SHA256 `40b6417159f6cc4c33212f93233e5667f6c8f208c5c8a8a1a6ded0d98dece96d`
+
+Accepted CSS:
+- `spatial-flow(20261006-073926).css`
+- CSS structural/parse gate PASS
+- SHA256 `c19efa63fac28512d9337414fed4461d64cb8dc988837092d904fe38e8e35a41`
+
+Verdict:
+**H01A COMBINED SOURCE GATE PASS**
+
+Next:
+Runtime acceptance on `/refund-returns-policy/` at desktop -> 1024 -> 390–430 -> 360 only if pressure appears.
+
+Status: H01A SOURCE PASS / RUNTIME ACCEPTANCE PENDING.
