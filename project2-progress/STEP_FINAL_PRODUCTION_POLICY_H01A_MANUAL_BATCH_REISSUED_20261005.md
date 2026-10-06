@@ -483,3 +483,51 @@ Source gate first, then same-viewport screenshot comparison. Do not mark visual 
 
 Status:
 H01A CONTENTS-ONLY PARITY BATCH READY / SOURCE GATE PENDING.
+
+
+## H01A Contents-only parity returned-file Source Gate — 2026-10-06
+
+Returned files:
+- functions(20261006-100436).php
+- spatial-flow(20261006-100436).css
+
+functions.php:
+- 663,401 bytes
+- 12,645 logical lines
+- SHA256 `563dafd106add5a729eaa2089680412d66f636002f8f7eda797f66248cb219d0`
+- PHP lint PASS
+- version `2.7.74`
+- diff against accepted 2.7.73 file: exactly one changed line, version constant only
+
+CSS whole file:
+- 630,996 bytes
+- 22,697 newline characters / trailing LF present
+- SHA256 `d853d7a1a7bafdb31661d4194bc53743d6247fcce2dea7b9fb7bd2d3a5e70240`
+- braces 3563 / 3563
+- comments 252 / 252
+- tinycss2 top-level parse errors: 0
+
+Diff audit against accepted 2.7.73 CSS:
+- exactly two CSS rule groups changed, both inside the H01A Contents index
+- Contents heading: 25px -> 22px
+- Contents item grid: 30px -> 24px number track
+- Contents item gap: 12px -> 10px
+- Contents item min-height: 54px -> 48px
+- Contents item font: 11px -> 10px
+- Contents item tracking: .08em -> .075em
+- 9px mono numbering unchanged
+- no body-copy change
+- no metadata change
+- no right chapter-rail change
+- no Chapter 04/05 change
+- no layout-width or responsive change
+- no outside-H01A change
+
+Verdict:
+**H01A CONTENTS-ONLY PARITY SOURCE GATE PASS**
+
+Next:
+Same-viewport runtime screenshot comparison focused only on the left Contents index. Do not broaden scope until this region is visually accepted.
+
+Status:
+H01A CONTENTS SOURCE PASS / SAME-VIEWPORT VISUAL ACCEPTANCE PENDING.
