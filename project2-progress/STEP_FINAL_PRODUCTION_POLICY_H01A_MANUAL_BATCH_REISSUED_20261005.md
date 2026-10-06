@@ -531,3 +531,24 @@ Same-viewport runtime screenshot comparison focused only on the left Contents in
 
 Status:
 H01A CONTENTS SOURCE PASS / SAME-VIEWPORT VISUAL ACCEPTANCE PENDING.
+
+
+## H01A Contents color-weight root cause identified — 2026-10-06
+
+Runtime at 1920x991 showed Contents dimensions now match the Reading 03 override more closely, but item text still renders too black/heavy.
+
+Root cause:
+- scoped generic rule `.sf-refund-policy-page.sf-policy-h01 a { color: inherit; }` has specificity 0-2-1
+- intended Contents rule `.sf-policy-h01-index a { color: var(--sf-policy-h01-muted); }` has specificity 0-1-1
+- therefore the generic scoped anchor rule wins despite appearing earlier
+- Contents links inherit the page ink color instead of muted gray, making Inter 400 appear materially heavier than the static authority
+
+Correction batch:
+- functions.php version 2.7.74 -> 2.7.75 only
+- strengthen only the Contents link selector to `.sf-refund-policy-page.sf-policy-h01 .sf-policy-h01-index a`
+- likewise strengthen the Contents hover selector
+- keep Reading 03 size metrics unchanged
+- do not change font family or font weight yet
+
+Status:
+H01A CONTENTS COLOR-SPECIFICITY FIX READY / SOURCE GATE PENDING.
