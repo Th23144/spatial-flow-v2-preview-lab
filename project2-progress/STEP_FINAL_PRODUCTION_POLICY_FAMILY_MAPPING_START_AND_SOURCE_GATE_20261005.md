@@ -344,3 +344,34 @@ Runtime verification order:
 4. Terms & Conditions desktop/mobile.
 
 Do not mark H01B visually accepted until all three real WordPress policy pages have been compared against the accepted Refund H01A authority.
+
+
+## H01B Privacy runtime correction batch — metadata / Contents / lede — 2026-10-06
+
+Runtime defects found on Privacy Policy after the H01A-exact source pass:
+1. document metadata rail was incorrectly fed the entire three-card overview, including long descriptive paragraphs, producing an oversized dense right-side block unlike Refund H01A;
+2. Contents index was built from every descendant `.sf-policy-section`, allowing duplicate/legacy nested section copies to enter the generated index;
+3. the lede source query was too strict (`:scope > p`) and failed to capture the real Privacy hero intro when the paragraph was nested, leaving an empty Policy Overview block.
+
+Locked correction:
+- keep H01A as sole presentation authority;
+- metadata rail now extracts only each overview card's short label + short result and renders compact Refund-style span rows;
+- remove the overview card container from the transformed visual DOM after metadata extraction;
+- collect policy sections through a normalized unique-heading filter so duplicate legacy copies do not create repeated Contents items;
+- use the first real paragraph inside `.sf-policy-hero__copy` as the lede source;
+- remove obsolete H01B metadata-card responsive CSS because the rail no longer contains cards;
+- freeze Hero, toolbar, reading-section typography, chapter rails, editorial breaks, CTA and Footer.
+
+Batch:
+- functions.php 2.7.80 -> 2.7.81;
+- CSS canonical H01B metadata rules only + obsolete responsive metadata-card rule removal.
+
+Preflight:
+- php -l PASS;
+- extracted runtime JavaScript: node --check PASS;
+- CSS braces 3572 / 3572;
+- CSS comments 250 / 250;
+- tinycss2 top-level parse errors 0.
+
+Status:
+**H01B PRIVACY RUNTIME CORRECTION READY / RETURNED-FILE SOURCE GATE PENDING**
