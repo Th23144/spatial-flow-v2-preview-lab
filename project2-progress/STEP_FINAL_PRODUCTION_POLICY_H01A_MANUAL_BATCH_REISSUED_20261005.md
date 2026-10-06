@@ -644,3 +644,25 @@ Desktop runtime visual comparison against Reading 03 authority. No more source e
 
 Status:
 H01A FULL-PAGE PARITY SOURCE PASS / DESKTOP RUNTIME VISUAL ACCEPTANCE PENDING.
+
+
+## H01A desktop runtime visual gate — duplicate Chapter 06 found — 2026-10-06
+
+Runtime screenshot after the full-page parity source pass exposed a concrete renderer defect:
+- Chapter 06 renders twice
+- two identical `id="sf-policy-h01-6"` sections exist in functions.php
+- first occurrence is the new integrated contact-route version
+- second occurrence is the old pre-batch Chapter 06 block left behind after the manual replacement
+
+Correction:
+- functions.php only
+- version 2.7.76 -> 2.7.77
+- delete the second/old Chapter 06 block in full
+- no CSS changes
+
+Acceptance requirement:
+- exact `id="sf-policy-h01-6"` occurrence count must be 1
+- final runtime screenshot must show one Chapter 06 and one right-rail 06 only
+
+Status:
+H01A DESKTOP VISUAL GATE FAIL — DUPLICATE CHAPTER 06 / ONE-FILE CLEANUP READY.
