@@ -666,3 +666,34 @@ Acceptance requirement:
 
 Status:
 H01A DESKTOP VISUAL GATE FAIL — DUPLICATE CHAPTER 06 / ONE-FILE CLEANUP READY.
+
+
+## H01A duplicate Chapter 06 cleanup Source Gate — 2026-10-06
+
+Returned file:
+- functions(20261006-121500).php
+
+Verification:
+- version 2.7.77
+- 665,555 bytes
+- 12,716 physical lines
+- SHA256 `ebf75690f282640d675a8757b7b8e2c51061958f26d348e4cf33dacd5265b063`
+- PHP lint PASS
+- exact `id="sf-policy-h01-6"` count: 1
+- exact integrated `sf-policy-h01-contact-route__copy` count: 1
+- exact `continued` reading break count: 1
+- exact `final section` reading break count: 1
+
+Diff against 2.7.76:
+- version constant only: 2.7.76 -> 2.7.77
+- old duplicate Chapter 06 block deleted in full
+- no other changes
+
+Verdict:
+**H01A DUPLICATE CHAPTER 06 CLEANUP SOURCE GATE PASS**
+
+Next:
+Refresh runtime and verify that only one Chapter 06 / one right-rail 06 remains. Then continue the full-page desktop visual acceptance.
+
+Status:
+H01A SOURCE CLEAN / DESKTOP RUNTIME RECHECK PENDING.
