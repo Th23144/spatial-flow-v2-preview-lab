@@ -594,3 +594,53 @@ Expected runtime result:
 
 Status:
 H01A FULL-PAGE PARITY FINAL BATCH READY / RETURNED-FILE SOURCE GATE PENDING.
+
+
+## H01A Full-page Parity Final Batch returned-file Source Gate — 2026-10-06
+
+Returned files:
+- functions(20261006-105831).php
+- spatial-flow(20261006-105832).css
+
+functions.php:
+- version 2.7.76
+- 667,281 bytes
+- 12,732 physical lines
+- SHA256 `0cb56e1dad5e2629b982be3b89466af995715091c42145e03bdf346375caba53`
+- PHP lint PASS
+- Reading break instances: exactly 2
+  - after chapter 02: continued
+  - after chapter 05: final section
+- Chapter 06 integrated contact-route markup present
+- existing sf_refund_* content ownership preserved
+
+CSS whole file:
+- 631,650 bytes
+- 22,736 physical lines
+- trailing LF present
+- SHA256 `19cafdbf4af6fd2b1275b97cddc1805a55400bb883ddb034152257f78b054f4b`
+- braces 3570 / 3570
+- comments 252 / 252
+- tinycss2 top-level parse errors: 0
+
+H01A final-batch verification:
+- accepted Contents specificity fix preserved
+- reading-section body kickers hidden
+- document metadata bold reset to inherit/inherit
+- body copy restored to Reading 03 15px/1.78 baseline
+- right rail label restored to 10px/16ch
+- Chapter 04 three-column ruled-row mapping present
+- Chapter 05 body baseline restored
+- Chapter 06 integrated copy/links contact route present
+- mobile Step H4/P grid-column mapping present
+- mobile note body 14px/1.76 present
+- mobile contact-route links left-aligned
+
+Verdict:
+**H01A FULL-PAGE PARITY FINAL BATCH SOURCE GATE PASS**
+
+Next:
+Desktop runtime visual comparison against Reading 03 authority. No more source edits unless runtime comparison finds a concrete remaining mismatch.
+
+Status:
+H01A FULL-PAGE PARITY SOURCE PASS / DESKTOP RUNTIME VISUAL ACCEPTANCE PENDING.
