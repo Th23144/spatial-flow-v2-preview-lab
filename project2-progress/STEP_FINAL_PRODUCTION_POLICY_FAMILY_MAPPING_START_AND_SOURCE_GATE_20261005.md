@@ -274,3 +274,40 @@ Preflight:
 
 Status:
 **H01B H01A-EXACT ALIGNMENT BATCH READY / RETURNED-FILE SOURCE GATE PENDING**
+
+
+## H01B H01A-exact alignment returned-file source gate — 2026-10-06 14:03 batch
+
+Returned files:
+- `functions(20261006-140307).php`
+- `spatial-flow(20261006-140307).css`
+
+PHP verification:
+- version 2.7.80;
+- php -l PASS;
+- embedded runtime-structure JavaScript extracted with PHP URL expressions substituted and `node --check` PASS;
+- diff vs accepted 2.7.79 baseline is limited to version bump + the H01B runtime structure mapper (plus blank-line formatting);
+- runtime mapper start/action counts are singular and expected.
+
+CSS verification:
+- H01B canonical START/END markers 1 / 1;
+- braces 3579 / 3579;
+- comments 250 / 250;
+- tinycss2 top-level parse errors 0;
+- SHA256 `9ca1552b1f17b83ce826de8bbbf9f4124734017f3a490a4f55e0e52c07809cd2`;
+- CSS prefix before the H01B block and suffix after the H01B block are byte-for-byte unchanged from the accepted 2.7.79 baseline.
+
+Source-gate blocker found before runtime:
+- legacy source audit already established that Shipping uses `.sf-policy-overview / .sf-policy-layout / .sf-policy-content / .sf-policy-section` but does **not** include the old `.sf-policy-page` wrapper;
+- the current returned H01B exact-alignment CSS assigns the H01A max-width / horizontal padding owner only to inner `.sf-policy-page / .sf-policy-page--privacy`;
+- therefore Privacy / Terms can receive the H01A outer wrap but Shipping would not, breaking the user-locked requirement that all three H01B pages align literally with Refund H01A.
+
+Required correction:
+- CSS only; keep PHP 2.7.80 unchanged;
+- move the H01A outer wrap ownership to the guaranteed wrapper `.sf-policy-h01b-source`;
+- neutralize inner legacy `.sf-policy-page / .sf-policy-page--privacy` width/padding so Privacy/Terms do not double-pad;
+- move the <=600px 20px mobile horizontal padding owner to `.sf-policy-h01b-source`;
+- no version bump is needed because 2.7.80 is not source-accepted/deployed yet.
+
+Status:
+**H01B PHP SOURCE PASS / CSS PARSE PASS / H01A-EXACT SOURCE GATE HOLD — SHIPPING OUTER-WRAP OWNER MUST BE FIXED BEFORE RUNTIME**
