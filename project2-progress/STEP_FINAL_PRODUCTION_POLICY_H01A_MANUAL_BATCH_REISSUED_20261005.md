@@ -83,27 +83,63 @@ The renderer no longer uses the old generic `.sf-policy-page` card owner, preven
 PHP replacement fragment:
 - standalone parser wrapper: PASS
 - `php -l`: PASS
-- replacement payload: 17,029 UTF-8 bytes
-- 221 replacement lines
 
-CSS canonical H01 block:
-- 14,278 UTF-8 bytes
-- 696 lines
-- braces 109 / 109
-- comments balanced
-- tinycss2 top-level parse errors: 0
+The earlier unpersisted CSS fragment metrics are superseded by the user-facing reissued CSS replacement below.
 
-These are **fragment-level checks**, not whole-file Source Gate.
+## Returned functions.php acceptance — 2026-10-05
+
+User returned:
+`functions(20261006-055325).php`
+
+Verified:
+- 663,401 bytes
+- 12,645 logical lines
+- SHA256 `40b6417159f6cc4c33212f93233e5667f6c8f208c5c8a8a1a6ded0d98dece96d`
+- version `2.7.70`
+- PHP syntax PASS
+- `spatial_flow_policy_h01_title_html` token count 4: expected helper guard + definition + two renderer calls
+- old `sf-policy-page sf-refund-policy-page` wrapper count 0
+- `spatial_flow_render_refund_returns_page()` definition count 1
+- `spatial_flow_refund_returns_native_template()` owner count 1
+- `spatial_flow_refund_customizer()` owner count 1
+- new H01 wrapper count 1
+
+Verdict:
+**functions.php H01A PASS**
+
+## User-facing CSS replacement — reissued after PHP acceptance
+
+Replacement file:
+`H01A_spatial-flow_css_replacement.css`
+
+This is the canonical replacement payload for the inclusive range:
+- START: `/* === Spatial Flow Step 5I: Refund / Returns Policy Native Page START === */`
+- END: `/* === Spatial Flow Step 5I SAFE 2: Refund Policy Layout Conflict Hotfix END === */`
+
+Replacement payload verification:
+- 16,257 UTF-8 bytes
+- 766 logical lines
+- SHA256 `785fe00261404ad0ecc8997360dfc234e64c211bc902b8a1bc455c3f673c34a6`
+- braces 116 / 116
+- comments 14 / 14
+- tinycss2 top-level parse errors 0
+
+The later Refund/Astra top-gap neutralizer outside this old Step 5I + SAFE2 range remains in place for H01A runtime unless later testing proves it unnecessary.
 
 ## Required post-edit gate
 
-After the user performs the manual anchored replacements, the returned whole files must be checked for:
+After the CSS replacement is applied, the returned **complete H01A batch** must contain both:
+- accepted `functions.php`
+- edited `assets/css/spatial-flow.css`
+
+Then check:
 - exact version 2.7.70
 - PHP syntax
 - CSS braces/comments/parse
 - byte size / logical lines / SHA256
 - anchor uniqueness
 - old Step 5I + SAFE2 presentation blocks absent
+- canonical H01 CSS owner present once
 - native template / Customizer ownership unchanged
 
 Only then proceed to Refund runtime testing.
@@ -131,4 +167,4 @@ This is a standing Project 2 execution rule, not a one-window preference:
 
 The previous H01A delivery that sent functions.php before the CSS was a process error. It is corrected here so later windows do not repeat it.
 
-Status: H01A MANUAL ANCHORED BATCH REISSUED / WHOLE-FILE SOURCE GATE PENDING.
+Status: H01A FUNCTIONS PASS / CSS MANUAL REPLACEMENT PENDING / COMBINED WHOLE-FILE SOURCE GATE PENDING.
