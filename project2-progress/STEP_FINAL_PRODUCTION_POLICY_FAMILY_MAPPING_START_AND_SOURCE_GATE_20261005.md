@@ -311,3 +311,36 @@ Required correction:
 
 Status:
 **H01B PHP SOURCE PASS / CSS PARSE PASS / H01A-EXACT SOURCE GATE HOLD — SHIPPING OUTER-WRAP OWNER MUST BE FIXED BEFORE RUNTIME**
+
+
+## H01B H01A-exact alignment final source gate — CSS wrap-owner correction — 2026-10-06 14:10 batch
+
+Returned file:
+- `spatial-flow(20261006-141013).css`
+
+Verification:
+- file size 633,084 bytes;
+- SHA256 `43f44d5c796161b8f7c31468cf438681a9a49cc86e3428a81abfe0ead5d2ab50`;
+- braces 3580 / 3580;
+- comments 250 / 250;
+- tinycss2 top-level parse errors 0;
+- H01B START/END markers remain singular;
+- diff against the previous 14:03 CSS batch is limited to the requested two corrections:
+  1. desktop H01A max-width / horizontal padding ownership moved from legacy inner `.sf-policy-page / .sf-policy-page--privacy` to guaranteed `.sf-policy-h01b-source`, while inner wrappers are neutralized;
+  2. <=600px mobile 20px horizontal padding ownership moved to `.sf-policy-h01b-source`;
+- CSS prefix before the H01B canonical block and suffix after the block remain byte-for-byte unchanged.
+
+PHP:
+- previously returned `functions(20261006-140307).php` at version 2.7.80 remains the accepted PHP side of this batch;
+- no additional PHP changes required.
+
+Status:
+**H01B H01A-EXACT SOURCE PASS / RUNTIME VISUAL VERIFICATION READY**
+
+Runtime verification order:
+1. Privacy Policy desktop;
+2. Privacy Policy mobile;
+3. Shipping Policy desktop/mobile;
+4. Terms & Conditions desktop/mobile.
+
+Do not mark H01B visually accepted until all three real WordPress policy pages have been compared against the accepted Refund H01A authority.
