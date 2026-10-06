@@ -119,4 +119,16 @@ Refund / Returns:
 Then, and only after H01A runtime acceptance:
 H01B -> Privacy / Shipping / Terms reusable WP-content presentation layer.
 
+## User-corrected multi-file delivery rule
+
+This is a standing Project 2 execution rule, not a one-window preference:
+
+- If one implementation step touches multiple files, issue **all files / all manual edit operations for that step together as one coherent batch**.
+- Do not make the user finish and return file A before revealing file B when A and B belong to the same implementation step.
+- The returned-file Source Gate is also performed on the complete batch.
+- Only split a step when there is a real technical dependency that makes simultaneous editing unsafe; if that happens, state the dependency explicitly.
+- This rule must be carried across windows and takes precedence over conversational convenience.
+
+The previous H01A delivery that sent functions.php before the CSS was a process error. It is corrected here so later windows do not repeat it.
+
 Status: H01A MANUAL ANCHORED BATCH REISSUED / WHOLE-FILE SOURCE GATE PENDING.
