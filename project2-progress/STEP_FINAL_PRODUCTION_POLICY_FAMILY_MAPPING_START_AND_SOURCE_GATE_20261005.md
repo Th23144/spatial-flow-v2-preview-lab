@@ -244,3 +244,33 @@ Next runtime gate:
 2. Shipping Policy — desktop + mobile.
 3. Terms & Conditions — desktop + mobile.
 Verify preservation of live legal copy, URLs, links/tables/lists, page identity, and that the shared Reading-03 presentation does not create duplicate headings/content.
+
+
+## H01B authority correction — Refund H01A becomes the literal layout authority — 2026-10-06
+
+User decision:
+- stop treating H01B as merely “same-family” Policy styling;
+- Privacy / Shipping / Terms must visually align 1:1 with the already accepted Refund / Returns H01A page;
+- no separate preview phase.
+
+Implementation consequence:
+- H01A is the sole presentation authority for H01B;
+- H01B will reuse the H01A intro, mobile utility toolbar, Contents index, repeated document head, lede, section rail, editorial break and final support-route rhythm;
+- real WordPress page copy remains editor-owned and is not duplicated into PHP defaults;
+- a page-scoped runtime structure mapper is allowed to reorganize existing editor-owned H01B DOM into the H01A presentation contract and to rebuild the Contents index from actual section headings;
+- Privacy’s existing overview content will be moved into the document metadata rail rather than rendered as a separate 3-card strip;
+- the existing hero intro paragraph will move into the document lede so the top hero matches H01A;
+- existing H01B sections remain the legal-content owner and receive generated H01A-style chapter rails.
+
+Next batch:
+- functions.php 2.7.79 -> 2.7.80;
+- add H01B runtime structure mapper;
+- replace the current H01B canonical CSS block with an H01A-metric-aligned canonical block;
+- no changes to H01A, Header, Footer or page URLs.
+
+Preflight:
+- PHP runtime mapper block: php -l PASS;
+- replacement H01B CSS: 119/119 braces, tinycss2 top-level parse errors 0.
+
+Status:
+**H01B H01A-EXACT ALIGNMENT BATCH READY / RETURNED-FILE SOURCE GATE PENDING**
