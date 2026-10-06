@@ -450,3 +450,36 @@ Runtime screenshot verification. This batch is intentionally expected to produce
 
 Status:
 H01A TYPOGRAPHY SOURCE PASS / RUNTIME VISUAL VERIFICATION PENDING.
+
+
+## H01A Contents-only parity correction batch — 2026-10-06
+
+Reason:
+Same-viewport 1920x991 screenshot comparison showed the production left Contents index was visibly larger/heavier than the accepted Reading 03 authority. Previous passes incorrectly broadened the scope into whole-page typography.
+
+Locked scope:
+- change ONLY the left Contents index typography/density
+- do NOT change body copy
+- do NOT change document metadata
+- do NOT change right chapter rail
+- do NOT change Chapter 04/05
+- do NOT change shell widths or layout
+
+Batch:
+1. functions.php: version 2.7.73 -> 2.7.74 only
+2. spatial-flow.css:
+   - Contents heading 25px -> 22px
+   - Contents item grid 30px/12px -> 24px/10px
+   - min-height 54px -> 48px
+   - item font 11px -> 10px
+   - letter-spacing .08em -> .075em
+   - 9px mono numbering unchanged
+
+Authority:
+These values are the final .longform-v2 overrides in Spatial-Flow-Policy-Longform-Reading-03-Final.html, not the larger base Policy values.
+
+Acceptance:
+Source gate first, then same-viewport screenshot comparison. Do not mark visual PASS unless the Contents index visually matches the authority hierarchy/density.
+
+Status:
+H01A CONTENTS-ONLY PARITY BATCH READY / SOURCE GATE PENDING.
