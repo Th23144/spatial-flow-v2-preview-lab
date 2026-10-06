@@ -173,3 +173,39 @@ Planned batch baseline:
 
 Status:
 **H01B SHARED WORDPRESS POLICY SHELL READY FOR MANUAL BATCH / RETURNED-FILE SOURCE GATE PENDING**
+
+
+## H01B returned-file source gate — 2026-10-06 13:03 batch
+
+Returned files:
+- `functions(20261006-130334).php`
+- `spatial-flow(20261006-130333).css`
+
+Validated:
+- `SPATIAL_FLOW_CHILD_VERSION = 2.7.79`;
+- PHP H01B wrapper inserted in the planned location;
+- PHP syntax: PASS;
+- PHP diff vs 2.7.78 baseline is limited to version bump + H01B block;
+- H01B canonical CSS block is present;
+- old Policy Visual main block removed;
+- old Policy CTA declaration blocks removed;
+- Unified Card Spacing Hotfix removed;
+- CSS braces 3541 / 3541;
+- CSS comments 235 / 235;
+- tinycss2 top-level parse errors: 0.
+
+Gate blockers discovered:
+1. one orphan historical end marker remains:
+   `/* === Spatial Flow Policy CTA Contrast Fix Page Scope Fallback END === */`;
+2. the retained Step 5A-4B wrapper comment still describes the deleted Privacy/Policy CTA fix and must be normalized to Footer-only scope;
+3. more importantly, the later Step 5O-B SAFE1 / SAFE2 sticky system still targets bare `.sf-policy-nav` with `!important`. On H01B pages this would override the new canonical H01B nav position/top/max-height/overflow rules, so runtime visual testing would not be authoritative.
+
+Required correction:
+- CSS only;
+- delete the orphan marker;
+- normalize the Step 5A-4B comment;
+- scope the three direct Step 5O-B `.sf-policy-nav` ownership points away from `body.sf-policy-h01b-route`;
+- no PHP change and no additional version bump required because the correction is CSS ownership/comment cleanup under the already-bumped 2.7.79 asset version.
+
+Status:
+**H01B SOURCE GATE HOLD — PHP PASS / CSS PARSE PASS / LATE STICKY OWNER CONFLICT MUST BE REMOVED BEFORE RUNTIME**
