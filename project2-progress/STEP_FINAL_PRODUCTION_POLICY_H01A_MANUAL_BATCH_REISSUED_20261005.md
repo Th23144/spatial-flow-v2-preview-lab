@@ -552,3 +552,45 @@ Correction batch:
 
 Status:
 H01A CONTENTS COLOR-SPECIFICITY FIX READY / SOURCE GATE PENDING.
+
+
+## H01A Full-page Parity Final Batch — 2026-10-06
+
+Authority:
+`temp-preview/Spatial-Flow-Policy-Longform-Reading-03-Final.html`
+
+Locked scope:
+- preserve Header/Footer
+- preserve route, Customizer, legal-copy ownership and all sf_refund_* fields
+- preserve accepted Contents dimensions/color fix
+- remove visual body kickers from reading chapters
+- move reading breaks to Reading 03 positions: after chapter 02 and after chapter 05
+- map Chapter 04 process steps to a Reading 03 table-like ruled-row pattern within the reading column (not full document width)
+- map Chapter 06 to a Reading 03 contact-route composition with real CTA copy on the left and existing real actions on the right
+- restore residual typography values to final Reading 03 metrics
+- normalize document metadata so nested bold tags no longer create unintended dark emphasis
+
+Files in the same manual batch:
+1. functions.php
+   - version 2.7.75 -> 2.7.76
+   - replace the contiguous chapter 02–06 renderer block with the parity block
+2. assets/css/spatial-flow.css
+   - targeted H01A rule replacements only
+   - no append-only patching
+
+Preflight:
+- replacement PHP chapter 02–06 fragment wrapped for parser check: `php -l` PASS
+- planned CSS correction fragment: braces 29/29, tinycss2 top-level parse errors 0
+
+Important correction from prior audit:
+The Reading 03 Chapter 04 table remains inside the reading column. The production mapping therefore uses a three-column ruled-row pattern (number / title / description) in the reading column, rather than inventing a full-document-width component.
+
+Expected runtime result:
+- editorial reading chapters no longer show UI-like kickers
+- long-form rhythm breaks occur in the same semantic locations as the static authority
+- Chapter 04 becomes a true scannable anchor instead of a stacked process component
+- Chapter 06 closes as one integrated support route
+- residual enlarged typography from earlier mistaken passes is removed
+
+Status:
+H01A FULL-PAGE PARITY FINAL BATCH READY / RETURNED-FILE SOURCE GATE PENDING.
