@@ -724,3 +724,31 @@ Remaining acceptance:
 
 Status:
 H01A DESKTOP PASS / MOBILE RUNTIME VISUAL ACCEPTANCE PENDING.
+
+
+## H01A mobile runtime visual acceptance — 2026-10-06
+
+Two responsive screenshots reviewed:
+- wider mobile / tablet-like state
+- narrow phone state
+
+Findings:
+- wider state keeps the right marginalia rail, preserving the editorial two-column composition
+- narrow state correctly collapses chapter rail above the body, matching the Reading 03 <=820px behavior
+- mobile Contents becomes a compact two-column index and remains readable
+- toolbar wraps without collision
+- Chapter 01–05 headings/body/lists retain hierarchy and breathing room
+- Chapter 04 ruled-row process remains readable after its mobile two-column reduction
+- reading breaks remain visible and correctly placed
+- Chapter 06 support route remains coherent and the action links do not overflow
+- global mobile footer behavior remains intact and is not reopened by H01A
+
+Verdict:
+**H01A MOBILE RUNTIME VISUAL PASS**
+
+Final H01A status:
+**H01A REFUND / RETURNS POLICY COMPLETE — SOURCE PASS + DESKTOP PASS + MOBILE PASS**
+
+Next locked project step:
+H01B — apply the approved reusable Policy presentation shell to Privacy Policy, Shipping Policy, and Terms & Conditions while preserving each page's real WordPress content ownership and legal copy.
+
