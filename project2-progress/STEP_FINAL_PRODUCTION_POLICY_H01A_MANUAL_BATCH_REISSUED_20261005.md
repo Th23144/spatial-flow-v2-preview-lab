@@ -272,3 +272,34 @@ For Project 2 manual code delivery:
 - This works together with the standing multi-file batch rule: when a step touches multiple files, provide every file's edits together in the same chat response.
 
 Status: H01A SOURCE PASS / TYPOGRAPHY CORRECTION PASS / RUNTIME RE-CHECK PENDING.
+
+
+## H01A Reading 03 Typography + Component Parity Batch — 2026-10-06
+
+Reason:
+Desktop runtime comparison against the accepted static authority showed that the previous typography correction moved the production page away from Reading 03 by enlarging/heavier-weighting many labels and by replacing mono editorial metadata with Inter.
+
+Correction strategy:
+- return all directly mappable typography metrics to the accepted Reading 03 source values
+- preserve current production renderer/content ownership
+- preserve shell/index/document/rail architecture
+- map current Chapter 04 step markup to Reading 03 restrained table-row language
+- map current Chapter 05 note markup to Reading 03 quiet-note language
+- do not alter route, Customizer, legal copy ownership, Header/Footer or other pages
+
+Batch files:
+1. functions.php: cache-busting version only, 2.7.70 -> 2.7.71
+2. assets/css/spatial-flow.css: replace the complete H01A block from START marker through END marker
+
+Replacement fragment preflight:
+- 17,197 UTF-8 bytes
+- 803 physical lines
+- braces 121 / 121
+- comments 15 / 15
+- tinycss2 top-level parse errors: 0
+
+Standing batch rule observed:
+Both files are being issued together in the same chat response.
+
+Status:
+H01A READING03 PARITY BATCH READY / RETURNED-FILE SOURCE GATE PENDING.
