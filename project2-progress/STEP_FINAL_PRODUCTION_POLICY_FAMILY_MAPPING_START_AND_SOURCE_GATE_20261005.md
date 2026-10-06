@@ -135,3 +135,41 @@ Next:
 - source-gate before runtime.
 
 Status: POLICY FAMILY PRODUCTION MAPPING STARTED.
+
+
+## H01B reusable Policy shell source audit — 2026-10-06
+
+Target pages:
+- Privacy Policy — page ID 3
+- Terms & Conditions — page ID 3251 (WooCommerce-assigned Terms page)
+- Shipping Policy — page ID 3255 (existing shared Policy CSS target)
+
+Ownership finding:
+- no dedicated PHP renderer exists for these three pages;
+- they remain ordinary WordPress Pages / editor-owned legal content;
+- current frontend content already uses the historical `.sf-policy-*` presentation vocabulary;
+- Shipping shares `.sf-policy-overview / .sf-policy-layout / .sf-policy-content / .sf-policy-section` even when it lacks the old `.sf-policy-page` wrapper.
+
+Conflict inventory confirmed in the current 2.7.78 stylesheet:
+1. old rounded-card `Spatial Flow Policy Pages Visual` owner;
+2. page-ID centering fixes for 3251 / 3255 and Privacy ID 3;
+3. mobile accordion owner for the same pages;
+4. old Policy CTA contrast fixes;
+5. Step 5A-4B policy-button contrast override;
+6. later Unified Card Spacing Hotfix.
+
+H01B implementation decision:
+- do NOT duplicate or rewrite legal copy;
+- wrap the real `the_content` output only;
+- add a reusable H01B route/body class and outer presentation owner in functions.php;
+- remap the existing editor-owned `.sf-policy-*` inner structure into the accepted Reading 03 visual language;
+- retire the conflicting historical Policy CSS owners in bounded replacements rather than stacking another override layer;
+- preserve Header/Footer, page URLs, SEO, Woo Terms assignment and editor ownership.
+
+Planned batch baseline:
+- functions.php 2.7.78 -> 2.7.79
+- PHP H01B wrapper preflight: `php -l` PASS
+- replacement H01B CSS preflight: 81/81 braces, tinycss2 top-level parse errors 0
+
+Status:
+**H01B SHARED WORDPRESS POLICY SHELL READY FOR MANUAL BATCH / RETURNED-FILE SOURCE GATE PENDING**
