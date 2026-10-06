@@ -697,3 +697,30 @@ Refresh runtime and verify that only one Chapter 06 / one right-rail 06 remains.
 
 Status:
 H01A SOURCE CLEAN / DESKTOP RUNTIME RECHECK PENDING.
+
+
+## H01A desktop runtime visual acceptance — 2026-10-06
+
+Runtime screenshot reviewed after duplicate Chapter 06 cleanup.
+
+Desktop findings:
+- duplicate Chapter 06 is gone; exactly one final section renders
+- Contents hierarchy/density is now visually aligned with Reading 03
+- Intro / toolbar / shell proportions are coherent
+- document metadata is no longer over-emphasized
+- Chapter 01–03 typography and right marginalia hierarchy are visually consistent
+- reading breaks now appear after 02 and after 05, matching the authority rhythm
+- Chapter 04 process is rendered as restrained ruled rows rather than stacked UI cards
+- Chapter 05 reads as continuous policy prose rather than callout cards
+- Chapter 06 closes as an integrated support route
+- footer transition is clean
+- real-copy length differences remain accepted and are not treated as visual defects
+
+Desktop verdict:
+**H01A DESKTOP RUNTIME VISUAL PASS**
+
+Remaining acceptance:
+- mobile runtime visual check before H01A is declared fully complete
+
+Status:
+H01A DESKTOP PASS / MOBILE RUNTIME VISUAL ACCEPTANCE PENDING.
