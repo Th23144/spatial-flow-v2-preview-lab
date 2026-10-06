@@ -209,3 +209,38 @@ Required correction:
 
 Status:
 **H01B SOURCE GATE HOLD — PHP PASS / CSS PARSE PASS / LATE STICKY OWNER CONFLICT MUST BE REMOVED BEFORE RUNTIME**
+
+
+## H01B CSS correction source gate — 2026-10-06 13:16 batch
+
+Returned file:
+- `spatial-flow(20261006-131618).css`
+
+Validated against the immediately previous `spatial-flow(20261006-130333).css`:
+- diff is limited to the requested cleanup only: 5 added lines / 8 removed lines;
+- orphan Policy CTA end marker removed;
+- obsolete Step 5A-4B Policy CTA comment normalized to Footer-only scope;
+- direct Step 5O-B desktop `.sf-policy-nav` owner changed to `body:not(.sf-policy-h01b-route) .sf-policy-nav`;
+- the two shared selector-list occurrences of bare `.sf-policy-nav,` changed to the same H01B exclusion;
+- remaining unscoped direct `.sf-policy-nav {` count: 0;
+- remaining unscoped direct `.sf-policy-nav,` count: 0;
+- scoped H01B exclusions: 3 total ownership points;
+- H01B canonical CSS START/END markers: 1 / 1;
+- CSS braces: 3541 / 3541;
+- CSS comments: 234 / 234;
+- tinycss2 top-level parse errors: 0;
+- SHA256: `ce658f582d7d9ed483370bb6ec005a3120c3fccfba6ef7694b0d8d7ef3901eb3`.
+
+Interpretation:
+- the previously identified late sticky ownership conflict is removed;
+- legacy Step 5O-B still serves About / FAQ / Wishlist / Journal and non-H01B legacy Policy contexts;
+- H01B now retains canonical ownership of its own `.sf-policy-nav` geometry and responsive behavior.
+
+Status:
+**H01B SOURCE PASS — RUNTIME VISUAL / CONTENT VERIFICATION PENDING**
+
+Next runtime gate:
+1. Privacy Policy — desktop + mobile.
+2. Shipping Policy — desktop + mobile.
+3. Terms & Conditions — desktop + mobile.
+Verify preservation of live legal copy, URLs, links/tables/lists, page identity, and that the shared Reading-03 presentation does not create duplicate headings/content.
