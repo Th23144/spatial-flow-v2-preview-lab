@@ -228,3 +228,47 @@ Next:
 Runtime acceptance on `/refund-returns-policy/` at desktop -> 1024 -> 390–430 -> 360 only if pressure appears.
 
 Status: H01A SOURCE PASS / RUNTIME ACCEPTANCE PENDING.
+
+
+## H01A Typography correction Source Gate — 2026-10-06
+
+User returned:
+`spatial-flow(20261006-080532).css`
+
+Purpose:
+Correct the whole-page typography hierarchy after desktop runtime review showed that Reading 03 had been transferred too literally as micro-editorial typography: too many 9–10px labels, excessive mono usage, body copy too light/gray, and weak section hierarchy.
+
+Verified whole file:
+- 629,730 bytes
+- 22,649 physical lines
+- SHA256 `65b3e703af67abc893898b6aa0a3593cae700720448ed98680378870b4c59c04`
+- trailing LF present
+- braces 3556 / 3556
+- comments 251 / 251
+- tinycss2 top-level parse errors: 0
+
+Diff audit against accepted pre-typography file `spatial-flow(20261006-073926).css`:
+- 20 diff hunks
+- every hunk is inside the H01A Refund Reading 03 block
+- no changes outside the H01A block
+- all requested typography corrections are present
+- desktop/base font weight increased
+- kicker / toolbar / Contents / metadata / lede / chapter headings / body / lists / chapter rail / steps / action links corrected
+- mono reduced from descriptive labels where inappropriate
+- mobile H01 body copy corrected from 14px to 15px
+- structure, widths, sticky Contents, chapter rail layout and responsive architecture were not changed
+
+Verdict:
+**H01A TYPOGRAPHY SOURCE GATE PASS**
+
+Next:
+Runtime visual re-check of the Refund / Returns page, with emphasis on whole-page readability and hierarchy rather than only the previously circled Contents + metadata areas.
+
+## Standing delivery-format rule added from user correction
+
+For Project 2 manual code delivery:
+- Default to putting the complete replacement code and instructions directly in the chat.
+- Do not require the user to download txt/zip/helper files unless the user explicitly asks for a downloadable artifact.
+- This works together with the standing multi-file batch rule: when a step touches multiple files, provide every file's edits together in the same chat response.
+
+Status: H01A SOURCE PASS / TYPOGRAPHY CORRECTION PASS / RUNTIME RE-CHECK PENDING.
