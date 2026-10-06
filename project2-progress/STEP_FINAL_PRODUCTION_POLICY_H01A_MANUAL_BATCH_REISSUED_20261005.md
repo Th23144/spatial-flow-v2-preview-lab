@@ -303,3 +303,56 @@ Both files are being issued together in the same chat response.
 
 Status:
 H01A READING03 PARITY BATCH READY / RETURNED-FILE SOURCE GATE PENDING.
+
+
+## H01A Reading 03 Parity returned-file Source Gate — 2026-10-06
+
+Returned files:
+- functions(20261006-083521).php
+- spatial-flow(20261006-083522).css
+
+functions.php:
+- 663,401 bytes
+- 12,645 physical lines
+- SHA256 `a2ef24d7e52df4d9b0a8f9ab87c1746dc85fdcc3e664806038b44aa4d0a36ad6`
+- PHP lint PASS
+- version `2.7.71`
+- diff against accepted 2.7.70 file: exactly one changed line, version constant only
+
+CSS whole file:
+- 630,652 bytes
+- 22,683 physical lines
+- SHA256 `f469041ce64b3e46530679de77b6fd11f83330c7d7f607999e0668d62b86b85e`
+- trailing LF present
+- braces 3561 / 3561
+- comments 252 / 252
+- tinycss2 top-level parse errors: 0
+
+H01A block:
+- START marker 1
+- END marker 1
+- lines 15,573 through 16,375
+- 803 physical lines
+- 17,203 UTF-8 bytes for the inclusive marker block as measured from the returned whole file
+- SHA256 `bf89f9007996da0de45de7598b1089a4afbd794c75982baf3f8fe70f2a79e85f`
+- braces 121 / 121
+- comments 15 / 15
+- all CSS diffs versus the prior accepted typography file are confined to the H01A block; outside-block diff count 0
+- prior heavier typography signatures are absent from H01A
+- Reading 03 parity signatures for base type, Contents, metadata, lede, headings, marginalia, mobile body size are present
+- Chapter 04 step rows use the restrained ruled-row mapping
+- Chapter 05 notes use the quiet-note italic serif mapping
+- H01A closes immediately before FAQ Step 5K
+- later Step 5K SAFE2 Refund top-gap neutralizer remains preserved
+
+Note:
+The earlier preflight note listed 17,197 bytes for the replacement fragment. The returned whole-file measurement is 17,203 bytes. This six-byte discrepancy is a preflight accounting mismatch only; structural validation, parser validation, target-range diff containment and the delivered CSS signatures all pass. No user correction is required for that discrepancy.
+
+Verdict:
+**H01A READING 03 PARITY SOURCE GATE PASS**
+
+Next:
+Runtime desktop comparison against the accepted static authority. Do not mark visual acceptance until the live screenshot is compared directly with the authority.
+
+Status:
+H01A READING03 PARITY SOURCE PASS / RUNTIME VISUAL ACCEPTANCE PENDING.
