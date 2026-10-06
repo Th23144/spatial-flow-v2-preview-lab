@@ -752,3 +752,27 @@ Final H01A status:
 Next locked project step:
 H01B — apply the approved reusable Policy presentation shell to Privacy Policy, Shipping Policy, and Terms & Conditions while preserving each page's real WordPress content ownership and legal copy.
 
+
+
+## H01A mobile toolbar refinement batch — 2026-10-06
+
+Runtime feedback:
+The mobile Policy toolbar is structurally correct but visually loose because the production link copy is longer than the static prototype. The base flex/flex-wrap behavior plus 44px link min-height creates an oversized blank middle area when "Track your order" wraps to a second row.
+
+Locked correction:
+- mobile-only, <=600px
+- desktop remains frozen
+- Contents remains frozen
+- keep the same real labels/URLs
+- convert toolbar to a compact two-column editorial utility bar
+- left column: policy identity
+- right column: two actions stacked and right-aligned
+- remove the 44px visual min-height from these mobile text links
+- no cards/backgrounds/new borders
+
+Files in one batch:
+1. functions.php: 2.7.77 -> 2.7.78 only
+2. assets/css/spatial-flow.css: replace only the <=600px toolbar / toolbar-links rules and add the scoped mobile anchor adjustment
+
+Status:
+H01A MOBILE TOOLBAR REFINEMENT READY / SOURCE GATE PENDING.
