@@ -400,3 +400,53 @@ Desktop runtime re-check focused on Chapter 05 continuity, then 1024 and 390–4
 
 Status:
 H01A SOURCE PASS / DESKTOP RUNTIME RE-CHECK PENDING.
+
+
+## H01A Typography correction returned-file Source Gate — 2026-10-06
+
+Returned files:
+- functions(20261006-092812).php
+- spatial-flow(20261006-092812).css
+
+functions.php:
+- 663,401 bytes
+- 12,644 newline-terminated lines / no trailing LF
+- SHA256 `12908cedbadd861b7022242d14efdbd6c5041fee87e12cae2fedee64c90b3886`
+- PHP lint PASS
+- version `2.7.73`
+- diff against accepted 2.7.72 file: exactly one changed line, version constant only
+
+CSS whole file:
+- 630,995 bytes
+- 22,697 newline characters / trailing LF present
+- SHA256 `02716c52b575c64c8fe7679f2a7e0459adbfb58ee1131eb82a3d531f092f4508`
+- braces 3563 / 3563
+- comments 252 / 252
+- tinycss2 top-level parse errors: 0
+
+Diff audit against accepted 2.7.72 CSS:
+- 16 diff hunks
+- all diff hunks are inside the H01A Refund Reading 03 block
+- outside-block diff count 0
+- H01A block remains unique: START 1 / END 1
+- Contents title 22 -> 25
+- Contents rows 10 -> 11, 48 -> 54, track 24/10 -> 30/12
+- document metadata 9/1.5/.10 -> 10/1.6/.08
+- ordinary reading copy now directly locks Inter 300 at 15.5/1.74
+- body h4 10 -> 11
+- lists now directly lock Inter 300 at 14.5/1.68
+- chapter marginalia label 10 -> 11 with 18ch max width
+- Chapter 04 step heading/body enlarged and direct-font-locked
+- Chapter 05 subheading 10 -> 11
+- final text links 10 -> 11
+- mobile reading / step / note body sizes increased to 15 / 14 / 15 as specified
+- no structural, width, rail, Header/Footer, FAQ or commerce changes
+
+Verdict:
+**H01A TYPOGRAPHY CORRECTION SOURCE GATE PASS**
+
+Next:
+Runtime screenshot verification. This batch is intentionally expected to produce visible changes in Contents, metadata, body readability, chapter marginalia and step copy. If the live page still appears unchanged, stop CSS tuning and diagnose runtime font/resource/loading state instead.
+
+Status:
+H01A TYPOGRAPHY SOURCE PASS / RUNTIME VISUAL VERIFICATION PENDING.
