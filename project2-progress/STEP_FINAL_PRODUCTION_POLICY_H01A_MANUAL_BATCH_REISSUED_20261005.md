@@ -356,3 +356,47 @@ Runtime desktop comparison against the accepted static authority. Do not mark vi
 
 Status:
 H01A READING03 PARITY SOURCE PASS / RUNTIME VISUAL ACCEPTANCE PENDING.
+
+
+## H01A Chapter 05 correction returned-file Source Gate — 2026-10-06
+
+Returned files:
+- functions(20261006-085824).php
+- spatial-flow(20261006-085824).css
+
+functions.php:
+- 663,401 bytes
+- 12,645 physical lines
+- SHA256 `b6ad4f1f5d7aefc5519316f7bda28176df83ca3476985e70d3c1801d2b343dfa`
+- PHP lint PASS
+- version `2.7.72`
+- diff against accepted 2.7.71 file: exactly one changed line, version constant only
+
+CSS whole file:
+- 630,897 bytes
+- 22,698 physical lines
+- SHA256 `54e570445dc200f4dab1df84cb7caa2f62e0a8c87d168a7da09e2ea0a4b00f17`
+- trailing LF present
+- braces 3563 / 3563
+- comments 252 / 252
+- tinycss2 top-level parse errors: 0
+
+Diff audit versus accepted 2.7.71 parity CSS:
+- all changes remain inside the H01A Refund Reading 03 block
+- outside-block diff count 0
+- Chapter 05 note mapping changed from quiet-note/callout styling to continuous Reading 03 subsection styling
+- note paragraphs returned to Inter 15px / 300 / 1.78 with no italic callout treatment
+- note separators removed
+- mobile H4 margin cascade corrected for step/note headings
+- mobile note body corrected to 14px / 1.76
+- H01A END marker remains immediately before FAQ Step 5K
+- no Header/Footer/FAQ/commerce changes
+
+Verdict:
+**H01A CHAPTER 05 CORRECTION SOURCE GATE PASS**
+
+Next:
+Desktop runtime re-check focused on Chapter 05 continuity, then 1024 and 390–430 responsive acceptance if desktop is visually accepted.
+
+Status:
+H01A SOURCE PASS / DESKTOP RUNTIME RE-CHECK PENDING.
