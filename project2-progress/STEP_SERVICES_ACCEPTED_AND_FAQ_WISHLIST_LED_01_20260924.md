@@ -315,3 +315,30 @@ Required mini-correction:
 - bump 2.7.98 -> 2.7.99 for cache invalidation;
 - add H04-specific desktop ancestor overflow unlock (>=1041px) inside the canonical H04 CSS owner;
 - no PHP FAQ logic change, no visual redesign, no Refund/Services/Policy change.
+
+
+## FAQ / Help 2.7.99 final Source Gate PASS — 2026-10-07
+
+Returned files:
+- `functions(20261007-102643).php` — 727,577 bytes / 15,705 physical lines, SHA256 `47ceac22513a7d4a73e6783bbab8e93b6f26afed46e7efd55b8cdf2617e71941`;
+- `spatial-flow(20261007-102643).css` — 635,235 bytes / 24,178 physical lines, SHA256 `e5f058c099b075b284a95e2e9963ee8fb2fada45ef325a926ac54a3a7057e7c2`.
+
+Final correction validation:
+- child-theme version bumped exactly from 2.7.98 -> 2.7.99;
+- PHP diff against the returned 2.7.98 file contains only that version bump;
+- CSS diff against the returned 2.7.98 file contains only the intended H04 desktop ancestor-overflow unlock inserted immediately before the existing <=1040px H04 breakpoint;
+- H04 desktop unlock uses >=1041px and does not alter the H04 <=1040px static/stacked breakpoint;
+- the historical global `.sf-faq-native-toc` sticky helper remains untouched and therefore does not accidentally re-own H04 behavior;
+- PHP lint PASS;
+- CSS braces 3567/3567;
+- CSS comments 246/246;
+- tinycss2 parse errors 0;
+- Step 5K PHP START/END 1/1 and CSS START/END 1/1;
+- backend FAQ ownership remains the existing `sf_faq_*` Customizer/theme-mod path; no saved values are deleted or reset.
+
+Verdict:
+**FAQ / HELP 2.7.99 FINAL SOURCE GATE PASS**
+
+Runtime state:
+- cleared for frontend visual/interaction validation;
+- do not declare final visual acceptance until desktop/mobile runtime screenshots and interaction behavior are checked.
