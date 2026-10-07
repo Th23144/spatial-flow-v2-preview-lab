@@ -169,3 +169,37 @@ Candidate preflight:
 
 Status:
 **SERVICES 2.7.97 TARGETED VISUAL CORRECTION READY / MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
+
+
+## Services 2.7.97 returned-file Source Gate — 2026-10-07
+
+Returned files:
+- `functions(20261007-095631).php` — version 2.7.97, 723,138 bytes / 15,154 file lines, SHA256 `07da652cda813342e6d4bbf700368b71fba691312c5f58d9690af65839a6dff6`;
+- `spatial-flow(20261007-095631).css` — 639,182 bytes / 23,927 file lines, SHA256 `ffad45c0d1378c7e5d8b76f04cb7fa45c04a12f2cfc77bb899a3e33100b99013`.
+
+Validation:
+- `php -l` PASS;
+- version / enqueue cache chain correctly moved to 2.7.97;
+- diff vs accepted 2.7.96 is exactly the planned targeted Services correction set:
+  - version bump;
+  - new `spatial_flow_services_action_text()` presentation helper;
+  - service-row CTA and request-submit labels routed through the helper;
+  - desktop hero title footprint reduced/widened;
+  - submit CTA hardened against global/Astra button cascade;
+  - mobile hero title reduced/widened;
+  - mobile toolbar normalized to one label row + two action columns;
+  - mobile service-row meta/action alignment tightened;
+  - form action layout made deterministic desktop/mobile;
+- no unrelated PHP/CSS drift;
+- CSS braces 3578/3578;
+- CSS comments 258/258;
+- tinycss2 errors 0;
+- backend editability preserved: saved `sf_services_*` theme mods are untouched; CTA arrow stripping occurs only at render time.
+
+Verdict:
+**SERVICES 2.7.97 SOURCE GATE PASS / BACKEND OWNER PASS / FRONTEND RE-VERIFICATION READY**
+
+Next runtime gate:
+- desktop full-page Services capture;
+- mobile full-page Services capture;
+- focus on submit text visibility, removal of blue emoji arrows, hero title footprint, mobile toolbar, and row-action alignment.
