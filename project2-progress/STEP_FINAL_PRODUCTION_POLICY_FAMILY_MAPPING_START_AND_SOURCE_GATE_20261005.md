@@ -518,3 +518,45 @@ Preflight:
 
 Status:
 **H01B PRIVACY TITLE-EMPHASIS PARITY BATCH READY / RETURNED-FILE SOURCE GATE PENDING**
+
+
+## H01B Privacy title-emphasis parity returned-file Source Gate — 2026-10-07 04:23 batch
+
+Returned files:
+- `functions(20261007-042342).php`
+- `spatial-flow(20261007-042342).css`
+
+PHP verification:
+- version 2.7.83;
+- 681,097 bytes / 13,230 physical lines;
+- SHA256 `d66eb6fbfd9b81a2cacba19ff3ecc4dfa86913d578d189a9fdf05b2398baed71`;
+- `php -l` PASS;
+- H01B runtime JavaScript extracted, PHP URL expressions substituted, `node --check` PASS;
+- diff vs accepted 2.7.82 is limited to the requested title-emphasis batch:
+  1. version 2.7.82 -> 2.7.83;
+  2. add DOM-safe `sfPolicyH01bEmphasizeLastWord()`;
+  3. apply it to the real hero `h1`;
+  4. apply it to the generated document `h2`.
+- unified diff size: +35 / -2 lines.
+
+CSS verification:
+- 631,845 bytes / 23,333 physical lines;
+- SHA256 `c8f8ade859ccbcdd0c314254b98202b3d7069de38dfa710aa900f103a61b8966`;
+- braces 3573 / 3573;
+- comments 250 / 250;
+- tinycss2 top-level parse errors 0;
+- diff vs accepted 2.7.81-era CSS is exactly one 5-line rule:
+  `.sf-policy-h01b-document-head h2 em { font-style: italic; color: var(--sf-policy-h01b-sage); }`
+- no H01B/H01A structural, spacing, Contents, metadata, lede, section, rail, CTA, header or footer rules changed.
+
+Verdict:
+**H01B PRIVACY TITLE-EMPHASIS SOURCE GATE PASS**
+
+Runtime recheck:
+- Privacy Policy desktop only;
+- verify final-word emphasis in top hero title and repeated document title;
+- Contents title must remain plain;
+- all previously accepted areas stay frozen.
+
+Status:
+**H01B PRIVACY TITLE-EMPHASIS SOURCE PASS / DESKTOP RUNTIME RECHECK PENDING**
