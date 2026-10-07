@@ -1132,3 +1132,32 @@ Full-page audit status:
 
 Status:
 **H01B SHIPPING DESKTOP HOLD — WRAPPER-INDEPENDENT HERO KICKER FIX READY**
+
+
+## H01B Shipping wrapper-independent hero kicker returned-file Source Gate — 2026-10-07 06:39 batch
+
+Returned file:
+- `functions(20261007-063931).php`
+
+Verification:
+- version 2.7.90;
+- 681,580 bytes / 13,246 file lines;
+- SHA256 `de2d319ef1c500afa32370bf990e05e8be3b8f2da8b3eeada3ac8fba8230c61b`;
+- `php -l` PASS;
+- H01B runtime JavaScript syntax check PASS after substituting the two PHP-emitted URL literals used inside the inline script;
+- diff vs accepted 2.7.89 PHP is exactly:
+  1. version `2.7.89 -> 2.7.90`;
+  2. kicker fallback no longer depends on `heroCopy`; it requires only Shipping + resolved `titleNode` + missing hero kicker and inserts immediately before the real title node;
+- no CSS change;
+- no unrelated PHP drift.
+
+Verdict:
+**H01B SHIPPING WRAPPER-INDEPENDENT HERO KICKER SOURCE GATE PASS**
+
+Runtime requirement:
+- refresh Shipping desktop;
+- provide a full desktop screenshot, not only the hero;
+- confirm the kicker appears above the main title, then perform one final full-page parity scan before any desktop PASS.
+
+Status:
+**H01B SHIPPING KICKER SOURCE PASS / FINAL DESKTOP RUNTIME REAUDIT PENDING**
