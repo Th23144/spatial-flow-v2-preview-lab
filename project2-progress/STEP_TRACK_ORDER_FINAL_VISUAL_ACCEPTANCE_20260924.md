@@ -158,3 +158,28 @@ Next required gate:
 - submit a real local WooCommerce test Order ID + matching Billing Email;
 - verify successful lookup behavior and capture desktop + mobile successful-result states;
 - specifically inspect Woo status output, real order table/totals, any valid Pay/Cancel/Invoice actions, privacy-safe address suppression, and the Delivery Details hook.
+
+
+## Track Order H06 2.7.100 successful-result desktop runtime gate — 2026-10-07
+
+User supplied a real successful WooCommerce tracking result on desktop.
+
+Confirmed from the live result capture:
+- the page transitions from lookup form to the H06 successful-result state;
+- the left column correctly becomes a restrained 'Track another order' route;
+- the right soft-focus result surface renders real WooCommerce order data rather than static example content;
+- the privacy-safe Delivery Details block is present;
+- billing/shipping street-address blocks are not exposed on the public lookup page;
+- the real order status/placed-date text is present;
+- real product line, subtotal, shipping, total and payment method are present;
+- status-dependent invoice actions are present; no inappropriate Pay/Cancel action is visible for the shown Processing order;
+- duplicate out-of-table invoice action rows are not visible;
+- no old Track Order card-era UI is visible.
+
+Desktop successful-result visual verdict: PASS.
+
+One remaining gate:
+- successful-result mobile capture is still required to verify the real Woo order table, actions and Delivery Details do not overflow or collapse incorrectly on narrow screens.
+
+Status:
+**TRACK ORDER H06 SUCCESSFUL RESULT DESKTOP PASS / MOBILE SUCCESSFUL RESULT PENDING**
