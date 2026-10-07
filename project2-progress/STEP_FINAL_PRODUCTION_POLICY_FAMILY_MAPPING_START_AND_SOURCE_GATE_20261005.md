@@ -742,3 +742,26 @@ Combined 2.7.84 batch status:
 
 Status:
 **H01B SHIPPING TITLE + WIDTH PARITY SOURCE PASS / RUNTIME VISUAL VERIFICATION PENDING**
+
+
+## H01B Shipping runtime width diagnosis — legacy .sf-container owner — 2026-10-07
+
+Runtime screenshot after 2.7.84:
+- title mapping is now correct: `Shipping & Delivery` is resolved and emphasized;
+- Shipping remains visibly narrower than accepted Refund / Privacy.
+
+Root cause identified:
+- the global theme baseline still defines `.sf-container { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }`, with a mobile variant using `width: min(100% - 32px, 1180px)`;
+- Shipping's legacy page structure uses `.sf-container` inside the H01B source, while Privacy's old wrapper path differs;
+- previous 2.7.84 width work strengthened the new H01B outer owner but did not neutralize this inner legacy 1180px owner;
+- therefore the new 1480px H01A-aligned wrapper is present, but Shipping's actual visible content remains trapped inside the old 1180px container.
+
+Locked correction:
+- Shipping-only; do not reopen Privacy;
+- functions.php version 2.7.84 -> 2.7.85 for cache-busting;
+- inside `.sf-policy-h01b--shipping-policy`, neutralize legacy `.sf-container` width/margins so H01B source owns the horizontal geometry;
+- preserve H01B source mobile 20px padding;
+- no changes to title mapping, Contents, metadata, lede, sections, rails, table, lists, CTA or Footer.
+
+Status:
+**H01B SHIPPING WIDTH ROOT CAUSE FOUND — SHIPPING-SCOPED LEGACY CONTAINER FIX READY**
