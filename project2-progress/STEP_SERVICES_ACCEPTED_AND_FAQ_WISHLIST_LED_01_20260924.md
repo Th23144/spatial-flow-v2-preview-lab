@@ -232,3 +232,51 @@ Status:
 
 Next locked page:
 **FAQ / Help**
+
+
+## FAQ / Help production source audit + H04 mapping batch — 2026-10-07
+
+Fresh audit used:
+- current returned `functions(20261007-095631).php` / `spatial-flow(20261007-095631).css` (2.7.97);
+- accepted branch `temp-faq-wishlist-led-01`;
+- accepted artifact `temp-preview/Spatial-Flow-FAQ-Wishlist-Led-01.html` (Wishlist-led 04 / typography-corrected authority).
+
+Owner audit:
+- `/faq/` is already a native theme-owned route through `spatial_flow_faq_help_native_template()` at template_redirect priority 24;
+- current visible FAQ copy is Customizer/theme-mod owned through `sf_faq_*` and must remain backend-editable;
+- current production Step 5K visual owner is the older rounded/card-heavy implementation with Quick Paths, dark sticky card, prep cards and dark CTA panel;
+- current CSS also contains three accumulated FAQ SAFE patches (sticky/gap/prep-card fixes), which are superseded by a canonical H04 mapping and should not remain as active FAQ presentation owners;
+- SAFE 2 also contains a Refund top-gap guard; that Refund portion is preserved unchanged in the prepared replacement.
+
+Accepted FAQ authority:
+- 1480px body + internal clamp padding;
+- editorial intro + restrained toolbar;
+- 230px category index + 900px reading column;
+- five FAQ sections / fifteen FAQ items using native details/summary;
+- Cormorant / Inter / JetBrains Mono hierarchy;
+- sage last-word emphasis;
+- final two-route help strip;
+- responsive collapse at 1040px and mobile treatment at 600px;
+- current real Header/Footer remain authoritative and are not replaced by the static artifact header/footer.
+
+Prepared 2.7.98 one-shot batch:
+- version 2.7.97 -> 2.7.98;
+- replace complete Step 5K PHP block with H04 native renderer while retaining /faq/ route ownership and sf_faq_* theme-mod ownership;
+- all visible H04 copy / FAQ questions / answers / route links remain editable through the existing FAQ Customizer section;
+- existing saved sf_faq_* theme mods are not deleted or overwritten; obsolete old visual-only settings simply cease to render;
+- add missing third FAQ defaults so the accepted five-category / fifteen-item authority is complete when no saved override exists;
+- strip trailing emoji/Unicode arrows at render time for help-route CTAs and draw a monochrome text-presentation arrow in CSS;
+- replace the contiguous old Step 5K CSS + FAQ SAFE2/SAFE3/SAFE4 region with one canonical H04 CSS owner;
+- preserve the existing Refund / Returns top-gap guard from SAFE2 unchanged as a separate Refund-only guard;
+- no WooCommerce/YITH/Policy/Services/Header/Footer owner changes.
+
+Candidate preflight:
+- PHP lint PASS;
+- CSS braces 3564/3564;
+- CSS comments 246/246;
+- tinycss2 errors 0;
+- PHP outside version bump + Step 5K is byte-identical after normalization;
+- CSS outside the Step5K-through-SAFE4 replacement range is byte-identical after normalization.
+
+Status:
+**FAQ / HELP H04 PRODUCTION MAPPING 2.7.98 READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
