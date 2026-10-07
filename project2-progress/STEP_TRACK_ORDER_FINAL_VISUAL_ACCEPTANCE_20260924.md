@@ -183,3 +183,26 @@ One remaining gate:
 
 Status:
 **TRACK ORDER H06 SUCCESSFUL RESULT DESKTOP PASS / MOBILE SUCCESSFUL RESULT PENDING**
+
+
+## Track Order H06 successful-result desktop visual verdict corrected — 2026-10-07
+
+User rejected the successful-result desktop presentation as visually weak. The prior desktop successful-result PASS is revoked as a visual verdict; functional/data-owner checks remain valid.
+
+Current assessment:
+- successful Woo lookup/functionality = PASS;
+- privacy-safe data exposure = PASS;
+- Woo action/state ownership = PASS;
+- successful-result desktop visual design = FAIL / needs refinement;
+- mobile successful-result audit is paused until the desktop result surface is visually corrected.
+
+Primary visual defects observed:
+- the focused result panel is too narrow/dense relative to the large empty left column after lookup;
+- Delivery Details appears too early and competes with the order-status/result hierarchy;
+- real Woo order details still read too much like a raw WooCommerce table embedded inside a tinted card;
+- action buttons are visually heavy and disconnected from the editorial hierarchy;
+- information density and vertical rhythm inside the result panel are weaker than the accepted H06 static authority;
+- the left 'Track another order' state leaves excessive dead space and does not balance the live result surface.
+
+Status:
+**TRACK ORDER H06 FUNCTIONAL SUCCESS PASS / SUCCESSFUL-RESULT DESKTOP VISUAL FAIL / MOBILE SUCCESS RESULT HOLD**
