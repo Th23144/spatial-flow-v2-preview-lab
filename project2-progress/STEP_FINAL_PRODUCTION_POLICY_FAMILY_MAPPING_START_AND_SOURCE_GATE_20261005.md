@@ -1450,3 +1450,38 @@ Decision:
 
 Status:
 **H01B TERMS RUNTIME FAIL — MOBILE AUDIT STOPPED / H01B ANTI-FOUC + TERMS SOURCE NORMALIZATION REQUIRED**
+
+
+## H01B Terms exact DOM diagnostic — corrected root cause + anti-FOUC batch — 2026-10-07
+
+The user-provided live diagnostic corrected the previous hypothesis.
+
+Exact live Terms DOM facts:
+- H01B root exists and its real class is `.sf-policy-h01b--terms` (not `.sf-policy-h01b--terms-conditions` / `--terms-and-conditions`);
+- inside the source, `.sf-policy-hero`, `.sf-policy-content`, `.sf-policy-layout`, `.sf-policy-nav` all exist exactly once;
+- 5 real `.sf-policy-section` nodes exist;
+- the real Elementor source contains the expected hero, 3 overview cards, one nav, five policy sections, and CTA.
+
+Therefore the Terms canonical adapter failed for one precise reason: its JavaScript root selector did not include the actual `.sf-policy-h01b--terms` class, so `root` was null and the adapter returned before reading the otherwise-valid legacy policy DOM. The prior assumption that Terms lacked the shared legacy classes was incorrect.
+
+The diagnostic also confirms a systemic H01B FOUC issue: accepted Privacy/Shipping and current Terms render their legacy WordPress/Elementor markup before footer-time JS canonicalization. Terms exposed the failure permanently; the other pages only flash briefly because their runtime rebuild succeeds.
+
+Locked 2.7.95 correction batch:
+1. version 2.7.94 -> 2.7.95;
+2. Terms canonical runtime no longer derives the root from a slug-specific CSS class; because the PHP function is already emitted only on the Terms target route, it resolves the single `[data-sf-policy-h01b]` root directly;
+3. Terms CSS geometry explicitly includes the actual `.sf-policy-h01b--terms` class while retaining the two historical slug variants;
+4. shared H01B anti-FOUC CSS hides the policy root until `data-sf-policy-h01b-ready=1`;
+5. a footer priority-999 fail-safe reveals the legacy source after 1500ms only if no canonical runtime marks the page ready, preventing a permanent blank page if future runtime mapping fails;
+6. no transition/fade is used; successful pages reveal immediately after synchronous canonical build completion;
+7. Shipping / Privacy mapping logic and accepted desktop/mobile geometry are otherwise unchanged.
+
+Candidate preflight on latest returned 2.7.94 files:
+- PHP lint PASS;
+- Terms canonical JS node syntax PASS;
+- anti-FOUC fail-safe JS node syntax PASS;
+- CSS braces 3589/3589;
+- CSS comments 258/258;
+- tinycss2 errors 0.
+
+Status:
+**H01B TERMS ROOT CAUSE CONFIRMED / 2.7.95 TERMS + SHARED ANTI-FOUC BATCH READY**
