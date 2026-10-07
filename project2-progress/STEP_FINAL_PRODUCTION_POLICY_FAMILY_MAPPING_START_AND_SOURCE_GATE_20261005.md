@@ -1187,3 +1187,26 @@ Corrective architecture:
 
 Status:
 **H01B SHIPPING PATCH LOOP STOPPED — CANONICAL ADAPTER REBUILD REQUIRED**
+
+
+## H01B Shipping canonical adapter rebuild batch prepared — 2026-10-07
+
+The patch-loop approach is now replaced by a deterministic Shipping-only canonical adapter.
+
+Architecture:
+- Privacy / future generic H01B mapper is left intact.
+- Shipping (page id 3255 / slug shipping-policy) is excluded from the old generic runtime mapper.
+- A new Shipping-specific runtime adapter snapshots only real editor-owned content from the legacy Elementor page: real hero title; real hero note; existing hero intro / Policy Overview line; overview metadata cards; unique real policy sections including tables/lists/body copy; real CTA.
+- After extraction, the adapter clears the legacy Elementor presentation subtree inside `.sf-policy-h01b-source` and renders one canonical H01A/H01B shell: Hero with deterministic kicker/title/note; toolbar; one canonical Contents nav; repeated document head + metadata; lede; deduplicated policy sections with one generated chapter rail each; editorial breaks where applicable; CTA.
+- No legal/editor text is hard-coded except existing shared UI labels such as Contents / Policy Overview / Contact Spatial Flow / Track Your Order.
+- Existing 1480px H01B CSS remains the presentation authority; no CSS change in this rebuild batch.
+- Shipping-specific old Elementor width rules become inert after the legacy subtree is replaced, but are intentionally not removed in the same batch to avoid mixing cleanup with architecture repair.
+
+Candidate preflight:
+- functions.php version 2.7.91;
+- php -l PASS;
+- new Shipping canonical inline JavaScript: node --check PASS;
+- existing generic H01B runtime JavaScript after Shipping exclusion: node --check PASS.
+
+Status:
+**H01B SHIPPING CANONICAL ADAPTER REBUILD READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
