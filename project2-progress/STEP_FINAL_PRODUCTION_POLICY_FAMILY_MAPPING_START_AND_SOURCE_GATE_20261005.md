@@ -1047,3 +1047,25 @@ Runtime target:
 
 Status:
 **H01B SHIPPING REFUND-HERO PARITY SOURCE PASS / DESKTOP TOP RUNTIME RECHECK PENDING**
+
+
+## H01B Shipping missing hero kicker identified — 2026-10-07
+
+Annotated runtime screenshot after 2.7.88 shows one remaining obvious Refund-parity defect:
+- Shipping hero is missing the small eyebrow/kicker above the main title.
+- H01B CSS already contains the accepted kicker presentation rule (`.sf-policy-h01b-page .sf-kicker`), but the shared runtime mapper never creates a kicker when the legacy source does not provide one.
+- Privacy already has a source kicker; Shipping does not, so no element exists for the rule to style.
+
+Locked correction:
+- Shipping-only runtime fallback kicker;
+- derive kicker text from the existing real page title (`Shipping & Delivery`) so no new policy/legal copy is invented;
+- insert before the Shipping hero title only when no existing `.sf-kicker` is present;
+- version 2.7.88 -> 2.7.89;
+- CSS unchanged.
+
+Process correction:
+- do not declare desktop PASS from a single repaired defect;
+- after the kicker fix, perform a full same-viewport visual audit against accepted Refund H01A before any PASS call, including hero kicker/title/note, toolbar, Contents, document head/meta, lede, sections/rails, breaks, CTA and footer.
+
+Status:
+**H01B SHIPPING DESKTOP HOLD — MISSING HERO KICKER FIX READY / FULL-PAGE REAUDIT REQUIRED**
