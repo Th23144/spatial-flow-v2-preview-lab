@@ -1485,3 +1485,39 @@ Candidate preflight on latest returned 2.7.94 files:
 
 Status:
 **H01B TERMS ROOT CAUSE CONFIRMED / 2.7.95 TERMS + SHARED ANTI-FOUC BATCH READY**
+
+
+## H01B Terms + shared anti-FOUC 2.7.95 returned-file source gate — 2026-10-07
+
+Returned files:
+- `functions(20261007-082635).php` — version 2.7.95, 724,265 bytes / 14,992 file lines, SHA256 `f32f89b9949cf9d00aadf0568e4a01d4828dbf9b5330d07735ceeb5ebc740e27`, `php -l` PASS;
+- `spatial-flow(20261007-082634).css` — 635,645 bytes / 23,514 file lines, SHA256 `195899565bf9e93cd0d1be5f37103c46d946cb429f9b5d3ca953845b32f0a0e5`, braces 3589/3589, comments 258/258, tinycss2 parse errors 0.
+
+Exact returned-file diff vs accepted 2.7.94 baseline:
+- PHP only:
+  - version 2.7.94 -> 2.7.95;
+  - Terms root selector changed from slug-class assumptions to the single `[data-sf-policy-h01b]` route root;
+  - added shared H01B footer priority-999 visibility fail-safe;
+- CSS only:
+  - added shared H01B anti-FOUC visibility gate;
+  - added actual `.sf-policy-h01b--terms` selector to Terms legacy-Elementor frame correction;
+  - added actual `.sf-policy-h01b--terms` selector to Terms toolbar geometry;
+- no other PHP/CSS drift.
+
+Additional validation:
+- returned files are byte-identical to the prepared 2.7.95 candidate files;
+- Terms canonical inline JS `node --check` PASS after substituting PHP-emitted URLs;
+- anti-FOUC fail-safe inline JS `node --check` PASS.
+
+Verdict:
+**H01B TERMS + SHARED ANTI-FOUC 2.7.95 SOURCE GATE PASS**
+
+Next runtime gate:
+1. refresh Terms desktop first;
+2. confirm canonical layout now renders and no legacy-layout flash is visible;
+3. if desktop canonicalization succeeds, capture Terms desktop full-page screenshot for pixel comparison to Refund;
+4. then validate mobile;
+5. quick regression-open Privacy and Shipping to confirm the shared anti-FOUC gate removed their brief legacy flash without altering accepted geometry.
+
+Status:
+**H01B TERMS SOURCE PASS / TERMS DESKTOP CANONICAL + SHARED ANTI-FOUC RUNTIME GATE PENDING**
