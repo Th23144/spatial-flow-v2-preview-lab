@@ -98,3 +98,28 @@ Candidate preflight:
 
 Status:
 **SERVICES WISHLIST-LED 01 PRODUCTION MAPPING 2.7.96 READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
+
+
+## Services 2.7.96 returned-file Source Gate — 2026-10-07
+
+Returned files:
+- functions(20261007-093714).php — version 2.7.96, 722,724 bytes / 15,143 file lines, SHA256 556b1e606edc90fef0e04954f2b8d1764e88487eddc676f0a630c14aa2f963c8;
+- spatial-flow(20261007-093714).css — 637,804 bytes / 23,855 file lines, SHA256 3f206057f30bd4d2a3b09f046b697a28102d41609178341ba0624fb2dc284df5.
+
+Validation:
+- php -l PASS;
+- child version 2.7.96 and enqueue cache version aligned;
+- Step 5G PHP START/END markers exactly 1/1;
+- Step 5G CSS START/END markers exactly 1/1;
+- new Services renderer outputs .sf-services-native.sf-services-v2 and all v2 structural classes;
+- old Services render selectors (.sf-services-hero / .sf-services-card / .sf-services-visual) are absent from current PHP and CSS;
+- Services Customizer now owns toolbar, service rows/meta/CTA, method, request form copy, boundary copy, labels/placeholders and URLs through sf_services_* theme mods;
+- request form reuses existing spatial_flow_product_guidance_submit owner, posts capture_type=services and composes Name / Service / Context into existing interest payload;
+- existing Product Guidance handler accepts sanitized capture_type without restricting services and stores it in _sf_product_guidance_capture_type;
+- Services inline JS node --check PASS;
+- CSS braces 3575/3575, comments 258/258, tinycss2 errors 0;
+- CSS is byte-identical to the already accepted 09:27:46 Services CSS;
+- diff against 09:27:46 PHP outside version bump + Step 5G is byte-identical after normalization: no unrelated PHP drift.
+
+Verdict:
+**SERVICES 2.7.96 SOURCE GATE PASS / BACKEND EDITABILITY OWNER PASS / FRONTEND RUNTIME VISUAL GATE READY**
