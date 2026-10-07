@@ -1430,3 +1430,23 @@ Candidate preflight performed on the latest returned files:
 
 Status:
 **H01B TERMS ONE-SHOT CANONICAL BATCH READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
+
+
+## H01B Terms first desktop runtime — FAIL + systemic FOUC finding — 2026-10-07
+
+User correctly stopped the mobile audit. The Terms desktop screenshot is not a pixel-parity issue; the canonical rebuild did not run and the legacy WordPress presentation remains visible.
+
+Confirmed source cause:
+- all H01B normal WordPress policy pages are currently rebuilt by JavaScript emitted from `wp_footer` priority 89, so the browser can paint the original page before the runtime mapper executes; this explains the brief flash the user also observes on Privacy / Shipping;
+- the Terms-specific canonical runtime additionally requires both `.sf-policy-hero` and `.sf-policy-content` inside `.sf-policy-h01b-source` and immediately returns if either is absent;
+- repository owner audit already established Privacy / Shipping / Terms are ordinary WordPress-page-owned surfaces rather than one guaranteed shared native DOM contract;
+- therefore the Terms adapter incorrectly assumed legacy class parity and remains stuck in the pre-canonical state shown in the screenshot.
+
+Decision:
+- Terms desktop = FAIL; do not inspect mobile yet;
+- do not add another CSS patch;
+- treat the visible flash on already accepted H01B pages as a real architectural defect, not a harmless cosmetic artifact;
+- before further implementation, capture the exact current Terms source DOM once, read-only, then replace the footer-time assumption with a deterministic presentation path that does not expose the legacy layout before canonical readiness.
+
+Status:
+**H01B TERMS RUNTIME FAIL — MOBILE AUDIT STOPPED / H01B ANTI-FOUC + TERMS SOURCE NORMALIZATION REQUIRED**
