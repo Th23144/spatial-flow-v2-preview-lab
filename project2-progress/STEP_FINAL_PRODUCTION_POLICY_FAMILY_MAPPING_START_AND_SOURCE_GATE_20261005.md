@@ -949,3 +949,39 @@ Expected runtime effect:
 
 Status:
 **H01B SHIPPING VERTICAL ROOT CAUSE FOUND — ROUTE TOP-SPACING RESET READY**
+
+
+## H01B Shipping route top-spacing reset returned-file Source Gate — 2026-10-07 06:14 batch
+
+Returned files:
+- `functions(20261007-061415).php`
+- `spatial-flow(20261007-061416).css`
+
+PHP verification:
+- version 2.7.87;
+- 681,105 bytes / 13,230 physical lines;
+- SHA256 `030de80ee6dbc7c09c043689820d36eb9b633c3c7f283762ac5b0f2c1dd79318`;
+- `php -l` PASS;
+- diff vs accepted 2.7.86 PHP is exactly one line: version `2.7.86 -> 2.7.87`.
+
+CSS verification:
+- 632,893 bytes / 23,371 physical lines;
+- SHA256 `8ceaab75df299a94ba63861ffb3f1ca1b9f2f52e4a3639eb3e453fb5b6a8380b`;
+- braces 3576 / 3576;
+- comments 252 / 252;
+- tinycss2 top-level parse errors 0;
+- diff vs accepted `spatial-flow(20261007-054627).css` is exactly the requested Refund-parity route top-spacing reset:
+  - add `body.sf-policy-h01b-route .site-content, #content, #primary { margin-top:0!important; padding-top:0!important; }`
+- no unrelated CSS drift.
+
+Verdict:
+**H01B SHIPPING ROUTE TOP-SPACING RESET SOURCE GATE PASS**
+
+Runtime target:
+- Shipping Policy desktop full-page screenshot;
+- verify the abnormal blank band between global header and hero disappears;
+- verify hero title and right hero note shift upward together while horizontal width remains unchanged;
+- do not reopen Privacy unless a concrete regression appears.
+
+Status:
+**H01B SHIPPING VERTICAL SOURCE PASS / DESKTOP RUNTIME RECHECK PENDING**
