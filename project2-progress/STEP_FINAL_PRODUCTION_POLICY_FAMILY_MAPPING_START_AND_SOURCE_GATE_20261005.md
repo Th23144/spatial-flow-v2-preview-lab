@@ -876,3 +876,30 @@ Runtime target:
 
 Status:
 **H01B SHIPPING EXACT WIDTH SOURCE PASS / DESKTOP RUNTIME RECHECK PENDING**
+
+
+## H01B Shipping desktop runtime acceptance after 2.7.86 — 2026-10-07
+
+Runtime screenshot reviewed after exact Elementor `.e-con-inner` neutralization.
+
+Findings:
+- horizontal geometry is now visibly expanded to the H01A / Privacy width class;
+- Hero, utility toolbar, Contents column, repeated document head, document body and chapter rail share the accepted wide axis;
+- Shipping title mapping is correct in all required locations:
+  - top hero: `Shipping & <em>Delivery</em>`;
+  - toolbar identity: `SHIPPING & DELIVERY`;
+  - Contents title: `Shipping & Delivery`;
+  - repeated document title: `Shipping & <em>Delivery</em>`;
+- metadata rail remains compact;
+- 01–05 Contents is unique and complete;
+- table, lists, section rail, CTA and footer remain stable;
+- Shipping's short `Spatial Flow Delivery` lede is source-derived content variance, not a layout defect; no fabricated copy will be introduced.
+
+Verdict:
+**H01B SHIPPING DESKTOP RUNTIME VISUAL PASS**
+
+Remaining Shipping gate:
+- mobile runtime screenshot.
+
+Status:
+**H01B SHIPPING DESKTOP PASS / MOBILE RUNTIME VERIFICATION PENDING**
