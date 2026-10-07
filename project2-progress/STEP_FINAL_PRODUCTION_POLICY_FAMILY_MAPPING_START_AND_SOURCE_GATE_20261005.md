@@ -717,3 +717,28 @@ Required correction:
 
 Status:
 **H01B SHIPPING PHP SOURCE PASS / CSS PARSE PASS / SOURCE GATE HOLD — MOBILE IMPORTANT CASCADE MUST BE FIXED BEFORE RUNTIME**
+
+
+## H01B Shipping title + width parity final Source Gate — 2026-10-07 04:45 CSS
+
+Returned CSS:
+- `spatial-flow(20261007-044506).css`
+
+Verification:
+- 632,415 bytes;
+- SHA256 `975c8da0146cbd0e62f41a8574f2237feabcec79706702907442f3d55ff7b58a`;
+- braces 3574 / 3574;
+- comments 250 / 250;
+- tinycss2 top-level parse errors 0;
+- diff vs `spatial-flow(20261007-043912).css` is exactly 3 requested declaration changes in the existing <=600px H01B source block:
+  - `max-width: none -> none !important`
+  - `padding-left: 20px -> 20px !important`
+  - `padding-right: 20px -> 20px !important`
+- no unrelated CSS drift.
+
+Combined 2.7.84 batch status:
+- functions.php already source-passed for version bump + `h1,h2,h3` title discovery;
+- CSS now source-passed including desktop width ownership and mobile cascade restoration.
+
+Status:
+**H01B SHIPPING TITLE + WIDTH PARITY SOURCE PASS / RUNTIME VISUAL VERIFICATION PENDING**
