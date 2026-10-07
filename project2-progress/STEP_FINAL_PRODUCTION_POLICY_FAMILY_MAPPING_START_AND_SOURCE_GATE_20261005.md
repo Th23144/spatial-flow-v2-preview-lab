@@ -1402,3 +1402,31 @@ Policy-family progression:
 - Privacy: PASS;
 - Shipping: PASS;
 - Terms & Conditions: NEXT H01B TARGET.
+
+
+## H01B Terms & Conditions one-shot canonical batch prepared — 2026-10-07
+
+Goal: avoid repeating the Shipping patch loop. Terms is moved directly onto a dedicated deterministic canonical adapter rather than left on the legacy generic DOM-mutation path.
+
+Batch design:
+- functions version 2.7.93 -> 2.7.94;
+- add a Terms-only canonical runtime for page id 3251 and slugs `terms-conditions` / `terms-and-conditions`;
+- snapshot real editor-owned hero title/kicker/note/intro, overview metadata, unique policy sections, lists/tables/body copy and CTA;
+- clear the legacy presentation subtree and render one canonical H01A/H01B shell;
+- deduplicate sections by normalized heading;
+- generate exactly one Contents item and one chapter rail per retained section;
+- preserve real editor content and backend ownership; do not hard-code policy/legal body copy;
+- exclude Terms from the older generic H01B mapper to prevent dual-processing;
+- add Terms-only toolbar full-bleed parity with Refund;
+- if the source is legacy Elementor, tag the route and apply the same measured -56px frame correction used by the accepted Shipping page;
+- reuse the already accepted shared H01B desktop 1040px document axis and 2.7.93 mobile contract; no new Terms-specific typography system.
+
+Candidate preflight performed on the latest returned files:
+- PHP lint PASS;
+- Terms canonical inline JavaScript `node --check` PASS after substituting PHP-emitted URLs;
+- CSS braces 3587/3587;
+- CSS comments 257/257;
+- tinycss2 parse errors 0.
+
+Status:
+**H01B TERMS ONE-SHOT CANONICAL BATCH READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
