@@ -1521,3 +1521,33 @@ Next runtime gate:
 
 Status:
 **H01B TERMS SOURCE PASS / TERMS DESKTOP CANONICAL + SHARED ANTI-FOUC RUNTIME GATE PENDING**
+
+
+## H01B Terms desktop + mobile runtime pixel gate — 2026-10-07
+
+User supplied final Terms desktop and mobile full-page screenshots after the 2.7.95 root-selector and shared anti-FOUC batch.
+
+Visual result:
+- Terms now renders the canonical H01A/H01B structure on desktop and mobile;
+- desktop shared frame aligns with accepted Refund/Shipping: hero, full-width toolbar, 230px Contents rail, 1040px document axis, metadata rail, numbered chapter rails, CTA/footer transition;
+- mobile shared contract aligns with accepted Refund mobile: 20px gutter, hero/title/note treatment, two-column toolbar, two-column Contents, metadata block, repeated document title, overview/lede rhythm, chapter rails 01–05, body/list scale, CTA and footer transition;
+- five Terms sections are preserved exactly as real page content: About Spatial Flow, Orders & Payment, Product Appearance, Limitation Of Liability, Changes To Terms;
+- no visual duplicate index / duplicate section artifact is present in the supplied captures;
+- content-dependent total page height is intentionally different from Refund because Terms has five real sections and different copy lengths.
+
+Verdict:
+**H01B TERMS DESKTOP RUNTIME PIXEL PASS**
+**H01B TERMS MOBILE RUNTIME PIXEL PASS**
+
+Important limitation:
+- static screenshots cannot prove whether the shared anti-FOUC change fully eliminated the transient legacy-layout flash during live refresh; that behavior remains a separate live observation gate.
+
+Policy-family status:
+- Refund / Returns: PASS;
+- Privacy: PASS;
+- Shipping: PASS;
+- Terms & Conditions: DESKTOP + MOBILE VISUAL PASS;
+- shared anti-FOUC live observation: pending explicit confirmation.
+
+Status:
+**H01B TERMS VISUAL COMPLETE / POLICY FAMILY VISUALLY COMPLETE / SHARED ANTI-FOUC LIVE CONFIRMATION PENDING**
