@@ -903,3 +903,24 @@ Remaining Shipping gate:
 
 Status:
 **H01B SHIPPING DESKTOP PASS / MOBILE RUNTIME VERIFICATION PENDING**
+
+
+## H01B Shipping desktop acceptance RETRACTED after annotated runtime screenshot — 2026-10-07
+
+The prior Shipping desktop PASS was incorrect and is formally retracted.
+
+Annotated runtime screenshot exposes two obvious H01A-parity defects that were missed:
+1. a large empty vertical band remains between the global header and the Shipping hero content;
+2. the right hero-note block does not share the accepted Refund/Privacy vertical placement/occupancy.
+
+Width status:
+- the Elementor 1200px horizontal constraint is fixed;
+- Shipping now uses the accepted wide horizontal axis.
+
+Next action:
+- do not reopen horizontal width;
+- identify the exact vertical owner in the real Elementor DOM before changing production CSS;
+- inspect ancestor/sibling computed values for top/bottom padding, margins, min-height, height, justify-content and any empty preceding Elementor sibling/spacer.
+
+Status:
+**H01B SHIPPING DESKTOP PASS RETRACTED — HORIZONTAL WIDTH FIXED / VERTICAL HERO GEOMETRY RUNTIME HOLD**
