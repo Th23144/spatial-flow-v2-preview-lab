@@ -421,3 +421,26 @@ All other already-frozen H01B/H01A presentation areas remain out of scope unless
 
 Status:
 **H01B PRIVACY CORRECTION SOURCE PASS / PRIVACY RUNTIME RECHECK PENDING**
+
+
+## H01B Privacy runtime recheck — metadata/Contents pass, lede still empty — 2026-10-06 local evening
+
+Runtime screenshot after the 2.7.81 correction shows:
+- compact right-side metadata rail: PASS;
+- generated Contents index: PASS, real Privacy sections 01–12 appear once each;
+- reading sections / chapter rails / editorial breaks / CTA remain stable;
+- **Policy Overview lede remains visually empty**.
+
+Interpretation:
+- the source paragraph lookup now succeeds far enough to remove the old hero intro from the top presentation, but reusing/moving the original paragraph node is not visually reliable;
+- next correction must treat the editor paragraph as a **text source**, then render a fresh H01B lede paragraph node from its normalized text content;
+- remove the original source paragraph from the transformed frontend DOM to prevent duplicate display on Shipping/Terms;
+- no CSS changes are required.
+
+Next batch:
+- functions.php only;
+- version 2.7.81 -> 2.7.82;
+- replace node-moving lede logic with normalized text extraction + fresh paragraph rendering.
+
+Status:
+**H01B PRIVACY RUNTIME PARTIAL PASS — METADATA PASS / CONTENTS PASS / LEDE FIX PENDING**
