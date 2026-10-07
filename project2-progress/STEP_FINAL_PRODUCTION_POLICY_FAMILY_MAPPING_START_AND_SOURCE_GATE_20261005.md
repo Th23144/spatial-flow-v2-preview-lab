@@ -800,3 +800,19 @@ Runtime target:
 
 Status:
 **H01B SHIPPING WIDTH SOURCE PASS / DESKTOP RUNTIME RECHECK PENDING**
+
+
+## H01B Shipping width runtime recheck after 2.7.85 — still constrained — 2026-10-07
+
+Runtime screenshot after the Shipping-scoped `.sf-container` neutralizer:
+- title mapping remains correct;
+- page is still visibly in the ~1180px class rather than the accepted ~1480px H01A/Privacy axis;
+- therefore the prior assumption that the remaining limiter was the legacy `.sf-container` was incorrect or incomplete.
+
+Decision:
+- stop adding speculative width overrides;
+- next step is a runtime ancestor/computed-style diagnostic from the real Shipping hero to identify the exact intermediate wrapper that still owns the ~1180px geometry;
+- no further production CSS/PHP change until that diagnostic identifies the actual owner.
+
+Status:
+**H01B SHIPPING WIDTH RUNTIME HOLD — EXACT DOM WIDTH OWNER DIAGNOSTIC REQUIRED**
