@@ -1249,3 +1249,26 @@ Runtime requirement:
 
 Status:
 **H01B SHIPPING CANONICAL SOURCE PASS / DESKTOP FULL-PAGE RUNTIME REAUDIT PENDING**
+
+
+## H01B Shipping pixel-geometry comparison against accepted Refund — 2026-10-07
+
+The two user-provided full-page screenshots were normalized to the same 1920px viewport width before measurement because the attachment renderer downscaled each full-page image to a different output width according to total page height.
+
+Measured common-frame geometry after normalization:
+- global header bottom: Shipping y≈123 / Refund y≈123 — already aligned;
+- toolbar top border: Shipping y≈282 / Refund y≈294 — Shipping shared H01B frame is ≈12px too high;
+- Contents top border: Shipping y≈413 / Refund y≈424 — confirms the same ≈11–12px vertical frame offset;
+- toolbar horizontal rule: Shipping x≈212–1692 (~1480px) / Refund x≈148–1758 (~1608px) — Shipping toolbar is incorrectly confined to the inner content width instead of the Refund wrap border-box width;
+- Contents/nav x-axis: Shipping x≈212–443 / Refund x≈212–443 — inner shell left axis is already correct and must not move;
+- document-head bottom rule: Shipping x≈552–1693 (~1140px) / Refund x≈552–1594 (~1040px) — H01B is missing Refund's wide-viewport document max-width:1040px rule.
+
+Locked pixel-alignment correction:
+1. Shipping source frame margin-top: -68px -> -56px (moves shared Hero/Toolbar/Shell down ~12px while keeping header fixed);
+2. Shipping toolbar only: full-bleed to the Refund 1608px wrap border-box using negative H01B pad margins + matching inline padding, preserving the existing inner 1480px content axes;
+3. H01B wide viewport (min-width 1600px): `.sf-policy-content { max-width:1040px; }`, matching accepted Refund document axis;
+4. version 2.7.91 -> 2.7.92 for cache-busting;
+5. do not force total page/footer y-coordinate to match Refund because Shipping has 5 sections and different real copy lengths; pixel parity applies to shared frame geometry, typography and spacing contracts, not fabricated content height.
+
+Status:
+**H01B SHIPPING PIXEL-ALIGNMENT BATCH READY — 3 MEASURED GEOMETRY DELTAS / RETURNED-FILE SOURCE GATE PENDING**
