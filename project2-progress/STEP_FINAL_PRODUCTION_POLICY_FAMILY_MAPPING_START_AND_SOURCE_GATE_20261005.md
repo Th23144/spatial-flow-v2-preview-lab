@@ -649,3 +649,34 @@ Locked correction direction:
 
 Status:
 **H01B SHIPPING DESKTOP RUNTIME HOLD — TITLE MAPPING / HERO TYPOGRAPHY FIX REQUIRED BEFORE MOBILE**
+
+
+## H01B Shipping title + width parity batch — 2026-10-07
+
+User runtime feedback:
+- Shipping title mapping is wrong;
+- Shipping page horizontal width is also visibly narrower than the accepted Refund / Privacy H01A-aligned pages.
+
+Source diagnosis:
+- H01B runtime title discovery only queries `hero.querySelector('h1')`; Shipping's real hero title uses another heading level, causing fallback to literal `Policy`;
+- H01B hero typography/emphasis and mobile title sizing are also scoped to `h1` only;
+- the shared `.sf-policy-h01b-source` currently carries the correct H01A 1480px + pad geometry but without `!important`, so WordPress/Astra content-width ownership can still win on Shipping;
+- hero / toolbar / layout themselves do not explicitly neutralize legacy max-width ownership.
+
+Locked correction:
+- functions.php 2.7.83 -> 2.7.84;
+- title discovery becomes `h1, h2, h3`, preserving the same DOM-safe final-word emphasis helper;
+- H01B hero title desktop/mobile CSS becomes heading-level agnostic for h1/h2/h3;
+- strengthen the shared H01B source wrap to the exact H01A width owner with `!important`;
+- explicitly neutralize max-width/margins on H01B hero, utility toolbar and policy layout so Shipping cannot retain a narrower legacy width;
+- no change to Privacy content mapping, Contents, metadata, lede, sections, rails, CTA or Footer.
+
+Preflight:
+- php -l PASS;
+- extracted H01B runtime JavaScript: node --check PASS;
+- CSS braces 3574 / 3574;
+- CSS comments 250 / 250;
+- tinycss2 top-level parse errors 0.
+
+Status:
+**H01B SHIPPING TITLE + WIDTH PARITY BATCH READY / RETURNED-FILE SOURCE GATE PENDING**
