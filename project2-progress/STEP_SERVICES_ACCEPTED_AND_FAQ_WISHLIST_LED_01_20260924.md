@@ -280,3 +280,38 @@ Candidate preflight:
 
 Status:
 **FAQ / HELP H04 PRODUCTION MAPPING 2.7.98 READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
+
+
+## FAQ / Help 2.7.98 returned-file Source Gate — HOLD for one compatibility correction — 2026-10-07
+
+Returned files:
+- `functions(20261007-102010).php` — version 2.7.98, 727,577 bytes / 15,705 file lines, SHA256 `ed01860f0e13565d53c9c75c7f21c8e03d851399e36af0782f595292c36e9311`;
+- `spatial-flow(20261007-102010).css` — 634,637 bytes / 24,154 physical lines (24,153 Files line index), SHA256 `bfae7d1a7ed004a52e437682b247161d19e759c2609df6c5340fa387d1f22ad5`.
+
+Passed checks:
+- PHP lint PASS;
+- version 2.7.98 correctly applied;
+- Step 5K PHP START/END exactly 1/1;
+- H04 FAQ renderer / Customizer / route hooks present once and at intended priorities;
+- 15 FAQ default question slots present;
+- old card-era FAQ render classes are gone from PHP;
+- old FAQ SAFE2 / SAFE3 / SAFE4 blocks removed from the replaced CSS region;
+- Refund top-gap guard preserved byte-semantically from the old SAFE2 block;
+- CSS braces 3564/3564, comments 246/246, tinycss2 errors 0;
+- PHP outside version bump + Step 5K replacement is byte-identical after normalization;
+- CSS outside the intended Step5K-through-SAFE4 replacement region is byte-identical after normalization;
+- backend ownership remains sf_faq_* theme-mod / Customizer; no saved theme-mod deletion/reset is introduced.
+
+Blocking source-level compatibility finding before runtime:
+- a later global `Step 5O-B Side Navigation Sticky System` still targets the retired selector `.sf-faq-native-toc` and its ancestor-unlock `:has(.sf-faq-native-toc)` chain;
+- H04 now renders `.sf-faq-h04-index`, so the historical WordPress/Astra sticky ancestor unlock no longer recognizes the FAQ index;
+- because FAQ previously required explicit ancestor-unlock work to make sticky reliable, entering runtime with the new index unregistered would knowingly reintroduce a likely sticky regression;
+- do not re-enable the old global sticky selector wholesale, because H04 intentionally becomes non-sticky at <=1040px; use an H04-specific ancestor unlock at >=1041px and let H04 own the actual sticky breakpoint/position.
+
+Verdict:
+**FAQ / HELP 2.7.98 CORE SOURCE PASS, FINAL SOURCE GATE HOLD**
+
+Required mini-correction:
+- bump 2.7.98 -> 2.7.99 for cache invalidation;
+- add H04-specific desktop ancestor overflow unlock (>=1041px) inside the canonical H04 CSS owner;
+- no PHP FAQ logic change, no visual redesign, no Refund/Services/Policy change.
