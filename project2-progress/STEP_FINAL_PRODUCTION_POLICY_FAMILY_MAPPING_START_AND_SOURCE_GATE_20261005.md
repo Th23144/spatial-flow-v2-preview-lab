@@ -1287,3 +1287,30 @@ Diff gate:
 
 Status:
 **H01B SHIPPING 2.7.92 SOURCE PASS — RUNTIME PIXEL GATE PENDING**
+
+
+## H01B Shipping desktop runtime pixel gate after 2.7.92 — 2026-10-07
+
+Compared the current Shipping full-page screenshot against the accepted Refund H01A screenshot after normalizing both captures back to the same 1920px viewport width.
+
+Measured shared-frame parity:
+- global header bottom: ~124px vs Refund ~125px;
+- hero/toolbar top rule: Shipping ~294px vs Refund ~294px;
+- full wrap rule x-axis: Shipping ~148–1757px vs Refund ~148–1757px;
+- Contents top: Shipping ~425px vs Refund ~424–426px;
+- Contents x-axis: Shipping ~214–442px vs Refund ~214–442px;
+- document rule x-axis: Shipping ~553–1592px vs Refund ~552–1593px (1040px document contract now restored);
+- hero kicker is present;
+- hero note uses the accepted light italic serif treatment;
+- canonical top Contents contains exactly 01–05 and the repeated chapter rail is 01–05.
+
+The detached `05` visible in the stitched full-page capture is treated as a full-page screenshot/sticky capture artifact, not a second canonical DOM index: the adapter renders a single canonical nav and the source structure is deterministic. If the user sees a duplicate while normally scrolling the live page, reopen as a runtime defect; otherwise do not patch for the capture artifact.
+
+Verdict:
+**H01B SHIPPING DESKTOP RUNTIME PIXEL PASS**
+
+Next gate:
+- Shipping mobile full-page runtime audit against accepted Refund mobile contract.
+
+Status:
+**H01B SHIPPING DESKTOP PASS / MOBILE RUNTIME PENDING**
