@@ -680,3 +680,40 @@ Preflight:
 
 Status:
 **H01B SHIPPING TITLE + WIDTH PARITY BATCH READY / RETURNED-FILE SOURCE GATE PENDING**
+
+
+## H01B Shipping title + width parity returned-file Source Gate — 2026-10-07 04:39 batch
+
+Returned files:
+- `functions(20261007-043912).php`
+- `spatial-flow(20261007-043912).css`
+
+PHP verification:
+- version 2.7.84;
+- 681,105 bytes;
+- SHA256 `9f7dc5c0c1ff3ea2299ec2308ee64879d0496e350606b031a19bcd062b230f02`;
+- `php -l` PASS;
+- H01B runtime JavaScript extracted and `node --check` PASS;
+- diff vs accepted 2.7.83 is exactly the requested version bump + title query `h1 -> h1, h2, h3`.
+
+CSS verification:
+- 632,382 bytes;
+- SHA256 `c71d0e01072b69dfdad9522402a04ce23cc8059fd5f921c0095f471734d65ef9`;
+- braces 3574 / 3574;
+- comments 250 / 250;
+- tinycss2 top-level parse errors 0;
+- diff vs accepted 2.7.83 is limited to the requested Shipping width/title parity changes.
+
+Source-gate blocker found:
+- desktop H01B source width/max-width/margins/padding were strengthened with `!important`;
+- the existing <=600px `.sf-policy-h01b-source` rule still declares `max-width:none` and 20px horizontal padding **without** `!important`;
+- therefore those mobile declarations can no longer override the new desktop-important declarations;
+- this would silently regress the already-frozen Privacy mobile geometry and would also make Shipping mobile fail strict H01A parity.
+
+Required correction:
+- CSS only;
+- inside the existing <=600px `.sf-policy-h01b-source` block add `!important` to `max-width:none`, `padding-left:20px`, and `padding-right:20px`;
+- no PHP change and no version bump needed because 2.7.84 has not passed this source gate yet.
+
+Status:
+**H01B SHIPPING PHP SOURCE PASS / CSS PARSE PASS / SOURCE GATE HOLD — MOBILE IMPORTANT CASCADE MUST BE FIXED BEFORE RUNTIME**
