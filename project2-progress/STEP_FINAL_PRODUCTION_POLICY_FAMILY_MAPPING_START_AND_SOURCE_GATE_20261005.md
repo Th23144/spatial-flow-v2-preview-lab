@@ -616,3 +616,36 @@ Do not reopen Privacy unless a concrete regression is discovered.
 
 Next runtime target:
 **Shipping Policy — desktop + mobile**, using the same H01A authority and the already-approved shared H01B runtime mapper/presentation shell.
+
+
+## H01B Shipping desktop runtime first review — 2026-10-07
+
+Runtime screenshot reviewed after Privacy was frozen.
+
+Overall:
+- shared H01B shell is active;
+- Contents / section rail / table / lists / CTA / footer are structurally stable;
+- Shipping is **not yet desktop-accepted** because the page's source title element differs from Privacy.
+
+Root cause:
+- H01B runtime mapper currently resolves the page title with `hero.querySelector('h1')` only;
+- Shipping's real editor-owned hero title is not an `h1`, so title lookup fails and falls back to literal `Policy`;
+- H01B hero typography/emphasis CSS is likewise scoped to `.sf-policy-hero h1` only.
+
+Visible consequences:
+1. top `Shipping & Delivery` uses the old/heavier source heading treatment instead of H01A title typography and last-word sage/italic emphasis;
+2. toolbar identity incorrectly reads `POLICY`;
+3. Contents heading incorrectly reads `Policy`;
+4. repeated document title incorrectly reads `Policy` rather than `Shipping & Delivery`;
+5. the generated document lede currently contains the short source phrase `Spatial Flow Delivery`; this is source-derived, not invented, but it is weaker than the Refund/Privacy explanatory lede and should be audited while fixing Shipping mapping.
+
+Locked correction direction:
+- do not change Privacy;
+- make H01B title discovery heading-level agnostic inside the hero (`h1, h2, h3`);
+- apply the same H01A hero title typography/emphasis to the resolved real heading regardless of heading level;
+- toolbar / Contents / repeated title must all derive from the resolved real Shipping title;
+- keep legal/editor content ownership unchanged;
+- audit the Shipping lede source without fabricating new legal copy.
+
+Status:
+**H01B SHIPPING DESKTOP RUNTIME HOLD — TITLE MAPPING / HERO TYPOGRAPHY FIX REQUIRED BEFORE MOBILE**
