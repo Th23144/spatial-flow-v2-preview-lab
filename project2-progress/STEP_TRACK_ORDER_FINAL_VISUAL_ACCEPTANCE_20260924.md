@@ -47,3 +47,50 @@ The accepted design keeps the old page's functional responsibilities while repla
 TRACK ORDER = USER VISUALLY ACCEPTED / CLOSED FOR THIS DESIGN BATCH.
 
 No production WordPress mapping has been performed yet.
+
+
+## Production mapping audit + H06 2.7.100 one-shot batch — 2026-10-07
+
+The user proceeded from the completed FAQ / Help visual pass into Track Order.
+
+Fresh production audit against the current 2.7.99 files confirms:
+- `/track-order/` is already a native theme route (`spatial_flow_track_order_native_template()` at template_redirect priority 20);
+- lookup ownership is correctly delegated to WooCommerce `[woocommerce_order_tracking]` rather than a custom query implementation;
+- visible page copy is theme-mod / Customizer owned through `sf_track_order_*`;
+- the separate privacy-safe Delivery Details card remains Customizer-owned through `sf_track_order_delivery_*` and hooks into `woocommerce_track_order`;
+- current production presentation is the older card-heavy Step 5E-B implementation plus SAFE5 form layout + later SAFE1 unified-result + SAFE2 Delivery Details CSS;
+- accepted visual authority remains `temp-track-order-wishlist-led-01/temp-preview/Spatial-Flow-Track-Order-Wishlist-Led-06.html`.
+
+Production-mapping decision:
+- preserve WooCommerce form validation, lookup permission, order data, totals, statuses and status-dependent actions;
+- preserve the existing Delivery Details hook and backend-editable copy;
+- do not render the accepted static artifact's fake example order data in production;
+- instead, call the WooCommerce tracking shortcode exactly once, classify whether it returned the lookup form or a successful order result, and place the real successful result into the accepted soft-focus right-hand result surface;
+- in pre-search / invalid-form state, the right surface uses editable privacy/check guidance rather than fake customer data;
+- on a successful lookup, the left column becomes a restrained 'track another order' route while the real Woo output occupies the focused result surface;
+- preserve the four-stage lifecycle and final Contact support block from accepted H06;
+- retire the old breadcrumb/card/reading-card presentation and old SAFE5 form appearance;
+- consolidate the old SAFE1/SAFE2 result presentation into an H06-compatible Woo result + Delivery Details presentation while preserving the safety behaviors (addresses hidden on public lookup; valid status-dependent actions retained; duplicate out-of-table invoice actions suppressed).
+
+Backend editability:
+- existing saved `sf_track_order_*` and `sf_track_order_delivery_*` theme mods are not deleted/reset;
+- visible H06 hero, toolbar, lookup copy, pre-search guidance, result labels, lifecycle rows/states and help route remain editable in the existing Track Order Customizer section;
+- obsolete old visual-only fields may remain stored but cease to render.
+
+Prepared candidate:
+- version 2.7.99 -> 2.7.100;
+- complete Step 5E-B PHP owner replacement only;
+- complete Step 5E-B + SAFE5 CSS owner replacement only;
+- complete later SAFE1+SAFE2 Track Order CSS consolidation only;
+- no Services / FAQ / Policy / Contact / WooCommerce order-data owner changes.
+
+Candidate preflight:
+- PHP lint PASS;
+- CSS braces 3570/3570;
+- CSS comments 243/243;
+- tinycss2 parse errors 0;
+- old `.sf-track-order-card`, `.sf-track-order-reading`, `.sf-track-order-breadcrumb`, `.sf-track-order-grid` presentation selectors absent from the candidate;
+- current Delivery Details PHP hook remains intact.
+
+Status:
+**TRACK ORDER H06 PRODUCTION MAPPING 2.7.100 READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
