@@ -816,3 +816,24 @@ Decision:
 
 Status:
 **H01B SHIPPING WIDTH RUNTIME HOLD — EXACT DOM WIDTH OWNER DIAGNOSTIC REQUIRED**
+
+
+## H01B Shipping exact width owner identified by runtime diagnostic — 2026-10-07
+
+User-provided runtime ancestor/computed-style table established the exact remaining width owner:
+- `.sf-policy-h01b-source`: 1608px border box / 1480px content width — correct H01A owner;
+- Elementor outer container `.elementor-element-561aec26.e-con...`: 1480px — correct;
+- **`.e-con-inner`: 1200px, `max-width:min(100%,1200px)`, margins 140px/140px — actual constraining owner**;
+- descendant Elementor widget + widget-container + `.sf-policy-hero`: all consequently 1200px.
+
+Additional correction:
+- the prior Shipping-scoped neutralizer used class `.sf-policy-h01b--shipping-policy`, but the actual runtime main class is `.sf-policy-h01b--shipping`; therefore that selector never matched.
+
+Locked fix:
+- replace the ineffective old Shipping legacy-width neutralizer with a Shipping-scoped Elementor inner-container neutralizer using the actual runtime class;
+- target only `.sf-policy-h01b--shipping .e-con-inner`: width 100%, max-width none, margins 0;
+- keep Privacy frozen;
+- version 2.7.85 -> 2.7.86 for cache-busting.
+
+Status:
+**H01B SHIPPING EXACT WIDTH OWNER FOUND — ELEMENTOR E-CON-INNER FIX READY**
