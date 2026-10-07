@@ -560,3 +560,26 @@ Runtime recheck:
 
 Status:
 **H01B PRIVACY TITLE-EMPHASIS SOURCE PASS / DESKTOP RUNTIME RECHECK PENDING**
+
+
+## H01B Privacy desktop runtime final acceptance — 2026-10-07
+
+Runtime screenshot reviewed after 2.7.83 title-emphasis correction.
+
+Findings:
+- top hero title now renders final-word emphasis correctly: `Privacy <em>Policy</em>`;
+- repeated document title now renders the same final-word emphasis;
+- Contents title remains plain, matching Refund H01A;
+- compact metadata rail remains stable;
+- 01–12 Contents remains unique and complete;
+- Policy Overview lede remains populated;
+- reading sections, chapter rails, editorial breaks, final support CTA and footer remain stable.
+
+Verdict:
+**H01B PRIVACY DESKTOP RUNTIME VISUAL PASS**
+
+Remaining Privacy gate:
+- mobile runtime screenshot only.
+
+Status:
+**H01B PRIVACY DESKTOP PASS / MOBILE RUNTIME VERIFICATION PENDING**
