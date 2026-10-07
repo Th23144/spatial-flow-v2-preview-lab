@@ -94,3 +94,41 @@ Candidate preflight:
 
 Status:
 **TRACK ORDER H06 PRODUCTION MAPPING 2.7.100 READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
+
+
+## Returned 2.7.100 source gate — 2026-10-07
+
+User returned:
+- `functions(20261007-111128).php`
+- `spatial-flow(20261007-111127).css`
+
+Source Gate result: PASS.
+
+Verified:
+- `SPATIAL_FLOW_CHILD_VERSION = 2.7.100`;
+- PHP lint PASS;
+- Track Order H06 PHP owner START/END markers each occur once;
+- real WooCommerce `[woocommerce_order_tracking]` output is rendered once into `$tracking_html`, then classified as form vs successful result;
+- successful result is routed into the H06 focused result surface; pre-search/invalid-form state retains the real Woo form and safe guidance surface;
+- native `/track-order/` template redirect owner remains intact;
+- existing privacy-safe `woocommerce_track_order` Delivery Details hook remains intact at priority 90;
+- old card-heavy `.sf-track-order-card`, `.sf-track-order-reading`, `.sf-track-order-breadcrumb`, `.sf-track-order-grid` presentation selectors are absent;
+- old SAFE5 Track Order form CSS and old SAFE1 + SAFE2 result CSS markers are absent;
+- new H06 main CSS block occurs once;
+- new consolidated H06 result + Delivery Details CSS block occurs once;
+- CSS braces 3570/3570;
+- CSS comments 243/243;
+- tinycss2 top-level parse errors 0;
+- comparison against the prior 2.7.99 files shows no non-Track-Order functional changes; outside the intended PHP owner/version changes the PHP is identical, and outside the intended CSS owners only an inconsequential blank-line difference exists.
+
+Returned file hashes:
+- functions SHA256 `f4093644c37067b0ecec7f5690cd247c0d5544ecddc4fb103be15f14dc0eb072`
+- CSS SHA256 `2a9ee64a64c0fbd8e9dd63827e93ceccc3d94aaad3c33d34553920354a2563c1`
+
+Next gate:
+1. Runtime visual check — pre-search desktop + mobile.
+2. Functional successful lookup using a real local test order and its billing email.
+3. Successful-result desktop + mobile visual check, including status-dependent Woo actions and Delivery Details.
+
+Status:
+**TRACK ORDER H06 2.7.100 SOURCE PASS / RUNTIME VISUAL + FUNCTIONAL VERIFICATION PENDING**
