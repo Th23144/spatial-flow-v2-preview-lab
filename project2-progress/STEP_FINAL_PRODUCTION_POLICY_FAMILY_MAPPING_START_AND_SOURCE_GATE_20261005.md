@@ -1069,3 +1069,32 @@ Process correction:
 
 Status:
 **H01B SHIPPING DESKTOP HOLD — MISSING HERO KICKER FIX READY / FULL-PAGE REAUDIT REQUIRED**
+
+
+## H01B Shipping missing hero kicker returned-file Source Gate — 2026-10-07 06:32 batch
+
+Returned file:
+- `functions(20261007-063237).php`
+
+Verification:
+- version 2.7.89;
+- 681,860 bytes / 13,256 file lines;
+- SHA256 `aa42653a870c8b1b91423a451ad38bd4f1d727d0bbb836102fe2c660902420a8`;
+- `php -l` PASS;
+- extracted H01B runtime JavaScript: `node --check` PASS;
+- diff vs accepted 2.7.88 PHP is exactly:
+  1. version `2.7.88 -> 2.7.89`;
+  2. Shipping-only missing-kicker fallback inserted immediately after `heroCopy` resolution;
+- fallback only runs for `.sf-policy-h01b--shipping`, only when `.sf-kicker` is absent, and reuses the resolved real page title;
+- no CSS change in this batch;
+- no unrelated PHP drift.
+
+Verdict:
+**H01B SHIPPING HERO KICKER SOURCE GATE PASS**
+
+Runtime requirement:
+- do not pass the whole page from kicker visibility alone;
+- after refresh, perform a full same-viewport desktop audit against accepted Refund H01A before any Shipping desktop PASS.
+
+Status:
+**H01B SHIPPING KICKER SOURCE PASS / FULL DESKTOP RUNTIME REAUDIT PENDING**
