@@ -206,3 +206,41 @@ Primary visual defects observed:
 
 Status:
 **TRACK ORDER H06 FUNCTIONAL SUCCESS PASS / SUCCESSFUL-RESULT DESKTOP VISUAL FAIL / MOBILE SUCCESS RESULT HOLD**
+
+
+## Track Order H06 successful-result visual refinement batch 2.7.101 — 2026-10-07
+
+After the user rejected the successful-result desktop state as visually weak, a targeted result-state-only refinement was prepared against returned 2.7.100 files.
+
+Scope / decisions:
+- pre-search desktop + mobile presentation remains protected and is not redesigned;
+- WooCommerce lookup, validation, status, totals, line items and state-dependent actions remain the functional owner;
+- public address suppression remains intact;
+- existing Delivery Details hook / Customizer owner remains intact;
+- only successful-result information architecture and presentation are changed.
+
+2.7.101 design corrections:
+1. result-state main grid changes from near-even columns to a narrow verified-summary column + wider live-order column;
+2. left success state no longer repeats the lookup-form title/copy; it gains backend-editable `success_eyebrow`, `success_title`, `success_text` and a restrained Track Another Order link;
+3. Delivery Details markup emitted by the existing Woo hook is detached server-side from its early hook position and reinserted after the real Woo order details, preserving the hook/data owner but correcting hierarchy;
+4. the live result panel stops being one giant tinted card — tint is limited to the result status header/note, while live order content returns to the paper background;
+5. Woo order details are converted from plugin-table appearance to editorial two-column rows with stronger section hierarchy and spacing;
+6. invoice/secondary actions become light editorial text actions; a real Pay action remains primary when WooCommerce exposes one;
+7. Delivery Details becomes a secondary post-order section; decorative icon is hidden and the two privacy-safe metadata chips remain;
+8. mobile rules preserve readable two-column amount rows where possible and stack Delivery Details metadata safely.
+
+Backend editability:
+- new success-state copy is added to the existing `Spatial Flow Track Order Page` Customizer;
+- no existing `sf_track_order_*` or `sf_track_order_delivery_*` saved values are deleted/reset;
+- `result_note` remains editable and moves from the dead left column into the live result heading area.
+
+Prepared candidate preflight:
+- version 2.7.100 -> 2.7.101;
+- PHP lint PASS;
+- Delivery Details extraction regex tested against the exact emitted section contract: PASS;
+- CSS braces 3589/3589;
+- CSS comments 246/246;
+- tinycss2 parse errors 0.
+
+Status:
+**TRACK ORDER H06 2.7.101 SUCCESS-RESULT REFINEMENT READY / MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
