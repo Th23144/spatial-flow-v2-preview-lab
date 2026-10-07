@@ -123,3 +123,49 @@ Validation:
 
 Verdict:
 **SERVICES 2.7.96 SOURCE GATE PASS / BACKEND EDITABILITY OWNER PASS / FRONTEND RUNTIME VISUAL GATE READY**
+
+
+## Services first frontend runtime audit + 2.7.97 correction batch — 2026-10-07
+
+User supplied desktop + mobile screenshots after 2.7.96 source pass.
+
+Visual audit verdict: FAIL (small-scope correction only; no redesign).
+Confirmed defects:
+1. submit CTA has unstable text visibility on the dark button (text can appear hidden until hover/state change);
+2. trailing arrow glyphs saved in CTA labels render as blue emoji-style icons on some platforms;
+3. the preserved legacy hero title `Find The Crystal That Fits Your Story.` is visually too tall on desktop and especially mobile under the new editorial shell;
+4. mobile toolbar wraps awkwardly, splitting the two actions into an uneven vertical arrangement;
+5. mobile service-row meta + action alignment is loose.
+
+Non-blocking areas accepted in this audit:
+- overall 1480px desktop shell;
+- service index structure;
+- four-step method section;
+- request form field hierarchy;
+- service-boundary section;
+- footer transition.
+
+Prepared 2.7.97 correction batch:
+- version 2.7.96 -> 2.7.97;
+- add a Services-only action-label normalizer that strips trailing Unicode/emoji arrow glyphs at render time while leaving saved Customizer values intact;
+- route service-row CTA and submit-button labels through that helper;
+- harden the submit button with scoped, high-specificity text/background/font rules so Astra/global button rules cannot hide its label;
+- reduce desktop hero title footprint and widen its readable measure;
+- mobile hero title reduced to 36–40px with a wider measure;
+- mobile toolbar normalized into label row + two balanced actions;
+- mobile row meta/action alignment tightened;
+- desktop form action row changed to a deterministic two-column grid; mobile returns to one-column/full-width CTA.
+
+Backend editability remains intact:
+- no theme-mod is overwritten or deleted;
+- hero title remains the same backend-editable value; only its presentation footprint changes;
+- CTA arrow cleanup is presentation normalization only.
+
+Candidate preflight:
+- PHP lint PASS;
+- CSS braces 3578/3578;
+- CSS comments 258/258;
+- tinycss2 errors 0.
+
+Status:
+**SERVICES 2.7.97 TARGETED VISUAL CORRECTION READY / MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
