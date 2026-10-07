@@ -583,3 +583,36 @@ Remaining Privacy gate:
 
 Status:
 **H01B PRIVACY DESKTOP PASS / MOBILE RUNTIME VERIFICATION PENDING**
+
+
+## H01B Privacy mobile runtime final acceptance — 2026-10-07
+
+Two Privacy Policy responsive screenshots reviewed after 2.7.83:
+- wider mobile / tablet-like responsive state;
+- narrow phone state.
+
+Findings:
+- hero title emphasis remains correct;
+- compact utility toolbar remains aligned;
+- Contents index is complete and readable;
+- wider state preserves the right-side chapter rail;
+- narrow state correctly promotes each chapter rail above its section body;
+- compact document metadata remains restrained and does not become a card block;
+- repeated document title emphasis remains correct;
+- Policy Overview lede remains populated;
+- section typography, editorial breaks, CTA and footer remain stable;
+- no duplicate sections or Contents entries are visible.
+
+Verdict:
+**H01B PRIVACY MOBILE RUNTIME VISUAL PASS**
+
+Final Privacy status:
+**H01B PRIVACY POLICY COMPLETE AND FROZEN**
+- Source PASS
+- Desktop runtime PASS
+- Mobile runtime PASS
+
+Do not reopen Privacy unless a concrete regression is discovered.
+
+Next runtime target:
+**Shipping Policy — desktop + mobile**, using the same H01A authority and the already-approved shared H01B runtime mapper/presentation shell.
