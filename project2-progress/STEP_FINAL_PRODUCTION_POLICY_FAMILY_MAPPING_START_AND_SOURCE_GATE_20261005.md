@@ -837,3 +837,42 @@ Locked fix:
 
 Status:
 **H01B SHIPPING EXACT WIDTH OWNER FOUND — ELEMENTOR E-CON-INNER FIX READY**
+
+
+## H01B Shipping exact Elementor width-owner fix returned-file Source Gate — 2026-10-07 05:46 batch
+
+Returned files:
+- `functions(20261007-054627).php`
+- `spatial-flow(20261007-054627).css`
+
+PHP verification:
+- version 2.7.86;
+- 681,105 bytes;
+- SHA256 `77526974f3a40023284cd296bdb623d2107b00f1343e0043a7e2d78d694e30fe`;
+- `php -l` PASS;
+- diff vs accepted 2.7.85 PHP is exactly one line: version `2.7.85 -> 2.7.86`.
+
+CSS verification:
+- 632,652 bytes;
+- SHA256 `d47ce8028dfe0ba5d35f67d743c826819662b72b3695be75ed66fc252fe1b407`;
+- braces 3575 / 3575;
+- comments 251 / 251;
+- tinycss2 top-level parse errors 0;
+- diff vs accepted `spatial-flow(20261007-053319).css` is exactly the requested replacement:
+  - remove ineffective `.sf-policy-h01b--shipping-policy .sf-policy-h01b-source .sf-container` neutralizer;
+  - add actual-runtime `.sf-policy-h01b--shipping .e-con-inner` neutralizer with width 100%, max-width none, margins 0;
+- no unrelated CSS drift.
+
+Verdict:
+**H01B SHIPPING EXACT ELEMENTOR WIDTH-OWNER FIX SOURCE GATE PASS**
+
+Runtime target:
+- Shipping Policy desktop full-page screenshot;
+- expected computed chain after refresh:
+  - H01B source content width ~1480px;
+  - Elementor outer container ~1480px;
+  - `.e-con-inner` should expand from 1200px to ~1480px;
+  - hero/widget descendants should follow to ~1480px.
+
+Status:
+**H01B SHIPPING EXACT WIDTH SOURCE PASS / DESKTOP RUNTIME RECHECK PENDING**
