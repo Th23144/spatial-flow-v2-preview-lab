@@ -203,3 +203,32 @@ Next runtime gate:
 - desktop full-page Services capture;
 - mobile full-page Services capture;
 - focus on submit text visibility, removal of blue emoji arrows, hero title footprint, mobile toolbar, and row-action alignment.
+
+
+## Services 2.7.97 desktop + mobile runtime visual gate — 2026-10-07
+
+User supplied final desktop and mobile full-page captures after the targeted 2.7.97 correction.
+
+Confirmed fixed:
+- submit CTA label is stably visible on the dark button;
+- blue emoji-style trailing arrows are gone from service-row CTAs and submit CTA;
+- desktop hero title footprint is reduced and now reads as a controlled two-line editorial title;
+- mobile hero title is reduced/widened and no longer dominates the first screen;
+- mobile toolbar now resolves into a clear label row plus balanced Browse Services / Send a Brief actions;
+- mobile service-row metadata/action alignment is materially cleaner;
+- desktop/mobile form action layout is stable;
+- no regression is visible in service index, method, request form, boundaries, header or footer.
+
+One non-code/content-owner observation:
+- the process eyebrow currently renders as a tiny dot because a previously saved `sf_services_process_eyebrow` theme-mod value is being preserved; the accepted static authority used `Method`. This is not a layout/runtime failure and can be corrected through the existing Services Customizer without code or owner migration.
+
+Verdict:
+**SERVICES 2.7.97 DESKTOP VISUAL PASS**
+**SERVICES 2.7.97 MOBILE VISUAL PASS**
+**SERVICES BACKEND OWNER / EDITABILITY PASS**
+
+Status:
+**SERVICES FINAL PRODUCTION MAPPING COMPLETE**
+
+Next locked page:
+**FAQ / Help**
