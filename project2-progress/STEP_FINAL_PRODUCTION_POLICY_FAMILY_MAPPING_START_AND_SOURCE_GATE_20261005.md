@@ -1314,3 +1314,26 @@ Next gate:
 
 Status:
 **H01B SHIPPING DESKTOP PASS / MOBILE RUNTIME PENDING**
+
+
+## H01B Shipping mobile parity audit after desktop pass — 2026-10-07
+
+The first Shipping mobile full-page screenshot is structurally stable but is NOT yet pixel-pass against the accepted Refund mobile contract.
+
+Source-level comparison of the active H01B `@media (max-width:600px)` rules against accepted H01A mobile rules found real shared-contract mismatches:
+1. hero note remains 17px on H01B while Refund mobile explicitly uses 16px;
+2. Contents links are 52px / 9px on H01B vs accepted Refund 48px / 10px;
+3. document metadata does not receive Refund's mobile row-wrap contract (`flex-direction:row`, wrap, gap 8px 22px, padding-top 12px);
+4. lede spacing/type is 64px + 17px on H01B vs Refund 62px + 18px;
+5. section heading max-width is 18ch on H01B vs Refund 20ch;
+6. mobile chapter rail remains at the H01B <=820 values (rule 32px, mark 30px, label max 22ch) while Refund <=600 explicitly uses rule 26px, mark 28px, label unrestricted.
+
+Locked correction:
+- version 2.7.92 -> 2.7.93;
+- replace only the H01B <=600 shared-policy mobile block values listed above so they mirror accepted H01A mobile values;
+- no desktop geometry changes;
+- no Shipping content/adapter changes;
+- no Privacy reopen unless regression appears.
+
+Status:
+**H01B SHIPPING MOBILE STRUCTURE STABLE / REFUND-MOBILE PIXEL PARITY BATCH READY**
