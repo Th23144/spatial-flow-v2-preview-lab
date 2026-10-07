@@ -375,3 +375,49 @@ Preflight:
 
 Status:
 **H01B PRIVACY RUNTIME CORRECTION READY / RETURNED-FILE SOURCE GATE PENDING**
+
+
+## H01B Privacy runtime correction returned-file Source Gate — 2026-10-06 local evening batch
+
+Returned files:
+- `functions(20261007-035229).php`
+- `spatial-flow(20261007-035228).css`
+
+PHP verification:
+- version 2.7.81;
+- 679,593 bytes / 13,171 physical lines;
+- SHA256 `8295c88248380776c346a56b4ed29b02974cfeaf9ec42834801dba0750e153c1`;
+- `php -l` PASS;
+- H01B runtime JavaScript extracted, PHP URL expressions substituted, `node --check` PASS;
+- diff vs accepted 2.7.80 is limited to the requested Privacy runtime correction:
+  - hero intro query relaxed from direct-child paragraph to first real paragraph;
+  - metadata rail rebuilt from overview card short label + short value only;
+  - overview container removed after metadata extraction;
+  - section list normalized by unique heading key;
+  - section-loop heading lookup aligned with the normalized query;
+  - version 2.7.80 -> 2.7.81.
+
+CSS verification:
+- 631,745 bytes / 23,327 physical lines;
+- SHA256 `38c5241dda52444f78366d1b05e14af25033ec2ce0462dc65bd29f57eadb0c5a`;
+- braces 3572 / 3572;
+- comments 250 / 250;
+- tinycss2 top-level parse errors 0;
+- diff vs accepted 14:10 CSS is limited to the H01B canonical block;
+- prefix before H01B START and suffix after H01B END are byte-for-byte unchanged;
+- old card-based metadata rail rules removed;
+- obsolete <=820 and <=600 metadata-card responsive rules removed;
+- compact Refund-style metadata rail now owns the right-side metadata presentation.
+
+Verdict:
+**H01B PRIVACY RUNTIME CORRECTION SOURCE GATE PASS**
+
+Runtime recheck scope:
+1. right document metadata rail must be compact and paragraph-free;
+2. Contents must show the real Privacy section set once, without repeated 07/08/etc entries;
+3. Policy Overview must contain the real intro text instead of an empty band.
+
+All other already-frozen H01B/H01A presentation areas remain out of scope unless this correction introduces a concrete regression.
+
+Status:
+**H01B PRIVACY CORRECTION SOURCE PASS / PRIVACY RUNTIME RECHECK PENDING**
