@@ -765,3 +765,38 @@ Locked correction:
 
 Status:
 **H01B SHIPPING WIDTH ROOT CAUSE FOUND — SHIPPING-SCOPED LEGACY CONTAINER FIX READY**
+
+
+## H01B Shipping legacy .sf-container width fix returned-file Source Gate — 2026-10-07 05:33 batch
+
+Returned files:
+- `functions(20261007-053319).php`
+- `spatial-flow(20261007-053319).css`
+
+PHP verification:
+- version 2.7.85;
+- 681,105 bytes;
+- SHA256 `b34d6ae450e2d66c7ba9052cd74b2af458755ee9f933d325e58252ceaf863565`;
+- `php -l` PASS;
+- diff vs accepted 2.7.84 PHP is exactly one line: version `2.7.84 -> 2.7.85`.
+
+CSS verification:
+- 632,680 bytes;
+- SHA256 `c00491e44302e971b11ed05116dca1a34d3bb5c79a686bfc8ed2f61101fa2270`;
+- braces 3575 / 3575;
+- comments 251 / 251;
+- tinycss2 top-level parse errors 0;
+- diff vs accepted `spatial-flow(20261007-044506).css` is exactly the requested Shipping-only legacy-container neutralizer:
+  - `.sf-policy-h01b--shipping-policy .sf-policy-h01b-source .sf-container { width:100%!important; max-width:none!important; margin-left:0!important; margin-right:0!important; }`
+- no unrelated CSS drift.
+
+Verdict:
+**H01B SHIPPING LEGACY-CONTAINER WIDTH FIX SOURCE GATE PASS**
+
+Runtime target:
+- Shipping Policy desktop full-page screenshot first;
+- verify Hero / Toolbar / Contents / document axis now expands to the same H01A-aligned width class as Refund / Privacy;
+- do not reopen Privacy unless a concrete regression appears.
+
+Status:
+**H01B SHIPPING WIDTH SOURCE PASS / DESKTOP RUNTIME RECHECK PENDING**
