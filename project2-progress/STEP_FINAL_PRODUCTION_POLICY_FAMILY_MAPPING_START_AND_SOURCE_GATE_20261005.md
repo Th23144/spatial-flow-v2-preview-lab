@@ -1210,3 +1210,42 @@ Candidate preflight:
 
 Status:
 **H01B SHIPPING CANONICAL ADAPTER REBUILD READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
+
+
+## H01B Shipping canonical adapter returned-file Source Gate — 2026-10-07 06:56 batch
+
+Returned file:
+- `functions(20261007-065635).php`
+
+Verification:
+- version `2.7.91`;
+- 702,085 bytes / 14,088 file lines;
+- SHA256 `719dc910dc65c547f47c67e9d87a043dd8e684306b2ed5d427e21838bebd1795`;
+- `php -l` PASS;
+- new Shipping canonical inline JavaScript: `node --check` PASS after substituting the two PHP-emitted URL literals;
+- retained generic H01B runtime JavaScript: `node --check` PASS after the same substitution;
+- diff vs accepted 2.7.90 PHP is exactly:
+  1. version `2.7.90 -> 2.7.91`;
+  2. add the Shipping-only canonical runtime adapter at wp_footer priority 89;
+  3. add an early return in the old generic H01B mapper for page id 3255 / slug shipping-policy;
+- no unrelated PHP drift.
+
+Determinism checks:
+- Shipping canonical adapter has one dedicated runtime entry point;
+- old generic mapper explicitly does not run on Shipping;
+- adapter snapshots real editor-owned title/note/intro/metadata/sections/CTA before clearing the legacy presentation subtree;
+- legacy `.sf-policy-h01b-source` presentation markup is then replaced with one canonical Hero/Toolbar/Layout/Contents/Content shell;
+- real policy sections are deduplicated by normalized heading before rendering;
+- one canonical Contents item and one chapter rail are generated per retained section;
+- canonical build marks `data-sf-policy-h01b-ready=1` and `sfPolicyH01bCanonical=1` to prevent duplicate reruns.
+
+Verdict:
+**H01B SHIPPING CANONICAL ADAPTER SOURCE GATE PASS**
+
+Runtime requirement:
+- refresh Shipping desktop and provide one full-page screenshot;
+- verify the legacy Contents fragmentation is gone, hero kicker is present, exactly five Contents entries / five chapter rails appear, and Refund-parity geometry remains intact;
+- only after desktop full-page pass proceed to mobile audit.
+
+Status:
+**H01B SHIPPING CANONICAL SOURCE PASS / DESKTOP FULL-PAGE RUNTIME REAUDIT PENDING**
