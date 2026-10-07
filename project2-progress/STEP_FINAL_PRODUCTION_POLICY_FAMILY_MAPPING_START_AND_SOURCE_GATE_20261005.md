@@ -444,3 +444,34 @@ Next batch:
 
 Status:
 **H01B PRIVACY RUNTIME PARTIAL PASS — METADATA PASS / CONTENTS PASS / LEDE FIX PENDING**
+
+
+## H01B Privacy lede-only correction returned-file Source Gate — 2026-10-07
+
+Returned file:
+- `functions(20261007-040350).php`
+
+Verification:
+- version 2.7.82;
+- 680,267 bytes / 13,197 physical lines;
+- SHA256 `dbaec70f0a98c2a66be038a2b79de36737675eb61ab8145fa0f54d76b200b30e`;
+- `php -l` PASS;
+- H01B runtime JavaScript extracted, PHP URL expressions substituted, `node --check` PASS;
+- diff vs accepted 2.7.81 is limited to:
+  1. version 2.7.81 -> 2.7.82;
+  2. replace direct paragraph-node reuse with normalized `introText` extraction;
+  3. create a fresh lede `<p>` from `introText`;
+  4. remove the original source intro node after the fresh lede is inserted.
+
+No CSS change in this batch.
+
+Verdict:
+**H01B PRIVACY LEDE CORRECTION SOURCE GATE PASS**
+
+Runtime recheck:
+- Privacy Policy only;
+- verify that the existing compact metadata rail and 01–12 Contents remain stable;
+- verify that `POLICY OVERVIEW` now contains the real Privacy intro text.
+
+Status:
+**H01B PRIVACY LEDE SOURCE PASS / PRIVACY RUNTIME RECHECK PENDING**
