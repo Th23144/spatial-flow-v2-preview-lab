@@ -1272,3 +1272,18 @@ Locked pixel-alignment correction:
 
 Status:
 **H01B SHIPPING PIXEL-ALIGNMENT BATCH READY — 3 MEASURED GEOMETRY DELTAS / RETURNED-FILE SOURCE GATE PENDING**
+
+
+## H01B Shipping 2.7.92 returned-file source gate — 2026-10-07
+
+Returned files:
+- `functions(20261007-071138).php` — version 2.7.92, PHP lint PASS, SHA256 `c9dff167f002c3b88fb7964f39478cf86d74c3075d57ff9fdf8c4656a9008ccf`;
+- `spatial-flow(20261007-071138).css` — 633,808 bytes, 23,423 logical lines, SHA256 `d1f470ca3c5d77113d2ee27f59931f2c35bacebf1be80bf183e548ec5f6788cc`, braces 3580/3580, comments 255/255, tinycss2 parse errors 0.
+
+Diff gate:
+- functions vs returned 2.7.91 baseline: only `SPATIAL_FLOW_CHILD_VERSION` changed 2.7.91 -> 2.7.92;
+- CSS vs previous returned H01B baseline: only the intended pixel-alignment batch changed: Shipping source margin-top -68 -> -56, Shipping toolbar outer-width correction, and wide-viewport `.sf-policy-content { max-width:1040px; }` rule;
+- no unrelated CSS drift detected.
+
+Status:
+**H01B SHIPPING 2.7.92 SOURCE PASS — RUNTIME PIXEL GATE PENDING**
