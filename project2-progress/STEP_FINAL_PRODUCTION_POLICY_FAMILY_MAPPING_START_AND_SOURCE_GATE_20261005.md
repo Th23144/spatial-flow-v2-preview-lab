@@ -1337,3 +1337,36 @@ Locked correction:
 
 Status:
 **H01B SHIPPING MOBILE STRUCTURE STABLE / REFUND-MOBILE PIXEL PARITY BATCH READY**
+
+
+## H01B Shipping mobile parity 2.7.93 returned-file source gate — 2026-10-07
+
+Returned files:
+- `functions(20261007-074413).php` — version 2.7.93, 702,085 bytes / 14,088 file lines, SHA256 `2066f819f993f73564c1d5be0a854c749e245b098fb6a2da02e44aa5f85794b6`, `php -l` PASS;
+- `spatial-flow(20261007-074412).css` — 634,212 bytes / 23,455 file lines, SHA256 `b697185d523f4e46496c7ef32d2c706e1df0c2abc0fed3dd601eab7fb567b527`, braces 3585/3585, comments 255/255, tinycss2 parse errors 0.
+
+Diff gate vs accepted 2.7.92 returned baseline:
+- PHP: only version `2.7.92 -> 2.7.93`;
+- CSS: only the intended H01B <=600 mobile parity changes:
+  - hero note 16px;
+  - nav row 48px / nav text 10px;
+  - document metadata row-wrap contract;
+  - lede 62px / 18px;
+  - section heading max-width 20ch;
+  - paragraph/list line-height split to 1.76 / 1.7;
+  - reading break 64px;
+  - chapter rail rule 26px / mark 28px / label unrestricted;
+- no desktop geometry changes;
+- no Shipping canonical adapter changes;
+- no unrelated CSS drift.
+
+Verdict:
+**H01B SHIPPING MOBILE 2.7.93 SOURCE GATE PASS**
+
+Next gate:
+- refresh Shipping at the same mobile viewport used for the previous capture;
+- provide one full-page mobile screenshot;
+- compare directly against accepted Refund mobile contract before declaring Shipping complete.
+
+Status:
+**H01B SHIPPING MOBILE SOURCE PASS / FINAL MOBILE RUNTIME PIXEL GATE PENDING**
