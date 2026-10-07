@@ -1370,3 +1370,35 @@ Next gate:
 
 Status:
 **H01B SHIPPING MOBILE SOURCE PASS / FINAL MOBILE RUNTIME PIXEL GATE PENDING**
+
+
+## H01B Shipping final mobile runtime pixel gate — 2026-10-07
+
+Final Shipping mobile full-page screenshot was normalized to the same mobile viewport width as the accepted Refund H01A mobile screenshot and compared side-by-side.
+
+Shared mobile contract now matches:
+- global mobile header / topbar frame;
+- 20px page gutter;
+- hero kicker, 44px title treatment and 16px italic hero note;
+- two-column toolbar behavior;
+- Contents heading and 2-column index with 48px rows / 10px labels;
+- metadata presentation before the repeated document title;
+- 36px document title and underline geometry;
+- mobile Policy Overview / lede rhythm;
+- section heading/body/list scale;
+- chapter rail 26px rule / 28px mark / unrestricted label width;
+- CTA treatment and mobile footer entry.
+
+Content-dependent vertical height is intentionally not forced to equal Refund: Shipping has 5 sections, a delivery table and different copy lengths, while Refund has 6 sections and different body structures. The parity target is the shared H01A presentation contract, not fabricated equal page height.
+
+Verdict:
+**H01B SHIPPING MOBILE RUNTIME PIXEL PASS**
+
+Final Shipping status:
+**H01B SHIPPING DESKTOP + MOBILE PASS — COMPLETE**
+
+Policy-family progression:
+- Refund / Returns: PASS;
+- Privacy: PASS;
+- Shipping: PASS;
+- Terms & Conditions: NEXT H01B TARGET.
