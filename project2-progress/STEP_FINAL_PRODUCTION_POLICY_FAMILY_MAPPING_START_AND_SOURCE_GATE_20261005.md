@@ -492,3 +492,29 @@ Strict H01A parity audit found one remaining presentation mismatch:
 
 Status:
 **H01B PRIVACY DESKTOP FUNCTIONAL/VISUAL PASS EXCEPT TITLE EMPHASIS — ONE SMALL H01A PARITY FIX PENDING**
+
+
+## H01B Privacy title-emphasis parity batch — 2026-10-07
+
+Runtime authority:
+- Refund H01A remains the literal presentation authority.
+- Privacy desktop is otherwise accepted after the 2.7.82 lede correction.
+- Remaining visible mismatch: H01B hero title and repeated document title are plain text, while H01A emphasizes the final word with an italic sage `<em>`.
+- Contents heading intentionally remains plain, matching H01A.
+
+Batch:
+- functions.php 2.7.82 -> 2.7.83;
+- add a DOM-safe H01B helper that wraps only the final word of the real page title in `<em>`;
+- apply it to the existing hero `h1` and generated document `h2`;
+- CSS: add the missing H01B document-title `h2 em` rule to match H01A;
+- no other H01B/H01A areas reopened.
+
+Preflight:
+- php -l PASS;
+- extracted H01B runtime JavaScript: node --check PASS;
+- CSS braces 3573 / 3573;
+- CSS comments 250 / 250;
+- tinycss2 top-level parse errors 0.
+
+Status:
+**H01B PRIVACY TITLE-EMPHASIS PARITY BATCH READY / RETURNED-FILE SOURCE GATE PENDING**
