@@ -368,3 +368,24 @@ Interaction evidence still pending from screenshots:
 
 Status:
 **FAQ / HELP VISUAL LAYOUT PASS — DEFAULT-OPEN STATE + INTERACTION CONFIRMATION PENDING**
+
+
+## FAQ / Help default-open clarification — 2026-10-07
+
+User confirmed the first FAQ item was manually closed before the screenshots were captured.
+
+Therefore:
+- the PHP default-open behavior is functioning as intended;
+- there is no runtime script/state regression closing the first item after load;
+- the previously noted default-open discrepancy is cleared.
+
+Updated verdict:
+**FAQ / HELP DESKTOP VISUAL PASS**
+**FAQ / HELP MOBILE VISUAL PASS**
+**DEFAULT-OPEN STATE PASS**
+
+Remaining final interaction checks only:
+- desktop Categories sticky behavior;
+- category anchor jumps;
+- native details open/close interaction;
+- Track Order and Contact route links.
