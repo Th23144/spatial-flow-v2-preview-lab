@@ -65,3 +65,36 @@ PASS:
 
 SERVICES = USER VISUALLY ACCEPTED.
 FAQ / HELP WISHLIST-LED 01 = READY FOR USER VISUAL REVIEW.
+
+
+## Production Services source audit + one-shot mapping batch — 2026-10-07
+
+Fresh audit against the current returned production files and the accepted `temp-services-wishlist-led-01` authority found:
+- `/services/` is already a native theme-owned route (`spatial_flow_services_native_template()` at template_redirect priority 21), not an Elementor-dependent presentation;
+- visible Services copy is Customizer/theme-mod owned through `sf_services_*` and must remain backend-editable;
+- the current production Step 5G presentation is an older rounded/card-heavy design and does not match the user-accepted Wishlist-led 01 static authority;
+- the accepted authority uses the locked 1480px editorial body, Cormorant/Inter/JetBrains type system, row-based service index, four-step method list, editorial request form, and text-column service boundaries;
+- no booking engine, payment flow, quote system, subscription or hidden commerce may be introduced.
+
+Functional-owner decision:
+- keep the native `/services/` route and Customizer ownership;
+- keep the existing native Product Guidance request backend (`spatial_flow_product_guidance_submit`, private `sf_product_guidance` entries) as the form owner;
+- the Services request form may visually expose Name / Email / Service / Context, but Name + Service + Context are composed into the existing `interest` payload and `capture_type=services`; no new storage schema or service system is created.
+
+Prepared one-shot candidate:
+- version 2.7.95 -> 2.7.96;
+- replace the complete self-contained Step 5G Services PHP block only;
+- replace the complete self-contained Step 5G Services CSS block only;
+- current real global Header/Footer remain untouched;
+- preserved existing stored `sf_services_*` theme mods where keys still apply; no settings are deleted/reset.
+
+Candidate preflight:
+- full `functions.php` PHP lint PASS;
+- Services request inline JS `node --check` PASS;
+- CSS braces 3575/3575;
+- CSS comments 258/258;
+- tinycss2 top-level parse errors 0;
+- diff outside Step 5G = only version bump; no unrelated PHP/CSS drift.
+
+Status:
+**SERVICES WISHLIST-LED 01 PRODUCTION MAPPING 2.7.96 READY / USER MANUAL APPLY + RETURNED-FILE SOURCE GATE PENDING**
