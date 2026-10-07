@@ -985,3 +985,28 @@ Runtime target:
 
 Status:
 **H01B SHIPPING VERTICAL SOURCE PASS / DESKTOP RUNTIME RECHECK PENDING**
+
+
+## H01B Shipping exact Refund-hero parity batch — 2026-10-07
+
+Same-viewport visual comparison was performed between the accepted Refund H01A desktop screenshot and current Shipping desktop screenshot (both 1920x991).
+
+Confirmed remaining Shipping-only differences:
+1. the entire Shipping H01B source starts about 68px lower than Refund's accepted hero frame;
+2. Shipping hero note is direct text in the real Elementor markup, so the existing H01B typography rule that only styles nested span/p does not affect it; the parent aside therefore falls back to sans-serif.
+
+Locked correction:
+- functions.php 2.7.87 -> 2.7.88 for cache-busting;
+- Shipping-only source frame: apply margin-top:-68px to align the hero/toolbar/document start with the accepted Refund frame;
+- H01B hero note parent itself receives the exact Refund note font: italic 300 17px/1.45 Cormorant Garamond, while existing nested span/p rule remains as a compatible duplicate;
+- horizontal 1480px width ownership remains frozen;
+- no changes to Contents, metadata, lede, sections, rails, table, CTA, footer, or Privacy.
+
+Preflight on current returned files:
+- PHP lint PASS;
+- CSS braces 3577/3577;
+- comments 253/253;
+- tinycss2 top-level parse errors 0.
+
+Status:
+**H01B SHIPPING REFUND-HERO PARITY BATCH READY / RETURNED-FILE SOURCE GATE PENDING**
