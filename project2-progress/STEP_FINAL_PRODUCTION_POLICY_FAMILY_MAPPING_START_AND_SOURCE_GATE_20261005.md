@@ -1010,3 +1010,40 @@ Preflight on current returned files:
 
 Status:
 **H01B SHIPPING REFUND-HERO PARITY BATCH READY / RETURNED-FILE SOURCE GATE PENDING**
+
+
+## H01B Shipping Refund-hero parity returned-file Source Gate — 2026-10-07 06:26 batch
+
+Returned files:
+- `functions(20261007-062614).php`
+- `spatial-flow(20261007-062614).css`
+
+PHP verification:
+- version 2.7.88;
+- 681,105 bytes / 13,230 physical lines;
+- SHA256 `14bfa41cd95c669ed827b68df2510c856dd92cad0e3f816a7bd5f089e1472583`;
+- `php -l` PASS;
+- diff vs accepted 2.7.87 PHP is exactly one line: version `2.7.87 -> 2.7.88`.
+
+CSS verification:
+- 633,094 bytes / 23,383 physical lines;
+- SHA256 `a8a035f0ed5e87b50b41a7a49addc0c585dba1fb4c77c7ffef86f2032651f45d`;
+- braces 3577 / 3577;
+- comments 253 / 253;
+- tinycss2 top-level parse errors 0;
+- diff vs accepted 2.7.87 CSS is exactly the requested two Shipping hero parity changes:
+  1. add Shipping-only `.sf-policy-h01b-source { margin-top:-68px!important; }`;
+  2. add the exact Refund hero-note font to the H01B note parent: italic 300 17px/1.45 Cormorant Garamond;
+- no unrelated CSS drift.
+
+Verdict:
+**H01B SHIPPING REFUND-HERO PARITY SOURCE GATE PASS**
+
+Runtime target:
+- Shipping Policy desktop top viewport;
+- verify hero/toolbar start aligns with accepted Refund frame;
+- verify right hero note now renders as the same light italic serif note;
+- horizontal 1480px geometry must remain unchanged.
+
+Status:
+**H01B SHIPPING REFUND-HERO PARITY SOURCE PASS / DESKTOP TOP RUNTIME RECHECK PENDING**
