@@ -132,3 +132,29 @@ Next gate:
 
 Status:
 **TRACK ORDER H06 2.7.100 SOURCE PASS / RUNTIME VISUAL + FUNCTIONAL VERIFICATION PENDING**
+
+
+## Track Order H06 2.7.100 pre-search runtime visual gate — 2026-10-07
+
+User supplied desktop + mobile full-page captures for the initial, unqueried Track Order state.
+
+Visual verdict: PASS on both breakpoints.
+
+Confirmed:
+- H06 editorial hero, 1480px desktop shell and mobile reflow are rendering correctly;
+- WooCommerce lookup form is visibly integrated into the left lookup column without card-era UI leakage;
+- right pre-search guidance surface is present and balanced against the form;
+- toolbar, lifecycle rows, support block and footer transition are coherent on desktop and mobile;
+- mobile form collapses to a single-column full-width Track action correctly;
+- no blue emoji-arrow regression is visible;
+- no old Track Order breadcrumb/card/reading-card presentation is visible;
+- existing saved sf_track_order_* copy is being preserved (e.g. legacy-approved hero/lifecycle/help copy), confirming backend-editability ownership rather than fallback overwriting.
+
+Status:
+**TRACK ORDER H06 PRE-SEARCH DESKTOP VISUAL PASS**
+**TRACK ORDER H06 PRE-SEARCH MOBILE VISUAL PASS**
+
+Next required gate:
+- submit a real local WooCommerce test Order ID + matching Billing Email;
+- verify successful lookup behavior and capture desktop + mobile successful-result states;
+- specifically inspect Woo status output, real order table/totals, any valid Pay/Cancel/Invoice actions, privacy-safe address suppression, and the Delivery Details hook.
