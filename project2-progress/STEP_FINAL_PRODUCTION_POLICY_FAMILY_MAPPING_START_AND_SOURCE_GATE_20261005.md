@@ -1098,3 +1098,37 @@ Runtime requirement:
 
 Status:
 **H01B SHIPPING KICKER SOURCE PASS / FULL DESKTOP RUNTIME REAUDIT PENDING**
+
+
+## H01B Shipping desktop full-page re-audit after 2.7.89 — kicker still missing — 2026-10-07
+
+Full desktop screenshot reviewed against accepted Refund H01A.
+
+Current findings:
+- horizontal 1480px geometry remains correct;
+- hero note now uses the intended light italic serif treatment;
+- toolbar, Contents, repeated document head, metadata rail, sections 01–05, table/lists, chapter rails, CTA and footer are visually stable;
+- **hero kicker is still missing**.
+
+Exact source cause:
+- the 2.7.89 fallback requires `heroCopy` to exist:
+  `root.classList.contains('sf-policy-h01b--shipping') && heroCopy && !heroCopy.querySelector('.sf-kicker')`;
+- Shipping's real Elementor hero does not expose the expected `.sf-policy-hero__copy` wrapper, so the fallback condition fails and no kicker is inserted;
+- the resolved `titleNode` itself is valid, therefore the fallback should anchor to `titleNode.parentElement` / `hero`, not to the optional `heroCopy` wrapper.
+
+Locked correction:
+- functions.php 2.7.89 -> 2.7.90;
+- replace the Shipping kicker fallback with a wrapper-independent version:
+  - only on Shipping;
+  - only when hero has no existing `.sf-kicker`;
+  - require the resolved real `titleNode`;
+  - insert the generated kicker immediately before `titleNode` in its actual parent;
+  - text remains derived from the real page title;
+- CSS unchanged.
+
+Full-page audit status:
+- no additional desktop structural defect is currently visible beyond the missing kicker;
+- Shipping desktop must remain HOLD until the runtime screenshot confirms the kicker and one final full-page scan is completed.
+
+Status:
+**H01B SHIPPING DESKTOP HOLD — WRAPPER-INDEPENDENT HERO KICKER FIX READY**
