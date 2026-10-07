@@ -1161,3 +1161,29 @@ Runtime requirement:
 
 Status:
 **H01B SHIPPING KICKER SOURCE PASS / FINAL DESKTOP RUNTIME REAUDIT PENDING**
+
+
+## H01B Shipping process failure review — 2026-10-07
+
+User correctly challenged the repeated repair loop.
+
+Current full-page runtime screenshot after 2.7.90 proves the page is still not acceptable:
+- hero kicker remains absent at runtime despite source-level fallback logic;
+- left Contents is duplicated/fragmented during scroll: 05 appears detached mid-page and 04/05 reappear near the bottom, indicating the current DOM-mutation mapper is not producing a deterministic single canonical index;
+- therefore prior source passes repeatedly overstated readiness because they verified code presence/syntax, not deterministic runtime structure.
+
+Root process failure:
+1. H01B tried to mutate structurally different legacy page DOMs in place instead of normalizing each page into one canonical H01A presentation contract.
+2. Shipping is Elementor-owned and carries different wrapper hierarchy/constraints from Privacy; shared assumptions such as heroCopy, heading level, container class, and source index ownership repeatedly failed.
+3. Defects were repaired symptom-by-symptom and partial runtime checks were treated as progress gates, causing serial rediscovery of obvious whole-page mismatches.
+4. Source PASS was repeatedly allowed to stand too close to visual PASS even though runtime DOM mutation could still fail.
+
+Corrective architecture:
+- stop adding Shipping visual patches to the current mutation path;
+- build a Shipping-specific H01B adapter that extracts real editor-owned content but renders one deterministic canonical H01A shell for presentation;
+- keep source/legal copy/backend ownership intact;
+- explicitly suppress or bypass legacy Elementor presentation wrappers after extraction so duplicate Contents/sticky artifacts cannot survive;
+- run a full desktop and mobile parity audit before any PASS declaration.
+
+Status:
+**H01B SHIPPING PATCH LOOP STOPPED — CANONICAL ADAPTER REBUILD REQUIRED**
