@@ -924,3 +924,28 @@ Next action:
 
 Status:
 **H01B SHIPPING DESKTOP PASS RETRACTED — HORIZONTAL WIDTH FIXED / VERTICAL HERO GEOMETRY RUNTIME HOLD**
+
+
+## H01B Shipping vertical hero geometry root cause identified — 2026-10-07
+
+User-provided vertical runtime diagnostic established:
+- `.sf-policy-h01b-source`, main page, entry-content and article all begin around y=181;
+- `.sf-policy-hero` itself begins around y=231 and has only the intended H01B 46px top / 34px bottom padding;
+- no ancestor in the captured chain reports a large margin, min-height or padding block inside the H01B/Elementor subtree;
+- therefore the large blank band is not created by the hero note, Elementor inner width container, or hero min-height.
+
+Source comparison with accepted Refund H01A reveals the missing route-frame reset:
+- Refund explicitly forces `.site-content`, `#content`, and `#primary` to `margin-top:0!important; padding-top:0!important`;
+- H01B currently only clears horizontal width/padding on `.site-content .ast-container`, `#primary`, and `.entry-content`, but does not reset the top spacing owner on `.site-content/#content/#primary`.
+
+Locked correction:
+- add the exact Refund-style top-spacing neutralizer to `body.sf-policy-h01b-route`;
+- version 2.7.86 -> 2.7.87 for cache-busting;
+- no width, title, note, Contents, metadata, section, rail, CTA or Footer changes.
+
+Expected runtime effect:
+- the entire Shipping H01B body shifts upward by the inherited Astra content-top gap;
+- hero note moves with the hero and should return to the accepted Refund/Privacy vertical band without a separate note override.
+
+Status:
+**H01B SHIPPING VERTICAL ROOT CAUSE FOUND — ROUTE TOP-SPACING RESET READY**
