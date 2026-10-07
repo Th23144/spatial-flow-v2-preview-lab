@@ -475,3 +475,20 @@ Runtime recheck:
 
 Status:
 **H01B PRIVACY LEDE SOURCE PASS / PRIVACY RUNTIME RECHECK PENDING**
+
+
+## H01B Privacy desktop runtime recheck after 2.7.82 — 2026-10-07
+
+Runtime screenshot findings:
+- compact metadata rail: PASS;
+- Contents index: PASS, 01–12 each appears once;
+- Policy Overview lede: PASS, real Privacy intro text is now visible;
+- reading sections / chapter rails / editorial breaks / final CTA remain stable.
+
+Strict H01A parity audit found one remaining presentation mismatch:
+- Refund H01A applies last-word emphasis through `spatial_flow_policy_h01_title_html()` in both the top hero title and repeated document title;
+- H01B Privacy currently renders both `Privacy Policy` headings as plain text, so the final-word italic/sage emphasis is missing;
+- the Contents heading must remain plain, matching Refund.
+
+Status:
+**H01B PRIVACY DESKTOP FUNCTIONAL/VISUAL PASS EXCEPT TITLE EMPHASIS — ONE SMALL H01A PARITY FIX PENDING**
