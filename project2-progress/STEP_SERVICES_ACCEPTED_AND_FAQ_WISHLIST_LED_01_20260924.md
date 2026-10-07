@@ -342,3 +342,29 @@ Verdict:
 Runtime state:
 - cleared for frontend visual/interaction validation;
 - do not declare final visual acceptance until desktop/mobile runtime screenshots and interaction behavior are checked.
+
+
+## FAQ / Help 2.7.99 first runtime visual audit — 2026-10-07
+
+User supplied desktop + mobile full-page captures.
+
+Visual findings:
+- H04 canonical layout is rendering on both breakpoints;
+- desktop 1480 shell, 230px category index, FAQ reading column, five category sections, final help routes and footer transition are visually aligned with the accepted Wishlist-led 04 authority;
+- mobile hero, toolbar, two-column category index, five FAQ sections, native +/- controls, help routes and footer collapse all render coherently;
+- monochrome CTA arrows render correctly; no blue emoji-arrow regression is visible;
+- no old card-era FAQ presentation is visible.
+
+One unresolved runtime-state discrepancy:
+- the accepted H04 authority and current PHP renderer mark FAQ item 01/01 open by default;
+- both supplied screenshots show every FAQ item closed, including 01/01;
+- screenshots alone cannot determine whether the user manually closed the first item before capture or whether another runtime script/state closes it after load.
+
+Interaction evidence still pending from screenshots:
+- desktop index sticky behavior;
+- category-anchor jumps;
+- details open/close behavior;
+- Track Order / Contact route clicks.
+
+Status:
+**FAQ / HELP VISUAL LAYOUT PASS — DEFAULT-OPEN STATE + INTERACTION CONFIRMATION PENDING**
