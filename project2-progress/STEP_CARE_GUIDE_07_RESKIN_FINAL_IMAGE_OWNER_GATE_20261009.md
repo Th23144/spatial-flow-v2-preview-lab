@@ -74,3 +74,25 @@ Expected runtime checks:
 5. Record user acceptance and explicitly close Care Guide 07 only after runtime PASS.
 
 Final image assets, scientifically qualified material-care text and prototype copy replacement are intentionally deferred to Content Production, not this reskin closure gate.
+
+
+## FINAL USER ACCEPTANCE / CLOSED — 2026-10-09
+
+**Official Project 2 status: `Care Guide 07 — Completed 1:1`.**
+
+Evidence:
+- User returned corrected `functions.php` and `care-guide.php` for 2.7.105; full source gate passed as recorded above.
+- New local WordPress screenshot `image(20261009-085832).png` shows Jewelry / Gentle Cleaning displaying a newly selected standalone test image while Jewelry / Everyday Care and Storage & Impact continue showing their fallback images. This visually corroborates the independent Customizer image slot is functioning in the actual local environment.
+- Previously reviewed: Care Guide desktop composition; mobile Jewelry, Crystal Objects, Home Pieces; balanced two-line mobile Hero and category heading; category layouts; help/support and footer consistency.
+- The user explicitly replied “通过” (PASS) to the last runtime/visual acceptance step. Accept user confirmation as closing the current 1:1 reskin work; the screenshot alone does not independently prove all remaining interactions or 320px behavior.
+
+Frozen production baseline at closure:
+- `SPATIAL_FLOW_CHILD_VERSION = 2.7.105`;
+- `functions(20261009-084852).php` applied as theme `functions.php`;
+- `care-guide(3).php` applied as existing `care-guide.php`;
+- stylesheet `spatial-flow(20261009-080756).css` (unchanged by 2.7.105 image-owner patch).
+
+**Reskin closed. Do not keep the page open for future content production.**
+Deferred to separate Content Production: nine final teaching image assets, product-specific care copy and revision of prototype wording. Do not interpret those tasks as missing 1:1 mapping.
+
+Next locked Project 2 page: **About Us** (the earlier deferred About Us design), then local WordPress Home replacement by Shop-light-home, then independent brand/site total homepage, then final cross-page audit. DIY-light-home excluded.
