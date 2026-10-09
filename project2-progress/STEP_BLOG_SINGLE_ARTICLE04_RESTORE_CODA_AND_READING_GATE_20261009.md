@@ -2,6 +2,13 @@
 
 Date: 2026-10-09.
 
+## LATER USER-APPROVED SEMANTIC LOCK — READ THIS FIRST
+
+After this visual candidate, user expressly approved the neutral **Afterword / 后记** editorial content model: it is *part of each article's actual content, not a piece of mandatory decoration*. Optional per WordPress post, real author/editor attribution, no content → no module, not a repeated templated slogan, and distinct from original Reading Invitation. The label `A Note from the Editors` in Concept04 is **visual placeholder only**, not a hard-coded production rule.
+
+**Authoritative locked contract:** [LOCKED_BLOG_SINGLE_ARTICLE_AFTERWORD_EDITORIAL_CONTENT_CONTRACT_20261009.md](./LOCKED_BLOG_SINGLE_ARTICLE_AFTERWORD_EDITORIAL_CONTENT_CONTRACT_20261009.md).
+
+
 ## User feedback and root cause
 User first selected ONLY Article02's Editor Afterword as its desirable innovation. Assistant produced Article03 based on Article01, keeping the afterword but **replacing** rather than *retaining alongside* Article01's original "Some questions deserve a longer shelf" public reading invitation. User then shared a screenshot of the original band, asking "那01版本的这个呢？". Their question exposed an unapproved removal.
 
