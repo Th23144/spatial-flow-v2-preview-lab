@@ -47,3 +47,30 @@ Five existing image fields must remain unchanged, and the legacy `care_image_*` 
 4. Explicit acceptance from user, then record **Completed 1:1**. At present status remains **Not done**.
 
 Deferred separately to Content Production: replace reused placeholder image assets, verify product-specific material care wording, remove prototype-stage explanatory copy, and select final product media.
+
+
+## Returned-file Source Gate — 2026-10-09
+
+Files received:
+- `functions(20261009-084852).php` — SHA-256 `b03e7097e892b88955ba16807cc9cb7ac87e9646677d21bd13dbceaa405e3568`
+- `care-guide(3).php` — SHA-256 `210c7b2da30c785048657dda9a604dc05342adedf1d8dea1dee6b98c3e5f5ae3`
+
+Source gate PASS:
+- PHP CLI lint PASS for both complete uploaded files.
+- Exact old-to-new diff: `functions.php` only 2 changed hunks (version + image controls); `care-guide.php` only 4 changed hunks (the intended image routing).
+- Care Guide Customizer has exactly 9 unique image keys, with all five originals preserved.
+- `spatial_flow_care07_setting` converts empty saved values to supplied fallbacks; image control uses `esc_url_raw`; template `esc_url` remains.
+- Isolated PHP template-render harness using WP helper stubs: `3 categories × 3 teaching steps` on three scenarios (new fields unset, blank, individually set). In blank/unset scenarios all images retain their former URLs; when all new controls receive different URLs the 9 teaching images are distinct. All render tests PASS, no PHP warnings.
+- Render shell after `get_header()` is byte-identical to previous template.
+- CSS unchanged, as intended.
+
+**Status: SOURCE PASS, WordPress runtime still pending.** Do not declare Completed 1:1 before actual Customizer and on-page regression checks.
+
+Expected runtime checks:
+1. User has deployed these contents under existing theme paths, i.e. `functions.php` and `care-guide.php`, not newly created `(3)` files.
+2. Customizer Care Guide 07 section shows nine unique image choices; test an optional new slot with a temporary existing media image, save, confirm only that teaching image changes, then clear it and restore prior fallback.
+3. Three category click states and direct hashes `#jewelry`, `#crystal-objects`, `#home-pieces`; `Change category` resets to empty state; support links route appropriately.
+4. Desktop and 390px visual regression; optional 360px and 320px narrow-screen overflow check. Existing screenshots have already covered the original visual designs; avoid repeatedly asking for unchanged screenshot states.
+5. Record user acceptance and explicitly close Care Guide 07 only after runtime PASS.
+
+Final image assets, scientifically qualified material-care text and prototype copy replacement are intentionally deferred to Content Production, not this reskin closure gate.
