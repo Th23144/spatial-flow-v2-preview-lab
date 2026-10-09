@@ -663,7 +663,7 @@ Original Archive typography and font assignments remain authoritative. */
  function resultRow(e,i){
   return '<li><button type="button" class="shelf-item" data-item="'+esc(e.id)+'">'+
     '<span class="index">'+String(i+1).padStart(2,'0')+'</span>'+
-    '<span class="body"><h3>'+esc(e.title)+'</h3><span class="cn-sub">'+esc(e.cn)+'</span><span class="excerpt">'+esc(e.desc)+'</span></span>'+
+    '<div class="body"><h3>'+esc(e.title)+'</h3><div class="cn-sub">'+esc(e.cn)+'</div><p class="excerpt">'+esc(e.desc)+'</p></div>'+
     '<span class="meta"><span class="type">'+esc(e.label)+'</span><span class="issue">'+esc(e.category)+'</span><span class="read">Preview ↗</span></span></button></li>';
  }
 
