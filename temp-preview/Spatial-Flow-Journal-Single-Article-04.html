@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>The Quiet Art of Leaving Space — Spatial Flow Journal · Single Article 04 (Both Editorial Blocks)</title>
+<meta name="description" content="Spatial Flow Journal article detail visual study. Demonstration article copy only.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     INK & EAST — design system (verbatim from v1)
+     ============================================ */
+  :root {
+    --paper:        #f4ede0;
+    --paper-light:  #faf5e9;
+    --paper-dark:   #e8dfce;
+    --ink:          #1a1611;
+    --ink-soft:     #4a4036;
+    --ink-faint:    #8a7f70;
+    --seal:         #a02d23;
+    --seal-deep:    #7a1f1a;
+    --rule:         rgba(26,22,17,0.28);
+    --rule-soft:    rgba(26,22,17,0.12);
+    --serif-en:     "EB Garamond", "Noto Serif SC", Georgia, serif;
+    --serif-cn:     "Noto Serif SC", "EB Garamond", serif;
+    --sans:         "Inter", -apple-system, "PingFang SC", sans-serif;
+    --mono:         "JetBrains Mono", ui-monospace, monospace;
+
+    /* Reading column — single source of truth */
+    --col:          680px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+  body {
+    font-family: var(--serif-en);
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    font-feature-settings: "liga" 1, "kern" 1, "onum" 1;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--seal); color: var(--paper-light); }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image:
+      radial-gradient(circle at 25% 30%, rgba(26,22,17,0.025) 0%, transparent 40%),
+      radial-gradient(circle at 75% 60%, rgba(26,22,17,0.02) 0%, transparent 35%),
+      radial-gradient(circle at 50% 80%, rgba(26,22,17,0.015) 0%, transparent 30%);
+  }
+
+  /* ============================================
+     ARTICLE HEADER
+     ============================================ */
+  .article-header {
+    padding: 96px 28px 64px;
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+  }
+  .article-header .inner { max-width: var(--col); margin: 0 auto; }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .kicker .dot { color: var(--ink-faint); }
+  .kicker a { color: var(--seal); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .kicker a:hover { border-color: var(--seal); }
+  .kicker .lock {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--ink-soft);
+  }
+  .kicker .lock::before {
+    content: "";
+    display: inline-block;
+    width: 7px; height: 7px;
+    background: var(--seal);
+    border-radius: 1px;
+  }
+
+  .article-title {
+    font-family: var(--serif-en);
+    font-size: clamp(38px, 4.5vw, 60px);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.012em;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .article-title em { font-style: italic; font-weight: 400; }
+
+  .article-title-cn {
+    font-family: var(--serif-cn);
+    font-size: clamp(18px, 1.8vw, 22px);
+    font-weight: 400;
+    color: var(--ink-soft);
+    letter-spacing: 0.4em;
+    margin-bottom: 32px;
+  }
+
+  .article-dek {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 580px;
+    margin: 0 auto 48px;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px 26px;
+    align-items: baseline;
+    padding-top: 26px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .article-meta .by {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink);
+  }
+  .article-meta .by b {
+    font-weight: 500;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+  }
+  .article-meta .by b:hover { color: var(--seal); border-color: var(--seal); }
+  .article-meta .read-time {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink-soft);
+  }
+  .article-meta .read-time::before { content: "≈ "; color: var(--ink-faint); }
+  .article-meta .read-time .tea {
+    color: var(--ink-faint);
+    border-left: 1px solid var(--rule);
+    margin-left: 10px;
+    padding-left: 10px;
+  }
+
+  /* ============================================
+     ARTICLE LAYOUT — sidebar + reading column
+     ============================================ */
+  .article-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Sidebar — sticky navigation
+     BLOCK: article-sidebar
+     SOURCE: auto-generated from post h2 headings
+     BEHAVIOR: highlights current section on scroll (JS)
+     WP NOTE: output by single-post template, reading headings from content
+  */
+  .article-sidebar {
+    padding: 80px 0 0 28px;
+    position: relative;
+  }
+  .sidebar-inner {
+    position: sticky;
+    top: 32px;
+  }
+  .sidebar-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .sidebar-nav { list-style: none; }
+  .sidebar-nav li {
+    margin-bottom: 14px;
+  }
+  .sidebar-nav a {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-faint);
+    line-height: 1.4;
+    transition: color .2s;
+    display: block;
+    padding-left: 12px;
+    border-left: 2px solid transparent;
+  }
+  .sidebar-nav a:hover { color: var(--ink); }
+  .sidebar-nav a.active {
+    color: var(--ink);
+    border-left-color: var(--seal);
+  }
+  .sidebar-nav .num {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    font-style: normal;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .sidebar-back {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .sidebar-back a {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: color .2s;
+  }
+  .sidebar-back a:hover { color: var(--seal); }
+
+  /* ============================================
+     ARTICLE BODY — single column reading
+     ============================================ */
+  .article-body {
+    padding: 80px 28px 0;
+  }
+  .body-inner { max-width: var(--col); margin: 0 auto; }
+
+  .body-inner p {
+    font-family: var(--serif-en);
+    font-size: 19px;
+    line-height: 1.78;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .body-inner p em { font-style: italic; }
+  .body-inner p a {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: all .2s;
+  }
+  .body-inner p a:hover { color: var(--seal); border-color: var(--seal); }
+
+  /* Drop cap — first paragraph after header */
+  .body-inner > p.lede::first-letter {
+    font-family: var(--serif-cn);
+    font-size: 88px;
+    float: left;
+    line-height: 0.85;
+    padding: 8px 16px 0 0;
+    color: var(--seal);
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  /* Sub-heading: EN + CN parallel */
+  .sub-head {
+    margin: 56px 0 28px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .sub-head h2 {
+    font-family: var(--serif-en);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .sub-head h2 em { font-style: italic; font-weight: 400; }
+  .sub-head .cn {
+    display: block;
+    font-family: var(--serif-cn);
+    font-size: 15px;
+    color: var(--ink-soft);
+    letter-spacing: 0.3em;
+    margin-top: 8px;
+    font-weight: 400;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    margin: 48px 0;
+    padding: 36px 0 36px 32px;
+    border-left: 2px solid var(--seal);
+    position: relative;
+  }
+  .pull-quote blockquote {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.4;
+    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+  .pull-quote blockquote em { font-style: normal; color: var(--seal); }
+  .pull-quote .pq-cn {
+    font-family: var(--serif-cn);
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: var(--ink-faint);
+    margin-top: 14px;
+  }
+
+  /* Footnote anchor — small vermilion seal with white number */
+  .fn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background: var(--seal);
+    color: var(--paper-light);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1;
+    margin: 0 2px 0 1px;
+    vertical-align: 6px;
+    transition: background .2s;
+    border-radius: 1px;
+    text-decoration: none;
+  }
+  .fn:hover { background: var(--seal-deep); }
+
+  /* Footnote list — sits at the end of visible content (or article) */
+  .footnotes {
+    margin: 56px 0 0;
+    padding: 28px 0 0;
+    border-top: 1px solid var(--rule);
+  }
+  .footnotes .fn-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 16px;
+  }
+  .footnotes ol {
+    list-style: none;
+    counter-reset: fn;
+  }
+  .footnotes li {
+    counter-increment: fn;
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    padding: 8px 0 8px 28px;
+    position: relative;
+  }
+  .footnotes li::before {
+    content: counter(fn);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background: var(--seal);
+    color: var(--paper-light);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 1px;
+  }
+  .footnotes li b {
+    font-style: normal;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ============================================
+     SUPPORT BAND — end-of-essay invitation
+     This is NOT a paywall. The essay above is free
+     to read in full. This band sits at the foot of
+     every public essay as the journal's quiet,
+     donation-style ask. Visual rule: not a card
+     (no border, no fill) — instead, a chapter-end
+     opening in the page itself, marked by an ink
+     rule above and a vermilion bar that anchors it.
+     ============================================ */
+  .support-band {
+    display: block;
+    max-width: 1100px;
+    margin: 96px auto 0;
+    padding: 0 28px;
+  }
+  .support-card {
+    border-top: 1px solid var(--ink);
+    padding: 80px 28px 40px;
+    position: relative;
+    text-align: center;
+  }
+  .support-card::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    width: 64px;
+    height: 3px;
+    background: var(--seal);
+    transform: translateX(-50%);
+  }
+  .support-card .sb-inner { max-width: 600px; margin: 0 auto; }
+  .support-card .sb-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 14px;
+  }
+  .support-card .sb-cn {
+    font-family: var(--serif-cn);
+    font-size: 16px;
+    letter-spacing: 0.5em;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
+  .support-card h3 {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+  .support-card h3 em { font-style: normal; color: var(--seal); }
+  .support-card p {
+    font-family: var(--serif-en);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+  }
+  .support-card p em { font-style: italic; color: var(--ink); }
+  .support-card .sb-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 16px 30px;
+    transition: all .25s;
+  }
+  .support-card .sb-cta:hover { background: var(--ink); color: var(--paper-light); }
+  .support-card .sb-cta::after { content: "→"; font-family: var(--serif-en); font-style: italic; font-size: 14px; }
+  .support-card .sb-quiet {
+    margin-top: 28px;
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .support-card .sb-quiet a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    margin: 0 4px;
+    transition: all .2s;
+  }
+  .support-card .sb-quiet a:hover { color: var(--seal); border-color: var(--seal); }
+  .support-card .sb-divider { display: inline-block; color: var(--ink-faint); margin: 0 6px; }
+
+  /* ============================================
+     ARTICLE FOOTER — author / related / notes
+     ============================================ */
+  .post-foot {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .post-foot.wide {
+    max-width: 1100px;
+  }
+
+  /* Author card */
+  .author-card {
+    margin: 96px auto 0;
+    padding: 40px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 88px 1fr auto;
+    gap: 28px;
+    align-items: center;
+  }
+  .author-card .portrait {
+    width: 88px;
+    height: 88px;
+    border: 1px solid var(--ink);
+    background: var(--paper-dark);
+    overflow: hidden;
+    position: relative;
+  }
+  .author-card .portrait img { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.18) contrast(1.04) brightness(0.95); }
+  .author-card .info .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 6px;
+  }
+  .author-card .info .name {
+    font-family: var(--serif-en);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .author-card .info .name em { font-style: italic; font-weight: 400; }
+  .author-card .info .name .cn {
+    font-family: var(--serif-cn);
+    font-size: 14px;
+    color: var(--ink-soft);
+    letter-spacing: 0.2em;
+    margin-left: 10px;
+    font-weight: 400;
+  }
+  .author-card .info .bio {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 460px;
+  }
+  .author-card .more {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  .author-card .more:hover { color: var(--seal); border-color: var(--seal); }
+
+  /* Related — three cards */
+  .related {
+    margin: 80px auto 0;
+  }
+  .related-head {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .related-head .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 14px;
+  }
+  .related-head h3 {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .related-head h3 em { font-style: normal; color: var(--seal); }
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    border-top: 1px solid var(--ink);
+    padding-top: 36px;
+  }
+  .rel-card {
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .rel-card:hover { opacity: 0.78; }
+  .rel-card .rel-kind {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 12px;
+  }
+  .rel-card .rel-kind.vip { color: var(--seal); }
+  .rel-card .rel-kind.vip::before {
+    content: "★ ";
+    font-size: 9px;
+    vertical-align: 1px;
+  }
+  .rel-card h4 {
+    font-family: var(--serif-en);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .rel-card h4 em { font-style: italic; font-weight: 400; }
+  .rel-card .rel-cn {
+    font-family: var(--serif-cn);
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+  .rel-card .rel-by {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+  .rel-card .rel-by b {
+    color: var(--ink);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* Reader Notes placeholder — full component lives elsewhere */
+  .notes-stub {
+    max-width: var(--col);
+    margin: 96px auto 0;
+    padding: 0 28px 40px;
+  }
+  .notes-stub .frame {
+    border-top: 1px solid var(--ink);
+    padding-top: 36px;
+  }
+  .notes-stub .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 14px;
+  }
+  .notes-stub h3 {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .notes-stub .cn {
+    font-family: var(--serif-cn);
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .notes-stub .empty {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    padding: 36px 36px;
+    background: var(--paper-light);
+    border: 1px dashed var(--rule);
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .notes-stub .empty b {
+    font-style: normal;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .notes-stub .signin {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    padding: 14px 24px;
+    transition: all .25s;
+  }
+  .notes-stub .signin:hover { background: var(--ink); color: var(--paper-light); }
+  .notes-stub .stub-note {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 18px;
+  }
+
+  /* ============================================
+     COLOPHON FOOTER — verbatim from v1
+     ============================================ */
+  footer {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 90px 40px 28px;
+    margin-top: 96px;
+  }
+  .foot-mark {
+    text-align: center;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 56px;
+  }
+  .foot-mark .ampers {
+    font-family: var(--serif-en);
+    font-size: clamp(80px, 12vw, 200px);
+    font-weight: 400;
+    line-height: 0.85;
+    letter-spacing: -0.01em;
+  }
+  .foot-mark .ampers em { font-style: italic; color: var(--seal); }
+  .foot-mark .cn {
+    display: block;
+    font-family: var(--serif-cn);
+    font-size: 18px;
+    letter-spacing: 0.5em;
+    color: var(--ink-soft);
+    margin-top: 18px;
+  }
+  .foot-mark .sub {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 16px;
+  }
+  .foot-cols {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 56px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  footer h5 {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+  footer h5 .cn {
+    font-family: var(--serif-cn);
+    color: var(--ink-faint);
+    margin-left: 10px;
+    letter-spacing: 0.3em;
+  }
+  footer p.mission {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 380px;
+    margin-bottom: 22px;
+  }
+  .also-by {
+    font-family: var(--serif-en);
+    font-size: 13px;
+    color: var(--ink-faint);
+    line-height: 1.7;
+  }
+  .also-by a {
+    font-style: italic;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: all .2s;
+  }
+  .also-by a:hover { color: var(--seal); border-color: var(--seal); }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 11px; }
+  footer a { font-family: var(--serif-en); font-size: 15px; color: var(--ink-soft); transition: color .2s; }
+  footer a:hover { color: var(--seal); }
+
+  .colophon-final {
+    padding-top: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 1100px) {
+    .article-layout { grid-template-columns: 1fr; }
+    .article-sidebar { display: none; }
+  }
+  @media (max-width: 900px) {
+    .related-grid { grid-template-columns: 1fr; gap: 32px; }
+    .author-card { grid-template-columns: 64px 1fr; gap: 18px; }
+    .author-card .more { grid-column: 1 / -1; justify-self: start; margin-top: 6px; }
+    .author-card .portrait { width: 64px; height: 64px; }
+    .foot-cols { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+  @media (max-width: 720px) {
+    .article-header { padding: 64px 20px 48px; }
+    .article-meta { flex-direction: column; gap: 10px; }
+    .article-body { padding: 56px 20px 0; }
+    .body-inner p { font-size: 17px; }
+    .body-inner > p.lede::first-letter { font-size: 64px; }
+    .pull-quote { padding: 24px 0 24px 22px; }
+    .pull-quote blockquote { font-size: 21px; }
+    .support-band { padding: 0 20px; }
+    .support-card { padding: 56px 4px 24px; }
+    .post-foot { padding: 0 20px; }
+    .notes-stub { padding: 0 20px 32px; }
+    .notes-stub .empty { padding: 28px 20px; font-size: 15px; }
+    footer { padding: 60px 20px 20px; }
+    .foot-mark .ampers { font-size: 56px; }
+    .foot-cols { grid-template-columns: 1fr; gap: 36px; }
+    .colophon-final { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+<style>.dispatch {
+    padding: 130px 40px;
+    background: var(--ink);
+    color: var(--paper-light);
+    border-bottom: 1px solid var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .dispatch::before {
+    content: "信";
+    position: absolute;
+    bottom: -120px;
+    left: -40px;
+    font-family: var(--serif-cn);
+    font-size: 480px;
+    color: rgba(244,237,224,0.04);
+    line-height: 1;
+    font-weight: 500;
+  }
+  .dispatch-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .dispatch .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--seal);
+    margin-bottom: 32px;
+  }
+  .dispatch h3 {
+    font-family: var(--serif-en);
+    font-size: clamp(38px, 4.5vw, 60px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+    margin-bottom: 22px;
+  }
+  .dispatch h3 em { font-style: italic; color: var(--seal); }
+  .dispatch .cn {
+    font-family: var(--serif-cn);
+    font-size: 16px;
+    letter-spacing: 0.4em;
+    color: rgba(244,237,224,0.6);
+    margin-bottom: 32px;
+  }
+  .dispatch p {
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(244,237,224,0.78);
+    max-width: 540px;
+    margin: 0 auto 40px;
+  }
+  .dispatch form {
+    display: flex;
+    max-width: 520px;
+    margin: 0 auto;
+    border: 1px solid rgba(244,237,224,0.4);
+  }
+  .dispatch input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--paper-light);
+    padding: 18px 22px;
+    font-family: var(--serif-en);
+    font-style: italic;
+    font-size: 16px;
+    outline: none;
+  }
+  .dispatch input::placeholder { color: rgba(244,237,224,0.4); }
+  .dispatch button {
+    background: var(--seal);
+    color: var(--paper-light);
+    border: none;
+    padding: 18px 28px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .dispatch button:hover { background: var(--seal-deep); }
+  .dispatch .fine {
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244,237,224,0.45);
+  }
+
+  
+
+/* Project 2 Blog Article 01: source article main CSS above remains exact.
+This adaptation is visually conservative and standalone; production owners map to WP Posts and Customizer. */
+html{scroll-behavior:smooth;scroll-padding-top:35px}
+body{min-width:0;overflow-x:clip}
+.site-header-wrap{position:relative;z-index:2}
+#article-main{display:block}
+.article-context{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:15px;padding:11px clamp(18px,5vw,72px);border-bottom:1px solid var(--rule);background:var(--paper-light);font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft)}
+.article-context a{justify-self:start;border-bottom:1px solid var(--rule);padding-bottom:3px}
+.article-context a:hover{color:var(--seal);border-color:var(--seal)}
+.article-context .context-center{justify-self:center}
+.article-context .context-right{justify-self:end;color:var(--ink-faint)}
+.article-header{padding-top:95px}
+.article-header .kicker{flex-wrap:wrap}
+.article-title{font-size:clamp(44px,5.1vw,70px);line-height:1.09;font-weight:400}
+.article-title em{font-weight:400}
+.article-dek{margin-bottom:39px}
+.article-layout{max-width:1150px;grid-template-columns:215px minmax(0,1fr)}
+.article-sidebar{padding:72px 0 0 28px}
+.sidebar-inner{top:25px}
+.sidebar-label{margin-bottom:21px}
+.sidebar-nav a{transition:color .15s,border-color .15s}
+.sidebar-nav a[aria-current="location"]{color:var(--ink);border-left-color:var(--seal)}
+.article-body{min-width:0;padding-top:74px}
+.body-inner{max-width:var(--col)}
+.article-body .body-inner p{letter-spacing:.004em}
+.article-body .body-inner > p.lede::first-letter{line-height:.78}
+.article-plate{margin:47px 0 50px}
+.article-plate img{width:100%;height:auto;aspect-ratio:1.44;object-fit:cover;filter:saturate(.77) contrast(1.02)}
+.article-plate figcaption{display:flex;justify-content:space-between;gap:24px;padding-top:13px;border-top:1px solid var(--rule);margin-top:10px;font-family:var(--mono);font-size:9px;line-height:1.65;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint)}
+.article-plate figcaption .right{text-align:right}
+.article-detail-note{font-family:var(--mono);font-size:9px;color:var(--ink-faint);letter-spacing:.08em;text-transform:uppercase}
+.mobile-toc{display:none}
+.mobile-toc summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);padding:18px 0;border-block:1px solid var(--rule)}
+.mobile-toc summary::-webkit-details-marker{display:none}
+.mobile-toc summary:after{content:"＋";font-family:var(--sans);font-size:16px;font-weight:300}
+.mobile-toc[open] summary:after{content:"−"}
+.mobile-toc ol{list-style:none;padding:12px 0 15px}
+.mobile-toc a{display:block;padding:10px 8px;color:var(--ink-soft);font-size:16px;border-bottom:1px solid var(--rule-soft)}
+.mobile-toc a span{font-family:var(--mono);font-size:9px;color:var(--seal);margin-right:12px}
+.annotation-margin{float:right;width:164px;margin:6px -192px 16px 26px;border-top:1px solid var(--seal);padding-top:12px;color:var(--ink-faint);font-family:var(--serif-en);font-size:14px;font-style:italic;line-height:1.5}
+.annotation-margin .han{display:block;font-family:var(--serif-cn);font-style:normal;font-size:27px;letter-spacing:.12em;color:var(--seal);margin-bottom:7px}
+.article-nav-bottom{max-width:1100px;padding:32px 28px;margin:46px auto 10px;display:grid;grid-template-columns:1fr 1fr;gap:20px;border-block:1px solid var(--rule)}
+.article-nav-bottom a{display:block;text-decoration:none;padding:16px 0}
+.article-nav-bottom .next{text-align:right}
+.article-nav-bottom .meta{font-family:var(--mono);letter-spacing:.18em;font-size:10px;text-transform:uppercase;color:var(--seal);margin-bottom:13px}
+.article-nav-bottom .heading{font-family:var(--serif-en);font-style:italic;font-size:21px;color:var(--ink);line-height:1.3}
+.article-nav-bottom a:hover .heading{color:var(--seal)}
+.post-foot{max-width:1100px}
+.author-card{margin-top:45px}
+.author-card .portrait{display:flex;align-items:center;justify-content:center}
+.author-card .portrait .letterform{font-family:var(--serif-en);font-style:italic;font-size:44px;color:var(--seal)}
+.author-card .info .bio{max-width:650px}
+.author-card .author-badge{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase}
+.article-attribution{display:block;margin-top:9px;color:var(--ink-faint);font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+.reader-afterword{max-width:var(--col);margin:76px auto 35px;padding:0 28px}
+.reader-afterword .inside{border-top:1px solid var(--ink);padding:40px 0 0}
+.reader-afterword .label{font-family:var(--mono);font-size:10px;letter-spacing:.23em;color:var(--seal);text-transform:uppercase;margin-bottom:18px}
+.reader-afterword h3{font-family:var(--serif-en);font-weight:400;font-style:italic;font-size:clamp(29px,4vw,39px);line-height:1.2;margin-bottom:14px}
+.reader-afterword h3 em{color:var(--seal);font-style:normal}
+.reader-afterword .copy{font-size:17px;line-height:1.6;color:var(--ink-soft);margin-bottom:24px}
+.reader-afterword .actions{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
+.reader-afterword a{display:inline-block;border-bottom:1px solid var(--ink);padding-bottom:4px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.16em}
+.reader-afterword a:hover{color:var(--seal);border-color:var(--seal)}
+.post-foot.wide.related{padding:0 36px;margin-top:70px}
+.related-grid .rel-card{text-decoration:none}
+.related-grid .rel-card:focus-visible,.sidebar-nav a:focus-visible{outline:2px solid var(--seal);outline-offset:5px}
+.related-grid .rel-cn{line-height:1.8}
+.sj-preview-caption{color:var(--ink-faint);font-family:var(--mono);font-size:9px;line-height:1.6;letter-spacing:.08em;text-transform:uppercase}
+.article-shareline{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:35px;padding:18px 0;border-top:1px solid var(--rule-soft);font-family:var(--mono);font-size:10px;color:var(--ink-soft);letter-spacing:.15em;text-transform:uppercase}
+.article-shareline button{background:none;border:0;cursor:pointer;border-bottom:1px solid var(--ink);font-family:inherit;font-size:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--ink);padding:5px 0}
+.article-shareline button:hover{color:var(--seal);border-color:var(--seal)}
+#copy-status{color:var(--seal)}
+.dispatch{padding:100px 36px}
+.dispatch::before{content:"信"}
+.dispatch-inner{max-width:710px}
+.dispatch .dispatch-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;border:0;max-width:650px;margin:0 auto}
+.dispatch .dispatch-form input{min-width:0;width:100%;border:1px solid rgba(244,237,224,.4);border-radius:0}
+.dispatch .dispatch-form button{grid-column:1/-1;min-height:54px}
+.dispatch .dispatch-status{margin-top:16px;font-family:var(--mono);font-size:11px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+dialog.article-preview{max-width:min(600px,calc(100% - 35px));padding:35px;background:var(--paper-light);border:1px solid var(--ink);color:var(--ink)}
+dialog.article-preview::backdrop{background:rgba(26,22,17,.62)}
+dialog.article-preview .kicker{justify-content:flex-start}
+dialog.article-preview h2{font-weight:400;font-size:42px;line-height:1.12;margin:10px 0 18px}
+dialog.article-preview p{font-size:17px;line-height:1.65;color:var(--ink-soft)}
+dialog.article-preview button{margin-top:32px;background:none;border:1px solid var(--ink);padding:12px 18px;cursor:pointer;font-family:var(--mono);font-size:11px}
+@media(max-width:1350px){.annotation-margin{float:none;display:block;margin:8px 0 28px;width:auto;max-width:480px}}
+@media(max-width:1100px){.article-layout{display:block}.article-sidebar{display:none}.article-body{max-width:740px;margin:0 auto;padding-inline:28px}.mobile-toc{display:block;margin-bottom:30px}.article-nav-bottom{max-width:740px}}
+@media(max-width:720px){.article-context{grid-template-columns:1fr auto;gap:8px;padding-inline:18px}.article-context .context-center{display:none}.article-context .context-right{font-size:8px}.article-header{padding:60px 18px 42px}.article-title{font-size:clamp(43px,10vw,60px)}.article-title-cn{letter-spacing:.15em;font-size:16px}.article-dek{font-size:19px}.article-meta{flex-direction:row;justify-content:center;gap:9px 15px}.article-meta .dot{display:none}.article-body{padding:34px 20px 0}.body-inner p{font-size:18px}.sub-head h2{font-size:26px}.article-plate{margin:36px 0}.article-plate figcaption{font-size:8px}.article-nav-bottom{padding:20px 20px;gap:14px}.article-nav-bottom .heading{font-size:17px}.author-card{grid-template-columns:64px minmax(0,1fr);gap:18px}.author-card .author-badge{grid-column:2}.post-foot.wide.related{padding:0 20px}.reader-afterword{padding:0 20px;margin-top:60px}.dispatch{padding:70px 20px}.dispatch .dispatch-form{grid-template-columns:1fr}.dispatch .dispatch-form button{grid-column:auto}}
+@media(max-width:420px){.article-title{font-size:clamp(40px,10vw,49px)}.article-header .inner{min-width:0}.article-context{font-size:8px}.article-plate figcaption{flex-direction:column;gap:4px}.article-nav-bottom{grid-template-columns:1fr}.article-nav-bottom .next{text-align:left;border-top:1px solid var(--rule-soft)}}
+.support-band.editorial-coda{margin:60px auto 0}
+.editorial-coda .support-card{padding:70px 28px 40px}
+.editorial-coda .support-card .sb-cn{margin-bottom:27px}
+.editorial-coda .support-card h3{font-size:clamp(29px,3.25vw,39px);line-height:1.24}
+.editorial-coda .support-card p{font-size:18px;line-height:1.75;margin-bottom:34px}
+.editorial-coda-signature{display:flex;justify-content:space-between;gap:8px 24px;flex-wrap:wrap;border-top:1px solid var(--rule-soft);padding-top:18px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+.editorial-coda-signature span:first-child{color:var(--seal)}
+.editorial-coda+.post-foot .author-card{margin-top:30px}
+@media(max-width:720px){.support-band.editorial-coda{margin-top:35px}.editorial-coda .support-card{padding:52px 9px 22px}.editorial-coda .support-card p{font-size:17px}}
+@media(max-width:370px){.editorial-coda-signature{font-size:8px}}
+/* Reading invitation from Article 01, now a separate destination AFTER related posts.
+   Spacing separates editorial afterword (reflective) from archive invitation (navigational). */
+.support-band.public-reading-invite{margin:85px auto 95px}
+.public-reading-invite .support-card{padding-top:76px}
+@media(max-width:720px){
+  .support-band.public-reading-invite{margin:64px auto 72px}
+  .public-reading-invite .support-card{padding-top:52px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="site-header-wrap" id="top"><ink-east-public-nav mode="full" active="articles"></ink-east-public-nav></div>
+<main id="article-main">
+ <div class="article-context">
+  <a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html">← All articles / 返回文庫</a>
+  <span class="context-center">Spatial Flow Journal · Read slowly</span>
+  <span class="context-right">Field Note · Editorial Example</span>
+ </div>
+ <article>
+  <header class="article-header">
+   <div class="inner">
+    <div class="kicker"><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#shelf">Space &amp; Arrangement</a><span class="dot">·</span><span>Journal Essay / Reading Study</span></div>
+    <h1 class="article-title">The quiet art of <em>leaving space</em>.</h1>
+    <div class="article-title-cn">留 白 之 間 · 空 間 的 呼 吸</div>
+    <p class="article-dek">On the intervals between objects, the usefulness of an empty corner, and why a room is more than the things we put inside it.</p>
+    <div class="article-meta">
+     <span class="by">By <b>Spatial Flow Editorial</b></span><span class="dot">·</span>
+     <span>Editorial Study · Sample</span><span class="dot">·</span>
+     <span class="read-time">≈ 7 min <span class="tea">a quiet reading</span></span>
+    </div>
+   </div>
+  </header>
+  <div class="article-layout">
+   <aside class="article-sidebar" aria-label="Article table of contents">
+    <div class="sidebar-inner">
+     <div class="sidebar-label">In this essay <span aria-hidden="true">/ 目 錄</span></div>
+     <ol class="sidebar-nav">
+      <li><a href="#sec-arrive"><span class="num">§ 1</span>What the room asks of us</a></li>
+      <li><a href="#sec-between"><span class="num">§ 2</span>The interval between things</a></li>
+      <li><a href="#sec-light"><span class="num">§ 3</span>Light, material &amp; scale</a></li>
+      <li><a href="#sec-care"><span class="num">§ 4</span>The art of noticing</a></li>
+     </ol>
+     <div class="sidebar-back"><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html">← Return to archive 文庫</a></div>
+    </div>
+   </aside>
+   <section class="article-body" aria-label="Full article">
+    <div class="body-inner">
+     <details class="mobile-toc" id="mobile-toc">
+      <summary>In this article · 本 文 目 錄</summary>
+      <ol><li><a href="#sec-arrive"><span>§1</span>What the room asks of us</a></li><li><a href="#sec-between"><span>§2</span>The interval between things</a></li><li><a href="#sec-light"><span>§3</span>Light, material &amp; scale</a></li><li><a href="#sec-care"><span>§4</span>The art of noticing</a></li></ol>
+     </details>
+     <p class="lede">A room is never simply a collection of things. It is also the distance from a chair to a window, the light that falls between two shelves, the quiet place on a table where nothing has yet been set down. These intervals seldom appear on a list of possessions. Yet they often determine how a place feels when we enter it.</p>
+     <p>We tend to think of arrangement as the final act of choosing objects: bring something home, find a position for it, step back, and see whether it looks right. But a room is experienced in motion. We cross it, turn toward a sound, put down a book, and reach for the same familiar surface each morning.</p>
+     <p>Perhaps the most useful question is not <em>What else should go here?</em> but <em>What happens if this part remains open?</em> That question does not demand minimalism. It asks only that we pay attention to what is already working.</p>
+     <div class="sub-head" id="sec-arrive"><h2>What the room <em>asks of us</em>.</h2><span class="cn">初 入 一 室</span></div>
+     <p>Think of the way you enter a room you know well. Your attention may go toward a window, a favorite object, or the place where daylight touches the floor. Other details almost disappear because you have passed them a hundred times. Those repeated movements quietly organize the space, long before any deliberate redesign begins.</p>
+     <p>Moving a small table can reveal a path that was always there. Lowering a lamp can draw attention toward a place to sit. Putting an object away can return a surface to its daily purpose. None of these decisions is spectacular. Their value often lies in the way they make the room easier to inhabit.</p>
+     <figure class="article-plate" aria-label="Illustrative material photograph">
+      <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=1400&auto=format&fit=crop&q=82" alt="Editorial sample photograph of books and warm natural materials in a quiet interior" loading="lazy">
+      <figcaption><span>Plate 01 · Quiet objects / still life</span><span class="right">Demonstration photograph · Final image is managed by WordPress</span></figcaption>
+     </figure>
+     <div class="sub-head" id="sec-between"><h2>The interval <em>between things</em>.</h2><span class="cn">物 與 物 之 間</span></div>
+     <p>We can describe almost everything in a room by naming its parts. The chair is oak; the curtain is linen; a small stone rests on the shelf. Yet naming those parts does not explain their relationship. We still need to ask what surrounds each thing, what competes for attention, and where the eye is allowed to rest.</p>
+     <aside class="annotation-margin" aria-label="Editorial margin note"><span class="han">間</span><strong>Jiān / 間</strong><br>Between, interval, or the space through which light passes.</aside>
+     <p>In a tightly arranged interior, every object may seem to ask for its own moment. A little distance changes that. Suddenly one piece becomes the point of focus and the rest of the room supports it. The space around an object is not always wasted space; sometimes it is the very thing that allows the object to be seen.<a class="fn" href="#fn-1" aria-label="Read design note 1">1</a></p>
+     <figure class="pull-quote">
+      <blockquote>A room is shaped <em>not only</em> by what it holds, but by the room we leave <em>around</em> what matters.</blockquote>
+      <div class="pq-cn">物 有 所 居 · 空 亦 有 其 用</div>
+     </figure>
+     <p>This is not an argument for empty shelves. A room full of cherished objects can be generous and alive. What matters is whether those objects have a relationship to the life taking place around them — whether they are encountered, cared for, and given space in the day.</p>
+     <div class="sub-head" id="sec-light"><h2>Light, material <em>and scale</em>.</h2><span class="cn">光 · 材 · 尺 度</span></div>
+     <p>Materials invite different kinds of attention. A matte surface absorbs light differently from a polished one; a clear object can take on the color of whatever stands behind it. Because light changes through the day, the same arrangement may feel soft in the morning and unexpectedly severe in the evening.</p>
+     <p>Rather than assume that one location is correct, it can help to observe an object at several times before deciding where it belongs. This is especially useful for reflective or transparent pieces, and for things we intend to look at often rather than store away.</p>
+     <p>The scale of the surrounding space matters too. A small object on a broad surface can become a focal point. The same object crowded by many others may disappear into their outlines. Size alone rarely tells the whole story.</p>
+     <figure class="pull-quote">
+      <blockquote>Look first at the <em>light</em>. Then at the <em>object</em>. Finally, look at the space the two make together.</blockquote>
+      <div class="pq-cn">先 觀 光 · 再 觀 物 · 終 觀 其 間</div>
+     </figure>
+     <div class="sub-head" id="sec-care"><h2>The art of <em>noticing</em>.</h2><span class="cn">察 之 有 度</span></div>
+     <p>A thoughtful room is never finished once and for all. Objects are moved, light shifts with the seasons, and the habits of the people who live there change. The useful arrangement is the one that can adapt without losing its sense of ease.</p>
+     <p>Before making another purchase or beginning another rearrangement, try spending a few moments with one familiar part of your home. Notice where you pause. Notice which surface gathers things. Notice the objects you reach for and those you rarely touch.</p>
+     <p>The point is not to make every room beautiful in the same way. It is to make a room more legible to the people who use it. Sometimes that begins with a new object. Sometimes it begins with the decision to leave a little <em>space</em>.</p>
+     <aside class="footnotes" aria-label="Editorial notes"><div class="fn-label">Notes / 編 者 註</div>
+      <ol><li id="fn-1">This article is demonstration editorial copy written to evaluate a reading layout. It is not a citation from an external author, historical text, or an existing published WordPress post. Actual article footnotes will come from editable post content.</li></ol>
+     </aside>
+     <div class="article-shareline"><span>Keep this reading</span><button id="copy-article-link" type="button">Copy preview link ↗</button><span id="copy-status" role="status" aria-live="polite"></span></div>
+    </div>
+   </section>
+  </div>
+ </article>
+ <aside class="support-band editorial-coda" aria-label="Editor's closing note">
+  <div class="support-card">
+   <div class="sb-inner">
+    <div class="sb-label">— A note from the editors —</div>
+    <div class="sb-cn">讀 畢 · 餘 白</div>
+    <h3>Leave the room with <em>one small question</em>.</h3>
+    <p>When you next cross a familiar threshold, notice what your eye moves toward and what it passes over. A room is made from the objects we choose, but just as surely from the intervals in which we leave things alone.</p>
+    <div class="editorial-coda-signature"><span>Spatial Flow Journal</span><span>Afterword / 編 者 後 記</span></div>
+   </div>
+  </div>
+ </aside>
+ <div class="post-foot">
+  <aside class="author-card" aria-label="Article author sample">
+   <div class="portrait"><span class="letterform" aria-hidden="true">S</span></div>
+   <div class="info"><div class="label">Editorial authorship</div><div class="name"><em>Spatial Flow Journal</em></div>
+    <p class="bio">This is a design placeholder, not a claim about an actual author. The live template should use the post's real WordPress author name and optional public biography.</p></div>
+   <div class="author-badge">No fabricated portrait</div>
+  </aside>
+ </div>
+ <nav class="article-nav-bottom" aria-label="Adjacent article directions">
+  <a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#shelf" class="previous"><div class="meta">← Previous / In the archive</div><div class="heading">A stone in the right light.</div></a>
+  <a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#shelf" class="next"><div class="meta">Next / In the archive →</div><div class="heading">The everyday ritual of clearing a desk.</div></a>
+ </nav>
+ <section class="post-foot wide related" aria-label="Related example readings">
+  <div class="related-head"><div class="label">— Keep reading —</div><h3>Three more, <em>for curious readers</em>.</h3></div>
+  <div class="related-grid">
+   <a class="rel-card" href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#shelf"><div class="rel-kind">Materials / Object Study</div><h4>A stone in the <em>right light</em>.</h4><div class="rel-cn">光 線 與 石</div><div class="rel-by">From the Journal · <b>Materials</b></div></a>
+   <a class="rel-card" href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#shelf"><div class="rel-kind">Space / Practical Guide</div><h4>What makes a room <em>feel settled</em>?</h4><div class="rel-cn">空 間 的 安 定 感</div><div class="rel-by">From the Journal · <b>Arrangements</b></div></a>
+   <a class="rel-card" href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#shelf"><div class="rel-kind">Care / Field Notes</div><h4>How to care for <em>crystal objects</em>.</h4><div class="rel-cn">器 物 之 照 護</div><div class="rel-by">From the Journal · <b>Care</b></div></a>
+  </div>
+ </section>
+
+ <aside class="support-band public-reading-invite" aria-label="Continue public reading">
+  <div class="support-card">
+   <div class="sb-inner">
+    <div class="sb-label">— If you read this far —</div>
+    <div class="sb-cn">讀 至 此 處</div>
+    <h3>Some questions deserve <em>a longer shelf</em>.</h3>
+    <p>Good writing does not need a locked door. The Journal gathers essays, care guides and observations to be read freely, in any order. Follow what interests you — a room, a material, an object — and see where the next question leads.</p>
+    <a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html" class="sb-cta">Continue reading</a>
+    <p class="sb-quiet">A public reading archive · <a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#paths">Browse by theme</a></p>
+   </div>
+  </div>
+ </aside>
+ <section class="dispatch" id="dispatch" aria-labelledby="dispatch-title">
+  <div class="dispatch-inner"><div class="label">— Journal Dispatch —</div>
+   <h3 id="dispatch-title">A small note, <em>for what you want to explore next.</em></h3>
+   <div class="cn">留 一 個 題 目 · 寫 一 封 信</div>
+   <p>Leave a topic you would like the editors to consider. This form mirrors the existing Journal Dispatch fields but does not send data in this static preview.</p>
+   <form class="dispatch-form" id="article-dispatch-form" action="#" method="post">
+    <label class="sr-only" for="article-dispatch-email">Email address</label><input id="article-dispatch-email" name="email" type="email" placeholder="your email address" autocomplete="email" required>
+    <label class="sr-only" for="article-dispatch-topic">Topic of interest</label><input id="article-dispatch-topic" name="topic" type="text" placeholder="a subject on your mind" required>
+    <button type="submit">Share a topic →</button>
+   </form>
+   <p class="dispatch-status" id="article-dispatch-status" role="status" aria-live="polite"></p>
+   <div class="fine">Static preview only · Nothing will be submitted · No outgoing email subscription is implied</div>
+  </div>
+ </section>
+</main>
+<ink-east-footer></ink-east-footer>
+
+<script>
+(() => {
+  const items = [
+ ['home','https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/e493b97d44285d29abe96f3dce9d105cbee84ce6/temp-preview/Spatial-Flow-Journal-Editorial-Adaptation-03.html','Journal',true],
+ ['issues','https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#featured','Featured',true],
+ ['articles','https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html','Articles',true],
+ ['topics','https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#paths','Topics',true]
+];
+
+  class InkEastPublicNav extends HTMLElement {
+    connectedCallback() {
+      if (this.shadowRoot) return;
+      const mode = this.getAttribute('mode') === 'full' ? 'full' : 'cover';
+      const active = this.getAttribute('active') || '';
+      const root = this.attachShadow({ mode: 'open' });
+      const links = items.map(([key, href, label, live]) => {
+        const current = active === key;
+        if (!live) return `<span class="nav-item placeholder" data-placeholder="true">${label}</span>`;
+        return `<a class="nav-item${current ? ' active' : ''}" href="${href}"${current ? ' aria-current="page"' : ''}>${label}</a>`;
+      }).join('');
+
+      root.innerHTML = `
+        <style>
+          :host {
+            all: initial;
+            --paper: #f4ede0;
+            --ink: #1a1611;
+            --ink-soft: #4a4036;
+            --ink-faint: #8a7f70;
+            --seal: #a02d23;
+            --rule: rgba(26,22,17,.28);
+            --rule-soft: rgba(26,22,17,.12);
+            --serif-en: "EB Garamond","Noto Serif SC",Georgia,serif;
+            --serif-cn: "Noto Serif SC","EB Garamond",serif;
+            --mono: "JetBrains Mono",ui-monospace,monospace;
+            display: block;
+            width: 100%;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            color: var(--ink-soft);
+            font-family: var(--mono);
+            font-size: 10px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            font-feature-settings: normal;
+            font-kerning: normal;
+            font-variant: normal;
+            font-synthesis: none;
+            text-rendering: geometricPrecision;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+          }
+          *, *::before, *::after { box-sizing: border-box; }
+          a { color: inherit; text-decoration: none; }
+          .nav-item { white-space: nowrap; }
+          a.nav-item { transition: color .2s, border-color .2s; }
+          a.nav-item:hover { color: var(--seal); }
+          .placeholder { color: var(--ink-faint); cursor: default; }
+
+          .cover-nav {
+            width: 100%;
+            display: grid;
+            grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+            align-items: center;
+            padding: 0 0 24px;
+            border-bottom: 1px solid var(--rule);
+            position: relative;
+            z-index: 2;
+            font-family: var(--mono);
+            font-size: 10px;
+            line-height: 24px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+          }
+          .cover-nav .left { min-width: 0; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+          .cover-nav .center {
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif-cn);
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: .5em;
+            color: var(--ink);
+            white-space: nowrap;
+          }
+          .cover-nav .right { min-width: 0; display: flex; align-items: center; justify-content: flex-end; gap: 28px; }
+          .cover-nav .action { white-space: nowrap; }
+          .cover-nav .action.placeholder { color: var(--ink-faint); }
+
+          .full-nav {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 26px clamp(28px,5.5vw,100px);
+            border-bottom: 1px solid var(--rule-soft);
+            position: relative;
+            z-index: 5;
+            flex-wrap: wrap;
+          }
+          .brand { display: flex; align-items: baseline; gap: 12px; white-space: nowrap; }
+          .brand .mark { font-family: var(--serif-en); font-size: 22px; font-weight: 500; line-height: 28px; letter-spacing: .01em; text-transform: none; color: var(--ink); }
+          .brand .mark em { font-style: italic; color: var(--seal); }
+          .brand .cn { font-family: var(--serif-cn); font-size: 13px; line-height: 24px; letter-spacing: .3em; text-transform: none; color: var(--ink-faint); }
+          .full-nav .links { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; line-height: 24px; letter-spacing: .16em; text-transform: uppercase; }
+          .full-nav .nav-item { height: 28px; display: inline-flex; align-items: center; padding: 0 0 4px; border-bottom: 1px solid transparent; color: var(--ink-soft); }
+          .full-nav .nav-item.active { color: var(--ink); border-bottom-color: var(--seal); }
+          .full-nav .placeholder { color: var(--ink-faint); }
+
+          @media (max-width: 720px) {
+            .cover-nav { grid-template-columns: 1fr; text-align: center; gap: 6px; padding-bottom: 14px; }
+            .cover-nav .left, .cover-nav .right { justify-content: center; }
+            .cover-nav .left { gap: 6px 18px; }
+            .cover-nav .right { display: none; }
+          }
+          @media (max-width: 600px) {
+            .full-nav { padding: 16px 18px; gap: 14px; align-items: flex-start; flex-direction: column; }
+            .full-nav .links { gap: 6px 18px; font-size: 10px; }
+          }
+        </style>
+        ${mode === 'full' ? `
+          <nav class="full-nav" aria-label="Spatial Flow Journal navigation">
+            <div class="brand"><span class="mark">Spatial <em>Flow</em> Journal</span><span class="cn">空間手記</span></div>
+            <div class="links">${links}</div>
+          </nav>` : `
+          <nav class="cover-nav" aria-label="Spatial Flow Journal navigation">
+            <div class="left">${links}</div>
+            <div class="center">空 間 手 記</div>
+            <div class="right"><a class="action" href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#paths">Read by topic ↗</a></div>
+          </nav>`}
+      `;
+    }
+  }
+  if (!customElements.get('ink-east-public-nav')) customElements.define('ink-east-public-nav', InkEastPublicNav);
+})();
+
+</script>
+<script>
+(() => {
+  const template = document.createElement('template');
+
+  template.innerHTML = `
+    <style>
+      :host {
+        all: initial;
+        --paper: #f4ede0;
+        --paper-light: #faf5e9;
+        --ink: #1a1611;
+        --ink-soft: #4a4036;
+        --ink-faint: #8a7f70;
+        --seal: #a02d23;
+        --rule: rgba(26, 22, 17, 0.28);
+        --serif-en: "EB Garamond", "Noto Serif SC", Georgia, serif;
+        --serif-cn: "Noto Serif SC", "EB Garamond", serif;
+        --mono: "JetBrains Mono", ui-monospace, monospace;
+        display: block;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--serif-en);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.55;
+        letter-spacing: normal;
+        text-transform: none;
+        font-feature-settings: "liga" 1, "kern" 1;
+        font-kerning: normal;
+        font-variant: normal;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        transform: translateY(var(--footer-snap-y, 0px));
+      }
+
+      footer,
+      footer * { box-sizing: border-box; }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      footer {
+        width: 100%;
+        min-width: 0;
+        background: var(--paper);
+        color: var(--ink);
+        padding: 90px 40px 28px;
+        margin: 0;
+        text-align: left;
+        font-family: var(--serif-en);
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.55;
+        letter-spacing: normal;
+        font-feature-settings: "liga" 1, "kern" 1;
+        font-kerning: normal;
+        font-variant: normal;
+        font-synthesis: none;
+      }
+
+      .foot-mark {
+        text-align: center;
+        padding-bottom: 48px;
+        border-bottom: 1px solid var(--ink);
+        margin-bottom: 56px;
+      }
+
+      .foot-mark .ampers {
+        font-family: var(--serif-en);
+        font-size: clamp(80px, 12vw, 200px);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 0.85;
+        letter-spacing: -0.01em;
+        font-feature-settings: "liga" 1, "kern" 1;
+        font-kerning: normal;
+      }
+      .foot-mark .ampers em { font-style: italic; color: var(--seal); }
+
+      .foot-mark .cn {
+        display: block;
+        font-family: var(--serif-cn);
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0.5em;
+        color: var(--ink-soft);
+        margin-top: 18px;
+      }
+
+      .foot-mark .sub {
+        display: block;
+        font-family: var(--mono);
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        margin-top: 16px;
+        font-feature-settings: normal;
+        font-variant: normal;
+      }
+
+      .foot-cols {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        align-items: start;
+        gap: 56px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      h5 {
+        font-family: var(--mono);
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--seal);
+        margin: 0 0 22px;
+        padding: 0;
+        font-feature-settings: normal;
+        font-variant: normal;
+      }
+      h5 .cn {
+        font-family: var(--serif-cn);
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        color: var(--ink-faint);
+        margin-left: 10px;
+        letter-spacing: 0.3em;
+      }
+
+      p.mission {
+        font-family: var(--serif-en);
+        font-style: italic;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 28.9px;
+        letter-spacing: normal;
+        color: var(--ink-soft);
+        max-width: 380px;
+        margin: 0 0 22px;
+        padding: 0;
+        font-feature-settings: "liga" 1, "kern" 1;
+        font-kerning: normal;
+        font-variant: normal;
+      }
+
+      .also-by {
+        font-family: var(--serif-en);
+        font-style: normal;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 22.1px;
+        letter-spacing: normal;
+        color: var(--ink-faint);
+        margin: 0;
+        padding: 0;
+        font-feature-settings: "liga" 1, "kern" 1;
+        font-kerning: normal;
+        font-variant: normal;
+      }
+      .also-by a {
+        font-style: italic;
+        color: var(--ink);
+        border-bottom: 1px solid var(--rule);
+        padding-bottom: 1px;
+        transition: color 0.2s, border-color 0.2s;
+      }
+      .also-by a:hover { color: var(--seal); border-color: var(--seal); }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        height: 24px;
+        margin: 0 0 11px;
+        padding: 0;
+        line-height: 24px;
+      }
+
+      li a {
+        display: inline-flex;
+        align-items: center;
+        height: 24px;
+        font-family: var(--serif-en);
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: normal;
+        color: var(--ink-soft);
+        transition: color 0.2s;
+        font-feature-settings: "liga" 1, "kern" 1;
+        font-kerning: normal;
+        font-variant: normal;
+      }
+      li a:hover { color: var(--seal); }
+
+      .colophon-final {
+        padding-top: 24px;
+        font-family: var(--mono);
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+        flex-wrap: wrap;
+        font-feature-settings: normal;
+        font-variant: normal;
+      }
+
+      @media (max-width: 1100px) {
+        .foot-cols { grid-template-columns: 1fr 1fr; gap: 40px; }
+      }
+
+      @media (max-width: 720px) {
+        footer { padding: 60px 20px 20px; }
+        .foot-mark .ampers { font-size: 56px; }
+        .foot-cols { grid-template-columns: 1fr; gap: 36px; }
+        .colophon-final { flex-direction: column; gap: 6px; text-align: center; align-items: stretch; }
+      }
+    </style>
+
+    <footer aria-label="Spatial Flow Journal colophon">
+      <div class="foot-mark">
+        <div class="ampers">Spatial <em>Flow</em></div>
+        <span class="cn">空 間 手 記</span>
+        <span class="sub">A journal of rooms, materials &amp; ways of living</span>
+      </div>
+
+      <div class="foot-cols">
+        <div>
+          <h5>The Journal <span class="cn">關 於</span></h5>
+          <p class="mission">A collection of observations about spaces we inhabit, the objects we choose, and the ways ordinary surroundings shape everyday life.</p>
+          <p class="also-by">From the makers of<br><a href="https://inkandeast.com/">Spatial Flow →</a></p>
+        </div>
+
+        <nav aria-label="Read">
+          <h5>Read <span class="cn">讀</span></h5>
+          <ul>
+            <li><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#featured">Featured writing</a></li>
+            <li><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#shelf">Latest stories</a></li>
+            <li><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#paths">Reading paths</a></li>
+            <li><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#shelf">Field notes</a></li>
+            <li><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#shelf">Guides</a></li>
+            
+          </ul>
+        </nav>
+
+        <nav aria-label="Speak">
+          <h5>Explore <span class="cn">尋</span></h5>
+          <ul>
+            <li><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#paths">Spaces &amp; placement</a></li>
+            <li><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#paths">Materials &amp; objects</a></li>
+            <li><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#paths">Everyday rituals</a></li>
+            <li><a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html#paths">Care guides</a></li>
+            
+          </ul>
+        </nav>
+
+        <nav aria-label="Studio">
+          <h5>Elsewhere <span class="cn">連</span></h5>
+          <ul>
+            <li><a href="https://inkandeast.com/">Spatial Flow Shop</a></li>
+            <li><a href="https://inkandeast.com/services/">Services</a></li>
+            <li><a href="https://inkandeast.com/contact-us/">Contact</a></li>
+            <li><a href="https://inkandeast.com/faq/">FAQ / Help</a></li>
+            <li><a href="https://inkandeast.com/">Main website</a></li>
+            
+          </ul>
+        </nav>
+      </div>
+
+      <div class="colophon-final">
+        <span>© 2026 Spatial Flow Journal · Working visual proposal</span>
+        <span>Set in EB Garamond, Inter &amp; Noto Serif SC</span>
+        <span>VISUAL STUDY · NOT LIVE DATA</span>
+      </div>
+    </footer>
+  `;
+
+  class InkEastFooter extends HTMLElement {
+    constructor() {
+      super();
+      this._snapFrame = 0;
+      this._scheduleSnap = this._scheduleSnap.bind(this);
+    }
+
+    connectedCallback() {
+      if (!this.shadowRoot) {
+        const root = this.attachShadow({ mode: 'open' });
+        root.appendChild(template.content.cloneNode(true));
+      }
+
+      this._scheduleSnap();
+      window.addEventListener('load', this._scheduleSnap, { once: true });
+      window.addEventListener('resize', this._scheduleSnap);
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(this._scheduleSnap);
+      }
+    }
+
+    disconnectedCallback() {
+      window.removeEventListener('resize', this._scheduleSnap);
+      if (this._snapFrame) cancelAnimationFrame(this._snapFrame);
+    }
+
+    _scheduleSnap() {
+      if (this._snapFrame) cancelAnimationFrame(this._snapFrame);
+      this._snapFrame = requestAnimationFrame(() => {
+        this._snapFrame = 0;
+        this.style.setProperty('--footer-snap-y', '0px');
+
+        const rect = this.getBoundingClientRect();
+        const absoluteBottom = rect.bottom + window.scrollY;
+        const documentBottom = document.documentElement.scrollHeight;
+        const delta = documentBottom - absoluteBottom;
+
+        this.style.setProperty('--footer-snap-y', `${delta.toFixed(3)}px`);
+      });
+    }
+  }
+
+  if (!customElements.get('ink-east-footer')) {
+    customElements.define('ink-east-footer', InkEastFooter);
+  }
+})();
+
+</script>
+<script>
+(()=>{
+const links=[...document.querySelectorAll('.sidebar-nav a')];
+const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+if('IntersectionObserver' in window){
+ const obs=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top)[0];if(!visible)return;links.forEach(a=>{const current=a.getAttribute('href')==='#'+visible.target.id;a.classList.toggle('active',current);if(current)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});},{rootMargin:'-10% 0px -68% 0px',threshold:0});
+ sections.forEach(s=>obs.observe(s));
+}
+document.querySelectorAll('.mobile-toc a').forEach(a=>a.addEventListener('click',()=>{const toc=document.getElementById('mobile-toc');if(toc)toc.open=false;}));
+document.getElementById('copy-article-link').addEventListener('click',async()=>{const status=document.getElementById('copy-status');try{await navigator.clipboard.writeText(location.href);status.textContent='Copied';}catch(err){status.textContent='Select the browser address bar to copy the URL';}});
+document.getElementById('article-dispatch-form').addEventListener('submit',e=>{e.preventDefault();document.getElementById('article-dispatch-status').textContent='Preview only — no information was sent. The production site retains WordPress Journal Dispatch submission handling.';});
+})();
+</script>
+</body></html>
