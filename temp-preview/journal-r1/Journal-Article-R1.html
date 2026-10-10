@@ -1157,7 +1157,7 @@ dialog.article-preview button{margin-top:32px;background:none;border:1px solid v
      <aside class="footnotes" aria-label="Editorial notes"><div class="fn-label">Notes / 編 者 註</div>
       <ol><li id="fn-1">Here, “distance” means the visual interval between objects rather than a universal measurement for arranging a room.</li></ol>
      </aside>
-     <div class="article-shareline"><span>Keep this reading</span><button id="copy-article-link" type="button">Copy preview link ↗</button><span id="copy-status" role="status" aria-live="polite"></span></div>
+     <div class="article-shareline"><span>Keep this reading</span><button id="copy-article-link" type="button">Copy link ↗</button><span id="copy-status" role="status" aria-live="polite"></span></div>
     </div>
    </section>
   </div>
@@ -1742,7 +1742,7 @@ if('IntersectionObserver' in window){
 }
 document.querySelectorAll('.mobile-toc a').forEach(a=>a.addEventListener('click',()=>{const toc=document.getElementById('mobile-toc');if(toc)toc.open=false;}));
 document.getElementById('copy-article-link').addEventListener('click',async()=>{const status=document.getElementById('copy-status');try{await navigator.clipboard.writeText(location.href);status.textContent='Copied';}catch(err){status.textContent='Select the browser address bar to copy the URL';}});
-document.getElementById('article-dispatch-form').addEventListener('submit',e=>{e.preventDefault();document.getElementById('article-dispatch-status').textContent='Preview only — no information was sent. The production site retains WordPress Journal Dispatch submission handling.';});
+document.getElementById('article-dispatch-form').addEventListener('submit',e=>{e.preventDefault();document.getElementById('article-dispatch-status').textContent='This preview does not send messages.';});
 })();
 </script>
 </body></html>
