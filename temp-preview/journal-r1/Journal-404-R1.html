@@ -137,7 +137,17 @@ footer{background:var(--paper);color:var(--ink);padding:90px 40px 28px}.foot-mar
       const links = items.map(([key, href, label, live]) => {
         const current = active === key;
         if (!live) return `<span class="nav-item placeholder" data-placeholder="true">${label}</span>`;
-        return `<a class="nav-item${current ? ' active' : ''}" href="${href}"${current ? ' aria-current="page"' : ''}>${label}</a>`;
+        let pointsToThisPage = false;
+        if (current) {
+          try {
+            const destination = new URL(href, location.href);
+            pointsToThisPage =
+              destination.origin === location.origin &&
+              destination.pathname === location.pathname &&
+              destination.search === location.search;
+          } catch (_) { pointsToThisPage = false; }
+        }
+        return `<a class="nav-item${current ? ' active' : ''}" href="${href}"${pointsToThisPage ? ' aria-current="page"' : ''}>${label}</a>`;
       }).join('');
 
       root.innerHTML = `
