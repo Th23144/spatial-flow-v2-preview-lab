@@ -928,6 +928,7 @@ function openPost(id){
 }
 function render(){
  const c=current(),all=filtered(),total=all.length,pages=Math.max(1,Math.ceil(total/perPage));
+ document.title=c.name+' — Spatial Flow Journal';
  page=Math.max(1,Math.min(page,pages));
  const offset=(page-1)*perPage,visible=all.slice(offset,offset+perPage),lead=visible[0];
  byId('topic-number').textContent='NO. '+c.num+' / 04';
