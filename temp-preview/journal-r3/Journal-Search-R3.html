@@ -130,7 +130,7 @@ section.block.search-snapshot{padding-top:53px;padding-bottom:58px}
 </div></section><section class="block"><div class="block-inner">
 <div class="section-head"><span class="glyph">叁</span><h2>Browse by Path <span class="cn">循 題 而 讀</span></h2><span class="aside">Other ways into the Journal</span></div>
 <div class="paths"><a class="path" href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Archive-R3.html"><div class="num">一</div><div class="role">Collected writing</div><h4>The Archive</h4><p>Every published essay, guide and field note in one public reading shelf.</p></a>
-<a class="path" href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Category-R3.html"><div class="num">二</div><div class="role">Thematic doors</div><h4>Reading Paths</h4><p>Follow a subject through spaces, materials, light and everyday care.</p></a>
+<a class="path" href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Home-R3.html#archive"><div class="num">二</div><div class="role">Thematic doors</div><h4>Reading Paths</h4><p>Follow a subject through spaces, materials, light and everyday care.</p></a>
 <a class="path" href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Home-R3.html"><div class="num">三</div><div class="role">Editorial entrance</div><h4>The Journal</h4><p>Return to the opening page to explore the wider journal and its editorial reading notes.</p></a>
 </div></div></section></main><ink-east-footer></ink-east-footer><dialog class="search-dialog" id="search-dialog" aria-labelledby="dialog-title"><div class="kicker" id="dialog-label"></div><h2 id="dialog-title"></h2><div class="cn" id="dialog-cn"></div><p id="dialog-desc"></p><div class="bottom"><button id="dialog-close" type="button">Close ×</button><span>Example content · not a live article URL</span></div></dialog><script>
 (() => {
@@ -693,7 +693,7 @@ function display(){
 }
 function query(word){q=String(word||"").trim().slice(0,80);selected="all";const nextUrl=new URL(location.href);nextUrl.searchParams.set("q",q);history.replaceState(null,"",nextUrl);display();node("search-shelf").scrollIntoView({behavior:"smooth",block:"start"});}
 node("journal-search-form").addEventListener("submit",e=>{e.preventDefault();query(node("journal-search-input").value);});
-node("search-clear").addEventListener("click",()=>{q="";selected="all";const nextUrl=new URL(location.href);nextUrl.searchParams.delete("q");history.replaceState(null,"",nextUrl);display();node("journal-search-input").focus();});
+node("search-clear").addEventListener("click",()=>{q="";selected="all";const nextUrl=new URL(location.href);nextUrl.searchParams.set("q","");history.replaceState(null,"",nextUrl);display();node("journal-search-input").focus();});
 node("search-again").addEventListener("click",()=>{node("journal-search-input").focus();node("journal-search-input").scrollIntoView({behavior:"smooth",block:"center"});});
 document.addEventListener("click",e=>{
  const hint=e.target.closest("[data-query]");if(hint){query(hint.dataset.query);return;}
