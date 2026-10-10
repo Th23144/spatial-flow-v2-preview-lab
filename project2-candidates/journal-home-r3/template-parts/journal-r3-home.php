@@ -12,6 +12,10 @@ $sf_r3_question_posts = spatial_flow_journal_merge_manual_post_slots(
  spatial_flow_journal_get_posts( 12, '', wp_list_pluck( $sf_r3_featured_posts, 'ID' ), false ), 4
 );
 $sf_r3_categories = spatial_flow_journal_get_category_tiles( 4 );
+$sf_r3_space_term = spatial_flow_journal_selected_category_term( 'sf_journal_r3_reading_space_category' );
+$sf_r3_objects_term = spatial_flow_journal_selected_category_term( 'sf_journal_r3_reading_objects_category' );
+$sf_r3_space_url = $sf_r3_space_term ? get_category_link( $sf_r3_space_term ) : $sf_r3_archive_url;
+$sf_r3_objects_url = $sf_r3_objects_term ? get_category_link( $sf_r3_objects_term ) : $sf_r3_archive_url;
 $sf_r3_nav_items = array(
  array('home',home_url('/#top'),'Journal',true),
  array('issues',home_url('/#articles'),'Featured',true),
@@ -271,7 +275,7 @@ foreach ( $sf_r3_footer_locations as $key=>$location ) {
 
   <div class="toc-wrap">
     <aside class="toc-aside">
-      <div class="label">A note from the editors</div>
+      <div class="label"><?php echo esc_html( spatial_flow_journal_copy( "r3_home_editor_label", "A note from the editors" ) ); ?></div>
       <p class="quote">The objects we keep become part of the atmosphere we live in. Space is not merely what surrounds them.</p>
       <p class="quote-cn">器 物 · 不 只 是 物<br>空 間 · 也 是 生 活</p>
     </aside>
@@ -291,9 +295,9 @@ foreach ( $sf_r3_footer_locations as $key=>$location ) {
   <div class="editor-note"><div class="editor-note-inner">
  <div class="en-stamp">Editor's Note <span class="cn">編 者 按</span></div>
  <div class="en-body">
- <p>A journal about space does not begin with an empty floor plan. It begins with what we touch each day — a table, a stone, a window, the light that arrives there each morning.</p>
- <p>In these pages we look at materials, arrangements and the habits that turn an ordinary room into a place of our own. We prefer patient observation to easy answers, and useful guidance to perfect-looking interiors.</p>
- <p>What follows is a small reading map. Choose the question that stays with you.</p>
+ <p><?php echo esc_html( spatial_flow_journal_copy( "r3_home_editor_p1", "A journal about space does not begin with an empty floor plan. It begins with what we touch each day — a table, a stone, a window, the light that arrives there each morning." ) ); ?></p>
+ <p><?php echo esc_html( spatial_flow_journal_copy( "r3_home_editor_p2", "In these pages we look at materials, arrangements and the habits that turn an ordinary room into a place of our own. We prefer patient observation to easy answers, and useful guidance to perfect-looking interiors." ) ); ?></p>
+ <p><?php echo esc_html( spatial_flow_journal_copy( "r3_home_editor_p3", "What follows is a small reading map. Choose the question that stays with you." ) ); ?></p>
  <div class="en-sign"><span><b>The Journal Editors</b></span><span>Spatial Flow Journal · Editorial introduction</span></div>
  </div>
  <aside class="en-aside">An object can change a room.<br>So can the space beside it.<span class="cn">物 之 間<br>乃 見 空 間</span></aside>
@@ -354,7 +358,7 @@ foreach ( $sf_r3_footer_locations as $key=>$location ) {
 <section class="letters editorial-questions" id="questions" style="padding:0">
  <div class="questions-intro">
   <div class="section-head letters-head"><div class="section-num">叄</div><h2>Questions of place. <span class="cn">空 間 之 問</span></h2><a href="#articles" class="section-cta">Read the stories →</a></div>
-  <p class="questions-deck">The journal often begins with a question about ordinary surroundings. What belongs in a room? How does a material change it? Where does care begin? Each question opens into an essay or guide.</p>
+  <p class="questions-deck"><?php echo esc_html( spatial_flow_journal_copy( "r3_home_questions_intro", "The journal often begins with a question about ordinary surroundings. What belongs in a room? How does a material change it? Where does care begin? Each question opens into an essay or guide." ) ); ?></p>
  </div>
  <div class="letters-grid">
 <?php foreach ( $sf_r3_question_posts as $index => $post ) :
@@ -382,15 +386,15 @@ foreach ( $sf_r3_footer_locations as $key=>$location ) {
    <div class="label">— The Reading Room —</div>
    <h2>For stories that ask for a <em>slower kind of reading.</em></h2>
    <div class="cn">慢 讀 · 深 讀</div>
-   <p>Some subjects open slowly. A room is shaped by its layout, the objects it holds, and the habits that return to it every day.</p>
-   <p>The Reading Room gathers longer essays and guides into two public routes. No membership, gate, or private library — only a place to begin.</p>
+   <p><?php echo esc_html( spatial_flow_journal_copy( "r3_home_reading_p1", "Some subjects open slowly. A room is shaped by its layout, the objects it holds, and the habits that return to it every day." ) ); ?></p>
+   <p><?php echo esc_html( spatial_flow_journal_copy( "r3_home_reading_p2", "The Reading Room gathers longer essays and guides into two public routes. No membership, gate, or private library — only a place to begin." ) ); ?></p>
    <div class="rr-tiers">
-    <a class="rr-tier" href="#archive">
+    <a class="rr-tier" href="<?php echo esc_url( $sf_r3_space_url ); ?>">
      <div class="name">First path</div><div class="name-cn">空 間</div><div class="price">Spaces</div>
      <div class="price-period">Arrangements / atmosphere</div>
      <ul><li>Room-focused essays</li><li>Ways of arranging</li><li>Everyday observations</li></ul>
     </a>
-    <a class="rr-tier featured" href="#articles">
+    <a class="rr-tier featured" href="<?php echo esc_url( $sf_r3_objects_url ); ?>">
      <div class="name">Second path</div><div class="name-cn">器 物</div><div class="price">Objects</div>
      <div class="price-period">Materials / care / meaning</div>
      <ul><li>Material stories</li><li>Object placement</li><li>Guides worth keeping</li></ul>
@@ -435,9 +439,9 @@ foreach ( $sf_r3_footer_locations as $key=>$location ) {
 <section class="dispatch" id="dispatch">
  <div class="dispatch-inner">
   <div class="label">— Journal Dispatch —</div>
-  <h3>A small note, <em>for what you want to explore next.</em></h3>
+  <h3><?php echo wp_kses( spatial_flow_journal_copy( "r3_home_dispatch_title", "A small note, <em>for what you want to explore next.</em>" ), array( "em"=>array() ) ); ?></h3>
   <div class="cn">留 一 個 題 目 · 寫 一 封 信</div>
-  <p>Have a question about a room, a material, or an everyday object? Leave a topic for the editors. The Journal Dispatch collects ideas that may guide future writing.</p>
+  <p><?php echo esc_html( spatial_flow_journal_copy( "r3_home_dispatch_intro", "Have a question about a room, a material, or an everyday object? Leave a topic for the editors. The Journal Dispatch collects ideas that may guide future writing." ) ); ?></p>
   <form class="sf-journal-form" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post" data-sf-journal-form
  data-modal-kicker="<?php echo esc_attr( spatial_flow_journal_copy( 'dispatch_modal_kicker', 'Journal Dispatch' ) ); ?>"
  data-modal-title="<?php echo esc_attr( spatial_flow_journal_copy( 'dispatch_modal_title', 'Thank you for sharing.' ) ); ?>"
