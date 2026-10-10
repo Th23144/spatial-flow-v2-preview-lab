@@ -318,7 +318,7 @@ body{min-width:0}
   </div>
   <figure class="topic-frame">
    <div class="topic-photo"><img id="topic-image" alt="Illustrative airy interior photograph, not a WordPress category image" src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=82" loading="eager"><div class="topic-photo-mark" id="topic-photo-mark" aria-hidden="true">間</div></div>
-   <figcaption class="topic-photo-label"><span id="topic-photo-caption">Field Plate 01 · Rooms &amp; Arrangements</span><b>Visual study / not live content</b></figcaption>
+   <figcaption class="topic-photo-label"><span id="topic-photo-caption">Field Plate 01 · Rooms &amp; Arrangements</span><b>Journal / Reading Study</b></figcaption>
   </figure>
  </div>
 </header>
@@ -333,7 +333,7 @@ body{min-width:0}
 <button type="button" class="rail-link" data-category="care" aria-pressed="false"><span class="num">04</span><span class="name">Care & Practice</span><span class="arrow">↗</span></button>
    </div>
    <a class="rail-back" href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html">← Return to full archive</a>
-   <p class="rail-note">Subjects are real WordPress categories in production. Here, switch categories to inspect the static design and its empty state.</p>
+   <p class="rail-note">Explore another reading path to follow the questions and writing gathered around it.</p>
   </div>
  </aside>
  <div class="category-list-main">
@@ -347,7 +347,7 @@ body{min-width:0}
   <div class="topic-empty" id="category-empty" hidden>
    <div class="glyph" aria-hidden="true">空</div>
    <h3>The shelf is <em>quiet for now.</em></h3>
-   <p>No published sample articles are shown for this subject. In WordPress, a category with no published posts should show this empty state, not fabricated content or draft articles.</p>
+   <p>No public articles are available in this reading path yet. Explore another subject or return to the complete archive.</p>
    <a href="https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html">Browse all public writing →</a>
   </div>
   <nav class="topic-pagination" id="category-pagination" aria-label="Category article pages">
@@ -373,7 +373,7 @@ body{min-width:0}
    <button type="submit">Share a topic →</button>
   </form>
   <p class="dispatch-status" id="category-dispatch-status" role="status" aria-live="polite"></p>
-  <div class="fine">Visual preview only · No information is sent · No automated email newsletter is implied</div>
+  <div class="fine" hidden>Preview form · Nothing is submitted</div>
  </div>
 </section>
 </main><ink-east-footer></ink-east-footer>
@@ -902,7 +902,9 @@ const byId=id=>document.getElementById(id);
 const categoryBy=id=>categories.find(c=>c.id===id);
 const esc=t=>String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const plain=t=>String(t).replace(/<[^>]*>/g,'').replace(/&amp;/g,'&');
-let selected='space', page=1, perPage=9;
+const allowedSubjects=['space','materials','living','care'];
+const initialSubject=new URLSearchParams(location.search).get('category');
+let selected=allowedSubjects.includes(initialSubject)?initialSubject:'space', page=1, perPage=9;
 const modal=byId('topic-preview-dialog');
 const filtered=()=>posts.filter(p=>p.category===selected);
 const current=()=>categoryBy(selected);
@@ -923,8 +925,8 @@ function render(){
  byId('topic-cn').textContent=c.cn;byId('topic-dek').textContent=c.dek;
  byId('crumb-current').textContent=c.name;byId('topic-photo-caption').textContent=c.caption;
  byId('topic-photo-mark').textContent=c.mark;byId('topic-image').src=c.picture;
- byId('topic-image').alt='Illustrative photographic study for '+c.name+', not a real published category image';
- byId('topic-post-count').textContent=total+' sample '+(total===1?'piece':'pieces');
+ byId('topic-image').alt='Editorial photograph for '+c.name;
+ byId('topic-post-count').innerHTML='<strong>'+total+'</strong> '+(total===0?'published articles':'reading pieces');
  byId('category-subtitle').textContent=c.label;
  document.querySelectorAll('[data-category]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.category===selected)));
  byId('category-lead').hidden=!lead;
@@ -935,7 +937,7 @@ function render(){
  } else byId('category-lead-content').innerHTML='';
  byId('category-article-list').innerHTML=visible.slice(1).map((p,i)=>'<li><a class="shelf-item" href="#read-'+esc(p.id)+'" data-post="'+esc(p.id)+'"><span class="index">'+String(offset+i+2).padStart(2,'0')+'</span><div class="body"><h3>'+p.title+'</h3><div class="cn-sub">'+esc(p.cn)+'</div><p class="excerpt">'+esc(p.description)+'</p><div class="tags">'+p.tags.map(t=>'<span class="topic">'+esc(t)+'</span>').join('')+'</div></div><div class="meta"><span class="type">'+esc(p.type)+'</span><span class="rt">≈ '+p.time+' MIN</span><span class="read">Preview →</span></div></a></li>').join('');
  const start=total?offset+1:0,stop=offset+visible.length;
- byId('topic-status').textContent=total?'Showing '+start+'–'+stop+' of '+total+' example articles':'No published sample articles shown for this category';
+ byId('topic-status').textContent=total?'Showing '+start+'–'+stop+' of '+total+' pieces':'0 public articles · 暫 無 公 開 文 章';
  byId('category-pagination-status').textContent=String(start).padStart(2,'0')+'—'+String(stop).padStart(2,'0')+' / '+total;
  const btn=(text,number,disabled,active)=>'<button type="button" data-page="'+number+'"'+(disabled?' disabled':'')+(active?' aria-current="page"':'')+'>'+text+'</button>';
  byId('category-pagination-buttons').innerHTML=btn('←',page-1,page===1,false)+Array.from({length:pages},(_,i)=>btn(i+1,i+1,false,i+1===page)).join('')+btn('→',page+1,page===pages,false);
