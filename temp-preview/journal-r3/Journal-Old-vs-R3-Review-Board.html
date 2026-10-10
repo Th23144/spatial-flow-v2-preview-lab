@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>项目二 · 七页导航与文案 R3 差异对照</title>
+<style>
+:root{font-family:system-ui,"PingFang SC","Microsoft YaHei",sans-serif;color-scheme:light;--bg:#f5f5f3;--line:#deddd8;--ink:#20201e;--grey:#66645f;--accent:#743b36}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);line-height:1.5}button,select{font:inherit}.controls select{border:1px solid var(--line);padding:8px 12px;background:#fff;border-radius:4px;min-width:200px;max-width:100%}
+a{color:#6e3c36;text-underline-offset:3px}.head{padding:26px clamp(18px,3vw,48px) 20px;border-bottom:1px solid var(--line);background:white}
+.eyebrow{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+h1{font-size:clamp(22px,2.4vw,34px);line-height:1.3;font-weight:600;margin:8px 0 12px}
+.desc{font-size:13px;color:var(--grey);max-width:1050px;margin:0}
+.controls{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;padding:16px clamp(18px,3vw,48px);border-bottom:1px solid var(--line)}
+.controls .label{display:inline-block;font-size:12px;color:var(--grey);margin-right:8px}
+.segment{display:inline-flex;gap:5px;flex-wrap:wrap}
+.segment button{border:1px solid var(--line);background:white;padding:7px 11px;border-radius:4px;cursor:pointer;font-size:12px}
+.segment button[aria-pressed=true]{background:var(--ink);color:white;border-color:var(--ink)}
+.panes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:20px clamp(18px,3vw,48px) 46px}
+.panel{min-width:0;background:white;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.panel-top{padding:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--line)}
+.panel select{max-width:100%;width:min(380px,100%);padding:8px 9px;background:white;border:1px solid var(--line);border-radius:4px;font-size:13px}
+.status{font-size:11px;color:var(--grey);margin:0}
+.panel-links{display:flex;gap:18px;align-items:center}
+.panel-links a{font-size:12px}
+.note{padding:12px 15px;color:var(--grey);font-size:12px;min-height:60px;border-bottom:1px solid var(--line)}
+.frame-shell{padding:12px;min-height:450px;overflow:hidden;display:flex;align-items:flex-start;justify-content:center}
+.frame-anchor{position:relative;overflow:hidden;border:1px solid #cfc9c0;background:#f4ede0;box-shadow:0 4px 12px #0000000b;max-width:100%}
+.frame-anchor iframe{position:absolute;top:0;left:0;border:0;transform-origin:top left;background:#f4ede0}
+.message{color:var(--grey);font-size:12px;padding:12px 0 0}
+footer{padding:22px clamp(18px,3vw,48px);border-top:1px solid var(--line);font-size:12px;color:var(--grey)}
+@media(max-width:860px){.panes{grid-template-columns:1fr}.frame-shell{min-height:350px}}
+</style></head>
+<body>
+<header class="head"><div class="eyebrow">PROJECT 2 / JOURNAL · VISUAL CONSISTENCY REVIEW</div>
+<h1>博客七页 · 原稿 / R3 修订对照</h1>
+<p class="desc">左侧默认显示已锁定原稿，右侧显示本轮 R3 导航与文案精修；可切换任意页面族并模拟视口宽度。所有原稿仍然保留。浏览器如禁止嵌入预览，请使用“直接打开页面”。</p></header>
+<div class="controls"><div><label class="label" for="pair-select">成对检查</label><select id="pair-select" aria-label="选择页面族"></select></div><div><span class="label">模拟视口宽度</span><div class="segment" role="group" aria-label="选择视口宽度">
+<button type="button" data-width="1440" aria-pressed="true">1440 · 桌面</button>
+<button type="button" data-width="1024" aria-pressed="false">1024 · 平板</button>
+<button type="button" data-width="430" aria-pressed="false">430 · 手机</button>
+<button type="button" data-width="390" aria-pressed="false">390</button>
+<button type="button" data-width="360" aria-pressed="false">360</button>
+<button type="button" data-width="320" aria-pressed="false">320</button></div></div><span class="label" id="state">两个预览 · 宽 1440px</span></div>
+<main class="panes">
+<section class="panel" data-panel="0">
+<div class="panel-top"><select aria-label="左侧选择页面" id="select-0"></select><div class="panel-links"><a id="open-0" target="_blank" rel="noopener noreferrer">直接打开页面 ↗</a></div></div>
+<p class="note" id="note-0"></p>
+<div class="frame-shell" id="shell-0"><div class="frame-anchor" id="holder-0"><iframe id="iframe-0" title="左侧静态页面预览" loading="lazy" referrerpolicy="no-referrer"></iframe></div></div>
+<p class="status" style="padding:0 14px 14px" id="status-0"></p>
+</section>
+<section class="panel" data-panel="1">
+<div class="panel-top"><select aria-label="右侧选择页面" id="select-1"></select><div class="panel-links"><a id="open-1" target="_blank" rel="noopener noreferrer">直接打开页面 ↗</a></div></div>
+<p class="note" id="note-1"></p>
+<div class="frame-shell" id="shell-1"><div class="frame-anchor" id="holder-1"><iframe id="iframe-1" title="右侧静态页面预览" loading="lazy" referrerpolicy="no-referrer"></iframe></div></div>
+<p class="status" style="padding:0 14px 14px" id="status-1"></p>
+</section></main>
+<footer>设计候选按不可变 GitHub commit 链接锁定。网站正式字体加载、图片、真实 WordPress 查询、桌面/移动端溢出及交互仍须运行时验证。审计结果记录在项目二 GitHub 的 project2-progress 文档中。</footer>
+<script>
+const pages=[{"key":"home-old","name":"Journal Home / 博客首页","code":"锁定原稿","status":"原稿 · 未被覆盖","note":"统一导航；四个阅读主题入口不再跳回首页精选；隐藏预览说明；左栏原稿用于对照","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/e493b97d44285d29abe96f3dce9d105cbee84ce6/temp-preview/Spatial-Flow-Journal-Editorial-Adaptation-03.html"},{"key":"home-r1","name":"Journal Home / 博客首页","code":"R3 修订候选","status":"R3 · 导航与读者文案修订","note":"统一导航；四个阅读主题入口不再跳回首页精选；隐藏预览说明；右栏修订仅处理源代码已发现的 P1 项目","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Home-R3.html"},{"key":"archive-old","name":"Articles Archive / 文章总目录","code":"锁定原稿","status":"原稿 · 未被覆盖","note":"移除顶部和列表下方开发说明，保持宽幅文章目录与墨色编辑精选；左栏原稿用于对照","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/0ba8e02ea9e560283818334a8845c43a2c9d2cd2/temp-preview/Spatial-Flow-Journal-Articles-Archive-01.html"},{"key":"archive-r1","name":"Articles Archive / 文章总目录","code":"R3 修订候选","status":"R3 · 导航与读者文案修订","note":"移除顶部和列表下方开发说明，保持宽幅文章目录与墨色编辑精选；右栏修订仅处理源代码已发现的 P1 项目","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Archive-R3.html"},{"key":"article-old","name":"Single Article / 单篇文章","code":"锁定原稿","status":"原稿 · 未被覆盖","note":"假作者和演示脚注改成正常期刊内容；可选后记及独立阅读邀请都保留；左栏原稿用于对照","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/e61b90c1430955713a23b8aea656649abe772b9e/temp-preview/Spatial-Flow-Journal-Single-Article-04.html"},{"key":"article-r1","name":"Single Article / 单篇文章","code":"R3 修订候选","status":"R3 · 导航与读者文案修订","note":"假作者和演示脚注改成正常期刊内容；可选后记及独立阅读邀请都保留；右栏修订仅处理源代码已发现的 P1 项目","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Article-R3.html"},{"key":"category-old","name":"Category / 分类页","code":"锁定原稿","status":"原稿 · 未被覆盖","note":"分类说明去开发文案；四个分支 ?category= 可实际选择对应示例分类；左栏原稿用于对照","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/64e4f937d06d9513a8b7bb2c688d4cb143897135/temp-preview/Spatial-Flow-Journal-Category-Topic-02.html"},{"key":"category-r1","name":"Category / 分类页","code":"R3 修订候选","status":"R3 · 导航与读者文案修订","note":"分类说明去开发文案；四个分支 ?category= 可实际选择对应示例分类；右栏修订仅处理源代码已发现的 P1 项目","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Category-R3.html"},{"key":"search-old","name":"Search / 站内检索","code":"锁定原稿","status":"原稿 · 未被覆盖","note":"Search05 视觉保留；统一导航及内部归档/主题入口，不错误高亮 Articles；左栏原稿用于对照","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/e0017a00c283dc6c99ce590c509fbf8f5bc45686/temp-preview/Spatial-Flow-Journal-Search-05.html"},{"key":"search-r1","name":"Search / 站内检索","code":"R3 修订候选","status":"R3 · 导航与读者文案修订","note":"Search05 视觉保留；统一导航及内部归档/主题入口，不错误高亮 Articles；右栏修订仅处理源代码已发现的 P1 项目","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Search-R3.html"},{"key":"404-old","name":"404 / 页面不存在","code":"锁定原稿","status":"原稿 · 未被覆盖","note":"40401 保留；搜索指向修订版 Search，恢复入口指向本轮七页；左栏原稿用于对照","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/1c60cf723809b53f9e607f3e1a9d1cc8ef911d11/temp-preview/Spatial-Flow-Journal-404-01.html"},{"key":"404-r1","name":"404 / 页面不存在","code":"R3 修订候选","status":"R3 · 导航与读者文案修订","note":"40401 保留；搜索指向修订版 Search，恢复入口指向本轮七页；右栏修订仅处理源代码已发现的 P1 项目","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-404-R3.html"},{"key":"empty-old","name":"Empty Category / 空分类","code":"锁定原稿","status":"原稿 · 未被覆盖","note":"沿用 Category02 的空结果分支；统一导航和动态示例分类；左栏原稿用于对照","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/1c60cf723809b53f9e607f3e1a9d1cc8ef911d11/temp-preview/Spatial-Flow-Journal-Empty-Category-01.html"},{"key":"empty-r1","name":"Empty Category / 空分类","code":"R3 修订候选","status":"R3 · 导航与读者文案修订","note":"沿用 Category02 的空结果分支；统一导航和动态示例分类；右栏修订仅处理源代码已发现的 P1 项目","url":"https://raw.githack.com/Th23144/spatial-flow-v2-preview-lab/temp-blog-static-final-qa-r3-20261010/temp-preview/journal-r3/Journal-Empty-R3.html"}];
+let width=1440;
+const $=id=>document.getElementById(id);
+const targetH=900;
+const reviewFamilies=[{"key":"home","title":"Journal Home / 博客首页"},{"key":"archive","title":"Articles Archive / 文章总目录"},{"key":"article","title":"Single Article / 单篇文章"},{"key":"category","title":"Category / 分类页"},{"key":"search","title":"Search / 站内检索"},{"key":"404","title":"404 / 页面不存在"},{"key":"empty","title":"Empty Category / 空分类"}];
+const pairMenu=$("pair-select");
+for(const family of reviewFamilies){const option=document.createElement("option");option.value=family.key;option.textContent=family.title;pairMenu.appendChild(option)}
+pairMenu.addEventListener("change",()=>setReviewPair(pairMenu.value));
+function setReviewPair(key){
+ setPanel(0,key+"-old");
+ setPanel(1,key+"-r1");
+ pairMenu.value=key;
+}
+function setPanel(i,key){
+ const info=pages.find(x=>x.key===key)||pages[0];
+ const menu=$("select-"+i);menu.value=info.key;
+ $("open-"+i).href=info.url;
+ $("note-"+i).textContent=info.note;
+ $("status-"+i).textContent=info.name+"  ·  "+info.status;
+ const iframe=$("iframe-"+i);
+ if(iframe.dataset.url!==info.url){iframe.src=info.url;iframe.dataset.url=info.url}
+ resize(i);
+}
+function resize(i){
+ const shell=$("shell-"+i), holder=$("holder-"+i), iframe=$("iframe-"+i);
+ if(!shell||!holder||!iframe)return;
+ const widthAvail=Math.max(0,shell.clientWidth-24);
+ const scale=Math.min(1,widthAvail/width);
+ holder.style.width=Math.floor(width*scale)+"px";
+ holder.style.height=Math.floor(targetH*scale)+"px";
+ iframe.style.width=width+"px";iframe.style.height=targetH+"px";
+ iframe.style.transform="scale("+scale+")";
+}
+function setWidth(n){
+ width=n;document.querySelectorAll("[data-width]").forEach(b=>b.setAttribute("aria-pressed",String(Number(b.dataset.width)===n)));
+ $("state").textContent="两个预览 · 宽 "+n+"px";
+ [0,1].forEach(resize);
+}
+for(const i of [0,1]){
+ const select=$("select-"+i);
+ for(const p of pages){const o=document.createElement("option");o.value=p.key;o.textContent=p.name+" / "+p.code;select.appendChild(o)}
+ select.addEventListener("change",()=>setPanel(i,select.value));
+}
+document.querySelectorAll("[data-width]").forEach(b=>b.addEventListener("click",()=>setWidth(Number(b.dataset.width))));
+let pending=0;
+window.addEventListener("resize",()=>{cancelAnimationFrame(pending);pending=requestAnimationFrame(()=>[0,1].forEach(resize))});
+setReviewPair("home");setWidth(1440);
+</script></body></html>
