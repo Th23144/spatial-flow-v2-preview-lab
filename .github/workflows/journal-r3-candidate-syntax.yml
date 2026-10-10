@@ -1,0 +1,17 @@
+name: Journal R3 Candidate Syntax
+on:
+  push:
+    branches: [candidate-journal-home-r3-manual-step-20261010]
+  pull_request:
+    paths:
+      - 'project2-candidates/journal-home-r3/**'
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint Journal R3 PHP candidate
+        run: php -l project2-candidates/journal-home-r3/template-parts/journal-r3-home.php
+      - name: Check forbidden prototype links and fake forms
+        run: |
+          ! grep -E 'raw\\.githack\\.com|sf-dispatch-preview|noindex,nofollow' project2-candidates/journal-home-r3/template-parts/journal-r3-home.php
