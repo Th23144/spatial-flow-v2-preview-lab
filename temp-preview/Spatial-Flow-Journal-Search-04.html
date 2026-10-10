@@ -30,9 +30,9 @@ footer{background:var(--paper);color:var(--ink);padding:90px 40px 28px}.foot-mar
 .quick-terms .clear[hidden],.band-dark[hidden],.search-shelf[hidden],.empty[hidden]{display:none!important}
 .search-snapshot .feat-num{overflow-wrap:anywhere}
 .search-snapshot .feat-num #current-term{font-size:.85em}
-.search-snapshot .anchor-pieces button{width:100%;display:grid;grid-template-columns:45px 1fr auto;gap:18px;align-items:baseline;text-align:left;background:transparent;border:0;padding:18px 0;color:var(--paper-light);font-family:inherit;cursor:pointer}
-.search-snapshot .anchor-pieces button:hover{background:rgba(244,237,224,.05)}
-.search-snapshot .anchor-pieces button:focus-visible{outline:2px solid var(--paper-light);outline-offset:3px}
+.search-snapshot .anchor-pieces a{width:100%;display:grid;grid-template-columns:45px minmax(0,1fr) auto;gap:18px;align-items:baseline;text-align:left;background:transparent;padding:18px 0;color:var(--paper-light);text-decoration:none;cursor:pointer}
+.search-snapshot .anchor-pieces a:hover{background:rgba(244,237,224,.05)}
+.search-snapshot .anchor-pieces a:focus-visible{outline:2px solid var(--paper-light);outline-offset:3px}
 .search-snapshot .anchor-pieces .t .cn{font-size:13px}
 .search-snapshot .anchor-pieces .n{font-size:12px}
 .search-snapshot .anchor-pieces .k{font-size:10px}
@@ -60,8 +60,19 @@ footer{background:var(--paper);color:var(--ink);padding:90px 40px 28px}.foot-mar
 .search-dialog .bottom{border-top:1px solid var(--rule);padding-top:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .search-dialog .bottom button{font:400 10px var(--mono);border:1px solid var(--ink);background:transparent;cursor:pointer;padding:11px 18px}
 .search-dialog .bottom span{font:400 9px var(--mono);color:var(--ink-faint)}
-@media(max-width:730px){.search-snapshot .anchor-pieces button{grid-template-columns:40px 1fr}.search-snapshot .anchor-pieces button .k{grid-column:2}.search-shelf .shelf-item{grid-template-columns:42px 1fr;gap:19px}.search-shelf .shelf-item .meta{grid-column:2;text-align:left;align-items:center;flex-direction:row;justify-content:flex-start;flex-wrap:wrap;gap:10px 16px}}
+@media(max-width:730px){.search-snapshot .anchor-pieces a{grid-template-columns:40px minmax(0,1fr)}.search-snapshot .anchor-pieces a .k{grid-column:2}.search-shelf .shelf-item{grid-template-columns:42px 1fr;gap:19px}.search-shelf .shelf-item .meta{grid-column:2;text-align:left;align-items:center;flex-direction:row;justify-content:flex-start;flex-wrap:wrap;gap:10px 16px}}
 @media(max-width:520px){.hero{padding-top:64px;padding-bottom:57px}.hero .kicker{font-size:10px;letter-spacing:.16em}.hero h1{font-size:clamp(45px,10vw,63px)}.hero .cn-title{font-size:19px;letter-spacing:.25em}.hero .lede{font-size:17px}.search-input-row{gap:7px;padding:8px 0}.search-input-row .search-seal{font-size:18px}.search-input-row input{font-size:clamp(21px,5.9vw,30px)}.search-input-row button{font-size:9px;letter-spacing:0}.search-input-row button span{font-size:16px;margin-left:3px}.quick-terms{gap:8px 15px}.search-snapshot .feat-num{font-size:clamp(43px,10vw,60px)}.search-shelf .shelf-item{grid-template-columns:28px minmax(0,1fr);gap:12px;padding:25px 0}.search-shelf .shelf-item h3{font-size:22px}.search-shelf .shelf-item .meta{grid-column:2}.empty .empty-inner{grid-template-columns:1fr}.empty-routes{min-width:0}.search-endline{font-size:8px}}
+
+/* Safety: visually-hidden accessible label; needed because the Project3 archive
+   source does not define a shared .sr-only helper. */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+/* The original archive's anchor-pieces uses text links, not native buttons.
+   Explicit children retain the original paper text colors and baseline. */
+.search-snapshot .anchor-pieces a .t{min-width:0;color:var(--paper-light);background:transparent;font-family:var(--serif-en);font-size:18px;line-height:1.3}
+.search-snapshot .anchor-pieces a .t .cn{display:block;color:rgba(244,237,224,.5);background:transparent}
+.search-snapshot .anchor-pieces a .n{font-family:var(--mono);font-size:11px;color:var(--seal)}
+.search-snapshot .anchor-pieces a .k{color:rgba(244,237,224,.55);font-family:var(--mono);font-size:10px}
+.search-snapshot .anchor-pieces a:hover .t{color:#f8ece0}
 </style></head><body><div class="site-header-wrap"><ink-east-public-nav mode="full" active="articles"></ink-east-public-nav></div><main id="journal-search-page"><header class="hero"><div class="hero-inner">
 <div class="kicker">Spatial Flow Journal · Public Reading Index</div>
 <h1>Search the <em>Journal.</em></h1>
@@ -82,9 +93,9 @@ footer{background:var(--paper);color:var(--ink);padding:90px 40px 28px}.foot-mar
 <p class="dek" id="search-summary-copy">Matches across the public Journal are collected below, together with related subjects and information pages.</p>
 <a class="view-issue" href="#search-shelf">See the shelf <span class="ar">→</span></a>
 </div><div class="right"><ul class="anchor-pieces" aria-label="Result categories">
-<li><button type="button" data-scope="articles"><span class="n" id="num-articles">00</span><span class="t">Articles &amp; field notes<span class="cn">文 章 · 手 記</span></span><span class="k">READ</span></button></li>
-<li><button type="button" data-scope="topics"><span class="n" id="num-topics">00</span><span class="t">Reading subjects<span class="cn">主 題 · 分 類</span></span><span class="k">EXPLORE</span></button></li>
-<li><button type="button" data-scope="pages"><span class="n" id="num-pages">00</span><span class="t">Journal pages<span class="cn">期 刊 · 頁 面</span></span><span class="k">OPEN</span></button></li>
+<li><a href="#search-shelf" data-scope="articles" aria-label="View article search results"><span class="n" id="num-articles">00</span><span class="t">Articles &amp; field notes<span class="cn">文 章 · 手 記</span></span><span class="k">READ</span></a></li>
+<li><a href="#search-shelf" data-scope="topics" aria-label="View matching reading subjects"><span class="n" id="num-topics">00</span><span class="t">Reading subjects<span class="cn">主 題 · 分 類</span></span><span class="k">EXPLORE</span></a></li>
+<li><a href="#search-shelf" data-scope="pages" aria-label="View matching journal pages"><span class="n" id="num-pages">00</span><span class="t">Journal pages<span class="cn">期 刊 · 頁 面</span></span><span class="k">OPEN</span></a></li>
 </ul></div></div></div></section><section class="block" id="search-shelf" aria-labelledby="shelf-heading"><div class="block-inner">
 <div class="section-head"><span class="glyph">貳</span><h2 id="shelf-heading">The Shelf <span class="cn">文 章 索 引</span></h2><span class="aside" id="search-status">Results for “space”</span></div>
 <div class="filters" role="group" aria-label="Result type filters" id="search-filters"></div>
@@ -658,7 +669,7 @@ node("search-clear").addEventListener("click",()=>{q="";selected="all";display()
 node("search-again").addEventListener("click",()=>{node("journal-search-input").focus();node("journal-search-input").scrollIntoView({behavior:"smooth",block:"center"});});
 document.addEventListener("click",e=>{
  const hint=e.target.closest("[data-query]");if(hint){query(hint.dataset.query);return;}
- const filt=e.target.closest("[data-scope]");if(filt){selected=filt.dataset.scope;display();node("search-shelf").scrollIntoView({behavior:"smooth",block:"start"});return;}
+ const filt=e.target.closest("[data-scope]");if(filt){e.preventDefault();selected=filt.dataset.scope;display();node("search-shelf").scrollIntoView({behavior:"smooth",block:"start"});return;}
  const pick=e.target.closest("[data-entry]");if(!pick)return;
  const item=corpus.find(x=>x.id===pick.dataset.entry);if(!item)return;last=pick;
  node("dialog-label").textContent=item.label+" / "+item.category;
