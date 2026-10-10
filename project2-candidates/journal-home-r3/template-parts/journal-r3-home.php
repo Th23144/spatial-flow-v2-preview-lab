@@ -285,7 +285,7 @@ foreach ( $sf_r3_footer_locations as $key=>$location ) {
   $cats = get_the_category( $post->ID );
   $cn = get_post_meta( $post->ID, '_sf_journal_cn_title', true );
 ?>
-<div class="toc-row"><span class="num">No. <b><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></b></span><div class="title"><a href="<?php echo esc_url( get_permalink( $post ) ); ?>"><?php echo esc_html( get_the_title( $post ) ); ?></a><?php if ( $cn ) : ?><span class="cn"><?php echo esc_html( $cn ); ?></span><?php endif; ?></div><span class="kind"><?php echo esc_html( $cats ? $cats[0]->name : 'Journal' ); ?></span><span class="page">READ ↗</span></div>
+<div class="toc-row"><span class="num">No. <b><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></b></span><div class="title"><a href="<?php echo esc_url( get_permalink( $post ) ); ?>"><?php echo spatial_flow_r3_title_html( $post ); ?></a><?php if ( $cn ) : ?><span class="cn"><?php echo esc_html( $cn ); ?></span><?php endif; ?></div><span class="kind"><?php echo esc_html( $cats ? $cats[0]->name : 'Journal' ); ?></span><span class="page">READ ↗</span></div>
 <?php endforeach; ?>
 
 </div>
@@ -325,7 +325,7 @@ foreach ( $sf_r3_footer_locations as $key=>$location ) {
     <span class="plate"><?php echo esc_html( sprintf( 'No. %02d', $index + 1 ) ); ?> · <?php echo esc_html( $cats ? $cats[0]->name : 'Journal' ); ?></span>
     <span class="ink-cn"><?php echo esc_html( $cn ? mb_substr( $cn, 0, 2 ) : '文' ); ?></span>
    </div><div class="kicker"><span><?php echo esc_html( $cats ? $cats[0]->name : 'Journal' ); ?></span><span class="dot">·</span><span class="time"><?php echo esc_html( spatial_flow_post_reading_time( $post->ID ) ); ?></span></div>
-   <h3><?php echo esc_html( get_the_title( $post ) ); ?><?php if ( $cn ) : ?><span class="cn"><?php echo esc_html( $cn ); ?></span><?php endif; ?></h3>
+   <h3><?php echo spatial_flow_r3_title_html( $post ); ?><?php if ( $cn ) : ?><span class="cn"><?php echo esc_html( $cn ); ?></span><?php endif; ?></h3>
    <p class="excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt( $post ), 28 ) ); ?></p>
    <div class="author"><?php echo esc_html( get_the_date( '', $post ) ); ?> — <b><?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></b></div></a>
   </article>
@@ -367,7 +367,7 @@ foreach ( $sf_r3_footer_locations as $key=>$location ) {
 ?>
  <article class="letter">
   <div class="meta"><span class="num">Question No. <?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span><span><?php echo esc_html( $category ); ?></span></div>
-  <div class="question"><?php echo esc_html( get_the_title( $post ) ); ?></div>
+  <div class="question"><?php echo spatial_flow_r3_title_html( $post ); ?></div>
   <div class="signature">— <?php echo esc_html( $category ); ?></div>
   <div class="response-label">From the journal</div><p class="response"><?php echo esc_html( wp_trim_words( get_the_excerpt( $post ), 29 ) ); ?></p>
   <p class="source">Explore the subject — <a href="<?php echo esc_url( get_permalink( $post ) ); ?>"><b>Read the journal ↗</b></a></p>
