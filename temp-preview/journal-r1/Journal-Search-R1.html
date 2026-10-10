@@ -676,7 +676,7 @@ function display(){
  node("current-term").textContent="“"+q+"”";
  node("search-summary-copy").textContent=count+" example matches: "+results.articles.length+" articles, "+results.topics.length+" reading subjects, "+results.pages.length+" pages.";
  for(const k of ["articles","topics","pages"])node("num-"+k).textContent=String(results[k].length).padStart(2,"0");
- node("search-status").textContent=!q?"Ready for a search":count?count+" sample entries · results for “"+q+"”":"No example entries found";
+ node("search-status").textContent=!q?"Ready for a search":count?count+" entries · results for “"+q+"”":"No example entries found";
  node("search-filters").innerHTML=!q||!count?"":kinds.filter(k=>k[0]==="all"||results[k[0]].length).map(k=>'<button type="button" class="chip'+(selected===k[0]?" active":"")+'" data-scope="'+k[0]+'" aria-pressed="'+(selected===k[0])+'">'+k[1]+(k[0]==="all"?"":" · "+results[k[0]].length)+'</button>').join("");
  node("search-items").innerHTML=visible.map(row).join("");
  node("live-status").textContent=visible.length+" sample results shown for "+q;
