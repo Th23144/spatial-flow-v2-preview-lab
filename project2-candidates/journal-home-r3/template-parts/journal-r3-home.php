@@ -323,7 +323,7 @@ foreach ( $sf_r3_footer_locations as $key=>$location ) {
   <article class="entry"><a href="<?php echo esc_url( get_permalink( $post ) ); ?>"><div class="frame">
     <div class="photo"><img src="<?php echo esc_url( $image ); ?>" alt="<?php echo esc_attr( get_the_title( $post ) ); ?>" loading="lazy"></div>
     <span class="plate"><?php echo esc_html( sprintf( 'No. %02d', $index + 1 ) ); ?> · <?php echo esc_html( $cats ? $cats[0]->name : 'Journal' ); ?></span>
-    <span class="ink-cn"><?php echo esc_html( $cn ? mb_substr( $cn, 0, 2 ) : '文' ); ?></span>
+    <span class="ink-cn"><?php echo esc_html( $cn ? wp_html_excerpt( $cn, 2, '' ) : '文' ); ?></span>
    </div><div class="kicker"><span><?php echo esc_html( $cats ? $cats[0]->name : 'Journal' ); ?></span><span class="dot">·</span><span class="time"><?php echo esc_html( spatial_flow_post_reading_time( $post->ID ) ); ?></span></div>
    <h3><?php echo spatial_flow_r3_title_html( $post ); ?><?php if ( $cn ) : ?><span class="cn"><?php echo esc_html( $cn ); ?></span><?php endif; ?></h3>
    <p class="excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt( $post ), 28 ) ); ?></p>
